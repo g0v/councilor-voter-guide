@@ -1,0 +1,15 @@
+Django==1.5.5
+django-json-field==0.5.5
+django-filter==0.7
+distribute==0.6.34
+dj-database-url==0.2.1
+dj-static==0.0.5
+gunicorn==0.17.4
+psycopg2==2.5
+static==0.4
+django-pagination==1.0.7
+djangorestframework==2.3.10
+django-debug-toolbar==1.0.1
+south==0.8.4
+django-discover-runner==1.0
+coverage==3.7.1
