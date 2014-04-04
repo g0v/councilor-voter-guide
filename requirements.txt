@@ -1,4 +1,5 @@
 Django==1.5.5
+django-social-auth==0.7.28
 django-json-field==0.5.5
 django-filter==0.7
 distribute==0.6.34
