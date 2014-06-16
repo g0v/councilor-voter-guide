@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
+import urllib
 from scrapy.http import Request, FormRequest
 from scrapy.selector import Selector
 from scrapy.spider import BaseSpider
@@ -11,6 +12,12 @@ def take_first(list_in):
         return list_in[0]
     else:
         raise
+
+def download(self, response):
+    filename = response.url.split("/")[-2]
+    output_pretty_file = codecs.open('./data(pretty_format)/merged.json', 'w', encoding='utf-8')
+    open(filename, 'wb').write(response.body)
+
 class Spider(BaseSpider):
     #for scrapy
     name = "taipei"
@@ -102,4 +109,5 @@ class Spider(BaseSpider):
                     item[value['key']] = '%s%s' % (value['extra'], take_first(node.xpath(value['path']).re(u'[\s]*([\S]+)[\s]*')))
                 else:
                     item[value['key']] = take_first(node.xpath(value['path']).re(u'[\s]*([\S]+)[\s]*'))
+        urllib.urlretrieve (item['download_url'], '../../meeting_minutes/taipei/%s_%s.doc' % (item['sitting'], item['meeting']))
         return item
