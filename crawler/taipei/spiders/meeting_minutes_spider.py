@@ -4,7 +4,7 @@ import urllib
 from scrapy.http import Request, FormRequest
 from scrapy.selector import Selector
 from scrapy.spider import BaseSpider
-from taipei.items import TaipeiItem
+from taipei.items import Taipei
 
 
 def take_first(list_in):
@@ -13,14 +13,9 @@ def take_first(list_in):
     else:
         raise
 
-def download(self, response):
-    filename = response.url.split("/")[-2]
-    output_pretty_file = codecs.open('./data(pretty_format)/merged.json', 'w', encoding='utf-8')
-    open(filename, 'wb').write(response.body)
-
 class Spider(BaseSpider):
     #for scrapy
-    name = "taipei"
+    name = "taipei_meeting"
     allowed_domains = ["obas_front.tcc.gov.tw"]
     start_urls = ["http://obas_front.tcc.gov.tw:8080/Agenda/EFileSearch.aspx?FileGrpKind=2&h=600",]
     def start_requests(self):
@@ -38,7 +33,7 @@ class Spider(BaseSpider):
             'ddlOrder1':u'DESC',
             'ddlColumn2':u'FileGrpNote',
             'ddlOrder2':u'ASC',
-            'txtPageSize':u'150',
+            'txtPageSize':u'10',
             'gvEFileList$ctl02$hidFileName':u'',
             'gvEFileList$ctl02$hidFilePath':u'',
             'gvEFileList$ctl02$hidFileGrpKind':u'2',
@@ -72,9 +67,8 @@ class Spider(BaseSpider):
             'ddlPage':u'1',
             'hFileGrpType':u'大會'
         }
-        return [FormRequest("http://obas_front.tcc.gov.tw:8080/Agenda/EFileSearch.aspx?FileGrpKind=2&h=600",
-                        formdata=payload,
-                        callback=self.parse)]
+        return [FormRequest("http://obas_front.tcc.gov.tw:8080/Agenda/EFileSearch.aspx?FileGrpKind=2&h=600", formdata=payload, callback=self.parse)]
+
     def parse(self, response):
         """ get the following dictionary structure
             {
@@ -88,12 +82,11 @@ class Spider(BaseSpider):
         sel = Selector(response)
         nodes = sel.xpath('//table/tr/td/a[contains(@href, "EFileDetail.aspx")]')
         for node in nodes:
-            item = TaipeiItem()
             yield Request('http://%s%s' % ("obas_front.tcc.gov.tw:8080/Agenda/", take_first(node.xpath('@href').extract())), callback=self.parse_profile)
 
     def parse_profile(self, response):
         sel = Selector(response)
-        item = TaipeiItem()
+        item = Taipei()
         nodes = sel.xpath('//table/tbody/tr')
         ref = {
             u'屆別': {'key': 'sitting', 'path': 'td/span/text()'},
@@ -105,9 +98,6 @@ class Spider(BaseSpider):
         for node in nodes:
             value = ref.get(take_first(node.xpath('th/text()').re(u'[\s]*([\S]+)[\s]*')))
             if value:
-                if value.get('extra'):
-                    item[value['key']] = '%s%s' % (value['extra'], take_first(node.xpath(value['path']).re(u'[\s]*([\S]+)[\s]*')))
-                else:
-                    item[value['key']] = take_first(node.xpath(value['path']).re(u'[\s]*([\S]+)[\s]*'))
-        urllib.urlretrieve (item['download_url'], '../../meeting_minutes/taipei/%s_%s.doc' % (item['sitting'], item['meeting']))
+                item[value['key']] = '%s%s' % (value.get('extra', ''), take_first(node.xpath(value['path']).re(u'[\s]*([\S]+)[\s]*')))
+        urllib.urlretrieve(item['download_url'], '../meeting_minutes/taipei/%s_%s.doc' % (item['sitting'], item['meeting']))
         return item

@@ -5,7 +5,20 @@
 
 from scrapy.item import Item, Field
 
-class TaipeiItem(Item):
+class Councilor(Item):
+    name = Field()
+    gender = Field()
+    birth = Field()
+    party = Field()
+    constituency = Field()
+    county = Field()
+    district = Field()
+    contacts = Field()
+    education = Field()
+    experience = Field()
+    platform = Field()
+
+class Taipei(Item):
     sitting = Field()
     category = Field()
     date = Field()
