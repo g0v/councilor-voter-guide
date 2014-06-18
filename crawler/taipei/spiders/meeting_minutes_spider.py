@@ -33,7 +33,7 @@ class Spider(BaseSpider):
             'ddlOrder1':u'DESC',
             'ddlColumn2':u'FileGrpNote',
             'ddlOrder2':u'ASC',
-            'txtPageSize':u'10',
+            'txtPageSize':u'150',
             'gvEFileList$ctl02$hidFileName':u'',
             'gvEFileList$ctl02$hidFilePath':u'',
             'gvEFileList$ctl02$hidFileGrpKind':u'2',

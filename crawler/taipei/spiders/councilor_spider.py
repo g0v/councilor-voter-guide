@@ -11,7 +11,7 @@ def take_first(list_in):
     if len(list_in) == 1:
         return list_in[0]
     else:
-        raise
+        return ''
 
 def GetDate(text):
     matchTerm = re.search(u'''
@@ -63,9 +63,10 @@ class Spider(BaseSpider):
             [\s]
             （(?P<district>[\S]*)）
         ''', constituency, re.X)
-        item['constituency'] = '%s%s' % (match.group('county'), match.group('selection'))
-        item['county'] = match.group('county')
-        item['district'] = match.group('district')
+        if match:
+            item['constituency'] = '%s%s' % (match.group('county'), match.group('selection'))
+            item['county'] = match.group('county')
+            item['district'] = match.group('district')
         nodes = sel.xpath('//table[@class="aldermans_information"]/tr')
         contacts = {}
         for node in nodes:
@@ -78,14 +79,24 @@ class Spider(BaseSpider):
             if node.xpath('td/text()').re(u'黨[\s]*籍'):
                 item['party'] = take_first(node.xpath('td/span/text()').re(u'[\s]*([\S]+)[\s]*'))
             if node.xpath('td/text()').re(u'電子信箱'):
-                contacts['email'] = node.xpath('td/a/text()').extract()
+                contacts['email'] = node.xpath('td/a/text()').re(u'[\s]*([\S]+)[\s]*')
             if node.xpath('td/text()').re(u'個人網站'):
-                contacts['website'] = node.xpath('td/a/@href').extract()
+                contacts['website'] = node.xpath('td/a/@href').re(u'[\s]*([\S]+)[\s]*')
             if node.xpath('td/text()').re(u'電[\s]*話'):
-                contacts['phone'] = take_first(node.xpath('td/span/text()').extract()).replace('<br>', ' ').strip().split(' ')
+                contacts['phone'] = node.xpath('td/span/text()').extract()
             if node.xpath('td/text()').re(u'傳[\s]*真'):
-                contacts['fax'] = take_first(node.xpath('td/span/text()').extract()).replace('<br>', ' ').strip().split(' ')
+                contacts['fax'] = node.xpath('td/span/text()').extract()
             if node.xpath('td/text()').re(u'通[\s]*訊[\s]*處'):
-                contacts['address'] = take_first(node.xpath('td/span/text()').extract()).replace('<br>', ' ').strip().split(' ')
+                contacts['address'] = node.xpath('td/span/text()').extract()
+            if node.xpath('td/text()').re(u'學[\s]*歷'):
+                contacts['education'] = node.xpath('td/span/text()').extract()
+            if node.xpath('td/text()').re(u'經[\s]*歷'):
+                contacts['experience'] = node.xpath('td/span/text()').extract()
+            if node.xpath('th/text()').re(u'政[\s]*見'):
+                contacts['platform'] = node.xpath('../tr/td/span/text()').extract()
+            if node.xpath('th/text()').re(u'備[\s]*註'):
+                contacts['remark'] = node.xpath('../tr/td/span/text()').extract()
         item['contacts'] = contacts
+        item['ad'] = 11
+        item['url'] = response.url
         return item
