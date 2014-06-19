@@ -19,6 +19,7 @@ class Councilor(Item):
     experience = Field()
     platform = Field()
     remark = Field()
+    image = Field()
     url = Field()
 
 class Taipei(Item):

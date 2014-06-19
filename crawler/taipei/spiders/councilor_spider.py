@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 import urllib
+from urlparse import urljoin
 from scrapy.http import Request, FormRequest
 from scrapy.selector import Selector
 from scrapy.spider import BaseSpider
@@ -54,6 +55,8 @@ class Spider(BaseSpider):
     def parse_profile(self, response):
         sel = Selector(response)
         item = Councilor()
+        image = sel.xpath('//table/tr/td/div[@class="aldermans_photo"]/img/@src').extract()[0]
+        item['image'] = urljoin(response.url, urllib.quote(image.encode('utf8')))
         constituency = take_first(sel.xpath('//div/h3/span[@id="FormView1_ElectionZoneLabel"]/text()').extract())
         match = re.search(u'''
             第[\W]{1,3}屆
@@ -89,13 +92,13 @@ class Spider(BaseSpider):
             if node.xpath('td/text()').re(u'通[\s]*訊[\s]*處'):
                 contacts['address'] = node.xpath('td/span/text()').extract()
             if node.xpath('td/text()').re(u'學[\s]*歷'):
-                contacts['education'] = node.xpath('td/span/text()').extract()
+                item['education'] = node.xpath('td/span/text()').extract()
             if node.xpath('td/text()').re(u'經[\s]*歷'):
-                contacts['experience'] = node.xpath('td/span/text()').extract()
+                item['experience'] = node.xpath('td/span/text()').extract()
             if node.xpath('th/text()').re(u'政[\s]*見'):
-                contacts['platform'] = node.xpath('../tr/td/span/text()').extract()
+                item['platform'] = node.xpath('../tr/td/span/text()').extract()
             if node.xpath('th/text()').re(u'備[\s]*註'):
-                contacts['remark'] = node.xpath('../tr/td/span/text()').extract()
+                item['remark'] = node.xpath('../tr/td/span/text()').extract()
         item['contacts'] = contacts
         item['ad'] = 11
         item['url'] = response.url
