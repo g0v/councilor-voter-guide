@@ -2,7 +2,19 @@ councilor-voter-guide
 ================
 
 議員投票指南
+[議員投票指南 Hackpad](https://g0v.hackpad.com/KjfdRZ08FZ3)
 
+## For Crawler (Scrapy)
+
+[Scrapy offcial install doc](http://doc.scrapy.org/en/latest/intro/install.html)
+```
+apt-get install libxml2-dev libxslt1-dev python-dev
+pip install lxml
+pip install Scrapy
+```
+
+
+## For Website (Python/Django)
 
 In Ubuntu 12.04 LTS
 =================
@@ -24,7 +36,7 @@ sudo -u <username> psql -c "ALTER USER <username> with encrypted PASSWORD 'put_y
 
 ## Clone source code from GitHub to local
 ```
-git clone https://github.com/thewayiam/councilor-voter-guide.git       
+git clone https://github.com/g0v/councilor-voter-guide.git       
 cd councilor-voter-guide/voter_guide/
 ```
 
@@ -36,7 +48,7 @@ source venv/bin/activate
 pip install -r requirements.txt     
 ```
 
-## Restore data into database       
+## Restore data into database(Dump data not finish yet, please wait or work on)       
 Please new a database(eg. voter_guide), below will use voter_guide for example
 ```
 createdb -h localhost -U <username> voter_guide
@@ -65,11 +77,6 @@ Because local_settings.py is list in .gitignore, so this file won't be appear in
 ## runserver
 ```
 python manage.py runserver
-```
-
-## tests(optional)
-```
-coverage run manage.py test --settings=ly.test
 ```
 
 CC0 1.0 Universal
