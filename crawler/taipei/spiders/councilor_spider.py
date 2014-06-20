@@ -74,7 +74,7 @@ class Spider(BaseSpider):
         contacts = {}
         for node in nodes:
             if node.xpath('td/text()').re(u'姓[\s]*名'):
-                item['name'] = take_first(node.xpath('td/span/text()').re(u'[\s]*([\S]+)[\s]*'))
+                item['name'] = re.sub(u'\s|　', '', node.xpath('td/span/text()').extract()[0])
             if node.xpath('td/text()').re(u'性[\s]*別'):
                 item['gender'] = take_first(node.xpath('td/span/text()').re(u'[\s]*([\S]+)[\s]*'))
             if node.xpath('td/text()').re(u'出[\s]*生'):
@@ -101,5 +101,5 @@ class Spider(BaseSpider):
                 item['remark'] = node.xpath('../tr/td/span/text()').extract()
         item['contacts'] = contacts
         item['ad'] = 11
-        item['url'] = response.url
+        item['links'] = {'council': response.url}
         return item

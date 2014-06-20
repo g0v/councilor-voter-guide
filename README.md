@@ -1,8 +1,11 @@
 councilor-voter-guide 
 ================
 
-議員投票指南
+議員投票指南        
 [議員投票指南 Hackpad](https://g0v.hackpad.com/KjfdRZ08FZ3)
+
+In Ubuntu 12.04 LTS
+=================
 
 ## For Crawler (Scrapy)
 
@@ -16,8 +19,6 @@ pip install Scrapy
 
 ## For Website (Python/Django)
 
-In Ubuntu 12.04 LTS
-=================
 0.1 install basic tools
 ```
 sudo apt-get update

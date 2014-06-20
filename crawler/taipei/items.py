@@ -20,7 +20,7 @@ class Councilor(Item):
     platform = Field()
     remark = Field()
     image = Field()
-    url = Field()
+    links = Field()
 
 class Taipei(Item):
     sitting = Field()
