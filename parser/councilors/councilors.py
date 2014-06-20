@@ -57,6 +57,7 @@ for council in ['../../data/taipei_councilor-11.json', '../../data/tncc/tnccp.js
     ideal_term_end_year = {0:1969, 1:1973, 2:1977, 3:1981, 4:1985, 5:1989, 6:1994, 7:1998, 8:2002, 9:2006, 10:2010, 11:2014}
     for councilor in dict_list:
         councilor.update({'uid': '%s_%s' % (councilor['name'], councilor['birth']), 'in_office': True})
+        councilor['ad'] = int(councilor['ad'])
         Councilors(councilor)
         CouncilorsDetail(councilor, ideal_term_end_year)
     conn.commit()

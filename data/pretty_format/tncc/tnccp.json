@@ -1,5 +1,6 @@
 [
     {
+        "ad": "1", 
         "birth": "1958/11/8", 
         "constituency": "臺南市第一選區", 
         "contacts": {
@@ -26,6 +27,9 @@
         "gender": "女性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E8%B3%B4%E7%BE%8E%E6%83%A0.jpg", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BF%E0%AC%FC%B4f"
+        }, 
         "name": "賴美惠", 
         "party": "民進黨", 
         "platform": {
@@ -39,10 +43,10 @@
             "8": "發揚古都農村民俗藝術，爭取經費培訓農村宗教文化民俗才藝藝陣，如宋江陣、獅陣、電音三太子、南北管、車鼓陣??等，並舉辦全國性民俗藝陣活動", 
             "9": "爭取成功大學農學院設立於後壁、白河、東山地區"
         }, 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BF%E0%AC%FC%B4f"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1953/3/13", 
         "constituency": "臺南市第一選區", 
         "contacts": {
@@ -72,6 +76,9 @@
         "gender": "男性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E5%BC%B5%E4%B8%96%E8%B3%A2.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B1i%A5%40%BD%E5"
+        }, 
         "name": "張世賢", 
         "party": "國民黨", 
         "platform": [
@@ -86,10 +93,10 @@
             "積極爭取婦女生產補助辦法，促進台灣生育計劃", 
             "積極爭取貧困家庭兒童，營養午餐完全免費"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B1i%A5%40%BD%E5"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1968/6/5", 
         "constituency": "臺南市第二選區", 
         "contacts": {
@@ -115,6 +122,9 @@
         "gender": "女性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E8%B3%B4%E6%83%A0%E5%93%A1.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BF%E0%B4f%AD%FB"
+        }, 
         "name": "賴惠員", 
         "party": "民進黨", 
         "platform": [
@@ -125,10 +135,10 @@
             "65歲以上老人免費裝假牙", 
             "爭取免費嬰兒輪狀病毒疫苗、嬰幼兒肺炎雙球菌疫苗，以及青少女子宮頸癌疫苗"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BF%E0%B4f%AD%FB"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1971/5/11", 
         "constituency": "臺南市第二選區", 
         "contacts": {
@@ -165,6 +175,9 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9D%8E%E9%80%80%E4%B9%8B.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A7%F5%B0h%A4%A7"
+        }, 
         "name": "李退之", 
         "party": "民進黨", 
         "platform": {
@@ -174,10 +187,10 @@
             "4": "振教育、顧生活：持續推動引進大學研究園區，傳承音樂藝術教育與工藝薪火，爭取設立國家教育資源中心，整合文化藝術教育與社區產業發展，打造大新營成為文創研究發展重鎮。", 
             "5": "綠產業、新農村：結合雲林縣、嘉義縣政府爭取設立「雲嘉南農業專區」，深耕在地無毒有機農業，成為國家級農業研發基地，全面提升綠色農業競爭力，打造年輕人返鄉務農創業環境，育成台灣農業經營人才新生代。"
         }, 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A7%F5%B0h%A4%A7"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1959/9/25", 
         "constituency": "臺南市第二選區", 
         "contacts": {
@@ -208,6 +221,9 @@
         "gender": "男性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E8%94%A1%E8%82%B2%E8%BC%9D.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BD%B2%A8%7C%BD%F7"
+        }, 
         "name": "蔡育輝", 
         "party": "國民黨", 
         "platform": [
@@ -222,10 +238,10 @@
             "爭取勞工局設立專責人員，協助勞工處理勞資糾紛，免費代寫訴狀", 
             "育輝的承諾：問政拼第一、服務不打折、議事不缺席、預算不放水、用心做公益、專業清廉問政"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BD%B2%A8%7C%BD%F7"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1956/3/26", 
         "constituency": "臺南市第二選區", 
         "contacts": {
@@ -257,6 +273,9 @@
         "gender": "男性", 
         "group": "無黨團結聯盟", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E8%B6%99%E6%98%86%E5%8E%9F.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BB%AF%A9%F8%AD%EC"
+        }, 
         "name": "趙昆原", 
         "party": "無黨", 
         "platform": [
@@ -270,10 +289,10 @@
             "督促政府儘速完成嘉芳里貨物轉運中心用地及新營長勝營區都市計畫變更及土地開發，以促進地方繁榮", 
             "爭取各類經費，支持表演藝術及地方民俗文化活動，提昇文化素養"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BB%AF%A9%F8%AD%EC"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1944/5/15", 
         "constituency": "臺南市第三選區", 
         "contacts": {
@@ -295,6 +314,9 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E4%BE%AF%E6%BE%84%E8%B2%A1.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%ABJ%BC%E1%B0%5D"
+        }, 
         "name": "侯澄財", 
         "party": "民進黨", 
         "platform": [
@@ -311,10 +333,10 @@
             "督促政府確保人民安全的生活環境、做好水利措施及防治污染", 
             "整合地方資源，發展特色、觀光、休閒、帶動在地產業、行銷，改善地方經濟，提昇居民生活水準"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%ABJ%BC%E1%B0%5D"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1962/5/20", 
         "constituency": "臺南市第三選區", 
         "contacts": {
@@ -338,6 +360,9 @@
         "gender": "男性", 
         "group": "無黨團結聯盟", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E8%AC%9D%E8%B2%A1%E6%97%BA.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%C1%C2%B0%5D%A9%F4"
+        }, 
         "name": "謝財旺", 
         "party": "無黨", 
         "platform": [
@@ -350,10 +375,10 @@
             "建請交通部公路總局儘速完成(麻豆—學甲—北門)東西向快速道路之興建，以便利交通帶動地方繁榮", 
             "重新規劃學甲工業區，並改善公共設施，以利廣招廠商進駐，增加就業機會，吸引青年在鄉服務，減少人口外流"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%C1%C2%B0%5D%A9%F4"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1959/9/7", 
         "constituency": "臺南市第四選區", 
         "contacts": {
@@ -378,6 +403,9 @@
         "gender": "女性", 
         "group": "無黨團結聯盟", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E9%83%AD%E7%A7%80%E7%8F%A0.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%A2%A8q%AF%5D"
+        }, 
         "name": "郭秀珠", 
         "party": "無黨", 
         "platform": [
@@ -388,10 +416,10 @@
             "關懷獨居老人、低收入家庭等弱勢者，爭取補助能維持其基本生活品質", 
             "氣候變遷雨災頻繁，要求建立有效率防災、救災體系；爭取治水經費，加速排水設施建立及災民安頓和補助，確保市民生命及財產"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%A2%A8q%AF%5D"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1956/3/2", 
         "constituency": "臺南市第四選區", 
         "contacts": {
@@ -415,6 +443,9 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E5%90%B3%E9%80%9A%E9%BE%8D.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A7d%B3q%C0s"
+        }, 
         "name": "吳通龍", 
         "party": "民進黨", 
         "platform": [
@@ -426,10 +457,10 @@
             "官田工業區至南?南118線台鐵與高鐵兩軌共構處設高鐵站乃縣市合併中心點促進曾文區進步", 
             "未來直轄市強力爭取曾文水庫國土規劃為台南市轄區"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A7d%B3q%C0s"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1944/10/23", 
         "constituency": "臺南市第四選區", 
         "contacts": {
@@ -454,6 +485,9 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E9%99%B3%E6%96%87%E8%B3%A2.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%AF%A4%E5%BD%E5"
+        }, 
         "name": "陳文賢", 
         "party": "民進黨", 
         "platform": [
@@ -467,10 +501,10 @@
             "提升推動社區型照顧服務體系，加強老人、弱勢族群扶助及保障", 
             "增編治安、治水、防災預算，解決水患，保障人民生命、財產安全"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%AF%A4%E5%BD%E5"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1958/8/13", 
         "constituency": "臺南市第四選區", 
         "contacts": {
@@ -495,6 +529,9 @@
         "gender": "女性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%A5%8A%E9%BA%97%E7%8E%89.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B7%A8%C4R%A5%C9"
+        }, 
         "name": "楊麗玉", 
         "party": "民進黨", 
         "platform": [
@@ -504,10 +541,10 @@
             "設立公立育嬰中心，訓練專業保母，減輕年輕人負擔", 
             "社區關懷中心和行動醫院要持續推動"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B7%A8%C4R%A5%C9"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1961/9/12", 
         "constituency": "臺南市第五選區", 
         "contacts": {
@@ -536,6 +573,9 @@
         "gender": "女性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E8%94%A1%E8%98%87%E7%A7%8B%E9%87%91.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BD%B2%C4%AC%AC%EE%AA%F7"
+        }, 
         "name": "蔡蘇秋金", 
         "party": "民進黨", 
         "platform": [
@@ -551,10 +591,10 @@
             "監督政府，專業問政，為民喉舌，造福桑梓", 
             "家婆認真，關懷鄉里，主持正義，服務第一"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BD%B2%C4%AC%AC%EE%AA%F7"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1953/10/10", 
         "constituency": "臺南市第五選區", 
         "contacts": {
@@ -585,6 +625,9 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E9%99%B3%E6%9C%9D%E4%BE%86.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%AF%B4%C2%A8%D3"
+        }, 
         "name": "陳朝來", 
         "party": "民進黨", 
         "platform": [
@@ -599,10 +642,10 @@
             "提倡社區環境再造，鼓勵創造新地貌，爭取富麗農村、農村公共工程、生活圈道路，讓農漁村蛻變為田園城市", 
             "竭誠爭取活動經費，提昇社團活力"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%AF%B4%C2%A8%D3"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1958/9/15", 
         "constituency": "臺南市第五選區", 
         "contacts": {
@@ -625,6 +668,9 @@
         "gender": "女性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E8%94%A1%E7%A7%8B%E8%98%AD.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BD%B2%AC%EE%C4%F5"
+        }, 
         "name": "蔡秋蘭", 
         "party": "無黨", 
         "platform": {
@@ -637,10 +683,10 @@
             "6": "教育、休閒：督促台南大學興建，嘉惠地方學子，監督黑琵管研中心運作，關心潟湖生態，提升地方觀光休閒品質", 
             "8": "治安防治：爭取各重大路口或村落裝設監視系統，並推動各村落成立巡守隊，加強地方治安"
         }, 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BD%B2%AC%EE%C4%F5"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1955/6/12", 
         "constituency": "臺南市第六選區", 
         "contacts": {
@@ -670,6 +716,9 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%A2%81%E9%A0%86%E7%99%BC.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B1%E7%B6%B6%B5o"
+        }, 
         "name": "梁順發", 
         "party": "民進黨", 
         "platform": [
@@ -684,10 +733,10 @@
             "爭取南科回饋金，協助地方建設", 
             "極力爭取大台南行政中心於南科區"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B1%E7%B6%B6%B5o"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1959/1/9", 
         "constituency": "臺南市第六選區", 
         "contacts": {
@@ -719,6 +768,9 @@
         "gender": "男性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9D%8E%E6%96%87%E4%BF%8A.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A7%F5%A4%E5%ABT"
+        }, 
         "name": "李文俊", 
         "party": "國民黨", 
         "platform": {
@@ -733,10 +785,10 @@
             "8": "結合在地文化資源，培養社區人才，推動社區總體營造，提昇人民生活品質", 
             "9": "加強督促治安工作，推動家戶聯防，預防犯罪，充實社區巡守隊各項裝備，提高義消民防福利措施，建構安全和諧生活環境"
         }, 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A7%F5%A4%E5%ABT"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1974/1/26", 
         "constituency": "臺南市第七選區", 
         "contacts": {
@@ -762,6 +814,9 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9E%97%E5%BF%97%E8%81%B0.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AAL%A7%D3%C1o"
+        }, 
         "name": "林志聰", 
         "party": "民進黨", 
         "platform": [
@@ -771,10 +826,10 @@
             "推動署立新化分院改制市立新化醫院", 
             "延續地方廟口文化不讓在地文化消失"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AAL%A7%D3%C1o"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1954/10/5", 
         "constituency": "臺南市第七選區", 
         "contacts": {
@@ -803,6 +858,9 @@
         "gender": "男性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9E%97%E5%85%A8%E5%BF%A0.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AAL%A5%FE%A9%BE"
+        }, 
         "name": "林全忠", 
         "party": "國民黨", 
         "platform": [
@@ -810,10 +868,10 @@
             "發展地方特色產業、活化地方經濟", 
             "檢討現行整治河川辦法，確實做好防洪措施"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AAL%A5%FE%A9%BE"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1954/10/25", 
         "constituency": "臺南市第八選區市", 
         "contacts": {
@@ -834,6 +892,9 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E7%8E%8B%E5%B3%BB%E6%BD%AD.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A4%FD%AEm%BC%E6"
+        }, 
         "name": "王峻潭", 
         "party": "民進黨", 
         "platform": [
@@ -843,10 +904,10 @@
             "推動2天1夜觀光網，蓬勃在地觀光產業", 
             "投資下一代，加強教育經費，防止人才外流"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A4%FD%AEm%BC%E6"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1967/3/11", 
         "constituency": "臺南市第九選區", 
         "contacts": {
@@ -877,6 +938,9 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E9%83%AD%E5%9C%8B%E6%96%87.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%A2%B0%EA%A4%E5"
+        }, 
         "name": "郭國文", 
         "party": "民進黨", 
         "platform": [
@@ -903,10 +967,10 @@
             "加強文化資產清查，保存珍貴資產，為台灣歷史作見証，並透過創意文化包裝與行銷，帶動文化經濟", 
             "積極推動產業創意轉型，將具地方特色的農業、產業，搭配濃厚文化背景提昇價值"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%A2%B0%EA%A4%E5"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1952/11/5", 
         "constituency": "臺南市第九選區", 
         "contacts": {
@@ -940,6 +1004,9 @@
         "gender": "男性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9D%8E%E5%9D%A4%E7%85%8C.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A7%F5%A9%5B%B7%D7"
+        }, 
         "name": "李坤煌", 
         "party": "國民黨", 
         "platform": [
@@ -956,10 +1023,10 @@
             "爭取永康社教中心升級為永康區藝文展演、社教研習及圖書閱覽中心", 
             "爭取免費無線上網，落實網路e化政府；爭取發放幼兒教育券；爭取廣設銀髮族休閒娛樂場所；爭取增加弱勢團體各項福利措施"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A7%F5%A9%5B%B7%D7"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1969/8/25", 
         "constituency": "臺南市第九選區", 
         "contacts": {
@@ -986,6 +1053,9 @@
         "gender": "女性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9E%97%E5%AE%9C%E7%91%BE.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AAL%A9y%BD%40"
+        }, 
         "name": "林宜瑾", 
         "party": "民進黨", 
         "platform": [
@@ -1005,10 +1075,10 @@
             "爭取國民中小學營養午餐免費提供", 
             "爭取經費補助國小開辦課後照護至5點半，減輕家長經濟負擔"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AAL%A9y%BD%40"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1965/1/14", 
         "constituency": "臺南市第九選區", 
         "contacts": {
@@ -1029,6 +1099,9 @@
         "gender": "女性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9E%97%E7%87%95%E7%A5%9D.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AAL%BFP%AF%AC"
+        }, 
         "name": "林燕祝", 
         "party": "國民黨", 
         "platform": [
@@ -1046,10 +1119,10 @@
             "結合失業勞工,落實推動65歲以上長者長期照護方案", 
             "爭取65歲以上長者免費裝置假牙、施打肺炎鏈球菌疫苗,強化健康保護"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AAL%BFP%AF%AC"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1943/7/24", 
         "constituency": "臺南市第九選區", 
         "contacts": {
@@ -1070,6 +1143,9 @@
         "gender": "男性", 
         "group": "無黨團結聯盟", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%96%BD%E9%87%8D%E7%94%B7.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%ACI%AD%AB%A8k"
+        }, 
         "name": "施重男", 
         "party": "無黨", 
         "platform": [
@@ -1092,10 +1168,10 @@
             "爭取生育、托育、教育及中低收入戶新生兒優惠補助", 
             "爭取失業勞工、身心障礙、低收入戶等救助及就學就業輔助"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%ACI%AD%AB%A8k"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1958/6/12", 
         "constituency": "臺南市第九選區", 
         "contacts": {
@@ -1122,6 +1198,9 @@
         "gender": "男性", 
         "group": "無黨團結聯盟", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9E%97%E6%85%B6%E9%8E%AE.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AAL%BCy%C2%ED"
+        }, 
         "name": "林慶鎮", 
         "party": "無黨", 
         "platform": [
@@ -1136,10 +1215,10 @@
             "督促政府儘速完成大台南生活圈(新市、永康)各項交通網路開發", 
             "爭取加速社區總體營造與城鄉風貌改造工程"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AAL%BCy%C2%ED"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1964/12/31", 
         "constituency": "臺南市第九選區", 
         "contacts": {
@@ -1163,6 +1242,9 @@
         "gender": "女性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E9%99%B3%E7%A7%8B%E8%90%8D.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%AF%AC%EE%B5%D3"
+        }, 
         "name": "陳秋萍", 
         "party": "民進黨", 
         "platform": [
@@ -1177,10 +1259,10 @@
             "爭取政府機關的閒置空間活化,讓市民的生活品質再升級", 
             "爭取地方觀光產業升級"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%AF%AC%EE%B5%D3"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1963/8/20", 
         "constituency": "臺南市第十選區", 
         "contacts": {
@@ -1211,6 +1293,9 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E9%83%AD%E4%BF%A1%E8%89%AF.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%A2%ABH%A8%7D"
+        }, 
         "name": "郭信良", 
         "party": "民進黨", 
         "platform": [
@@ -1231,10 +1316,10 @@
             "加強國中小本土化教育，融入傳統技藝，深植鄉土觀念", 
             "爭取安南區各里活動中心全部興建完成"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%A2%ABH%A8%7D"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1962/6/21", 
         "constituency": "臺南市第十選區", 
         "contacts": {
@@ -1267,6 +1352,9 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E9%83%AD%E6%B8%85%E8%8F%AF.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%A2%B2M%B5%D8"
+        }, 
         "name": "郭清華", 
         "party": "民進黨", 
         "platform": [
@@ -1281,10 +1369,10 @@
             "極力爭取加速台江國家公園軟、硬體設置，創造在地文化商品及特產之聚集經濟，同時帶動觀光人潮", 
             "全面監督清廉有效的政府，全力配合新市長落實政策，提升安南區看見未來邁向全新願景"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%A2%B2M%B5%D8"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1957/6/1", 
         "constituency": "臺南市第十選區", 
         "contacts": {
@@ -1312,6 +1400,9 @@
         "gender": "女性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E9%BB%83%E9%BA%97%E6%8B%9B.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B6%C0%C4R%A9%DB"
+        }, 
         "name": "黃麗招", 
         "party": "國民黨", 
         "platform": {
@@ -1322,10 +1413,10 @@
             "5": "創造鹽水溪與嘉南大圳親水空間", 
             "6": "強化安南區治安網路、爭取重要路口設立高感度監視系統"
         }, 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B6%C0%C4R%A9%DB"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1962/9/10", 
         "constituency": "臺南市第十選區", 
         "contacts": {
@@ -1348,6 +1439,9 @@
         "gender": "男性", 
         "group": "無黨團結聯盟", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9E%97%E7%82%B3%E5%88%A9.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AAL%AC%B1%A7Q"
+        }, 
         "name": "林炳利", 
         "party": "無黨", 
         "platform": [
@@ -1364,10 +1458,10 @@
             "督促儘速完成外塭仔公園旁道路徵收，並開闢道路早日通車", 
             "約束市府對於農地設置工廠不要開罰，依照「工廠管理輔導法案」及施行細則輔導\t原有工廠合法化"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AAL%AC%B1%A7Q"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1957/7/13", 
         "constituency": "臺南市第十選區", 
         "contacts": {
@@ -1398,6 +1492,9 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E7%8E%8B%E9%8C%A6%E5%BE%B7.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A4%FD%C0A%BCw"
+        }, 
         "name": "王錦德", 
         "party": "民進黨", 
         "platform": [
@@ -1417,10 +1514,10 @@
             "爭取小巨蛋興建，爭取藝文、體育等活動前來舉辦，提升休閒品質，並可創造觀光\t收益", 
             "要求天馬電台儘速搬遷，並爭取安南區都會公園(如台南公園、體育公園等)，讓居\t民可以在地享受運動，營造優質好生活"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A4%FD%C0A%BCw"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1981/3/28", 
         "constituency": "臺南市第十一選區", 
         "contacts": {
@@ -1445,6 +1542,9 @@
         "gender": "女性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E9%99%B3%E6%80%A1%E7%8F%8D.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%AF%A9%C9%AC%C3"
+        }, 
         "name": "陳怡珍", 
         "party": "民進黨", 
         "platform": [
@@ -1464,10 +1564,10 @@
             "加速推動鐵路地下化，促進地方發展", 
             "維護台灣主權，支持台語文本土文學推廣"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%AF%A9%C9%AC%C3"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1961/10/3", 
         "constituency": "臺南市第十一選區", 
         "contacts": {
@@ -1498,6 +1598,9 @@
         "gender": "男性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E8%AC%9D%E9%BE%8D%E4%BB%8B.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%C1%C2%C0s%A4%B6"
+        }, 
         "name": "謝龍介", 
         "party": "國民黨", 
         "platform": {
@@ -1508,10 +1611,10 @@
             "8": "在原兵工廠址，催生「科學博物館」", 
             "9": "振興小北商圈，使觀光客倍增"
         }, 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%C1%C2%C0s%A4%B6"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1960/5/3", 
         "constituency": "臺南市第十一選區", 
         "contacts": {
@@ -1539,6 +1642,9 @@
         "gender": "女性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E5%94%90%E7%A2%A7%E5%A8%A5.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AD%F0%BA%D1%AEZ"
+        }, 
         "name": "唐碧娥", 
         "party": "民進黨", 
         "platform": [
@@ -1558,10 +1664,10 @@
             "積極爭取考選部應在大台南設置地方特考為考區，以重視台南子弟權益", 
             "建請市府協調財團法人仁愛之家＜救濟院＞應調降租金，以符合經濟不景氣現況"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AD%F0%BA%D1%AEZ"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1960/11/10", 
         "constituency": "臺南市第十一選區", 
         "contacts": {
@@ -1587,6 +1693,9 @@
         "gender": "男性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E8%A8%B1%E8%87%B3%E6%A4%BF.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%5C%A6%DC%DD%CF"
+        }, 
         "name": "許至椿", 
         "party": "中國國民黨", 
         "platform": [
@@ -1602,10 +1711,10 @@
             "督促市府加強台南公園美化建設及休憩功能品質，創造優質生活休閒環境", 
             "加速鄭子寮重劃區公共設施開發建設並提昇休憩環境品質"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%5C%A6%DC%DD%CF"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1962/11/29", 
         "constituency": "臺南市第十二選區", 
         "contacts": {
@@ -1634,6 +1743,9 @@
         "gender": "女性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E9%82%B1%E8%8E%89%E8%8E%89.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AA%F4%B2%FA%B2%FA"
+        }, 
         "name": "邱莉莉", 
         "party": "民進黨", 
         "platform": [
@@ -1648,10 +1760,10 @@
             "挺身力爭莫拉克停水馬達損壞賠償金及水表失竊用戶退還金，全國首見", 
             "連續八年受慈善基金會委託發放全市低收入戶國小、國中助學金，受惠人次逾萬名，感動台灣"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AA%F4%B2%FA%B2%FA"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1949/4/15", 
         "constituency": "臺南市第十二選區", 
         "contacts": {
@@ -1672,6 +1784,9 @@
         "gender": "女性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%B4%AA%E7%8E%89%E9%B3%B3.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%ACx%A5%C9%BB%F1"
+        }, 
         "name": "洪玉鳳", 
         "party": "國民黨", 
         "platform": {
@@ -1681,10 +1796,10 @@
             "4": "\t堅持監督大台南預算不能浮濫", 
             "5": "文化預算不得少於總預算之5％"
         }, 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%ACx%A5%C9%BB%F1"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1959/2/4", 
         "constituency": "臺南市第十三選區", 
         "contacts": {
@@ -1706,6 +1821,9 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9D%8E%E6%96%87%E6%AD%A3.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A7%F5%A4%E5%A5%BF"
+        }, 
         "name": "李文正", 
         "party": "民進黨", 
         "platform": [
@@ -1741,10 +1859,10 @@
             "改善假日安平交通增設高速公路指示標誌", 
             "增闢文平、文南步橋"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A7%F5%A4%E5%A5%BF"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1965/10/7", 
         "constituency": "臺南市第十三選區", 
         "contacts": {
@@ -1773,6 +1891,9 @@
         "gender": "男性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E7%9B%A7%E5%B4%91%E7%A6%8F.jpg", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BFc%B1X%BA%D6"
+        }, 
         "name": "盧崑福", 
         "party": "國民黨", 
         "platform": [
@@ -1781,10 +1902,10 @@
             "提升安平抽水站設施及功能，徹底解決安平區淹水問題", 
             "「台南運河」再生建設，結合「安平老街」，推展安平成為「優質觀光文教區」"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BFc%B1X%BA%D6"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1969/3/5", 
         "constituency": "臺南市第十四選區", 
         "contacts": {
@@ -1812,16 +1933,19 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E7%8E%8B%E5%AE%9A%E5%AE%87.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A4%FD%A9w%A6t"
+        }, 
         "name": "王定宇", 
         "party": "民進黨", 
         "platform": [
             "臺南市升格，不是要變成第二個臺北、高雄，而是要成為一個最適合居住的幸福城\t市，何謂“最適合居住”、“幸福城市”，那就是適中的生活物價、房價，優質的教\t育品質，好的就業機會，良善的治安，便利的交通網，充分的綠地比例，友善的銀髮\t族環境，足量的公立幼托?等", 
             "這一切的條件指標，都需要配套的政策和執行，定宇\t將全心全力提出、推動和監督，更重要的是要將心力放在我們共同的家園—臺南‧臺\t灣！"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A4%FD%A9w%A6t"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1956/3/21", 
         "constituency": "臺南市第十四選區", 
         "contacts": {
@@ -1845,6 +1969,9 @@
         "gender": "男性", 
         "group": "無黨團結聯盟", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9B%BE%E9%A0%86%E8%89%AF.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B4%BF%B6%B6%A8%7D"
+        }, 
         "name": "曾順良", 
         "party": "無黨", 
         "platform": [
@@ -1859,10 +1986,10 @@
             "推動台南科學園區再發展有利府城子弟優質就業", 
             "推動老年人優質便利醫療制度並落實居家護理服務"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B4%BF%B6%B6%A8%7D"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1959/3/29", 
         "constituency": "臺南市第十四選區", 
         "contacts": {
@@ -1893,6 +2020,9 @@
         "gender": "男性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E9%99%B3%E6%96%87%E7%A7%91.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%AF%A4%E5%AC%EC"
+        }, 
         "name": "陳文科", 
         "party": "國民黨", 
         "platform": [
@@ -1906,10 +2036,10 @@
             "落實老年、殘障福利政策，關心弱勢族群，並增加就業機會", 
             "督導市府財政預算，健全市政發展"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%AF%A4%E5%AC%EC"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1968/9/25", 
         "constituency": "臺南市第十四選區", 
         "contacts": {
@@ -1931,6 +2061,9 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E8%94%A1%E6%97%BA%E8%A9%AE.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BD%B2%A9%F4%B8%E0"
+        }, 
         "name": "蔡旺詮", 
         "party": "民進黨", 
         "platform": [
@@ -1947,10 +2080,10 @@
             "其他：創設微型貸款銀行、創造投資就業、增加彩券盈餘分配照顧弱勢身障團體；整合資源打造大學城及醫療優等條件，強化醫療照顧環境網路", 
             "打造台南成為人文、藝術、觀光、國際、生態、綠與美繁榮及光榮之文化首都"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BD%B2%A9%F4%B8%E0"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1971/3/20", 
         "constituency": "臺南市第十四選區", 
         "contacts": {
@@ -1972,6 +2105,9 @@
         "gender": "女性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E9%99%B8%E7%BE%8E%E7%A5%88.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%B0%AC%FC%AC%E8"
+        }, 
         "name": "陸美祈", 
         "party": "民進黨", 
         "platform": [
@@ -1987,10 +2123,10 @@
             "爭取免費為青少女施打子宮頸癌疫苗", 
             "設置國際英語村，提升市民外語能力"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%B0%AC%FC%AC%E8"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1959/8/18", 
         "constituency": "臺南市第十四選區", 
         "contacts": {
@@ -2016,6 +2152,9 @@
         "gender": "女性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9B%BE%E5%9F%B9%E9%9B%85.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B4%BF%B0%F6%B6%AE"
+        }, 
         "name": "曾培雅", 
         "party": "國民黨", 
         "platform": {
@@ -2030,10 +2169,10 @@
             "8": "“雞婆一族”化身文化天使認養社區公園，守護家園", 
             "9": "推動古蹟觀光，帶動就業機會和商機，成立社區守護網，健全照顧服務產業，增\t加人力資源"
         }, 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B4%BF%B0%F6%B6%AE"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1960/10/4", 
         "constituency": "臺南市第十五選區", 
         "contacts": {
@@ -2056,6 +2195,9 @@
         "gender": "女性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E8%8E%8A%E7%8E%89%E7%8F%A0.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B2%F8%A5%C9%AF%5D"
+        }, 
         "name": "莊玉珠", 
         "party": "民進黨", 
         "platform": [
@@ -2068,10 +2210,10 @@
             "提升南區優質生活型態─配合黃金海岸開發計畫，創立灣裡、喜樹共榮商圈，打造成為國際級觀光重鎮，讓「邊境」變「黃金」", 
             "督促保證喜樹、灣裡、鯤鯓的抽水站與排水系統順利運作，杜絕淹水之苦"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B2%F8%A5%C9%AF%5D"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1959/1/6", 
         "constituency": "臺南市第十五選區", 
         "contacts": {
@@ -2098,6 +2240,9 @@
         "gender": "女性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9E%97%E7%BE%8E%E7%87%95.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AAL%AC%FC%BFP"
+        }, 
         "name": "林美燕", 
         "party": "國民黨", 
         "platform": [
@@ -2107,10 +2252,10 @@
             "爭取勞工權益，成立勞工權益金，保障勞工基本生活", 
             "繼續堅持專職專業之認真為您服務的女人"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%AAL%AC%FC%BFP"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1967/1/22", 
         "constituency": "臺南市第十五選區", 
         "contacts": {
@@ -2140,6 +2285,9 @@
         "gender": "女性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E8%94%A1%E6%B7%91%E6%83%A0.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BD%B2%B2Q%B4f"
+        }, 
         "name": "蔡淑惠", 
         "party": "國民黨", 
         "platform": [
@@ -2156,10 +2304,10 @@
             "爭取單親家庭優先就業機會", 
             "推動警察勤務合理化，強化安全裝備"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BD%B2%B2Q%B4f"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1954/11/4", 
         "constituency": "臺南市第十五選區", 
         "contacts": {
@@ -2181,13 +2329,16 @@
         "gender": "男性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E9%99%B3%E9%80%B2%E7%9B%8A.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%AF%B6i%AFq"
+        }, 
         "name": "陳進益", 
         "party": "民進黨", 
         "platform": "民進黨全國黨代表，1992、1995年任許添財競選立委總幹事。\t1998年任賴清德競選立委副總幹事。2000年總統大選任阿扁台南總部發言人。\t2008年任陳亭妃競選立委執行總幹事。\t現任民進黨台南市黨部主任委員，台南市議員。", 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%AF%B6i%AFq"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1958/10/1", 
         "constituency": "臺南市第十六選區", 
         "contacts": {
@@ -2213,6 +2364,9 @@
         "gender": "男性", 
         "group": "無黨團結聯盟", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E5%BC%B5%E4%BC%AF%E7%A5%BF.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B1i%A7B%B8S"
+        }, 
         "name": "張伯祿", 
         "party": "無黨", 
         "platform": [
@@ -2226,10 +2380,10 @@
             "監督已爭取定案的市南10道路從歸仁媽廟至關廟下湖關帝廟前，長度1.7公里、寬20公尺、總工程費4.2億，現已由縣府及鄉公所辦理土地徵收並完成開闢通車", 
             "虎山靶場四週將近幾百甲土地禁建五十多年來，這些私有土地所有權人受害最深，既然已升格為院轄市，砲校又遷入虎山靶場應廢除或遷移還給受苦數十年的私有土地所有權人享有自由利用土地的權益"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B1i%A7B%B8S"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1957/1/2", 
         "constituency": "臺南市第十六選區", 
         "contacts": {
@@ -2263,6 +2417,9 @@
         "gender": "男性", 
         "group": false, 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E9%99%B3%E7%89%B9%E6%B8%85.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%AF%AFS%B2M"
+        }, 
         "name": "陳特清", 
         "party": "無黨", 
         "platform": [
@@ -2279,10 +2436,10 @@
             "強化警政、消防等防護系統之有效運作，確保人民生命財產安全", 
             " 獎勵投資，創造有利投資環境，增加就業機會，營造樂活城市"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B3%AF%AFS%B2M"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1956/6/6", 
         "constituency": "臺南市第十六選區", 
         "contacts": {
@@ -2307,6 +2464,9 @@
         "gender": "女性", 
         "group": "無黨團結聯盟", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9D%9C%E7%B4%A0%E5%90%9F.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A7%F9%AF%C0%A7u"
+        }, 
         "name": "杜素吟", 
         "party": "無黨", 
         "platform": {
@@ -2318,10 +2478,10 @@
             "5": "促進兩性平權地位，增派治安人員及加強監視系統，保障婦女幼童，並維護社區居民生命財產安全", 
             "6": "督促政府重視勞資問題，極力招商增加就業機會，減輕勞工生活負擔"
         }, 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%A7%F9%AF%C0%A7u"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1962/6/26", 
         "constituency": "臺南市第十六選區", 
         "contacts": {
@@ -2352,13 +2512,16 @@
         "gender": "女性", 
         "group": "民進黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E6%9B%BE%E7%8E%8B%E9%9B%85%E9%9B%B2.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B4%BF%A4%FD%B6%AE%B6%B3"
+        }, 
         "name": "曾王雅雲", 
         "party": "民進黨", 
         "platform": "敬愛的鄉親父老兄弟姊妹：大家平安，大家好。感謝您九年前對雅雲的疼惜與支持，讓雅雲從教育界步入議壇。這九年來雅雲竭盡心力，不敢稍有懈怠，深怕辜負您的期待與厚愛。這次是台南縣市合併後首次議員選舉，雅雲仍將本著「教育是我心愛的職業；政治是我關心的事務；改善社會是我的理想」的信念加倍努力。更將以林義雄先生所著台灣共和國基本法草案前言所敘「我們，居住在台灣島和它的附屬島嶼的人，為了追求自己和後代子孫的生存，繁榮和發展。人類的平等，自由和幸福。公平、正義、互助和安全的文明社會。建立了台灣共和國。我們確信尊重和維護人的自由和權利，是建立文明社會的先決條件。政府的組成，公務人員的產生和政策的制定實施都必須經過民主程序取得國民直接或間接同意。人類的衝突和糾紛，應該依靠和平方式來解決。根據以上的目標和信念，我們制定了台灣共和國基本法，作為全國國民共同生活的最高準則，並且特別聲明，我們願意盡所有力量，尊重、維護自己和他人的自由和權利。廢棄沒有經過民主程序同意的政府和政策。\t用互尊、互愛、互惠的方式，來求得國內各種利益的均衡發展和滿足。革除一切以武力奪取公權私利，解決衝突糾紛的行為。棄絕一切攻擊性的戰爭。依據平等，合作、互惠的原則和世界各國和平交往。」的政治理想邁進。雅雲誠懇的籲請各位熱愛台灣，心存公義，疼惜子孫的父老兄弟姊妹們用您一流的選票，做出一流的選擇。讓我們共同為建造一個健康的社會，美麗的國家而努力。再次感謝您的支持，敬祝閤家平安、健康、快樂。", 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%B4%BF%A4%FD%B6%AE%B6%B3"
+        "remark": []
     }, 
     {
+        "ad": "1", 
         "birth": "1949/7/17", 
         "constituency": "臺南市第十七選區", 
         "contacts": {
@@ -2380,6 +2543,9 @@
         "gender": "女性", 
         "group": "國民黨團", 
         "image": "http://www.tncc.gov.tw/warehouse/200000/%E8%94%A1%E7%8E%89%E6%9E%9D.bmp", 
+        "links": {
+            "council": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BD%B2%A5%C9%AAK"
+        }, 
         "name": "蔡玉枝", 
         "party": "國民黨", 
         "platform": [
@@ -2390,7 +2556,6 @@
             "積極爭取單獨設立原住民民族事務處，以保障原住民更大的經費預算與權益", 
             "爭取經費擴建札哈木原住民文化會館及永康市原住民會館，建立多功能文化生態園區，造福更多原住民文化產業及市府觀光收入"
         ], 
-        "remark": [], 
-        "url": "http://www.tncc.gov.tw/tnccp/ccp_01a.asp?CName=%BD%B2%A5%C9%AAK"
+        "remark": []
     }
 ]
