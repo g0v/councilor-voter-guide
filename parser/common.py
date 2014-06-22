@@ -12,9 +12,9 @@ def SittingsAbbreviation(key):
 
 def FileLog(c, sitting):
     c.execute('''
-        INSERT into legislator_filelog(sitting, date)
+        INSERT into councilors_filelog(sitting, date)
         SELECT %s, %s
-        WHERE NOT EXISTS (SELECT 1 FROM legislator_filelog WHERE sitting = %s) RETURNING id
+        WHERE NOT EXISTS (SELECT 1 FROM councilors_filelog WHERE sitting = %s) RETURNING id
     ''', (sitting, datetime.now(), sitting))
 
 def GetDate(text):
@@ -28,32 +28,33 @@ def GetDate(text):
     else:
         return None
 
-def GetLegislatorId(c, name):
+def GetId(c, name, county):
     name_like = name + '%'
     c.execute('''
-        SELECT uid
-        FROM legislator_legislator
-        WHERE name like %s
+        SELECT councilor_id
+        FROM councilors_councilorsdetail
+        WHERE name like %s and county = %s
         ORDER BY uid desc
-    ''', (name_like,))
+    ''', (name_like, county))
     r = c.fetchone()
     if r:
         return r[0]
     print name
 
-def GetLegislatorDetailId(c, legislator_id, ad):
+def getIdList(c, name_list, county):
     c.execute('''
-        SELECT id
-        FROM legislator_legislatordetail
-        WHERE legislator_id = %s and ad = %s
-    ''', (legislator_id, ad))
-    r = c.fetchone()
+        SELECT id, councilor_id
+        FROM councilors_councilorsdetail
+        WHERE name IN %s and county = %s
+    ''', (tuple(name_list), county))
+    r = c.fetchall()
     if r:
-        return r[0]
-    print legislator_id
+        return r
+    print name_list
+    return []
 
-def GetLegislatorIdList(c, text):
-    id_list, firstName = [], ''
+def getNameList(text):
+    name_list, firstName = [], ''
     for name in text.split():
         if re.search(u'[）)。】」]$', name):   #立委名字後有標點符號
             name = name[:-1]
@@ -66,37 +67,31 @@ def GetLegislatorIdList(c, text):
             firstName = ''
         if len(name) > 4: #立委名字相連
             name = name[:3]
-        legislator_id = GetLegislatorId(c, name)
-        if legislator_id:
-            id_list.append(legislator_id)
-        else:   # return id list if not an legislator name appear
-            return id_list
+        name_list.append(name)
+    return name_list
 
-def AddAttendanceRecord(c, legislator_id, sitting_id, category, status):
+def AddAttendanceRecord(c, councilor_id, sitting_id, category, status):
     c.execute('''
-        INSERT into legislator_attendance(legislator_id, sitting_id, category, status)
+        INSERT into councilors_attendance(councilor_id, sitting_id, category, status)
         SELECT %s, %s, %s, %s
-        WHERE NOT EXISTS (SELECT 1 FROM legislator_attendance WHERE legislator_id = %s AND sitting_id = %s)
-    ''', (legislator_id, sitting_id, category, status, legislator_id, sitting_id))
+        WHERE NOT EXISTS (SELECT 1 FROM councilors_attendance WHERE councilor_id = %s AND sitting_id = %s)
+    ''', (councilor_id, sitting_id, category, status, councilor_id, sitting_id))
 
-def Attendance(c, sitting_dict, text, keyword, category, status):
-    match = re.search(keyword, text)
-    if match:
-        for legislator_id in GetLegislatorIdList(c, text[match.end():]):
-            legislator_id = GetLegislatorDetailId(c, legislator_id, sitting_dict["ad"])
-            AddAttendanceRecord(c, legislator_id, sitting_dict["uid"], category, status)
+def Attendance(c, sitting_dict, text, category, status):
+    for id, councilor_id in getIdList(c, getNameList(text), sitting_dict['county']):
+        AddAttendanceRecord(c, id, sitting_dict['uid'], category, status)
 
 def InsertSitting(c, sitting_dict):
-    complement = {"committee":'', "name":''}
+    complement = {"committee": '', "name": ''}
     complement.update(sitting_dict)
     c.execute('''
         UPDATE sittings_sittings
-        SET name = %(name)s, date = %(date)s, ad = %(ad)s, session = %(session)s, committee = %(committee)s
+        SET name = %(name)s, date = %(date)s, county = %(county)s, committee = %(committee)s
         WHERE uid = %(uid)s
     ''', complement)
     c.execute('''
-        INSERT into sittings_sittings(uid, name, date, ad, session, committee)
-        SELECT %(uid)s, %(name)s, %(date)s, %(ad)s, %(session)s, %(committee)s
+        INSERT into sittings_sittings(uid, name, date, county, committee)
+        SELECT %(uid)s, %(name)s, %(date)s, %(county)s, %(committee)s
         WHERE NOT EXISTS (SELECT 1 FROM sittings_sittings WHERE uid = %(uid)s)
     ''', complement)
 

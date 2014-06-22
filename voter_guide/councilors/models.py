@@ -3,6 +3,20 @@ from django.db import models
 from json_field import JSONField
 
 
+class Attendance(models.Model):
+    councilor = models.ForeignKey('councilors.CouncilorsDetail')
+    sitting = models.ForeignKey('sittings.Sittings', to_field="uid")
+    category = models.CharField(max_length=100)
+    status = models.CharField(max_length=100)
+    def __unicode__(self):
+        return self.sitting
+
+class FileLog(models.Model):
+    sitting = models.CharField(unique=True, max_length=100)
+    date = models.DateTimeField()
+    def __unicode__(self):
+        return self.sitting
+
 class Councilors(models.Model):
     uid = models.TextField(unique=True)
     name = models.CharField(max_length=100)
