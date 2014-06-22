@@ -1,0 +1,36 @@
+﻿{% extends "councilors/index/index.html" %}
+{% block table %}
+<h3 class="text-center text-warning">
+    {{param.title}}
+</h3>
+<table class="table table-bordered table-condensed">
+    {% with col=15 %}
+    {% for councilor in councilors %}
+    {% if forloop.counter0|divisibleby:col %}
+        {% if forloop.counter0 != 0 %}</tr>{% endif %}
+        <tr style="background-color: {% cycle 'EEEEEE' 'white' %};">
+            <td></td>
+        {% endif %}
+        <td>
+            <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="缺席 {{councilor.totalNum}}次">
+            {% include "common/name_color_by_party.html" %}
+            </a>
+        </td>
+    {% endfor %}
+    {% if no_count_list %}
+    <tr><td rowspan="{% widthratio no_count_list|length|add:10 col 1 %}" style="background-color: #FF99FF; text-align:center; vertical-align:middle; font-weight:bold;">0次</td>
+        {% for councilor in no_count_list %}
+        {% if forloop.counter0|divisibleby:col and forloop.counter0 != 0 %}
+        </tr>
+        {% endif %}
+            <td style="background-color: #FFCCFF;">
+            <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="缺席 0次">
+            {% include "common/name_color_by_party.html" %}
+            </a>
+            </td>
+        {% endfor %}
+        {% endif %}
+    {% include "common/color_info_of_party.html" with column=21 %}
+    {% endwith %}
+</table>
+{% endblock table %}

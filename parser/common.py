@@ -86,12 +86,12 @@ def InsertSitting(c, sitting_dict):
     complement.update(sitting_dict)
     c.execute('''
         UPDATE sittings_sittings
-        SET name = %(name)s, date = %(date)s, county = %(county)s, committee = %(committee)s
+        SET name = %(name)s, ad = %(ad)s, session = %(session)s, date = %(date)s, county = %(county)s, committee = %(committee)s
         WHERE uid = %(uid)s
     ''', complement)
     c.execute('''
-        INSERT into sittings_sittings(uid, name, date, county, committee)
-        SELECT %(uid)s, %(name)s, %(date)s, %(county)s, %(committee)s
+        INSERT into sittings_sittings(uid, name, ad, session, date, county, committee)
+        SELECT %(uid)s, %(name)s, %(ad)s, %(session)s, %(date)s, %(county)s, %(committee)s
         WHERE NOT EXISTS (SELECT 1 FROM sittings_sittings WHERE uid = %(uid)s)
     ''', complement)
 

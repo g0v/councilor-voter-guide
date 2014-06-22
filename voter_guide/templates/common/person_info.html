@@ -1,0 +1,126 @@
+﻿{% extends "base.html" %}
+{% block right %}
+<div class="row-fluid">
+    <div class="span3">
+        <br>
+        {% if councilor %}
+        <table class="table table-bordered">
+            <thead>
+                <th style="width: 40%"></th>
+                <th style="width: 60%"></th>
+            </thead>
+            <tbody>
+                {% if councilor.image %}
+                <tr>
+                    <td colspan=2>
+                        <div align="center">
+                            <img src="{{councilor.image}}" width="80%">
+                        </div>
+                    </td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td style="background-color: lightgrey;">屆期</td>
+                    <td>{{ councilor.ad }}</td>
+                </tr>
+                <tr>
+                    <td style="background-color: lightgrey;">議員</td>
+                    <td><b>{{ councilor.name }}</b></td>
+                </tr>
+                <tr>
+                    <td style="background-color: lightgrey;">選區縣市</td>
+                    <td>{{councilor.county}}</td>
+                </tr>
+                <tr>
+                    <td style="background-color: lightgrey;">黨籍</td>
+                    <td>{{ councilor.party }}</td>
+                </tr>
+                {% if councilor.district %}
+                <tr>
+                    <td style="background-color: lightgrey;">行政區</td>
+                    <td><abbr title="{{ councilor.district }}">{{ councilor.district|truncatechars:10 }}</abbr></td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td style="background-color: lightgrey;">到職日期</td>
+                    <td>{{ councilor.term_start|date:"Y-m-d" }}</td>
+                </tr>
+                <tr>
+                    <td colspan=2></td>
+                </tr>
+                {% for item in councilor.contacts.email %}
+                <tr>
+                    <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">信箱</td>
+                    <td>{{item}}</td>
+                </tr>
+                {% endfor %}
+                {% for item in councilor.contacts.website %}
+                <tr>
+                    <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">個人網站</td>
+                    <td>{{item}}</td>
+                </tr>
+                {% endfor %}
+                {% for item in councilor.contacts.address %}
+                <tr>
+                    <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">地址</td>
+                    <td><a href="{{ "https://maps.google.com.tw/?q="|add:item }}" target="_blank">{{item}}</a></td>
+                </tr>
+                {% endfor %}
+                {% for item in councilor.contacts.phone %}
+                <tr>
+                    <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">電話</td>
+                    <td>{{item}}</td>
+                </tr>
+                {% endfor %}
+                {% for item in councilor.contacts.fax %}
+                <tr>
+                    <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">傳真</td>
+                    <td>{{item}}</td>
+                </tr>
+                {% endfor %}
+                {% if councilor.education %}
+                <tr>
+                    <td colspan=2></td>
+                </tr>
+                <tr style="background-color: #CCCC66 ;">
+                    <td colspan=2 style="text-align:center; vertical-align:middle;">學歷</td>
+                </tr>
+                <tr>
+                    <td colspan=2>{{councilor.education|linebreaksbr}}</td>
+                </tr>
+                {% endif %}
+                {% if councilor.experience %}
+                <tr>
+                    <td colspan=2></td>
+                </tr>
+                <tr style="background-color: #CCCC99;">
+                    <td colspan=2 style="text-align:center; vertical-align:middle;">經歷</td>
+                </tr>
+                <tr>
+                    <td colspan=2>{{councilor.experience|linebreaksbr}}</td>
+                </tr>
+                {% endif %}
+                {% if councilor.links.council %}
+                <tr>
+                    <td colspan=2></td>
+                </tr>
+                <tr>
+                    <td style="background-color: lightgrey;">外部連結</td>
+                    <td><a href="{{ councilor.links.council }}" target="_blank">{{ councilor.name }}的議會官網</a></td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock right %}
+{% block script %}
+<script>
+    $(document).ready( function() {
+        $('#councilor').addClass('active');
+        $('.dropdown-toggle').dropdown();
+        $("[rel='tooltip']").tooltip();
+    });
+</script>
+{% endblock script %}

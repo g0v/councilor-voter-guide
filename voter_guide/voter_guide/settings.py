@@ -1,6 +1,5 @@
 # Django settings for voter_guide project.
 from os.path import join, abspath, dirname
-from local_settings import *
 
 
 here = lambda *x: join(abspath(dirname(__file__)), *x)
@@ -119,7 +118,6 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'councilors',
     'sittings',
-    'social_auth',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -173,3 +171,5 @@ AUTHENTICATION_BACKENDS = (
     'social_auth.backends.google.GoogleBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+from local_settings import *

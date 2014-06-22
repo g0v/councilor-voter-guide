@@ -1,0 +1,23 @@
+﻿{% extends "base.html" %}
+{% block title %}
+<title>議員投票指南</title>
+<meta property="og:title" content="議員投票指南"/>
+<meta itemprop="name" content="議員投票指南">
+{% endblock title %}
+{% block right %}
+<div class="page-header text-center">
+    <h3>{{county}}<b>第{{ad}}屆</b>議員</h3>
+</div>
+{% block table %}
+{% endblock table %}
+<hr>
+{% endblock right %}
+{% block script %}
+<script>
+    $(document).ready( function() {
+        $('#councilor').addClass('active');
+        $('.dropdown-toggle').dropdown();
+        $("[rel='tooltip']").tooltip();
+    });
+</script>
+{% endblock script %}

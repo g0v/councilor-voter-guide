@@ -1,37 +1,78 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 {% load staticfiles %}
 <html>
     <head>
-        <link href="//cdn.jsdelivr.net/jquery.datatables/1.9.4/css/jquery.dataTables.css" rel="stylesheet">
-        <link href="//cdn.jsdelivr.net/jquery.datatables/1.9.4/css/jquery.dataTables_themeroller.css" rel="stylesheet">
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" >
-        <link href="{% static 'css/bootstrap-responsive.min.css' %}" rel="stylesheet" >
-        <link href="{% static 'css/datepicker.css' %}" rel="stylesheet" >
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block title %}
+        {% endblock %}
+        <meta name="keywords" content="議員投票指南,台灣,議員,委員會,提案,議會,表決,投票,選舉,公民" />
+        <meta name="description" content="減少盲目投票，讓民主社會的台灣更進步；輸入關鍵字，關心你關心的議題" />
+        <meta property="fb:admins" content="TaiwanLy"/>
+        <meta property="fb:app_id" content="562924493762519"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:site_name" content="議員投票指南"/>
+        <meta property="og:url" content="{{current_url}}"/>
+        <meta property="og:description" content="減少盲目投票，讓民主社會的台灣更進步；輸入關鍵字，關心你關心的議題"/>
+        <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/twly.tw/taiwan-vote.PNG"/>
+        <meta itemprop="description" content="減少盲目投票，讓民主社會的台灣更進步；輸入關鍵字，關心你關心的議題">
+        <meta itemprop="image" content="https://s3-ap-northeast-1.amazonaws.com/twly.tw/taiwan-vote.PNG">
+        <link href="https://s3-ap-northeast-1.amazonaws.com/twly.tw/bootstrap.min.css" rel="stylesheet">
+        <link href="https://s3-ap-northeast-1.amazonaws.com/twly.tw/bootstrap-responsive.min.css" rel="stylesheet" >
+        <link rel="shortcut icon" href="https://s3-ap-northeast-1.amazonaws.com/twly.tw/favicon.png">
+        <!--[if lt IE 9]>
+        <script src="//cdnjs.bootcss.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+        <![endif]-->
     </head>
-    <body>
+    <body id="top">
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
         <div class="navbar navbar-fixed-top navbar-inverse">
             <div class="navbar-inner">
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                 </a>
-                <a class="brand">&nbsp;<b>議員投票指南</b></a>
+                <a class="brand" href="/">&nbsp;<font><b>議員投票指南</b></font></a>
                 <div class="nav-collapse collapse">
-                    <ul class="nav pull-right">
-                        <li><a href="{% url 'login' %}">login</a></li>
-                        <li><a href="{% url 'logout' %}">logout</a></li>
-                    </ul>
+                    <ul class="nav">
+                        <li id="councilor" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">找議員<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'councilors:index' index='cs_attend' county='臺北市' ad=11 %}" >議會開會<b>缺席次數</b>(多&rarr;少)</a></li>
+                        </ul>
+                        </li>
                 </div>
             </div>
         </div>
-        {% block body %}
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                {% block left %}
+                {% endblock %}
+                {% block right %}
+                {% endblock %}
+            </div>
+        </div>
+        {% block backtotop %}
+        <div align="center">
+            <a href="#top" class="lead">回頭</a>
+
+        </div>
         {% endblock %}
+        <footer class="footer">
+        <div align="center" class="container">
+            <p><a href="https://g0v.hackpad.com/--5PNuk4XGGrj" target="_blank">意見回饋</a> - <a href="mailto:g0v-ly@googlegroups.com">寄給G0V</a></p>
+        </div>
+        </footer>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+        <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/bootstrap.min.js"></script>
         {% block script %}
         {% endblock %}
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        <script>
-        $(document).ready( function(){
-            $('.dropdown-toggle').dropdown();
-        });
-        </script>
     </body>
 </html>

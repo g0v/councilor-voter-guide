@@ -187,7 +187,7 @@ for match in Session_Token.finditer(total_text):
             uid = '%s-%02d-%02d-CS-%02d' % (util[match.group('county')], int(match.group('ad')), int(match.group('session')), int(match.group('times')))
         elif match.group('type') == u'臨時':
             uid = '%s-%02d-T%02d-CS-%02d' % (util[match.group('county')], int(match.group('ad')), int(match.group('session')), int(match.group('times')))
-        sittings.append({"uid":uid, "name": match.group('name'), "county": match.group('county'), "date": common.GetDate(total_text), "start": match.start(), "end": match.end()})
+        sittings.append({"uid":uid, "name": match.group('name'), "county": match.group('county'), "ad": match.group('ad'), "session": match.group('session'), "date": common.GetDate(total_text), "start": match.start(), "end": match.end()})
 for i in range(0, len(sittings)):
     print sittings[i]
     # --> sittings, attendance, filelog

@@ -6,16 +6,9 @@ from django.contrib.auth.views import login, logout
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'voter_guide.views.home', name='home'),
-    # url(r'^voter_guide/', include('voter_guide.foo.urls')),
-    url(r'', include('social_auth.urls')),
-    url(r'^accounts/login/$', login, name='login'),
-    url(r'^accounts/logout/$', 'voter_guide.views.logout', name='logout'),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    url(r'^councilors/', include('councilors.urls', namespace="councilors")),
+    url(r'', include('councilors.urls', namespace="councilors")),
+#   url(r'', include('social_auth.urls')),
+#   url(r'^accounts/login/$', login, name='login'),
+#   url(r'^accounts/logout/$', 'voter_guide.views.logout', name='logout'),
 )
