@@ -7,6 +7,8 @@ from django.contrib.auth.views import login, logout
 
 urlpatterns = patterns('',
     url(r'^councilors/', include('councilors.urls', namespace="councilors")),
+    url(r'^about/$', 'voter_guide.views.about', name='about'),
+    url(r'^reference/$', 'voter_guide.views.reference', name='reference'),
     url(r'', include('councilors.urls', namespace="councilors")),
 #   url(r'', include('social_auth.urls')),
 #   url(r'^accounts/login/$', login, name='login'),

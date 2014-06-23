@@ -1,4 +1,5 @@
 ﻿{% extends "councilors/index/index.html" %}
+{% load extras %}
 {% block table %}
 <h3 class="text-center text-warning">
     {{param.title}}
@@ -12,7 +13,7 @@
             <td></td>
         {% endif %}
         <td>
-            <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="缺席 {{councilor.totalNum}}次">
+            <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="缺席 {{councilor.totalNum}}次(缺席率{{councilor.totalNum|divide:compare}} %)">
             {% include "common/name_color_by_party.html" %}
             </a>
         </td>

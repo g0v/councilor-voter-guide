@@ -1,4 +1,5 @@
 ﻿{% extends "base.html" %}
+{% load extras %}
 {% block title %}
 <title>議員投票指南</title>
 <meta property="og:title" content="議員投票指南"/>
@@ -6,13 +7,15 @@
 {% endblock title %}
 {% block right %}
 <div class="page-header text-center">
-    <h3>{{county}}<b>第{{ad}}屆</b>議員</h3>
+    <h3>{{county}}<b>第{{ad}}屆</b>議員<small> {{ad|ad_year}}</small></h3>
 </div>
 {% block table %}
 {% endblock table %}
 <hr>
 {% endblock right %}
 {% block script %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script>
     $(document).ready( function() {
         $('#councilor').addClass('active');

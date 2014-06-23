@@ -1,8 +1,9 @@
 councilor-voter-guide 
 ================
 
-議員投票指南        
-[議員投票指南 Hackpad](https://g0v.hackpad.com/KjfdRZ08FZ3)
+[議員投票指南](http://councils.g0v.tw/)        
+[Hackpad 討論區](https://g0v.hackpad.com/KjfdRZ08FZ3)       
+[Hackpad 意見回饋](https://g0v.hackpad.com/--5PNuk4XGGrj)
 
 In Ubuntu 12.04 LTS
 =================

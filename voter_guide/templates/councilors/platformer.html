@@ -1,22 +1,19 @@
 ﻿{% extends "common/person_info.html" %}
 {% block title %}
 {% if councilor %}
-<title>立委投票指南:{{councilor.name}}的競選政見</title>
-<meta property="og:title" content="立委投票指南:{{councilor.name}}第{{councilor.ad}}屆的競選政見"/>
-<meta itemprop="name" content="立委投票指南:{{councilor.name}}第{{councilor.ad}}屆的競選政見">
+<title>議員投票指南:{{councilor.name}}的競選政見</title>
+<meta property="og:title" content="議員投票指南:{{councilor.name}}第{{councilor.ad}}屆的競選政見"/>
+<meta itemprop="name" content="議員投票指南:{{councilor.name}}第{{councilor.ad}}屆的競選政見">
 {% else %}
-<title>立委投票指南:立委的競選政見</title>
-<meta property="og:title" content="立委投票指南:立委的競選政見"/>
-<meta itemprop="name" content="立委投票指南:立委的競選政見">
+<title>議員投票指南:立委的競選政見</title>
+<meta property="og:title" content="議員投票指南:議員的競選政見"/>
+<meta itemprop="name" content="議員投票指南:議員的競選政見">
 {% endif %}
 {% endblock %}
 {% block ly_detail %}
 {% if politics %}
 <table class="table table-bordered ">
     <tr class="warning" ><td><font class="lead">{{ly.name}}第{{ly.ad}}屆的政見：</font></td></tr>
-    {% if ly.constituency == '全國不分區' or ly.constituency == '僑居國外國民' %}
-    <tr class="info" ><td><font class="text-center">全國不分區及僑居國外國民的立委統一由所屬政黨提出政見，無個人政見</font></td></tr>
-    {% endif %}
     {% for fragment in politics %}
     <tr>
         {% if fragment.category == 0 %}
@@ -27,8 +24,6 @@
     </tr>
     {% endfor %}
 </table>
-{% else %}
-<p class="text-error">完全沒有政見</p>
 {% endif %}
 {% endblock ly_detail %}
 {% block script %}

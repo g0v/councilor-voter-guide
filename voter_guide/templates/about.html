@@ -1,0 +1,50 @@
+﻿{% extends "base.html" %}
+{% block title %}
+<title>議員投票指南:關於&授權</title>
+<meta property="og:title" content="議員投票指南:關於&授權"/>
+<meta itemprop="name" content="議員投票指南:關於&授權">
+{% endblock %}
+{% block right %}
+<div class="row-fluid">
+    <div class="span7">
+        <div class="hero-unit">
+        <div class="fb-like pull-right" data-width="50" data-layout="box_count" data-show-faces="false" data-send="false" href="https://www.facebook.com/TW.Voter.Guide"></div>
+            <dl>
+                <dt>減少盲目投票，讓民主社會的台灣更進步</dt>
+                <p><dd>你的第一次投票經驗如何?<br>我的第一次投票是聽從大人的意見投票，投完票後我覺得不舒服，候選人我不認識，也不知道他做了什麼?
+                立場是什麼?是否有為民發聲?<br>我覺得得來不易的民主被我這種不懂的老百姓浪費了，如果民主制度是好的制度的話，它一定還少了什麼。</dd></p>
+                <dt>拋磚引玉</dt>
+                <p><dd>希望吸引更多個人、團體自發性投入，發揮各自擅長的事讓台灣更好。希望有一天台灣政府能主動提供此類資訊給人民。</dd></p>
+                <dt>公信力?</dt>
+                <p><dd>本站資訊皆由政府所提供的資料經由電腦程式運算產生，以維持資訊之客觀，程式開源以供檢驗。<br>本站非營利性質，只期許在此站孱弱的監督之下，能多喚醒議員諸公1～2%的良知。</dd></p>
+            </dl>
+            <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#nonresponse">免責聲明</button>
+            <div id="nonresponse" class="collapse in">
+                <small>本網站所提供之網頁或資料，均為被連結網站所提供，相關權利為該等網站或合法權利人所有，本網站不擔保其正確性、即時性或完整性。<br>
+                    本網站不提供任何種類的明示或暗示的保證，您於使用本網站資訊和服務時應自行評估及判斷。</small>
+            </div>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="hero-unit">
+            <dl>
+                <dt>CC0 1.0 公眾領域貢獻宣告</dt>
+                <p><dd>作者在法律許可的範圍內，拋棄此著作依著作權法所享有之權利，包括所有相關與鄰接的法律權利，並宣告將該著作貢獻至公眾領域。<br>為避免斷章取義，片段使用本站資訊請附上本站連結，讓每個人都有機會以自己的觀點關心台灣。</dd></p>
+                <dt>程式原始碼</dt>
+                <p><dd><a href="https://g0v.hackpad.com/KjfdRZ08FZ3" target="_blank">開發討論區</a></dd></p>
+                <p><dd><a href="https://github.com/g0v/councilor-voter-guide" target="_blank">程式</a></dd></p>
+                <dt>意見回饋</dt>
+                <p><dd><a href="https://g0v.hackpad.com/--5PNuk4XGGrj" target="_blank">登入後直接打字</a>，歡迎各種意見回饋，一同為台灣人提供更好的工具平台努力。</dd></p>
+            </dl>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    $(document).ready( function() {
+        $('#about').addClass('active');
+        $(".collapse").collapse()
+    });
+</script>
+{% endblock %}

@@ -118,6 +118,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'councilors',
     'sittings',
+    'commontag',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -157,19 +158,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     #"django.core.context_processors.static",
     #"django.contrib.messages.context_processors.messages")
     "django.core.context_processors.request",
-    'social_auth.context_processors.social_auth_by_name_backends',
-    'social_auth.context_processors.social_auth_backends',
-    'social_auth.context_processors.social_auth_by_type_backends',
-    'social_auth.context_processors.social_auth_login_redirect',
-)
-
-AUTHENTICATION_BACKENDS = (
-    'social_auth.backends.twitter.TwitterBackend',
-    'social_auth.backends.facebook.FacebookBackend',
-    'social_auth.backends.google.GoogleOAuthBackend',
-    'social_auth.backends.google.GoogleOAuth2Backend',
-    'social_auth.backends.google.GoogleBackend',
-    'django.contrib.auth.backends.ModelBackend',
 )
 
 from local_settings import *

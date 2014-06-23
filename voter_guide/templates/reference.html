@@ -1,0 +1,40 @@
+﻿{% extends "base.html" %}
+{% block title %}
+<title>立委投票指南:資料來源</title>
+<meta property="og:title" content="立委投票指南:資料來源"/>
+<meta itemprop="name" content="立委投票指南:資料來源">
+{% endblock %}
+{% block right %}
+<div class="row-fluid">
+    <div class="span6">
+        <div class="hero-unit">
+            資料來源
+            <ul class="lead">
+                <li><a href="http://www.tcc.gov.tw/" target="_blank">台北市議會</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="span6">
+        <div class="hero-unit">
+            <div class="fb-like pull-right" data-width="50" data-layout="box_count" data-show-faces="false" data-send="false" href="https://www.facebook.com/TW.Voter.Guide"></div>
+            設計參考
+            <ul class="lead">
+                <li><a href="http://sunlightfoundation.com/" target="_blank">Sunlight Foundation</a></li><br>
+                <li><a href="http://popoloproject.com/" target="_blank">The Popolo Project</a></li>
+            </ul>
+            友站連結
+            <ul class="lead">
+                <li><a href="http://vote.ly.g0v.tw/" target="_blank">立委投票指南</a></li><br>
+                <li><a href="http://k.olc.tw/tncc/" target="_blank">台南市議員觀測中心</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    $(document).ready( function() {
+        $('#reference').addClass('active');
+    });
+</script>
+{% endblock %}

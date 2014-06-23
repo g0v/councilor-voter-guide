@@ -14,9 +14,11 @@ def index(request, index, county, ad):
     }
     if index == 'cs_attend':
         compare = Sittings.objects.filter(query & Q(committee='')).count()
-        councilors = CouncilorsDetail.objects.filter(query & Q(in_office=True, attendance__category='CS', attendance__status='absent')).annotate(totalNum=Count('attendance__id')).order_by('-totalNum','party')
+        councilors = CouncilorsDetail.objects.filter(query & Q(in_office=True, attendance__category='CS', attendance__status='absent'))\
+                                             .annotate(totalNum=Count('attendance__id'))\
+                                             .order_by('-totalNum','party')
         no_count_list = CouncilorsDetail.objects.filter(query).exclude(councilor_id__in=councilors.values_list('councilor_id', flat=True))
-    return render(request,'councilors/index/index_ordered.html', {'param': param.get(index), 'ad': ad, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'index': index})
+    return render(request,'councilors/index/index_ordered.html', {'param': param.get(index), 'ad': ad, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'compare': compare, 'index': index})
 
 def platformer(request, councilor_id, ad):
     try:

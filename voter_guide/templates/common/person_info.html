@@ -1,4 +1,5 @@
 ﻿{% extends "base.html" %}
+{% load extras %}
 {% block right %}
 <div class="row-fluid">
     <div class="span3">
@@ -14,14 +15,14 @@
                 <tr>
                     <td colspan=2>
                         <div align="center">
-                            <img src="{{councilor.image}}" width="80%">
+                            <img src="{{councilor.image}}" width="60%">
                         </div>
                     </td>
                 </tr>
                 {% endif %}
                 <tr>
                     <td style="background-color: lightgrey;">屆期</td>
-                    <td>{{ councilor.ad }}</td>
+                    <td><b>第{{councilor.ad}}屆</b><small> {{councilor.ad|ad_year}}</small></td>
                 </tr>
                 <tr>
                     <td style="background-color: lightgrey;">議員</td>
@@ -63,7 +64,7 @@
                 {% for item in councilor.contacts.address %}
                 <tr>
                     <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">地址</td>
-                    <td><a href="{{ "https://maps.google.com.tw/?q="|add:item }}" target="_blank">{{item}}</a></td>
+                    <td>{{item}}</td>
                 </tr>
                 {% endfor %}
                 {% for item in councilor.contacts.phone %}
