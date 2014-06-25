@@ -4,7 +4,7 @@ import urllib
 from scrapy.http import Request, FormRequest
 from scrapy.selector import Selector
 from scrapy.spider import BaseSpider
-from taipei.items import Taipei
+from taipei.items import MeetingMinutes
 
 
 def take_first(list_in):
@@ -86,7 +86,7 @@ class Spider(BaseSpider):
 
     def parse_profile(self, response):
         sel = Selector(response)
-        item = Taipei()
+        item = MeetingMinutes()
         nodes = sel.xpath('//table/tbody/tr')
         ref = {
             u'屆別': {'key': 'sitting', 'path': 'td/span/text()'},

@@ -22,7 +22,19 @@ class Councilor(Item):
     image = Field()
     links = Field()
 
-class Taipei(Item):
+class Bills(Item):
+    id = Field()
+    type = Field()
+    category = Field()
+    abstract = Field()
+    proposed_by = Field()
+    resolusion = Field()
+    resolusion_sitting = Field()
+    resolusion_date = Field()
+    last_action = Field()
+    abstract = Field()
+
+class MeetingMinutes(Item):
     sitting = Field()
     category = Field()
     date = Field()
