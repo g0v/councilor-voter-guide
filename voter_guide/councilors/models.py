@@ -44,6 +44,6 @@ class CouncilorsDetail(models.Model):
     image = models.URLField(blank=True, null=True)
     links = JSONField(null=True)
     social_media = JSONField(null=True)
-    hits = models.IntegerField()
+    platform = models.TextField(blank=True, null=True)
     def __unicode__(self):
         return self.name

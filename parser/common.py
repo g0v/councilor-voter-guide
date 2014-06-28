@@ -28,25 +28,34 @@ def GetDate(text):
     else:
         return None
 
-def GetId(c, name, county):
-    name_like = name + '%'
+def getId(c, name, ad, county):
     c.execute('''
         SELECT councilor_id
         FROM councilors_councilorsdetail
-        WHERE name like %s and county = %s
-        ORDER BY uid desc
-    ''', (name_like, county))
+        WHERE name = %s and ad = %s and county = %s
+    ''', (name, ad, county))
     r = c.fetchone()
     if r:
         return r[0]
     print name
 
-def getIdList(c, name_list, county):
+def getDetailId(c, name, ad, county):
+    c.execute('''
+        SELECT id
+        FROM councilors_councilorsdetail
+        WHERE name = %s and ad = %s and county = %s
+    ''', (name, ad, county))
+    r = c.fetchone()
+    if r:
+        return r[0]
+    print name
+
+def getIdList(c, name_list, sitting_dict):
     c.execute('''
         SELECT id, councilor_id
         FROM councilors_councilorsdetail
-        WHERE name IN %s and county = %s
-    ''', (tuple(name_list), county))
+        WHERE name IN %s and ad = %s and county = %s
+    ''', (tuple(name_list), sitting_dict['ad'], sitting_dict['county']))
     r = c.fetchall()
     if r:
         return r
@@ -78,7 +87,7 @@ def AddAttendanceRecord(c, councilor_id, sitting_id, category, status):
     ''', (councilor_id, sitting_id, category, status, councilor_id, sitting_id))
 
 def Attendance(c, sitting_dict, text, category, status):
-    for id, councilor_id in getIdList(c, getNameList(text), sitting_dict['county']):
+    for id, councilor_id in getIdList(c, getNameList(text), sitting_dict):
         AddAttendanceRecord(c, id, sitting_dict['uid'], category, status)
 
 def InsertSitting(c, sitting_dict):

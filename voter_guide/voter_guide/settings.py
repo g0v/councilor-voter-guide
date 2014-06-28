@@ -118,6 +118,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'councilors',
     'sittings',
+    'bills',
     'commontag',
 )
 

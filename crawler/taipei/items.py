@@ -43,6 +43,7 @@ class Bills(Item):
     dispatch_date = Field()
     execution = Field()
     remark = Field()
+    links = Field()
 
 class MeetingMinutes(Item):
     sitting = Field()

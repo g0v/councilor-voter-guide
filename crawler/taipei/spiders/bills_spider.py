@@ -63,7 +63,9 @@ class Spider(BaseSpider):
 
         for node in nodes:
             if node.xpath('td/text()')[0].re(u'目前處理程序'):
-                item['last_action'] = node.xpath('td/div/text()').extract()[0].strip().split(u'、')
+                item['last_action'] = node.xpath('td/text()').extract()[1]
+            if node.xpath('td/text()')[0].re(u'案由'):
+                item['abstract'] = node.xpath('td/text()').extract()[1]
             if node.xpath('td/text()')[0].re(u'提案人'):
                 item['proposed_by'] = node.xpath('td/div/text()').extract()[0].strip().split(u'、')
             if node.xpath('td/text()')[0].re(u'召集人/委員'):
@@ -95,4 +97,5 @@ class Spider(BaseSpider):
                 item['execution'] = node.xpath('td/text()').extract()[1]
             if node.xpath('td/text()')[0].re(u'備[\s]*?註'):
                 item['remark'] = '\n'.join(node.xpath('td/text()').extract()[1:])
+        item['links'] = response.url
         return item
