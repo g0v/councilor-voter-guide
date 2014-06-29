@@ -11,19 +11,11 @@
     {% endif %}
 {% endblock %}
 {% block person_detail %}
-    {% if politics %}
-    <table class="table table-bordered ">
-        <tr class="warning" ><td><font class="lead">{{ly.name}}第{{ly.ad}}屆的政見：</font></td></tr>
-        {% for fragment in politics %}
-        <tr>
-            {% if fragment.category == 0 %}
-            <td style="background-color: #CCFF99;">{{ fragment.content|linebreaksbr }}</td>
-            {% else %}
-            <td>{{ fragment.content|linebreaksbr }}</td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-    </table>
+    {% if councilor %}
+    <div>
+        <font class="lead">{{councilor.name}}第{{councilor.ad}}屆的政見：</font><br>
+        {{ councilor.platform|linebreaksbr }}
+    </div>
     {% endif %}
 {% endblock person_detail %}
 {% block script %}
