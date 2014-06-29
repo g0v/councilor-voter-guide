@@ -3,17 +3,32 @@
 {% block table %}
 <h3 class="text-center text-warning">
     {{param.title}}
+    {% if index == 'bills' %}
+        <form action="" method="get" class="form-inline text-center" id="form_bill">
+            <fieldset>
+                <label class="checkbox">
+                    <input type="checkbox" name="proposertype" id="proposertype" {% if proposertype %} checked{% endif %} rel="tooltip" title="計算議案數時，第一提案人才計數">
+                </label>
+            </fieldset>
+        </form>
+    {% endif %}
 </h3>
 <table class="table table-bordered table-condensed">
     {% with col=15 %}
     {% for councilor in councilors %}
-    {% if forloop.counter0|divisibleby:col %}
-        {% if forloop.counter0 != 0 %}</tr>{% endif %}
-        <tr style="background-color: {% cycle 'EEEEEE' 'white' %};">
-            <td></td>
+        {% if forloop.counter0|divisibleby:col %}
+            {% if forloop.counter0 != 0 %}
+                </tr>
+            {% endif %}
+            <tr style="background-color: {% cycle 'EEEEEE' 'white' %};">
+                <td></td>
         {% endif %}
         <td>
-            <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="缺席 {{councilor.totalNum}}次(缺席率{{councilor.totalNum|divide:compare}} %)">
+            {% if index == 'cs_attend' %}
+                <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}(缺席率{{councilor.totalNum|divide:compare}} %)">
+            {% elif index == 'bills' %}
+            <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}">
+            {% endif %}
             {% include "common/name_color_by_party.html" %}
             </a>
         </td>
@@ -21,16 +36,16 @@
     {% if no_count_list %}
     <tr><td rowspan="{% widthratio no_count_list|length|add:10 col 1 %}" style="background-color: #FF99FF; text-align:center; vertical-align:middle; font-weight:bold;">0次</td>
         {% for councilor in no_count_list %}
-        {% if forloop.counter0|divisibleby:col and forloop.counter0 != 0 %}
-        </tr>
-        {% endif %}
-            <td style="background-color: #FFCCFF;">
-            <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="缺席 0次">
-            {% include "common/name_color_by_party.html" %}
-            </a>
+            {% if forloop.counter0|divisibleby:col and forloop.counter0 != 0 %}
+            </tr>
+            {% endif %}
+            <td style="background-color: #FFDDFF;">
+                <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} 0{{param.unit}}">
+                {% include "common/name_color_by_party.html" %}
+                </a>
             </td>
         {% endfor %}
-        {% endif %}
+    {% endif %}
     {% include "common/color_info_of_party.html" with column=21 %}
     {% endwith %}
 </table>

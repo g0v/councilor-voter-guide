@@ -21,6 +21,9 @@
         $('#councilor').addClass('active');
         $('.dropdown-toggle').dropdown();
         $("[rel='tooltip']").tooltip();
+        $('#proposertype').change(function() {
+            $("#form_bill").trigger('submit');
+        });
     });
 </script>
 {% endblock script %}
