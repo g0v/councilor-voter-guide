@@ -1,38 +1,35 @@
 ﻿{% extends "common/person_info.html" %}
 {% block title %}
-{% if councilor %}
-<title>議員投票指南:{{councilor.name}}的競選政見</title>
-<meta property="og:title" content="議員投票指南:{{councilor.name}}第{{councilor.ad}}屆的競選政見"/>
-<meta itemprop="name" content="議員投票指南:{{councilor.name}}第{{councilor.ad}}屆的競選政見">
-{% else %}
-<title>議員投票指南:立委的競選政見</title>
-<meta property="og:title" content="議員投票指南:議員的競選政見"/>
-<meta itemprop="name" content="議員投票指南:議員的競選政見">
-{% endif %}
+    {% if councilor %}
+        <title>議員投票指南:{{councilor.name}}的競選政見</title>
+        <meta property="og:title" content="議員投票指南:{{councilor.name}}第{{councilor.ad}}屆的競選政見"/>
+        <meta itemprop="name" content="議員投票指南:{{councilor.name}}第{{councilor.ad}}屆的競選政見">
+    {% else %}
+        <title>議員投票指南:立委的競選政見</title>
+        <meta property="og:title" content="議員投票指南:議員的競選政見"/>
+        <meta itemprop="name" content="議員投票指南:議員的競選政見">
+    {% endif %}
 {% endblock %}
-{% block ly_detail %}
-{% if politics %}
-<table class="table table-bordered ">
-    <tr class="warning" ><td><font class="lead">{{ly.name}}第{{ly.ad}}屆的政見：</font></td></tr>
-    {% for fragment in politics %}
-    <tr>
-        {% if fragment.category == 0 %}
-        <td style="background-color: #CCFF99;">{{ fragment.content|linebreaksbr }}</td>
-        {% else %}
-        <td>{{ fragment.content|linebreaksbr }}</td>
-        {% endif %}
-    </tr>
-    {% endfor %}
-</table>
-{% endif %}
-{% endblock ly_detail %}
+{% block person_detail %}
+    {% if politics %}
+    <table class="table table-bordered ">
+        <tr class="warning" ><td><font class="lead">{{ly.name}}第{{ly.ad}}屆的政見：</font></td></tr>
+        {% for fragment in politics %}
+        <tr>
+            {% if fragment.category == 0 %}
+            <td style="background-color: #CCFF99;">{{ fragment.content|linebreaksbr }}</td>
+            {% else %}
+            <td>{{ fragment.content|linebreaksbr }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock person_detail %}
 {% block script %}
-<script>
-    $(document).ready( function() {
-        $('#ly').addClass('active');
-        $('.dropdown-toggle').dropdown();
-        $("[rel='tooltip']").tooltip();
-        $('#url_politics').removeAttr('href').addClass("btn-info");
-    });
-</script>
+    <script>
+        $(document).ready( function() {
+            $('#councilors_platformer').removeAttr('href').addClass("btn-info");
+        });
+    </script>
 {% endblock script %}

@@ -7,7 +7,7 @@
         <form action="" method="get" class="form-inline text-center" id="form_bill">
             <fieldset>
                 <label class="checkbox">
-                    <input type="checkbox" name="proposertype" id="proposertype" {% if proposertype %} checked{% endif %} rel="tooltip" title="計算議案數時，第一提案人才計數">
+                    <input type="checkbox" name="proposertype" id="proposertype" {% if proposertype %} checked{% endif %} rel="tooltip" title="打勾:不是第一提案人也計數">
                 </label>
             </fieldset>
         </form>
@@ -25,9 +25,9 @@
         {% endif %}
         <td>
             {% if index == 'cs_attend' %}
-                <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}(缺席率{{councilor.totalNum|divide:compare}} %)">
+                <a href="{% url param.url_name councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}(缺席率{{councilor.totalNum|divide:compare}} %)">
             {% elif index == 'bills' %}
-            <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}">
+            <a href="{% url param.url_name councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}">
             {% endif %}
             {% include "common/name_color_by_party.html" %}
             </a>
@@ -40,7 +40,7 @@
             </tr>
             {% endif %}
             <td style="background-color: #FFDDFF;">
-                <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} 0{{param.unit}}">
+                <a href="{% url param.url_name councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} 0{{param.unit}}">
                 {% include "common/name_color_by_party.html" %}
                 </a>
             </td>

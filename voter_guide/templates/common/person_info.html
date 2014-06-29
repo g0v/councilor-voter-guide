@@ -49,36 +49,36 @@
                 <tr>
                     <td colspan=2></td>
                 </tr>
-                {% for item in councilor.contacts.email %}
                 <tr>
                     <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">信箱</td>
-                    <td>{{item}}</td>
+                    {% for item in councilor.contacts.email %}
+                        <td>{{item}}</td>
+                    {% endfor %}
                 </tr>
-                {% endfor %}
-                {% for item in councilor.contacts.website %}
                 <tr>
                     <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">個人網站</td>
-                    <td>{{item}}</td>
+                    {% for item in councilor.contacts.website %}
+                        <td>{{item}}</td>
+                    {% endfor %}
                 </tr>
-                {% endfor %}
-                {% for item in councilor.contacts.address %}
                 <tr>
                     <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">地址</td>
-                    <td>{{item}}</td>
+                    {% for item in councilor.contacts.address %}
+                        <td>{{item}}</td>
+                    {% endfor %}
                 </tr>
-                {% endfor %}
-                {% for item in councilor.contacts.phone %}
                 <tr>
                     <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">電話</td>
-                    <td>{{item}}</td>
+                    {% for item in councilor.contacts.phone %}
+                        <td>{{item}}</td>
+                    {% endfor %}
                 </tr>
-                {% endfor %}
-                {% for item in councilor.contacts.fax %}
                 <tr>
                     <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">傳真</td>
-                    <td>{{item}}</td>
+                    {% for item in councilor.contacts.fax %}
+                        <td>{{item}}</td>
+                    {% endfor %}
                 </tr>
-                {% endfor %}
                 {% if councilor.education %}
                 <tr>
                     <td colspan=2></td>
@@ -113,6 +113,20 @@
             </tbody>
         </table>
         {% endif %}
+    </div>
+
+    <div class="span9">
+        <br>
+        <div class="row-fluid">
+            <div class="span12">
+                <b>{{ councilor.name }}</b>的&nbsp;
+                <a class="btn btn-large" id='councilors_biller' href="{% url 'councilors:biller' councilor_id=councilor.councilor_id ad=councilor.ad %}">議案</a>
+                <a class="btn btn-large" id='councilors_platformer' href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=councilor.ad %}">競選政見</a>
+            </div>
+        </div>
+        <br>
+        {% block person_detail %}
+        {% endblock person_detail %}
     </div>
 </div>
 {% endblock right %}
