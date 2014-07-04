@@ -1,0 +1,59 @@
+﻿{% extends "base.html" %}
+{% load extras %}
+
+{% block title %}
+    <title>議員投票指南:{{county}}-議案檢索</title>
+    <meta property="og:title" content="議員投票指南:{{county}}-議案檢索"/>
+    <meta itemprop="name" content="議員投票指南:{{county}}-議案檢索">
+{% endblock title %}
+
+{% block right %}
+    <div class="span1">
+    </div>
+    <div class="span10">
+        {% include "common/search_keyword_form.html" with placeholder_text="例:都市更新 土地徵收...空格有交集效果" %}
+        {% if keyword_hot %}
+            <h4>熱門：
+                {% for keyword in keyword_hot %}
+                    {% if forloop.counter0 < 5 %}
+                        <a href="{% url 'bills:bills' county='臺北市' index=index %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的議案"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
+                    {% endif %}
+                {% endfor %}
+            </h4>
+        {% endif %}
+        <div class="well well-small">
+            <font class="lead">
+            {% if index == 'normal' %}
+                {% if keyword %}
+                    共{{ bills|length }} 個與<font style="color: red;">"{{keyword}}"</font>相關的議案
+                {% else %}
+                    共{{ bills|length }} 個議案
+                {% endif %}
+            {% endif %}
+            </font>
+        </div>
+        {% if bills %}
+            {% load pagination_tags %}
+            {% autopaginate bills 10 %}
+            {% paginate %}
+            {% include "common/bills.html" %}
+            {% paginate %}
+        {% endif %}
+    </div>
+    <div class="span1">
+    </div>
+{% endblock right %}
+
+{% block backtotop %}
+    {{ block.super }}
+{% endblock backtotop %}
+
+{% block script %}
+    {% include "common/keyword_auto_complete.html" %}
+    <script>
+        $(document).ready( function() {
+            $('#bills').addClass('active');
+            $("[rel='tooltip']").tooltip();
+        });
+    </script>
+{% endblock script %}

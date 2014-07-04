@@ -50,7 +50,7 @@ source venv/bin/activate
 pip install -r requirements.txt     
 ```
 
-## Restore data into database(Dump data not finish yet, please wait or work on)       
+## Restore data into database       
 Please new a database(eg. voter_guide), below will use voter_guide for example
 ```
 createdb -h localhost -U <username> voter_guide

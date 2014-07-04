@@ -57,6 +57,8 @@
                             <li><a href="{% url 'councilors:index' index='bills' county='臺北市' ad=11 %}" ><b>議案數</b>(多&rarr;少)</a></li>
                         </ul>
                         </li>
+
+                        <li id="bills"><a href="{% url 'bills:bills' county='臺北市' index='normal' %}" >找議案</a></li>
                     </ul>
                     <ul class="nav pull-right">
                         <li id="reference"><a href="{% url 'reference' %}">資料來源</a></li>
@@ -75,15 +77,14 @@
             </div>
         </div>
         {% block backtotop %}
-        <div align="center">
-            <a href="#top" class="lead">回頭</a>
-
-        </div>
+            <div align="center">
+                <a href="#top" class="lead">回頭</a>
+            </div>
         {% endblock %}
         <footer class="footer">
-        <div align="center" class="container">
-            <p><a href="https://g0v.hackpad.com/--5PNuk4XGGrj" target="_blank">意見回饋</a> - <a href="mailto:g0v-ly@googlegroups.com">寄給G0V</a></p>
-        </div>
+            <div align="center" class="container">
+                <p><a href="https://g0v.hackpad.com/--5PNuk4XGGrj" target="_blank">意見回饋</a> - <a href="mailto:g0v-ly@googlegroups.com">寄給G0V</a></p>
+            </div>
         </footer>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
         <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/bootstrap.min.js"></script>

@@ -4,10 +4,10 @@
         <tr style="background-color: #FFCCFF;">
             <th style="width: 10%">類別</th>
             <th style="width: 10%">第一提案人</th>
-            <th style="width: 50%">案由</th>
+            <th style="width: 40%">案由</th>
             <th style="width: 10%">議決日</th>
             <th style="width: 20%">議決文</th>
-            <th style="width: 20%">執行情形</th>
+            <th style="width: 10%">執行情形</th>
         </tr>
     </thead>
     <tbody>
@@ -21,11 +21,12 @@
                 {% if councilor %}
                     <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id ad=councilor.ad %}" rel="tooltip" title="{{ councilor.name }}的所有議案">{% include "common/name_color_by_party.html" %}</a>
                 {% else %}
-                    {{fragment.primary_proposer}}
+                    {{fragment.proposed_by}}
                 {% endif %}
                 {% endwith %}
             </td>
             <td style="vertical-align:middle;">
+                <a href="{% url 'bills:bill_detail' county='臺北市' bill_id=fragment.uid %}">查看完整議案</a><br>
             {% if fragment.abstract %}
                 {% if keyword %}
                     {{fragment.abstract|linebreaksbr|replace:keyword|safe}}

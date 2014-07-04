@@ -1,15 +1,17 @@
 ﻿{% extends "common/person_info.html" %}
+
 {% block title %}
     {% if councilor %}
         <title>議員投票指南:{{councilor.name}}的議案</title>
         <meta property="og:title" content="議員投票指南:{{councilor.name}}第{{councilor.ad}}屆的議案"/>
         <meta itemprop="name" content="議員投票指南:{{councilor.name}}第{{councilor.ad}}屆的議案">
     {% else %}
-        <title>議員投票指南:立委的法條修正草案</title>
+        <title>議員投票指南:議員的法條修正草案</title>
         <meta property="og:title" content="議員投票指南:議員的議案"/>
         <meta itemprop="name" content="議員投票指南:議員的議案">
     {% endif %}
 {% endblock title %}
+
 {% block person_detail %}
     <form action="" method="get" class="form-search" id="form">
         <fieldset>
@@ -18,13 +20,13 @@
         </fieldset>
     </form>
     {% if keyword_hot %}
-    <h4>熱門：
-        {% for keyword in keyword_hot %}
-        {% if forloop.counter0 < 5 %}
-        <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id ad=councilor.ad %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的議案"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
-        {% endif %}
-        {% endfor %}
-    </h4>
+        <h4>熱門：
+            {% for keyword in keyword_hot %}
+                {% if forloop.counter0 < 5 %}
+            <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id ad=councilor.ad %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的議案"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
+                {% endif %}
+            {% endfor %}
+        </h4>
     {% endif %}
     <div class="well well-small">
         <font class="lead">
@@ -44,6 +46,7 @@
         <p class="text-error">完全沒有議案</p>
     {% endif %}
 {% endblock person_detail %}
+
 {% block script %}
     <script>
         $(document).ready( function() {

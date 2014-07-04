@@ -1,0 +1,87 @@
+﻿{% extends "base.html" %}
+{% block title %}
+    {% if bill %}
+        {% with councilor=bill.primary_proposer.0 %}
+        {% if councilor %}
+        <title>議員投票指南:{{county}}-{{ councilor.name }}的議案</title>
+            <meta property="og:title" content="議員投票指南:{{county}}-{{ councilor.name }}提的議案"/>
+            <meta itemprop="name" content="議員投票指南:{{county}}-{{ councilor.name }}提的議案">
+        {% else %}
+            <title>議員投票指南:{{county}}-{{ bill.proposed_by }}提的議案</title>
+            <meta property="og:title" content="議員投票指南:{{county}}-{{ bill.proposed_by }}提的議案"/>
+            <meta itemprop="name" content="議員投票指南:{{county}}-{{ bill.proposed_by }}提的議案">
+        {% endif %}
+        {% endwith %}
+    {% endif %}
+{% endblock title %}
+{% block right %}
+<div class="row-fluid">
+    <div class="span1">
+    </div>
+    <div class="span10">
+        <br>
+        {% if bill %}
+        <div align="center">
+            <ul class="inline lead">
+                <li>{{bill.type}}</li>
+                <li>{{bill.category}}</li>
+            </ul>
+        </div>
+        <dl class="dl-horizontal">
+            <dt>案由</dt>
+            <dd><p>{{bill.abstract}}</p></dd>
+            <dt>提案人</dt>
+            <dd>
+                <ul class="inline">
+                {% for councilor in bill.sorted_proposer_set %}
+                    <li><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id ad=councilor.ad %}" rel="tooltip" title="{{councilor.name}}的所有議案">{% include "common/name_color_by_party.html" %}</a></li>
+                {% empty %}
+                    {{bill.proposed_by}}
+                {% endfor %}
+                </ul>
+            </dd>
+            {% if bill.examination_date %}
+                <dt>審查日</dt>
+                <dd><p>{{bill.examination_date}}</p></dd>
+            {% endif %}
+            {% if bill.examination %}
+                <dt>審查</dt>
+                <dd><p>{{bill.examination}}</p></dd>
+            {% endif %}
+            {% if bill.resolusion_date %}
+                <dt>議決日</dt>
+                <dd><p>{{bill.resolusion_date}}</p></dd>
+            {% endif %}
+            {% if bill.resolusion %}
+                <dt>議決</dt>
+                <dd><p>{{bill.resolusion}}</p></dd>
+            {% endif %}
+            {% if bill.execution %}
+                <dt>執行情形</dt>
+                <dd><p>{{bill.execution}}</p></dd>
+            {% endif %}
+            {% if bill.remark %}
+                <dt>備註</dt>
+                <dd><p>{{bill.remark}}</p></dd>
+            {% endif %}
+        </dl>
+        {% endif %}
+    </div>
+    <div class="span1">
+    </div>
+</div><!--end: row-fluid -->
+<hr>
+{% endblock right %}
+{% block backtotop %}
+{{ block.super }}
+{% endblock backtotop %}
+{% block script %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+    $(document).ready( function() {
+        $('#psearch').addClass('active');
+        $("[rel='tooltip']").tooltip();
+    });
+</script>
+{% endblock script %}
