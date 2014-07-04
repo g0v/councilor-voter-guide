@@ -51,33 +51,43 @@
                 </tr>
                 <tr>
                     <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">信箱</td>
+                    <td>
                     {% for item in councilor.contacts.email %}
-                        <td>{{item}}</td>
+                        {{item}}<br>
                     {% endfor %}
+                    </td>
                 </tr>
                 <tr>
                     <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">個人網站</td>
+                    <td>
                     {% for item in councilor.contacts.website %}
-                        <td>{{item}}</td>
+                        {{item}}<br>
                     {% endfor %}
+                    </td>
                 </tr>
                 <tr>
                     <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">地址</td>
+                    <td>
                     {% for item in councilor.contacts.address %}
-                        <td>{{item}}</td>
+                        {{item}}<br>
                     {% endfor %}
+                    </td>
                 </tr>
                 <tr>
                     <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">電話</td>
+                    <td>
                     {% for item in councilor.contacts.phone %}
-                        <td>{{item}}</td>
+                        {{item}}<br>
                     {% endfor %}
+                    </td>
                 </tr>
                 <tr>
                     <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">傳真</td>
+                    <td>
                     {% for item in councilor.contacts.fax %}
-                        <td>{{item}}</td>
+                        {{item}}<br>
                     {% endfor %}
+                    </td>
                 </tr>
                 {% if councilor.education %}
                 <tr>
