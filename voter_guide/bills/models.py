@@ -6,6 +6,8 @@ from json_field import JSONField
 class Bills(models.Model):
     proposer = models.ManyToManyField('councilors.CouncilorsDetail', blank=True, null=True, through='Councilors_Bills')
     uid = models.TextField(unique=True)
+    ad = models.IntegerField()
+    county = models.CharField(max_length=100, blank=True, null=True)
     type = models.TextField(blank=True, null=True)
     category = models.TextField(blank=True, null=True)
     abstract = models.TextField(blank=True, null=True)
@@ -26,6 +28,7 @@ class Bills(models.Model):
     execution = models.TextField(blank=True, null=True)
     remark = models.TextField(blank=True, null=True)
     links = models.TextField(blank=True, null=True)
+    param = JSONField(null=True)
     def __unicode__(self):
         return self.uid
 

@@ -45,5 +45,6 @@ class CouncilorsDetail(models.Model):
     links = JSONField(null=True)
     social_media = JSONField(null=True)
     platform = models.TextField(blank=True, null=True)
+    param = JSONField(null=True)
     def __unicode__(self):
         return self.name

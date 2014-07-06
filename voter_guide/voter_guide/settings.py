@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'search',
     'pagination',
     'commontag',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging

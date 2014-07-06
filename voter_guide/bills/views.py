@@ -9,19 +9,19 @@ from search.views import keyword_list, keyword_been_searched, keyword_normalize
 
 
 def bills(request, county, index):
-    query = Q()
+    query = Q(county=county)
     keyword = keyword_normalize(request.GET)
     if keyword:
         bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in keyword.split()))).order_by('-uid')
         if bills:
             keyword_been_searched(keyword, 'bills')
     else:
-        bills = Bills.objects.all().order_by('-uid')
+        bills = Bills.objects.filter(query).order_by('-uid')
     return render(request, 'bills/bills.html', {'county': county, 'index': index, 'keyword_hot': keyword_list('bills'), 'keyword': keyword, 'bills': bills})
 
 def bill_detail(request, county, bill_id):
     try:
-        bill = Bills.objects.get(uid=bill_id)
+        bill = Bills.objects.get(county=county, uid=bill_id)
     except Exception, e:
         print e
         return HttpResponseRedirect('/')
