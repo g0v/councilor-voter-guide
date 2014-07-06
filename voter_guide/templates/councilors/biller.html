@@ -13,29 +13,39 @@
 {% endblock title %}
 
 {% block person_detail %}
-    <form action="" method="get" class="form-search" id="form">
-        <fieldset>
-            <input type="search" name="keyword" id="keyword" class="span5" maxlength="20" placeholder="例:都市更新 土地徵收...空格有交集效果" autofocus>
-            <button type="submit" class="btn">Go!</button>
-        </fieldset>
-    </form>
-    {% if keyword_hot %}
-        <h4>熱門：
-            {% for keyword in keyword_hot %}
-                {% if forloop.counter0 < 5 %}
-            <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id ad=councilor.ad %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的議案"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
-                {% endif %}
-            {% endfor %}
-        </h4>
-    {% endif %}
-    <div class="well well-small">
-        <font class="lead">
-        {{councilor.name}}(第{{councilor.ad}}屆)：{{ bills|length }}個
-        {% if keyword %}
-        包含<font style="color: red;">"{{keyword}}"</font>的
-        {% endif %}議案
-        </font>
+<div class="row-fluid">
+    <div class="span8">
+        <br>
+        <form action="" method="get" class="form-search" id="form">
+            <fieldset>
+                <input type="search" name="keyword" id="keyword" class="span8" maxlength="20" placeholder="例:都市更新 土地徵收...空格有交集效果" autofocus>
+                <button type="submit" class="btn">Go!</button>
+            </fieldset>
+        </form>
+        {% if keyword_hot %}
+            <h4>熱門：
+                {% for keyword in keyword_hot %}
+                    {% if forloop.counter0 < 5 %}
+                <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id ad=councilor.ad %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的議案"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
+                    {% endif %}
+                {% endfor %}
+            </h4>
+        {% endif %}
+        <div class="well well-small">
+            <font class="lead">
+            {{councilor.name}}(第{{councilor.ad}}屆)：{{ bills|length }}個
+            {% if keyword %}
+            包含<font style="color: red;">"{{keyword}}"</font>的
+            {% endif %}議案
+            </font>
+        </div>
     </div>
+    <div class="span4">
+        <div id="d3">
+        </div>
+    </div>
+    <div class="span12">
+        <div id="d3" class="pull-right">
     {% if bills %}
         {% load pagination_tags %}
         {% autopaginate bills 10 %}
@@ -45,6 +55,7 @@
     {% else %}
         <p class="text-error">完全沒有議案</p>
     {% endif %}
+    </div>
 {% endblock person_detail %}
 
 {% block script %}
@@ -54,4 +65,5 @@
         });
     </script>
     {{ block.super }}
+    {% include "councilors/d3/councilor_bill_radar.html" %}
 {% endblock script %}

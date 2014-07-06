@@ -70,7 +70,7 @@ def biller(request, councilor_id, ad):
             keyword_been_searched(keyword, 'bills')
     else:
         bills = Bills.objects.filter(query).order_by('-uid')
-    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'proposertype': proposertype})
+    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'proposertype': proposertype, 'data': list(councilor.param)})
 
 def platformer(request, councilor_id, ad):
     try:

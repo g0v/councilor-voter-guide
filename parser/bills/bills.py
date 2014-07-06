@@ -86,11 +86,19 @@ def personal_vector(councilor_id):
     ''', (councilor_id, ))
     r = c.fetchall()
     p_vector = list(np.sum([x[0] for x in r], axis=0) / float(len(r)))
+    diversity = [
+        {'axis': '中國國民黨', 'value': p_vector[0]},
+        {'axis': '民主進步黨', 'value': p_vector[1]},
+        {'axis': '臺灣團結聯盟', 'value': p_vector[2]},
+        {'axis': '親民黨', 'value': p_vector[3]},
+        {'axis': '新黨', 'value': p_vector[4]},
+        {'axis': '無黨籍', 'value': p_vector[5]}
+    ]
     c.execute('''
         UPDATE councilors_councilorsdetail
         SET param = %s
         WHERE id = %s
-    ''', ({'diversity': p_vector}, councilor_id))
+    ''', (diversity, councilor_id))
 
 def councilors(ad, county):
     c.execute('''
