@@ -14,7 +14,7 @@
 
 {% block person_detail %}
 <div class="row-fluid">
-    <div class="span8">
+    <div class="span6">
         <br>
         <form action="" method="get" class="form-search" id="form">
             <fieldset>
@@ -40,8 +40,9 @@
             </font>
         </div>
     </div>
-    <div class="span4">
-        <div id="d3">
+    <div class="span6">
+        <p class="text-info" align="center">共同提案人的政黨分布</p>
+        <div id="d3" align="center">
         </div>
     </div>
     <div class="span12">
@@ -65,5 +66,5 @@
         });
     </script>
     {{ block.super }}
-    {% include "councilors/d3/councilor_bill_radar.html" %}
+    {% include "councilors/d3/councilor_bill_pie.html" %}
 {% endblock script %}

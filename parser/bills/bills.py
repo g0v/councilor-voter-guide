@@ -51,54 +51,40 @@ for bill in dict_list:
 conn.commit()
 print 'bills done'
 
-import numpy as np
-
-
-def bill_party_diversity():
+def bill_party_diversity(parties):
     c.execute('''
         select
             b.bill_id,
-            sum(case when a.party = '中國國民黨' then 1 else 0 end) KMT,
-            sum(case when a.party = '民主進步黨' then 1 else 0 end) DDP,
-            sum(case when a.party = '臺灣團結聯盟' then 1 else 0 end) TSU,
-            sum(case when a.party = '親民黨' then 1 else 0 end) PFP,
-            sum(case when a.party = '新黨' then 1 else 0 end) NP,
-            sum(case when a.party = '無黨籍' then 1 else 0 end) N
+            count(*) total,
+            %s
         from councilors_councilorsdetail a, bills_councilors_bills b
         where a.id = b.councilor_id
         group by b.bill_id
-    ''')
-    for bill_diversity in c.fetchall():
-        bill_diversity = list(bill_diversity)
-        vector = np.array(bill_diversity[1:])
-        normalized = vector / np.linalg.norm(vector)
+    ''' % ', '.join(["sum(case when a.party = '%s' then 1 else 0 end)" % x for x in parties]))
+    for bill in c.fetchall():
+        bill = list(bill)
+        percentage = [x/float(bill[1]) for x in bill[2:]]
         c.execute('''
             UPDATE bills_bills
             SET param = %s
             WHERE uid = %s
-        ''', ({'diversity': list(normalized)}, bill_diversity[0]))
+        ''', ({'diversity': dict(zip(parties, percentage))}, bill[0]))
 
-def personal_vector(councilor_id):
+def personal_vector(parties, councilor_id):
     c.execute('''
         SELECT a.param::json->'diversity'
         FROM bills_bills a, bills_councilors_bills b
         WHERE a.uid = b.bill_id AND b.councilor_id = %s
     ''', (councilor_id, ))
     r = c.fetchall()
-    p_vector = list(np.sum([x[0] for x in r], axis=0) / float(len(r)))
-    diversity = [
-        {'axis': '中國國民黨', 'value': p_vector[0]},
-        {'axis': '民主進步黨', 'value': p_vector[1]},
-        {'axis': '臺灣團結聯盟', 'value': p_vector[2]},
-        {'axis': '親民黨', 'value': p_vector[3]},
-        {'axis': '新黨', 'value': p_vector[4]},
-        {'axis': '無黨籍', 'value': p_vector[5]}
-    ]
+    diversity = {}
+    for party in parties:
+        diversity.update({party: sum([x[0][party.decode('utf8')] for x in r]) / float(len(r))})
     c.execute('''
         UPDATE councilors_councilorsdetail
         SET param = %s
         WHERE id = %s
-    ''', (diversity, councilor_id))
+    ''', ({'diversity': diversity}, councilor_id))
 
 def councilors(ad, county):
     c.execute('''
@@ -108,7 +94,18 @@ def councilors(ad, county):
     ''', (ad, county))
     return c.fetchall()
 
-bill_party_diversity()
+def distinct_party(ad, county):
+    c.execute('''
+        SELECT DISTINCT(party)
+        FROM councilors_councilorsdetail
+        WHERE ad = %s AND county = %s
+        ORDER BY party
+    ''', (ad, county))
+    return c.fetchall()
+
+parties = [x[0] for x in distinct_party(ad, county)]
+bill_party_diversity(parties)
 for councilor_id in councilors(ad, county):
-    personal_vector(councilor_id)
+    personal_vector(parties, councilor_id)
 conn.commit()
+print 'bills diversity done'

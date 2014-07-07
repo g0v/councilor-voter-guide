@@ -20,6 +20,8 @@
     </div>
     <div class="span10">
         <br>
+        <div id="d3" align="left">
+        </div>
         {% if bill %}
         <div align="center">
             <ul class="inline lead">
@@ -72,16 +74,19 @@
 </div><!--end: row-fluid -->
 <hr>
 {% endblock right %}
+
 {% block backtotop %}
-{{ block.super }}
+    {{ block.super }}
 {% endblock backtotop %}
+
 {% block script %}
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<script>
-    $(document).ready( function() {
-        $('#psearch').addClass('active');
-        $("[rel='tooltip']").tooltip();
-    });
-</script>
+    <script>
+        $(document).ready( function() {
+            $('#bills').addClass('active');
+            $("[rel='tooltip']").tooltip();
+        });
+    </script>
+    {% if bill.sorted_proposer_set %}
+    {% include "bills/d3/bill_pie.html" %}
+    {% endif %}
 {% endblock script %}
