@@ -8,6 +8,7 @@ from scrapy.item import Item, Field
 class Councilor(Item):
     name = Field()
     ad = Field()
+    title = Field()
     gender = Field()
     birth = Field()
     party = Field()

@@ -9,11 +9,7 @@ def write_file(data, file_name):
     file.write(data)
     file.close()
 
-for file_name in ['taipei/councilor-11.json', 'taipei/meeting_minutes-11.json', 'taipei/bills-11.json', 'tncc/tnccp.json']:
+for file_name in ['taipei/councilor_1-11.json', 'taipei/councilor-11.json', 'taipei/meeting_minutes-11.json', 'taipei/bills-11.json', 'tncc/tnccp.json']:
     objs = json.load(open(file_name))
     dump_data = json.dumps(objs, sort_keys=True, indent=4, ensure_ascii=False)
     write_file(dump_data, 'pretty_format/%s' % file_name)
-
-#objs = json.load(open('taipei_meeting_minutes.json'))
-#dump_data = json.dumps(objs, sort_keys=True, indent=4, ensure_ascii=False)
-#write_file(dump_data, 'pretty_format/taipei_meeting_minutes-11.json')
