@@ -102,4 +102,5 @@ class Spider(BaseSpider):
         item['contacts'] = contacts
         item['ad'] = 11
         item['links'] = {'council': response.url}
+        item['in_office'] = True
         return item

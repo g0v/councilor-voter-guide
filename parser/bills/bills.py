@@ -39,7 +39,6 @@ ad = 11
 county = u'臺北市'
 dict_list = json.load(open('../../data/taipei/bills-%s.json' % str(ad)))
 for bill in dict_list:
-    if 1:   break
     bill.update({'ad': ad, 'county': county})
     Bill(bill)
     priproposer = True

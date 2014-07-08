@@ -28,14 +28,9 @@ def Councilors(councilor):
     ''', councilor)
 
 def CouncilorsDetail(councilor, ideal_term_end_year):
-    if councilor.has_key('education'):
-        councilor['education'] = '\n'.join(councilor['education'])
-    if councilor.has_key('experience'):
-        councilor['experience'] = '\n'.join(councilor['experience'])
-    if councilor.has_key('platform'):
-        councilor['platform'] = '\n'.join(councilor['platform'])
-    if councilor.has_key('remark'):
-        councilor['remark'] = '\n'.join(councilor['remark'])
+    for key in ['education', 'experience', 'platform', 'remark']:
+        if councilor.has_key(key):
+            councilor[key] = '\n'.join(councilor[key])
     c.execute('''
         SELECT *
         FROM councilors_councilorsdetail
@@ -66,7 +61,7 @@ for council in ['../../data/taipei/councilor_1-11.json', '../../data/taipei/coun
     dict_list = json.load(open(council))
     ideal_term_end_year = {0:1969, 1:1973, 2:1977, 3:1981, 4:1985, 5:1989, 6:1994, 7:1998, 8:2002, 9:2006, 10:2010, 11:2014}
     for councilor in dict_list:
-        councilor.update({'uid': '%s_%s' % (councilor['name'], councilor['birth']), 'in_office': True})
+        councilor.update({'uid': '%s_%s' % (councilor['name'], councilor['birth'])})
         councilor['ad'] = int(councilor['ad'])
         Councilors(councilor)
         CouncilorsDetail(councilor, ideal_term_end_year)

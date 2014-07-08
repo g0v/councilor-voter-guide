@@ -20,6 +20,8 @@ class Councilor(Item):
     experience = Field()
     platform = Field()
     remark = Field()
+    in_office = Field()
+    term_end = Field()
     image = Field()
     links = Field()
 

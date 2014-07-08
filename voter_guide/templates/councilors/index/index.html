@@ -1,29 +1,46 @@
 ﻿{% extends "base.html" %}
 {% load extras %}
+
 {% block title %}
 <title>議員投票指南</title>
 <meta property="og:title" content="議員投票指南"/>
 <meta itemprop="name" content="議員投票指南">
 {% endblock title %}
+
 {% block right %}
-<div class="page-header text-center">
-    <h3>{{county}}<b>第{{ad}}屆</b>議員<small> {{ad|ad_year}}</small></h3>
-</div>
-{% block table %}
-{% endblock table %}
-<hr>
+    <div class="page-header text-center">
+        <h3>{{county}}<b>第{{ad}}屆</b>議員<small> {{ad|ad_year}}</small></h3>
+    </div>
+    {% block table %}
+    {% endblock table %}
+    <hr>
+    {% if out_office %}
+    <table class="table table-bordered table-condensed">
+        <tr style="font-weight:bold; background-color: #FFFFCC;">
+            <td style="text-align:center; vertical-align:middle; width: 15%">離職議員</td>
+            <td style="text-align:center; vertical-align:middle; width: 55%">離職原因</td>
+        </tr>
+        {% for councilor in out_office %}
+        <tr style="background-color: {% cycle 'EEEEEE' 'white' %};">
+            {% include "common/person_dropdown.html" with color=True %}
+            <td>{{councilor.term_end.reason}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
 {% endblock right %}
+
 {% block script %}
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<script>
-    $(document).ready( function() {
-        $('#councilor').addClass('active');
-        $('.dropdown-toggle').dropdown();
-        $("[rel='tooltip']").tooltip();
-        $('#proposertype').change(function() {
-            $("#form_bill").trigger('submit');
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script>
+        $(document).ready( function() {
+            $('#councilor').addClass('active');
+            $('.dropdown-toggle').dropdown();
+            $("[rel='tooltip']").tooltip();
+            $('#proposertype').change(function() {
+                $("#form_bill").trigger('submit');
+            });
         });
-    });
-</script>
+    </script>
 {% endblock script %}

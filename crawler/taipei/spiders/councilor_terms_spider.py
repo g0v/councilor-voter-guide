@@ -52,6 +52,7 @@ class Spider(BaseSpider):
         item['county'] = '臺北市'
         image = sel.xpath('//table/tr/td/div[@class="aldermans_photo"]/img/@src').extract()[0]
         item['image'] = urljoin(response.url, urllib.quote(image.encode('utf8')))
+        item['in_office'] = True
         nodes = sel.xpath('//table[@class="aldermans_information"]/tr')
         for node in nodes:
             if node.xpath('td/text()').re(u'姓[\s]*名'):
@@ -68,5 +69,9 @@ class Spider(BaseSpider):
                 item['experience'] = node.xpath('td/span/text()').extract()
             if node.xpath('th/text()').re(u'備[\s]*註'):
                 item['remark'] = node.xpath('../tr/td/span/text()').extract()
+                item['term_end'] = {}
+                item['term_end']['date'] = GetDate(node.xpath('../tr/td/span/text()').extract()[0])
+                item['term_end']['reason'] = '\n'.join(item['remark'])
+                item['in_office'] = False
         item['links'] = {'council': response.url}
         return item

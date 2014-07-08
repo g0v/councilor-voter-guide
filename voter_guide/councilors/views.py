@@ -9,7 +9,8 @@ from search.views import keyword_list, keyword_been_searched, keyword_normalize
 
 
 def index(request, index, county, ad):
-    basic_query = Q(ad=ad, county=county)
+    basic_query = Q(ad=ad, county=county, in_office=True)
+    out_office = CouncilorsDetail.objects.filter(ad=ad, county=county, in_office=False)
     param = {
         'countys': {
             'title': u'%s - 依選區分組' % county,
@@ -29,13 +30,13 @@ def index(request, index, county, ad):
         }
     }
     if index == 'cs_attend':
-        compare = Sittings.objects.filter(basic_query & Q(committee='')).count()
-        councilors = CouncilorsDetail.objects.filter(basic_query & Q(in_office=True, attendance__category='CS', attendance__status='absent'))\
+        compare = Sittings.objects.filter(ad=ad, county=county, committee='').count()
+        councilors = CouncilorsDetail.objects.filter(basic_query & Q(attendance__category='CS', attendance__status='absent'))\
                                              .annotate(totalNum=Count('attendance__id'))\
                                              .order_by('-totalNum','party')
         no_count_list = CouncilorsDetail.objects.filter(basic_query)\
                                                 .exclude(councilor_id__in=councilors.values_list('councilor_id', flat=True))
-        return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'ad': ad, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'compare': compare, 'index': index})
+        return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'ad': ad, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'compare': compare, 'index': index})
     if index == 'bills':
         query = basic_query
         proposertype = False
@@ -51,10 +52,10 @@ def index(request, index, county, ad):
                                      .order_by('-totalNum')
         no_count_list = CouncilorsDetail.objects.filter(basic_query)\
                                                 .exclude(councilor_id__in=councilors.values_list('councilor_id', flat=True))
-        return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'ad': ad, 'county': county, 'proposertype': proposertype, 'no_count_list': no_count_list, 'councilors': councilors, 'index': index})
+        return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'ad': ad, 'county': county, 'proposertype': proposertype, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'index': index})
     if index == 'countys':
         councilors = CouncilorsDetail.objects.filter(basic_query).order_by('district', 'party')
-        return render(request, 'councilors/index/countys.html', {'param': param.get(index), 'ad': ad, 'county': county, 'councilors': councilors, 'index': index})
+        return render(request, 'councilors/index/countys.html', {'param': param.get(index), 'ad': ad, 'county': county, 'councilors': councilors, 'out_office': out_office, 'index': index})
 
 def biller(request, councilor_id, ad):
     proposertype = False
