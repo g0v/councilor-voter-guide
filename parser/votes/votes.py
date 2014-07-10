@@ -7,148 +7,70 @@ import codecs
 import json
 import glob
 import psycopg2
-from datetime import datetime
 import db_settings
 import common
 
 
-def InsertVote(uid, sitting_id, vote_seq, content):
-    match = re.search(u'(?:建請|建請決議|並請|提請|擬請|要求)(?:\S){0,4}(?:院會|本院|\W{1,3}院|\W{1,3}部|\W{1,3}府).*(?:請公決案|敬請公決)', content)
-    summary = ''
-    if match:
-        summary = match.group()
+def UpsertVote(data):
     c.execute('''
-        UPDATE vote_vote
-        SET summary = %s
-        WHERE uid = %s
-    ''', (summary, uid))
-    #c.execute('''
-    #    UPDATE vote_vote
-    #    SET content = %s, conflict = null
-    #    WHERE uid = %s
-    #''', (content, uid))
+        UPDATE votes_votes
+        SET sitting_id = %(sitting_id)s, date = %(date)s, vote_seq = %(vote_seq)s, content = %(content)s, conflict = null
+        WHERE uid = %(uid)s
+    ''', data)
     c.execute('''
-        INSERT into vote_vote(uid, sitting_id, vote_seq, content, summary, hits, likes, dislikes)
-        SELECT %s, %s, %s, %s, %s, 0, 0, 0
-        WHERE NOT EXISTS (SELECT 1 FROM vote_vote WHERE uid = %s)
-    ''', (uid, sitting_id, vote_seq, content, summary, uid))
+        INSERT INTO votes_votes(uid, sitting_id, date, vote_seq, content)
+        SELECT %(uid)s, %(sitting_id)s, %(date)s, %(vote_seq)s, %(content)s
+        WHERE NOT EXISTS (SELECT 1 FROM votes_votes WHERE uid = %(uid)s)
+    ''', data)
 
-def GetVoteContent(c, vote_seq, text):
-    l = text.split()
-    if re.search(u'附後\S[\d]+\S', l[-2]) or re.search(u'^(其他事項|討論事項)$', l[-2]):
-        return l[-1]
-    if re.search(u'[：:]$', l[-2]) or re.search(u'(公決|照案|議案)[\S]{0,3}$', l[-2]) or re.search(u'^(決議|決定)[：:]', l[-1]):
-        return '\n'.join(l[-2:])
-    if re.search(u'[：:]$',l[-3]):
-        return '\n'.join(l[-3:])
-    i = -3
-    # 法條修正提案列表類
-    if ly_common.GetLegislatorId(c, l[-2]) or ly_common.GetLegislatorId(c, l[-3]) or re.search(u'(案|審查)[\S]{0,3}$', l[-2]):
-        while not re.search(u'(通過|附表|如下)[\S]{1,2}$', l[i]):
-            i -= 1
-        return '\n'.join(l[i:])
-    # 剩下的先向上找上一個附後，找兩附後之間以冒號作結，如找不到
-    if vote_seq != '001':
-        while not re.search(u'附後\S[\d]+\S', l[i]):
-            i -= 1
-        for line in reversed(range(i-1,-3)):
-            if re.search(u'[：:]$', l[line]):
-                return '\n'.join(l[line:])
-        return '\n'.join(l[i+1:])
-    # 最後方法
-    if re.search(u'^[\S]{1,5}在場委員', l[-1]):
-        return '\n'.join(l[-2:])
-    else:
-        return l[-1]
-    print l[-1]
-
-def MakeVoteRelation(legislator_id, vote_id, decision):
+def VoteVoterRelation(councilor_id, vote_id, decision):
     c.execute('''
-        UPDATE vote_legislator_vote
+        UPDATE votes_councilors_votes
         SET decision = %s, conflict = null
-        WHERE legislator_id = %s AND vote_id = %s
-    ''', (decision, legislator_id, vote_id))
+        WHERE councilor_id = %s AND vote_id = %s
+    ''', (decision, councilor_id, vote_id))
     c.execute('''
-        INSERT into vote_legislator_vote(legislator_id, vote_id, decision)
+        INSERT INTO votes_councilors_votes(councilor_id, vote_id, decision)
         SELECT %s, %s, %s
-        WHERE NOT EXISTS (SELECT 1 FROM vote_legislator_vote WHERE legislator_id = %s AND vote_id = %s)
-    ''',(legislator_id, vote_id, decision, legislator_id, vote_id))
+        WHERE NOT EXISTS (SELECT 1 FROM votes_councilors_votes WHERE councilor_id = %s AND vote_id = %s)
+    ''',(councilor_id, vote_id, decision, councilor_id, vote_id))
 
-def LiterateVoter(c, sitting_dict, text, vote_id, decision):
-    firstName = ''
-    for name in text.split():
-        #--> 兩個字的立委中文名字中間有空白
-        if len(name) < 2 and firstName == '':
-            firstName = name
-            continue
-        if len(name) < 2 and firstName != '':
-            name = firstName + name
-            firstName = ''
-        #<--
-        legislator_id = ly_common.GetLegislatorId(c, name)
-        if legislator_id:
-            legislator_id = ly_common.GetLegislatorDetailId(c, legislator_id, sitting_dict["ad"])
-            MakeVoteRelation(legislator_id, vote_id, decision)
-        else:
-            print 'break at: %s' % name
-            break
+def GetVoteContent(text):
+    lines = [line.lstrip() for line in text.split('\n')]
+    for i in reversed(range((0-len(lines)), -2)):
+        if re.search(u'^議決', lines[i]):
+            return '\n'.join(lines[i+1:])
+        if re.search(u'(請.*審議|審議.*案)', lines[i]):
+            return '\n'.join(lines[i:])
+    for i in reversed(range((0-len(lines)), -1)):
+        if re.search(u'^發言議員', lines[i]):
+            return '\n'.join(lines[i-1:])
+    for i in reversed(range((0-len(lines)), -1)):
+        if re.search(u'(議員.*提議|其他事項$)', lines[i]):
+            return '\n'.join(lines[i:])
+    return lines[-1]
 
-def IterEachDecision(c, votertext, sitting_dict, vote_id):
-    mapprove, mreject, mquit = re.search(u'\s贊成[\S]*?者[:：][\d]+人', votertext), re.search(u'\s反對[\S]*?者[:：][\d]+人', votertext), re.search(u'棄權者[:：][\d]+人', votertext)
-    if not mapprove:
-        print u'==找不到贊成者==\n', votertext
-    else:
-        LiterateVoter(c, sitting_dict, votertext[mapprove.end():], vote_id, 1)
-    if not mreject:
-        print u'==找不到反對者==\n', votertext
-    else:
-        LiterateVoter(c, sitting_dict, votertext[mreject.end():], vote_id, -1)
-    if not mquit:
-        print u'==找不到棄權者==\n', votertext
-    else:
-        LiterateVoter(c, sitting_dict, votertext[mquit.end():], vote_id, 0)
-    return mapprove, mreject, mquit
 
-def IterVote(c, text, sitting_dict):
-    sitting_id = sitting_dict["uid"]
-    print sitting_id
-    match, vote_id, vote_seq = None, None, '000'
-    # For normal voting
-    mvoter = re.search(u'記名表決結果名單[:：]', text)
-    if mvoter:
-        votertext = text[mvoter.end():]
-        for match in re.finditer(u'附後[（(】。](?P<vote_seq>[\d]+)?', text):
-            if match.group('vote_seq'):
-                vote_seq = '%03d' % int(match.group('vote_seq'))
-            else:
-                vote_seq = '001'
-            vote_id = '%s-%s' % (sitting_id, vote_seq)
-            content = GetVoteContent(c, vote_seq, text[:match.start()+2])
-            if content:
-                InsertVote(vote_id, sitting_id, vote_seq, content)
-            if vote_id:
-                mapprove, mreject, mquit = IterEachDecision(c, votertext, sitting_dict, vote_id)
-            votertext = votertext[(mquit or mreject or mapprove).end():]
-        if not match:
-            print u'有記名表決結果名單無附後'
-    else:
-        print u'無記名表決結果名單'
-    # For veto or no-confidence voting
-    mvoter = re.search(u'記名投票表決結果[:：]', text)
-    if mvoter:
-        print u'有特殊表決!!\n'
-        votertext = text[mvoter.end():]
-        vote_seq = '%03d' % (int(vote_seq)+1)
-        vote_id = '%s-%s' % (sitting_id, vote_seq)
-        content = GetVoteContent(c, vote_seq, text[:mvoter.start()])
-        if content:
-            InsertVote(vote_id, sitting_id, vote_seq, content)
-        if vote_id:
-            mapprove, mreject, mquit = IterEachDecision(c, votertext, sitting_dict, vote_id)
+def IterVote(text, sitting_dict):
+    print sitting_dict["uid"]
+    vote_count = 1
+    pre_match_end = 0
+    for match in Namelist_Token.finditer(text):
+        vote_seq = str(vote_count).zfill(3)
+        vote_dict = {'uid': '%s-%s' % (sitting_dict["uid"], vote_seq), 'sitting_id': sitting_dict["uid"], 'vote_seq': vote_seq, 'date': sitting_dict["date"], 'content': GetVoteContent(text[pre_match_end:match.end()])}
+        UpsertVote(vote_dict)
+        ref = {'agree': 1, 'disagree': -1, 'abstain': 0}
+        for key, value in ref.items():
+            if match.group(key):
+                for id, councilor_id in common.getIdList(c, common.getNameList(re.sub(u'[、：，:,]', ' ', match.group(key))), sitting_dict):
+                    VoteVoterRelation(id, vote_dict['uid'], value)
+        vote_count += 1
+        pre_match_end = match.end()
 
 conn = db_settings.con()
 c = conn.cursor()
 ad = 11
+county = u'臺北市'
 total_text = codecs.open(u"../../data/taipei/meeting_minutes-11.txt", "r", "utf-8").read()
 util = json.load(open('../util.json'))
 
@@ -180,6 +102,14 @@ Absent_Token = re.compile(u'''
     列席
 ''', re.X|re.S)
 
+Namelist_Token = re.compile(u'''
+    ^.*
+    (?P<agree>贊成議員.*)
+    (?P<disagree>反對議員[^(棄權議員)\n]*)
+    (?P<abstain>棄權議員.*([\d]+位|無))?
+    .*$
+''', re.X | re.M)
+
 sittings = []
 for match in Session_Token.finditer(total_text):
     if match:
@@ -187,9 +117,8 @@ for match in Session_Token.finditer(total_text):
             uid = '%s-%02d-%02d-CS-%02d' % (util[match.group('county')], int(match.group('ad')), int(match.group('session')), int(match.group('times')))
         elif match.group('type') == u'臨時':
             uid = '%s-%02d-T%02d-CS-%02d' % (util[match.group('county')], int(match.group('ad')), int(match.group('session')), int(match.group('times')))
-        sittings.append({"uid":uid, "name": match.group('name'), "county": match.group('county'), "ad": match.group('ad'), "session": match.group('session'), "date": common.GetDate(total_text), "start": match.start(), "end": match.end()})
+        sittings.append({"uid":uid, "name": match.group('name'), "county": match.group('county'), "ad": match.group('ad'), "session": match.group('session'), "date": common.GetDate(total_text[match.end():]), "start": match.start(), "end": match.end()})
 for i in range(0, len(sittings)):
-    print sittings[i]
     # --> sittings, attendance, filelog
     if i != len(sittings)-1:
         one_sitting_text = total_text[sittings[i]['start']:sittings[i+1]['start']]
@@ -204,4 +133,125 @@ for i in range(0, len(sittings)):
     if absent_match:
         common.Attendance(c, sittings[i], absent_match.group('names'), 'CS', 'absent')
     # <--
+    # --> votes
+    IterVote(one_sitting_text, sittings[i])
+    # <--
 conn.commit()
+print 'votes, voter done!'
+
+# --> conscience vote
+print u'Conscience vote processing...'
+def party_Decision_List(party, ad):
+    c.execute('''
+        select vote_id, avg(decision)
+        from votes_councilors_votes
+        where decision is not null and councilor_id in (select id from councilors_councilorsdetail where party = %s and ad = %s)
+        group by vote_id
+    ''', (party, ad))
+    return c.fetchall()
+
+def personal_Decision_List(party, vote_id, ad):
+    c.execute('''
+        select councilor_id, decision
+        from votes_councilors_votes
+        where decision is not null and vote_id = %s and councilor_id in (select id from councilors_councilorsdetail where party = %s and ad = %s)
+    ''', (vote_id, party, ad))
+    return c.fetchall()
+
+def party_List(ad, county):
+    c.execute('''
+        select party, count(*)
+        from councilors_councilorsdetail
+        where ad = %s and county = %s
+        group by party
+    ''', (ad, county))
+    return c.fetchall()
+
+def conflict_vote(conflict, vote_id):
+    c.execute('''
+        update votes_votes
+        set conflict = %s
+        where uid = %s
+    ''', (conflict, vote_id))
+
+def conflict_voter(conflict, councilor_id, vote_id):
+    c.execute('''
+        update votes_councilors_votes
+        set conflict = %s
+        where councilor_id = %s and vote_id = %s
+    ''', (conflict, councilor_id, vote_id))
+
+for party, count in party_List(ad, county):
+    if party != u'無黨籍' and count > 2:
+        for vote_id, avg_decision in party_Decision_List(party, ad):
+            # 黨的decision平均值如不為整數，表示該表決有人脫黨投票
+            if int(avg_decision) != avg_decision:
+                conflict_vote(True, vote_id)
+                # 同黨各立委的decision與黨的decision平均值相乘如小於(相反票)等於(棄權票)零，表示脫黨投票
+                for councilor_id, personal_decision in personal_Decision_List(party, vote_id, ad):
+                    if personal_decision*avg_decision <= 0:
+                        conflict_voter(True, councilor_id, vote_id)
+conn.commit()
+print 'done!'
+# <-- conscience vote
+
+# --> not voting & vote results
+print u'Not voting & vote results processing...'
+def vote_list():
+    c.execute('''
+        select vote.uid, sitting.ad, sitting.date
+        from votes_votes vote, sittings_sittings sitting
+        where vote.sitting_id = sitting.uid
+    ''')
+    return c.fetchall()
+
+def not_voting_list(vote_id, vote_ad, vote_date):
+    c.execute('''
+        select id
+        from councilors_councilorsdetail
+        where ad = %s and term_start <= %s and cast(term_end::json->>'date' as date) > %s and id not in (select councilor_id from votes_councilors_votes where vote_id = %s)
+    ''', (vote_ad, vote_date, vote_date, vote_id))
+    return c.fetchall()
+
+def insert_not_voting_record(councilor_id, vote_id):
+    c.execute('''
+        INSERT INTO votes_councilors_votes(councilor_id, vote_id)
+        SELECT %s, %s
+        WHERE NOT EXISTS (SELECT councilor_id, vote_id FROM votes_councilors_votes WHERE councilor_id = %s AND vote_id = %s)
+    ''', (councilor_id, vote_id, councilor_id, vote_id))
+
+def get_vote_results(vote_id):
+    c.execute('''
+        select
+            count(*) total,
+            sum(case when decision isnull then 1 else 0 end) not_voting,
+            sum(case when decision = 1 then 1 else 0 end) agree,
+            sum(case when decision = 0 then 1 else 0 end) abstain,
+            sum(case when decision = -1 then 1 else 0 end) disagree
+        from votes_councilors_votes
+        where vote_id = %s
+    ''', (vote_id,))
+    return [desc[0] for desc in c.description], c.fetchone() # return column name and value
+
+def update_vote_results(uid, results):
+    if results['agree'] > results['disagree']:
+        result = 'Passed'
+    else:
+        result = 'Not Passed'
+    c.execute('''
+        UPDATE votes_votes
+        SET result = %s, results = %s
+        WHERE uid = %s
+    ''', (result, results, uid))
+
+for vote_id, vote_ad, vote_date in vote_list():
+    for councilor_id in not_voting_list(vote_id, vote_ad, vote_date):
+        insert_not_voting_record(councilor_id, vote_id)
+    key, value = get_vote_results(vote_id)
+    update_vote_results(vote_id, dict(zip(key, value)))
+
+conn.commit()
+print 'done!'
+# <-- not voting & vote results end
+
+print 'Succeed'

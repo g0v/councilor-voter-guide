@@ -59,22 +59,23 @@ def getIdList(c, name_list, sitting_dict):
     r = c.fetchall()
     if r:
         return r
-    print name_list
+    for name in name_list:
+        print name
     return []
 
 def getNameList(text):
     name_list, firstName = [], ''
     for name in text.split():
-        if re.search(u'[）)。】」]$', name):   #立委名字後有標點符號
+        if re.search(u'[）)。】」]$', name):   #名字後有標點符號
             name = name[:-1]
-        #兩個字的立委中文名字中間有空白
+        #兩個字的中文名字中間有空白
         if len(name) < 2 and firstName == '':
             firstName = name
             continue
         if len(name) < 2 and firstName != '':
             name = firstName + name
             firstName = ''
-        if len(name) > 4: #立委名字相連
+        if len(name) > 4: #名字相連
             name = name[:3]
         name_list.append(name)
     return name_list
