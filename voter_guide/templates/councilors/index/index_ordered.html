@@ -24,10 +24,12 @@
                 <td></td>
         {% endif %}
         <td>
-            {% if index == 'cs_attend' %}
-                <a href="{% url param.url_name councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}(缺席率{{councilor.totalNum|divide:compare}} %)">
-            {% elif index == 'bills' %}
-            <a href="{% url param.url_name councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}">
+            {% if councilor.compare %}
+                <a href="{% url param.url_name councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}({{param.compare}}{{councilor.totalNum|divide:councilor.compare}} %)">
+            {% elif compare %}
+                <a href="{% url param.url_name councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}({{param.compare}}{{councilor.totalNum|divide:compare}} %)">
+            {% else %}
+            <   a href="{% url param.url_name councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}">
             {% endif %}
             {% include "common/name_color_by_party.html" %}
             </a>

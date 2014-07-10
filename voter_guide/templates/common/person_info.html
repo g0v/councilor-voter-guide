@@ -130,6 +130,7 @@
         <div class="row-fluid">
             <div class="span12">
                 <b>{{ councilor.name }}</b>的&nbsp;
+                <a class="btn btn-large" id='councilors_voter' href="{% url 'councilors:voter' councilor_id=councilor.councilor_id ad=councilor.ad %}">表決</a>
                 <a class="btn btn-large" id='councilors_biller' href="{% url 'councilors:biller' councilor_id=councilor.councilor_id ad=councilor.ad %}">議案</a>
                 <a class="btn btn-large" id='councilors_platformer' href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=councilor.ad %}">競選政見</a>
             </div>

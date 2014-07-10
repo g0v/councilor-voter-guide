@@ -1,11 +1,27 @@
 # -*- coding: utf-8 -*-
 import re
-from django.utils import simplejson
+import json
+from django.core.serializers.json import DjangoJSONEncoder
 from django import template
 from django.utils.safestring import mark_safe
 
 
 register = template.Library()
+
+@register.filter(name='vote_result')
+def vote_result(value, arg):
+    attribute = {
+        'Passed': {
+            'td_bgcolor': u'CCFF99',
+            'cht': u'通過'
+        },
+        'Not Passed': {
+            'td_bgcolor': u'FF99CC',
+            'cht': u'不通過'
+        }
+    }
+    if attribute.get(value):
+        return attribute.get(value).get(arg)
 
 @register.filter(name='ad_year')
 def ad_year(value):
@@ -40,7 +56,7 @@ def divide(value, arg):
 
 @register.filter(name='as_json')
 def as_json(data):
-    return mark_safe(simplejson.dumps(data))
+    return mark_safe(json.dumps(data, cls=DjangoJSONEncoder))
 
 @register.filter(name='replace')
 def replace(value, arg):

@@ -1,0 +1,76 @@
+{% load extras %}
+<style>
+
+    .arc text {
+        font: 16px sans-serif;
+        font-weight: bold;
+    }
+
+    .arc path {
+        stroke: #fff;
+    }
+
+</style>
+<script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/d3.min.js"></script>
+<script>
+
+    var data = {{data|as_json}}
+
+    var width = 480,
+    height = 360,
+    radius = Math.min(width, height) / 2 -20,
+    labelr = radius + 10; // radius for label anchor
+
+    var color = d3.scale.ordinal()
+    .range(["#FF66CC", "#999999", "#66CC66", "#FFCC33"])
+    .domain(['disagree', 'abstain', 'agree', 'not_voting']);
+
+    var legend = d3.scale.ordinal()
+    .range(["反對", "棄權", "贊成", "沒投票"])
+    .domain(['disagree', 'abstain', 'agree', 'not_voting']);
+
+    var arc = d3.svg.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(0);
+
+    var pie = d3.layout.pie()
+    .sort(null)
+    .value(function(d) { return d.value; });
+
+    var svg = d3.select("#d3").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    var g = svg.selectAll(".arc")
+    .data(pie(d3.entries(data)))
+    .enter().append("g")
+    .attr("class", "arc");
+
+    g.append("path")
+    .attr("d", arc)
+    .style("fill", function(d) { return color(d.data.key); });
+
+    g.append("text")
+    .attr("transform", function(d) {
+        var c = arc.centroid(d),
+        x = c[0],
+        y = c[1],
+        // pythagorean theorem for hypotenuse
+        h = Math.sqrt(x*x + y*y);
+        return "translate(" + (x/h * labelr) +  ',' +
+        (y/h * labelr) +  ")";
+    })
+    .attr("dy", ".35em")
+    .attr("text-anchor", function(d) {
+        return (d.endAngle + d.startAngle)/2 > Math.PI ?
+        "end" : "start";
+    })
+    .text(function(d) {
+        if (d.value != 0)
+        return legend(d.data.key) + '：' + d.value;
+    })
+    .style("fill", function(d) { return color(d.data.key); });
+
+</script>
