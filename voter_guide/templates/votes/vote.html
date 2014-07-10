@@ -1,83 +1,86 @@
 ﻿{% extends "base.html" %}
 {% load extras %}
-{% load staticfiles %}
+
 {% block title %}
-{% if vote %}
-<title>議員投票指南:{{ vote.0.vote.sitting.name }}({{ vote.0.vote.date|date:"Y-m-d" }})第{{vote.0.vote.vote_seq}}個表決</title>
-<meta property="og:title" content="議員投票指南:{{ vote.0.vote.sitting.name }}({{ vote.0.vote.date|date:"Y-m-d" }})第{{vote.0.vote.vote_seq}}個表決"/>
-<meta itemprop="name" content="議員投票指南:{{ vote.0.vote.sitting.name }}({{ vote.0.vote.date|date:"Y-m-d" }})第{{vote.0.vote.vote_seq}}個表決">
-{% else %}
-<title>議員投票指南:單一表決名單</title>
-<meta property="og:title" content="議員投票指南:單一表決名單"/>
-<meta itemprop="name" content="議員投票指南:單一表決名單">
-{% endif %}
+    {% if vote %}
+        <title>議員投票指南:{{ vote.0.vote.sitting.name }}({{ vote.0.vote.date|date:"Y-m-d" }})第{{vote.0.vote.vote_seq}}個表決</title>
+        <meta property="og:title" content="議員投票指南:{{ vote.0.vote.sitting.name }}({{ vote.0.vote.date|date:"Y-m-d" }})第{{vote.0.vote.vote_seq}}個表決"/>
+        <meta itemprop="name" content="議員投票指南:{{ vote.0.vote.sitting.name }}({{ vote.0.vote.date|date:"Y-m-d" }})第{{vote.0.vote.vote_seq}}個表決">
+    {% else %}
+        <title>議員投票指南:單一表決名單</title>
+        <meta property="og:title" content="議員投票指南:單一表決名單"/>
+        <meta itemprop="name" content="議員投票指南:單一表決名單">
+    {% endif %}
 {% endblock title %}
+
 {% block right %}
-<div class="row-fluid">
-    <div class="span6">
-        {% if vote %}
-        {% with vote=vote.0.vote %}
-        <div align="center">
-            <br>
-            <div id="d3" align="center"></div>
-            <span class="badge badge-important"><font class="lead">{{vote.result|vote_result:'cht'}}</font></span>
-        </div>
-        <div class="hero-unit">
-            <p class="text-success">表決日期：{{ vote.sitting.date|date:"Y-m-d" }}</p>
-            {% if vote.summary %}
-            <span class="badge badge-warning"><font class="lead">精簡版</font></span><br>
-            <p class="lead">{{ vote.summary }}</p>
-            {% endif %}
-            <span class="badge badge-info"><font class="lead">原文</font></span><br>
-            <p>{{ vote.content|linebreaksbr }}</p>
-        </div>
-        {% endwith %}
-    </div><!--end: span6 -->
-    <div class="span6">
-        {% regroup vote by decision as ly_list %}
-        <table class="table table-bordered table-condensed">
-            {% with col=20 %}
-            <caption style="text-align: left;font-size: 40px;margin-bottom: 20px;"><strong>記名表決名單</strong></caption>
-            {% for decision in ly_list %}
-            {% with decision=decision.grouper %}
-            {% ifequal decision null %}
-            <tr>
-                <td colspan="{{col}}" style="background-color: #FFCC33;"><strong>沒投票
-            {% endifequal %}
-            {% ifequal decision -1 %}
-            <tr>
-                <td colspan="{{col}}" style="background-color: #FF99CC;"><strong>反對票
-            {% endifequal %}
-            {% ifequal decision 1 %}
-            <tr>
-                <td colspan="{{col}}" style="background-color: #CCFF99;"><strong>贊成票
-            {% endifequal %}
-            {% ifequal decision 0 %}
-            <tr>
-                <td colspan="{{col}}" style="background-color: #CCCCCC;"><strong>棄權票
-            {% endifequal %}
-            </strong></td>
-            {% endwith %}
-                {% for fragment in decision.list %}
-                {% if forloop.counter0|divisibleby:col %}
-                </tr><tr>
+    <div class="row-fluid">
+        <div class="span6">
+            {% if vote %}
+            {% with vote=vote.0.vote %}
+            <div align="center">
+                <br>
+                <div id="d3" align="center"></div>
+                <span class="badge badge-important"><font class="lead">{{vote.result|vote_result:'cht'}}</font></span>
+            </div>
+            <div class="hero-unit">
+                <p class="text-success">表決日期：{{ vote.sitting.date|date:"Y-m-d" }}</p>
+                {% if vote.summary %}
+                <span class="badge badge-warning"><font class="lead">精簡版</font></span><br>
+                <p class="lead">{{ vote.summary }}</p>
                 {% endif %}
-                {% with councilor=fragment.councilor %}
-                    <td><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id ad=vote.0.vote.sitting.ad %}" rel="tooltip" title="這位議員的表決投票紀錄">{% include "common/name_color_by_party.html" %}</a></td>
-                {% endwith %}
-                {% endfor %}
-            {% endfor %}
-            {% include "common/color_info_of_party.html" with column=col %}
+                <span class="badge badge-info"><font class="lead">原文</font></span><br>
+                <p>{{ vote.content|linebreaksbr }}</p>
+            </div>
             {% endwith %}
-        </table>
-        <hr>
-        {% endif %}
-    </div><!--end: span6 -->
-</div><!--end: row-fluid -->
+        </div><!--end: span6 -->
+        <div class="span6">
+            {% regroup vote by decision as ly_list %}
+            <table class="table table-bordered table-condensed">
+                {% with col=20 %}
+                <caption style="text-align: left;font-size: 40px;margin-bottom: 20px;"><strong>記名表決名單</strong></caption>
+                {% for decision in ly_list %}
+                {% with decision=decision.grouper %}
+                {% ifequal decision null %}
+                <tr>
+                    <td colspan="{{col}}" style="background-color: #FFCC33;"><strong>沒投票
+                {% endifequal %}
+                {% ifequal decision -1 %}
+                <tr>
+                    <td colspan="{{col}}" style="background-color: #FF99CC;"><strong>反對票
+                {% endifequal %}
+                {% ifequal decision 1 %}
+                <tr>
+                    <td colspan="{{col}}" style="background-color: #CCFF99;"><strong>贊成票
+                {% endifequal %}
+                {% ifequal decision 0 %}
+                <tr>
+                    <td colspan="{{col}}" style="background-color: #CCCCCC;"><strong>棄權票
+                {% endifequal %}
+                </strong></td>
+                {% endwith %}
+                    {% for fragment in decision.list %}
+                    {% if forloop.counter0|divisibleby:col %}
+                    </tr><tr>
+                    {% endif %}
+                    {% with councilor=fragment.councilor %}
+                        <td><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id ad=councilor.ad %}" rel="tooltip" title="這位議員的表決投票紀錄">{% include "common/name_color_by_party.html" %}</a></td>
+                    {% endwith %}
+                    {% endfor %}
+                {% endfor %}
+                {% include "common/color_info_of_party.html" with column=col %}
+                {% endwith %}
+            </table>
+            <hr>
+            {% endif %}
+        </div><!--end: span6 -->
+    </div><!--end: row-fluid -->
 {% endblock right %}
+
 {% block backtotop %}
-{{ block.super }}
+    {{ block.super }}
 {% endblock backtotop %}
+
 {% block script %}
-{% include "votes/d3/vote_pie.html" %}
+    {% include "votes/d3/vote_pie.html" %}
 {% endblock script %}
