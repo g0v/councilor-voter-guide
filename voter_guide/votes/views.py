@@ -18,7 +18,7 @@ def votes(request, ad, county, index='normal'):
         result = request.GET['result']
         query = query & Q(result=result)
     #<--
-    keyword = keyword_normalize(request)
+    keyword = keyword_normalize(request.GET)
     if keyword:
         votes = Votes.objects.filter(query & reduce(operator.and_, (Q(content__icontains=x) for x in keyword.split()))).order_by('-date', 'vote_seq')
         if votes:

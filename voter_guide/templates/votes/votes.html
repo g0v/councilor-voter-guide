@@ -20,7 +20,7 @@
         <h4>熱門：
             {% for keyword in keyword_hot %}
             {% if forloop.counter0 < 5 %}
-            <a href="{% url 'vote:votes' keyword_url=keyword index=index %}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
+            <a href="{% url 'votes:votes' county='臺北市' ad=ad index=index %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
             {% endif %}
             {% endfor %}
         </h4>

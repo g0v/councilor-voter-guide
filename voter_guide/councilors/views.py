@@ -131,7 +131,7 @@ def voter(request, councilor_id, ad):
     else:
         votes = Councilors_Votes.objects.select_related().filter(query).order_by('-vote__date')
     vote_addup = votes.values('decision').annotate(totalNum=Count('vote', distinct=True)).order_by('-decision')
-    return render(request,'councilors/voter.html', {'keyword_hot': keyword_list('bills'), 'councilor': councilor, 'keyword': keyword, 'index': index, 'votes': votes, 'vote_addup': vote_addup, 'notvote': notvote})
+    return render(request,'councilors/voter.html', {'keyword_hot': keyword_list('votes'), 'councilor': councilor, 'keyword': keyword, 'index': index, 'votes': votes, 'vote_addup': vote_addup, 'notvote': notvote})
 
 def platformer(request, councilor_id, ad):
     try:
