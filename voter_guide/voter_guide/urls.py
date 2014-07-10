@@ -1,9 +1,20 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.views import login, logout
+from rest_framework import routers
+from api import views
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+
+#--> rest framework url
+router = routers.DefaultRouter()
+router.register(r'councilors', views.CouncilorsViewSet)
+router.register(r'councilors_terms', views.CouncilorsDetailViewSet)
+router.register(r'sittings', views.SittingsViewSet)
+router.register(r'votes', views.VotesViewSet)
+router.register(r'councilors_votes', views.Councilors_VotesViewSet)
+router.register(r'bills', views.BillsViewSet)
+router.register(r'councilors_bills', views.Councilors_BillsViewSet)
+router.register(r'attendance', views.AttendanceViewSet)
+#<--
 
 urlpatterns = patterns('',
     url(r'^councilors/', include('councilors.urls', namespace="councilors")),
@@ -12,7 +23,5 @@ urlpatterns = patterns('',
     url(r'^about/$', 'voter_guide.views.about', name='about'),
     url(r'^reference/$', 'voter_guide.views.reference', name='reference'),
     url(r'', include('councilors.urls', namespace="councilors")),
-#   url(r'', include('social_auth.urls')),
-#   url(r'^accounts/login/$', login, name='login'),
-#   url(r'^accounts/logout/$', 'voter_guide.views.logout', name='logout'),
+    url(r'^api/', include(router.urls)),
 )
