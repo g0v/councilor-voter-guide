@@ -2,6 +2,7 @@
     <div class="dropdown text-center">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% if color %}{% include "common/name_color_by_party.html" %}{% else %}{{councilor.name}}{% endif %}</a>
         <ul class="dropdown-menu">
+            <li><a class="btn btn-large" id='councilors_voter' href="{% url 'councilors:voter' councilor_id=councilor.councilor_id ad=councilor.ad %}">表決</a></li>
             <li><a class="btn btn-large" id='councilors_biller' href="{% url 'councilors:biller' councilor_id=councilor.councilor_id ad=councilor.ad %}">議案</a></li>
             <li><a class="btn btn-large" id='councilors_platformer' href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=councilor.ad %}">競選政見</a></li>
         </ul>

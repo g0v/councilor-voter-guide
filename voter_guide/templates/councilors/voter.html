@@ -21,7 +21,7 @@
 
 {% block person_detail %}
     {% include "common/search_keyword_form.html" with placeholder_text="例:預算 世運...空格有交集效果" %}
-    {% if keyword_hot and index != 'conscience' %}
+    {% if keyword_hot %}
     <h4>熱門：
         {% for keyword in keyword_hot %}
         {% if forloop.counter0 < 5 %}
@@ -30,7 +30,7 @@
         {% endfor %}
     </h4>
     {% endif %}
-    {% if index != 'conscience' and not keyword %}
+    {% if not keyword %}
     <div class="btn-group">
         <button type="button" class="btn dropdown-toggle btn-info" data-toggle="dropdown">
             <span>以贊成、反對等分類</span> <span class="caret"></span>

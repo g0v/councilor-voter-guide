@@ -34,13 +34,6 @@
     </head>
     <body id="top">
         <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
-            fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));</script>
         <div class="navbar navbar-fixed-top navbar-inverse">
             <div class="navbar-inner">
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -59,8 +52,14 @@
                             <li><a href="{% url 'councilors:index' index='bills' county='臺北市' ad=11 %}" ><b>議案數</b>(多&rarr;少)</a></li>
                         </ul>
                         </li>
-                        <li id="bills"><a href="{% url 'bills:bills' county='臺北市' index='normal' %}" >找議案</a></li>
-                        <li id="votes"><a href="{% url 'votes:votes' county='臺北市' ad=11 index='normal' %}" >找表決</a></li>
+                        <li id="votes"><a href="{% url 'bills:bills' county='臺北市' index='normal' %}" >找議案</a></li>
+                        <li id="councilor" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">找表決<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                            <li id="votes"><a href="{% url 'votes:votes' county='臺北市' ad=11 index='normal' %}" >全部表決</a></li>
+                            <li id="votes"><a href="{% url 'votes:votes' county='臺北市' ad=11 index='conscience' %}" >有議員<b>脫黨</b>投票的表決</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <ul class="nav pull-right">
                         <li id="reference"><a href="{% url 'reference' %}">資料來源</a></li>
@@ -90,6 +89,18 @@
         </footer>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
         <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'councils'; // required: replace example with your forum shortname
+            var disqus_url = '{{current_url}}';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
         {% block script %}
         {% endblock %}
     </body>

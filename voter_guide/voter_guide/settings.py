@@ -183,6 +183,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     #"django.core.context_processors.static",
     #"django.contrib.messages.context_processors.messages")
     "django.core.context_processors.request",
+    "voter_guide.context_processor.current_url",
 )
 
+SITE_DOMAIN = 'http://councils.g0v.tw'
 from local_settings import *

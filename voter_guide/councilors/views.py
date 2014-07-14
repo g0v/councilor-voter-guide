@@ -14,8 +14,7 @@ def index(request, index, county, ad):
     out_office = CouncilorsDetail.objects.filter(ad=ad, county=county, in_office=False)
     param = {
         'countys': {
-            'title': u'%s - 依選區分組' % county,
-            'url_name': u'councilors:biller'
+            'title': u'%s - 依選區分組' % county
         },
         'cs_attend': {
             'title': u'議會開會缺席次數(多→少)',
@@ -26,14 +25,14 @@ def index(request, index, county, ad):
         },
         'conscience_vote': {
             'title': u'脫黨投票次數(多→少)',
-            'url_name': u'councilors:voter',
+            'url_name': u"councilors:voter",
             'compare': u'脫黨投票率',
             'tooltip': u'脫黨投票',
             'unit': u'次'
         },
         'not_voting': {
             'title': u'表決缺席次數(多→少)',
-            'url_name': u'councilors:voter',
+            'url_name': u"councilors:voter",
             'compare': u'缺席率',
             'tooltip': u'表決缺席',
             'unit': u'次'
@@ -102,7 +101,8 @@ def biller(request, councilor_id, ad):
             keyword_been_searched(keyword, 'bills')
     else:
         bills = Bills.objects.filter(query).order_by('-uid')
-    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'proposertype': proposertype})
+    data = bills.values('category').annotate(totalNum=Count('id')).order_by('-totalNum')
+    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'proposertype': proposertype, 'data': list(data)})
 
 def voter(request, councilor_id, ad):
     votes, notvote, query = None, False, Q()
@@ -118,10 +118,12 @@ def voter(request, councilor_id, ad):
             query = decision_query.get(decision)
     #<--
     # 脫黨投票
-    if index == 'conscience':
-        query = query & Q(councilor_id=councilor.id, conflict=True)
-    else:
-        query = query & Q(councilor_id=councilor.id)
+    query = query & Q(councilor_id=councilor.id)
+    index = 'normal'
+    if 'index' in request.GET:
+        index = request.GET['index']
+        if index == 'conscience':
+            query = query & Q(conflict=True)
     #<--
     keyword = keyword_normalize(request.GET)
     if keyword:

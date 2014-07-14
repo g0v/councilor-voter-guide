@@ -29,7 +29,7 @@
             {% elif compare %}
                 <a href="{% url param.url_name councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}({{param.compare}}{{councilor.totalNum|divide:compare}} %)">
             {% else %}
-            <   a href="{% url param.url_name councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}">
+                <a href="{% url param.url_name councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}">
             {% endif %}
             {% include "common/name_color_by_party.html" %}
             </a>
