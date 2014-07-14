@@ -10,8 +10,8 @@ from taipei.items import Councilor
 
 def GetDate(text):
     matchTerm = re.search(u'''
-        (?P<year>[\d]+)[\s]*年[\s]*
-        (?P<month>[\d]+)[\s]*月[\s]*
+        (?P<year>[\d]+)[\s]*(年|[.])[\s]*
+        (?P<month>[\d]+)[\s]*(月|[.])[\s]*
         (?P<day>[\d]+)
     ''', text, re.X)
     if matchTerm:
@@ -69,9 +69,10 @@ class Spider(BaseSpider):
                 item['experience'] = node.xpath('td/span/text()').extract()
             if node.xpath('th/text()').re(u'備[\s]*註'):
                 item['remark'] = node.xpath('../tr/td/span/text()').extract()
-                item['term_end'] = {}
-                item['term_end']['date'] = GetDate(node.xpath('../tr/td/span/text()').extract()[0])
-                item['term_end']['reason'] = '\n'.join(item['remark'])
-                item['in_office'] = False
+                if item['remark']:
+                    item['term_end'] = {}
+                    item['term_end']['date'] = GetDate(node.xpath('../tr/td/span/text()').extract()[0])
+                    item['term_end']['reason'] = '\n'.join(item['remark'])
+                    item['in_office'] = False
         item['links'] = {'council': response.url}
         return item

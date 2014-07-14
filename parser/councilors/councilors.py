@@ -41,7 +41,7 @@ def CouncilorsDetail(councilor, ideal_term_end_year):
     if r:
         complement = dict(zip(key, r))
     else:
-        complement = {"gender":'', "party":'', "contacts":None, "title":'', "constituency":'', "county":'', "district":'', "term_start":'%04d-12-25' % int(ideal_term_end_year[councilor['ad']-1]), "term_end":{"date": '%04d-12-25' % int(ideal_term_end_year[councilor['ad']])}, "education":None, "experience":None, "remark":None, "image":'', "links":None, "platform":''}
+        complement = {"gender":'', "party":'', "contacts":None, "title":'', "constituency":'', "county":'', "district":'', "in_office":True, "term_start":'%04d-12-25' % int(ideal_term_end_year[councilor['ad']-1]), "term_end":{"date": '%04d-12-25' % int(ideal_term_end_year[councilor['ad']])}, "education":None, "experience":None, "remark":None, "image":'', "links":None, "platform":''}
     complement.update(councilor)
     c.execute('''
         UPDATE councilors_councilorsdetail
@@ -58,6 +58,7 @@ conn = db_settings.con()
 c = conn.cursor()
 
 for council in ['../../data/taipei/councilor_1-11.json', '../../data/taipei/councilor-11.json', '../../data/tncc/tnccp.json']:
+    print council
     dict_list = json.load(open(council))
     ideal_term_end_year = {0:1969, 1:1973, 2:1977, 3:1981, 4:1985, 5:1989, 6:1994, 7:1998, 8:2002, 9:2006, 10:2010, 11:2014}
     for councilor in dict_list:
