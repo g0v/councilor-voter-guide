@@ -32,9 +32,10 @@
                 <span class="badge badge-info"><font class="lead">原文</font></span><br>
                 <p>{{ vote.content|linebreaksbr }}</p>
             </div>
-            {% endwith %}
         </div><!--end: span6 -->
         <div class="span6">
+            {% include "common/highlight.html" with county=vote.sitting.county ad=vote.sitting.ad %}
+            {% endwith %}
             {% regroup vote by decision as ly_list %}
             <table class="table table-bordered table-condensed">
                 {% with col=20 %}
@@ -64,7 +65,7 @@
                     </tr><tr>
                     {% endif %}
                     {% with councilor=fragment.councilor %}
-                        <td><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id ad=councilor.ad %}" rel="tooltip" title="這位議員的表決投票紀錄">{% include "common/name_color_by_party.html" %}</a></td>
+                        <td class="name {{councilor.district}} {{councilor.gender}}"><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id ad=councilor.ad %}" rel="tooltip" title="這位議員的表決投票紀錄">{% include "common/name_color_by_party.html" %}</a></td>
                     {% endwith %}
                     {% endfor %}
                 {% endfor %}
@@ -84,4 +85,18 @@
 
 {% block script %}
     {% include "votes/d3/vote_pie.html" %}
+    <script>
+        $(document).ready( function() {
+            $('#votes').addClass('active');
+            $("[rel='tooltip']").tooltip();
+            $('#district').change(function() {
+                $('.name').css('backgroundColor', '#FFF');
+                $('.' + $(this).val()).css('backgroundColor', '#FF6');
+            });
+            $('#gender').change(function() {
+                $('.name').css('backgroundColor', '#FFF');
+                $('.' + $(this).val()).css('backgroundColor', '#FF6');
+            });
+        });
+    </script>
 {% endblock script %}

@@ -4,9 +4,14 @@ import json
 from django.core.serializers.json import DjangoJSONEncoder
 from django import template
 from django.utils.safestring import mark_safe
+from councilors.models import CouncilorsDetail
 
 
 register = template.Library()
+
+@register.filter(name='distinct_district')
+def distinct_district(value, arg):
+    return CouncilorsDetail.objects.filter(county=value, ad=arg).exclude(district='').values_list('district', flat=True).distinct()
 
 @register.filter(name='vote_result')
 def vote_result(value, arg):

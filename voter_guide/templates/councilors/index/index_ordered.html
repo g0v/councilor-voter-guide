@@ -23,7 +23,7 @@
             <tr style="background-color: {% cycle 'EEEEEE' 'white' %};">
                 <td></td>
         {% endif %}
-        <td>
+        <td class="name {{councilor.district}} {{councilor.gender}}">
             {% if councilor.compare %}
                 <a href="{% url param.url_name councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}({{param.compare}}{{councilor.totalNum|divide:councilor.compare}} %)">
             {% elif compare %}
@@ -41,7 +41,7 @@
             {% if forloop.counter0|divisibleby:col and forloop.counter0 != 0 %}
             </tr>
             {% endif %}
-            <td style="background-color: #FFDDFF;">
+            <td class="name {{councilor.district}} {{councilor.gender}}" style="background-color: #FFDDFF;">
                 <a href="{% url param.url_name councilor_id=councilor.councilor_id ad=ad %}" rel="tooltip" title="{{param.tooltip}} 0{{param.unit}}">
                 {% include "common/name_color_by_party.html" %}
                 </a>
