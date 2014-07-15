@@ -90,10 +90,12 @@
             $('#votes').addClass('active');
             $("[rel='tooltip']").tooltip();
             $('#district').change(function() {
+                $('#gender').val("");
                 $('.name').css('backgroundColor', '#FFF');
                 $('.' + $(this).val()).css('backgroundColor', '#FF6');
             });
             $('#gender').change(function() {
+                $('#district').val("");
                 $('.name').css('backgroundColor', '#FFF');
                 $('.' + $(this).val()).css('backgroundColor', '#FF6');
             });
