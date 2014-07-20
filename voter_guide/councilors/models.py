@@ -49,3 +49,8 @@ class CouncilorsDetail(models.Model):
     param = JSONField(null=True)
     def __unicode__(self):
         return self.name
+
+    def _in_office_ad(self):
+        return CouncilorsDetail.objects.filter(councilor_id=self.councilor_id).values_list('ad', flat=True).order_by('-ad')
+    in_office_ad = property(_in_office_ad)
+

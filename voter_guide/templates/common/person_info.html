@@ -22,7 +22,18 @@
                 {% endif %}
                 <tr>
                     <td style="background-color: lightgrey;">屆期</td>
-                    <td><b>第{{councilor.ad}}屆</b><small> {{councilor.ad|ad_year}}</small></td>
+                    <td>
+
+                        <font class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>第{{councilor.ad}}屆</b><small> {{councilor.ad|ad_year}}</small><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            {% for ad in councilor.in_office_ad %}
+                            <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id ad=ad %}" ><b>第{{ad}}屆</b><small> {{ad|ad_year}}</small></a></li>
+                            {% endfor %}
+                        </ul>
+                        <font>
+
+                    </td>
                 </tr>
                 <tr>
                     <td style="background-color: lightgrey;">議員</td>

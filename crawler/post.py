@@ -1,23 +1,13 @@
 # -*- coding: utf-8 -*-
 import requests
+import codecs
 
 
 payload = {
-   'FTSearch': u'ON',
-   'pagesize': u'20',
-   'omastext': u'',
-   'rdoDE': u'0',
-   'OmasDetr': u'11',
-   'OmasDetp': u'',
-   'OmasDetm': u'',
-   'sDateY': u'',
-   'sDateM': u'',
-   'sDateD': u'',
-   'eDateY': u'',
-   'eDateM': u'',
-   'eDateD': u'',
-   'spek': u''
+   'queryCol': u'period',
+   'queryStr': u'66_01',
+   'perPage': u'300'
 }
-r = requests.post('http://tccmis.tcc.gov.tw/OM/OM_SearchList.asp', data=payload)
-r.encoding = 'Big5'
+r = requests.post('http://sunshine.cy.gov.tw/GipOpenWeb/wSite/sp?xdUrl=/wSite/SpecialPublication/baseList.jsp&ctNode=', data=payload)
+#r.encoding = 'Big5'
 print r.text
