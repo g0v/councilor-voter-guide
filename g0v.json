@@ -4,7 +4,7 @@
     "name": "councilor-voter-guide",
     "description": "Taiwan Councilorss Voting Guide",
     "description_zh": "議員投票指南",
-    "homepage": "",
+    "homepage": "http://councils.g0v.tw/",
     "repository": {
         "type": "git",
         "url": "https://github.com/g0v/councilor-voter-guide"
