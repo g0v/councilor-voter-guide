@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 import re
 import urllib
+import scrapy
 from scrapy.http import Request, FormRequest
 from scrapy.selector import Selector
 from scrapy.spider import BaseSpider
-from taipei.items import MeetingMinutes
+from tcc.items import MeetingMinutes
 
 
 def take_first(list_in):
@@ -13,11 +14,12 @@ def take_first(list_in):
     else:
         raise
 
-class Spider(BaseSpider):
-    #for scrapy
-    name = "taipei_meeting"
+class Spider(scrapy.Spider):
+    name = "meeting"
     allowed_domains = ["obas_front.tcc.gov.tw"]
     start_urls = ["http://obas_front.tcc.gov.tw:8080/Agenda/EFileSearch.aspx?FileGrpKind=2&h=600",]
+    download_delay = 0.5
+
     def start_requests(self):
         payload = {
             '__EVENTTARGET':u'',

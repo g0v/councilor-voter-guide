@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import re
 import urllib
+import scrapy
 from scrapy.http import Request, FormRequest
 from scrapy.selector import Selector
-from scrapy.spider import BaseSpider
-from taipei.items import Bills
+from tcc.items import Bills
 
 
 def GetDate(text):
@@ -18,11 +18,12 @@ def GetDate(text):
     else:
         return None
 
-class Spider(BaseSpider):
-    #for scrapy
-    name = "taipei_bills"
+class Spider(scrapy.Spider):
+    name = "bills"
     allowed_domains = ["tccmis.tcc.gov.tw"]
     start_urls = ["http://tccmis.tcc.gov.tw/OM/OM_SearchList.asp",]
+    download_delay = 0.5
+
     def start_requests(self):
         payload = {
             'FTSearch': u'ON',

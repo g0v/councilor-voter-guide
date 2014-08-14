@@ -71,7 +71,7 @@ conn = db_settings.con()
 c = conn.cursor()
 ad = 11
 county = u'臺北市'
-total_text = codecs.open(u"../../data/taipei/meeting_minutes-11.txt", "r", "utf-8").read()
+total_text = codecs.open(u"../../data/tcc/meeting_minutes-11.txt", "r", "utf-8").read()
 util = json.load(open('../util.json'))
 
 Session_Token = re.compile(u'''

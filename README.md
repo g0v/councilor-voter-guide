@@ -8,11 +8,11 @@ councilor-voter-guide
 In Ubuntu 12.04 LTS
 =================
 
-## For Crawler (Scrapy)
+## For Crawler (Scrapy 0.24.4)
 
 [Scrapy offcial install doc](http://doc.scrapy.org/en/latest/intro/install.html)
 ```
-apt-get install libxml2-dev libxslt1-dev python-dev
+apt-get install libxml2-dev libxslt1-dev python-dev libffi-dev
 pip install lxml
 pip install Scrapy
 ```

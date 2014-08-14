@@ -6,10 +6,10 @@
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #
 
-BOT_NAME = 'taipei'
+BOT_NAME = 'kcc'
 
-SPIDER_MODULES = ['taipei.spiders']
-NEWSPIDER_MODULE = 'taipei.spiders'
+SPIDER_MODULES = ['kcc.spiders']
+NEWSPIDER_MODULE = 'kcc.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'taipei (+http://www.yourdomain.com)'

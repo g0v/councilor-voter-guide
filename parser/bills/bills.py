@@ -37,7 +37,7 @@ c = conn.cursor()
 
 ad = 11
 county = u'臺北市'
-dict_list = json.load(open('../../data/taipei/bills-%s.json' % str(ad)))
+dict_list = json.load(open('../../data/tcc/bills-%s.json' % str(ad)))
 for bill in dict_list:
     bill.update({'ad': ad, 'county': county})
     Bill(bill)

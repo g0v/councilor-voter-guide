@@ -7,7 +7,8 @@ from scrapy.item import Item, Field
 
 class Councilor(Item):
     name = Field()
-    ad = Field()
+    stage = Field()
+    election_year = Field()
     title = Field()
     gender = Field()
     birth = Field()
@@ -15,13 +16,14 @@ class Councilor(Item):
     constituency = Field()
     county = Field()
     district = Field()
-    contacts = Field()
+    contact_details = Field()
     education = Field()
     experience = Field()
     platform = Field()
     remark = Field()
     in_office = Field()
     term_end = Field()
+    term_start = Field()
     image = Field()
     links = Field()
 
