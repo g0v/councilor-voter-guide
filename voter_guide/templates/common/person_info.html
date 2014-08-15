@@ -25,10 +25,10 @@
                     <td>
 
                         <font class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>第{{councilor.ad}}屆</b><small> {{councilor.ad|ad_year}}</small><b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{councilor.election_year|election_year_range}}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            {% for ad in councilor.in_office_ad %}
-                            <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id ad=ad %}" ><b>第{{ad}}屆</b><small> {{ad|ad_year}}</small></a></li>
+                            {% for year in councilor.in_office_year %}
+                                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=year %}" >{{year|election_year_range}}</a></li>
                             {% endfor %}
                         </ul>
                         <font>
@@ -60,46 +60,12 @@
                 <tr>
                     <td colspan=2></td>
                 </tr>
-                <tr>
-                    <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">信箱</td>
-                    <td>
-                    {% for item in councilor.contacts.email %}
-                        {{item}}<br>
-                    {% endfor %}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">個人網站</td>
-                    <td>
-                    {% for item in councilor.contacts.website %}
-                        {{item}}<br>
-                    {% endfor %}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">地址</td>
-                    <td>
-                    {% for item in councilor.contacts.address %}
-                        {{item}}<br>
-                    {% endfor %}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">電話</td>
-                    <td>
-                    {% for item in councilor.contacts.phone %}
-                        {{item}}<br>
-                    {% endfor %}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">傳真</td>
-                    <td>
-                    {% for item in councilor.contacts.fax %}
-                        {{item}}<br>
-                    {% endfor %}
-                    </td>
-                </tr>
+                {% for item in councilor.contact_details %}
+                    <tr>
+                        <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">{{item.label}}</td>
+                        <td>{{item.value}}</td>
+                    </tr>
+                {% endfor %}
                 {% if councilor.education %}
                 <tr>
                     <td colspan=2></td>
@@ -145,12 +111,12 @@
                 <div class="btn-group">
                     <a id='councilors_voter' class="btn btn-large dropdown-toggle" href="#" data-toggle="dropdown">投票紀錄 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id ad=councilor.ad %}">全投票表決紀錄</a></li>
-                        <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id ad=councilor.ad %}?index=conscience" >脫黨投票表決紀錄</a></li>
+                        <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全投票表決紀錄</a></li>
+                        <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?index=conscience" >脫黨投票表決紀錄</a></li>
                     </ul>
                 </div>
-                <a class="btn btn-large" id='councilors_biller' href="{% url 'councilors:biller' councilor_id=councilor.councilor_id ad=councilor.ad %}">議案</a>
-                <a class="btn btn-large" id='councilors_platformer' href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id ad=councilor.ad %}">競選政見</a>
+                <a class="btn btn-large" id='councilors_biller' href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">議案</a>
+                <a class="btn btn-large" id='councilors_platformer' href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">競選政見</a>
             </div>
         </div>
         <br>

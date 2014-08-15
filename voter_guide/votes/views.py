@@ -7,7 +7,7 @@ from .models import Votes, Councilors_Votes
 from search.views import keyword_list, keyword_been_searched, keyword_normalize
 
 
-def votes(request, ad, county, index='normal'):
+def votes(request, election_year, county, index='normal'):
     result = None
     if index == 'conscience':
         query = Q(conflict=True)
@@ -25,7 +25,7 @@ def votes(request, ad, county, index='normal'):
             keyword_been_searched(keyword, 'votes')
     else:
         votes = Votes.objects.filter(query).order_by('-date', 'vote_seq')
-    return render(request,'votes/votes.html', {'ad': ad, 'county': county, 'votes': votes, 'index':index, 'keyword':keyword, 'result':result, 'keyword_hot': keyword_list('votes')})
+    return render(request,'votes/votes.html', {'election_year': election_year, 'county': county, 'votes': votes, 'index':index, 'keyword':keyword, 'result':result, 'keyword_hot': keyword_list('votes')})
 
 def vote(request, vote_id):
     data = None

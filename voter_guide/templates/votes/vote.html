@@ -34,7 +34,7 @@
             </div>
         </div><!--end: span6 -->
         <div class="span6">
-            {% include "common/highlight.html" with county=vote.sitting.county ad=vote.sitting.ad %}
+            {% include "common/highlight.html" with county=vote.sitting.county election_year=vote.sitting.election_year %}
             {% endwith %}
             {% regroup vote by decision as ly_list %}
             <table class="table table-bordered table-condensed">
@@ -65,7 +65,7 @@
                     </tr><tr>
                     {% endif %}
                     {% with councilor=fragment.councilor %}
-                        <td class="name {{councilor.district}} {{councilor.gender}}"><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id ad=councilor.ad %}" rel="tooltip" title="這位議員的表決投票紀錄">{% include "common/name_color_by_party.html" %}</a></td>
+                        <td class="name {{councilor.district}} {{councilor.gender}}"><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}" rel="tooltip" title="這位議員的表決投票紀錄">{% include "common/name_color_by_party.html" %}</a></td>
                     {% endwith %}
                     {% endfor %}
                 {% endfor %}

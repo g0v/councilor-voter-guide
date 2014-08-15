@@ -11,7 +11,7 @@ register = template.Library()
 
 @register.filter(name='distinct_district')
 def distinct_district(value, arg):
-    return CouncilorsDetail.objects.filter(county=value, ad=arg).exclude(district='').values_list('district', flat=True).distinct()
+    return CouncilorsDetail.objects.filter(county=value, election_year=arg).exclude(district='').values_list('district', flat=True).distinct()
 
 @register.filter(name='vote_result')
 def vote_result(value, arg):
@@ -28,14 +28,12 @@ def vote_result(value, arg):
     if attribute.get(value):
         return attribute.get(value).get(arg)
 
-@register.filter(name='ad_year')
-def ad_year(value):
-    term_end_year = {0:1969, 1:1973, 2:1977, 3:1981, 4:1985, 5:1989, 6:1994, 7:1998, 8:2002, 9:2006, 10:2010, 11:2014}
-    try:
-        value = int(value)
-        return '%s~%s' % (term_end_year.get(value-1, ''), term_end_year.get(value, ''))
-    except Exception, e:
-        return ''
+@register.filter(name='election_year_range')
+def election_year_range(value):
+    election_years = ['1969', '1973', '1977', '1981', '1985', '1989', '1994', '1998', '2002', '2006', '2010', '2014', '2018']
+    for i in range(0, len(election_years)):
+        if election_years[i] == value:
+            return '%s~%s' % (value, election_years[i+1])
 
 @register.filter(name='mod')
 def mod(value, arg):

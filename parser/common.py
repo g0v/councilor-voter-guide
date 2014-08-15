@@ -28,23 +28,23 @@ def GetDate(text):
     else:
         return None
 
-def getId(c, name, ad, county):
+def getId(c, name, election_year, county):
     c.execute('''
         SELECT councilor_id
         FROM councilors_councilorsdetail
-        WHERE name = %s and ad = %s and county = %s
-    ''', (name, ad, county))
+        WHERE name = %s and election_year = %s and county = %s
+    ''', (name, election_year, county))
     r = c.fetchone()
     if r:
         return r[0]
     print name
 
-def getDetailId(c, name, ad, county):
+def getDetailId(c, name, election_year, county):
     c.execute('''
         SELECT id
         FROM councilors_councilorsdetail
-        WHERE name = %s and ad = %s and county = %s
-    ''', (name, ad, county))
+        WHERE name = %s and election_year = %s and county = %s
+    ''', (name, election_year, county))
     r = c.fetchone()
     if r:
         return r[0]
@@ -54,8 +54,8 @@ def getIdList(c, name_list, sitting_dict):
     c.execute('''
         SELECT id, councilor_id
         FROM councilors_councilorsdetail
-        WHERE name IN %s and ad = %s and county = %s
-    ''', (tuple(name_list), sitting_dict['ad'], sitting_dict['county']))
+        WHERE name IN %s and election_year = %s and county = %s
+    ''', (tuple(name_list), sitting_dict['election_year'], sitting_dict['county']))
     r = c.fetchall()
     if r:
         return r
@@ -96,12 +96,12 @@ def InsertSitting(c, sitting_dict):
     complement.update(sitting_dict)
     c.execute('''
         UPDATE sittings_sittings
-        SET name = %(name)s, ad = %(ad)s, session = %(session)s, date = %(date)s, county = %(county)s, committee = %(committee)s
+        SET name = %(name)s, election_year = %(election_year)s, date = %(date)s, county = %(county)s, committee = %(committee)s
         WHERE uid = %(uid)s
     ''', complement)
     c.execute('''
-        INSERT into sittings_sittings(uid, name, ad, session, date, county, committee)
-        SELECT %(uid)s, %(name)s, %(ad)s, %(session)s, %(date)s, %(county)s, %(committee)s
+        INSERT into sittings_sittings(uid, name, election_year, date, county, committee)
+        SELECT %(uid)s, %(name)s, %(election_year)s, %(date)s, %(county)s, %(committee)s
         WHERE NOT EXISTS (SELECT 1 FROM sittings_sittings WHERE uid = %(uid)s)
     ''', complement)
 
@@ -119,18 +119,3 @@ def remote_newline_in_sittings(c):
     ''')
     for uid, name in c.fetchall():
         UpdateSitting(c, uid, re.sub(u'[\s]', '', name))
-
-def UpdateFileLog(c, id, sitting):
-    c.execute('''
-        UPDATE legislator_filelog
-        SET sitting = %s
-        WHERE id = %s
-    ''', (sitting, id))
-
-def remote_newline_in_filelog(c):
-    c.execute('''
-        select id, sitting
-        from legislator_filelog
-    ''')
-    for id, sitting in c.fetchall():
-        UpdateFileLog(c, id, re.sub(u'[\s]', '', sitting))

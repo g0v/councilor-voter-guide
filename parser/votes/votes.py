@@ -69,9 +69,10 @@ def IterVote(text, sitting_dict):
 
 conn = db_settings.con()
 c = conn.cursor()
-ad = 11
+election_years = {1: '1969', 2: '1973', 3: '1977', 4: '1981', 5: '1985', 6: '1989', 7: '1994', 8: '1998', 9: '2002', 10: '2006', 11: '2010', 12: '2014'}
+election_year = '2010'
 county = u'臺北市'
-total_text = codecs.open(u"../../data/tcc/meeting_minutes-11.txt", "r", "utf-8").read()
+total_text = codecs.open(u"../../data/tcc/meeting_minutes-%s.txt" % election_year, "r", "utf-8").read()
 util = json.load(open('../util.json'))
 
 Session_Token = re.compile(u'''
@@ -114,10 +115,10 @@ sittings = []
 for match in Session_Token.finditer(total_text):
     if match:
         if match.group('type') == u'定期':
-            uid = '%s-%02d-%02d-CS-%02d' % (util[match.group('county')], int(match.group('ad')), int(match.group('session')), int(match.group('times')))
+            uid = '%s-%s-%02d-CS-%02d' % (util[match.group('county')], election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
         elif match.group('type') == u'臨時':
-            uid = '%s-%02d-T%02d-CS-%02d' % (util[match.group('county')], int(match.group('ad')), int(match.group('session')), int(match.group('times')))
-        sittings.append({"uid":uid, "name": match.group('name'), "county": match.group('county'), "ad": match.group('ad'), "session": match.group('session'), "date": common.GetDate(total_text[match.end():]), "start": match.start(), "end": match.end()})
+            uid = '%s-%s-T%02d-CS-%02d' % (util[match.group('county')], election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
+        sittings.append({"uid":uid, "name": match.group('name'), "county": match.group('county'), "election_year": election_years[int(match.group('ad'))], "session": match.group('session'), "date": common.GetDate(total_text[match.end():]), "start": match.start(), "end": match.end()})
 for i in range(0, len(sittings)):
     # --> sittings, attendance, filelog
     if i != len(sittings)-1:
@@ -141,30 +142,30 @@ print 'votes, voter done!'
 
 # --> conscience vote
 print u'Conscience vote processing...'
-def party_Decision_List(party, ad):
+def party_Decision_List(party, election_year):
     c.execute('''
         select vote_id, avg(decision)
         from votes_councilors_votes
-        where decision is not null and councilor_id in (select id from councilors_councilorsdetail where party = %s and ad = %s)
+        where decision is not null and councilor_id in (select id from councilors_councilorsdetail where party = %s and election_year = %s)
         group by vote_id
-    ''', (party, ad))
+    ''', (party, election_year))
     return c.fetchall()
 
-def personal_Decision_List(party, vote_id, ad):
+def personal_Decision_List(party, vote_id, election_year):
     c.execute('''
         select councilor_id, decision
         from votes_councilors_votes
-        where decision is not null and vote_id = %s and councilor_id in (select id from councilors_councilorsdetail where party = %s and ad = %s)
-    ''', (vote_id, party, ad))
+        where decision is not null and vote_id = %s and councilor_id in (select id from councilors_councilorsdetail where party = %s and election_year = %s)
+    ''', (vote_id, party, election_year))
     return c.fetchall()
 
-def party_List(ad, county):
+def party_List(election_year, county):
     c.execute('''
         select party, count(*)
         from councilors_councilorsdetail
-        where ad = %s and county = %s
+        where election_year = %s and county = %s
         group by party
-    ''', (ad, county))
+    ''', (election_year, county))
     return c.fetchall()
 
 def conflict_vote(conflict, vote_id):
@@ -181,14 +182,14 @@ def conflict_voter(conflict, councilor_id, vote_id):
         where councilor_id = %s and vote_id = %s
     ''', (conflict, councilor_id, vote_id))
 
-for party, count in party_List(ad, county):
+for party, count in party_List(election_year, county):
     if party != u'無黨籍' and count > 2:
-        for vote_id, avg_decision in party_Decision_List(party, ad):
+        for vote_id, avg_decision in party_Decision_List(party, election_year):
             # 黨的decision平均值如不為整數，表示該表決有人脫黨投票
             if int(avg_decision) != avg_decision:
                 conflict_vote(True, vote_id)
                 # 同黨各立委的decision與黨的decision平均值相乘如小於(相反票)等於(棄權票)零，表示脫黨投票
-                for councilor_id, personal_decision in personal_Decision_List(party, vote_id, ad):
+                for councilor_id, personal_decision in personal_Decision_List(party, vote_id, election_year):
                     if personal_decision*avg_decision <= 0:
                         conflict_voter(True, councilor_id, vote_id)
 conn.commit()
@@ -199,7 +200,7 @@ print 'done!'
 print u'Not voting & vote results processing...'
 def vote_list():
     c.execute('''
-        select vote.uid, sitting.ad, sitting.date
+        select vote.uid, sitting.election_year, sitting.date
         from votes_votes vote, sittings_sittings sitting
         where vote.sitting_id = sitting.uid
     ''')
@@ -209,7 +210,7 @@ def not_voting_list(vote_id, vote_ad, vote_date):
     c.execute('''
         select id
         from councilors_councilorsdetail
-        where ad = %s and term_start <= %s and cast(term_end::json->>'date' as date) > %s and id not in (select councilor_id from votes_councilors_votes where vote_id = %s)
+        where election_year = %s and term_start <= %s and cast(term_end::json->>'date' as date) > %s and id not in (select councilor_id from votes_councilors_votes where vote_id = %s)
     ''', (vote_ad, vote_date, vote_date, vote_id))
     return c.fetchall()
 

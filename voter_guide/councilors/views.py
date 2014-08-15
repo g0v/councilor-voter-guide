@@ -9,9 +9,9 @@ from sittings.models import Sittings
 from search.views import keyword_list, keyword_been_searched, keyword_normalize
 
 
-def index(request, index, county, ad):
-    basic_query = Q(ad=ad, county=county, in_office=True)
-    out_office = CouncilorsDetail.objects.filter(ad=ad, county=county, in_office=False)
+def index(request, index, county, election_year):
+    basic_query = Q(election_year=election_year, county=county, in_office=True)
+    out_office = CouncilorsDetail.objects.filter(election_year=election_year, county=county, in_office=False)
     param = {
         'countys': {
             'title': u'%s - 依選區分組' % county
@@ -50,7 +50,7 @@ def index(request, index, county, ad):
                                      .order_by('-totalNum','party')\
                                      .extra(select={'compare': 'SELECT COUNT(*) FROM votes_councilors_votes WHERE votes_councilors_votes.councilor_id = councilors_councilorsdetail.id GROUP BY votes_councilors_votes.councilor_id'},)
         no_count_list = CouncilorsDetail.objects.filter(basic_query).exclude(councilor_id__in=councilors.values_list('councilor_id', flat=True)).order_by('party')
-        return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'ad': ad, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'index': index})
+        return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'index': index})
     if index == 'not_voting':
         councilors = CouncilorsDetail.objects.filter(basic_query, councilors_votes__decision__isnull=True)\
                                           .annotate(totalNum=Count('councilors_votes__id'))\
@@ -58,15 +58,15 @@ def index(request, index, county, ad):
                                           .order_by('-totalNum','party')\
                                           .extra(select={'compare': 'SELECT COUNT(*) FROM votes_councilors_votes WHERE votes_councilors_votes.councilor_id = councilors_councilorsdetail.id GROUP BY votes_councilors_votes.councilor_id'},)
         no_count_list = CouncilorsDetail.objects.filter(basic_query).exclude(councilor_id__in=councilors.values_list('councilor_id', flat=True))
-        return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'ad': ad, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'index': index})
+        return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'index': index})
     if index == 'cs_attend':
-        compare = Sittings.objects.filter(ad=ad, county=county, committee='').count()
+        compare = Sittings.objects.filter(election_year=election_year, county=county, committee='').count()
         councilors = CouncilorsDetail.objects.filter(basic_query & Q(attendance__category='CS', attendance__status='absent'))\
                                              .annotate(totalNum=Count('attendance__id'))\
                                              .order_by('-totalNum','party')
         no_count_list = CouncilorsDetail.objects.filter(basic_query)\
                                                 .exclude(councilor_id__in=councilors.values_list('councilor_id', flat=True))
-        return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'ad': ad, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'compare': compare, 'index': index})
+        return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'compare': compare, 'index': index})
     if index == 'bills':
         query = basic_query
         proposertype = False
@@ -82,15 +82,15 @@ def index(request, index, county, ad):
                                      .order_by('-totalNum')
         no_count_list = CouncilorsDetail.objects.filter(basic_query)\
                                                 .exclude(councilor_id__in=councilors.values_list('councilor_id', flat=True))
-        return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'ad': ad, 'county': county, 'proposertype': proposertype, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'index': index})
+        return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'proposertype': proposertype, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'index': index})
     if index == 'countys':
         councilors = CouncilorsDetail.objects.filter(basic_query).order_by('district', 'party')
-        return render(request, 'councilors/index/countys.html', {'param': param.get(index), 'ad': ad, 'county': county, 'councilors': councilors, 'out_office': out_office, 'index': index})
+        return render(request, 'councilors/index/countys.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'councilors': councilors, 'out_office': out_office, 'index': index})
 
-def biller(request, councilor_id, ad):
+def biller(request, councilor_id, election_year):
     proposertype = False
     try:
-        councilor = CouncilorsDetail.objects.get(ad=ad, councilor_id=councilor_id)
+        councilor = CouncilorsDetail.objects.get(election_year=election_year, councilor_id=councilor_id)
     except Exception, e:
         return HttpResponseRedirect('/')
     query = Q(proposer__id=councilor.id)
@@ -104,10 +104,10 @@ def biller(request, councilor_id, ad):
     data = bills.values('category').annotate(totalNum=Count('id')).order_by('-totalNum')
     return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'proposertype': proposertype, 'data': list(data)})
 
-def voter(request, councilor_id, ad):
+def voter(request, councilor_id, election_year):
     votes, notvote, query = None, False, Q()
     try:
-        councilor = CouncilorsDetail.objects.get(ad=ad, councilor_id=councilor_id)
+        councilor = CouncilorsDetail.objects.get(election_year=election_year, councilor_id=councilor_id)
     except Exception, e:
         return HttpResponseRedirect('/')
     #--> 依投票類型分類
@@ -135,9 +135,9 @@ def voter(request, councilor_id, ad):
     vote_addup = votes.values('decision').annotate(totalNum=Count('vote', distinct=True)).order_by('-decision')
     return render(request,'councilors/voter.html', {'keyword_hot': keyword_list('votes'), 'councilor': councilor, 'keyword': keyword, 'index': index, 'votes': votes, 'vote_addup': vote_addup, 'notvote': notvote})
 
-def platformer(request, councilor_id, ad):
+def platformer(request, councilor_id, election_year):
     try:
-        councilor = CouncilorsDetail.objects.get(ad=ad, councilor_id=councilor_id)
+        councilor = CouncilorsDetail.objects.get(election_year=election_year, councilor_id=councilor_id)
     except Exception, e:
         return HttpResponseRedirect('/')
     return render(request, 'councilors/platformer.html', {'councilor': councilor})

@@ -4,6 +4,7 @@ import sys
 sys.path.append('../')
 import re
 import json
+import uuid
 import codecs
 import psycopg2
 from psycopg2.extras import Json
@@ -11,59 +12,76 @@ import db_settings
 import common
 
 
-def Councilors(councilor):
-    if councilor.has_key('former_names'):
-        councilor['former_names'] = '\n'.join(councilor['former_names'])
-    else:
-        councilor.update({'former_names': ''})
+def uid(councilor):
+    if councilor.get('birth'):
+        c.execute('''
+            SELECT uid
+            FROM councilors_councilors
+            WHERE name = %(name)s and birth = %(birth)s
+        ''', councilor)
+        r = c.fetchone()
+        return r[0] if r else uuid.uuid4().hex
     c.execute('''
-        UPDATE councilors_councilors
-        SET name = %(name)s, birth = %(birth)s, former_names = %(former_names)s
-        WHERE uid = %(uid)s
+        SELECT councilor_id
+        FROM councilors_councilorsdetail
+        WHERE name = %(name)s and election_year != %(election_year)s and county = %(county)s
     ''', councilor)
+    r = c.fetchone()
+    if r:
+        return r[0]
+    c.execute('''
+        SELECT councilor_id
+        FROM councilors_councilorsdetail
+        WHERE name = %(name)s and election_year != %(election_year)s
+    ''', councilor)
+    r = c.fetchone()
+    return r[0] if r else uuid.uuid4().hex
+
+def Councilors(councilor):
+    councilor['former_names'] = '\n'.join(councilor['former_names']) if councilor.has_key('former_names') else ''
+    complement = {"birth": None}
+    complement.update(councilor)
     c.execute('''
         INSERT INTO councilors_councilors(uid, name, birth, former_names)
         SELECT %(uid)s, %(name)s, %(birth)s, %(former_names)s
         WHERE NOT EXISTS (SELECT 1 FROM councilors_councilors WHERE uid = %(uid)s)
-    ''', councilor)
+    ''', complement)
 
-def CouncilorsDetail(councilor, ideal_term_end_year):
+def CouncilorsDetail(councilor):
     for key in ['education', 'experience', 'platform', 'remark']:
         if councilor.has_key(key):
             councilor[key] = '\n'.join(councilor[key])
     c.execute('''
         SELECT *
         FROM councilors_councilorsdetail
-        WHERE councilor_id = %(uid)s and ad = %(ad)s
+        WHERE councilor_id = %(uid)s and election_year = %(election_year)s
     ''', councilor)
     key = [desc[0] for desc in c.description]
     r = c.fetchone()
     if r:
         complement = dict(zip(key, r))
     else:
-        complement = {"gender":'', "party":'', "contacts":None, "title":'', "constituency":'', "county":'', "district":'', "in_office":True, "term_start":'%04d-12-25' % int(ideal_term_end_year[councilor['ad']-1]), "term_end":{"date": '%04d-12-25' % int(ideal_term_end_year[councilor['ad']])}, "education":None, "experience":None, "remark":None, "image":'', "links":None, "platform":''}
+        complement = {"gender":'', "party":'', "contact_details":None, "title":'', "constituency":'', "county":'', "district":'', "in_office":True, "term_start":None, "term_end":{}, "education":None, "experience":None, "remark":None, "image":'', "links":None, "platform":''}
     complement.update(councilor)
     c.execute('''
         UPDATE councilors_councilorsdetail
-        SET name = %(name)s, gender = %(gender)s, party = %(party)s, title = %(title)s, constituency = %(constituency)s, in_office = %(in_office)s, contacts = %(contacts)s, county = %(county)s, district = %(district)s, term_start = %(term_start)s, term_end = %(term_end)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s, platform = %(platform)s
-        WHERE councilor_id = %(uid)s and ad = %(ad)s
+        SET name = %(name)s, gender = %(gender)s, party = %(party)s, title = %(title)s, constituency = %(constituency)s, in_office = %(in_office)s, contact_details = %(contact_details)s, county = %(county)s, district = %(district)s, term_start = %(term_start)s, term_end = %(term_end)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s, platform = %(platform)s
+        WHERE councilor_id = %(uid)s and election_year = %(election_year)s
     ''', complement)
     c.execute('''
-        INSERT into councilors_councilorsdetail(councilor_id, ad, name, gender, party, title, constituency, county, district, in_office, contacts, term_start, term_end, education, experience, remark, image, links, platform)
-        SELECT %(uid)s, %(ad)s, %(name)s, %(gender)s, %(party)s, %(title)s, %(constituency)s, %(county)s, %(district)s, %(in_office)s, %(contacts)s, %(term_start)s, %(term_end)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s
-        WHERE NOT EXISTS (SELECT 1 FROM councilors_councilorsdetail WHERE councilor_id = %(uid)s and ad = %(ad)s ) RETURNING id
+        INSERT into councilors_councilorsdetail(councilor_id, election_year, name, gender, party, title, constituency, county, district, in_office, contact_details, term_start, term_end, education, experience, remark, image, links, platform)
+        SELECT %(uid)s, %(election_year)s, %(name)s, %(gender)s, %(party)s, %(title)s, %(constituency)s, %(county)s, %(district)s, %(in_office)s, %(contact_details)s, %(term_start)s, %(term_end)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s
+        WHERE NOT EXISTS (SELECT 1 FROM councilors_councilorsdetail WHERE councilor_id = %(uid)s and election_year = %(election_year)s ) RETURNING id
     ''', complement)
 
 conn = db_settings.con()
 c = conn.cursor()
 
-for council in ['../../data/taipei/councilor_1-11.json', '../../data/taipei/councilor-11.json', '../../data/tncc/tnccp.json']:
+for council in ['../../data/kcc/councilors_terms.json', '../../data/tcc/councilors_terms.json', '../../data/tcc/councilors.json']:
     print council
     dict_list = json.load(open(council))
-    ideal_term_end_year = {0:1969, 1:1973, 2:1977, 3:1981, 4:1985, 5:1989, 6:1994, 7:1998, 8:2002, 9:2006, 10:2010, 11:2014}
     for councilor in dict_list:
-        councilor.update({'uid': '%s_%s' % (councilor['name'], councilor['birth'])})
-        councilor['ad'] = int(councilor['ad'])
+        councilor['uid'] = uid(councilor)
         Councilors(councilor)
-        CouncilorsDetail(councilor, ideal_term_end_year)
+        CouncilorsDetail(councilor)
     conn.commit()

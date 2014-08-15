@@ -18,7 +18,7 @@ class CouncilorsViewSet(viewsets.ReadOnlyModelViewSet):
 class CouncilorsDetailViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = CouncilorsDetail.objects.all()
     serializer_class = CouncilorsDetailSerializer
-    filter_fields = ('councilor', 'ad', 'name', 'gender', 'party', 'title', 'constituency', 'county', 'in_office', 'term_start', 'term_end')
+    filter_fields = ('councilor', 'election_year', 'name', 'gender', 'party', 'title', 'constituency', 'county', 'in_office', 'term_start', 'term_end')
 
 class AttendanceViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Attendance.objects.all()
@@ -28,7 +28,7 @@ class AttendanceViewSet(viewsets.ReadOnlyModelViewSet):
 class SittingsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Sittings.objects.all()
     serializer_class = SittingsSerializer
-    filter_fields = ('uid', 'name', 'committee', 'date', 'ad', 'session')
+    filter_fields = ('uid', 'name', 'committee', 'date', 'election_year', 'session')
 
 class VotesViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Votes.objects.all()

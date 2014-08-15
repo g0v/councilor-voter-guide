@@ -6,7 +6,7 @@ from json_field import JSONField
 class Bills(models.Model):
     proposer = models.ManyToManyField('councilors.CouncilorsDetail', blank=True, null=True, through='Councilors_Bills')
     uid = models.TextField(unique=True)
-    ad = models.IntegerField()
+    election_year = models.CharField(max_length=100)
     county = models.CharField(max_length=100, blank=True, null=True)
     type = models.TextField(blank=True, null=True)
     category = models.TextField(blank=True, null=True)

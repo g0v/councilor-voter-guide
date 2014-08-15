@@ -34,10 +34,10 @@ class SittingsSerializer(serializers.HyperlinkedModelSerializer):
     votes = VotesSerializer(many=True)
     class Meta:
         model = Sittings
-        fields = ('uid', 'name', 'committee', 'date', 'ad', 'session', 'votes')
+        fields = ('uid', 'name', 'committee', 'date', 'election_year', 'votes')
 
 class CouncilorsDetailSerializer(serializers.HyperlinkedModelSerializer):
-    contacts = fields.Field()
+    contact_details = fields.Field()
     term_end = fields.Field()
     links = fields.Field()
     social_media = fields.Field()

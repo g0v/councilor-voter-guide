@@ -2,7 +2,7 @@
 <form class="form-inline">
     <select id='district'>
         <option value="">標註選區</option>
-        {% for fragment in county|distinct_district:ad %}
+        {% for fragment in county|distinct_district:election_year %}
         <option value="{{fragment}}">{{fragment}}</option>
         {% endfor %}
     </select>

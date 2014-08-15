@@ -1,9 +1,10 @@
 ﻿{% extends "common/person_info.html" %}
+{% load extras %}
 {% block title %}
     {% if councilor %}
         <title>議員投票指南:{{councilor.name}}的競選政見</title>
-        <meta property="og:title" content="議員投票指南:{{councilor.name}}第{{councilor.ad}}屆的競選政見"/>
-        <meta itemprop="name" content="議員投票指南:{{councilor.name}}第{{councilor.ad}}屆的競選政見">
+        <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的競選政見"/>
+        <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的競選政見">
     {% else %}
         <title>議員投票指南:立委的競選政見</title>
         <meta property="og:title" content="議員投票指南:議員的競選政見"/>
@@ -13,7 +14,7 @@
 {% block person_detail %}
     {% if councilor %}
     <div>
-        <font class="lead">{{councilor.name}}第{{councilor.ad}}屆的政見：</font><br>
+        <font class="lead">{{councilor.name}}{{councilor.election_year|election_year_range}}的政見：</font><br>
         {{ councilor.platform|linebreaksbr }}
     </div>
     {% endif %}

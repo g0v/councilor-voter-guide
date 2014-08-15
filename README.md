@@ -25,7 +25,7 @@ pip install Scrapy
 sudo apt-get update
 sudo apt-get upgrade
 sudo reboot
-sudo apt-get install git python-pip python-dev python-setuptools postgresql
+sudo apt-get install git python-pip python-dev python-setuptools postgresql libpq-dev
 easy_install virtualenv
 ```
 

@@ -18,7 +18,7 @@ class FileLog(models.Model):
         return self.sitting
 
 class Councilors(models.Model):
-    uid = models.TextField(unique=True)
+    uid = models.CharField(max_length=32, unique=True)
     name = models.CharField(max_length=100)
     birth = models.DateField(blank=True, null=True)
     former_names = models.CharField(max_length=100, blank=True, null=True)
@@ -27,7 +27,7 @@ class Councilors(models.Model):
 
 class CouncilorsDetail(models.Model):
     councilor = models.ForeignKey(Councilors, to_field="uid", related_name='each_terms')
-    ad = models.IntegerField()
+    election_year = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     gender = models.CharField(max_length=100, blank=True, null=True)
     party = models.CharField(max_length=100, blank=True, null=True)
@@ -36,7 +36,7 @@ class CouncilorsDetail(models.Model):
     county = models.CharField(max_length=100)
     district = models.CharField(max_length=100, blank=True, null=True)
     in_office = models.BooleanField()
-    contacts = JSONField(null=True)
+    contact_details = JSONField(null=True)
     term_start = models.DateField(blank=True, null=True)
     term_end = JSONField(null=True)
     education = models.TextField(blank=True, null=True)
@@ -50,7 +50,7 @@ class CouncilorsDetail(models.Model):
     def __unicode__(self):
         return self.name
 
-    def _in_office_ad(self):
-        return CouncilorsDetail.objects.filter(councilor_id=self.councilor_id).values_list('ad', flat=True).order_by('-ad')
-    in_office_ad = property(_in_office_ad)
+    def _in_office_year(self):
+        return CouncilorsDetail.objects.filter(councilor_id=self.councilor_id).values_list('election_year', flat=True).order_by('-election_year')
+    in_office_year = property(_in_office_year)
 

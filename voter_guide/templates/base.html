@@ -45,19 +45,19 @@
                         <li id="councilor" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">找議員<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{% url 'councilors:index' index='countys' county='臺北市' ad=11 %}" >依選區分組</a></li>
-                            <li><a href="{% url 'councilors:index' index='cs_attend' county='臺北市' ad=11 %}" >議會開會<b>缺席次數</b>(多&rarr;少)</a></li>
-                            <li><a href="{% url 'councilors:index' index='not_voting' county='臺北市' ad=11 %}" ><b>表決缺席次數</b>(多&rarr;少)</a></li>
-                            <li><a href="{% url 'councilors:index' index='conscience_vote' county='臺北市' ad=11 %}" ><b>脫黨投票次數</b>(多&rarr;少)</a></li>
-                            <li><a href="{% url 'councilors:index' index='bills' county='臺北市' ad=11 %}" ><b>議案數</b>(多&rarr;少)</a></li>
+                            <li><a href="{% url 'councilors:index' index='countys' county='臺北市' election_year='2010' %}" >依選區分組</a></li>
+                            <li><a href="{% url 'councilors:index' index='cs_attend' county='臺北市' election_year='2010' %}" >議會開會<b>缺席次數</b>(多&rarr;少)</a></li>
+                            <li><a href="{% url 'councilors:index' index='not_voting' county='臺北市' election_year='2010' %}" ><b>表決缺席次數</b>(多&rarr;少)</a></li>
+                            <li><a href="{% url 'councilors:index' index='conscience_vote' county='臺北市' election_year='2010' %}" ><b>脫黨投票次數</b>(多&rarr;少)</a></li>
+                            <li><a href="{% url 'councilors:index' index='bills' county='臺北市' election_year='2010' %}" ><b>議案數</b>(多&rarr;少)</a></li>
                         </ul>
                         </li>
                         <li id="bills"><a href="{% url 'bills:bills' county='臺北市' index='normal' %}" >找議案</a></li>
                         <li id="votes" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">找表決<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                            <li id="votes"><a href="{% url 'votes:votes' county='臺北市' ad=11 index='normal' %}" >全部表決</a></li>
-                            <li id="votes"><a href="{% url 'votes:votes' county='臺北市' ad=11 index='conscience' %}" >有議員<b>脫黨</b>投票的表決</a></li>
+                            <li id="votes"><a href="{% url 'votes:votes' county='臺北市' election_year='2010' index='normal' %}" >全部表決</a></li>
+                            <li id="votes"><a href="{% url 'votes:votes' county='臺北市' election_year='2010' index='conscience' %}" >有議員<b>脫黨</b>投票的表決</a></li>
                             </ul>
                         </li>
                     </ul>

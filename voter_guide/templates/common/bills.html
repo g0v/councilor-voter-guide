@@ -19,7 +19,7 @@
             <td style="text-align:center; vertical-align:middle;">
                 {% with councilor=fragment.primary_proposer.0 %}
                 {% if councilor %}
-                    <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id ad=councilor.ad %}" rel="tooltip" title="{{ councilor.name }}的所有議案">{% include "common/name_color_by_party.html" %}</a>
+                    <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}" rel="tooltip" title="{{ councilor.name }}的所有議案">{% include "common/name_color_by_party.html" %}</a>
                 {% else %}
                     {{fragment.proposed_by}}
                 {% endif %}

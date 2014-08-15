@@ -9,7 +9,7 @@
 
 {% block right %}
     <div class="page-header text-center">
-        <h3>{{county}}<b>第{{ad}}屆</b>議員<small> {{ad|ad_year}}</small></h3>
+        <h3>{{county}} {{election_year|election_year_range}}</h3>
     {% include "common/highlight.html" with county=county ad=ad %}
     </div>
 

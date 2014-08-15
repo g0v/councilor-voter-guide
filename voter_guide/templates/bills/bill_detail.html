@@ -36,7 +36,7 @@
             <dd>
                 <ul class="inline">
                 {% for councilor in bill.sorted_proposer_set %}
-                    <li><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id ad=councilor.ad %}" rel="tooltip" title="{{councilor.name}}的所有議案">{% include "common/name_color_by_party.html" %}</a></li>
+                    <li><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}" rel="tooltip" title="{{councilor.name}}的所有議案">{% include "common/name_color_by_party.html" %}</a></li>
                 {% empty %}
                     {{bill.proposed_by}}
                 {% endfor %}
