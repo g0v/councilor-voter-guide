@@ -41,6 +41,7 @@ def Councilors(councilor):
     councilor['former_names'] = '\n'.join(councilor['former_names']) if councilor.has_key('former_names') else ''
     complement = {"birth": None}
     complement.update(councilor)
+    print complement
     c.execute('''
         INSERT INTO councilors_councilors(uid, name, birth, former_names)
         SELECT %(uid)s, %(name)s, %(birth)s, %(former_names)s

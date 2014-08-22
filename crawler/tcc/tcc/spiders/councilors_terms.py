@@ -59,6 +59,7 @@ class Spider(scrapy.Spider):
         item['county'] = '臺北市'
         image = sel.xpath('//table/tr/td/div[@class="aldermans_photo"]/img/@src').extract()[0]
         item['image'] = urljoin(response.url, urllib.quote(image.encode('utf8')))
+        item['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
         item['in_office'] = True
         nodes = sel.xpath('//table[@class="aldermans_information"]/tr')
         for node in nodes:
@@ -68,7 +69,7 @@ class Spider(scrapy.Spider):
                 item['gender'] = node.xpath('td/span/text()').re(u'[\s]*([\S]+)[\s]*')[0]
             if node.xpath('td/text()').re(u'出[\s]*生'):
                 birth = node.xpath('td/span/text()').extract()
-                item['birth'] = GetDate(birth[0]) if birth else ''
+                item['birth'] = GetDate(birth[0]) if birth else None
             if node.xpath('td/text()').re(u'黨[\s]*籍'):
                 item['party'] = node.xpath('td/span/text()').re(u'[\s]*([\S]+)[\s]*')[0]
             if node.xpath('td/text()').re(u'學[\s]*歷'):
@@ -81,5 +82,4 @@ class Spider(scrapy.Spider):
                     item['term_end']['date'] = GetDate(node.xpath('../tr/td/span/text()').extract()[0])
                     item['term_end']['reason'] = '\n'.join(item['remark'])
                     item['in_office'] = False
-        item['links'] = {'council': response.url}
         return item

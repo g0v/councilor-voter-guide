@@ -59,6 +59,8 @@ class Spider(scrapy.Spider):
         item['name'] = re.sub(u'\(.*\)', '', header[0])
         item['title'] = header[1]
         item['in_office'] = True
+        item['term_start'] = '%s-12-25' % item['election_year']
+        item['term_end'] = {'date': '2014-12-25'}
         item['contact_details'] = []
         item['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
         nodes = sel.xpath('//table/tr/td')
