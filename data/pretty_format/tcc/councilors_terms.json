@@ -1,89 +1,5 @@
 [
     {
-        "birth": "1943-12-17", 
-        "county": "臺北市", 
-        "education": [
-            "臺灣省立體專。"
-        ], 
-        "election_year": "1969", 
-        "experience": [
-            "教員、組長。"
-        ], 
-        "gender": "女", 
-        "image": "http://www.tcc.gov.tw/../upload/photo/%E9%AB%98%E6%83%A0%E5%AD%9009.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1879&d=431217&n=%E9%AB%98%E6%83%A0%E5%AD%90"
-            }
-        ], 
-        "name": "高惠子", 
-        "party": "中國國民黨", 
-        "remark": [], 
-        "term_end": {
-            "date": "1973-12-25"
-        }, 
-        "term_start": "1969-12-25", 
-        "title": "議員"
-    }, 
-    {
-        "birth": "1926-04-03", 
-        "county": "臺北市", 
-        "education": [
-            "江蘇省立江蘇學院政治系。"
-        ], 
-        "election_year": "1969", 
-        "experience": [
-            "教員、常務監事、理事、委員、臺北市省轄市議會第六屆以及臨時市議會議員。"
-        ], 
-        "gender": "男", 
-        "image": "http://www.tcc.gov.tw/../upload/photo/%E8%8D%8A%E9%B3%B3%E5%B4%9709.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1611&d=260403&n=%E8%8D%8A%E9%B3%B3%E5%B4%97"
-            }
-        ], 
-        "name": "荊鳳崗", 
-        "party": "中國國民黨", 
-        "remark": [], 
-        "term_end": {
-            "date": "1973-12-25"
-        }, 
-        "term_start": "1969-12-25", 
-        "title": "議員"
-    }, 
-    {
-        "birth": "1921-11-10", 
-        "county": "臺北市", 
-        "education": [
-            "上海法政學院法律系、高等考試及格。"
-        ], 
-        "election_year": "1969", 
-        "experience": [
-            "教授、校長、理事長、委員、臺北市省轄市議會第六屆以及臨時市議會議員。"
-        ], 
-        "gender": "男", 
-        "image": "http://www.tcc.gov.tw/../upload/photo/%E5%AD%AB09.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1878&d=211110&n=%E5%AD%AB%E9%B3%B4"
-            }
-        ], 
-        "name": "孫鳴", 
-        "party": "中國國民黨", 
-        "remark": [], 
-        "term_end": {
-            "date": "1973-12-25"
-        }, 
-        "term_start": "1969-12-25", 
-        "title": "議員"
-    }, 
-    {
         "birth": "1912-02-02", 
         "county": "臺北市", 
         "education": [
@@ -159,6 +75,90 @@
             }
         ], 
         "name": "林穆燦", 
+        "party": "中國國民黨", 
+        "remark": [], 
+        "term_end": {
+            "date": "1973-12-25"
+        }, 
+        "term_start": "1969-12-25", 
+        "title": "議員"
+    }, 
+    {
+        "birth": "1925-08-07", 
+        "county": "臺北市", 
+        "education": [
+            "山東省濰縣縣立中學高級部。"
+        ], 
+        "election_year": "1969", 
+        "experience": [
+            "委員、理事、理事長。"
+        ], 
+        "gender": "男", 
+        "image": "http://www.tcc.gov.tw/../upload/photo/%E6%9E%97%E6%A6%AE%E5%89%9B09.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1958&d=250807&n=%E6%9E%97%E6%A6%AE%E5%89%9B"
+            }
+        ], 
+        "name": "林榮剛", 
+        "party": "中國國民黨", 
+        "remark": [], 
+        "term_end": {
+            "date": "1973-12-25"
+        }, 
+        "term_start": "1969-12-25", 
+        "title": "議員"
+    }, 
+    {
+        "birth": "1937-12-06", 
+        "county": "臺北市", 
+        "education": [
+            "中興大學、夏威夷大學。"
+        ], 
+        "election_year": "1969", 
+        "experience": [
+            "會長、中隊長、委員、常委、董事長、總經理。"
+        ], 
+        "gender": "男", 
+        "image": "http://www.tcc.gov.tw/../upload/photo/%E6%9E%97%E7%BE%A9%E7%9B%9B09.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1610&d=371206&n=%E6%9E%97%E7%BE%A9%E7%9B%9B"
+            }
+        ], 
+        "name": "林義盛", 
+        "party": "中國國民黨", 
+        "remark": [], 
+        "term_end": {
+            "date": "1973-12-25"
+        }, 
+        "term_start": "1969-12-25", 
+        "title": "議員"
+    }, 
+    {
+        "birth": "1928-12-27", 
+        "county": "臺北市", 
+        "education": [
+            "師範大學、省訓團水利幹部研究班。"
+        ], 
+        "election_year": "1969", 
+        "experience": [
+            "教員、校長、副教授、工程師、會長、董事長。"
+        ], 
+        "gender": "男", 
+        "image": "http://www.tcc.gov.tw/../upload/photo/%E6%9E%97%E6%8C%AF%E6%B0%B809.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1567&d=281227&n=%E6%9E%97%E6%8C%AF%E6%B0%B8"
+            }
+        ], 
+        "name": "林振永", 
         "party": "中國國民黨", 
         "remark": [], 
         "term_end": {
@@ -2366,7 +2366,7 @@
             "970819判刑確定解職"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "2010-12-25", 
             "reason": "970819判刑確定解職"
         }, 
         "term_start": "2006-12-25", 
@@ -3072,7 +3072,7 @@
             "970819遞補市議員"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "2010-12-25", 
             "reason": "970819遞補市議員"
         }, 
         "term_start": "2006-12-25", 
@@ -3499,34 +3499,6 @@
         "title": "議員"
     }, 
     {
-        "birth": "1964-07-10", 
-        "county": "臺北市", 
-        "education": [
-            "政治大學新聞系、北一女中、仁愛國中、民權國小"
-        ], 
-        "election_year": "2006", 
-        "experience": [
-            "聯合報大台北中心主任、聯合報採訪中心副主任、聯合報採訪中心經濟組組長、聯合晚報經濟組組長、工商時報金融組記者"
-        ], 
-        "gender": "女", 
-        "image": "http://www.tcc.gov.tw/../upload/photo/%E7%8E%8B%E9%B4%BB%E8%96%87.JPG", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=2274&d=640710&n=%E7%8E%8B%E9%B4%BB%E8%96%87"
-            }
-        ], 
-        "name": "王鴻薇", 
-        "party": "新黨", 
-        "remark": [], 
-        "term_end": {
-            "date": "2010-12-25"
-        }, 
-        "term_start": "2006-12-25", 
-        "title": "議員"
-    }, 
-    {
         "birth": "1963-04-11", 
         "county": "臺北市", 
         "education": [
@@ -3547,6 +3519,34 @@
         ], 
         "name": "吳世正", 
         "party": "中國國民黨", 
+        "remark": [], 
+        "term_end": {
+            "date": "2010-12-25"
+        }, 
+        "term_start": "2006-12-25", 
+        "title": "議員"
+    }, 
+    {
+        "birth": "1964-07-10", 
+        "county": "臺北市", 
+        "education": [
+            "政治大學新聞系、北一女中、仁愛國中、民權國小"
+        ], 
+        "election_year": "2006", 
+        "experience": [
+            "聯合報大台北中心主任、聯合報採訪中心副主任、聯合報採訪中心經濟組組長、聯合晚報經濟組組長、工商時報金融組記者"
+        ], 
+        "gender": "女", 
+        "image": "http://www.tcc.gov.tw/../upload/photo/%E7%8E%8B%E9%B4%BB%E8%96%87.JPG", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=2274&d=640710&n=%E7%8E%8B%E9%B4%BB%E8%96%87"
+            }
+        ], 
+        "name": "王鴻薇", 
+        "party": "新黨", 
         "remark": [], 
         "term_end": {
             "date": "2010-12-25"
@@ -5103,7 +5103,7 @@
             "第九屆獲選為台北市議會副議長"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "2006-12-25", 
             "reason": "第九屆獲選為台北市議會副議長"
         }, 
         "term_start": "2002-12-25", 
@@ -5193,7 +5193,7 @@
             "其後退出新黨為無黨籍議員"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "2002-12-25", 
             "reason": "其後退出新黨為無黨籍議員"
         }, 
         "term_start": "1998-12-25", 
@@ -5983,7 +5983,7 @@
             "原為國民黨，其後於８９年３月３１日加入親民黨、９１年１月３１日參選第五屆立委並當選。９１年０２月０１日辭職轉任立法委員。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "2002-12-25", 
             "reason": "原為國民黨，其後於８９年３月３１日加入親民黨、９１年１月３１日參選第五屆立委並當選。９１年０２月０１日辭職轉任立法委員。"
         }, 
         "term_start": "1998-12-25", 
@@ -6555,7 +6555,7 @@
             "獲選為第八屆副議長"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "2002-12-25", 
             "reason": "獲選為第八屆副議長"
         }, 
         "term_start": "1998-12-25", 
@@ -6586,7 +6586,7 @@
             "第七屆臺北市議會副議長"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "2002-12-25", 
             "reason": "第七屆臺北市議會副議長"
         }, 
         "term_start": "1998-12-25", 
@@ -7320,7 +7320,7 @@
             "原為國民黨，於８９年３月３１日加入親民黨、９１年１月３１日參選第五屆立委並當選。９１年０２月０１日辭職轉任立法委員。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1998-12-25", 
             "reason": "原為國民黨，於８９年３月３１日加入親民黨、９１年１月３１日參選第五屆立委並當選。９１年０２月０１日辭職轉任立法委員。"
         }, 
         "term_start": "1994-12-25", 
@@ -7435,7 +7435,7 @@
             "原為國民黨，其後加入親民黨。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1998-12-25", 
             "reason": "原為國民黨，其後加入親民黨。"
         }, 
         "term_start": "1994-12-25", 
@@ -7665,7 +7665,7 @@
             "第三、四屆臺北市議員。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1998-12-25", 
             "reason": "第三、四屆臺北市議員。"
         }, 
         "term_start": "1994-12-25", 
@@ -7724,7 +7724,7 @@
             "臺北市直轄市議會第六屆議員。民國88年當選第四屆立法委員，連任第五屆立委，其後擔任行政院發言人職務，乙級行政院秘書長、總統府副秘書長、代理總統府副秘書長要職。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1998-12-25", 
             "reason": "臺北市直轄市議會第六屆議員。民國88年當選第四屆立法委員，連任第五屆立委，其後擔任行政院發言人職務，乙級行政院秘書長、總統府副秘書長、代理總統府副秘書長要職。"
         }, 
         "term_start": "1994-12-25", 
@@ -7790,34 +7790,6 @@
         "title": "議員"
     }, 
     {
-        "birth": "1962-08-22", 
-        "county": "臺北市", 
-        "education": [
-            "嘉義中學畢業、臺灣大學社會系畢業、臺灣大學社會研究所碩士。"
-        ], 
-        "election_year": "1994", 
-        "experience": [
-            "一九八三黨外雜誌「臺灣潮流」、「臺灣廣場」編輯。中研院民族所參與「臺灣社會變遷調查計畫」。一九八九台大研究生協會副主席。李逸洋競選市議員副總幹事。新國家連線「臺灣共和國憲法草案」執行秘書。一九九一勞工陣線研究發展部主任。「敬老年金」聯盟臺北分會執行長。"
-        ], 
-        "gender": "男", 
-        "image": "http://www.tcc.gov.tw/../upload/photo/%E6%9D%8E%E5%BB%BA%E6%98%8C15.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1504&d=620822&n=%E6%9D%8E%E5%BB%BA%E6%98%8C"
-            }
-        ], 
-        "name": "李建昌", 
-        "party": "民主進步黨", 
-        "remark": [], 
-        "term_end": {
-            "date": "1998-12-25"
-        }, 
-        "term_start": "1994-12-25", 
-        "title": "議員"
-    }, 
-    {
         "birth": "1955-06-28", 
         "county": "臺北市", 
         "education": [
@@ -7842,8 +7814,36 @@
             "民國86年任內轉任臺北市政府民政局長，其後任內政部政務次長、人事行政局長、內政部長（民９５年）等職務。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1998-12-25", 
             "reason": "民國86年任內轉任臺北市政府民政局長，其後任內政部政務次長、人事行政局長、內政部長（民９５年）等職務。"
+        }, 
+        "term_start": "1994-12-25", 
+        "title": "議員"
+    }, 
+    {
+        "birth": "1962-08-22", 
+        "county": "臺北市", 
+        "education": [
+            "嘉義中學畢業、臺灣大學社會系畢業、臺灣大學社會研究所碩士。"
+        ], 
+        "election_year": "1994", 
+        "experience": [
+            "一九八三黨外雜誌「臺灣潮流」、「臺灣廣場」編輯。中研院民族所參與「臺灣社會變遷調查計畫」。一九八九台大研究生協會副主席。李逸洋競選市議員副總幹事。新國家連線「臺灣共和國憲法草案」執行秘書。一九九一勞工陣線研究發展部主任。「敬老年金」聯盟臺北分會執行長。"
+        ], 
+        "gender": "男", 
+        "image": "http://www.tcc.gov.tw/../upload/photo/%E6%9D%8E%E5%BB%BA%E6%98%8C15.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1504&d=620822&n=%E6%9D%8E%E5%BB%BA%E6%98%8C"
+            }
+        ], 
+        "name": "李建昌", 
+        "party": "民主進步黨", 
+        "remark": [], 
+        "term_end": {
+            "date": "1998-12-25"
         }, 
         "term_start": "1994-12-25", 
         "title": "議員"
@@ -7901,7 +7901,7 @@
             "其後退出新黨為無黨籍議員"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1998-12-25", 
             "reason": "其後退出新黨為無黨籍議員"
         }, 
         "term_start": "1994-12-25", 
@@ -8044,7 +8044,7 @@
             "其後轉任第4、5屆不分區立法委員，並擔任國民黨組發會主委。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1998-12-25", 
             "reason": "其後轉任第4、5屆不分區立法委員，並擔任國民黨組發會主委。"
         }, 
         "term_start": "1994-12-25", 
@@ -8190,7 +8190,7 @@
             "於82年1月任內因病亡故。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1994-12-25", 
             "reason": "於82年1月任內因病亡故。"
         }, 
         "term_start": "1989-12-25", 
@@ -8924,7 +8924,7 @@
             "原為國民黨，其後加入親民黨。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1994-12-25", 
             "reason": "原為國民黨，其後加入親民黨。"
         }, 
         "term_start": "1989-12-25", 
@@ -9745,7 +9745,7 @@
             "原為國民黨，其後加入新黨。1993年8月與王建、郁慕明等人成立新黨。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1989-12-25", 
             "reason": "原為國民黨，其後加入新黨。1993年8月與王建、郁慕明等人成立新黨。"
         }, 
         "term_start": "1985-12-25", 
@@ -10284,34 +10284,6 @@
         "title": "議員"
     }, 
     {
-        "birth": "1938-07-22", 
-        "county": "臺北市", 
-        "education": [
-            "東海高中畢業。"
-        ], 
-        "election_year": "1985", 
-        "experience": [
-            "工人、推銷員、攤販、計程車司機、臺北市直轄市議會第三、四屆議員、美麗島雜誌社社務委員。"
-        ], 
-        "gender": "男", 
-        "image": "http://www.tcc.gov.tw/../upload/photo/%E5%BA%B7%E6%B0%B4%E6%9C%A813.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1461&d=380722&n=%E5%BA%B7%E6%B0%B4%E6%9C%A8"
-            }
-        ], 
-        "name": "康水木", 
-        "party": "民主進步黨", 
-        "remark": [], 
-        "term_end": {
-            "date": "1989-12-25"
-        }, 
-        "term_start": "1985-12-25", 
-        "title": "議員"
-    }, 
-    {
         "birth": "1940-07-12", 
         "county": "臺北市", 
         "education": [
@@ -10332,6 +10304,34 @@
         ], 
         "name": "張元成", 
         "party": "中國國民黨", 
+        "remark": [], 
+        "term_end": {
+            "date": "1989-12-25"
+        }, 
+        "term_start": "1985-12-25", 
+        "title": "議員"
+    }, 
+    {
+        "birth": "1938-07-22", 
+        "county": "臺北市", 
+        "education": [
+            "東海高中畢業。"
+        ], 
+        "election_year": "1985", 
+        "experience": [
+            "工人、推銷員、攤販、計程車司機、臺北市直轄市議會第三、四屆議員、美麗島雜誌社社務委員。"
+        ], 
+        "gender": "男", 
+        "image": "http://www.tcc.gov.tw/../upload/photo/%E5%BA%B7%E6%B0%B4%E6%9C%A813.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1461&d=380722&n=%E5%BA%B7%E6%B0%B4%E6%9C%A8"
+            }
+        ], 
+        "name": "康水木", 
+        "party": "民主進步黨", 
         "remark": [], 
         "term_end": {
             "date": "1989-12-25"
@@ -10476,7 +10476,7 @@
             "原為國民黨，新黨成立後加入新黨。1993年8月與王建、趙少康等人成立新黨。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1989-12-25", 
             "reason": "原為國民黨，新黨成立後加入新黨。1993年8月與王建、趙少康等人成立新黨。"
         }, 
         "term_start": "1985-12-25", 
@@ -10871,7 +10871,7 @@
             "民國七十八年六月一日榮任交通部長，辭議員職。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1989-12-25", 
             "reason": "民國七十八年六月一日榮任交通部長，辭議員職。"
         }, 
         "term_start": "1985-12-25", 
@@ -11154,7 +11154,7 @@
             "原為國民黨，其後加入新黨。1993年8月與王建、郁慕明等人成立新黨。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1985-12-25", 
             "reason": "原為國民黨，其後加入新黨。1993年8月與王建、郁慕明等人成立新黨。"
         }, 
         "term_start": "1981-12-25", 
@@ -11773,7 +11773,7 @@
             "原為國民黨，新黨成立後加入新黨。1993年8月與王建、趙少康等人成立新黨。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1985-12-25", 
             "reason": "原為國民黨，新黨成立後加入新黨。1993年8月與王建、趙少康等人成立新黨。"
         }, 
         "term_start": "1981-12-25", 
@@ -12252,7 +12252,7 @@
             "第四屆獲選為副議長。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1985-12-25", 
             "reason": "第四屆獲選為副議長。"
         }, 
         "term_start": "1981-12-25", 
@@ -12283,7 +12283,7 @@
             "民國七十八年六月一日榮任交通部長，辭議員職。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1985-12-25", 
             "reason": "民國七十八年六月一日榮任交通部長，辭議員職。"
         }, 
         "term_start": "1981-12-25", 
@@ -13658,7 +13658,7 @@
             "民國七十八年六月一日榮任交通部長，辭議員職。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1981-12-25", 
             "reason": "民國七十八年六月一日榮任交通部長，辭議員職。"
         }, 
         "term_start": "1977-12-25", 
@@ -15005,7 +15005,7 @@
             "民國七十八年六月一日榮任交通部長，辭議員職。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1977-12-25", 
             "reason": "民國七十八年六月一日榮任交通部長，辭議員職。"
         }, 
         "term_start": "1973-12-25", 
@@ -15852,25 +15852,25 @@
         "title": "議員"
     }, 
     {
-        "birth": "1925-08-07", 
+        "birth": "1943-12-17", 
         "county": "臺北市", 
         "education": [
-            "山東省濰縣縣立中學高級部。"
+            "臺灣省立體專。"
         ], 
         "election_year": "1969", 
         "experience": [
-            "委員、理事、理事長。"
+            "教員、組長。"
         ], 
-        "gender": "男", 
-        "image": "http://www.tcc.gov.tw/../upload/photo/%E6%9E%97%E6%A6%AE%E5%89%9B09.jpg", 
+        "gender": "女", 
+        "image": "http://www.tcc.gov.tw/../upload/photo/%E9%AB%98%E6%83%A0%E5%AD%9009.jpg", 
         "in_office": true, 
         "links": [
             {
                 "note": "議會個人官網", 
-                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1958&d=250807&n=%E6%9E%97%E6%A6%AE%E5%89%9B"
+                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1879&d=431217&n=%E9%AB%98%E6%83%A0%E5%AD%90"
             }
         ], 
-        "name": "林榮剛", 
+        "name": "高惠子", 
         "party": "中國國民黨", 
         "remark": [], 
         "term_end": {
@@ -15880,25 +15880,25 @@
         "title": "議員"
     }, 
     {
-        "birth": "1937-12-06", 
+        "birth": "1926-04-03", 
         "county": "臺北市", 
         "education": [
-            "中興大學、夏威夷大學。"
+            "江蘇省立江蘇學院政治系。"
         ], 
         "election_year": "1969", 
         "experience": [
-            "會長、中隊長、委員、常委、董事長、總經理。"
+            "教員、常務監事、理事、委員、臺北市省轄市議會第六屆以及臨時市議會議員。"
         ], 
         "gender": "男", 
-        "image": "http://www.tcc.gov.tw/../upload/photo/%E6%9E%97%E7%BE%A9%E7%9B%9B09.jpg", 
+        "image": "http://www.tcc.gov.tw/../upload/photo/%E8%8D%8A%E9%B3%B3%E5%B4%9709.jpg", 
         "in_office": true, 
         "links": [
             {
                 "note": "議會個人官網", 
-                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1610&d=371206&n=%E6%9E%97%E7%BE%A9%E7%9B%9B"
+                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1611&d=260403&n=%E8%8D%8A%E9%B3%B3%E5%B4%97"
             }
         ], 
-        "name": "林義盛", 
+        "name": "荊鳳崗", 
         "party": "中國國民黨", 
         "remark": [], 
         "term_end": {
@@ -15908,25 +15908,25 @@
         "title": "議員"
     }, 
     {
-        "birth": "1928-12-27", 
+        "birth": "1921-11-10", 
         "county": "臺北市", 
         "education": [
-            "師範大學、省訓團水利幹部研究班。"
+            "上海法政學院法律系、高等考試及格。"
         ], 
         "election_year": "1969", 
         "experience": [
-            "教員、校長、副教授、工程師、會長、董事長。"
+            "教授、校長、理事長、委員、臺北市省轄市議會第六屆以及臨時市議會議員。"
         ], 
         "gender": "男", 
-        "image": "http://www.tcc.gov.tw/../upload/photo/%E6%9E%97%E6%8C%AF%E6%B0%B809.jpg", 
+        "image": "http://www.tcc.gov.tw/../upload/photo/%E5%AD%AB09.jpg", 
         "in_office": true, 
         "links": [
             {
                 "note": "議會個人官網", 
-                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1567&d=281227&n=%E6%9E%97%E6%8C%AF%E6%B0%B8"
+                "url": "http://www.tcc.gov.tw/Councilor_Content_All.aspx?s=1878&d=211110&n=%E5%AD%AB%E9%B3%B4"
             }
         ], 
-        "name": "林振永", 
+        "name": "孫鳴", 
         "party": "中國國民黨", 
         "remark": [], 
         "term_end": {
@@ -16156,7 +16156,7 @@
             "民國七十八年六月一日榮任交通部長，辭議員職。"
         ], 
         "term_end": {
-            "date": null, 
+            "date": "1973-12-25", 
             "reason": "民國七十八年六月一日榮任交通部長，辭議員職。"
         }, 
         "term_start": "1969-12-25", 

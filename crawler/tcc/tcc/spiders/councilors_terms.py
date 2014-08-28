@@ -79,7 +79,7 @@ class Spider(scrapy.Spider):
             if node.xpath('th/text()').re(u'備[\s]*註'):
                 item['remark'] = node.xpath('../tr/td/span/text()').extract()
                 if item['remark']:
-                    item['term_end']['date'] = GetDate(node.xpath('../tr/td/span/text()').extract()[0])
+                    item['term_end']['date'] = GetDate(node.xpath('../tr/td/span/text()').extract()[0]) or item['term_end']['date']
                     item['term_end']['reason'] = '\n'.join(item['remark'])
                     item['in_office'] = False
         return item

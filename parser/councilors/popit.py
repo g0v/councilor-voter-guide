@@ -2,10 +2,8 @@
 #coding:UTF-8
 import sys
 sys.path.append('../')
-import json
 import psycopg2
 import requests
-import subprocess
 import db_settings
 import local_settings
 
@@ -22,46 +20,61 @@ def persons():
         SELECT uid as id, name, birth as birth_date
         FROM councilors_councilors
     ''')
-    return [desc[0] for desc in c.description], c.fetchall()
+    return c.fetchall()
 
 def each_terms():
     c.execute('''
-        SELECT councilor_id as person_id, election_year, name, gender, party, title as role, constituency, county, district, in_office, contact_details, term_start as start_date, cast(term_end::json->>'date' as date) as end_date, education, experience, remark, image, links, platform, param
+        SELECT councilor_id as person_id, election_year, name, gender, party, title as role, constituency, county, district, in_office, contact_details as contact, term_start as start_date, cast(term_end::json->>'date' as date) as end_date, education, experience, remark, image, platform, param
         FROM councilors_councilorsdetail
+        where contact_details is not null
     ''')
-    return [desc[0] for desc in c.description], c.fetchall()
+    return c.fetchall()
 
 conn = db_settings.con()
-c = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-site_name = 'test-tw'
+c = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+site_name = 'taiwan'
 organizations_id = {}
-for county in counties():
-    organization = '%s議會' % county[0]
+
+# Get the id of city council if exist, if not, create it
+for row in counties():
+    organization = '%s議會' % row['county']
     r = requests.get('http://%s.popit.mysociety.org/api/v0.1/search/organizations?q=name:"%s"' % (site_name, organization))
-    if r.json()['result']:
-        organizations_id[county[0]] = r.json()['result'][0]['id']
-    else:
-        r = requests.post('http://%s.popit.mysociety.org/api/v0.1/organizations/' % site_name, data={'name': organization}, auth=(local_settings.EMAIL, local_settings.PASSWORD))
-        organizations_id[county[0]] = r.json()['result']['id']
-
-columns, persons = persons()
-for person in persons:
-    break
-    r = requests.get('http://%s.popit.mysociety.org/api/v0.1/search/persons?q=id:"%s"' % (site_name, person['id']))
-    if not r.json()['result']:
-        r = requests.post('http://%s.popit.mysociety.org/api/v0.1/persons/' % site_name, data=dict(zip(columns, person)), auth=(local_settings.EMAIL, local_settings.PASSWORD))
-        print r.text
-        print 'person'
-
-columns, terms = each_terms()
-for term in terms:
-    if term['start_date'] and term['end_date']:
-        r = requests.get('http://%s.popit.mysociety.org/api/v0.1/search/memberships?q=person_id:"%s" AND organization_id:"%s" AND start_date:"%s" AND end_date:"%s"' % (site_name, term['person_id'], organizations_id[term['county']], term['start_date'], term['end_date']))
-        print r.text
-        print r.status_code
-        if not r.json()['result']:
-            payload = dict(zip(columns, term))
-            payload.pop('links')
-            payload['organization_id'] = organizations_id[term['county']]
-            r = requests.post('http://%s.popit.mysociety.org/api/v0.1/memberships/' % site_name, data=payload, auth=(local_settings.EMAIL, local_settings.PASSWORD))
+    print r.text
+    if r.status_code == 200:
+        if r.json()['result']:
+            organizations_id[row['county']] = r.json()['result'][0]['id']
+        else:
+            r = requests.post('http://%s.popit.mysociety.org/api/v0.1/organizations/' % site_name, data={'name': organization}, auth=(local_settings.EMAIL, local_settings.PASSWORD))
+            organizations_id[row['county']] = r.json()['result']['id']
             print r.text
+
+# Create person if not exist
+for person in persons():
+    break
+    print person
+    r = requests.get('http://%s.popit.mysociety.org/api/v0.1/search/persons?q=id:"%s"' % (site_name, person['id']))
+    print r.text
+    if r.status_code == 200:
+        if not r.json()['result']:
+            r = requests.post('http://%s.popit.mysociety.org/api/v0.1/persons/' % site_name, data=person, auth=(local_settings.EMAIL, local_settings.PASSWORD))
+            print r.text
+        else:
+            r = requests.put('http://%s.popit.mysociety.org/api/v0.1/persons/%s' % (site_name, r.json()['result'][0]['id']), data=person, auth=(local_settings.EMAIL, local_settings.PASSWORD))
+            print r.text
+
+# Create the memberships if not exist, else update it
+for term in each_terms():
+    print term
+    if term['start_date']:
+        r = requests.get('http://%s.popit.mysociety.org/api/v0.1/search/memberships?q=person_id:"%s" AND organization_id:"%s" AND start_date:"%s"' % (site_name, term['person_id'], organizations_id[term['county']], term['start_date']))
+        term['organization_id'] = organizations_id[term['county']]
+        print r.text
+        if r.status_code == 200:
+            if not r.json()['result']:
+                r = requests.post('http://%s.popit.mysociety.org/api/v0.1/memberships/' % site_name, data=term, auth=(local_settings.EMAIL, local_settings.PASSWORD))
+                print r.text
+            else:
+                r = requests.delete('http://%s.popit.mysociety.org/api/v0.1/memberships/%s' % (site_name, r.json()['result'][0]['id']), data=term, auth=(local_settings.EMAIL, local_settings.PASSWORD))
+                print r.text
+    else:
+        raw_input()
