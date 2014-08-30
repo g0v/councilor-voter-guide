@@ -16,7 +16,22 @@ apt-get install libxml2-dev libxslt1-dev python-dev libffi-dev
 pip install lxml
 pip install Scrapy
 ```
-
+After install scrapy, you can run commands below to test:
+```
+cd crawler/tcc
+scrapy crawl bills
+scrapy crawl councilors
+scrapy crawl councilors_terms
+scrapy crawl meeting
+```
+If you want to output json file:
+```
+cd crawler/tcc
+scrapy crawl bills -o bills.json -t json
+scrapy crawl councilors -o bills.json -t json
+scrapy crawl councilors_terms -o bills.json -t json
+scrapy crawl meeting -o bills.json -t json
+```
 
 ## For Website (Python/Django)
 
@@ -45,6 +60,7 @@ cd councilor-voter-guide/voter_guide/
 ## Start virtualenv and install packages         
 (if you don' mind packages installed into your local environment, just `pip install -r requirements.txt`)
 ```
+cd voter_guide
 virtualenv --no-site-packages venv      
 source venv/bin/activate        
 pip install -r requirements.txt     
