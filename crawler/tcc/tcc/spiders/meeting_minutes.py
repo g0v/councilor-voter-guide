@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
-import urllib
+import subprocess
 import scrapy
 from scrapy.http import Request, FormRequest
 from scrapy.selector import Selector
@@ -101,5 +101,6 @@ class Spider(scrapy.Spider):
             value = ref.get(take_first(node.xpath('th/text()').re(u'[\s]*([\S]+)[\s]*')))
             if value:
                 item[value['key']] = '%s%s' % (value.get('extra', ''), take_first(node.xpath(value['path']).re(u'[\s]*([\S]+)[\s]*')))
-        urllib.urlretrieve(item['download_url'], '../meeting_minutes/taipei/%s_%s.doc' % (item['sitting'], item['meeting']))
+        cmd = 'wget -c -O ../meeting_minutes/taipei/%s_%s.doc %s' % (item['sitting'], item['meeting'], item['download_url'])
+        retcode = subprocess.call(cmd, shell=True)
         return item

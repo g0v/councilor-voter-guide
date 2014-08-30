@@ -10,7 +10,7 @@ BOT_NAME = 'tcc'
 
 SPIDER_MODULES = ['tcc.spiders']
 NEWSPIDER_MODULE = 'tcc.spiders'
-LOG_FILE = 'log.txt'
+#LOG_FILE = 'log.txt'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'taipei (+http://www.yourdomain.com)'
