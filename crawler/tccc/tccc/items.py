@@ -49,6 +49,8 @@ class Bills(Item):
     execution = Field()
     remark = Field()
     links = Field()
+    petitioned_by = Field()
+    others = Field()
 
 class MeetingMinutes(Item):
     sitting = Field()
