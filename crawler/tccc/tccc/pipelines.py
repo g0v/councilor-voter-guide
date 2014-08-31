@@ -3,7 +3,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import json
-from scrapy.contrib.exporter import BaseItemExporter, JsonLinesItemExporter
+from scrapy.contrib.exporter import BaseItemExporter, JsonLinesItemExporter, JsonItemExporter
 
 
 class TccPipeline(object):
@@ -39,11 +39,15 @@ def encode_dict(data):
     return rv
 
 
-class UnicodeJsonLinesItemExporter(JsonLinesItemExporter):
+class UnicodeJsonItemExporter(JsonItemExporter):
     def __init__(self, file, **kwargs):
-        JsonLinesItemExporter.__init__(self, file, ensure_ascii=False, **kwargs)
+        JsonItemExporter.__init__(self, file, ensure_ascii=False, **kwargs)
 
     def export_item(self, item):
+        if self.first_item:
+            self.first_item = False
+        else:
+            self.file.write(',\n')
         itemdict = dict(self._get_serialized_fields(item))
         itemdict = encode_dict(itemdict)
-        self.file.write(self.encoder.encode(itemdict) + '\n')
+        self.file.write(self.encoder.encode(itemdict))

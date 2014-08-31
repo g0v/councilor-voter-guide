@@ -13,7 +13,7 @@ NEWSPIDER_MODULE = 'tccc.spiders'
 LOG_FILE = 'log.txt'
 
 FEED_EXPORTERS = {
-    'json': 'tccc.pipelines.UnicodeJsonLinesItemExporter',
+    'json': 'tccc.pipelines.UnicodeJsonItemExporter',
     }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
