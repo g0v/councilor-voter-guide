@@ -1,0 +1,20 @@
+# Scrapy settings for taipei project
+#
+# For simplicity, this file contains only the most important settings by
+# default. All the other settings are documented here:
+#
+#     http://doc.scrapy.org/en/latest/topics/settings.html
+#
+
+BOT_NAME = 'tccc'
+
+SPIDER_MODULES = ['tccc.spiders']
+NEWSPIDER_MODULE = 'tccc.spiders'
+LOG_FILE = 'log.txt'
+
+FEED_EXPORTERS = {
+    'json': 'tccc.pipelines.UnicodeJsonLinesItemExporter',
+    }
+
+# Crawl responsibly by identifying yourself (and your website) on the user-agent
+#USER_AGENT = 'taipei (+http://www.yourdomain.com)'
