@@ -10,6 +10,8 @@ BOT_NAME = 'kcc'
 
 SPIDER_MODULES = ['kcc.spiders']
 NEWSPIDER_MODULE = 'kcc.spiders'
+#LOG_FILE = 'log.txt'
+COOKIES_ENABLED = False
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'taipei (+http://www.yourdomain.com)'
