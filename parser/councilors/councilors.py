@@ -12,6 +12,18 @@ import db_settings
 import common
 
 
+def normalize_constituency(constituency):
+    match = re.search(u'第(?P<num>.+)選(?:舉)?區', constituency)
+    if not match:
+        return ''
+    ref = {u'一': 1, u'二': 2, u'三': 3, u'四': 4, u'五': 5, u'六': 6, u'七': 7, u'八': 8, u'九': 9, u'十': 10}
+    digits = re.findall(u'(一|二|三|四|五|六|七|八|九|十)', match.group('num'))
+    total, dec = 0, 1
+    for i in reversed(range(0, len(digits))):
+        total = total + int(ref.get(digits[i], 0)) * dec
+        dec = dec * 10
+    return total
+
 def uid(councilor):
     # same name and county different election_year first
     c.execute('''
@@ -68,6 +80,7 @@ def updateCouncilorsDetail(councilor):
         print councilor
         raw_input()
     complement.update(councilor)
+    complement['constituency'] = normalize_constituency(complement['constituency'])
     c.execute('''
         UPDATE councilors_councilorsdetail
         SET name = %(name)s, gender = %(gender)s, party = %(party)s, title = %(title)s, constituency = %(constituency)s, in_office = %(in_office)s, contact_details = %(contact_details)s, county = %(county)s, district = %(district)s, term_start = %(term_start)s, term_end = %(term_end)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s, platform = %(platform)s
@@ -101,6 +114,7 @@ for council in ['../../data/kcc/councilors_terms.json', '../../data/tcc/councilo
 for council in ['../../data/tcc/councilors.json']:
     print council
     dict_list = json.load(open(council))
+    print len(dict_list)
     for councilor in dict_list:
         councilor['uid'] = select_uid(councilor)
         updateCouncilorsDetail(councilor)

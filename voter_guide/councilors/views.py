@@ -83,9 +83,9 @@ def index(request, index, county, election_year):
         no_count_list = CouncilorsDetail.objects.filter(basic_query)\
                                                 .exclude(councilor_id__in=councilors.values_list('councilor_id', flat=True))
         return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'proposertype': proposertype, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'index': index})
-    if index == 'countys':
+    if index == 'counties':
         councilors = CouncilorsDetail.objects.filter(basic_query).order_by('district', 'party')
-        return render(request, 'councilors/index/countys.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'councilors': councilors, 'out_office': out_office, 'index': index})
+        return render(request, 'councilors/index/counties.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'councilors': councilors, 'out_office': out_office, 'index': index})
 
 def biller(request, councilor_id, election_year):
     proposertype = False
