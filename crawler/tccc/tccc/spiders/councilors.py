@@ -44,14 +44,28 @@ class Spider(scrapy.Spider):
 
     def parse(self, response):
         sel = Selector(response)
+        nodes = sel.xpath(u'//td/table/tbody/tr/td/a/img[contains(@title, "原住民")]')
+        for node in nodes:
+            district = node.xpath('@title').re(u'：(.+)')[0]
+            yield Request(self.base_url + node.xpath('../@href').extract()[0].strip(), callback=self.parse_profile, meta={'district': district})
         nodes = sel.xpath('//td/table/tbody/tr/td//a[contains(@href, "u_editor_v1.asp")]')
         for node in nodes:
-            text = get_extracted(node.xpath('text()')).strip()
-            if text:
-                href = get_extracted(node.xpath('@href'))
+            if node.xpath('img'):
+                continue
+            try:
+                district = node.xpath('..//text()').re(u'\((.+)\)')
+                if district:
+                   district = district[0].strip()
+                else:
+                   district = node.xpath('../..//text()').re(u'\((.+)\)')[0].strip()
+                href = node.xpath('@href').extract()[0].strip()
                 url = href if self.base_url in href else self.base_url + href
-                # print url
-                yield Request(url, callback=self.parse_profile)
+                yield Request(url, callback=self.parse_profile, meta={'district': district})
+            except Exception, e:
+                print e
+                print node.xpath('..//text()').re(u'\((.+)\)')
+                print node.xpath('..//text()').extract()
+                print node.xpath('@href').extract()[0]
 
     def append_contact(self, item, contact_type, label, value):
         item['contact_details'].append({'type': contact_type, 'label': label, 'value': value})
@@ -68,24 +82,21 @@ class Spider(scrapy.Spider):
         # print '#' * 50
         sel = Selector(response)
         item = Councilor()
+        item['county'] = u'臺中市'
+        item['district'] = response.request.meta['district']
+        item['image'] = get_extracted(sel.xpath(u'//img[contains(@alt, "照片")]/@src'))
+        item['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
+        item['in_office'] = True
         item['contact_details'] = []
-
-        image = get_extracted(sel.xpath(u'//img[contains(@alt, "照片")]/@src'))
         main_node = sel.xpath('//td[@class="C-tableA3"]/div')
         basic_info_node = main_node.xpath('table[1]/tbody/tr/td/table/tbody')
-
-        # print  basic_info_node
         for tr in basic_info_node.xpath('tr'):
             th = get_extracted(tr.xpath('th/*/text()')).strip()
             td = get_extracted(tr.xpath('td[1]/text()')).strip()
-            # print td, type(td) ,th
-            # if
-            # td = td.decode('utf-8')
-
             if th == u'姓名':
-                for title in [u'副議長', u'議長', u'議員']:
-                    td = td.rstrip(title).strip()
-                item['name'] = td
+                text = td.split()
+                item['name'] = text[0].rstrip(u'議員')
+                item['title'] = text[1] if len(text) > 1 else u'議員'
             elif th == u'政黨':
                 item['party'] = td
             elif th == u'屆別':
@@ -94,15 +105,7 @@ class Spider(scrapy.Spider):
                     Nth = match.group('Nth')
                     item['election_year'] = self.election_year_dict.get(Nth)
             elif th == u'選區':
-                match = re.search(u'第(?P<number>[0-9]*)選區', td, re.X)
-                chinese_number = [
-                    "", u"一", u"二", u"三", u"四", u"五", u"六", u"七", u"八", u"九", u"十",
-                    u"十一", u"十二", u"十三", u"十四", u"十五", u"十六", u"十七", u"十八", u"十九",
-                ]
-                if match:
-                    number = int(match.group('number'))
-                    if number < len(chinese_number):
-                        item['constituency'] = u'臺中市第%s選區' % chinese_number[number]
+                item['constituency'] = td
             elif th == u'服務處地址':
                 self.append_contact(item, 'address', u'服務處地址', td)
             elif th == u'服務處電話':
@@ -114,9 +117,9 @@ class Spider(scrapy.Spider):
             elif th == u'e-mail':
                 emails = tr.xpath('td/a/text()').extract()
                 self.append_contact_list(item, 'email', u'e-mail', emails)
-
         item['education'] = self.extract_and_strip(main_node.xpath('table[2]/tbody/tr[3]/td/ul/li/text()'))
         item['experience'] = self.extract_and_strip(main_node.xpath('table[3]/tbody/tr[3]/td/ul/li/text()'))
         item['platform'] = self.extract_and_strip(main_node.xpath('table[4]/tbody/tr[3]/td/ol/li/text()'))
-
+        item['term_start'] = '%s-12-25' % item['election_year']
+        item['term_end'] = {'date': '%d-12-25' % (int(item['election_year']) + 4)}
         return item

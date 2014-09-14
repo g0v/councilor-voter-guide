@@ -16,6 +16,10 @@ def normalize_constituency(constituency):
     match = re.search(u'第(?P<num>.+)選(?:舉)?區', constituency)
     if not match:
         return ''
+    try:
+        return int(match.group('num'))
+    except:
+        print match.group('num')
     ref = {u'一': 1, u'二': 2, u'三': 3, u'四': 4, u'五': 5, u'六': 6, u'七': 7, u'八': 8, u'九': 9, u'十': 10}
     digits = re.findall(u'(一|二|三|四|五|六|七|八|九|十)', match.group('num'))
     total, dec = 0, 1
@@ -24,7 +28,7 @@ def normalize_constituency(constituency):
         dec = dec * 10
     return total
 
-def uid(councilor):
+def get_or_create_uid(councilor):
     # same name and county different election_year first
     c.execute('''
         SELECT councilor_id
@@ -44,6 +48,7 @@ def uid(councilor):
     return r[0] if r else uuid.uuid4().hex
 
 def select_uid(councilor):
+    print councilor
     c.execute('''
         SELECT councilor_id
         FROM councilors_councilorsdetail
@@ -52,6 +57,8 @@ def select_uid(councilor):
     r = c.fetchone()
     if r:
         return r[0]
+    else:
+        return get_or_create_uid(councilor)
 
 def Councilors(councilor):
     councilor['former_names'] = '\n'.join(councilor['former_names']) if councilor.has_key('former_names') else ''
@@ -93,6 +100,7 @@ def insertCouncilorsDetail(councilor):
             councilor[key] = '\n'.join(councilor[key])
     complement = {"gender":'', "party":'', "contact_details":None, "title":'', "constituency":'', "county":'', "district":'', "in_office":True, "term_start":None, "term_end":{}, "education":None, "experience":None, "remark":None, "image":'', "links":None, "platform":''}
     complement.update(councilor)
+    complement['constituency'] = normalize_constituency(complement['constituency'])
     c.execute('''
         INSERT into councilors_councilorsdetail(councilor_id, election_year, name, gender, party, title, constituency, county, district, in_office, contact_details, term_start, term_end, education, experience, remark, image, links, platform)
         SELECT %(uid)s, %(election_year)s, %(name)s, %(gender)s, %(party)s, %(title)s, %(constituency)s, %(county)s, %(district)s, %(in_office)s, %(contact_details)s, %(term_start)s, %(term_end)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s
@@ -102,16 +110,16 @@ def insertCouncilorsDetail(councilor):
 conn = db_settings.con()
 c = conn.cursor()
 
-for council in ['../../data/kcc/councilors_terms.json', '../../data/tcc/councilors_terms.json']:
+for council in ['../../data/tccc/councilors.json', '../../data/kcc/councilors_terms.json', '../../data/tcc/councilors_terms.json']:
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
-        councilor['uid'] = uid(councilor)
+        councilor['uid'] = select_uid(councilor)
         Councilors(councilor)
         insertCouncilorsDetail(councilor)
     conn.commit()
 
-for council in ['../../data/tcc/councilors.json']:
+for council in ['../../data/tccc/councilors.json', '../../data/tcc/councilors.json']:
     print council
     dict_list = json.load(open(council))
     print len(dict_list)
