@@ -85,36 +85,36 @@ class Spider(scrapy.Spider):
             tds = tr.xpath('td')
             for i in range(0, len(tds), 2):
                 if tds[i].xpath('text()')[0].re(u'類別'):
-                    item['category'] = tds[i+1].xpath('text()').extract()[0].rstrip().lstrip()
+                    item['category'] = tds[i+1].xpath('text()').extract()[0].strip()
                 elif tds[i].xpath('text()')[0].re(u'提案(人|單位)'):
-                    item['proposed_by'] = tds[i+1].xpath('text()').extract()[0].rstrip().lstrip()
+                    item['proposed_by'] = tds[i+1].xpath('text()').extract()[0].strip()
                 elif tds[i].xpath('text()')[0].re(u'承辦單位'):
-                    item['brought_by'] = tds[i+1].xpath('text()').extract()[0].rstrip().lstrip()
+                    item['brought_by'] = tds[i+1].xpath('text()').extract()[0].strip()
                 elif tds[i].xpath('text()')[0].re(u'相關單位'):
-                    item['related_units'] = tds[i+1].xpath('text()').extract()[0].rstrip().lstrip()
+                    item['related_units'] = tds[i+1].xpath('text()').extract()[0].strip()
                 elif tds[i].xpath('text()')[0].re(u'連署人'):
                     item['petitioned_by'] = ''.join([re.sub('\s', '', x) for x in tds[i+1].xpath('text()').extract()])
                 elif tds[i].xpath('text()')[0].re(u'案由'):
-                    item['abstract'] = tds[i+1].xpath('text()').extract()[0].rstrip().lstrip()
+                    item['abstract'] = tds[i+1].xpath('text()').extract()[0].strip()
                 elif tds[i].xpath('text()')[0].re(u'說明'):
                     if tds[i+1].xpath('p'):
                         item['description'] = '\n'.join([re.sub('\s', '', x) for x in tds[i+1].xpath('p/text()').extract()])
                     elif tds[i+1].xpath('table'):
                         item['description'] = '\n'.join([re.sub('\s', '', x) for x in tds[i+1].xpath('table/tbody/tr/td/p/text()').extract()])
                 elif tds[i].xpath('text()')[0].re(u'辦法'):
-                    item['methods'] = tds[i+1].xpath('text()').extract()[0].rstrip().lstrip()
+                    item['methods'] = tds[i+1].xpath('text()').extract()[0].strip()
                 elif tds[i].xpath('text()')[0].re(u'備註'):
-                    item['remark'] = tds[i+1].xpath('text()').extract()[0].rstrip().lstrip()
+                    item['remark'] = tds[i+1].xpath('text()').extract()[0].strip()
                 elif tds[i].xpath('text()')[0].re(u'一讀\(交付\)'):
                     d = dict(zip(['resolution', 'date'], tds[i+1].xpath('span/text()').extract()))
                     d['motion'] = u'一讀(交付)'
                     motions.append(d)
                 elif tds[i].xpath('text()')[0].re(u'委員會審查意見'):
-                    motions.append(dict(zip(['motion', 'resolution', 'date'], [u'委員會審查意見', tds[i+1].xpath('text()').extract()[0].rstrip().lstrip(), tds[i+1].xpath('span/text()').extract()[0]])))
+                    motions.append(dict(zip(['motion', 'resolution', 'date'], [u'委員會審查意見', tds[i+1].xpath('text()').extract()[0].strip(), tds[i+1].xpath('span/text()').extract()[0]])))
                 elif tds[i].xpath('text()')[0].re(u'二讀決議'):
-                    motions.append(dict(zip(['motion', 'resolution', 'date'], [u'二讀決議', tds[i+1].xpath('text()').extract()[1].rstrip().lstrip(), tds[i+1].xpath('span/text()').extract()[0]])))
+                    motions.append(dict(zip(['motion', 'resolution', 'date'], [u'二讀決議', tds[i+1].xpath('text()').extract()[1].strip(), tds[i+1].xpath('span/text()').extract()[0]])))
                 elif tds[i].xpath('text()')[0].re(u'三讀決議'):
-                    motions.append(dict(zip(['motion', 'resolution', 'date'], [u'三讀決議', tds[i+1].xpath('text()').extract()[1].rstrip().lstrip(), tds[i+1].xpath('span/text()').extract()[0]])))
+                    motions.append(dict(zip(['motion', 'resolution', 'date'], [u'三讀決議', tds[i+1].xpath('text()').extract()[1].strip(), tds[i+1].xpath('span/text()').extract()[0]])))
         item['motions'] = motions
         item['links'] = response.url
         return item

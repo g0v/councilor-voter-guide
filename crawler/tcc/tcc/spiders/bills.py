@@ -22,6 +22,8 @@ class Spider(scrapy.Spider):
     name = "bills"
     allowed_domains = ["tccmis.tcc.gov.tw"]
     start_urls = ["http://tccmis.tcc.gov.tw/OM/OM_SearchList.asp",]
+    election_year = {1: '1969', 2: '1973', 3: '1977', 4: '1981', 5: '1985', 6: '1989', 7: '1994', 8: '1998', 9: '2002', 10: '2006', 11: '2010', 12: '2014'}
+    select_ad = 11
     download_delay = 0.5
 
     def start_requests(self):
@@ -30,7 +32,7 @@ class Spider(scrapy.Spider):
             'pagesize': u'20',
             'omastext': u'',
             'rdoDE': u'0',
-            'OmasDetr': u'11',
+            'OmasDetr': str(self.select_ad),
             'OmasDetp': u'',
             'OmasDetm': u'',
             'sDateY': u'',
@@ -50,6 +52,8 @@ class Spider(scrapy.Spider):
         for node in nodes:
             item = Bills()
             td = node.xpath('td/text()').extract()
+            item['election_year'] = self.election_year[self.select_ad]
+            item['county'] = u'臺北市'
             item['id'] = td[1].encode('latin1').decode('big5')
             item['type'] = ''.join(td[2].encode('latin1').decode('big5').split())
             item['category'] = td[3].encode('latin1').decode('big5')
@@ -61,42 +65,50 @@ class Spider(scrapy.Spider):
         sel = Selector(response)
         item = response.request.meta['item']
         nodes = sel.xpath('//div[@id="detail"]/table/tr')
-
+        motions, committee_motion, council_motion = [], {}, {}
         for node in nodes:
             if node.xpath('td/text()')[0].re(u'目前處理程序'):
                 item['last_action'] = node.xpath('td/text()').extract()[1]
-            if node.xpath('td/text()')[0].re(u'案由'):
+            elif node.xpath('td/text()')[0].re(u'案由'):
                 item['abstract'] = node.xpath('td/text()').extract()[1]
-            if node.xpath('td/text()')[0].re(u'提案人'):
+            elif node.xpath('td/text()')[0].re(u'提案人'):
                 item['proposed_by'] = node.xpath('td/div/text()').extract()[0].strip().split(u'、')
-            if node.xpath('td/text()')[0].re(u'召集人/委員'):
+            elif node.xpath('td/text()')[0].re(u'召集人/委員'):
                 item['proposed_by'] = node.xpath('td/text()').extract()[1].strip().split(u'、')
-            if node.xpath('td/text()')[0].re(u'議決會次'):
-                item['resolusion_date'] = GetDate(node.xpath('td/text()').extract()[1].split()[0])
-                item['resolusion_sitting'] = ''.join(node.xpath('td/text()').extract()[1].split()[1:])
-            if node.xpath('td/text()')[0].re(u'議決文'):
-                item['resolusion'] = node.xpath('td/text()').extract()[1]
-            if node.xpath('td/text()')[0].re(u'案(\s|　)+?號'):
+            elif node.xpath('td/text()')[0].re(u'議決會次'):
+                council_motion['motion'] = u'大會議決'
+                council_motion['date'] = GetDate(node.xpath('td/text()').extract()[1].split()[0])
+                council_motion['sitting'] = ''.join(node.xpath('td/text()').extract()[1].split()[1:])
+            elif node.xpath('td/text()')[0].re(u'議決文'):
+                council_motion['resolusion'] = node.xpath('td/text()').extract()[1]
+            elif node.xpath('td/text()')[0].re(u'案(\s|　)+?號'):
                 item['bill_no'] = node.xpath('td/text()').extract()[1].strip()
-            if node.xpath('td/text()')[0].re(u'來文文號'):
+            elif node.xpath('td/text()')[0].re(u'來文文號'):
                 td = node.xpath('td/text()').extract()[1].split()
-                item['intray_date'] = GetDate(td[0])
+                d = dict(zip(['motion', 'resolution', 'date'], [u'來文', None, GetDate(td[0])]))
                 if len(td) > 1:
-                    item['intray_no'] = td[1]
-            if node.xpath('td/text()')[0].re(u'收文日期'):
-                item['receipt_date'] = GetDate(node.xpath('td/text()').extract()[1])
-            if node.xpath('td/text()')[0].re(u'審查日期'):
-                item['examination_date'] = node.xpath('td/text()').extract()[1]
-            if node.xpath('td/text()')[0].re(u'審查意見'):
-                item['examination'] = '\n'.join(node.xpath('td/text()').extract()[1:])
-            if node.xpath('td/text()')[0].re(u'發文文號'):
+                    d['no'] = td[1]
+                motions.append(d)
+            elif node.xpath('td/text()')[0].re(u'收文日期'):
+                motions.append(dict(zip(['motion', 'resolution', 'date'], [u'收文', None, GetDate(node.xpath('td/text()').extract()[1])])))
+            elif node.xpath('td/text()')[0].re(u'審查日期'):
+                committee_motion['motion'] = u'委員會審查意見'
+                committee_motion['date'] = node.xpath('td/text()').extract()[1]
+            elif node.xpath('td/text()')[0].re(u'審查意見'):
+                committee_motion['resolution'] = '\n'.join(node.xpath('td/text()').extract()[1:])
+            elif node.xpath('td/text()')[0].re(u'發文文號'):
                 td = node.xpath('td/text()').extract()[1].split()
-                item['dispatch_date'] = GetDate(td[0])
+                d = dict(zip(['motion', 'resolution', 'date'], [u'發文', None, GetDate(td[0])]))
                 if len(td) > 1:
-                    item['dispatch_no'] = td[1]
-            if node.xpath('td/text()')[0].re(u'執行情形'):
+                    d['no'] = td[1]
+                motions.append(d)
+            elif node.xpath('td/text()')[0].re(u'執行情形'):
                 item['execution'] = node.xpath('td/text()').extract()[1]
-            if node.xpath('td/text()')[0].re(u'備[\s]*?註'):
+            elif node.xpath('td/text()')[0].re(u'備[\s]*?註'):
                 item['remark'] = '\n'.join(node.xpath('td/text()').extract()[1:])
+        for motion in [committee_motion, council_motion]:
+            if motion:
+                motions.append(motion)
+        item['motions'] = motions
         item['links'] = response.url
         return item

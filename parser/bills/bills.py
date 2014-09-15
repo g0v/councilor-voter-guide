@@ -9,19 +9,18 @@ import common
 
 
 def Bill(bill):
-
-    complement = {'type': '', 'category': '', 'abstract': '', 'last_action': '', 'proposed_by': '', 'committee': '', 'resolusion_date': '', 'resolusion_sitting': '', 'resolusion': '', 'bill_no': '', 'intray_date': '', 'intray_no': '', 'receipt_date': '', 'examination_date': '', 'examination': '', 'dispatch_no': '', 'dispatch_date': '', 'execution': '', 'remark': '', 'links': ''}
+    complement = {'type': '', 'category': '', 'abstract': '', 'description': '', 'methods': '', 'last_action': '', 'proposed_by': '', 'petitioned_by': '', 'bill_no': '', 'brought_by': '', 'related_units': '', 'committee': '', 'motions': None, 'execution': '', 'remark': '', 'links': ''}
     complement.update(bill)
     complement['proposed_by'] = ' '.join(complement['proposed_by'])
     c.execute('''
         UPDATE bills_bills
-        SET election_year = %(election_year)s, type = %(type)s, category = %(category)s, abstract = %(abstract)s, last_action = %(last_action)s, proposed_by = %(proposed_by)s, committee = %(committee)s, resolusion_date = %(resolusion_date)s, resolusion_sitting = %(resolusion_sitting)s, resolusion = %(resolusion)s, bill_no = %(bill_no)s, intray_date = %(intray_date)s, intray_no = %(intray_no)s, receipt_date = %(receipt_date)s, examination_date = %(examination_date)s, examination = %(examination)s, dispatch_no = %(dispatch_no)s, dispatch_date = %(dispatch_date)s, execution = %(execution)s, remark = %(remark)s, links = %(links)s
-        WHERE uid = %(id)s and county = %(county)s
+        SET election_year = %(election_year)s, county = %(county)s, type = %(type)s, category = %(category)s, abstract = %(abstract)s, description = %(description)s, methods = %(methods)s, last_action = %(last_action)s, proposed_by = %(proposed_by)s, petitioned_by = %(petitioned_by)s, brought_by = %(brought_by)s, related_units = %(related_units)s, committee = %(committee)s, motions = %(motions)s, execution = %(execution)s, bill_no = %(bill_no)s, remark = %(remark)s, links = %(links)s
+        WHERE uid = %(uid)s
     ''', complement)
     c.execute('''
-        INSERT into bills_bills(uid, election_year, county, type, category, abstract, last_action, proposed_by, committee, resolusion_date, resolusion_sitting, resolusion, bill_no, intray_date, intray_no, receipt_date, examination_date, examination, dispatch_no, dispatch_date, execution, remark, links)
-        SELECT %(id)s, %(election_year)s, %(county)s, %(type)s, %(category)s, %(abstract)s, %(last_action)s, %(proposed_by)s, %(committee)s, %(resolusion_date)s, %(resolusion_sitting)s, %(resolusion)s, %(bill_no)s, %(intray_date)s, %(intray_no)s, %(receipt_date)s, %(examination_date)s, %(examination)s, %(dispatch_no)s, %(dispatch_date)s, %(execution)s, %(remark)s, %(links)s
-        WHERE NOT EXISTS (SELECT 1 FROM bills_bills WHERE uid = %(id)s and county = %(county)s)
+        INSERT into bills_bills(uid, election_year, county, type, category, abstract, description, methods, last_action, proposed_by, petitioned_by, brought_by, related_units, committee, bill_no, motions, execution, remark, links)
+        SELECT %(uid)s, %(election_year)s, %(county)s, %(type)s, %(category)s, %(abstract)s, %(description)s, %(methods)s, %(last_action)s, %(proposed_by)s, %(petitioned_by)s, %(brought_by)s, %(related_units)s, %(committee)s, %(bill_no)s, %(motions)s, %(execution)s, %(remark)s, %(links)s
+        WHERE NOT EXISTS (SELECT 1 FROM bills_bills WHERE uid = %(uid)s)
     ''', complement)
 
 def CouncilorsBills(councilor_id, bill_id, priproposer, petition):
@@ -35,19 +34,19 @@ conn = db_settings.con()
 c = conn.cursor()
 #dict_c = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-election_year = '2010'
-county = u'臺北市'
-dict_list = json.load(open('../../data/tcc/bills-%s.json' % election_year))
-for bill in dict_list:
-    bill.update({'election_year': election_year, 'county': county})
-    Bill(bill)
-    priproposer = True
-    for name in bill['proposed_by']:
-        councilor_id = common.getDetailId(c, name, election_year, county)
-        if councilor_id:
-            CouncilorsBills(councilor_id, bill['id'], priproposer, None)
-        priproposer = False
-conn.commit()
+for council in ['../../data/tccc/bills.json', '../../data/tcc/bills.json']:
+    print council
+    dict_list = json.load(open(council))
+    for bill in dict_list:
+        bill.update({'uid': u'%s-%s' % (bill['county'], bill['id'])})
+        Bill(bill)
+        priproposer = True
+        for name in bill['proposed_by']:
+            councilor_id = common.getDetailId(c, name, bill['election_year'], bill['county'])
+            if councilor_id:
+                CouncilorsBills(councilor_id, bill['uid'], priproposer, None)
+            priproposer = False
+    conn.commit()
 print 'bills done'
 
 def bill_party_diversity(parties):
@@ -102,9 +101,10 @@ def distinct_party(election_year, county):
     ''', (election_year, county))
     return c.fetchall()
 
-parties = [x[0] for x in distinct_party(election_year, county)]
-bill_party_diversity(parties)
-for councilor_id in councilors(election_year, county):
-    personal_vector(parties, councilor_id)
-conn.commit()
+for election_year, county in [('2010', u'臺北市')]:
+    parties = [x[0] for x in distinct_party(election_year, county)]
+    bill_party_diversity(parties)
+    for councilor_id in councilors(election_year, county):
+        personal_vector(parties, councilor_id)
+    conn.commit()
 print 'bills diversity done'

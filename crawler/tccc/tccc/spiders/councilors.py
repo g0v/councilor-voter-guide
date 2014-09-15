@@ -54,10 +54,7 @@ class Spider(scrapy.Spider):
                 continue
             try:
                 district = node.xpath('..//text()').re(u'\((.+)\)')
-                if district:
-                   district = district[0].strip()
-                else:
-                   district = node.xpath('../..//text()').re(u'\((.+)\)')[0].strip()
+                district = district[0].strip() if district else node.xpath('../..//text()').re(u'\((.+)\)')[0].strip()
                 href = node.xpath('@href').extract()[0].strip()
                 url = href if self.base_url in href else self.base_url + href
                 yield Request(url, callback=self.parse_profile, meta={'district': district})

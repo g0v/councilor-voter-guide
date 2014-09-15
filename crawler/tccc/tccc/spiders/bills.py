@@ -48,59 +48,38 @@ class Spider(scrapy.Spider):
 
     def parse_profile(self, response):
         sel = Selector(response)
-
-        rows = sel.xpath('//*[@id="block"]/table//tr')
-        dic = {}
-        for row in rows:
-            cols = [
-                ' '.join([txt.strip() for txt in col.xpath('text()').extract()])
-                for col in row.xpath('td')]
-            for i in range(0, len(cols), 2):
-                if i + 1 >= len(cols):
-                    break
-
-                k = cols[i]
-                v = cols[i + 1]
-
-                if k:
-                    dic[k] = v
-
-        cate = dic.pop(u'審查會別 議案類別', None)
-        if cate:
-            cates = cate.split(' ')
-            dic[u'審查會別'] = cates[0]
-            dic[u'議案類別'] = cates[1]
-
         item = Bills()
-
-        field_map = {
-            u"案由": {'name': 'abstract'},
-            u"案號": {'name': 'bill_no'},
-            u"議案類別": {'name': 'category'},
-            u"連署人": {'name': 'petitioned_by'},
-            u"會次": {'name': 'resolusion_sitting'},
-            u"提案人": {'name': 'proposed_by'},
-            u"大會意見": {'name': 'resolusion'},
-            u"辦理情形": {'name': 'execution'},
-            # u"理由": {'name': ''},
-            # u"審查會別": {'name': ''},
-            # u"分組審查意見": {'name': ''},
-            # u"地址": {'name': ''},
-            # u"工務建設委員會": {'name': ''},
-            # u"提案單位": {'name': ''},
-            # u"辦法": {'name': ''},
-        }
-
-        others = {}
-        for k_chinese, v in dic.iteritems():
-            info = field_map.get(k_chinese)
-            if info:
-                k = info['name']
-                item[k] = v
-            else:
-                others[k_chinese] = v
-
-        item['others'] = others
+        item['election_year'] = u'2010'
+        item['county'] = u'臺中市'
+        item['id'] = '-'.join(re.findall(u'=(\d+)', response.url))
         item['links'] = response.url
-
+        trs = sel.xpath('//*[@id="block"]/table//tr')
+        motions = []
+        for tr in trs:
+            tds = tr.xpath('td')
+            for i in range(0, len(tds), 2):
+                if tds[i].xpath('text()').re(u'會次'):
+                    item['resolusion_sitting'] = tds[i+1].xpath('text()').extract()[0].strip()
+                elif tds[i].xpath('text()').re(u'審查會別'):
+                    item['committee'] = tds[i+1].xpath('text()').extract()[0].strip()
+                    item['category'] = tds[i+1].xpath('text()').extract()[1].strip()
+                elif tds[i].xpath('text()').re(u'提案人'):
+                    item['proposed_by'] = tds[i+1].xpath('text()').extract()[0].strip().split(u'、')
+                elif tds[i].xpath('text()').re(u'連署人'):
+                    item['petitioned_by'] = tds[i+1].xpath('text()').extract()[0].strip().split(u'、')
+                elif tds[i].xpath('text()').re(u'案號'):
+                    item['bill_no'] = tds[i+1].xpath('text()').extract()[0].strip()
+                elif tds[i].xpath('text()').re(u'案由'):
+                    item['abstract'] = tds[i+1].xpath('text()').extract()[0].strip()
+                elif tds[i].xpath('text()').re(u'理由'):
+                    item['description'] = '\n'.join([x.strip() for x in tds[i+1].xpath('text() | p/text()').extract()])
+                elif tds[i].xpath('text()').re(u'辦法'):
+                    item['methods'] = '\n'.join([x.strip() for x in tds[i+1].xpath('text() | p/text()').extract()])
+                elif tds[i].xpath('text()').re(u'分組審查意見'):
+                    motions.append(dict(zip(['motion', 'resolution', 'date'], [u'分組審查意見', '\n'.join([x.strip() for x in tds[i+1].xpath('text() | div/font/text() | p/span/text()').extract()]), None])))
+                elif tds[i].xpath('text()').re(u'大會意見'):
+                    motions.append(dict(zip(['motion', 'resolution', 'date'], [u'大會意見', '\n'.join([x.strip() for x in tds[i+1].xpath('text() | p/text()').extract()]), None])))
+                elif tds[i].xpath('text()').re(u'辦理情形'):
+                    item['execution'] = '\n'.join([x.strip() for x in tds[i+1].xpath('text() | p/text()').extract()])
+        item['motions'] = motions
         return item

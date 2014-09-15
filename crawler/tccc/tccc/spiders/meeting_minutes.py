@@ -107,6 +107,8 @@ class Spider(scrapy.Spider):
                 'url': url,
                 'text': text
             })
+            cmd = 'wget -c -O ../../meeting_minutes/tccc/2010_%s.pdf %s' % (text, url)
+            retcode = subprocess.call(cmd, shell=True)
 
         item['download_url'].extend(file_list)
 

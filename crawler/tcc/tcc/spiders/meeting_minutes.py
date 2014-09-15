@@ -101,6 +101,6 @@ class Spider(scrapy.Spider):
             value = ref.get(take_first(node.xpath('th/text()').re(u'[\s]*([\S]+)[\s]*')))
             if value:
                 item[value['key']] = '%s%s' % (value.get('extra', ''), take_first(node.xpath(value['path']).re(u'[\s]*([\S]+)[\s]*')))
-        cmd = 'wget -c -O ../meeting_minutes/taipei/%s_%s.doc %s' % (item['sitting'], item['meeting'], item['download_url'])
+        cmd = 'wget -c -O ../../meeting_minutes/taipei/%s_%s.doc %s' % (item['sitting'], item['meeting'], item['download_url'])
         retcode = subprocess.call(cmd, shell=True)
         return item

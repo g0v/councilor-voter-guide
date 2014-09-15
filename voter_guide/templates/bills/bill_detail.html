@@ -42,22 +42,10 @@
                 {% endfor %}
                 </ul>
             </dd>
-            {% if bill.examination_date %}
-                <dt>審查日</dt>
-                <dd><p>{{bill.examination_date}}</p></dd>
-            {% endif %}
-            {% if bill.examination %}
-                <dt>審查</dt>
-                <dd><p>{{bill.examination}}</p></dd>
-            {% endif %}
-            {% if bill.resolusion_date %}
-                <dt>議決日</dt>
-                <dd><p>{{bill.resolusion_date}}</p></dd>
-            {% endif %}
-            {% if bill.resolusion %}
-                <dt>議決</dt>
-                <dd><p>{{bill.resolusion}}</p></dd>
-            {% endif %}
+            {% for motion in bill.motions %}
+                <dt>{{motion.motion}}</dt>
+                <dd><p>{% if motion.date %}{{motion.date|date:"Y-m-d"}}{% endif %} {% if motion.resolution %}{{motion.resolution}}{% endif %}</p></dd>
+            {% endfor %}
             {% if bill.execution %}
                 <dt>執行情形</dt>
                 <dd><p>{{bill.execution}}</p></dd>
