@@ -35,7 +35,7 @@ def insertCandidates(candidate):
     c.execute('''
         SELECT district
         FROM councilors_councilorsdetail
-        WHERE constituency = %(constituency)s
+        WHERE county = %(county)s AND constituency = %(constituency)s
     ''', candidate)
     r = c.fetchone()
     if r:
@@ -43,7 +43,7 @@ def insertCandidates(candidate):
     for key in ['education', 'experience', 'platform', 'remark']:
         if candidate.get(key):
             candidate[key] = '\n'.join(candidate[key])
-    complement = {"election_year": '2014', "councilor_id":None, "birth":None, "gender":'', "party":'', "contact_details":None, "title":'', "constituency":'', "county":'', "district":'', "elected":None, "votes":None, "education":None, "experience":None, "remark":None, "image":'', "links":None, "platform":''}
+    complement = {"election_year": '2014', "councilor_id":None, "birth":None, "gender":'', "party":'', "contact_details":None, "title":'', "district":'', "elected":None, "votes":None, "education":None, "experience":None, "remark":None, "image":'', "links":None, "platform":''}
     complement.update(candidate)
     c.execute('''
         INSERT into candidates_candidates(councilor_id, last_election_year, election_year, name, birth, gender, party, title, constituency, county, district, elected, contact_details, votes, education, experience, remark, image, links, platform)
@@ -60,9 +60,9 @@ df['party'] = map(lambda x: u'臺灣團結聯盟' if re.search(u'台灣團結聯
 candidates = json.loads(df.to_json(orient='records'))
 for candidate in candidates:
     match = re.search(u'(?P<county>\W+)第(?P<num>\d+)選(?:舉)?區', candidate['constituency'])
-    candidate['county'] = match.group('county') if match else ''
-    candidate['constituency'] = match.group('num') if match else ''
-    if not (candidate['name'] and candidate['county'] == u'臺北市'):
+    candidate['county'] = match.group('county') if match else None
+    candidate['constituency'] = match.group('num') if match else None
+    if not (candidate['name'] and (re.search(u'(臺北市|臺中市)', candidate['county']))):
         continue
     candidate['name'] = re.sub('\s', '', candidate['name'])
     candidate['name'] = re.sub(u'．', u'‧', candidate['name'])

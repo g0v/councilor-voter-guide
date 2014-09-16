@@ -15,7 +15,7 @@ class Candidates(models.Model):
     gender = models.CharField(max_length=100, blank=True, null=True)
     party = models.CharField(db_index=True, max_length=100, blank=True, null=True)
     title = models.CharField(max_length=100, blank=True, null=True)
-    constituency = models.CharField(db_index=True, max_length=100, blank=True, null=True)
+    constituency = models.IntegerField(db_index=True)
     county = models.CharField(db_index=True, max_length=100)
     district = models.CharField(db_index=True, max_length=100, blank=True, null=True)
     votes = models.IntegerField(blank=True, null=True)
@@ -41,7 +41,7 @@ class Candidates(models.Model):
             not_vote = Councilors_Votes.objects.filter(decision__isnull=True, councilor_id=councilor.id).count()
             should_vote = Councilors_Votes.objects.filter(councilor_id=councilor.id).count()
             return u'%.2f %% ' % (not_vote * 100.0 / should_vote)
-        return ''
+        return u'沒有表決紀錄'
     pnotvote = property(_not_vote_percentage)
 
     def _conscience_vote_percentage(self):
@@ -55,6 +55,7 @@ class Candidates(models.Model):
             not_vote = Councilors_Votes.objects.filter(conflict=True, councilor_id=councilor.id).count()
             should_vote = Councilors_Votes.objects.filter(councilor_id=councilor.id).count()
             return u'%.2f %% ' % (not_vote * 100.0 / should_vote)
+        return u'沒有表決紀錄'
     pconsciencevote = property(_conscience_vote_percentage)
 
     def _pribiller_count(self):

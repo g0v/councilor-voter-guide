@@ -20,7 +20,7 @@
         <h4>熱門：
             {% for keyword in keyword_hot %}
             {% if forloop.counter0 < 5 %}
-            <a href="{% url 'votes:votes' county='臺北市' election_year=election_year index=index %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
+            <a href="{% url 'votes:votes' county='臺北市' index=index %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
             {% endif %}
             {% endfor %}
         </h4>
@@ -31,13 +31,13 @@
                 <span>以通過、不通過分類</span> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="{% url 'votes:votes' county=county election_year=election_year index=index %}?result=Passed"><font color="#66CC66">通過</font></a></li>
-                <li><a href="{% url 'votes:votes' county=county election_year=election_year index=index %}?result=Not Passed"><font color="#FF66CC">不通過</font></a></li>
+                <li><a href="{% url 'votes:votes' county=county index=index %}?result=Passed"><font color="#66CC66">通過</font></a></li>
+                <li><a href="{% url 'votes:votes' county=county index=index %}?result=Not Passed"><font color="#FF66CC">不通過</font></a></li>
             </ul>
         </div>
         {% endif %}
         <div class="well well-small">
-            <font class="lead">{{election_year}}至今有 {{ votes|length }} 個
+            <font class="lead">{{county}} {{ votes|length }} 個
             {% if keyword %}包含<font style="color: red;">"{{keyword}}"</font>的
             {% endif %}
             {% if index == 'conscience' %}<b>脫黨</b>
@@ -54,21 +54,19 @@
         <table class="table table-bordered zebra" >
             <thead>
                 <tr style="background-color: #FFFFCC;">
-                    <th style="width: 6%">屆期</th>
-                    <th style="width: 12%">表決結果</th>
+                    <th style="width: 14%">表決結果</th>
                     <th style="width: 3%">贊成票</th>
                     <th style="width: 3%">反對票</th>
                     <th style="width: 3%">棄權票</th>
                     <th style="width: 3%">沒投票</th>
-                    <th style="width: 12%">日期</th>
+                    <th style="width: 14%">日期</th>
                     <th style="width: 50%">表決內容</th>
-                    <th style="width: 8%">備註</th>
+                    <th style="width: 10%">備註</th>
                 </tr>
             </thead>
             <tbody>
                 {% for fragment in votes %}
                 <tr style="background-color: {% cycle '#DDDDDD' 'white' %};">
-                    <td style="text-align:center; vertical-align:middle;">{{fragment.sitting.election_year}}</td>
                     <td style="text-align:center; vertical-align:middle; background-color: #{{fragment.result|vote_result:'td_bgcolor'}}">{{fragment.result|vote_result:'cht'}}</td>
                     <td style="text-align:center; vertical-align:middle; background-color: #66CC66;">{{fragment.results.agree}}</td><td style="text-align:center; vertical-align:middle; background-color: #FF66CC;">{{fragment.results.disagree}}</td><td style="text-align:center; vertical-align:middle; background-color: #999999;">{{fragment.results.abstain}}</td><td style="text-align:center; vertical-align:middle; background-color: #FFFF99;">{{fragment.results.not_voting}}</td>
                     <td style="text-align:center; vertical-align:middle;">{{ fragment.date|date:"Y-m-d" }}</td>

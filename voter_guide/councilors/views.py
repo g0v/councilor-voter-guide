@@ -2,14 +2,18 @@
 import operator
 from django.shortcuts import render
 from django.db.models import Count, Q
-from .models import CouncilorsDetail, Attendance
+from .models import CouncilorsDetail
 from votes.models import Councilors_Votes
 from bills.models import Bills
 from sittings.models import Sittings
 from search.views import keyword_list, keyword_been_searched, keyword_normalize
 
 
-def index(request, index, county, election_year):
+def select_county(request, index, election_year, county):
+    counties = CouncilorsDetail.objects.filter(election_year=election_year).values_list('county', flat=True).order_by('county').distinct()
+    return render(request, 'councilors/select_county.html', {'index': index, 'election_year': election_year, 'counties': counties})
+
+def index(request, index, election_year, county):
     basic_query = Q(election_year=election_year, county=county, in_office=True)
     out_office = CouncilorsDetail.objects.filter(election_year=election_year, county=county, in_office=False)
     param = {
@@ -102,7 +106,7 @@ def biller(request, councilor_id, election_year):
     else:
         bills = Bills.objects.filter(query).order_by('-uid')
     data = bills.values('category').annotate(totalNum=Count('id')).order_by('-totalNum')
-    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'proposertype': proposertype, 'data': list(data)})
+    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), 'county': councilor.county, 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'proposertype': proposertype, 'data': list(data)})
 
 def voter(request, councilor_id, election_year):
     votes, notvote, query = None, False, Q()
@@ -133,11 +137,11 @@ def voter(request, councilor_id, election_year):
     else:
         votes = Councilors_Votes.objects.select_related().filter(query).order_by('-vote__date')
     vote_addup = votes.values('decision').annotate(totalNum=Count('vote', distinct=True)).order_by('-decision')
-    return render(request,'councilors/voter.html', {'keyword_hot': keyword_list('votes'), 'councilor': councilor, 'keyword': keyword, 'index': index, 'votes': votes, 'vote_addup': vote_addup, 'notvote': notvote})
+    return render(request,'councilors/voter.html', {'keyword_hot': keyword_list('votes'), 'county': councilor.county, 'councilor': councilor, 'keyword': keyword, 'index': index, 'votes': votes, 'vote_addup': vote_addup, 'notvote': notvote})
 
 def platformer(request, councilor_id, election_year):
     try:
         councilor = CouncilorsDetail.objects.get(election_year=election_year, councilor_id=councilor_id)
     except Exception, e:
         return HttpResponseRedirect('/')
-    return render(request, 'councilors/platformer.html', {'councilor': councilor})
+    return render(request, 'councilors/platformer.html', {'county': councilor.county, 'councilor': councilor})

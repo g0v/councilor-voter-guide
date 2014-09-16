@@ -77,7 +77,8 @@ def personal_vector(parties, councilor_id):
     r = c.fetchall()
     diversity = {}
     for party in parties:
-        diversity.update({party: sum([x[0][party.decode('utf8')] for x in r]) / float(len(r))})
+        if r:
+            diversity.update({party: sum([x[0][party.decode('utf8')] for x in r]) / float(len(r))})
     c.execute('''
         UPDATE councilors_councilorsdetail
         SET param = %s
@@ -101,7 +102,7 @@ def distinct_party(election_year, county):
     ''', (election_year, county))
     return c.fetchall()
 
-for election_year, county in [('2010', u'臺北市')]:
+for election_year, county in [('2010', u'臺北市'), ('2010', u'臺中市')]:
     parties = [x[0] for x in distinct_party(election_year, county)]
     bill_party_diversity(parties)
     for councilor_id in councilors(election_year, county):

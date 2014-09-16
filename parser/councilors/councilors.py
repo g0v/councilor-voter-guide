@@ -88,6 +88,7 @@ def updateCouncilorsDetail(councilor):
         raw_input()
     complement.update(councilor)
     complement['constituency'] = normalize_constituency(complement['constituency'])
+    complement['party'] = re.sub(u'台', u'臺', complement['party'])
     c.execute('''
         UPDATE councilors_councilorsdetail
         SET name = %(name)s, gender = %(gender)s, party = %(party)s, title = %(title)s, constituency = %(constituency)s, in_office = %(in_office)s, contact_details = %(contact_details)s, county = %(county)s, district = %(district)s, term_start = %(term_start)s, term_end = %(term_end)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s, platform = %(platform)s
@@ -101,6 +102,7 @@ def insertCouncilorsDetail(councilor):
     complement = {"gender":'', "party":'', "contact_details":None, "title":'', "constituency":'', "county":'', "district":'', "in_office":True, "term_start":None, "term_end":{}, "education":None, "experience":None, "remark":None, "image":'', "links":None, "platform":''}
     complement.update(councilor)
     complement['constituency'] = normalize_constituency(complement['constituency'])
+    complement['party'] = re.sub(u'台', u'臺', complement['party'])
     c.execute('''
         INSERT into councilors_councilorsdetail(councilor_id, election_year, name, gender, party, title, constituency, county, district, in_office, contact_details, term_start, term_end, education, experience, remark, image, links, platform)
         SELECT %(uid)s, %(election_year)s, %(name)s, %(gender)s, %(party)s, %(title)s, %(constituency)s, %(county)s, %(district)s, %(in_office)s, %(contact_details)s, %(term_start)s, %(term_end)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s

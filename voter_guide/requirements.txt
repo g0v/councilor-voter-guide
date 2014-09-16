@@ -1,4 +1,4 @@
-Django==1.5.5
+Django==1.5.8
 django-json-field==0.5.5
 django-filter==0.7
 dj-database-url==0.2.2
