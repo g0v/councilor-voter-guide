@@ -10,8 +10,11 @@ BOT_NAME = 'kcc'
 
 SPIDER_MODULES = ['kcc.spiders']
 NEWSPIDER_MODULE = 'kcc.spiders'
-#LOG_FILE = 'log.txt'
+LOG_FILE = 'log.txt'
 COOKIES_ENABLED = False
+COOKIES_DEBUG = True
+DUPEFILTER_DEBUG = True
+#DUPEFILTER_CLASS = 'scrapy.dupefilter.BaseDupeFilter'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'taipei (+http://www.yourdomain.com)'
