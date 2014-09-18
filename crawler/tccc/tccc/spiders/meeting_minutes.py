@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from collections import defaultdict
+import os
 import re
+import time
 import subprocess
 import scrapy
 from scrapy.http import Request, FormRequest
@@ -107,8 +109,11 @@ class Spider(scrapy.Spider):
                 'url': url,
                 'text': text
             })
+            if os.path.exists('../../meeting_minutes/tccc/2010_%s.pdf' % text):
+                continue
             cmd = 'wget -c -O ../../meeting_minutes/tccc/2010_%s.pdf %s' % (text, url)
             retcode = subprocess.call(cmd, shell=True)
+            time.sleep(1)
 
         item['download_url'].extend(file_list)
 

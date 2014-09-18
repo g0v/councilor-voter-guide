@@ -9,8 +9,8 @@ from kcc.items import Bills
 
 def ROC2AD(text):
     matchTerm = re.search(u'''
-        (?P<year>[\d]+)[\s]*年[\s]*
-        (?P<month>[\d]+)[\s]*月[\s]*
+        (?P<year>[\d]+)[\s]*(?:年|[-/.])[\s]*
+        (?P<month>[\d]+)[\s]*(?:月|[-/.])[\s]*
         (?P<day>[\d]+)
     ''', text, re.X)
     if matchTerm:
@@ -69,7 +69,7 @@ class Spider(scrapy.Spider):
                 detail = tds[3].xpath('@onclick').re(u'Detail.aspx(.+)')
                 if detail:
                     param = re.sub(u'(amp;|&#39)', '', detail[0])
-                    yield Request("http://cissearch.kcc.gov.tw/System/Proposal/Detail.aspx%s" % param, callback=self.parse_profile, meta={'item': item})
+                    yield Request("http://cissearch.kcc.gov.tw/System/Proposal/Detail.aspx%s" % param, callback=self.parse_profile, meta={'dont_redirect': True, 'item': item})
                 else:
                     print tds[3].xpath('@onclick')
 
@@ -112,6 +112,8 @@ class Spider(scrapy.Spider):
                     motions.append(dict(zip(['motion', 'resolution', 'date'], [u'二讀決議', tds[i+1].xpath('text()').extract()[1].strip(), tds[i+1].xpath('span/text()').extract()[0]])))
                 elif tds[i].xpath('text()')[0].re(u'三讀決議'):
                     motions.append(dict(zip(['motion', 'resolution', 'date'], [u'三讀決議', tds[i+1].xpath('text()').extract()[1].strip(), tds[i+1].xpath('span/text()').extract()[0]])))
+        for motion in motions:
+            motion['date'] = ROC2AD(motion['date'])
         item['motions'] = motions
         item['links'] = response.url
         return item
