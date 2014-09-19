@@ -1,4 +1,5 @@
 from itertools import groupby
+from scrapy.http import HtmlResponse
 
 
 def remove_whitespaces(string):
@@ -24,7 +25,6 @@ def get_inner_text(node, separator='\n'):
     return separator.join(get_inner_text_lines(node))
 
 
-
 def get_inner_text_lines(node):
     text_or_break = [child for child in node.xpath('.//text()|.//br').extract()]
     lines = [
@@ -34,3 +34,9 @@ def get_inner_text_lines(node):
     ]
 
     return lines
+
+
+def get_decoded_response(response, encoding):
+    new_body = response.body.decode(encoding)
+    new_response = HtmlResponse(url=response.url, body=new_body, encoding='utf8')
+    return new_response

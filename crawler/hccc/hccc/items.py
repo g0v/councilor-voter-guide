@@ -65,3 +65,4 @@ class MeetingMinutes(Item):
     date = Field()
     meeting = Field()
     download_url = Field()
+    councilor = Field()
