@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys
-sys.path.append('../')
+sys.path.append('../../')
 import re
 import codecs
 import json
@@ -72,8 +72,8 @@ c = conn.cursor()
 election_years = {1: '1969', 2: '1973', 3: '1977', 4: '1981', 5: '1985', 6: '1989', 7: '1994', 8: '1998', 9: '2002', 10: '2006', 11: '2010', 12: '2014'}
 election_year = '2010'
 county = u'臺北市'
-total_text = codecs.open(u"../../data/tcc/meeting_minutes-%s.txt" % election_year, "r", "utf-8").read()
-util = json.load(open('../util.json'))
+total_text = codecs.open(u"../../../data/tcc/meeting_minutes-%s.txt" % election_year, "r", "utf-8").read()
+util = json.load(open('../../util.json'))
 
 Session_Token = re.compile(u'''
     [\s]*
@@ -210,8 +210,8 @@ def not_voting_list(vote_id, vote_ad, vote_date):
     c.execute('''
         select id
         from councilors_councilorsdetail
-        where election_year = %s and term_start <= %s and cast(term_end::json->>'date' as date) > %s and id not in (select councilor_id from votes_councilors_votes where vote_id = %s)
-    ''', (vote_ad, vote_date, vote_date, vote_id))
+        where election_year = %s and county = %s and term_start <= %s and cast(term_end::json->>'date' as date) > %s and id not in (select councilor_id from votes_councilors_votes where vote_id = %s)
+    ''', (vote_ad, county, vote_date, vote_date, vote_id))
     return c.fetchall()
 
 def insert_not_voting_record(councilor_id, vote_id):

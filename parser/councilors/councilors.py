@@ -117,11 +117,12 @@ for council in ['../../data/tccc/councilors.json', '../../data/kcc/councilors_te
     dict_list = json.load(open(council))
     for councilor in dict_list:
         councilor['uid'] = select_uid(councilor)
+        councilor['name'] = re.sub(u'．', u'‧', councilor['name'])
         Councilors(councilor)
         insertCouncilorsDetail(councilor)
     conn.commit()
 
-for council in ['../../data/tccc/councilors.json', '../../data/tcc/councilors.json']:
+for council in ['../../data/tccc/councilors.json', '../../data/kcc/councilors.json', '../../data/tcc/councilors.json']:
     print council
     dict_list = json.load(open(council))
     print len(dict_list)

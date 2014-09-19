@@ -61,6 +61,7 @@ def getIdList(c, name_list, sitting_dict):
         return r
     for name in name_list:
         print name
+        raw_input()
     return []
 
 def getNameList(text):
@@ -68,15 +69,13 @@ def getNameList(text):
     for name in text.split():
         if re.search(u'[）)。】」]$', name):   #名字後有標點符號
             name = name[:-1]
-        #兩個字的中文名字中間有空白
+        #中文姓名中間有空白
         if len(name) < 2 and firstName == '':
             firstName = name
             continue
-        if len(name) < 2 and firstName != '':
+        if firstName != '':
             name = firstName + name
             firstName = ''
-        if len(name) > 4: #名字相連
-            name = name[:3]
         name_list.append(name)
     return name_list
 
@@ -88,8 +87,11 @@ def AddAttendanceRecord(c, councilor_id, sitting_id, category, status):
     ''', (councilor_id, sitting_id, category, status, councilor_id, sitting_id))
 
 def Attendance(c, sitting_dict, text, category, status):
+    ids = []
     for id, councilor_id in getIdList(c, getNameList(text), sitting_dict):
         AddAttendanceRecord(c, id, sitting_dict['uid'], category, status)
+        ids.append(id)
+    return ids
 
 def InsertSitting(c, sitting_dict):
     complement = {"committee": '', "name": ''}

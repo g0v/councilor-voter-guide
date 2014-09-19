@@ -8,10 +8,10 @@ from scrapy.selector import Selector
 from kcc.items import Councilor
 
 
-def GetDate(text):
+def ROC2AD(text):
     matchTerm = re.search(u'''
-        (?P<year>[\d]+)[\s]*(年|[.])[\s]*
-        (?P<month>[\d]+)[\s]*(月|[.])[\s]*
+        (?P<year>[\d]+)[\s]*(?:年|[-/.])[\s]*
+        (?P<month>[\d]+)[\s]*(?:月|[-/.])[\s]*
         (?P<day>[\d]+)
     ''', text, re.X)
     if matchTerm:
@@ -94,7 +94,7 @@ class Spider(scrapy.Spider):
                 item['remark'] = node.xpath('span/font/text()').extract()
                 if item['remark']:
                     item['term_end'] = {}
-                    item['term_end']['date'] = GetDate(node.xpath('../tr/td/span/text()').extract()[0]) or item['term_end']['date']
+                    item['term_end']['date'] = ROC2AD(''.join(item['remark'])) or item['term_end']['date']
                     item['term_end']['reason'] = ''
                     item['in_office'] = False
             if re.search(u'服務政見', th):
