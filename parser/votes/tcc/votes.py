@@ -163,7 +163,7 @@ def party_List(election_year, county):
     c.execute('''
         select party, count(*)
         from councilors_councilorsdetail
-        where election_year = %s and county = %s
+        where election_year = %s and county = %s and party != '無黨籍'
         group by party
     ''', (election_year, county))
     return c.fetchall()
@@ -183,7 +183,7 @@ def conflict_voter(conflict, councilor_id, vote_id):
     ''', (conflict, councilor_id, vote_id))
 
 for party, count in party_List(election_year, county):
-    if party != u'無黨籍' and count > 2:
+    if count > 2:
         for vote_id, avg_decision in party_Decision_List(party, election_year):
             # 黨的decision平均值如不為整數，表示該表決有人脫黨投票
             if int(avg_decision) != avg_decision:
@@ -202,8 +202,8 @@ def vote_list():
     c.execute('''
         select vote.uid, sitting.election_year, sitting.date
         from votes_votes vote, sittings_sittings sitting
-        where vote.sitting_id = sitting.uid
-    ''')
+        where vote.sitting_id = sitting.uid and sitting.county = %s
+    ''', (county,))
     return c.fetchall()
 
 def not_voting_list(vote_id, vote_ad, vote_date):

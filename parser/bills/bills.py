@@ -35,7 +35,7 @@ conn = db_settings.con()
 c = conn.cursor()
 #dict_c = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-for council in ['../../data/kcc/bills.json']:
+for council in ['../../data/kcc/bills.json', '../../data/tccc/bills.json', '../../data/tcc/bills.json']:
     print council
     dict_list = json.load(open(council))
     for bill in dict_list:

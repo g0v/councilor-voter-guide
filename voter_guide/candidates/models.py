@@ -67,3 +67,11 @@ class Candidates(models.Model):
             return ''
         return Councilors_Bills.objects.filter(councilor_id=councilor.id, priproposer=True).count()
     npribill = property(_pribiller_count)
+
+    def _term_end(self):
+        try:
+            councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
+        except Exception, e:
+            return ''
+        return councilor.term_end.get('date') if not councilor.in_office else None
+    term_end = property(_term_end)

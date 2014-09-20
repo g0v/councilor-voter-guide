@@ -31,9 +31,30 @@
                     <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
                         <td style="text-align:center; vertical-align:middle;">{{councilor.name}}</td>
                         <td style="text-align:center; vertical-align:middle;">{{councilor.party}}</td>
-                        <td style="text-align:center; vertical-align:middle;">{% if councilor.councilor_id %}{{councilor.last_election_year|election_year_range}}{% endif %} {% if councilor.last_election_year == '2010' %}<a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}">（當時競選政見）</a>{% endif %}</td>
-                        <td style="text-align:center; vertical-align:middle;">{{councilor.npribill}} {% if councilor.last_election_year == '2010' %}<a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}">（看完整議案）</a>{% endif %}</td>
-                        <td style="text-align:center; vertical-align:middle;">{{councilor.pnotvote}} {% if councilor.last_election_year == '2010' %}<a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}">（看完整表決）</a>{% endif %}</td>
+                        <td style="text-align:center; vertical-align:middle;">
+                            {% if councilor.councilor_id %}
+                                {% if councilor.term_end %}
+                                    {{councilor.last_election_year}}~<font color="red">{{councilor.term_end|date:"Y-m-d"}} (中途離職)</font>
+                                {% else %}
+                                    {{councilor.last_election_year|election_year_range}}
+                                {% endif %}
+                            {% endif %}
+                            {% if councilor.last_election_year == '2010' %}
+                                <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}">（當時競選政見）</a>
+                            {% endif %}
+                        </td>
+                        <td style="text-align:center; vertical-align:middle;">
+                            {{councilor.npribill}}
+                            {% if councilor.last_election_year == '2010' %}
+                                <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}">（看完整議案）</a>
+                            {% endif %}
+                        </td>
+                        <td style="text-align:center; vertical-align:middle;">
+                            {{councilor.pnotvote}}
+                            {% if councilor.last_election_year == '2010' %}
+                                <a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}">（看完整表決）</a>
+                            {% endif %}
+                        </td>
                         <td style="text-align:center; vertical-align:middle;">{{councilor.pconsciencevote}}</td>
                     </tr>
                 {% endfor %}

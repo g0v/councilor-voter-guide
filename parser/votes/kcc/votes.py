@@ -44,10 +44,10 @@ def IterVote(text, sitting_dict):
         vote_seq = str(vote_count).zfill(3)
         vote_dict = {'uid': '%s-%s' % (sitting_dict["uid"], vote_seq), 'sitting_id': sitting_dict["uid"], 'vote_seq': vote_seq, 'date': sitting_dict["date"], 'content': match.group()}
         UpsertVote(vote_dict)
-        ref = {u'贊成|': 1, u'反對': -1, u'棄權': 0}
+        ref = {u'贊成': 1, u'反對': -1, u'棄權': 0}
         for key, value in ref.items():
             for i in range(0, len(match.groups()), 2):
-                if match.groups()[i] == value:
+                if match.groups()[i] == key:
                     names = re.sub(u'(副?議長|議員)', '', match.groups()[i+1])
                     for id, councilor_id in common.getIdList(c, common.getNameList(re.sub(u'[、：，:,]', ' ', names)), sitting_dict):
                         VoteVoterRelation(id, vote_dict['uid'], value)
@@ -83,7 +83,7 @@ Session_Token = re.compile(u'''
     (?P<name>
         (?P<county>[\W]{1,3}(市|縣))議會
         第\s*(?P<ad>[\d]+)屆
-        第\s*(?P<session>[\d]+)次(?P<type>(定期|臨時))大會
+        第\s*(?P<session>[\d]+)次(?P<type>(定期|臨時))大?會
         (預備會議暨)?
         第\s*(?P<times>[\d]+)次
         會議
@@ -120,22 +120,22 @@ for i in range(0, len(sittings)):
     else:
         one_sitting_text = total_text[sittings[i]['start']:]
     print sittings[i]
-#   common.InsertSitting(c, sittings[i])
-#   common.FileLog(c, sittings[i]['name'])
-#   # absent
-#   absent_match = Absent_Token.search(one_sitting_text)
-#   exclude = []
-#   if absent_match:
-#       names = re.sub(u'(副?議長|議員)', '', absent_match.group('names'))
-#       names = re.sub(u'、', ' ', names)
-#       if names:
-#           exclude = common.Attendance(c, sittings[i], names, 'CS', 'absent')
-#       else:
-#           print one_sitting_text
-#           raise
-#   # present
-#   for councilor_id in in_office_ids(sittings[i]['date'], exclude):
-#       common.AddAttendanceRecord(c, councilor_id, sittings[i]['uid'], 'CS', 'present')
+    common.InsertSitting(c, sittings[i])
+    common.FileLog(c, sittings[i]['name'])
+    # absent
+    absent_match = Absent_Token.search(one_sitting_text)
+    exclude = []
+    if absent_match:
+        names = re.sub(u'(副?議長|議員)', '', absent_match.group('names'))
+        names = re.sub(u'、', ' ', names)
+        if names:
+            exclude = common.Attendance(c, sittings[i], names, 'CS', 'absent')
+        else:
+            print one_sitting_text
+            raise
+    # present
+    for councilor_id in in_office_ids(sittings[i]['date'], exclude):
+        common.AddAttendanceRecord(c, councilor_id, sittings[i]['uid'], 'CS', 'present')
     # <--
     # --> votes
     IterVote(one_sitting_text, sittings[i])
@@ -166,7 +166,7 @@ def party_List(election_year, county):
     c.execute('''
         select party, count(*)
         from councilors_councilorsdetail
-        where election_year = %s and county = %s
+        where election_year = %s and county = %s and party != '無黨籍'
         group by party
     ''', (election_year, county))
     return c.fetchall()
@@ -186,7 +186,7 @@ def conflict_voter(conflict, councilor_id, vote_id):
     ''', (conflict, councilor_id, vote_id))
 
 for party, count in party_List(election_year, county):
-    if party != u'無黨籍' and count > 2:
+    if count > 2:
         for vote_id, avg_decision in party_Decision_List(party, election_year):
             # 黨的decision平均值如不為整數，表示該表決有人脫黨投票
             if int(avg_decision) != avg_decision:
@@ -205,8 +205,8 @@ def vote_list():
     c.execute('''
         select vote.uid, sitting.election_year, sitting.date
         from votes_votes vote, sittings_sittings sitting
-        where vote.sitting_id = sitting.uid
-    ''')
+        where vote.sitting_id = sitting.uid and sitting.county = %s
+    ''', (county,))
     return c.fetchall()
 
 def not_voting_list(vote_id, vote_ad, vote_date):
