@@ -28,6 +28,8 @@ class Councilor(Item):
     links = Field()
 
 class Bills(Item):
+    election_year = Field()
+    county = Field()
     id = Field()
     type = Field()
     sitting = Field()

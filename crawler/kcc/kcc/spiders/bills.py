@@ -64,11 +64,14 @@ class Spider(scrapy.Spider):
             tds = tr.xpath('td')
             if len(tds) > 1:
                 item = Bills()
+                item['county'] = u'高雄市'
+                item['election_year'] = u'2010'
                 item['type'] = response.request.meta['type']
                 item['last_action'] = tds[4].xpath('text()').extract()[0]
                 detail = tds[3].xpath('@onclick').re(u'Detail.aspx(.+)')
                 if detail:
                     param = re.sub(u'(amp;|&#39)', '', detail[0])
+                    item['id'] = '-'.join(re.findall(u'=([0-9A-Za-z]*)', param))
                     yield Request("http://cissearch.kcc.gov.tw/System/Proposal/Detail.aspx%s" % param, callback=self.parse_profile, meta={'dont_redirect': True, 'item': item})
                 else:
                     print tds[3].xpath('@onclick')
@@ -84,13 +87,13 @@ class Spider(scrapy.Spider):
                 if tds[i].xpath('text()')[0].re(u'類別'):
                     item['category'] = tds[i+1].xpath('text()').extract()[0].strip()
                 elif tds[i].xpath('text()')[0].re(u'提案(人|單位)'):
-                    item['proposed_by'] = tds[i+1].xpath('text()').extract()[0].strip()
+                    item['proposed_by'] = tds[i+1].xpath('text()').extract()[0].strip().split(u'、')
                 elif tds[i].xpath('text()')[0].re(u'承辦單位'):
                     item['brought_by'] = tds[i+1].xpath('text()').extract()[0].strip()
                 elif tds[i].xpath('text()')[0].re(u'相關單位'):
                     item['related_units'] = tds[i+1].xpath('text()').extract()[0].strip()
                 elif tds[i].xpath('text()')[0].re(u'連署人'):
-                    item['petitioned_by'] = ''.join([re.sub('\s', '', x) for x in tds[i+1].xpath('text()').extract()])
+                    item['petitioned_by'] = tds[i+1].xpath('text()').extract()[0].strip().split(u'、')
                 elif tds[i].xpath('text()')[0].re(u'案由'):
                     item['abstract'] = tds[i+1].xpath('text()').extract()[0].strip()
                 elif tds[i].xpath('text()')[0].re(u'說明'):
