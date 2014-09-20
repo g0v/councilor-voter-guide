@@ -38,5 +38,11 @@ def get_inner_text_lines(node):
 
 def get_decoded_response(response, encoding):
     new_body = response.body.decode(encoding)
-    new_response = HtmlResponse(url=response.url, body=new_body, encoding='utf8')
+    new_response = HtmlResponse(url=response.url,
+                                headers=response.headers,
+                                flags=response.flags,
+                                request=response.request,
+                                body=new_body,
+                                encoding='utf8')
+
     return new_response
