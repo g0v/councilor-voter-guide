@@ -36,6 +36,8 @@
             <td style="vertical-align:middle;">
                 {% if fragment.execution %}
                     {{fragment.execution}}
+                {% elif fragment.last_action %}
+                    {{fragment.last_action}}
                 {% else %}
                     尚無資料
                 {% endif %}

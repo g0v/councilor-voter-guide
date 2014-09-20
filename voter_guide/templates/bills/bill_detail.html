@@ -28,10 +28,9 @@
                 <li>{{bill.type}}</li>
                 <li>{{bill.category}}</li>
             </ul>
+            <a href="{{bill.links}}" target="_blank"><p class="lead">官方連結</p></a>
         </div>
         <dl class="dl-horizontal">
-            <dt>案由</dt>
-            <dd><p>{{bill.abstract}}</p></dd>
             <dt>提案人</dt>
             <dd>
                 <ul class="inline">
@@ -42,18 +41,31 @@
                 {% endfor %}
                 </ul>
             </dd>
-            {% for motion in bill.motions %}
-                <dt>{{motion.motion}}</dt>
-                <dd><p>{% if motion.date %}{{motion.date|date:"Y-m-d"}}{% endif %} {% if motion.resolution %}{{motion.resolution}}{% endif %}</p></dd>
-            {% endfor %}
+            <dt>案由</dt>
+            <dd><p>{{bill.abstract}}</p></dd>
+            {% if bill.description %}
+                <dt>說明</dt>
+                <dd><p>{{bill.description}}</p></dd>
+            {% endif %}
+            {% if bill.methods %}
+                <dt>辦法</dt>
+                <dd><p>{{bill.methods}}</p></dd>
+            {% endif %}
             {% if bill.execution %}
                 <dt>執行情形</dt>
                 <dd><p>{{bill.execution}}</p></dd>
+            {% elif bill.last_action %}
+                <dt>執行情形</dt>
+                <dd><p>{{bill.last_action}}</p></dd>
             {% endif %}
             {% if bill.remark %}
                 <dt>備註</dt>
                 <dd><p>{{bill.remark}}</p></dd>
             {% endif %}
+            {% for motion in bill.motions %}
+                <dt>{{motion.motion}}</dt>
+                <dd><p>{% if motion.date %}{{motion.date|date:"Y-m-d"}}{% endif %} {% if motion.resolution %}{{motion.resolution}}{% endif %}</p></dd>
+            {% endfor %}
         </dl>
         {% endif %}
         <hr>

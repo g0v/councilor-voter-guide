@@ -74,17 +74,15 @@
     <table class="table table-bordered zebra">
         <thead>
             <tr style="background-color: #FFFFCC;">
-                <th style="width: 6%">屆期</th>
                 <th style="width: 10%">個人投票</th>
                 <th style="width: 10%">表決結果</th>
                 <th style="width: 15%">日期</th>
-                <th style="width: 59%">表決內容</th>
+                <th style="width: 65%">表決內容</th>
             </tr>
         </thead>
         <tbody>
             {% for vote in votes %}
             <tr>
-                <td style="text-align:center; vertical-align:middle;">{{vote.vote.sitting.election_year}}</td>
                 {% with decision=vote.decision %}
                 {% if decision == -1 %}
                 <td style="text-align:center; vertical-align:middle; background-color: #FF66CC;">反對

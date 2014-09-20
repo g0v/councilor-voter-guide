@@ -2,8 +2,8 @@
 import operator
 from django.shortcuts import render
 from django.db.models import Count, Q
-from .models import CouncilorsDetail
-from votes.models import Councilors_Votes
+from .models import CouncilorsDetail, Attendance
+from votes.models import Votes, Councilors_Votes
 from bills.models import Bills
 from sittings.models import Sittings
 from search.views import keyword_list, keyword_been_searched, keyword_normalize
@@ -49,6 +49,8 @@ def index(request, index, election_year, county):
         }
     }
     if index == 'conscience_vote':
+        if not Votes.objects.filter(sitting__county=county):
+            return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'no_count_list': None, 'councilors': None, 'out_office': out_office, 'index': index})
         councilors = CouncilorsDetail.objects.filter(basic_query, councilors_votes__conflict=True)\
                                      .annotate(totalNum=Count('councilors_votes__id'))\
                                      .order_by('-totalNum','party')\
@@ -56,6 +58,8 @@ def index(request, index, election_year, county):
         no_count_list = CouncilorsDetail.objects.filter(basic_query).exclude(councilor_id__in=councilors.values_list('councilor_id', flat=True)).order_by('party')
         return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'index': index})
     if index == 'not_voting':
+        if not Votes.objects.filter(sitting__county=county):
+            return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'no_count_list': None, 'councilors': None, 'out_office': out_office, 'index': index})
         councilors = CouncilorsDetail.objects.filter(basic_query, councilors_votes__decision__isnull=True)\
                                           .annotate(totalNum=Count('councilors_votes__id'))\
                                           .exclude(title='議長', totalNum=0)\
@@ -64,6 +68,8 @@ def index(request, index, election_year, county):
         no_count_list = CouncilorsDetail.objects.filter(basic_query).exclude(councilor_id__in=councilors.values_list('councilor_id', flat=True))
         return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'index': index})
     if index == 'cs_attend':
+        if not Attendance.objects.filter(sitting__county=county):
+            return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'no_count_list': None, 'councilors': None, 'out_office': out_office, 'index': index})
         compare = Sittings.objects.filter(election_year=election_year, county=county, committee='').count()
         councilors = CouncilorsDetail.objects.filter(basic_query & Q(attendance__category='CS', attendance__status='absent'))\
                                              .annotate(totalNum=Count('attendance__id'))\
