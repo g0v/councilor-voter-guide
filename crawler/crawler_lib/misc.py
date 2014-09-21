@@ -1,5 +1,9 @@
 import os
 import subprocess
+import urllib2
+import requests
+from scrapy.http import HtmlResponse, Request
+from scrapy.utils.url import canonicalize_url
 
 
 def append_contact(item, contact_type, label, value):
@@ -24,3 +28,17 @@ def download(url, file_path, force_redownload=False):
         'skipped': skipped,
         'code': retcode
     }
+
+
+def get_response(url, meta={}):
+    url = canonicalize_url(url)
+    r = requests.get(url)
+
+    res = r.text
+    final_url = r.url
+
+    to_encoding = 'utf-8'
+    response = HtmlResponse(url=final_url, body=res, encoding=to_encoding)
+    response.request = Request(url, meta=meta)
+
+    return response

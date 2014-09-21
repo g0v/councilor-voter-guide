@@ -21,8 +21,12 @@ def get_text_nodes(node):
     return node.xpath('.//text()').extract()
 
 
-def get_inner_text(node, separator='\n'):
-    return separator.join(get_inner_text_lines(node))
+def get_inner_text(node, separator='\n', remove_white=False):
+    text = separator.join(get_inner_text_lines(node))
+    if remove_white:
+        text = remove_whitespaces(text)
+
+    return text
 
 
 def get_inner_text_lines(node):
