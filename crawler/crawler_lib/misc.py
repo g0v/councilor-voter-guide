@@ -15,6 +15,14 @@ def append_contact_list(item, contact_type, label, value_list):
         item['contact_details'].append({'type': contact_type, 'label': label, 'value': value})
 
 
+def append_motion(item, motion, resolution=None, date=None, sitting=None):
+    if not 'motions' in item:
+        item['motions'] = []
+    data = {'motion': motion, 'resolution': resolution, 'date': date}
+    if sitting: data['sitting'] = sitting
+    item['motions'].append(data)
+
+
 def download(url, file_path, force_redownload=False):
     skipped = not force_redownload and os.path.exists(file_path)
     retcode = None
@@ -42,3 +50,18 @@ def get_response(url, meta={}):
     response.request = Request(url, meta=meta)
 
     return response
+
+
+def chunks(l, n):
+    for i in xrange(0, len(l), n):
+        yield l[i:i + n]
+
+
+def rows_to_pairs(rows):
+    """convert to list of td pairs"""
+    pairs = []
+    for row in rows:
+        tds = row.xpath('td')
+        chunk_list = list(chunks(tds, 2))
+        pairs += chunk_list
+    return pairs

@@ -40,8 +40,8 @@ def get_inner_text_lines(node):
     return lines
 
 
-def get_decoded_response(response, encoding):
-    new_body = response.body.decode(encoding)
+def get_decoded_response(response, encoding, on_decode_error='replace'):
+    new_body = response.body.decode(encoding, on_decode_error)
     new_response = HtmlResponse(url=response.url,
                                 headers=response.headers,
                                 flags=response.flags,

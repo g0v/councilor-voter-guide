@@ -2,8 +2,10 @@
 #
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
+import json
 
 from scrapy.item import Item, Field
+
 
 class Councilor(Item):
     name = Field()
@@ -26,6 +28,7 @@ class Councilor(Item):
     term_start = Field()
     image = Field()
     links = Field()
+
 
 class Bills(Item):
     election_year = Field()
@@ -58,6 +61,12 @@ class Bills(Item):
     execution = Field()
     remark = Field()
     links = Field()
+
+    # def __repr__(self):
+    #     s = json.dumps(dict(self), ensure_ascii=False)
+    #     s = s.encode('utf8')
+    #     return s
+
 
 class MeetingMinutes(Item):
     sitting = Field()
