@@ -19,8 +19,8 @@ def extract(elem, xpath, default=''):
                 )
         return default
 
-class CouncilorsSpider(scrapy.Spider):
-    name = 'councilors_spider'
+class Spider(scrapy.Spider):
+    name = 'councilors'
     start_urls = []
 
     def __init__(self):
@@ -52,7 +52,7 @@ class CouncilorsSpider(scrapy.Spider):
             '//*[@id="main"]/table/tr/td/table/tr[1]/td/table/tr/td[2]/img/@src'
         elem_photo = response.xpath(xp_photo)
 
-        c['image'] = urljoin(response.url, 
+        c['image'] = urljoin(response.url,
                 urllib.quote(extract(res, xp_photo, '').encode('utf8'))
                 )
         c['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
@@ -115,27 +115,27 @@ class CouncilorsSpider(scrapy.Spider):
         xp_edu = \
             '//*[@id="main"]/table/tr/td/table/tr[2]/td/table[1]/tr[3]/td/table/tr/td/text()'
         elem_edu = res.xpath(xp_edu)
-        c['education'] = elem_edu.extract()
+        c['education'] = [x.strip() for x in elem_edu.extract()]
 
         xp_expr = \
             '//*[@id="main"]/table/tr/td/table/tr[2]/td/table[1]/tr[3]/td/table/tr/td/text()'
         elem_expr = response.xpath(xp_expr)
-        c['experience'] = elem_expr.extract()
+        c['experience'] = [x.strip() for x in elem_expr.extract()]
 
         xp_plat = \
             '//*[@id="main"]/table/tr/td/table/tr[2]/td/table[3]/tr[3]/td/table/tr/td/div/table/tr/td[2]/text()'
         elem_plat = response.xpath(xp_plat)
-        c['platform'] = elem_plat.extract()
-        
+        c['platform'] = [x.strip() for x in elem_plat.extract()]
+
         if not c['platform']:
             ## format 2
             xp_plat = \
                 '//*[@id="main"]/table/tr/td/table/tr[2]/td/table[4]/tr[3]/td/table/tr/td/div/table/tr/td[2]/text()'
             elem_plat = response.xpath(xp_plat)
-            c['platform'] = elem_plat.extract()
+            c['platform'] = [x.strip() for x in elem_plat.extract()]
 
         ## some dirty hand items
-        c['election_year'] = 2010
+        c['election_year'] = '2010'
         c['in_office'] = True
 
         yield c

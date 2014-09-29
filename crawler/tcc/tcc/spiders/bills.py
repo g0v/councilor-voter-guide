@@ -7,10 +7,10 @@ from scrapy.selector import Selector
 from tcc.items import Bills
 
 
-def GetDate(text):
+def ROC2AD(text):
     matchTerm = re.search(u'''
-        (?P<year>[\d]+)[\s]*年[\s]*
-        (?P<month>[\d]+)[\s]*月[\s]*
+        (?P<year>[\d]+)[\s]*(?:年|[-/.])[\s]*
+        (?P<month>[\d]+)[\s]*(?:月|[-/.])[\s]*
         (?P<day>[\d]+)
     ''', text, re.X)
     if matchTerm:
@@ -77,7 +77,7 @@ class Spider(scrapy.Spider):
                 item['proposed_by'] = node.xpath('td/text()').extract()[1].strip().split(u'、')
             elif node.xpath('td/text()')[0].re(u'議決會次'):
                 council_motion['motion'] = u'大會議決'
-                council_motion['date'] = GetDate(node.xpath('td/text()').extract()[1].split()[0])
+                council_motion['date'] = ROC2AD(node.xpath('td/text()').extract()[1].split()[0])
                 council_motion['sitting'] = ''.join(node.xpath('td/text()').extract()[1].split()[1:])
             elif node.xpath('td/text()')[0].re(u'議決文'):
                 council_motion['resolusion'] = node.xpath('td/text()').extract()[1]
@@ -85,12 +85,12 @@ class Spider(scrapy.Spider):
                 item['bill_no'] = node.xpath('td/text()').extract()[1].strip()
             elif node.xpath('td/text()')[0].re(u'來文文號'):
                 td = node.xpath('td/text()').extract()[1].split()
-                d = dict(zip(['motion', 'resolution', 'date'], [u'來文', None, GetDate(td[0])]))
+                d = dict(zip(['motion', 'resolution', 'date'], [u'來文', None, ROC2AD(td[0])]))
                 if len(td) > 1:
                     d['no'] = td[1]
                 motions.append(d)
             elif node.xpath('td/text()')[0].re(u'收文日期'):
-                motions.append(dict(zip(['motion', 'resolution', 'date'], [u'收文', None, GetDate(node.xpath('td/text()').extract()[1])])))
+                motions.append(dict(zip(['motion', 'resolution', 'date'], [u'收文', None, ROC2AD(node.xpath('td/text()').extract()[1])])))
             elif node.xpath('td/text()')[0].re(u'審查日期'):
                 committee_motion['motion'] = u'委員會審查意見'
                 committee_motion['date'] = node.xpath('td/text()').extract()[1]
@@ -98,7 +98,7 @@ class Spider(scrapy.Spider):
                 committee_motion['resolution'] = '\n'.join(node.xpath('td/text()').extract()[1:])
             elif node.xpath('td/text()')[0].re(u'發文文號'):
                 td = node.xpath('td/text()').extract()[1].split()
-                d = dict(zip(['motion', 'resolution', 'date'], [u'發文', None, GetDate(td[0])]))
+                d = dict(zip(['motion', 'resolution', 'date'], [u'發文', None, ROC2AD(td[0])]))
                 if len(td) > 1:
                     d['no'] = td[1]
                 motions.append(d)

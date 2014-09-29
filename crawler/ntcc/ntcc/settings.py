@@ -12,6 +12,8 @@ BOT_NAME = 'ntcc'
 
 SPIDER_MODULES = ['ntcc.spiders']
 NEWSPIDER_MODULE = 'ntcc.spiders'
+LOG_FILE = 'log.txt'
+COOKIES_ENABLED = False
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'ntcc (+http://www.yourdomain.com)'

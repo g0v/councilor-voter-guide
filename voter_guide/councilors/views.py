@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import operator
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.db.models import Count, Q
 from .models import CouncilorsDetail, Attendance
