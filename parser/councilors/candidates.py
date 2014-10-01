@@ -36,6 +36,7 @@ def insertCandidates(candidate):
         SELECT district
         FROM councilors_councilorsdetail
         WHERE county = %(county)s AND constituency = %(constituency)s
+        ORDER BY election_year DESC
     ''', candidate)
     r = c.fetchone()
     if r:
