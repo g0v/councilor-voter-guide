@@ -63,7 +63,7 @@ class Spider(scrapy.Spider):
             if nodes[i].xpath('text()').re(response.meta['term_range_ROC']):
                 next_node = nodes[i+1].xpath('text()').extract()
                 item['constituency'] = next_node[0]
-                item['district'] = re.sub(u'[()]', '', next_node[1]) if len(next_node) > 1 else ''
+                item['district'] = re.sub(u'[()\s]', '', next_node[1]) if len(next_node) > 1 else ''
                 break
         nodes = sel.xpath('//div[@id="bg3"]/table')
         for node in nodes:

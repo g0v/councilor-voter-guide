@@ -112,20 +112,23 @@ def insertCouncilorsDetail(councilor):
 conn = db_settings.con()
 c = conn.cursor()
 
-for council in ['../../data/tccc/councilors.json', '../../data/kcc/councilors_terms.json', '../../data/tcc/councilors_terms.json']:
+for council in ['../../data/ntcc/councilors_terms.json', '../../data/ntcc/councilors.json', '../../data/tccc/councilors.json', '../../data/kcc/councilors_terms.json', '../../data/tcc/councilors_terms.json']:
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
-        councilor['uid'] = select_uid(councilor)
         councilor['name'] = re.sub(u'．', u'‧', councilor['name'])
+        councilor['name'] = re.sub('\s', '', councilor['name'])
+        if councilor.get('party'):
+            councilor['party'] = re.sub(u'無黨?', u'無黨籍', councilor['party'])
+            councilor['party'] = re.sub(u'台灣', u'臺灣', councilor['party'])
+        councilor['uid'] = select_uid(councilor)
         Councilors(councilor)
         insertCouncilorsDetail(councilor)
     conn.commit()
 
-for council in ['../../data/tccc/councilors.json', '../../data/kcc/councilors.json', '../../data/tcc/councilors.json']:
+for council in ['../../data/kcc/councilors.json', '../../data/tcc/councilors.json']:
     print council
     dict_list = json.load(open(council))
-    print len(dict_list)
     for councilor in dict_list:
         councilor['uid'] = select_uid(councilor)
         updateCouncilorsDetail(councilor)

@@ -112,30 +112,15 @@ class Spider(scrapy.Spider):
                         else:
                             pass
 
-        xp_edu = \
-            '//*[@id="main"]/table/tr/td/table/tr[2]/td/table[1]/tr[3]/td/table/tr/td/text()'
-        elem_edu = res.xpath(xp_edu)
-        c['education'] = [x.strip() for x in elem_edu.extract()]
-
-        xp_expr = \
-            '//*[@id="main"]/table/tr/td/table/tr[2]/td/table[1]/tr[3]/td/table/tr/td/text()'
-        elem_expr = response.xpath(xp_expr)
-        c['experience'] = [x.strip() for x in elem_expr.extract()]
-
-        xp_plat = \
-            '//*[@id="main"]/table/tr/td/table/tr[2]/td/table[3]/tr[3]/td/table/tr/td/div/table/tr/td[2]/text()'
-        elem_plat = response.xpath(xp_plat)
-        c['platform'] = [x.strip() for x in elem_plat.extract()]
-
-        if not c['platform']:
-            ## format 2
-            xp_plat = \
-                '//*[@id="main"]/table/tr/td/table/tr[2]/td/table[4]/tr[3]/td/table/tr/td/div/table/tr/td[2]/text()'
-            elem_plat = response.xpath(xp_plat)
-            c['platform'] = [x.strip() for x in elem_plat.extract()]
+        c['education'] = [x.strip() for x in response.xpath(u'//img[@alt="學歷"]/../../following-sibling::tr[1]/td/table/tr/td/text()').extract()]
+        c['experience'] = [x.strip() for x in response.xpath(u'//img[@alt="經歷"]/../../following-sibling::tr[1]/td/table/tr/td/text()').extract()]
+        c['title'] = response.xpath(u'//img[@alt="現任"]/../../following-sibling::tr[1]/td/table/tr/td/text()').re(u'第\d+屆(.+)')[0]
+        c['platform'] = [x.strip() for x in response.xpath(u'//img[@alt="政見"]/../../following-sibling::tr[1]/td/table/tr/td/div/table/tr/td/text()').extract()]
 
         ## some dirty hand items
         c['election_year'] = '2010'
         c['in_office'] = True
+        c['term_start'] = '%s-12-25' % c['election_year']
+        c['term_end'] = {'date': '2014-12-24'}
 
         yield c
