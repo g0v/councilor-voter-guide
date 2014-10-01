@@ -1,0 +1,3738 @@
+{
+    "created_time": "2014-10-01 17:59:00.721316", 
+    "host_path": "http://0.y12.tw/g0v/councilor-voter-guide/", 
+    "list": [
+        {
+            "sha256": "f09e38c592ba4b597aed3302703cca93e808958c470a2834c42c0f591c444e6a", 
+            "name": "2010_第1次臨時會-議事錄-1.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 6870920
+        }, 
+        {
+            "sha256": "ee956082dc3730367c04d6529abaa3394a0be0f9569b3ab47f7a12854cea5d63", 
+            "name": "2010_第4次定期會-13.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10228981
+        }, 
+        {
+            "sha256": "4dc85e69cabcb9963ac40e714c7c1e8be9a94db38810e6ea1bad47bb57349ebb", 
+            "name": "2010_第10次臨時會-1.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 5959252
+        }, 
+        {
+            "sha256": "0c0f66cfa7085a16bdc563f5f2dafc5964191460af8931d4a892a88a72a3ceaa", 
+            "name": "2010_第4次定期會-14.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10219949
+        }, 
+        {
+            "sha256": "2d2703ff2217b2c16c2b9d482aaa5a73a9d504e6a7b1f3255e9a90a4b7101012", 
+            "name": "2010_第3次定期會-議事錄-3.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10468102
+        }, 
+        {
+            "sha256": "9c4eba07a09e78006a6a781adee813da7a1d4ee1fb6e4706d79e71d4356e0c5d", 
+            "name": "2010_第7次臨時會-議事錄-6.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10698978
+        }, 
+        {
+            "sha256": "26c7a67d6f621731aa610f9aa006679f845d03ee40e3a9b502f4234632c816b6", 
+            "name": "2010_第4次定期會-5.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10255168
+        }, 
+        {
+            "sha256": "2b63b3e43cd53a0b78eaa1346dcc180bfab75a84b2c09ba8baff923651237d26", 
+            "name": "2010_第3次定期會-議事錄-5.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 4893525
+        }, 
+        {
+            "sha256": "9407faefcbe8d4be7d7b20267637118ca774bd393d34b8e72085e28531084ca0", 
+            "name": "2010_第3次定期會-議事錄-1.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10291261
+        }, 
+        {
+            "sha256": "323554a965e83632a39a7142df8b8cbd6201196fd28d2e865b6e3d05e9431d6c", 
+            "name": "2010_第10次臨時會-3.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10508464
+        }, 
+        {
+            "sha256": "5ea58251954dc1632918bf548aef00ef58838f0e9e897a33cbba01a1492f72ee", 
+            "name": "2010_第6次臨時會-議事錄-6.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10045669
+        }, 
+        {
+            "sha256": "a6c833ac220d8e0236c9a2b5034efe276a710d79ee613f1e177590575056cbd0", 
+            "name": "2010_第8次臨時會-議事錄-3.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10748002
+        }, 
+        {
+            "sha256": "305d84655177c65ebd6362d46402b19783df3235d71f75870454d22bbab833cd", 
+            "name": "2010_第7次臨時會-議事錄-2.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10312132
+        }, 
+        {
+            "sha256": "27e5b027bcfeefc070a5cc342bb707f9459b44c381fc54a527751c7d80511057", 
+            "name": "2010_第8次臨時會-議事錄-2.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10582395
+        }, 
+        {
+            "sha256": "d1f2c6a4e3f32c012d432684263e98848f65027004a9b824bdcccf2a33f3e8c1", 
+            "name": "2010_第4次定期會-6.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10489848
+        }, 
+        {
+            "sha256": "651835a43d6f2ae87f25be482ae4e317e514808fe73f5e7b68f76f7786091b02", 
+            "name": "2010_第1次臨時會-議事錄-7.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 15603140
+        }, 
+        {
+            "sha256": "42f4d247ea7bcebda4d2e4b490d976c616014822268c7e81681319aaf1a07458", 
+            "name": "2010_第3次定期會-議事錄-2.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10346247
+        }, 
+        {
+            "sha256": "bea6307e6f6e74b54fa386fc2a5027ce9182a77cc6e33a03aec59075a1a70f91", 
+            "name": "2010_第1次臨時會-議事錄-4.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 362152
+        }, 
+        {
+            "sha256": "94c8d8832d4a633886e80dac07194631468cb85bf3cb6a717ffad25590c22553", 
+            "name": "2010_第9次臨時會-2.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10592980
+        }, 
+        {
+            "sha256": "c3ab578ae40c1ca3ee74a9400f436d43a8cd9c961f8567d0e47f08b373f1aff9", 
+            "name": "2010_第4次定期會-10.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10472834
+        }, 
+        {
+            "sha256": "af841f75dcc9857ffcc659a07d621ad99dfae4f7e9b8131fe91bc34a5590bc0d", 
+            "name": "2010_第3次臨時會-議事錄-1.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 195713
+        }, 
+        {
+            "sha256": "69cea16df77a14c3326df7221715deb1c92bda620ca4c2e5ddc78bb171041758", 
+            "name": "2010_第3次臨時會-議事錄-6.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 7655848
+        }, 
+        {
+            "sha256": "6002be4c940c7866397d167091d8889fdca3a82df382bd696f3f6aa6c5a242d4", 
+            "name": "2010_第6次臨時會-議事錄-10.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 11525619
+        }, 
+        {
+            "sha256": "ee956082dc3730367c04d6529abaa3394a0be0f9569b3ab47f7a12854cea5d63", 
+            "name": "2010_第4次定期會-12.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10228981
+        }, 
+        {
+            "sha256": "0d1efb478d046743e9bdeca808295141a63775d96d8b353e02f62d04e41e577e", 
+            "name": "2010_第4次定期會-4.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10466425
+        }, 
+        {
+            "sha256": "dec00c1fc7379a05bda792540ccd5d9f05a787ce2593d9a28e9ef93e75d604b4", 
+            "name": "2010_第6次臨時會-議事錄-8.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 9463876
+        }, 
+        {
+            "sha256": "fec0865b67274c3dd4470a9fee3699ef7017250990094be6cfc0a9a82bb7726f", 
+            "name": "2010_第2次臨時會-議事錄-1.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 3544619
+        }, 
+        {
+            "sha256": "9824392aa9492d13445daf1206d57a8fac7844e2df669516e11315be491ffacc", 
+            "name": "2010_第5次臨時會-議事錄-4.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 386836
+        }, 
+        {
+            "sha256": "3837a613953e36e815df0e2c5a90cd43ca3e2e9aa9fa009d611d18a3c79f72a2", 
+            "name": "2010_第3次臨時會-議事錄-3.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 3896046
+        }, 
+        {
+            "sha256": "07123fb261976cce34b63cc5f147755e60e3d60b15b252f7829ab6512a9ada9b", 
+            "name": "2010_第5次臨時會-議事錄-2.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 6869296
+        }, 
+        {
+            "sha256": "7e0aece79c302552f121724d9fa29e354cf79677a5e7d62b92306ea11a222f0d", 
+            "name": "2010_第7次臨時會-議事錄-7.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10628557
+        }, 
+        {
+            "sha256": "3896200abf543aad4481272dd7e7af0382be5d4870f67bac0eb971859295019e", 
+            "name": "2010_第6次臨時會-議事錄-1.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 2183048
+        }, 
+        {
+            "sha256": "00b9dc281287f2bd295e272d90e9b33448d75dc58786ffe57856c30883e5c284", 
+            "name": "2010_第4次定期會-15.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 9751173
+        }, 
+        {
+            "sha256": "fb772a0340fbcc0a83790310e2590feee218fb6fee30bc20ef2ed8cad95e1dd2", 
+            "name": "2010_第7次臨時會-議事錄-1.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10474161
+        }, 
+        {
+            "sha256": "2b0f01b54f26e8794825cdda11da8d6cd43658590c42fde102c5b52fb38f7308", 
+            "name": "2010_第4次定期會-3.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10460776
+        }, 
+        {
+            "sha256": "5dc20d675875c1e01e6adbf08bc4df62ac953720b0f25fa9b551b4fec1dc5d54", 
+            "name": "2010_第4次臨時會-議事錄-5.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 681564
+        }, 
+        {
+            "sha256": "3bbb116a63b345b3935d6758e7efd77b01015a10009baa707dcfca075e7b2ebe", 
+            "name": "2010_第5次臨時會-議事錄-3.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 2447471
+        }, 
+        {
+            "sha256": "43a8bbcce0fd3ccf0bb749dfad0433b5c1ed14ed94020612f91509628d17b55c", 
+            "name": "2010_第5次臨時會-議事錄-5.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 7524846
+        }, 
+        {
+            "sha256": "4aefa136e0b66243e66f6bb4b5206a92fb82d733f8c4f5197656fd45eb0f0dcf", 
+            "name": "2010_第3次臨時會-議事錄-4.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 403316
+        }, 
+        {
+            "sha256": "69805a5b6c27d389614209e102fa948ea4c78f61cd191885e509f2cf934952f4", 
+            "name": "2010_第4次臨時會-議事錄-4.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 8297646
+        }, 
+        {
+            "sha256": "09c81111ed2fdb43323ac3ce4c275f7b0d1c5de43ccf4c73ad8f1d241749fe50", 
+            "name": "2010_第6次臨時會-議事錄-3.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 15528868
+        }, 
+        {
+            "sha256": "a494779ba8fc0add2502a973dfb095e3e947291e9c7a768f7c1e4ce8949f7b4a", 
+            "name": "2010_第4次定期會-1.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 1441515
+        }, 
+        {
+            "sha256": "e32fd97213d57ad0170f3cde2c3d70f58574cf652a5ac4bf9a320e57199613cc", 
+            "name": "2010_第7次臨時會-議事錄-3.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10498994
+        }, 
+        {
+            "sha256": "ac692ffe459ad2037d942c94467f7218faefebb791159d0c0135920b55600afe", 
+            "name": "2010_第2次臨時會-議事錄-3.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 2732018
+        }, 
+        {
+            "sha256": "dae5923a9b19942aa02c561eb95b689d6210c2a2ee1dc83b6fa8391d42771084", 
+            "name": "2010_第9次臨時會-3.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10533226
+        }, 
+        {
+            "sha256": "24b0bdce0cd6af3838c4e6649e9b9e42de22e155b60ac88f58072d386342f321", 
+            "name": "2010_第8次臨時會-議事錄-6.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10438886
+        }, 
+        {
+            "sha256": "e8e0aba047216727fb4daa583dba1ea1c4a011d1265479d0e8f46f603a519d5f", 
+            "name": "2010_第4次臨時會-議事錄-3.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 167273
+        }, 
+        {
+            "sha256": "ed1273b492d7d3520697ad7211b67085f8d0784c7e87e624c245eb0b6b08f288", 
+            "name": "2010_第6次臨時會-議事錄-4.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 3029181
+        }, 
+        {
+            "sha256": "b0950ecee9c19d8732c71d8c0d9d424e5d9f9082aff7608a4ccfcd4705eacbfa", 
+            "name": "2010_第6次臨時會-議事錄-9.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 340118
+        }, 
+        {
+            "sha256": "f32b420ea0955ce0af14aea18488c603736bf4dd9ea3e3bdb6ffb540a2733c20", 
+            "name": "2010_第4次定期會-7.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10538319
+        }, 
+        {
+            "sha256": "b28f78040fb50410302abbcaae622426215551d68d31a56e166ab85c368d1b2c", 
+            "name": "2010_第3次定期會-議事錄-4.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10468284
+        }, 
+        {
+            "sha256": "5807ab6ba7c3f02dbc7ceb7c9453dfef640cabc8db5a82a00f9e2434a65b297a", 
+            "name": "2010_第3次臨時會-議事錄-5.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 2918841
+        }, 
+        {
+            "sha256": "affe0e6ea3a284675390610f7f55b83ec74903a8f811adaceb8f81d78e4cd8b6", 
+            "name": "2010_第6次臨時會-議事錄-7.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 7517985
+        }, 
+        {
+            "sha256": "8db930ad8b89b397f5d3cbb788460458e1bbee22232bd453df67344c3aaa1f39", 
+            "name": "2010_第1次臨時會-議事錄-6.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 392643
+        }, 
+        {
+            "sha256": "13410e0332c6eb55fc2bb19011f07b2587ff4c7bc209d39f31243594a1f8ef60", 
+            "name": "2010_第次臨時會-議事錄-9.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10502045
+        }, 
+        {
+            "sha256": "4950075e654cd3ee9be8bd89f83281e35f4d8c2ce81c614f94b00a7a011062e6", 
+            "name": "2010_第7次臨時會-議事錄-4.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10480886
+        }, 
+        {
+            "sha256": "7e9476a951a2bceba70dddf97f667857153198aa36313a20dbda3bfd3a84b776", 
+            "name": "2010_第4次臨時會-議事錄-1.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 344650
+        }, 
+        {
+            "sha256": "0daf08070aeb232fdba1c5002ab4fa225aa4fd3407eb9f5142ba558d6bbcd24b", 
+            "name": "2010_第8次臨時會-議事錄-4.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10568714
+        }, 
+        {
+            "sha256": "b0e9c7735e6b35affdee476d5a29c9e939db2dc7980ef64308cc402562bfd6dd", 
+            "name": "2010_第3次臨時會-議事錄-2.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 1165358
+        }, 
+        {
+            "sha256": "1e3de5e8fca9d2d5c364afa9f6dabca4c15d369629eb9ff1c5dfc16e60b1539e", 
+            "name": "2010_第1次臨時會-議事錄-2.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 2742289
+        }, 
+        {
+            "sha256": "b35e27ba90d3513e12d298f9f34dd3fbb018401108979940ac8d93d464778ba2", 
+            "name": "2010_第4次定期會-11.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10656487
+        }, 
+        {
+            "sha256": "13410e0332c6eb55fc2bb19011f07b2587ff4c7bc209d39f31243594a1f8ef60", 
+            "name": "2010_第8次臨時會-議事錄-7.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10502045
+        }, 
+        {
+            "sha256": "d366b4aaaa8ecc7a08c912ae2c00bd446a79cddcc2f6c83f93c86f96fd204d6c", 
+            "name": "2010_第6次臨時會-議事錄-5.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 371873
+        }, 
+        {
+            "sha256": "875c4caa773ad84af2ae8d70a2ea2973f25a1976818f403c949b37e4a366365e", 
+            "name": "2010_第4次定期會-8.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10557433
+        }, 
+        {
+            "sha256": "4ea1f8849c41ad3f063bd93043b054ab023fc21a7b661cb4f3b8fbbea3c04193", 
+            "name": "2010_第9次臨時會-1.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10507055
+        }, 
+        {
+            "sha256": "c2fa365f09d319fe2da62fdef0356ee4842764ffde9b1ac0fda1756cdc957b40", 
+            "name": "2010_第4次定期會-2.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10469830
+        }, 
+        {
+            "sha256": "8ed00e47c215ceefdb8d9d41a5beebf340c9a6db95f77a0adcbc2ea69c57c9cd", 
+            "name": "2010_第2次臨時會-議事錄-2.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 335252
+        }, 
+        {
+            "sha256": "23121f29fd9a7245c594102c5a7d62f2e33a4b015ad14ce684983d17b8e02c5f", 
+            "name": "2010_第7次臨時會-議事錄-5.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10511623
+        }, 
+        {
+            "sha256": "c618d5a9117c81ab599c2b60c26f63f811522796c6292f961b937ac3fe94f0fa", 
+            "name": "2010_第4次定期會-9.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10535803
+        }, 
+        {
+            "sha256": "8d54a39fe415051d68051ac51ecd7fb9ce92f4e8be655285168a85be2d36ff2f", 
+            "name": "2010_第8次臨時會-議事錄-5.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10233406
+        }, 
+        {
+            "sha256": "9993b14e4fec8455524448ed1bd293497603feb7e579104f75d4cd01f7445e0a", 
+            "name": "2010_第5次臨時會-議事錄-1.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 2211958
+        }, 
+        {
+            "sha256": "a4b0056d86cf4eb54e5eedf7f7b534f1aa12279d1526743a01f90587647a66af", 
+            "name": "2010_第6次臨時會-議事錄-2.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 374525
+        }, 
+        {
+            "sha256": "4a7fc5aa99ad806e88d7b69208bfaed64f12a9bc93bc640e641a6de6349602ac", 
+            "name": "2010_第10次臨時會-2.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10363425
+        }, 
+        {
+            "sha256": "936330eed6aa8e34a2defb6e21b56c5956a4d03a626a3c9da216bd57b6d2ef4e", 
+            "name": "2010_第8次臨時會-議事錄-1.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10486847
+        }, 
+        {
+            "sha256": "d671c4183055332c4fa7abc705353eed07d4dbca64844ad5526f70c8e5a4a72d", 
+            "name": "2010_第1次臨時會-議事錄-5.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 392823
+        }, 
+        {
+            "sha256": "24b0bdce0cd6af3838c4e6649e9b9e42de22e155b60ac88f58072d386342f321", 
+            "name": "2010_第8次臨時會-議事錄-8.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10438886
+        }, 
+        {
+            "sha256": "adeba2e68d15a4e6df1af4ffc4c0461725927303dd0b7e40d46bca8048022184", 
+            "name": "2010_第9次臨時會-4.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10525335
+        }, 
+        {
+            "sha256": "7b96fa1f0726644b700e03ebb129646a0291aeade414f5378bf8ccc91d5650f7", 
+            "name": "2010_第1次臨時會-議事錄-3.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 358734
+        }, 
+        {
+            "sha256": "0822894b9312009866cd2b400b0a626b6d83e131b773fd6370ca3d729d8c2476", 
+            "name": "2010_第4次臨時會-議事錄-2.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 376825
+        }, 
+        {
+            "sha256": "30260c4a1461b02e3d9dd905855f7a503859d6caeb34f04028ec55c0d4f5d583", 
+            "name": "2010_第7次臨時會-議事錄-8.pdf", 
+            "dir": "meeting_minutes/tccc", 
+            "size": 10510160
+        }, 
+        {
+            "sha256": "2a6fa213033daa619e49bca48cbb6ed028a042fdbe49389e881abd7954caa7e6", 
+            "name": "dedf1e41-3992-17b2-7620-8258792f58b1_第1屆第4次定期大會第32次會議紀錄-市政總質詢.二三讀會-歲入101.11.19.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 104215
+        }, 
+        {
+            "sha256": "7a4f43489842595d32ccb3287bc4586ee0e17357d821906510cd63e1eb863e6b", 
+            "name": "0cf17a8e-6e6c-782c-bb74-46075f7fcad2_第1屆第4次定期大會第42次會議紀錄-總質詢.二讀-財產.額數101.12.3.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 88663
+        }, 
+        {
+            "sha256": "1331ae5a34a4641af7cacbd5c391aeab5ea9edb3b97bb0463d60ed78e1cd3604", 
+            "name": "2aa99089-e64a-c58d-a3c7-710241f4e3ea_1000523-1101-rec32.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 94626
+        }, 
+        {
+            "sha256": "33196edaab3d2bf25493261ab6ed453a32bc3bad9b36099cf72f4be155bae928", 
+            "name": "b0b1a34c-9a14-997c-65d2-25daf80d3b16_第1屆第2次定期大會第12次會議紀錄-高銀專案報告[1].pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 59267
+        }, 
+        {
+            "sha256": "4c3b12f6d64070816a9e3ec5785f66e69ad21664a01f18a5c824c8dce27536af", 
+            "name": "040d89dc-d56a-48bc-a7a2-d2d331cd9f00.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 61493
+        }, 
+        {
+            "sha256": "f68c6e170366395060db7939ca0a708b51f79ebe853cb4db51ce01de0da0862e", 
+            "name": "27d7fb8c-bd29-4f95-8285-10a64bcc43af.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 93401
+        }, 
+        {
+            "sha256": "0c4b5bea0493a7de85d3ac551c6de12852eeffd39b8614e31b15913bf825d06a", 
+            "name": "3ab894fb-61e1-7650-e9a3-ad7e024f76d3_第1屆第2次定期大會第43次會議紀錄-市政總質詢[1].pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 82994
+        }, 
+        {
+            "sha256": "096e6534d2185acaa9f3e3e151cf50c9081e9173504f66275d52829a9a3112e5", 
+            "name": "5226274d-9631-9cfe-7949-47687c1915c3_1000112-1001-rec3.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 12525
+        }, 
+        {
+            "sha256": "b845da51f8db0c3c0f11536e226034e39c476c8a1772443d0e1fac087a0ad368", 
+            "name": "7978c589-5b9f-4e4e-a9c5-303a5ca976f6.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65345
+        }, 
+        {
+            "sha256": "57d71201f886349aa4cc52a93ece882e100735907919c8cbff44442176041606", 
+            "name": "8af02ab3-af65-418a-834a-1d91a69678b6.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 88877
+        }, 
+        {
+            "sha256": "e2db6905efe642bc5da883e67b9feb9f0b08249e29c3e079b9beaf8369bfca2c", 
+            "name": "35e9a54e-2944-b749-05a3-89b911d7e001_第1屆第4次定期大會第37次會議紀錄-市政總質詢.交付101.11.26.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 75292
+        }, 
+        {
+            "sha256": "4696e597b04d84c6e6c754325d64edc264fcaa77c926b73cd90988eb48b45cf5", 
+            "name": "fb5c5050-6988-4607-84b4-b9391ca8a228.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64796
+        }, 
+        {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", 
+            "name": "f3bdf8ce-aa03-f37b-0cfe-32dc21dbbcc3_第1屆第4次定期大會第11", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 0
+        }, 
+        {
+            "sha256": "3732f9182b4be401e05984accd66455684f6e29d6ac05589f7cd5221087e4438", 
+            "name": "073e0812-dc58-45be-9331-9475ab57f100.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 85403
+        }, 
+        {
+            "sha256": "3db469f09cf8da30d0ff0fb4767c0cf66952deacf849caebd32f1f90e27061cf", 
+            "name": "ff93ce06-ee63-9277-aa2c-f06485d6b133_第1屆第4次定期大會第28次會議紀錄-市政總質詢101.11.13.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 59665
+        }, 
+        {
+            "sha256": "5fa4d2436838a6a1321fea1d551a538d03d23d84735130d9b9d7125bb8c1ec90", 
+            "name": "2b677a82-c18a-73c3-97bf-2ed8654f98ca_第1屆第2次定期大會第22次會議紀錄-交付議案.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 75075
+        }, 
+        {
+            "sha256": "57a9cd8646555c49d3c4315bfcaa56eb79fbdf7a4cc7608710131d8b8f9f5e28", 
+            "name": "d5febc79-28ed-4b88-b242-dc2fc64564f7.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65265
+        }, 
+        {
+            "sha256": "a142703a2d8b2cb92ab4b73b39517b995e0b155d301a34d61eb828ca8c515ee5", 
+            "name": "7443c036-6f48-4d25-bef4-c2eb2fbb6acd.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 66330
+        }, 
+        {
+            "sha256": "9d59ad6289a0dcc049dd33910c4fb476777a510f7d497a23a98ec983f5067df8", 
+            "name": "09c675a7-54fd-48d1-a437-4754ab794756.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 141573
+        }, 
+        {
+            "sha256": "5897ea7289f1a1748418e11c68d887a47573dc2652c2062f82d84910758c37dd", 
+            "name": "0e0490a5-eb7d-e6b0-f66d-a56a16ffc38f_1000314-1004-rec3.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 93988
+        }, 
+        {
+            "sha256": "03148ab01e7005d6b44c8f49e885b590e2400a81bfe617786729f3a8a12269bf", 
+            "name": "c8552624-133a-447e-a4f4-0cefedbf7a68.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 60947
+        }, 
+        {
+            "sha256": "cd7938a82e89e35958a458dd790238bde8ad9421d316c73e23f0a18d82427cba", 
+            "name": "7bf50b31-3d72-4c09-a335-c6f6399c6c72.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 161677
+        }, 
+        {
+            "sha256": "4c1856e2d9c59f9a2c11a78a2ceae3e0f372c736b9a3f37dc0ad170de3d3a440", 
+            "name": "7d521b52-4909-10e5-c6fe-bc19befd253d_第1屆第4次定期大會第46次會議紀錄-議交議臨提.議提.歲入_p.50-p.73_101.12.7-1.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 141506
+        }, 
+        {
+            "sha256": "5e48e222f3c52bdb7d0090715bc5a51b242c61d933079f28c86a0801aa1d001d", 
+            "name": "ef29bb1c-dd46-510a-48ed-25577611ddee_第1屆第3次定期大會第18次會議紀錄-民政部門質詢101.4.23.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 70966
+        }, 
+        {
+            "sha256": "6b98711e94f581360185cdbb6fe847b331c213f9c9b3df9e4f4fafb6650e3d41", 
+            "name": "2d4ca883-cde1-48d0-b793-695c08625f3f.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 98570
+        }, 
+        {
+            "sha256": "8f2aadd384389329b18662996b84baedae5b278f78baf86218d31244b60c5deb", 
+            "name": "e8bf8bc8-4472-447c-8ecd-902095ed21e5.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 57145
+        }, 
+        {
+            "sha256": "18db43b5df49feb24c5359313c09feb96b5152dfb38674bc54d9293a896e9741", 
+            "name": "b62ee404-1cef-4cf3-8f7a-3867a359ffe0.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 82685
+        }, 
+        {
+            "sha256": "df037e1ac578f97dedc388ea8fba210fc33f1ccb01e6c1422eddef28d5d3ef6d", 
+            "name": "d5a2a7f4-6706-4b47-b3a4-3a3de7d145ce.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 78852
+        }, 
+        {
+            "sha256": "d298aad5d9d6812ea30084a63d3f4d52ca06dd578d9ecf4903cfc4a0f3d4b964", 
+            "name": "d1416535-5b7a-48c6-b9d5-44caf6f0e0de.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 74691
+        }, 
+        {
+            "sha256": "9d44fca237de614ac25c2b07ccde0db059cfd8c24413a17754c2087ba56499d0", 
+            "name": "c8c0ac25-4b8e-3973-d858-a8c0ac08dcb7_1000418-1101-rec10.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69326
+        }, 
+        {
+            "sha256": "c7d90fba7d583c1aa41825d9dc7180355538fd128f1765b66a2c0a8f930280c7", 
+            "name": "3e9548e6-0f1b-4712-9642-5532aaeacc23.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 60560
+        }, 
+        {
+            "sha256": "075042c72312ba9865202ba07b6c03756ab5c827dde2d38c0c948fed2cb134d9", 
+            "name": "fd91d41b-c251-487f-8a84-5c9772d8621b.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 93399
+        }, 
+        {
+            "sha256": "512b468e4a8a85ca9bd516e7e2758f995e60f15fba796b2dcc9d2f723a3c3847", 
+            "name": "fe63d84e-b5a7-4384-9eb2-f1ea8d1738ce.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 113412
+        }, 
+        {
+            "sha256": "8665de0e632be84b9a16a94a7d7e7353739175686014ed69e2080e13d53c9aff", 
+            "name": "f64ce5e7-4b12-4701-aa81-5185c4545691.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 149973
+        }, 
+        {
+            "sha256": "dfaad06fb1552c397d8bafd8896bc71048ef1ba59482332508ebdd86e15f8972", 
+            "name": "7452ad39-ed87-dd4d-16e5-04eac0a24acf_1000503-1101-rec21.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 73627
+        }, 
+        {
+            "sha256": "f79b260f97c48f95054d63e1a7b3bb2f996f9399ea14480dd82f145d5f740008", 
+            "name": "1330dcb1-23b3-4414-b8da-1c0ecdcc421e.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65252
+        }, 
+        {
+            "sha256": "a3f82db868c8fd855fa23252c9097f7ba1cf876b2fbcabb61eed995827aadc5d", 
+            "name": "a2f14983-36db-fe86-a897-8d8288e846f2_1000401-1101-rec1.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 93242
+        }, 
+        {
+            "sha256": "de52fa31007bde5d509e981cf214b26eb571df26a178fe8ac10849984d9eadfe", 
+            "name": "4f544e19-39d4-12a3-cdb3-908a5061464c_第1屆第3次定期大會第26次會議紀錄-市政總質詢101.5.8.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 58779
+        }, 
+        {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", 
+            "name": "5f88567e-ae6f-c00c-af14-4035bf59ec19_第1屆第4次定期大會第12", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 0
+        }, 
+        {
+            "sha256": "f211723b69cceb9784023a17d877ab813587b96a3f73927d81b677e4c0bc0770", 
+            "name": "a54f4c15-6685-4abf-8ed2-99b7607e0049.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 240906
+        }, 
+        {
+            "sha256": "cd234133e583cdd35de54d4c308bcf6d5df95636278c4c6a5db683e0652a5b6e", 
+            "name": "3bd2ab9e-93bb-ba6a-823a-4eb2e7bcd1cf_第1屆4次定期大會第45次議紀錄--變更議程101.12.6.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 62435
+        }, 
+        {
+            "sha256": "d97ef2093aa023428324a6f11fdf5e39756f9161f2f3edece7b864bb25ba907a", 
+            "name": "b211f9c3-3f0e-437f-86e3-2c53299e3a31.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 112700
+        }, 
+        {
+            "sha256": "5ca596c9fe6dd573cd4c08ac2f18bb57b02a6dc3c1e2d6002a2e50e00c38542c", 
+            "name": "4a60ded7-1cd0-4571-980c-25545e836a57.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 90248
+        }, 
+        {
+            "sha256": "4bad788d497886dc223435f1366536185d4d5060e41c68549d148b871e4947ae", 
+            "name": "504c0aa3-96d3-2b18-1b0f-708824177b47_第1屆第2次定期大會第16次會議紀錄-保安質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 78579
+        }, 
+        {
+            "sha256": "57ee545baa359593223068a9bffa15fa5e095dc06c11c9d72e80fe4c4c1a9bf6", 
+            "name": "ff49b0ac-ade6-f291-b078-70d41b5ed169_第1屆第4次定期大會第19次會議紀錄-社政部門質詢101.10.25.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 68689
+        }, 
+        {
+            "sha256": "5514b8401e492732e8a8ffe63ab3e6350b0e0a2c56065270ad3c2616539cc7c7", 
+            "name": "5854d8be-a34a-a987-15c4-f541871d0717_第1屆第3次定期大會第15次會議紀錄-工務質詢101.4.18.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 70389
+        }, 
+        {
+            "sha256": "7515cd3846cf8690ce288d579d3df6d2dce70b649dfe45a1479bcd7cdc04eec1", 
+            "name": "807c6986-02fe-46db-9da8-63e004de173b.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 75288
+        }, 
+        {
+            "sha256": "3c53bffebd364cc417154904ddbbfdcc05bff5e0c86bd023eefa4d17837d3970", 
+            "name": "c38744dc-c383-409a-b75e-a01ccb9d4b07.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 166465
+        }, 
+        {
+            "sha256": "23c04070be392f7d92140250a8c69447fd71e763cc86e4f19a7d5c5516fd2153", 
+            "name": "e7868b43-87e7-489e-8489-9afe8a3325c1.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 143031
+        }, 
+        {
+            "sha256": "586fffad17a3c8621fb5d274f875c2e9207796c985d4710be7a2c1240f4b44fe", 
+            "name": "7713a706-8321-b6d6-a8b7-943ad040071f_1000509-1101-rec25.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 73476
+        }, 
+        {
+            "sha256": "a238e0a189348a8b277bca035d920610957d518b81dc2aad955901e1644b5b07", 
+            "name": "4bbb0785-6ef4-6b5b-d5dc-b22d3a23ccbc_第1屆第3次定期大會第16次會議紀錄-工務質詢101.4.19.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 120937
+        }, 
+        {
+            "sha256": "432eb51bda5a3b5e913164627d8f97e6ebde89140e9e3bd6e6a4dbf652dd9a9c", 
+            "name": "62236c1b-8c6d-8742-01a4-d25aba0121a6_第1屆第2次定期大會第38次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 96333
+        }, 
+        {
+            "sha256": "f84fc660b2e92f7676dd38859b8bb9509b6cf517760e253de6e7e2490cac6045", 
+            "name": "c0284852-d376-495b-8b4b-58830bd6549b.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 101863
+        }, 
+        {
+            "sha256": "30fc3dae1abb7999bb457e29bc32bae121bd58874b9e8bfce9fd43667689be75", 
+            "name": "aeb78726-37de-4f60-b8c1-64946776cf09.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69812
+        }, 
+        {
+            "sha256": "0ece5861d5d309784dc443df82db7c5d151cdb1bbc075191d83e4f505144080a", 
+            "name": "cace77bc-71c0-6b7d-a353-af9581e4fa47_1000412-1101-rec6.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 73365
+        }, 
+        {
+            "sha256": "debdd03681d5b803c31b48d51846e5c8a71f2014e2268726eb25cd5df39de577", 
+            "name": "55e961c0-b953-e1de-3d79-4828588e00ff_第1屆第4次定期大會第15次會議紀錄-都市計畫業務報告及質詢101.10.19.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 95424
+        }, 
+        {
+            "sha256": "181768a6a5383fc9f0c977293142bb3f0a5f893ba59da0e75fea01c6988fe04b", 
+            "name": "fc524f65-0896-4339-8ef9-e23d2167cf5c.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64854
+        }, 
+        {
+            "sha256": "e9dcad903fb9e1e546a812154204a127606c3cddf561f2484f897734f460f075", 
+            "name": "9186267d-73f6-4e78-b2df-24ff249e065d.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 66861
+        }, 
+        {
+            "sha256": "38e04303fa3ea317d0a9f242c47af4c1f03fabdd916efade051bfef9fdc07fd5", 
+            "name": "e189f189-9b84-4102-be7a-8d9866c15a97.doc", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 46080
+        }, 
+        {
+            "sha256": "35888cfe86db028437127704b17bb4959e36da6e6a7679fa1dfce9e1ecca3d66", 
+            "name": "dff1e476-b86b-4bbf-943f-be48d40adddb.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 153486
+        }, 
+        {
+            "sha256": "c9fbf06bc7bb135134854324d9c65e65909043bf4df66f413919723388e71a56", 
+            "name": "9a29b3f8-3a9c-c562-fb6b-f8f0c663cb45_第1屆第2次定期大會第28次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 61005
+        }, 
+        {
+            "sha256": "d0b3539f51b810c7fb7df49dc5ef614b54500cf0b2f081545f9fddb5244a651b", 
+            "name": "8266f0f3-d6e9-0efc-bf4b-d9ad0976f0cd_第1屆第3選舉區遞補議員宣誓就職典禮紀錄-101.1.20.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69708
+        }, 
+        {
+            "sha256": "07a68123ea9f9e0ac52d7656d9c4164aab23f3716c701aeb2664d67f656fd89e", 
+            "name": "4cfe3f2d-f9f8-fab2-1475-f861198b179f_第1屆第2次定期大會第19次會議紀錄-工務部門質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 82344
+        }, 
+        {
+            "sha256": "d495de42b8dd44b14ee34e53fbd18be50a407ed080510cb1cd9528ac7ca43a21", 
+            "name": "c8f1b1b9-1a8f-46a7-ab9d-dd2b9f09acc0.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 99013
+        }, 
+        {
+            "sha256": "7105833aab0373258e93ff86b02e2bb1446e0e8e7f7ab14179422c10c64d918b", 
+            "name": "a24049fd-2bbb-4990-a6da-1fd52903258a.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 76868
+        }, 
+        {
+            "sha256": "8293444a3614545aa9becfa68ece5673d7ddfd479bef21532a715835b4f2bb3d", 
+            "name": "9152ce66-2719-abc5-dc6d-251e529d7b86_第1屆第3次定期大會第34次會議紀錄-市政總質詢及市府提案101.5.18.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 171988
+        }, 
+        {
+            "sha256": "2a7cbbfba96bb111e9999571423361aeb8498e2353697e4df11de324b257835b", 
+            "name": "6f164bc2-017d-4d2b-804e-c64ad8add4cf.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 66998
+        }, 
+        {
+            "sha256": "a91696e17ee73874bf3959dcdfe2a0cae2acfbdb013cb6eb43553291fa492a36", 
+            "name": "e509b771-c35e-60c6-f0f2-32cc3304ea08_第1屆第2次定期大會第21次會議紀錄-民政質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69927
+        }, 
+        {
+            "sha256": "e54205c04a59d4a36b5b02204d1ab7f9f2a1dd770477532a476548daa1cc5f17", 
+            "name": "1ee94f8f-c97f-7a31-d7cc-954f3e291291_1000225-1003-rec1.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 86608
+        }, 
+        {
+            "sha256": "5cc2fa062c2e63f5c50360030b6f44e694f4e9fe09fe527c634c275ff38016fe", 
+            "name": "47ce2ee7-02f7-4e62-92a0-605d900e0892.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69542
+        }, 
+        {
+            "sha256": "142ea5f2adb0e36ebb15e836fb91e9319d2192d95da22728c61d13f0b189f8e3", 
+            "name": "c70decff-7c4c-45d7-b510-7f862beb667a.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 63344
+        }, 
+        {
+            "sha256": "0ae099834d6a7b5b5cb403027ec44f00561b652c6fc5f8731b2ad06fb8464269", 
+            "name": "5a346499-0a21-3ce1-0111-c21de35e9dcf_第1屆第3次定期大會第44次會議紀錄-市政總質詢.二三讀會101.06.01.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 147207
+        }, 
+        {
+            "sha256": "1eeb7ab222a8e11d0130ca35334d94984c4d99799f322fd8395089804bfb74d4", 
+            "name": "79e13282-9595-4fb3-9d27-a2f4a9334518.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 155366
+        }, 
+        {
+            "sha256": "472fc2478005f5565ee423b65d4e148d13d5cf2fe9a6dc20868cec8171adcb13", 
+            "name": "514f4aab-77f2-4db3-96bb-cbbe9a609769.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 70875
+        }, 
+        {
+            "sha256": "0177a568dd6f0c0968853422f3ce5f083bbf5de1033b7cbb0bbfe3cf42eccddd", 
+            "name": "6d6c7774-ccbf-7b30-6d95-840068b5c8f9_第1屆第3次定期大會第4次會議紀錄-財經質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 57192
+        }, 
+        {
+            "sha256": "53c94e7aa92d6cf5e20529a92687d6fce8d86d66a228f096162c59ba7fd654af", 
+            "name": "a8ee9cc8-975f-4d8d-9738-0c4971161ca7.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 72192
+        }, 
+        {
+            "sha256": "6128dad39052368289677d17e502b7ce2d8a66f96931686c39508df4666e9529", 
+            "name": "aa6b01fc-8d2d-486b-9f6e-6897ed8ade24.doc", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 61952
+        }, 
+        {
+            "sha256": "20d37c62dd43fc395f24dd50f6254fd9fa09140177d37af815c52dedfc9157e3", 
+            "name": "582c01d0-6c56-75d9-39f2-0ebe6d35d0ad_1000525-1101-rec34.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 85744
+        }, 
+        {
+            "sha256": "0e980329a67e4f63b4a93f7ea8fee648d1ec8daa7df5a9a1a61a76b4be340f8f", 
+            "name": "70edee14-b357-472b-8569-587fb5d06f38.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 175096
+        }, 
+        {
+            "sha256": "c1d21931fa97622ab5532720624f56bc800279cf73294d108fa3436792f76ae6", 
+            "name": "4b220d73-f04e-4cc9-a5bf-fd54223ef935.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 87176
+        }, 
+        {
+            "sha256": "5fafbcb9479472e106a358e49b33e840f7ea142532fef36ed7210c2c8df65c3d", 
+            "name": "3e04c323-6605-eb71-4d7a-a934cea51be6_第1屆第4次定期大會第27次會議紀錄-市政總質詢101.11.12.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 55388
+        }, 
+        {
+            "sha256": "cb093c2401e593cb5da615eb2ef6fcc728450e40a6d658fd31351563e90043f6", 
+            "name": "16d58951-9e82-4204-8455-b6057fa44e77.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 79490
+        }, 
+        {
+            "sha256": "f600bdc707681a135a88dafe067525cbadb1c3b673a01b5ad76c54b8a5cd2e78", 
+            "name": "6cc6b6f7-4339-fabf-785c-f29e9d8c19e0_第1屆第2次定期大會第31次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69153
+        }, 
+        {
+            "sha256": "e1cb87cd2982adfb56e00ad3ef1e31d7a382af7fa413c5b345fb2121d8e143c1", 
+            "name": "14d92cff-3c65-4cd3-8fc4-b381be34889b.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 94275
+        }, 
+        {
+            "sha256": "93a6b14c8f0af939deb0078c44dfd21449ad11a8897411d97eb1dc3e9fa2fbd9", 
+            "name": "cee19a5a-592c-4545-adf5-c075c2d52c63.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 82584
+        }, 
+        {
+            "sha256": "e01fac689df301b79082856b3456218d67cd26c4860e589c58e43144fbbe765d", 
+            "name": "0885d2be-d5e2-4dfd-8f01-1849ff4f6219.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 128134
+        }, 
+        {
+            "sha256": "10d6b8a147f908aa4c747d6d1d460ce33d2a2a57093e4ba497a69772872bdf34", 
+            "name": "67361624-4c99-4d7c-816a-3812d36be026.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 62971
+        }, 
+        {
+            "sha256": "8302783dbcd4522089e8f052939d1816e56817238cbe6673982b22848907a16b", 
+            "name": "606e71ca-26f0-cf65-c06d-71a46c4c3443_1000124-1002-rec1.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 10588
+        }, 
+        {
+            "sha256": "ddd279746dc13b00a480eaf4d287e0c45c248d95d4e99a9d6f3f17401e980ed1", 
+            "name": "847a4911-bb5d-174b-f867-b477a3e45cc8_1000406-1101-rec2.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 74202
+        }, 
+        {
+            "sha256": "09ed08af0a59b9402932cc7dd6488244c3d472e52e2df41c3206d28675144b2a", 
+            "name": "6d14bbb7-ca55-eb1e-aff2-8c58d619f69f_第1屆第4次定期大會第43次會議紀錄--墊付款及議員提案101.12.4-1.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 328940
+        }, 
+        {
+            "sha256": "edaec836e8fdd549f367eb143342226157954b585928425f1f74f7047a279d61", 
+            "name": "33809118-5c2f-45e4-a83c-b1fae10ee91a_1000315-1004-rec4.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 204225
+        }, 
+        {
+            "sha256": "03cb57ced290a264f90ee1a7c016ba5d3d48c7ba23cbeb5472dfe4ec7c92b342", 
+            "name": "b1d791b9-6183-57d6-3f72-561d441e246a_1000419-1101-rec11.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 78027
+        }, 
+        {
+            "sha256": "e7e882bfde0edaaf49a9824f5f1d69ede197f9caa690fd6791a5e51fbf466052", 
+            "name": "b81ead71-3695-e921-994f-34067c3ee8ad_第1屆第4次定期大會第35次會議紀錄-市政總質詢.二三讀會_稅課_.額數101.11.22.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 74138
+        }, 
+        {
+            "sha256": "983c970291b962f267c38558df413c5c7c2ce3e2e5a2f0d5910bceae102867dd", 
+            "name": "c2d73349-bf54-3674-acf9-77144e18e394_第1屆第3次定期大會第31次會議紀錄-市政總質詢101.5.15.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 82611
+        }, 
+        {
+            "sha256": "53eecc0d79be7f8c7407ba1f983ad78a80b83393c232dc337f86380fc522f469", 
+            "name": "37161321-8ce3-de0a-577b-d4e59de1c5bb_第1屆第3次定期大會第33次會議紀錄-市政總質詢101.5.17.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 62063
+        }, 
+        {
+            "sha256": "ca80cf431ed45df1c0f399b61a8acafb3e80933f29a9de06be11c596bf14d06f", 
+            "name": "4568c2ef-5ea3-6008-c288-f3ae25fcb153_1000307-1004-rec1.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 57801
+        }, 
+        {
+            "sha256": "dd0c5709bf4151c0a0680d0949e7b4269efeed37d028923fb08f57cfad662727", 
+            "name": "b79b87c0-8fc1-d601-3514-7627e5230b8c_第1屆第4次定期大會第31次會議紀錄--市政總質詢.二三讀會-歲入101.11.16.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 108623
+        }, 
+        {
+            "sha256": "d2b0839d0f6cc6a6038719f0ad4219c64b4d90df7338202b7892d1ec671a538b", 
+            "name": "d67cefc8-2611-6be9-d1b6-2dcd403fb780_第1屆第2次定期大會第26次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 61596
+        }, 
+        {
+            "sha256": "efb1beeb994d46329830fa8f4ea292af677e90a2ca5c8ae18dac34a00b6481cd", 
+            "name": "d9638ee1-72d7-f996-6b7b-ae4359df3c5c_1000125-1002-rec2.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 9443
+        }, 
+        {
+            "sha256": "48ceea2994fea15c065d9f6856170df7812399b35d05d41db58ada8245175972", 
+            "name": "d26ce063-823f-4d53-a740-fa57557c4c4e.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69292
+        }, 
+        {
+            "sha256": "32b8b1654db35284bec40e187c9b58ec938f9a77afe907342372049c42b202b1", 
+            "name": "009a2734-e968-4e9a-b67b-f41318c757ee.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 100152
+        }, 
+        {
+            "sha256": "ac86c8e1d0917ba2eb677eab21abb702d70e9ae506299f399bb4f4fc39f7b80a", 
+            "name": "93da052a-fbaf-40fc-9cc7-00cfd0465654.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 125836
+        }, 
+        {
+            "sha256": "0a5dbfaa8315bb2c63b3d4070d0600084410eed7e8f25aafc50f03ae12e6a453", 
+            "name": "8bf9f49e-100a-ae69-cd0c-099a656558d2_第1屆第3次定期大會第9次會議紀錄-農林質詢101.4.10.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69967
+        }, 
+        {
+            "sha256": "99854c884b396917ba3af72b69e55d9505f09c8d59022a30c616064547c75c39", 
+            "name": "dfe5250e-f2f9-40b0-96eb-5315e128a71e.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 135384
+        }, 
+        {
+            "sha256": "df49f89416be7a2a87dcf6d22bc6ff1fd0abcc7496249a4d4d920ae53a99043f", 
+            "name": "1552d0f9-ad4d-4a5a-ab8f-e52e1c0904dd.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 67769
+        }, 
+        {
+            "sha256": "94b616d29ecc02342cab59f397f8328654fdb0ef6c6e4402eddba070d95f1a65", 
+            "name": "86496bac-666a-4930-80d9-2f0045c3ac2f.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 148504
+        }, 
+        {
+            "sha256": "ddda5de5918fabbd13b2cea3e0562b2340e315e88d03d6a140a08c87720bfb3b", 
+            "name": "a0787d61-99fb-43be-b303-2e08e06863a5.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 68132
+        }, 
+        {
+            "sha256": "bfdd4ec302500f36e960fd30146311e6a67c9fb324b8f929a1ae3cc28164cadb", 
+            "name": "94bf35ae-8c56-470f-8001-0c01372066ba.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65266
+        }, 
+        {
+            "sha256": "60b0ff34b5681fa4f6cb177e91b14c6ed9b0d654851f6ad0e890e144c5c4e0a7", 
+            "name": "ad440ff6-4dc5-4041-b2b3-59ca4c5d8503.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 74579
+        }, 
+        {
+            "sha256": "2355e5f229107fe8e17f4cef2977b25e4c72b9a08862c825a86920f8fbb1d5c8", 
+            "name": "162de20f-4856-2d7c-8a1e-2e87c86b0d52_第1屆第4次定期大會第16次會議紀錄-民政業務報告與質詢101.10.22.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 72723
+        }, 
+        {
+            "sha256": "73af7016eccdd4b237e80da02bf5f5c0cba3e6bb4cb1a5cba083581b59bd056d", 
+            "name": "8cec2753-859f-4d02-92c0-1327e53d447a.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 89407
+        }, 
+        {
+            "sha256": "1843b3efdbf7788e1e79415b6f58060c74d404d830d53615492601fb23afcec1", 
+            "name": "08f58be1-eb24-40d0-8bfc-48a1197d9dd6.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 95857
+        }, 
+        {
+            "sha256": "9b5bbeebf7783ad62119d1251b2236758ab1ff4da99cbf4e63da31e00de4ad39", 
+            "name": "c14a0b32-d60c-972a-e6ae-56259431b5d8_第1屆第4次定期大會第23次會議紀錄-市政總質詢101.11.06.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 52344
+        }, 
+        {
+            "sha256": "ffa15f642312f6df25327bf86346b19b6980e7359ca4743bc66ea657f65571b0", 
+            "name": "1e271f81-20e5-c405-008d-da2312b6edf6_第1屆第3次定期大會第8次會議紀錄-農林質詢101.4.9.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 59479
+        }, 
+        {
+            "sha256": "cb4f0a5b36451213651861e2008967e21b6cd8fd5d03b1daa447e8f81430fc28", 
+            "name": "a1e1b4b2-4007-035f-c873-1efe39b80085_第1屆第4次定期大會第34次會議紀錄-市政總質詢.二三讀會_稅課_101.11.21.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 71010
+        }, 
+        {
+            "sha256": "3c1ce75181194fe4d147d9382439c79e7c0d93807267cc607bd5b6a4c844040c", 
+            "name": "e9d1b27f-dc3c-4de7-91c2-7d2f1726208e.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 112238
+        }, 
+        {
+            "sha256": "acb0a111f90269682cafb2c08bd819594e0202c9e27cc5c0ae98c4374cfb92c5", 
+            "name": "5bb95fa4-95c1-4500-8415-c88cee6f7d52.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 90990
+        }, 
+        {
+            "sha256": "a5ee51ffd1ae67e405c6e0b6782ef7a4059a271478e35ee7191061ca7e9e57c8", 
+            "name": "c3a7fcca-c4ce-45c1-b1ca-a26d3d92acfd.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 61712
+        }, 
+        {
+            "sha256": "475df44b1adc9874437dd3a1a0febfee71d97b7ecbc1b8e1763a9ab97f9986ce", 
+            "name": "00a94a46-efd4-4b8e-91bb-0cd463f4fa8f.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65768
+        }, 
+        {
+            "sha256": "e2197013cdc2592d6c20e07abfadb5a4ecc22b56badea4f80e3900c5859a3e43", 
+            "name": "eabe55e5-13eb-ea06-dbb3-f8550398d06f_第1屆第3次定期大會第7次會議紀錄-教育質詢101.4.6.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 95451
+        }, 
+        {
+            "sha256": "a896c2d145cc89e15684c45a076533cb405fdbb7ae0e8b4c139c72a22334cd00", 
+            "name": "789cf64b-5022-aa20-b6b2-1a97fcf3cf7e_第1屆第3次定期大會第32次會議紀錄-市政總質詢101.5.16.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64480
+        }, 
+        {
+            "sha256": "92f2b8d17f38bdffd977b29a0459df41c6c883e52935efccdc3ca673c6115dc7", 
+            "name": "a42742b6-8d83-496f-967b-32ed76eed539.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 130373
+        }, 
+        {
+            "sha256": "aedcf0342a9aa59e61af7f921213609b0765c55d039f95c231378a7445905e47", 
+            "name": "805330fa-81b0-0300-209b-f7632a0fbaae_第1屆第2次定期大會第9次會議紀錄-教育質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 83052
+        }, 
+        {
+            "sha256": "39c97690080c9340d9941a1b81dfc1fee191e6138d7189c7487dc27cc49a3d47", 
+            "name": "7d5da4a8-b7c2-4922-a61b-690d4b76d8f3.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 92415
+        }, 
+        {
+            "sha256": "7b5d7ce275d7c82f068c4c525005e1885374e118fb1c55a59143e50615114f26", 
+            "name": "328bec62-4d7a-f222-aba4-0cb2eeb6772b_第1屆第2次定期大會第35次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 86958
+        }, 
+        {
+            "sha256": "dc9c9f558b3228ca5c94525fce945724473f37d17d2b439ccff60455445712c7", 
+            "name": "09214872-c111-0430-d43c-df5fa6549824_第1屆第9選舉區遞補議員宣誓就職典禮紀錄-101.1.16.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 67873
+        }, 
+        {
+            "sha256": "a6fc64ed9fab6f6eafbed941a8f6d31416d650695214d6495ff4c74c2ff976a8", 
+            "name": "fe44f7a2-73c3-d292-6f43-813d430a7e19_1000506-1101-rec24.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 79145
+        }, 
+        {
+            "sha256": "77f4937f67ec81c39d12752403913f4ee94599f89926507cb055d5ba3a1dad27", 
+            "name": "6c4e40d7-42b0-dade-ceb3-6fc4e1feb42f_1000422-1101-rec14.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 76455
+        }, 
+        {
+            "sha256": "314b9a0320eb1bcbd640148cb387cc9eeb0654efc2a77f0a7ba555725eb28ba3", 
+            "name": "9a16c935-28d4-5d00-8a8f-5b40f3e4ea81_第1屆第3次定期大會第6次會議紀錄-教育質詢101.04.05.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 95386
+        }, 
+        {
+            "sha256": "c6a4d2a57c7bebc9d326b76ee6dca9c632944c7df727565d58874b631dd01a5f", 
+            "name": "b7cc8128-5fe7-354c-7ff4-14b2b6625bf6_第1屆第6次臨時會第6次會議紀錄--總預算_含擱置_.變更議程.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 106466
+        }, 
+        {
+            "sha256": "7f57ed64c0a012071fabd2289df6901a7b4edf7d0607dfa5bbe37803181df416", 
+            "name": "e9650ef7-e07c-5052-be9c-812911dc611a_第1屆第4次定期大會第44次會議紀錄-報告事項及各種委員會101.12.5.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 168685
+        }, 
+        {
+            "sha256": "47b9647cd144fbb7445c303e5637e4d7e18768af6b3e7b4547912de5c206343c", 
+            "name": "a3f03f4d-80bf-473b-5834-298ffdda85d4_第1屆第4次定期大會第17次會議紀錄-民政業務質詢101.10.23.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 66472
+        }, 
+        {
+            "sha256": "1cf3c94bfd7bbc30f393ab8347e0a880d8b7714243ce44a1939b357e62ea59e1", 
+            "name": "c491b775-e7b6-44ef-8af1-8ebb3d36862c.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69859
+        }, 
+        {
+            "sha256": "a168a52192a6228c7b430df9b0a40f7b9cdf8a7e752e2e5a58233dcae776de67", 
+            "name": "f4a3b289-0dc8-5ca9-c2d6-a5b2b6df82ea_1000324-1005-rec6.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 183083
+        }, 
+        {
+            "sha256": "089a9ccf8266b0b4d308a5b2ccfe295bd63b4d0a57a4b919a9d14f3d20d2a643", 
+            "name": "16e5d0f5-213c-71c1-9259-3001c0701c39_第1屆第3次定期大會第42次會議紀錄-市政總質詢101.5.30.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 61668
+        }, 
+        {
+            "sha256": "db95daefa4f13c3a4b5f549b2ae417ee8f6d26c1eaf2a7e67210ed8ef559cdd1", 
+            "name": "ea0b5441-e65e-430b-a532-4a04d45d22ba.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 62709
+        }, 
+        {
+            "sha256": "949b46daa40c247265eefa3a4de1122f7572d402b87f629af72e6890840ee56a", 
+            "name": "1c0dfa81-8bf1-4cd1-8f8f-5852b3fb31cb.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 70629
+        }, 
+        {
+            "sha256": "7721442389a9bc1fb9a34cb9f4595785ac499cfc40c65c434e370bbf97484fe4", 
+            "name": "d6384f7a-7a71-f81d-e36b-35b9ae4f2e2a_1000421-1101-rec13.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 87438
+        }, 
+        {
+            "sha256": "18e29d6280d142bfc207710cd657a0e2eff15e3eea29207469244c8ef2b60a14", 
+            "name": "16eb8955-395c-1c4c-4a1e-a4e988c851e5_1000526-1101-rec35.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69392
+        }, 
+        {
+            "sha256": "75a32481b076efdd468f10c590d0c2d3f763123c6d7ddfc5063ecdd4f5268677", 
+            "name": "3b124704-be16-7deb-c6b5-86604aef0981_第1屆第4次定期大會第47次會議紀錄-歲出開始101.12.10.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 84606
+        }, 
+        {
+            "sha256": "c8ccaa78b3d4028022f26ebc9333caa7368fa8848c856a82e27411d33e2cb5e9", 
+            "name": "27d99240-6a2c-42e0-81dc-47598997be09.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 62501
+        }, 
+        {
+            "sha256": "45c2f2adb33d20e2911c091d660e3c42b03ce7ae211a659941a9d981ecc69b24", 
+            "name": "e15c3f8a-a763-4bf1-92ad-d239139185bf.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 94085
+        }, 
+        {
+            "sha256": "e7b12d0ba84f8372e264a4f4678b5cc6e5abaad5f2bda10ea73e1a0a8c1ef553", 
+            "name": "ac143a29-54b1-4e68-a4d8-f389f76f78d5.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 82182
+        }, 
+        {
+            "sha256": "d987afacd574c5e78bb3902e075850a0c47633290f20f3cf91bb7d056bae3abf", 
+            "name": "ac4ae0f5-c221-d452-4727-b92f33f4439d_第1屆第4次定期大會第14次會議紀錄-工務部門業務質詢101.10.17.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 117880
+        }, 
+        {
+            "sha256": "0d9251997871a89d84fa713e6a9b18da9bb48e932cdb89c8d747945fd16cdf34", 
+            "name": "f4fbac8c-f4b5-7110-601d-c5f5c257007d_1000510-1101-rec26.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65470
+        }, 
+        {
+            "sha256": "c86316664ea24dba17ad8cf2052ce9d0e545e3e1c5f02499e9d255f75538806a", 
+            "name": "2d5437ed-c69b-4aab-8f80-d4fad58c19bf.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 126577
+        }, 
+        {
+            "sha256": "d2a6ce197474bf48d4cf9bdbf3673725fd70f3843627a078fb2d9b1135022aef", 
+            "name": "975cf924-c5e0-8792-c07b-9982c63835c7_1000505-1101-rec23.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 96646
+        }, 
+        {
+            "sha256": "f61675d99c22c417977a913566580cd54c684af2f7c73d69eab70f426cc562e9", 
+            "name": "d319a8a8-a5ba-40a8-8d9d-c25379400261.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 71330
+        }, 
+        {
+            "sha256": "99cfd7e22fb27fe363e052871a7271e4ca55b741b9ffbea2daf5f1be7633a664", 
+            "name": "ceeb23a4-dfac-a295-441d-3a6b10e680ae_第1屆第2次定期大會第37次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 84458
+        }, 
+        {
+            "sha256": "cf43b4512ee3442bd492a736f58253d47dae0dd8ddbe2160b996127ce7588f04", 
+            "name": "50aebf7a-4222-6268-057b-5f4644b3722c_第1屆第4次定期大會第30次會議紀錄-市政總質詢、二.三讀會、變更議程101.11.15.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 131177
+        }, 
+        {
+            "sha256": "472c4a70622473c18a78ed8d1b82ead7131b347016f22f55760622bac1d2973f", 
+            "name": "f23c2d0a-47ef-49fa-a8d7-f064bc4a1b9d.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 91418
+        }, 
+        {
+            "sha256": "c659c2d1d7807e18b29a73ad3cb2817ce3d8ac714385658860495ffc91bb5a37", 
+            "name": "d42db43f-0e6f-169e-0915-0d9cc0c56de3_1000425-1101-rec15.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 61546
+        }, 
+        {
+            "sha256": "b70026401c076dfe0a8790e53e79f30ec09da73a4ced7859d1120388c7c6114e", 
+            "name": "8e6f1ee6-ff84-4a96-a67a-c6affdcffe18.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 76796
+        }, 
+        {
+            "sha256": "7396c105380b00d8876ab9323fae9664a5a4447282bc71ae89046e3f47fb25f2", 
+            "name": "1151272e-219e-4ec4-8caa-00da3677008d.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65939
+        }, 
+        {
+            "sha256": "55bf9306dd541fe343810bf1cfade41a728b7d92487a754ab1aa1eb8b38bf707", 
+            "name": "ab80edd8-0934-289e-5405-aeee5e1e03cf_第1屆第3次定期大會第21次會議紀錄-社政部門質詢101.4.26.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64737
+        }, 
+        {
+            "sha256": "d1a916ed6df058314b5b6255c0f4143ae73bae2e189c4a16e6e8714a95756864", 
+            "name": "c68f2edd-b41d-4fc5-aee8-3d38ac421889.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 93002
+        }, 
+        {
+            "sha256": "de245119ada0933268a1e702cc6adedaa2bf27839932dd675de8ca0f0b6de941", 
+            "name": "72f33c25-8620-c997-acac-0f3d5b0fac77_第1屆第3次定期大會第45次會議紀錄-報告事項.議長交議議員臨提.閉幕101.6.4.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 162004
+        }, 
+        {
+            "sha256": "07f9572348d35e266eab57ca5f7961e8964c14f3f2eb71ea7b75d53ae1596420", 
+            "name": "49cad2e6-b659-4f52-97b6-1c5553951e2d.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 90697
+        }, 
+        {
+            "sha256": "4ffbc62e5757729560c637c8affaa4cdc9e6ae8562dd82283be2bb1f5de0314e", 
+            "name": "9d375354-e43c-4a78-8efc-374381702f4f.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 72586
+        }, 
+        {
+            "sha256": "e7f0cbad7115dc0acf1646076ec166986e081931a0c4cd56afa196c9be7ab72b", 
+            "name": "ffcec683-fc69-1bf0-9ac4-b5ee5d5dc2ca_第1屆第2次定期大會第33次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 58933
+        }, 
+        {
+            "sha256": "3929ad67861a448ddec09416df274ca0f7c070e84c6d03060e2db1eec172c5a8", 
+            "name": "49c3637b-7795-49cb-a79f-b16a4dcad232.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65647
+        }, 
+        {
+            "sha256": "6c6106cded498be1282014ee8e841cc973487ecb399a9301566164ea805d9113", 
+            "name": "c69be9ec-4922-0d0c-0ab1-23236a45e233_第1屆第3次定期大會第12次會議紀錄-專案報告101.4.13.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 88629
+        }, 
+        {
+            "sha256": "1f82e23834544a7eb271ae91ec8f1153b99729b4f55243d7fb6b5690f1339db0", 
+            "name": "19b82a4b-2031-4005-8f75-eede4fa7cd4d.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 62716
+        }, 
+        {
+            "sha256": "6bf15162b6d66d8e931ed2822b11dc83a95a9c2373727dde84e13255b8d364e0", 
+            "name": "9132e7bb-20fd-48be-a28a-4890a1d1f3cb.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 97189
+        }, 
+        {
+            "sha256": "2e93fc6d1c08e031e8b58f730216856ededd761590620214ce8b00f87ca9810e", 
+            "name": "48931ebf-053e-44df-a170-141499df6edf.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 1187013
+        }, 
+        {
+            "sha256": "2301708c087ecd288c6c1eece03ac79372ce0cc5694fc1820383372ad2d5d0a1", 
+            "name": "0112757c-b7af-3d35-bc38-16490743a80e_1000520-1101-rec31.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 119379
+        }, 
+        {
+            "sha256": "a82d039d78490c4748bc8c06f1f8f11a167a9392e38e6cae27a1fb1482938e29", 
+            "name": "890239b2-3b3c-75cf-1ee7-a36966c79741_1000504-1101-rec22.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 84748
+        }, 
+        {
+            "sha256": "c9ba6d230db6e9727004e38529884fb33373abe2a119f3fdb7e2a27689db133f", 
+            "name": "cfc8e6fa-d10a-4d80-be7e-4152c599ea97.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 90863
+        }, 
+        {
+            "sha256": "ac05b37eaba707f3a951fb7c440fbce8a5f2f93c3de78e44e74fb3aa654dacf0", 
+            "name": "43a94dc5-2be4-4f38-9fa6-774409a2e943.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 75284
+        }, 
+        {
+            "sha256": "778e358c991523a217026f07a3faf0415fed347a34bb9701b5cb527f8d0f308c", 
+            "name": "993b74e8-eaa0-0746-004f-72d9d4a3ebf5_第1屆第3次定期大會第39次會議紀錄-市政總質詢及市府法規提案二三讀會101.5.25.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 86266
+        }, 
+        {
+            "sha256": "fedad03f8b40971c721a08485b66bb8885da50d9ff7c1e2dd476e0446eb30cbf", 
+            "name": "a744a49b-d975-e4ca-c6df-0d5c09443b1e_第1屆第2次定期大會第15次會議紀錄-保安部門報告.質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 96188
+        }, 
+        {
+            "sha256": "f3954f5e3b76083a30225e11e487b98a98a43a452aa2d538d9e0429166edeafb", 
+            "name": "f2fb3c6b-3f1f-6696-e9b1-c8a38ad42c96_1000310-1004-rec2.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 62820
+        }, 
+        {
+            "sha256": "691659dfcbf08f33266afc4d6b67d50ea89beb3c3f48de2fade9807e31093453", 
+            "name": "6491bf8d-ad72-a2b2-1880-cc413272bd90_第1屆第3次定期大會第3次會議紀錄-市長施政報告質詢101.03.30.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 76910
+        }, 
+        {
+            "sha256": "05a6e2f5e59b194a552e57bc51a7f79939d8a710fbfe7b258d1775594d4f813e", 
+            "name": "032dce31-36d6-edfa-8ecf-cd0a37dd3517_1000413-1101-rec7.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 61509
+        }, 
+        {
+            "sha256": "38f83d0e37e7e87c5e23fe857e71aa8910b5a2144801ffdfc8d9939f34ec3aea", 
+            "name": "5bf8ba1d-074e-4a2c-b044-839711ee4889.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 68464
+        }, 
+        {
+            "sha256": "54b9f03d23324c90720b1030ae61d4e173ab88b57718b5e0e65c7f8336a324cf", 
+            "name": "a45bb5f8-b578-4077-92cc-3fa0a19a5181.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 92176
+        }, 
+        {
+            "sha256": "fb219f71034a40a807d3a537962d516c22e531bc46b0b4077710555d7d567cd3", 
+            "name": "365e0bf2-965e-46c7-b29b-d46755e3540b.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 95410
+        }, 
+        {
+            "sha256": "a16ae3f49332c764f354dbd442bdf8746370865c4dcae3d22ff449e9fa836712", 
+            "name": "e7cf684e-7794-4358-b8f8-f384eb4e207b.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69330
+        }, 
+        {
+            "sha256": "22dd1695e47651c3f20c0a1ff093176a8cf8c661b5e4d82cf02ebb5910ce84d0", 
+            "name": "da8c25e8-6c84-467c-9ae1-c1b367660700.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 98672
+        }, 
+        {
+            "sha256": "8b38ba64871965ee9a77780933679fb89effe424c9febc4bcedcff006986556c", 
+            "name": "c9eba207-3ac0-7744-7529-160fca698db2_第1屆第3次定期大會第1次會議紀錄-開幕.散會101.3.28.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 62556
+        }, 
+        {
+            "sha256": "24dcd8a99ebda8b4c6aa5dbfeb2ea3f2e7dd13a24836f940f595ac89ab83d9da", 
+            "name": "5cfb24fa-b4fc-0798-8e5a-ebf4c8fa7faf_第1屆第4次定期大會第8次會議紀錄-交通部門業務報告與質詢101.10.9.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 67631
+        }, 
+        {
+            "sha256": "ee19774145645546bdbd267d569c921dd76bc4f65a9148f4676b5fef214a03f7", 
+            "name": "6245b6f3-8d5e-4450-b8eb-493b7fb426bf.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 85082
+        }, 
+        {
+            "sha256": "35348dd01240871c8e7c3a666eebef34979787f23c09557c63939b4684cae723", 
+            "name": "24ef5e38-cdcb-45df-82c3-6ccef80afb55.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 92457
+        }, 
+        {
+            "sha256": "be4b6b2116e2a8a57c963fdf6d951b3edc03e94e2591c63094f6bf2a06f49c98", 
+            "name": "99b6e346-001a-f715-0711-12a82f41e475_第1屆第4次定期大會第48次會議紀錄-補助收入歲出_秘書處_101.12.11-1.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 89324
+        }, 
+        {
+            "sha256": "86fd2a3cf4349b2a321101edce8c7f9168223c8efcfa23aeb63bb522fd33794d", 
+            "name": "654a853d-0ada-4e21-96df-3a7470e9a272.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 66703
+        }, 
+        {
+            "sha256": "c896d8e3dd014786b976a895f80a6b864c417bf11122c693226a257d1f9d167f", 
+            "name": "c4485d68-084f-a5e6-a6ea-36de41492537_第1屆第6次臨時會第5次會議紀錄-歲出審議（保安工務歲出）.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 77348
+        }, 
+        {
+            "sha256": "19ccfb9d90554d13e3400caa229e6a2994e7157df35f93693ef72b7814b12ee7", 
+            "name": "3898f0d1-4ab4-4268-9299-10365d68b705.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 91467
+        }, 
+        {
+            "sha256": "b8ae852b2bb51a114f856c048f4bce1cff58aa430c6ed336be33e5977167273a", 
+            "name": "3904e241-39a3-6355-9580-4be6a9048374_第1屆第3次定期大會第28次會議紀錄-市政總質詢101.5.10.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64436
+        }, 
+        {
+            "sha256": "3aabaca6e5065d45828e204968912bba0f77c3d7fc99f125083c07ff72b4a754", 
+            "name": "d2d10898-6fd7-78fd-73ab-2732eacec1c8_第1屆第2次定期大會第13次會議紀錄-交通質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 74208
+        }, 
+        {
+            "sha256": "552b86d3a11356fec9ab2c4008a4c5bfb90fef831c6ecc62929b5e9eecdfe58f", 
+            "name": "34e4eb0e-32c1-92fd-cf56-3081f7cfce74_第1屆第2次定期大會第39次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 81928
+        }, 
+        {
+            "sha256": "dcb45334396a884baa837b1ffea5b98aa553b9a243ef858d4e01c1ebbfb038b0", 
+            "name": "4c12de56-f7ff-17be-5d43-0c930aa8b2f3_第1屆第2次定期大會第7次會議紀錄-財經質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 78657
+        }, 
+        {
+            "sha256": "4bc33bf06029cc6415a22ea7b645f3c209327d7049a01e78024a92c95275c95c", 
+            "name": "1a966263-2f24-475e-9a3a-55461a2e3ded.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 80611
+        }, 
+        {
+            "sha256": "aec4ea6a54b0b26a6f6d20fdde0b1cab92fc8778e507c803e6efa21ccc9d624c", 
+            "name": "783ed646-37eb-470a-bc7c-da0f3e8056f8.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 72683
+        }, 
+        {
+            "sha256": "6147a127774f257f1b09942b1c04937b161e7e1a197efebee973048d041b1099", 
+            "name": "9da8ac5a-cfa8-4d5a-87cb-edbdf6439d82.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65381
+        }, 
+        {
+            "sha256": "6cc93fc2e4d09c66221648d5ca10c49e44c4ea08e78b561f8042652317b5951e", 
+            "name": "34c16651-8c04-b960-cc83-8df9f296ca71_1000111-1001-rec2.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 13723
+        }, 
+        {
+            "sha256": "17e14643d19d80b58c1157b1253f87592825f777920f74e7be71d683bd14a942", 
+            "name": "42ff5223-e7cb-48fa-be62-36f78527cd04.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64825
+        }, 
+        {
+            "sha256": "ff2de38a445ad4080093a01ee8b84a47a472b61b19058acb8389877a1cc0f750", 
+            "name": "3a763dd2-8ac1-f598-3750-c12a9f74e703_第1屆第4次定期大會第40次會議紀錄-市政總質詢.二讀_罰款_101.11.29.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 86421
+        }, 
+        {
+            "sha256": "a8b88bef797a957f9ef20a3c751434e729eb7e6190a130bea617b297809ec4ed", 
+            "name": "6736ec83-ba25-ef25-4213-7d1bdc3284e4_第1屆第6次臨時會第8次會議紀錄-市府提案閉幕.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 168924
+        }, 
+        {
+            "sha256": "7fda2383aa85eff1824b369f8adb8db1ea7d026f731ec3e8627af194b236b8a7", 
+            "name": "ca0d0d6c-335e-4f67-b53f-3046e1048320.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 71585
+        }, 
+        {
+            "sha256": "6f666c1378ce92af8cd374a0baa8daa51487c854dfcee27eba191265f8220777", 
+            "name": "d13a609c-d4b2-4442-b45c-2d0de029ad1a.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 67889
+        }, 
+        {
+            "sha256": "dbbda1cd8ab21b0e1a3cbd028253173ab5c024f8ac83e0723860e1c64152e8e2", 
+            "name": "6af6f62c-6b51-4f36-94b5-2fa5fde0e719.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64590
+        }, 
+        {
+            "sha256": "a0abb7525251518d05eb894cb98c24eab796a39ac3491d9af6ec6016c0df3001", 
+            "name": "29774353-e6a0-eefa-1440-b9f6b61f8f06_第1屆第6次臨時會第3次會議紀錄-歲出預算.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 76038
+        }, 
+        {
+            "sha256": "05c5aae07f5aa45816cc67d940d5c26ed02f13a1d930404a3535cc7128a2ab7a", 
+            "name": "11ce70ba-962d-4338-a881-b336dcb6ec2f.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 70132
+        }, 
+        {
+            "sha256": "fc3746cbded396d0da5d21541837c3141851b1b68d72d1af64536c33f49b35dc", 
+            "name": "5eee6e7c-17b2-420b-e396-9549afd107fb_第1屆第2次定期大會第17次會議紀錄-都市計畫.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 66214
+        }, 
+        {
+            "sha256": "5de83d1f63d903c49ffa8eeec7f7ad315d5d959950f38496d7e65881b1a512f9", 
+            "name": "f2785b4b-456e-5130-6504-5a6bc7481fba_1000527-1101-rec36.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 143441
+        }, 
+        {
+            "sha256": "0d5ce5f2fb3414b386e2566e6f55915891b9387fe0300282bd94c83b98e24c67", 
+            "name": "8bda5cbb-3ab5-4729-2ef7-13c0ce91b4d2_第1屆第4次定期大會第25次會議紀錄-市政總質詢101.11.08.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 92258
+        }, 
+        {
+            "sha256": "fb1911341448c80904544424e5b1aa83365c703e49313b779ca5511a1be09942", 
+            "name": "1d69527f-2f31-d230-67cb-43cb4068bce9_第1屆第3次定期大會第35次會議紀錄-市政總質詢及市府提案二.三讀會101.5.21.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 95715
+        }, 
+        {
+            "sha256": "e7da8cd436999cb8c409a2d317f3e14eca167375b70127f32a59cacca24819c1", 
+            "name": "22d7ec64-e648-b1f8-9079-0ff993c180ab_1000602-1101-rec40.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 110075
+        }, 
+        {
+            "sha256": "19c819c2ff1d7ea2ba7d0addf422ea124bd1bc9398cf624a74fa85dc7fb53e22", 
+            "name": "82246d12-ecf9-c0be-b8b5-6932aa3ab465_第1屆第2次定期大會第14次會議紀錄-交通質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 71240
+        }, 
+        {
+            "sha256": "602ad7f7f739ea838d1faccc0b6afbe70d939858d5b7ed1a3c8a83440718b95a", 
+            "name": "5f1b376b-89f4-3798-00ef-cad9bab0a11d_第1屆第2次定期大會第42次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 107226
+        }, 
+        {
+            "sha256": "194c3ca0ef5567c7a2b91d0dd179bcc8e99ba5f4e853cd99cd765bb841266045", 
+            "name": "ab1e7497-7a13-4eef-9c13-491259a0969d.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 87073
+        }, 
+        {
+            "sha256": "223daa031a33554e4e48c8f458eab7f377bc33438138a58fe9034c75856ad223", 
+            "name": "6db5bea7-830f-44cf-b95c-16a683547be6.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 131852
+        }, 
+        {
+            "sha256": "fa44c2888ae3371e6edc56db6d5cce53a754930e03234ddb52dfdf10e7a8d8f0", 
+            "name": "e31024fa-62bc-4b9f-b16c-bb9da0452bd4.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 78974
+        }, 
+        {
+            "sha256": "502d87b3a0004717dd6dce1288d8b4a542d9645c21609b261efaa21275462a5d", 
+            "name": "b1dc70f0-372d-c61c-47e6-9ad61906a480_第1屆第4次定期大會第5次會議紀錄-教育部門業務質詢101.10.4.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 93571
+        }, 
+        {
+            "sha256": "3b94a0f0d464b93a7fb3dc4f653c2f88e94b46fd1f085edc54ea6d19e798d6a8", 
+            "name": "3f2265f2-6ec6-d918-f629-1d0e7ace40fd_第1屆第2次定期大會第23次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 57178
+        }, 
+        {
+            "sha256": "14c459f15df0c2deeece33740683a2b99067f84813e02cee5ec8a5fa74da7c20", 
+            "name": "78145499-c2b9-4b05-bcc8-e673c199dbbc.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65255
+        }, 
+        {
+            "sha256": "a4d4a64be04e11214276923f04795d644bbc5eaf5d4a526acb02d2e260318f02", 
+            "name": "2dbb945f-95ba-b69a-ca07-e30262e2bbe1_第1屆第3次定期大會第10次會議紀錄-交通質詢101.4.11.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 72145
+        }, 
+        {
+            "sha256": "e4f841b05171d58a62b78742b36ecb272ef99ec15ea677aaa690aaac7f10be2d", 
+            "name": "cb92e679-9ba8-44da-a604-5272aff7aca4.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 63895
+        }, 
+        {
+            "sha256": "62cdf8a154656854a9ebe591a3e336748b4dc0cdd5729babb73275615ec2ee87", 
+            "name": "8089d737-d303-4b66-b2da-215a6d484ff9.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 106715
+        }, 
+        {
+            "sha256": "84d682a6c725af819f178fc09969a5e63ae26a156affec7ab01f26bd71b51f4d", 
+            "name": "878bb8fb-216e-d14c-4afd-6bf2d3f3268e_第1屆第3次定期大會第13次會議紀錄-保安質詢101.4.16.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 91102
+        }, 
+        {
+            "sha256": "9b193bd751ba3dbd8610110186ef78878490e6f0f15c0413b4902b61910950f2", 
+            "name": "85047b57-3de4-36a0-db53-100224de382e_第1屆第2次定期大會第11次會議紀錄-農林質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 86714
+        }, 
+        {
+            "sha256": "dc85ef671ad03f19f4babac5c701e9e8d0e14fd8c0a9b55ef820a92992b64054", 
+            "name": "02f68c08-953f-46f1-8dfc-83e0b24fd1ad.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 78168
+        }, 
+        {
+            "sha256": "78bceefd993d50d9926d5fc1e1c95c2c862a5df73f3154f08e03e7eee10a0e6a", 
+            "name": "76ba983b-e656-4129-a717-62a32d19e46a.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65915
+        }, 
+        {
+            "sha256": "74bd276f84d529fdb5824a6c72c412cc102155cb2438612a8926f8995190cbce", 
+            "name": "ceba807f-ed0a-c20e-b062-b0d2b787dec2_第1屆第4次定期大會第4次會議紀錄-教育質詢101.10.3.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 67574
+        }, 
+        {
+            "sha256": "7ab96d734cd9b932266a892f0cd530ba37751c4f191ceb5b41e1d130c5eb6731", 
+            "name": "0c5e4ed2-f625-433c-bb05-02613dcded0a.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 71297
+        }, 
+        {
+            "sha256": "d66f1dcf588a726d78ceb9d83978f0b1ff7c139f0fbea00c4beaa131d79b2f62", 
+            "name": "eec2c173-133d-419b-bfe4-5b31409c9a7e.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64328
+        }, 
+        {
+            "sha256": "8d1efae4a81d719e414f599af4af58874d91013fb46cea00d1126719a4091c5d", 
+            "name": "81414a56-ea7f-423d-97b6-692df4af809b.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 91961
+        }, 
+        {
+            "sha256": "0d782f858fa4a10c6ef4a85c2c886ecff7cd0e69a05f6cbac46564414f986e33", 
+            "name": "af3d27ec-6d4d-46a1-a7d7-faa61803ed59.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 66216
+        }, 
+        {
+            "sha256": "df8133c5e4efe621e2df7ec9e84ebfbcd64b0d41dd49ec1e63d666edf8817219", 
+            "name": "06f5f1d3-b1b9-4d5f-869f-9bc77b307ba7.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 94819
+        }, 
+        {
+            "sha256": "282a197b0b118bed8dec3602d3fe5df8e9bb0e56c56341d0a2bf50646c6cec0e", 
+            "name": "e1adbfa9-080c-4467-b488-7df0e0740558.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 78181
+        }, 
+        {
+            "sha256": "865e644f5a9a4d3e252778c5681791bbbccb4859dd5bb27e3489411ee5ff6995", 
+            "name": "d8a27b97-3510-4e3c-9f98-546e2c431448.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65833
+        }, 
+        {
+            "sha256": "d0263ac20bab73e6372a969085557149f6868c8db3ac41cd68f609acd04f8b97", 
+            "name": "25a510cb-a2db-61be-23d2-6bec7170970d_第1屆第4次定期大會第10次會議紀錄-專案報告101.10.12.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 93081
+        }, 
+        {
+            "sha256": "bc362f512cd6364bb3e99d79b5d30d763ae86ee7d2151c5a4a32a3f24ac0a1bf", 
+            "name": "d5a3f377-05b1-47cc-aa62-ea1b41f453c5.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 94347
+        }, 
+        {
+            "sha256": "92c28b25a34130b1c7016785fc72658ac4246609930484df2208bb4a72f16c62", 
+            "name": "0b4bdfa1-d444-4d2b-9ed7-b40ceec0ee00.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 92140
+        }, 
+        {
+            "sha256": "f27f56d9bf3d7f2f5540412e342ad2a9eb0a69289763e66e9dc9ad38d5d60bee", 
+            "name": "004a5542-19b8-93e8-6207-6dbc6f48d7f8_1000318-1005-rec2.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 100396
+        }, 
+        {
+            "sha256": "0768ac38fefca252913dfc1ef40b1966657e172b87e211f9c06ba6c7eb9de493", 
+            "name": "6c1b7bb9-a2a2-41ec-90c8-7551cc4df9dd.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 67163
+        }, 
+        {
+            "sha256": "ae40631efcda868002d7800abeece8dfa2c80b30d2b33e472d74a35eb31b8c3a", 
+            "name": "bc5622da-62e8-a091-59c4-38b317581b43_第1屆第3次定期大會第40次會議紀錄-市政總質詢.交付101.5.28.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 73197
+        }, 
+        {
+            "sha256": "bb953a39437229a7f054096222ba18c824562f04acfe5367d600a995e09d2177", 
+            "name": "61d38903-535d-da39-3c94-e71956ee4a2b_第1屆第3次定期大會第11次會議紀錄-交通質詢101.4.12.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 66390
+        }, 
+        {
+            "sha256": "6cc2aa512a9ef9dce0a9067f207a11cd1bd01254590cecf17ad6e52eeaf5d01c", 
+            "name": "58fc5566-6b7c-bf53-85d2-7ab9361f1bb1_第1屆第3次定期大會第24次會議紀錄-市政總質詢101.5.4.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 61882
+        }, 
+        {
+            "sha256": "4be50d20391a8ec664db7d0b77d2891fa580730e937c40703b85f1b3f64c2b88", 
+            "name": "58d8f6ee-a2f6-4936-854b-4d66ab8d1f9a.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 92249
+        }, 
+        {
+            "sha256": "389773d40d1561695a7a91e3b4e2cd5d454acab9cfe8c115719957717986bb3d", 
+            "name": "b49cf271-e25b-4a3c-a82b-e0b1b24a8890.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 88731
+        }, 
+        {
+            "sha256": "80d1c0469e930fda06e1a784af226a0ed731cdb5067c40c1eabfdb3783f97e00", 
+            "name": "02837ba7-98c0-4237-85b2-d6a3921c70ec.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 106048
+        }, 
+        {
+            "sha256": "3067bba15963c64eb9c93ff00baf94e4b409e171e0190b26d17792b3a77d649f", 
+            "name": "8c2bee29-6161-790b-4618-5767c7c8b4cb_第1屆第3次定期大會第17次會議紀錄-都市計畫業務報告及質詢101.4.20.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 90929
+        }, 
+        {
+            "sha256": "995ddd19c3fb094b5d35270827d9cd6048a9641ae332b47a82bc3c6b218f9e32", 
+            "name": "4987c13b-19d0-f57e-adc5-93adb551cd0d_第1屆第4次定期大會第20次會議紀錄-財經業務報告與質詢101.10.29.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 62726
+        }, 
+        {
+            "sha256": "8b836fd78d69c71a9a810aab2b9311b4e8b853af099117e4b5c1ed05390c1a9f", 
+            "name": "97205577-d117-4165-8070-e7c82926ec89.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 113871
+        }, 
+        {
+            "sha256": "1582fc04715ceb3887912b43704becc43c44121560ebcec16316cb3bf967d8e4", 
+            "name": "a1487f5f-fc65-7ca1-a341-ed7e53c7658f_第1屆第3次定期大會第36次會議紀錄-市政總質詢及市府法規提案二.三讀會101.5.22.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 81987
+        }, 
+        {
+            "sha256": "4243a0fe87bb9fa2ab69a8e0dbd3fa1bc3e8b0d61b29b3cdf76e17ab281ff620", 
+            "name": "d615e29d-2fc4-b958-6bcc-7f9d2b24cb95_第1屆第4次定期大會第13次會議紀錄-工務部門報告與質詢101.10.17.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 89616
+        }, 
+        {
+            "sha256": "3a98b8483fffa1e83396e11b98a119100ec0af031f82fee98e87546b6966e2b2", 
+            "name": "a5080d30-8234-42fb-9512-b47050e0a37c.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 89948
+        }, 
+        {
+            "sha256": "0896c06f2f6673705a3ca3887d883d60b783a82988d6e898065673f65337deb5", 
+            "name": "09e070b4-9665-4133-9e9f-1de55c45f22b_第1屆第2次定期大會第32次會議紀錄-書面市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 57193
+        }, 
+        {
+            "sha256": "36040a75fb412afecc4bdb06309c2aac103b7976f0fe29f5280ab1adc99b7898", 
+            "name": "8f1ce1e4-d148-1a77-a750-1ac061eec9e7_第1屆第4次定期大會第50次會議紀錄-歲出_研考.資訊.政風_101.12.13.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 80690
+        }, 
+        {
+            "sha256": "ac4a89b5771ee968fe8b67d284d7bf055fe7934cc038c69b36089f8e6ffcdbd0", 
+            "name": "a8a7c329-ea6d-46d4-91d8-22b247d47169.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 73342
+        }, 
+        {
+            "sha256": "78f9290c6250da683617bf95527b9946769615a95921d2180f96b8c1676d1634", 
+            "name": "86cc596d-1e4f-4a94-afd1-01198dde69ad.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 88972
+        }, 
+        {
+            "sha256": "461fa50a0073d4a33f0c9aa84081109599a7029fed594c5f15acac72961aa4a6", 
+            "name": "d0623fbd-61ec-4d6a-8aad-d476d85a1d30.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 72606
+        }, 
+        {
+            "sha256": "818a3784e9982418a30aa2115d0f7d39bb854675ff152aa304acd80e9fd4b48f", 
+            "name": "b197aa93-7710-4c00-a9d5-3c01f0972dd9.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 96051
+        }, 
+        {
+            "sha256": "7ddba6a9838fd3704ff72785daf5808233bdb34170a39a4e5025df0c9e012241", 
+            "name": "fe6e134a-0be1-4365-b611-e5bc3a7297b8.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 70899
+        }, 
+        {
+            "sha256": "f939a9071049041cc2d78cb1e7f2e174cd1a6807b912bbda918714985e8ceba6", 
+            "name": "98a27e37-37d1-5820-780a-3173dc4fe1db_1000321-1005-rec3.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 237132
+        }, 
+        {
+            "sha256": "8e652b4191bfb73775f4c013079c4dda5a3371a11a5ddff8089942d614e7d97a", 
+            "name": "20c99681-0bfc-5233-9672-5e44a989f258_第1屆第4次定期大會第7次會議紀錄-農林質詢101.10.8.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 66485
+        }, 
+        {
+            "sha256": "32b8cb8275b8e01bcbcbf57ab9bae2a4abe30a46b5beb634b8f8cb9ff1b8b019", 
+            "name": "fad829a9-a6de-40f2-b5ac-1e2c1b5d1198.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 89112
+        }, 
+        {
+            "sha256": "fd9e99f1b3708d5889d4ee4638c1c5a2f32589a491d80de163c8c3771cc5e0c5", 
+            "name": "6d5bb921-0a42-456f-af13-b4e2a3de7d2f.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 68362
+        }, 
+        {
+            "sha256": "6a0eec4200e754f28ca61f752d988b51477d36ff291502a14fd3c918f6ef5f2f", 
+            "name": "ca370478-ee66-31e9-02ca-6b1d4a9c6189_1001005-1200-rec1.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 145644
+        }, 
+        {
+            "sha256": "92b552e3813483bdd92ef395f7ed630379e9ce5001f905df5b2f36160a116c2a", 
+            "name": "c87211f5-f2c8-4b75-bcc5-121e160d9b60.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 96684
+        }, 
+        {
+            "sha256": "a974aeb0e414ee6d47927d20273f7245eb110423e21a39f1b6e374672ecd998b", 
+            "name": "20b712fd-308a-8609-f942-6099658f3aa8_第1屆第4次定期大會第22次會議紀錄-交付議案101.10.31.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 67930
+        }, 
+        {
+            "sha256": "09c8b68e9651f58ba42cfc5bd1559ead669ac0819e680c7f8cd80a73981edd0d", 
+            "name": "157e9bd0-da9f-4c50-bee8-5d70531b9b6a.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 94380
+        }, 
+        {
+            "sha256": "0f307ba85dd103c36734eb682ab48ce3315ed7e119eab1d7f594fb391ecb3fa0", 
+            "name": "adfb0c2b-8989-1002-7466-06dac2727ff8_第1屆第6次臨時會第7次會議紀錄附表.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 279237
+        }, 
+        {
+            "sha256": "b11a076110e22b43bccfb780ac011035b0ed680e1c3e826d64cb1e0e5f13615a", 
+            "name": "768b2dbd-b595-4dbb-bbd7-8877eaf6e419.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 176477
+        }, 
+        {
+            "sha256": "fd8a0b10675087231460dbf52b6559d4e4051c4d5de5b53e5dc974e1200ccaa6", 
+            "name": "ddc18a9b-9ba0-387a-e8dd-4bae39e75adc_第1屆第3次定期大會第25次會議紀錄-市政總質詢101.5.7.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 88991
+        }, 
+        {
+            "sha256": "b75cf48fdf67a0c0384ad55c10b9a9d8c98339e4cb0af1ad4ad3f6c4a01f0b39", 
+            "name": "ac108068-26dc-ae10-44ce-d76dcdc637a6_1000601-1101-rec39.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 143742
+        }, 
+        {
+            "sha256": "8964416313d465dff56b5bf84e9e716c16e787276ab97e4c1211583495a8c23f", 
+            "name": "013fb449-cc3d-496a-85df-67f8fcde752d.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65545
+        }, 
+        {
+            "sha256": "830d82371ca098907c05b7716c0feb8530503a59aa92bdf0bdd578b472af45d7", 
+            "name": "31278997-a1ba-b222-bf8b-a3e565db5819_第1屆第3次定期大會第29次會議紀錄-市政總質詢101.5.11.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 58364
+        }, 
+        {
+            "sha256": "16cc9c1553f721b1f14a4704241317785e7cfd18208fee426b28ce8b822dd247", 
+            "name": "671a7afa-f0a7-3766-1423-44329340baca_第1屆第3次定期大會第23次會議紀錄-交付101.4.30.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65814
+        }, 
+        {
+            "sha256": "eb78cef649d61e346487b186e29a4e01057323aae728d12a354e727df64da176", 
+            "name": "68827bae-764d-4625-a50e-44cddd0ddf4e.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 74377
+        }, 
+        {
+            "sha256": "c952712516d8e949300dec99f958a28bc4bf69303435f7e331238153cfaf9256", 
+            "name": "007d3014-4899-f9e4-267a-a5842c4ac96b_1000428-1101-rec18.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 85029
+        }, 
+        {
+            "sha256": "695526f5f23e08b3ef3449651f0aac16f84911281ee393f81b51905f94c2b931", 
+            "name": "32e88d29-ffdf-4744-83e9-fc93210f3263.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 76339
+        }, 
+        {
+            "sha256": "9fbd6be065b28acf0baf03ebc85686f7f7cc248e21f8946e0b5a4963c413d3a8", 
+            "name": "9b955c4f-77f3-94cd-a2fc-3cd6798db813_第1屆第4次定期大會第33次會議紀錄-市政總質詢、二三讀會_歲課收入_、額數101.11.20.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 74348
+        }, 
+        {
+            "sha256": "ef865252a5bb1565ed67fe61a55667a60e841a661323f02b5563c16f32c43117", 
+            "name": "51523a2c-eb8e-0aed-f6d1-091299560b0d_1000127-1002-rec4.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 75480
+        }, 
+        {
+            "sha256": "a25777316f6452f613cff478069192f373269a86787b01506e8d67725253cd3d", 
+            "name": "f41cdfec-54eb-7348-22ab-945d51576116_第1屆第4次定期大會第36次會議紀錄-市政總質詢.二三讀會.稅課101.11.23.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 79399
+        }, 
+        {
+            "sha256": "c881c30aea2a571bdf06150793aa378f5b3ad454334b366f6000c2efd8dbe340", 
+            "name": "578256b8-2e60-42a8-b7af-7d194d38b15a.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 102135
+        }, 
+        {
+            "sha256": "baa949b009dc30a40d25d048c89734cf4942a87d7aec7862413a5243c3a23fdd", 
+            "name": "6ee700d5-a213-4bd6-b5c8-83187b69d074.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 80866
+        }, 
+        {
+            "sha256": "e87daabeadfd08408d2eb958f32d40c170613198f7342c69bc5a6f5a20f5dfc1", 
+            "name": "bb0ab722-b10c-3f7f-ee94-5311e90c71e1_第1屆第2次定期大會第8次會議紀錄-教育質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 84737
+        }, 
+        {
+            "sha256": "d25a21d029a6a075d23473d85f0239d7f4bb2c849b47e1f0ac2d6e155eabda3a", 
+            "name": "f77350fe-90a7-ce25-bfe1-9ea41d01564e_1000519-1101-rec30.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 127432
+        }, 
+        {
+            "sha256": "f2a0466f332d3d3a1b6d668e010db880abd208a1a3b64e8ce904ef8b047e9118", 
+            "name": "38d9298f-b56c-4a33-a182-dbf25cfd004b.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 72764
+        }, 
+        {
+            "sha256": "0702ba99d5ccac331400a86b9149efb106374b5582c31723181079aa76476343", 
+            "name": "0dc9b6b3-dbd5-2916-21ca-793401d74006_第1屆第2次定期大會第6次會議紀錄-財經質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64485
+        }, 
+        {
+            "sha256": "a4b267cb4fa2612aeeb3592a0338f1e538833ce2ebcd804e585490ae3889033d", 
+            "name": "9bcd900f-8091-4635-9376-56163a9d00bd.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 66585
+        }, 
+        {
+            "sha256": "9005184d0188f3227bc6179d06c6846c26e9fe08b8bd216d0b924641b3713c71", 
+            "name": "d3007243-387e-4739-8715-33b9ba53b4ec.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 97186
+        }, 
+        {
+            "sha256": "06c4dcc18fbafa50263b91f30750b185b28f2d14b56ef4f1e0be3dc45a7c1dbf", 
+            "name": "ed8769dd-29f6-e900-ccb8-dd8cbb9a650e_第1屆第4次定期大會第21次會議紀錄-財經質詢101.10.30.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64565
+        }, 
+        {
+            "sha256": "d2ff25670a9a9faf3f9559ce7ef74fea9b71754949e61967fd0e74ed5df3550f", 
+            "name": "5dfa509f-f9fe-453f-b5ce-795250f4a1b9.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 107011
+        }, 
+        {
+            "sha256": "c387a2ed502f2d611d057b2f95ed36512ea92ad47c203e49cbb1e7ed4e585c74", 
+            "name": "86704dad-3cd5-9b4e-5501-7cebe08fa3ca_1000603-1101-rec41.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 71884
+        }, 
+        {
+            "sha256": "40415b16694bcd69265cfa702b156235e3c10aae99c27597f82bf018b624859c", 
+            "name": "41d0a1cd-c6af-4d7c-f536-c5894e0560aa_1000429-1101-rec19.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 81876
+        }, 
+        {
+            "sha256": "170751da2df061154d0408cc1556b2928d2d7ee2b73c128c0e6ef649a1797a03", 
+            "name": "665c72d3-2d19-95a4-01d1-286a575c5120_1000414-1101-rec8.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 71941
+        }, 
+        {
+            "sha256": "bf01f5cefe8feb16afd19a5a8362e9799a0ccff53dad37a3a91943ed2dd33060", 
+            "name": "3fa654d2-aaed-c1b2-2f84-36d66fe607c4_第1屆第4次定期大會第18次會議紀錄-社政部門業務報告與質詢101.10.24.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65327
+        }, 
+        {
+            "sha256": "9eca87ba4800aa0e8f82e808f8b436645e79b2713f48b3c17fbd0354b7ef56a2", 
+            "name": "3cd4a2b0-d67e-c36d-6dc0-0f17ccfad10d_第1屆第3次定期大會第5次會議紀錄-財經質詢101.4.3.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 71690
+        }, 
+        {
+            "sha256": "8b32f87d850ea678955ed3b7759d9a5e46a748116d99ba98e77558df3a186625", 
+            "name": "4ebf09d7-7124-6634-d85c-be2662ff925d_第1屆第2次定期大會第24次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 63808
+        }, 
+        {
+            "sha256": "8005de70f7dde51f88eff90adf15077ede9af0eca9c1a239e90ca4bc1e4e201e", 
+            "name": "a4f1089b-76cc-4287-bde1-88dca823673d.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 94072
+        }, 
+        {
+            "sha256": "bc6ac81f4678bf2c21633704935bb3618cd5a488ba3f37d1f48b5ac9e6b455e7", 
+            "name": "ae552949-57d6-4278-8594-730c7a39dbe0.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 67743
+        }, 
+        {
+            "sha256": "e17bd011c8e7431dfa818e3c55c2725fbe2f5750c7137e330773dba6698fb9ab", 
+            "name": "cb064788-7c11-c32c-f5f8-e3758dc73b0e_第1屆第3次定期大會第43次會議紀錄-市政總質詢101.5.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 92830
+        }, 
+        {
+            "sha256": "83895527b290c49f11037536054245ecf2a289693d0a107fca01b36a1f622f95", 
+            "name": "e4e27652-2047-71d4-3ad2-09fd7487efd9_1000607-1101-rec42.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 72927
+        }, 
+        {
+            "sha256": "1de97442d527e87c6202369ebc22c90db659e76986d17026db81ba6494b97328", 
+            "name": "7886dfae-b410-7019-489f-329cffe5e348_第1屆第3次定期大會第20次會議紀錄-社政部門質詢101.4.25.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 67108
+        }, 
+        {
+            "sha256": "7ba2d4a85dae6da91e8b5d8f14bf88db62cfb444dc61bdb9765a8f58bb30c5aa", 
+            "name": "695aa75a-817a-4687-b7cf-d753293e81b0.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 78545
+        }, 
+        {
+            "sha256": "f353578e75d0cc9a33dcd2a03953c3f3dc469c43115bb9fc73876d3ae3d01ea3", 
+            "name": "bfe90580-79e3-4994-a259-de7d42e430d7.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 71753
+        }, 
+        {
+            "sha256": "972051b6e35ded9cb41a3e40f9724da250a96fa2678b3f3726c9fe9354964c77", 
+            "name": "35d1917d-050e-44b4-b368-5283ca5de691.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 66865
+        }, 
+        {
+            "sha256": "c7d9948d09dacf399a8d0f079ae6b9a13a155c89d84fdc17b5cca229fa771e7c", 
+            "name": "86deea0e-c1bf-9815-2827-7b7b0dd20705_第1屆第15選舉區遞補議員宣誓就職典禮紀錄-100.12.22.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 68769
+        }, 
+        {
+            "sha256": "d4c42a814f21d9727b65831a189c0a175e46b45edd07d655f072c1b6731718bb", 
+            "name": "4ac1c3e6-9378-1d49-69ed-e5ec52353c29_1000411-1101-rec5.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 80635
+        }, 
+        {
+            "sha256": "7afee2036e21d0c1bc64c23cd029c04c9b6986e75807910a95b9893472d1d7f5", 
+            "name": "d280a1f3-c717-dc1a-b7ca-16cfc30bf2f1_1000323-1005-rec5.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 124906
+        }, 
+        {
+            "sha256": "39cf01542201c3c585a599c85b4a3dd61b52a49de39b2e34abeb03d36c3f7317", 
+            "name": "997379c9-e12e-d984-ab52-f243f1d5c380_第1屆第4次定期大會第29次會議紀錄-市政總質詢101.11.14.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 57861
+        }, 
+        {
+            "sha256": "a0ace2c036dfb0a07ff95f379d00e7849dc10290f38b9a83caca6d8733caa226", 
+            "name": "4628949e-eb3b-e546-248c-af13d66f7679_第1屆第2次定期大會第18次會議紀錄-工務質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 77973
+        }, 
+        {
+            "sha256": "e26b670285c216d8cddc8aa622896c343c971af414f099b088d9d4f6c434601e", 
+            "name": "5ed3f235-fb82-4231-b4d7-2bc9ad06088c.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 80912
+        }, 
+        {
+            "sha256": "7a83c9f53065ac9503e0306016fdd9bc72302e3650b4ada33700549690e965ee", 
+            "name": "dfe798da-2b04-7eb3-6575-bcdde852c9c0_第1屆第2次定期大會第4次會議紀錄-社政質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64536
+        }, 
+        {
+            "sha256": "ed681ab7a3d48ebe78e9b1f0932be94decff49224e9277167adb42ae8bc00f27", 
+            "name": "01191d64-49e3-4d35-370c-4a6818d28f62_第1屆第3次定期大會第22次會議紀錄-專案報告101.4.27.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69659
+        }, 
+        {
+            "sha256": "30fa6d290394b5aea93a6075528a73fd8d8c4b94fbfc0662453e0671cf8e66ca", 
+            "name": "6c105cd6-5d28-dae7-1aca-82fde38718d9_1000420-1101-rec12.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 86702
+        }, 
+        {
+            "sha256": "4a618fd7e502c8bfee78e3e56ff868e25e293a4bdf06d3c17305115395e401e6", 
+            "name": "91050b6a-25a6-4801-b4af-c27698fd8828.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 102609
+        }, 
+        {
+            "sha256": "05e147d8569f3d334dc7cfa545633a6a78c38613c7d13b547bed4a538e2f73eb", 
+            "name": "bd8ff1c3-fd76-6c04-42dd-c5dbaa8f5d52_第1屆第2次定期大會第2次會議紀錄-施政報告.質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 67305
+        }, 
+        {
+            "sha256": "231bc70c044abfb917b0d8e85b9b8ad9e544a0595471af67addee22502a9809e", 
+            "name": "40537005-9fd2-4b11-8535-27ea40e4eb0d.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 95726
+        }, 
+        {
+            "sha256": "93d3142cc95c11624cf3ca33a10695e40fc0aa7b44840fae663a503ea48f5ce7", 
+            "name": "18746de5-c4bc-489c-9f77-3967c4a6c398.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 82130
+        }, 
+        {
+            "sha256": "48e3bb9c2c7e8c6b0b54506a6b6c21803f18748f95e1443e2f35ed0ee347611d", 
+            "name": "d962ab48-545a-42bd-aecb-e9ae7e0f5e53.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 70025
+        }, 
+        {
+            "sha256": "fa4ba3a3e4fdf9318b137c5d01361907d74c43f56da2fb334f9bad8e10aca654", 
+            "name": "89f424d3-5831-4663-a539-f3e5cc4f1edf.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 84988
+        }, 
+        {
+            "sha256": "24ffcdf2f9099d8d847fa48ec7af601d62493e79fa0f749e04dc0a7c01a24374", 
+            "name": "04dd1813-2eb0-4e3e-95e5-61c9ace57c58.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 61921
+        }, 
+        {
+            "sha256": "c32afc1ff179dc4a86507a324160052c6def3b01e1143e5e79bba50e76635d2a", 
+            "name": "cea8e28d-511b-654f-82f5-e0cc07e93119_第1屆第3次定期大會第41次會議紀錄-市政總質詢101.5.29.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 60029
+        }, 
+        {
+            "sha256": "88dba416f351a54c94473d55dcdd504b3c1756ad31b399b90bb6a83b7b39820c", 
+            "name": "eeb40d3e-4306-d4eb-8202-0f809ba31413_1000408-1101-rec4.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69361
+        }, 
+        {
+            "sha256": "524f550da9f2377a2a7388d73b4379aa9a12978c48c70840f1e1a607a807a6b0", 
+            "name": "b3d0ab08-25ab-f14b-6ee6-3d838c62de22_第1屆第2次定期大會第3次會議紀錄-施政質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69737
+        }, 
+        {
+            "sha256": "cbeb2ddd457ab0f8f6e6fde74e738abbcedac768986828f52135b383f716ad71", 
+            "name": "709e4f81-f7fd-4efd-9dd9-07bdc8ea4f28.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 94540
+        }, 
+        {
+            "sha256": "c19920c343c3bf8da2496c69a0db9973324ee72e2db64232c1910f276c3fc183", 
+            "name": "7fb08006-fcb4-d270-725a-8c393fad6c6d_第1屆第6次臨時會第1次會議-確認日程,.交付.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 132348
+        }, 
+        {
+            "sha256": "b7a9cbd82eff7938f2450e205e348d825c99b85c9d223605080234a0988d434b", 
+            "name": "cf9df0dd-3c7e-4b19-bbdf-2342cf1ed040.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 69004
+        }, 
+        {
+            "sha256": "dd1a066d9f2c4377c0ce9496797c3b0ee40e128e0faa393ee4b5d61abfbef2df", 
+            "name": "60f6669f-dc38-82dd-cd40-8c3349fea661_第1屆第2次定期大會第30次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65120
+        }, 
+        {
+            "sha256": "1314b3fa0f02a38ac9f79f9ee088c907654db305787d9549daacc4e53ba7eefe", 
+            "name": "3fde2e62-3e10-46f3-9f95-3c96431a507e.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 66672
+        }, 
+        {
+            "sha256": "3b20111f8383a0cb939036bbbee4715c45b94ae40fd845b28dbed2a283753b75", 
+            "name": "4156d2fd-7434-178c-92af-ad400ee58541_第1屆第3次定期大會第14次會議紀錄-保安質詢101.4.17.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 71968
+        }, 
+        {
+            "sha256": "8a752e8ec415f00f813593f9e218b2a98db307f3c4b8a3bcb85fedc24d00f0e9", 
+            "name": "f35ebcb2-8171-44b1-bebb-a8c3af1cc8a4.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 144434
+        }, 
+        {
+            "sha256": "917c139fe2ee5b9ee6d22042f3f6aac3da81a87710102304ee6850512fceec17", 
+            "name": "f7c68c91-2635-419f-3382-eb5d74e66c75_1000518-1101-rec29.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 121613
+        }, 
+        {
+            "sha256": "b2b8605f72933e159dc025beb4d98f1b0f343c2b7ff7c53f7bd2f9b91d34249e", 
+            "name": "c8c8b87b-3cfd-4f60-a335-7d49edb9c8c7.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 66972
+        }, 
+        {
+            "sha256": "f1bb521b254d92bc438f8af9b2c6d0983ad5cd809c8443e41acd5d5350990b06", 
+            "name": "5270cd38-775c-ea68-caa5-be23e8e21222_第1屆第2次定期大會第34次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64802
+        }, 
+        {
+            "sha256": "97af5312a3779ecda96f9e5da33d0572d959397cefae704c1057adff23ad0a50", 
+            "name": "33a5ba86-1a51-4204-87f0-99ee06d75042.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64444
+        }, 
+        {
+            "sha256": "529a830b33b9ac6e70ed5ba7aa57f45b068ec1a94f88924eb63791f477d3a48a", 
+            "name": "6e916bf7-7513-420e-84d7-a5e7a83c3ae4.doc", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 55296
+        }, 
+        {
+            "sha256": "bfd31b7a429f576593e4defb17b328167c509f3d795bd564a8fece1bebd04e52", 
+            "name": "010b311b-fc44-4915-a0ed-687e8395bf5a.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 77917
+        }, 
+        {
+            "sha256": "a36d0ed5521e78c8f66524c837a09b5b4d7e188037ae79ca7d15a47c329263d7", 
+            "name": "c3284b18-5e40-41a0-a8cb-ea293355fd81.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 87604
+        }, 
+        {
+            "sha256": "561ef4f87c5a7980bd26bf1925e4bcd7e10565d36a2fc350d87e494d64a05480", 
+            "name": "b8861cae-2b40-e8b9-3a95-4b80a146806c_1000530-1101-rec37.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 84282
+        }, 
+        {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", 
+            "name": "7a9a0763-8e49-af39-4d15-b2f48a23c608_組合", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 0
+        }, 
+        {
+            "sha256": "06ffcc667812507db4b48007ffe93dbfc90f20600cddc79454c9b58df23f63e5", 
+            "name": "546c2ff7-a2a3-4edb-8fd0-5ad7e630c191.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 89612
+        }, 
+        {
+            "sha256": "d0c75328b8da12ad4bf13b3b00253bc7e9e79b58511b8ae97839da6d027e85d0", 
+            "name": "79152ad0-cee0-a6b0-1edb-5c7dade6c371_第1屆第4次定期大會第6次會議紀錄-農林部門業務報告與質詢101.10.5.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 80251
+        }, 
+        {
+            "sha256": "bc2c361c8f1259056f845a1fbfc7c2c994beb96ff035c326358e0836df380078", 
+            "name": "56340622-04e7-7de2-de65-6bfd49fae332_1000517-1101-rec28.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 81876
+        }, 
+        {
+            "sha256": "aa57182ed10ecd4808f10cdeeeef5e4b67ece27745b7bc17cf214c5fad5c23d6", 
+            "name": "ea4f17c0-7463-54dd-70e5-3109ae6dacab_第1屆第2次定期大會第29次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 68074
+        }, 
+        {
+            "sha256": "898337f92ed5aa6552f1b43ebef04214543a2d1719f3bce50a956fee80a85ca5", 
+            "name": "4b654efb-e0ca-253e-09e1-8e58c2f6d943_第1屆第2次定期大會第10次會議紀錄-農林質詢[1].pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65955
+        }, 
+        {
+            "sha256": "4ec692778e0610afbf930cad86678ab216972061771548b68a9ebbbbf187be58", 
+            "name": "d4580a60-4443-5808-ce52-7649449cfbd1_第1屆第2次定期大會第45次會議紀錄-閉幕、議長交議議員臨時提案、報告事項及成立各種委員會a.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 121180
+        }, 
+        {
+            "sha256": "d391c4f2504b7e9a5f7db1b26f681f233125f1ea289a6839d7d296df48c49658", 
+            "name": "a97b4162-3f27-392e-32bb-1c164791aac1_第1屆第4次定期大會第26次會議紀錄-市政總質詢101.11.09.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 60432
+        }, 
+        {
+            "sha256": "336914088238e22892e42d2b0a6e2323a6b14181420e9edee23ce97ea926cde8", 
+            "name": "8032b44d-521e-4f63-af2a-6053e2195a2a_第1屆第3次定期大會第19次會議紀錄-民政部門質詢101.4.24.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 70576
+        }, 
+        {
+            "sha256": "faaa700604976bcac7afc1856e2b3e9631f795bc7466581d0c0cfe78dc6c362e", 
+            "name": "4100b935-4a32-4f23-ba65-16932f8dc131.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 103928
+        }, 
+        {
+            "sha256": "378530d326691b4371bce4e9c95230ef9cc023fcbb1bb940f576d9f0579a04e7", 
+            "name": "1e9a89fb-dd47-28fd-4234-f98bb21d8297_第1屆第3次定期大會第2次會議紀錄-市長施政報告質詢101.3.29.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 71013
+        }, 
+        {
+            "sha256": "e6cc30ccd62c5c0860a8bf6b4a4d37132fce543739174e5e0b0acd3f853e57e6", 
+            "name": "884acd6e-9247-2fa2-589d-2652ebdce8f6_1000427-1101-rec17.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 71684
+        }, 
+        {
+            "sha256": "ab511c4d86ad771fccfafc929e2464caec5e1550c5569f1e74a0082caef708c6", 
+            "name": "71f9600a-0cd8-4acc-aaac-039443d3e083_第1屆第2次定期大會第41次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 89157
+        }, 
+        {
+            "sha256": "9c8d65b58587dca6e1ab6edb98610f4e05c124c905574a0b1f2b5844079cd14f", 
+            "name": "d9e737a1-5b7c-40fb-b02b-1178d0a55cb3.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 115853
+        }, 
+        {
+            "sha256": "b375ddd5ce7ec505ee5894dc084a8f7e7807632bbfce7208804b4e1e7d991b3c", 
+            "name": "b70d48f1-97c6-43f8-a44c-12788bd95bc1.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64169
+        }, 
+        {
+            "sha256": "04df28620650de6085e27f1ca595f92605a761f75e60430c6fa9887fa9c15c31", 
+            "name": "0934f752-5b23-4f61-88c1-a6a0aec165fd.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65466
+        }, 
+        {
+            "sha256": "5ace35cd5460b9945d2fbf04cb85e6fd4592b8e71793fc80b1b3315c564dade9", 
+            "name": "3f55296e-34ff-02ea-6dc3-de9950382053_第6次臨時會101年度交通部門預算刪減表_公務二讀_101.02.08a.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 75193
+        }, 
+        {
+            "sha256": "759d346de18c88bd6613343e0ae5cc9eb7f1e92a4e9404eae7216962ec79e098", 
+            "name": "31ba6e8c-2e97-ab0f-6401-af752ff8660d_第1屆第4次定期大會第39次會議紀錄-市政總質詢.稅課101.11.29.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 83203
+        }, 
+        {
+            "sha256": "d4cb374af6d42623ddee39578e7016e711dab0a46a2b521aa4831aac6a53a0af", 
+            "name": "44998d76-293c-4c0c-8ecc-f734ab67992c.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 61714
+        }, 
+        {
+            "sha256": "5357783288ccd59fab6bd7102f45dc2c4b014f9a17b9c22b4ebb194d6a834bdc", 
+            "name": "fc69f59a-cafc-a1e4-0d81-bd802fe439de_101民政部門二讀會審議表-100.11.29-調整數.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65945
+        }, 
+        {
+            "sha256": "17534fbb572eeb26972418a3fec58c7e7ee5902fa4adac852d78cfa4503ee4b4", 
+            "name": "da915189-d841-42df-9274-d8d0d8c6bb74.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 70423
+        }, 
+        {
+            "sha256": "e33912edbdbdd2f3f023ea4a1cb2e2823b974684a54692fdafbd67e46f94dcba", 
+            "name": "b5fe778d-440f-446e-ae07-2a2e27330510.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 99218
+        }, 
+        {
+            "sha256": "8c4a8f445a206ad51d788af77e6fb8669f15ab2682357ae30b585a966e03e6ee", 
+            "name": "b2481f55-d502-441b-b92d-4394561053a7.doc", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 72704
+        }, 
+        {
+            "sha256": "0c20406e66aee4a4d0a9228c9f907f3a49852544b1e003b7dbd5448361c66b92", 
+            "name": "ef84a19a-b295-d870-5655-0f9f5569784a_第1屆第3次定期大會預備會議會議紀錄-確定日程.抽總質詢.免抽座位101.03.27.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 128695
+        }, 
+        {
+            "sha256": "af26885f8270f1b6d70651af9454b4fbab24d797121ad5c13c82b46165d75f29", 
+            "name": "10ba5358-9f58-5152-3eca-1aa5a6bb4c3c_1000531-1101-rec38.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 61998
+        }, 
+        {
+            "sha256": "614a3da9cb7657bddceb1625aed68c01d0bab3e1bd1a735c64f50d829ac9cf71", 
+            "name": "60b6820d-42c0-4f82-946f-1fcaba167445.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 96749
+        }, 
+        {
+            "sha256": "eaac41990e0bdfbcfb513036bc1eed881a25d76de4fe05adec5ed7b61dd28b49", 
+            "name": "11de361b-815b-b8cc-ec76-60403bc9073e_1000322-1005-rec4.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 151973
+        }, 
+        {
+            "sha256": "9731be0f2250547d4856514cc088386e5b9b8bc77c7383d2e92bb6f44e32010b", 
+            "name": "1bacaa51-cb98-0acc-a67b-c45d818dcc8c_第1屆第3次定期大會第37次會議紀錄--市政總質詢、變更議程動議及審議法規提案101.5.23.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 86630
+        }, 
+        {
+            "sha256": "da0c5bad651b6199d3f243f45ed64b10fc95dbbbc82b09a6f87c85f51f9f3efe", 
+            "name": "e9c63d1c-76ee-e5e4-70c4-b2fe9cb4c686_1000426-1101-rec16.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 107716
+        }, 
+        {
+            "sha256": "268f1d49ca8a57c6b13b6eb5e06065df32d75843fb3d33eb94e09867215ce498", 
+            "name": "caf981c0-34a9-473e-bc3e-fe9915e6a913.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64889
+        }, 
+        {
+            "sha256": "b72100b839632e382aef35c04df9fef1fd0d3426e3d93549897ed5364ddfb5db", 
+            "name": "db998e9a-aa4e-10a7-4590-f8923d426fed_第1屆第4次定期大會第49次會議紀錄-歲出_人事.人發.研考_101.12.12-1.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 122865
+        }, 
+        {
+            "sha256": "84d586ee3bb49bb007c575ea7ceabe51d194e3d6d0ba9670de0fb0d33ea43f42", 
+            "name": "983363f8-aa0a-49b6-a177-aea91849cff9.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 178297
+        }, 
+        {
+            "sha256": "7851efb7b57392a5be837021b765facc6f20e8d2fa861755ca749ccf30f617f7", 
+            "name": "56ed1256-fc8c-78a0-2c1a-26c53665708b_第1屆第2次定期大會第20次會議紀錄-民政質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 98243
+        }, 
+        {
+            "sha256": "40d6900c300a11b786eadcb833e9a0bea1003db2f06bf2d93d93358ef5940d98", 
+            "name": "0b0cbd11-384e-402c-91fc-c0d77b8faa2a.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 98820
+        }, 
+        {
+            "sha256": "00c2f7b10d912124f35c69ef90299664d94715a14ad182fc13f1e84b8685f3e8", 
+            "name": "c672e324-c3f6-492e-bdd2-216c3b7d310b.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 90969
+        }, 
+        {
+            "sha256": "62101e24a89c1d6871778488702a0e0a6c044190a1315900189192f08201f6f2", 
+            "name": "ae3d7744-ceb1-2bdd-8769-347fa507850e_第1屆第3次定期大會第30次會議紀錄-市政總質詢101.5.14.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 56947
+        }, 
+        {
+            "sha256": "a31cec00b836161330b214018e77ae651c428a6971db1774b5b432994f868a2e", 
+            "name": "7aef3507-5712-457a-8244-c0a295d37a41.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 64992
+        }, 
+        {
+            "sha256": "f7c8cc0cd49f88ef04a826d40aa77192d87072ef16b084ef0c8e2c91bbf1e0e4", 
+            "name": "871285e8-cd3d-3cf9-c81a-58f8543edc1a_1000407-1101-rec3.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 89542
+        }, 
+        {
+            "sha256": "4d768d679ad5590bd10207667d774db1cbbdfec8729afb403631172042be9622", 
+            "name": "dc803247-50e8-a251-4225-e95fa7175745_第1屆第3次定期大會第27次會議紀錄-市政總質詢101.5.9.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 63699
+        }, 
+        {
+            "sha256": "d61fa4375f33e512f9ef213053640b6dee39baacd42c877f4da1caffd46d3936", 
+            "name": "423bd3d5-a1a9-44ef-99f7-d0b359d02cfb.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65268
+        }, 
+        {
+            "sha256": "7fcd2d9aedbbf27f7ea8cb9744c1889bcf559f84a43946eebe18e15b0f7b62c7", 
+            "name": "3ac22f40-b4e5-4a27-8e73-fdd6df23087e.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 63731
+        }, 
+        {
+            "sha256": "b0d7387532863ad3e87f5975c020c84d6c55fc6210408c5cd1a4316e75dcde90", 
+            "name": "e9c7e145-a6b1-412d-b2a7-a36b1d3d0c79.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 165748
+        }, 
+        {
+            "sha256": "50a5689922d59d3dca08bf6d478828d3a79b0170ab750d26453fa06e4c5fd3aa", 
+            "name": "8d44b992-dac3-46c7-bb73-5d33b1a49c7c.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 74644
+        }, 
+        {
+            "sha256": "1cc1853b0e80e5faf312e00ad524cba70d837dacea0b5b23249f5b5db18e1cb6", 
+            "name": "e8d79610-53b6-84fb-966f-bc786c506a57_1000415-1101-rec9.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 60332
+        }, 
+        {
+            "sha256": "c9901558bb7692f0df70f498c5f07014ab65e703272afb9a9bbcd14f427a0503", 
+            "name": "fd59ce30-e6d8-c5f1-137d-e382dfbbc3b3_第1屆第4次定期大會第24次會議紀錄-市政總質詢101.11.07.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 65341
+        }, 
+        {
+            "sha256": "48db25f6b54a71b4009845cdb3fe0d2fc93c345e8abd99112dbfbeda77789210", 
+            "name": "11fa4d72-b4ef-4458-949d-413ca563235d.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 94189
+        }, 
+        {
+            "sha256": "4a23d49c9206283eee62121d1e0cc39f24bb2372713a21a7d3cdfccc3d323a25", 
+            "name": "1cf3e3f2-3d1e-6ee3-a96f-cdff1e53d82c_1000126-1002-rec3.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 11971
+        }, 
+        {
+            "sha256": "61bff187153f168b9b6eebe1ba850765b89ad757f3ead4eef1dc2a9d53518ce0", 
+            "name": "12ac2c39-bebb-4230-0e62-707e41842592_1001004-1200-rec0.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 24667
+        }, 
+        {
+            "sha256": "b307175b7026930cdc46aed57fbadf7059d7f5c9f534286b97414310b5f4c826", 
+            "name": "291b87ee-6818-48f2-8c76-075a990649b2.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 74883
+        }, 
+        {
+            "sha256": "5a78c2a6c864ae54524f2cdfab1bc3dd7476b7d239d100db48ef2bbf481e9810", 
+            "name": "8f117869-e1af-407a-ab6f-fe05d289d3ad.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 67009
+        }, 
+        {
+            "sha256": "d53bcde6b9c99a327012cc66349c68f0f3098b7615b75239f2f45a1c04925200", 
+            "name": "65278f24-a0b0-7f66-6723-daafab8336b3_1000524-1101-rec33.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 113673
+        }, 
+        {
+            "sha256": "98853caa78202c36a1c3eb582c0d6f291436530ffb6e5d63fd5dc86d200334ec", 
+            "name": "7cfe3dbc-029e-44ce-9cbc-c2ae7d6b1ef0.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 58140
+        }, 
+        {
+            "sha256": "a9415ac18cf69da642f60115583529b6e2e6b71cfa674fe695bcf0a2406d3319", 
+            "name": "19ee2562-a507-62d1-b792-4d4243f49147_1000608-1101-rec43.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 132767
+        }, 
+        {
+            "sha256": "73faa67d31eb97efe1bdcd85ab18eb1860be106de8a4889922fad711ef212e39", 
+            "name": "aefa92c3-b5b1-67fa-447d-c9fb72a06903_第1屆第2次定期大會第25次會議紀錄-書面市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 46549
+        }, 
+        {
+            "sha256": "2be82caffbe5b63b61a42e7400d215684df20bb18d5c597a310f5696102018ef", 
+            "name": "3456c6fd-2b7c-1c29-bf0e-bcffb12d918c_1000516-1101-rec27.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 92497
+        }, 
+        {
+            "sha256": "8753808f6fe408ac44dfa5f1e379e5eeec602039135e03664a1c20095c326955", 
+            "name": "fb1077c9-bf79-4fcb-b0e1-e7241b1f341b.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 87649
+        }, 
+        {
+            "sha256": "b4f1a0ee95146d2d105b5d72c53536f5d9c9c21e4c1f11b26a36cd3b05905d49", 
+            "name": "77d41593-2187-8e84-8e6a-2eee2f4ff1f8_1000325-1005-rec7.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 296634
+        }, 
+        {
+            "sha256": "2ceb08b8e88c5e00f86ca79caeedfe43103b94ff2fbc67fe7f28b215f17036e6", 
+            "name": "ca42cff6-f045-f038-f9e6-ace34ff181ee_1000502-1101-rec20.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 70052
+        }, 
+        {
+            "sha256": "4197275442b14111c2d9d89aafcb39e6d625e1ca4a58039ade50959fb8f2fbfe", 
+            "name": "228295a4-5bf5-4537-9f8f-374aaa931e3b.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 83373
+        }, 
+        {
+            "sha256": "f758b213afdf472b16917f04a262f166e859f81ff89e11d07469e2ef2fea11b8", 
+            "name": "8fadbc7f-7620-4247-aa9a-ada31a53d59a.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 90857
+        }, 
+        {
+            "sha256": "5a96eb2c6a889f4be8c96ae4368357ea3fb055db5d8e0506a38367f931b1eb6e", 
+            "name": "0f43d3cd-5ab1-4298-b8f3-603c2072f815.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 95040
+        }, 
+        {
+            "sha256": "81ff27463b59ab91a4022199e94e79d6099591294fc90defa73fe3063725e710", 
+            "name": "fd98e41a-a6ea-b517-a0a2-1759a454af8d_1000119-1001-rec4.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 15286
+        }, 
+        {
+            "sha256": "1a3f698e474e80f0055c1559ec1ab5e577431df38e56bb65b5a2df8632d3980c", 
+            "name": "7d032e3d-72b2-9aa4-50e6-07c3f1f6ef45_第1屆第4次定期大會第38次會議紀錄-市政總質詢101.11.27.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 58807
+        }, 
+        {
+            "sha256": "544be47efb22c6c40b73b45d09edfbe901b084cd834d4c1cae0b9bee4b8a6513", 
+            "name": "ed580443-cac7-94e3-ff68-001789061e4f_1000316-1004-rec5.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 235072
+        }, 
+        {
+            "sha256": "d3bb00ed5ce66d6e087f52b49dfffed1808bf4b18db976fcb6be7c2dfc21ecaf", 
+            "name": "b649fe83-115d-45d8-876b-c26f8bb07391.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 97606
+        }, 
+        {
+            "sha256": "a27a79db74cc07ebc01a6e7de26b952176ac42647d0d0023d1ec83c1f792b1dc", 
+            "name": "d51a8e11-1fef-201e-3979-a9384900c829_第1屆第2次定期大會第5次會議紀錄-社政質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 68369
+        }, 
+        {
+            "sha256": "ac66b0e71945260552622032e9b710ed7fc1bb4e289d21b92ebe429f027644b4", 
+            "name": "b0909228-de68-b0ad-e056-c9902f0b8e68_第1屆第4次定期大會第41次會議紀錄-總質詢.二讀罰款規費101.11.30.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 144371
+        }, 
+        {
+            "sha256": "8bc0529442efb798bba6a4d2aa213e722ed0d652b64d8437c5a262e3b35d9799", 
+            "name": "20678f08-2542-e6c4-1b67-10f13be7105d_1000317-1005-rec1.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 78616
+        }, 
+        {
+            "sha256": "abb9a2a9ae70db5dd16d26d5ef20ab286b66eed79aa1ddedd849d94494c4abeb", 
+            "name": "d679e77b-5663-4db1-a316-013e46475d21.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 70071
+        }, 
+        {
+            "sha256": "5316255ece7bbbd90c222e24f5cd037b6af050f46510b4e9afa4046e548a15b9", 
+            "name": "db511d9f-6f9a-4ad7-a07a-25408ca9610b.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 91241
+        }, 
+        {
+            "sha256": "c90d1eef544092b1e7ea4b343e86f051674bcb92328615f5d0b9de5dcc5d83b5", 
+            "name": "9e064803-0c3a-9a00-7cdd-c73b045e0497_第1屆第3次定期大會第38次會議紀錄-市政總質詢及法規提案二.三讀會101.5.24.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 84734
+        }, 
+        {
+            "sha256": "3a2c2a32d960098831af785c6888ab7531773327b2d7f4a3dcc4a9d0f153f2aa", 
+            "name": "b6161e92-687e-32e8-250f-d48e7a11aabe_第1屆第2次定期大會第40次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 79983
+        }, 
+        {
+            "sha256": "0912b063bf629ff559119c0f8c18debf6f6a74a0edcab98ebb34aecf070f989d", 
+            "name": "661af581-b57f-4e57-9b93-2a04b5dee3ba.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 160220
+        }, 
+        {
+            "sha256": "3fc377566909d6b4d5201448cfb2cf2cfbf93c2f4b904de7fc6daaaa73ff9fcc", 
+            "name": "90d89e38-e7ab-a1f7-3c0f-afe1de71e943_第1屆第2次定期大會第27次會議紀錄-市政總質詢.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 55891
+        }, 
+        {
+            "sha256": "a44709c3a16937b5c8d856f8ab776a4aa01475d9b5c93c760582241d65282282", 
+            "name": "6baa4d35-0289-9a03-bd7f-cf3039ef47ee_第1屆第4次定期大會第9次會議紀錄-交通部門業務質詢101.10.11.pdf", 
+            "dir": "meeting_minutes/kcc", 
+            "size": 71854
+        }, 
+        {
+            "sha256": "e0f62f1f182efdc53ab699e67f72b5be244c774fd87b9400bb72f4759baaea2e", 
+            "name": "第11屆第10次臨時大會_第04次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 166400
+        }, 
+        {
+            "sha256": "77f4795799b0d3a4655560d7dc86346426ea78a0677af7525ac0641379c7197b", 
+            "name": "第11屆第15次臨時大會_第06次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 123392
+        }, 
+        {
+            "sha256": "5d076736559f4fb06b51e908a1dd101443257e6f3acbeb033ea182127066daca", 
+            "name": "第11屆第01次定期大會_第02次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 84992
+        }, 
+        {
+            "sha256": "bc002aa8435169a2fd72279bd79262dd1ab33a459311b3280eb2996f4460792a", 
+            "name": "第11屆第11次臨時大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 75776
+        }, 
+        {
+            "sha256": "31066519c1063526badb2d0ffa953dcb1b4f56566e82d061f8ca26629159ade3", 
+            "name": "第11屆第10次臨時大會_第03次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 334336
+        }, 
+        {
+            "sha256": "b2eedb0863ad2a2d36e50ad5f7ca5aeec14e59dded2b564c7fb3156cb4653458", 
+            "name": "第11屆第04次定期大會_第05次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 82432
+        }, 
+        {
+            "sha256": "e4fb2ad67ab26adb57db3ca2ee7782d63257517082c844016106d8b52c88c02f", 
+            "name": "第11屆第01次定期大會_第03次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 154624
+        }, 
+        {
+            "sha256": "65b38dcb95f3a08e7be304e3deb43bb6c7df753da2c8adef4ed24dc8ad9e3828", 
+            "name": "第11屆第14次臨時大會_第01次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 84992
+        }, 
+        {
+            "sha256": "df0fe38b906d575ca8cc8a725570fb6f33e95cdb25fc4126ee538e1d35cfa52e", 
+            "name": "第11屆第16次臨時大會_第01次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 99840
+        }, 
+        {
+            "sha256": "3eb2931b3e7bca22910604941779483118ba371b147aab361c01a1aea3825638", 
+            "name": "第11屆第03次臨時大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 131584
+        }, 
+        {
+            "sha256": "8074259d19326eea2c0fccaf93c1ae741439e5fc51457c47971a138a9f2962ae", 
+            "name": "第11屆第01次定期大會_第13次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 69632
+        }, 
+        {
+            "sha256": "e74ad8bb0c301f9582ae8a59a4c660e8e3f54cea2a0625d672ef499a41a26a66", 
+            "name": "第11屆第06次定期大會_第03次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 65536
+        }, 
+        {
+            "sha256": "10be6351ddb0c3dae65021bfc899610e83662514da6a9e77625648eea4b33fa8", 
+            "name": "第11屆第02次定期大會_第07次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 93696
+        }, 
+        {
+            "sha256": "a03d0de9b922abe5a3370f741e24e3627f86a31cf5be4834aafc139fb1f47d28", 
+            "name": "第11屆第02次定期大會_第08次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 123904
+        }, 
+        {
+            "sha256": "d903654d5807ebee2c29cef76909f9d26e2bfdb16c31fdb86aca76a72b1c2449", 
+            "name": "第11屆第15次臨時大會_第04次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 97792
+        }, 
+        {
+            "sha256": "d84a61c2b3de89d1031aa72c702bde116be94e01a1b1c6b59868dfd30af4a285", 
+            "name": "第11屆第04次定期大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 60928
+        }, 
+        {
+            "sha256": "ccc1ea5116272ce684cef7b7547ea4cfe382590be44659fa221fa53ccd20137d", 
+            "name": "第11屆第01次定期大會_第08次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 36864
+        }, 
+        {
+            "sha256": "2b10fb3fd9b53af000ad5374297bc7c383c4352b0995c88811a44f815e1ff668", 
+            "name": "第11屆第01次定期大會_第09次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 103936
+        }, 
+        {
+            "sha256": "96aa6c6a0c386362923e0bb09e2c86c83804b909e77da974a885b1094d0ddd5a", 
+            "name": "第11屆第12次臨時大會_第02次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 79872
+        }, 
+        {
+            "sha256": "fa71cc6f2ab4c0bb8d3dee148b50780e05c8bb02fd1c2c5e26a261e902bec763", 
+            "name": "第11屆第01次定期大會_第04次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 90624
+        }, 
+        {
+            "sha256": "ab675b0d904426a50c49eadc83898eb9c0dbefe200c5b1b943cd2c38a0d16230", 
+            "name": "第11屆第03次定期大會_第03次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 159232
+        }, 
+        {
+            "sha256": "fbf0c501c7dcea27ded4327a501f2646789e41955ed921b5d96ca0d5eac1f907", 
+            "name": "第11屆第04次臨時大會_第07次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 87040
+        }, 
+        {
+            "sha256": "cfab9cf569081b3508ef0a61e3681811911a3ca989edd46034e90e90da845752", 
+            "name": "第11屆第04次定期大會_第04次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 74240
+        }, 
+        {
+            "sha256": "832459ebf6d271bc2ccde9ddd9d33ed03bb6fc837bceb373f50a1ff49f92b835", 
+            "name": "第11屆第07次定期大會_第05次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 91648
+        }, 
+        {
+            "sha256": "7ea34beada2363eeb21986e883293456f14d67b3dc11e7db83da49d609028339", 
+            "name": "第11屆第02次定期大會_第04次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 76288
+        }, 
+        {
+            "sha256": "231a3559423f7b9b45527f6390d6161e8ce4899e8906d943f9205c7c8af04a7a", 
+            "name": "第11屆第17次臨時大會_第01次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 86016
+        }, 
+        {
+            "sha256": "1097dacaa1ea7330c3ed1eb5340089e7304081a239320779ad1f4b4d27b6239c", 
+            "name": "第11屆第07次定期大會_第10次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 96256
+        }, 
+        {
+            "sha256": "d20e312fe61415090414cd7e02a2e68c4a1a2958f9e25db710dc5151c7e937ac", 
+            "name": "第11屆第05次定期大會_第06次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 76800
+        }, 
+        {
+            "sha256": "cf24fef3d8ac5e814a6483d9c4b08cb571bd26f2a2dadd2beeaf8a160cc6605b", 
+            "name": "第11屆第05次定期大會_第05次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 96768
+        }, 
+        {
+            "sha256": "75b8ff70a8aec3d1b018fbe504561055a2206596e9d1e49b9393f8340452eb7e", 
+            "name": "第11屆第03次定期大會_第06次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 92672
+        }, 
+        {
+            "sha256": "029bb00a80dd66343cc7aa15c9d7f602394f2efdbf4a7eb1f4d3d5581296a10e", 
+            "name": "第11屆第03次定期大會_第02次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 84992
+        }, 
+        {
+            "sha256": "5cd85de06369bf8374d09fee6cb29e9aa11ead8c7d7d24f2a6c322edbcc4e15b", 
+            "name": "第11屆第02次臨時大會_第02次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 81920
+        }, 
+        {
+            "sha256": "b530753e8b1a3b0339aa313b4a3a7589c662eaf17a103b95778fe86d907aeedd", 
+            "name": "第11屆第05次定期大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 90624
+        }, 
+        {
+            "sha256": "0cb50cda48d55fb91ecd165788c0b8915eade1be38118a1feb845f168fc28c85", 
+            "name": "第11屆第02次定期大會_第10次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 100352
+        }, 
+        {
+            "sha256": "6d0fcdbaeab1d262c670c28f36edca716e097334198ce50512a84412efe6e930", 
+            "name": "第11屆第06次定期大會_第01次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 80384
+        }, 
+        {
+            "sha256": "a23cd64aee4026620ff327294f4e8ddc86845d82735292129128a7fd8067c225", 
+            "name": "第11屆第07次定期大會_第08次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 98304
+        }, 
+        {
+            "sha256": "8732d362810ab0a1b99d7cd7cf59834ccd0cb073f83ccc5a23b61c35bbecf3a7", 
+            "name": "第11屆第17次臨時大會_第03次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 111104
+        }, 
+        {
+            "sha256": "78daaa14b639aeaac1493eb4f6b5ed722ff097a7053cdf729e75868c6ef7109d", 
+            "name": "第11屆第17次臨時大會_第02次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 141824
+        }, 
+        {
+            "sha256": "495a1ffc807d6c1b7633d44ea2d745ba62f5299122816fb0693fcdb73aa43761", 
+            "name": "第11屆第04次臨時大會_第02次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 251904
+        }, 
+        {
+            "sha256": "250f640d20a7dcbf5bc8ee3d184a5c298b6305c1b61928b831495fd826105792", 
+            "name": "第11屆第01次臨時大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 72704
+        }, 
+        {
+            "sha256": "83ffa2a4927c06019fe0f732292321f7422f73c28915a8f9b5480c09bcf130bb", 
+            "name": "第11屆第01次定期大會_第12次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 65024
+        }, 
+        {
+            "sha256": "8563b3c29e8f08509a2f56e3eefe394ac292e47494872f9bdd6878905362abbc", 
+            "name": "第11屆第07次臨時大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 91648
+        }, 
+        {
+            "sha256": "fae68209040225080510ba6a251e204e06a35a195fb0bb5b764379c48d9bb270", 
+            "name": "第11屆第13次臨時大會_第02次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 102912
+        }, 
+        {
+            "sha256": "a4b5a0d0cb17ae15542c1d0c902509a93086398f698a1e19a4e91fa5da2d8c63", 
+            "name": "第11屆第03次定期大會_第09次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 97280
+        }, 
+        {
+            "sha256": "e1dc725977db5ce85588553b8016c8c536c57ba98af30cb6e18303d3db8c7ed1", 
+            "name": "第11屆第10次臨時大會_第02次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 71680
+        }, 
+        {
+            "sha256": "f19030c432a42bbbfe64b1ab715eba0dbdc5fef8a8a916046b6682c44a47619f", 
+            "name": "第11屆第06次定期大會_第13次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 76800
+        }, 
+        {
+            "sha256": "dbd56b7cb9b51043140dd90de4e4b767b6ddfd0772d5475d86ca8e9b9446ca34", 
+            "name": "第11屆第13次臨時大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 91648
+        }, 
+        {
+            "sha256": "bd228d64b8aac59d9831db927fe8d16ff5a504a363ff98c776f3e5731e041e5b", 
+            "name": "第11屆第03次定期大會_第04次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 59392
+        }, 
+        {
+            "sha256": "ae66090494817b6a58ab92e0a67e1670eaff919d4b656ece98c33e7b1b59f65e", 
+            "name": "第11屆第07次定期大會_預備會議及第01次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 75776
+        }, 
+        {
+            "sha256": "1720b1122c73a32d06a6c9167599955d9e4a5795eacce5f66203e9fdcd67050b", 
+            "name": "第11屆第05次定期大會_第07次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 84480
+        }, 
+        {
+            "sha256": "17443551f4845385ba8cd1c4f722f00cf6f9282d6557549de6461cb8e973936b", 
+            "name": "第11屆第07次定期大會_第02次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 79872
+        }, 
+        {
+            "sha256": "d02832e5a059a8639681ca07bae7cdc212a00a7ef929bbdf7305bbe8d044737b", 
+            "name": "第11屆第04次臨時大會_第03次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 96256
+        }, 
+        {
+            "sha256": "a12af5c611e1960c4077e5ba3b12fc14e96a402dbc0dce15290efe0d6dc02cba", 
+            "name": "第11屆第04次定期大會_第02次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 83456
+        }, 
+        {
+            "sha256": "65619a680c2244c4205a1b7eda70a6a4473e1d1bc2f87fb6853b530fdceb34a3", 
+            "name": "第11屆第07次定期大會_第11次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 93696
+        }, 
+        {
+            "sha256": "95681ff8cf411e0145605c93dd7771370a5491b00a6656f5514cc0bd096c999e", 
+            "name": "第11屆第01次定期大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 60928
+        }, 
+        {
+            "sha256": "10648112b7f788d34dd3eea83c0b4a5c2b5e3e8fe8de6ce1d58840888ad268c6", 
+            "name": "第11屆第04次定期大會_第06次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 169984
+        }, 
+        {
+            "sha256": "62f4b3b6d2792a121c3fc134d5cd5c54f1256d02323826168d852368b30f073b", 
+            "name": "第11屆第07次定期大會_第07次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 83968
+        }, 
+        {
+            "sha256": "093c89c6eb740f9676c9e70b523cca272dc34795dd3efdaf384101697e29e610", 
+            "name": "第11屆第10次臨時大會_第06次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 103936
+        }, 
+        {
+            "sha256": "e33c22d47c85c0fb4905ee8f7e0f7440fdbd8033c4d72bd3a8e4c3b4d78d0d15", 
+            "name": "第11屆第04次定期大會_第07次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 180224
+        }, 
+        {
+            "sha256": "17dce6f117930249abe710f1125af0e9a8afc01b9e63231bb7784758fbd5e52f", 
+            "name": "第11屆第01次定期大會_第06次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 99840
+        }, 
+        {
+            "sha256": "e5194b5337b3aa9c212355b3b28f0eef477d1b1cd6e9f6f6ee91d7fc486ca1f5", 
+            "name": "第11屆第03次定期大會_第10次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 129536
+        }, 
+        {
+            "sha256": "4866719342ccbbb21fd9814b059242654eac17159d185ab8c32a48c08de8799e", 
+            "name": "第11屆第06次定期大會_第05次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 77824
+        }, 
+        {
+            "sha256": "5a420794e84a7faeeeb8a4293cb7f7820475afcfc8fecb79c09ca8260e4961c0", 
+            "name": "第11屆第16次臨時大會_第02次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 95744
+        }, 
+        {
+            "sha256": "623058baeca470b224e5fe6601267a2180be47f8f3b34cfb027bfe59544777d8", 
+            "name": "第11屆第02次定期大會_第05次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 80896
+        }, 
+        {
+            "sha256": "f0ff8764a9d3187428bc675085d4b5ce98ad11d88cd7321a645cbc719f5b65a6", 
+            "name": "第11屆第04次臨時大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 99328
+        }, 
+        {
+            "sha256": "b99c6cbb688fc9757bf383caa721e7ef7f5e7c40299f43c987d1fd54c42df2a9", 
+            "name": "第11屆第12次臨時大會_第03次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 108032
+        }, 
+        {
+            "sha256": "7539a6a9048cb92145d2aa9932cfcfd92f1f13ea0520b4c4327a0ff3348c9a9d", 
+            "name": "第11屆第02次定期大會_第09次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 132608
+        }, 
+        {
+            "sha256": "4fc1f90ca55cb583dbeaec898b813baa2e1d678db67e918a9a1ba2cc5cf39458", 
+            "name": "第11屆第08次臨時大會_第02次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 130560
+        }, 
+        {
+            "sha256": "18c16fe671426a341bfe04a7cdb156155b7151640417833b57e41208d764f4a3", 
+            "name": "第11屆第15次臨時大會_第07次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 160768
+        }, 
+        {
+            "sha256": "ce4a6973ab58c6e45c1ad956a1f695b76919ceb8b852b943161eee1989cacd7d", 
+            "name": "第11屆第01次臨時大會_第02次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 133120
+        }, 
+        {
+            "sha256": "aba8846d487d79b67fe63fbee0e1b2dde340741a9cc8b7139d749f3e11fb9ad6", 
+            "name": "第11屆第04次臨時大會_第08次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 138240
+        }, 
+        {
+            "sha256": "ecd4a58b893277a416278c8911ea0e78c359279bb5cc7ef5108b7d8fa8c83e0a", 
+            "name": "第11屆第04次定期大會_第10次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 170496
+        }, 
+        {
+            "sha256": "78c4a72a5d85e708be56fceb0a2f3c5fa4883bbfde86ce84305a865de7de2d6f", 
+            "name": "第11屆第05次定期大會_第04次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 80896
+        }, 
+        {
+            "sha256": "260d567761b9b797767d76fa58b4daefab06cf11e3657cf932911365070eb73d", 
+            "name": "第11屆第06次定期大會_第10次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 134656
+        }, 
+        {
+            "sha256": "8790238762c0c2eca02a3782ed7bc617ae6ab1963c1420d349633e892537e245", 
+            "name": "第11屆第13次臨時大會_第04次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 85504
+        }, 
+        {
+            "sha256": "9062889cc8b24c3e1b8ed0e7df814171cf24d1d2fffe6c37c89bb7a163589899", 
+            "name": "第11屆第05次定期大會_第02次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 89600
+        }, 
+        {
+            "sha256": "596a0e86df7fd5804918824ae63816a382b8f0c9be1e0e8e78247cd0eccbf2c6", 
+            "name": "第11屆第03次定期大會_第11次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 124928
+        }, 
+        {
+            "sha256": "647d717e5a07d52fc4d36b0134536f749fd93f2dcb3747df3c829ab6cbd7ff90", 
+            "name": "第11屆第02次定期大會_第03次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 118272
+        }, 
+        {
+            "sha256": "de24802e8464cfee734552372f7665c3fb7cb83834dfc2e8237a969307d87a90", 
+            "name": "第11屆第04次定期大會_第09次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 82944
+        }, 
+        {
+            "sha256": "1b39b095954e4faf96bdaf8ad79d9ee8303d57ddacbb33cff36b4fd637ce14ae", 
+            "name": "第11屆第02次定期大會_第02次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 83968
+        }, 
+        {
+            "sha256": "6c47a0cf55026cedf53353f1c11b0ac4cf7a4f2d56f3fe6baa1e3b33077d026a", 
+            "name": "第11屆第06次定期大會_第07次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 91648
+        }, 
+        {
+            "sha256": "193d1215563060f42cd3fe0466182750d888baa1d10fbee9e8a485d070c411a8", 
+            "name": "第11屆第15次臨時大會_第05次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 105984
+        }, 
+        {
+            "sha256": "379c8ad22e6d97216094133c57d95707af7d423b33b081960b8a3eeee11a59ed", 
+            "name": "第11屆第03次定期大會_第07次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 125440
+        }, 
+        {
+            "sha256": "5b18534a5fe009b4b535eaa2852e5003bf55f2314d3cda59fa76a660f4220ed6", 
+            "name": "第11屆第06次定期大會_第09次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 97280
+        }, 
+        {
+            "sha256": "49ff3bdece1c64e2b1e8a63924cfc6c6472199577a1e24a301b4a12d670f4b78", 
+            "name": "第11屆第03次定期大會_第05次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 112640
+        }, 
+        {
+            "sha256": "3c4aedb576e8301d2217498b8b1c1440d0349669c9f82186ff04725dd4ed8eec", 
+            "name": "第11屆第03次定期大會_第12次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 82944
+        }, 
+        {
+            "sha256": "0dbf18122e3bdbfe70fee61cbf2c85749e011c6a1d7930049d693846a19fe280", 
+            "name": "第11屆第06次定期大會_第02次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 87040
+        }, 
+        {
+            "sha256": "03eae83ea3b5c5e17c899ec770fafb2e3fdb629aa49e2b93358882dd94199beb", 
+            "name": "第11屆第01次定期大會_第05次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 79872
+        }, 
+        {
+            "sha256": "1d468d7cf2c2d020eafb507825db6a2e9a94dfa287199d8c4371c2113a704543", 
+            "name": "第11屆第01次成立大會_成立大會會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 64000
+        }, 
+        {
+            "sha256": "f597b4822411c927bf3371f3ea7a6aa60f42001a73072067437767fe14cdbe99", 
+            "name": "第11屆第01次定期大會_第10次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 80384
+        }, 
+        {
+            "sha256": "f1243121e103ccfd0b7d5e32e5af9c476ea307e5122bc43f9fb496b13757db33", 
+            "name": "第11屆第04次臨時大會_第06次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 99328
+        }, 
+        {
+            "sha256": "1347023d8f090165fbeb82dc1776f86af01e86ee09e8d8499118ccb6184bcfcb", 
+            "name": "第11屆第15次臨時大會_第03次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 105472
+        }, 
+        {
+            "sha256": "c43e132d06bdb6ab0e34a45df973db9e4c3e17bcecff83f31da87e916b0de27f", 
+            "name": "第11屆第13次臨時大會_第03次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 90624
+        }, 
+        {
+            "sha256": "9e5988c2354128919719eb73f7b79dcb817c59ab6eb00b87b23ff71379f31a97", 
+            "name": "第11屆第06次定期大會_第06次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 78336
+        }, 
+        {
+            "sha256": "0f6671fbe17dee781b9febe168a84ee2cabefa682a844cd9697aabb3ed342280", 
+            "name": "第11屆第01次臨時大會_第03次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 77312
+        }, 
+        {
+            "sha256": "4d7ce7013b343743408b513c62088ce3ba01b2ea0e571027fa89e6f62f7703e3", 
+            "name": "第11屆第06次定期大會_第04次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 113664
+        }, 
+        {
+            "sha256": "958bcada40d04ffd0e0a4ac3b25d164e15121e755e63959dde7d5dba9b5e0615", 
+            "name": "第11屆第07次臨時大會_第03次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 105984
+        }, 
+        {
+            "sha256": "fd6e7a0aa63dc9b24bde67ea944fd39900da49aacf0670b1e24dc5c9a7fdde94", 
+            "name": "第11屆第04次定期大會_第08次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 98304
+        }, 
+        {
+            "sha256": "760f8955d570c1b60b2f372e82d61b34ba37fd589286245f7b690c7a327f7af2", 
+            "name": "第11屆第04次定期大會_第11次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 92672
+        }, 
+        {
+            "sha256": "11a0ce6f0b146fd84b73e40c836eeb65f211c4a56b46221cb3bea8bd965db0ae", 
+            "name": "第11屆第09次臨時大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 74752
+        }, 
+        {
+            "sha256": "925bc1a5e904e463fa9767d22ed8d3c351707f9d2206bb3437035648b0cfea1c", 
+            "name": "第11屆第15次臨時大會_第02次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 94720
+        }, 
+        {
+            "sha256": "0b715f99734490bc35efadd800508f6e8e81324549014e87a67193b31eae2dad", 
+            "name": "第11屆第04次臨時大會_第04次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 158208
+        }, 
+        {
+            "sha256": "6cbf1ddec52a76ca3ac0cc72e8b1d1fd4e5d4fc26e2debabb077d377d9a480a0", 
+            "name": "第11屆第04次定期大會_第03次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 152064
+        }, 
+        {
+            "sha256": "405f248a7bf7be4f0935c1a48d8865b0ead84c84b6d0898c066d0302a4fbc050", 
+            "name": "第11屆第05次定期大會_第03次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 125440
+        }, 
+        {
+            "sha256": "600f0c187865f6decdb2d74f08a3290b110e1acb5c773b4089a1c6244952064b", 
+            "name": "第11屆第05次定期大會_第09次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 124416
+        }, 
+        {
+            "sha256": "63f058c4cabb79b2045dfcd4d4476a1cb2f4720e1a8a442e563fc6ac6ae00518", 
+            "name": "第11屆第07次臨時大會_第04次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 85504
+        }, 
+        {
+            "sha256": "585221003887abc480458d99650bb9af6fa97f95752239a63d63a23ba7f2a579", 
+            "name": "第11屆第07次定期大會_第06次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 81408
+        }, 
+        {
+            "sha256": "f3c297e8a62a26b2dd05090a5cd523f4482dc2d490ea355e2b7b62ef051eb91c", 
+            "name": "第11屆第03次定期大會_第08次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 82432
+        }, 
+        {
+            "sha256": "e4207f2ec89a328285c52b449ebf8d4de5b5a0160731da67887bfeb99402a100", 
+            "name": "第11屆第15次臨時大會_第01次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 327168
+        }, 
+        {
+            "sha256": "dfb54f88db79760b97202a7148a4bfbe3bc5049288e7a84e9205b8a21db2b1a3", 
+            "name": "第11屆第04次臨時大會_第05次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 115712
+        }, 
+        {
+            "sha256": "7b4f31af992afb9455424e8b43a016ec1118717c526802d867536fb571a2403f", 
+            "name": "第11屆第01次臨時大會_第04次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 144896
+        }, 
+        {
+            "sha256": "003bf9f32c5c85501e762dbd94bead7290786911dfdd37dfee0274dbce0a9994", 
+            "name": "第11屆第10次臨時大會_第07次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 101376
+        }, 
+        {
+            "sha256": "4df83c8cd9f1c49e894adc780e939986dd51ec4c729d1689d8762f2beae2bc1f", 
+            "name": "第11屆第02次臨時大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 60416
+        }, 
+        {
+            "sha256": "ac54b3c09ab1ed61e457755319274c36eeb62e0b90eddde0288e94d6ae43269a", 
+            "name": "第11屆第11次臨時大會_第02次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 177152
+        }, 
+        {
+            "sha256": "9df52b88a2326ea787c0e3a14b134eb67f0ac30dae340f27874b7d88ce46c39b", 
+            "name": "第11屆第01次定期大會_第07次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 79872
+        }, 
+        {
+            "sha256": "0b0e30b327e958928d52e0717e9b97d59e6988abee849e2f16540186a48da823", 
+            "name": "第11屆第12次臨時大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 171520
+        }, 
+        {
+            "sha256": "e51d7edd6da9a127a01017e76a8438393f996cfdf37eeaa26ce5ccc391819793", 
+            "name": "第11屆第07次定期大會_第09次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 118784
+        }, 
+        {
+            "sha256": "99feedc9c12d4b9a6de5d857713532b6c1e017e565d7312fcc3a200d9a6fa25d", 
+            "name": "第11屆第03次定期大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 85504
+        }, 
+        {
+            "sha256": "dc2cc81d0827dee9ef1df1b61bf20c270a80634d68ea75b5356c14427b44c9f0", 
+            "name": "第11屆第06次定期大會_第08次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 90112
+        }, 
+        {
+            "sha256": "7117d8a4dd3c3470bc4454960982cff698f821cf58f84dcdb0d04b9c0356da92", 
+            "name": "第11屆第07次臨時大會_第02次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 132608
+        }, 
+        {
+            "sha256": "f8617bdb3096ade51a2ddf2f8721312f5dcdb591f950bf31d28e1be79a46229c", 
+            "name": "第11屆第06次定期大會_第12次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 123904
+        }, 
+        {
+            "sha256": "f62c371c19433f96e585c7acaaa12a480425b9b7acba0a5de10c2c18d92fc1c9", 
+            "name": "第11屆第02次定期大會_第06次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 116224
+        }, 
+        {
+            "sha256": "0d760564f422291563bc2e8fc9cf7c11bfb3bc5f9720e24b19d430a17dcaa938", 
+            "name": "第11屆第07次定期大會_第03次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 102912
+        }, 
+        {
+            "sha256": "d47405e28a6017f5ae0042fe13ce55ff5297aa80410c9785f3e63c11fc56ee7d", 
+            "name": "第11屆第10次臨時大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 71168
+        }, 
+        {
+            "sha256": "7603c352ad974735e51b46d4e31202c556b941bdcb1cdabb0880e692cbddde30", 
+            "name": "第11屆第05次定期大會_第10次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 94208
+        }, 
+        {
+            "sha256": "e3f91a342f279807d14b9d26fb9c75d6fe3c9e5de8f128c1d8234a20c500b8ee", 
+            "name": "第11屆第07次定期大會_第04次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 78336
+        }, 
+        {
+            "sha256": "081634adc7a2185ee8a7b98055a90522eaa4a222c4557600c0641622ff32c5e4", 
+            "name": "第11屆第08次臨時大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 100352
+        }, 
+        {
+            "sha256": "3b6e9673fd65550a17a34a5f14dc0972400dc2fd2c03ae5c35a13c3c39858d0f", 
+            "name": "第11屆第02次定期大會_第01次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 80384
+        }, 
+        {
+            "sha256": "ae443f5e7b55c500ffb711a6d01996bf606a6fbfc35a6f10eb7e059fd4686e5d", 
+            "name": "第11屆第05次定期大會_第08次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 137216
+        }, 
+        {
+            "sha256": "3e0b2f6b932f5d6878ff049e889bb384cdce35fa3616864a4552633f99fd1b9c", 
+            "name": "第11屆第02次定期大會_第11次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 97792
+        }, 
+        {
+            "sha256": "60ba6c5c61049f0e706d5a0e6c7351dbfdf3d768f02719c357ec06b9339ca14d", 
+            "name": "第11屆第06次定期大會_第11次會議.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 116736
+        }, 
+        {
+            "sha256": "a617fa0faeb4e23ae36b0acdc6e5219d6867207869ca366337e5635270843dfa", 
+            "name": "第11屆第10次臨時大會_第05次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 120832
+        }, 
+        {
+            "sha256": "ef5bee30cbd1f35b11ecffa4f1aa4d7ba8a3081a1f51fbff9823b4d1cf3a483e", 
+            "name": "第11屆第01次定期大會_第11次會議紀錄.doc", 
+            "dir": "meeting_minutes/tcc", 
+            "size": 108032
+        }
+    ]
+}
