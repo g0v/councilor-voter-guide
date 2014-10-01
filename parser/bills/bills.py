@@ -13,6 +13,7 @@ def Bill(bill):
     complement = {'type': '', 'category': '', 'abstract': '', 'description': '', 'methods': '', 'last_action': '', 'proposed_by': '', 'petitioned_by': '', 'bill_no': '', 'brought_by': '', 'related_units': '', 'committee': '', 'motions': None, 'execution': '', 'remark': '', 'links': ''}
     complement.update(bill)
     complement['proposed_by'] = ' '.join(complement['proposed_by'])
+    complement['petitioned_by'] = ' '.join(complement['petitioned_by'])
     c.execute('''
         UPDATE bills_bills
         SET election_year = %(election_year)s, county = %(county)s, type = %(type)s, category = %(category)s, abstract = %(abstract)s, description = %(description)s, methods = %(methods)s, last_action = %(last_action)s, proposed_by = %(proposed_by)s, petitioned_by = %(petitioned_by)s, brought_by = %(brought_by)s, related_units = %(related_units)s, committee = %(committee)s, motions = %(motions)s, execution = %(execution)s, bill_no = %(bill_no)s, remark = %(remark)s, links = %(links)s
@@ -35,7 +36,7 @@ conn = db_settings.con()
 c = conn.cursor()
 #dict_c = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-for council in ['../../data/kcc/bills.json', '../../data/tccc/bills.json', '../../data/tcc/bills.json']:
+for council in ['../../data/ntcc/bills.json', '../../data/kcc/bills.json', '../../data/tccc/bills.json', '../../data/tcc/bills.json']:
     print council
     dict_list = json.load(open(council))
     for bill in dict_list:
@@ -44,6 +45,7 @@ for council in ['../../data/kcc/bills.json', '../../data/tccc/bills.json', '../.
         priproposer = True
         for name in bill['proposed_by']:
             name = re.sub(u'\(.*\)', '', name)
+            name = re.sub(u'．', u'‧', name)
             councilor_id = common.getDetailId(c, name, bill['election_year'], bill['county'])
             if councilor_id:
                 CouncilorsBills(councilor_id, bill['uid'], priproposer, None)
@@ -104,7 +106,7 @@ def distinct_party(election_year, county):
     ''', (election_year, county))
     return c.fetchall()
 
-for election_year, county in [('2010', u'臺北市'), ('2010', u'臺中市'), ('2010', u'高雄市')]:
+for election_year, county in [('2010', u'臺北市'), ('2010', u'臺中市'), ('2010', u'高雄市'), ('2010', u'新北市')]:
     parties = [x[0] for x in distinct_party(election_year, county)]
     bill_party_diversity(parties)
     for councilor_id in councilors(election_year, county):

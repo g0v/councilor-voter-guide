@@ -62,10 +62,10 @@ for candidate in candidates:
     match = re.search(u'(?P<county>\W+)第(?P<num>\d+)選(?:舉)?區', candidate['constituency'])
     candidate['county'] = match.group('county') if match else None
     candidate['constituency'] = match.group('num') if match else None
-    if not (candidate['name'] and (re.search(u'(臺北市|臺中市|高雄市)', candidate['county']))):
+    if not (candidate['name'] and (re.search(u'(臺北市|臺中市|高雄市|新北市)', candidate['county']))):
         continue
     candidate['name'] = re.sub('\s', '', candidate['name'])
-    candidate['name'] = re.sub(u'．', u'‧', candidate['name'])
+    candidate['name'] = re.sub(u'[•．]', u'‧', candidate['name'])
     candidate['uid'], candidate['last_election_year'] = uid(candidate)
     insertCandidates(candidate)
 conn.commit()
