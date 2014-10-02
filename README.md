@@ -2,12 +2,37 @@ councilor-voter-guide
 ================
 
 [議員投票指南](http://councils.g0v.tw/)        
-[Hackpad 討論區](https://g0v.hackpad.com/KjfdRZ08FZ3)       
+[Hackpad 開發討論區](https://g0v.hackpad.com/KjfdRZ08FZ3)       
 [Hackpad 意見回饋](https://g0v.hackpad.com/--5PNuk4XGGrj)
 
 In Ubuntu 12.04 LTS
 =================
+## Project Layout Introduce
 
+-   crawler  
+    各縣市議會的crawler，各crawler名稱與功用如下：  
+    > councilors: 現任議員資料  
+    > councilors_terms: 歷屆議員資料（不一定包含現任的資料）  
+    > bills: 議案資料
+    > meeting_minutes: 議事錄資料（開會出缺席、表決）
+    
+-   data  
+    由上述crawler產出的各縣市原始JSON
+    > reformat.json.py: 產出indent、unicode好讀版的JSON
+    > pretty_format: 放置上述產出的各縣市好讀版JSON
+    > hashlist_meeting_minutes-v141001.json: links map, 存放由meeting_minutes cralwer抓下的binaries [detail](https://github.com/g0v/councilor-voter-guide/tree/master/utils/bin-hash)
+    > candidates_2014.xlsx: 中選會公告的議員候選人
+
+-   parser  
+    將上述data下的JSON標準化後放入database（如果你只是需要完整的database，可直接跳至[Restore DB](https://github.com/g0v/councilor-voter-guide#restore-data-into-database)） 
+    > councilors/councilors.py: 處理現任和歷屆議員資料
+    > councilors/candidates.py: 處理候選人資料
+    > bills/bills.py: 處理議案資料 
+    > votes/: 出缺席、表決資料，各縣市、各屆分開處理
+
+-   voter\_guide
+    Web application using Django, [Enviroment Setup](https://github.com/g0v/councilor-voter-guide#for-website-pythondjango)
+      
 ## For Crawler (Scrapy 0.24.4)
 
 [Scrapy offcial install doc](http://doc.scrapy.org/en/latest/intro/install.html)
@@ -16,7 +41,7 @@ apt-get install libxml2-dev libxslt1-dev python-dev libffi-dev
 pip install lxml
 pip install Scrapy
 ```
-After install scrapy, you can run commands below to test:
+After install scrapy, you can run commands to test, below using tcc(臺北市議會) for example:
 ```
 cd crawler/tcc
 scrapy crawl bills
