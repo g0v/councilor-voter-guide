@@ -104,7 +104,7 @@ def biller(request, councilor_id, election_year):
         councilor = CouncilorsDetail.objects.get(election_year=election_year, councilor_id=councilor_id)
     except Exception, e:
         return HttpResponseRedirect('/')
-    query = Q(proposer__id=councilor.id)
+    query = Q(proposer__id=councilor.id, councilors_bills__petition=False)
     keyword = keyword_normalize(request.GET)
     if keyword:
         bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in keyword.split()))).order_by('-uid')

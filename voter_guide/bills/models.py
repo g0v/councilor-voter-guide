@@ -30,11 +30,15 @@ class Bills(models.Model):
 
     @property
     def sorted_proposer_set(self):
-        return self.proposer.all().order_by('councilors_bills__id')
+        return self.proposer.filter(councilors_bills__petition=False).order_by('councilors_bills__id')
+
+    @property
+    def sorted_petition_set(self):
+        return self.proposer.filter(councilors_bills__petition=True).order_by('councilors_bills__id')
 
     @property
     def primary_proposer(self):
-        return self.proposer.filter(councilors_bills__bill_id=self.uid, councilors_bills__priproposer=True)
+        return self.proposer.filter(councilors_bills__bill_id=self.uid, councilors_bills__priproposer=True, councilors_bills__petition=False)
 
 class Councilors_Bills(models.Model):
     councilor = models.ForeignKey('councilors.CouncilorsDetail', blank=True, null=True, db_index=True)

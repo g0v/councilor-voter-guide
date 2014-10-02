@@ -41,6 +41,18 @@
                 {% endfor %}
                 </ul>
             </dd>
+            {% if bill.petitioned_by %}
+                <dt>連署人</dt>
+                <dd>
+                    <ul class="inline">
+                    {% for councilor in bill.sorted_petition_set %}
+                        <li><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}" rel="tooltip" title="{{councilor.name}}的所有議案">{% include "common/name_color_by_party.html" %}</a></li>
+                    {% empty %}
+                        {{bill.proposed_by}}
+                    {% endfor %}
+                    </ul>
+                </dd>
+            {% endif %}
             <dt>案由</dt>
             <dd><p>{{bill.abstract}}</p></dd>
             {% if bill.description %}
@@ -64,7 +76,7 @@
             {% endif %}
             {% for motion in bill.motions %}
                 <dt>{{motion.motion}}</dt>
-                <dd><p>{% if motion.date %}{{motion.date|date:"Y-m-d"}}{% endif %} {% if motion.resolution %}{{motion.resolution}}{% endif %}</p></dd>
+                <dd><p>{% if motion.date %}{{motion.date|date:"Y-m-d"}}{% endif %}&nbsp;{% if motion.resolution %}{{motion.resolution}}{% endif %}</p></dd>
             {% endfor %}
         </dl>
         {% endif %}
