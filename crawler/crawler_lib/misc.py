@@ -4,6 +4,8 @@ import urllib2
 import requests
 from scrapy.http import HtmlResponse, Request
 from scrapy.utils.url import canonicalize_url
+import json
+from scrapy.contrib.exporter import BaseItemExporter, JsonLinesItemExporter, JsonItemExporter
 
 
 def append_contact(item, contact_type, label, value):
@@ -65,3 +67,43 @@ def rows_to_pairs(rows):
         chunk_list = list(chunks(tds, 2))
         pairs += chunk_list
     return pairs
+
+class UnicodeJsonItemExporter(JsonItemExporter):
+    def __init__(self, file, **kwargs):
+        JsonItemExporter.__init__(self, file, ensure_ascii=False, **kwargs)
+    
+    def encode_list(self, data):
+        rv = []
+        for item in data:
+            if isinstance(item, unicode):
+                item = item.encode('utf-8')
+            elif isinstance(item, list):
+                item = self.encode_list(item)
+            elif isinstance(item, dict):
+                item = self.encode_dict(item)
+            rv.append(item)
+        return rv
+
+
+    def encode_dict(self, data):
+        rv = {}
+        for key, value in data.iteritems():
+            if isinstance(key, unicode):
+                key = key.encode('utf-8')
+            if isinstance(value, unicode):
+                value = value.encode('utf-8')
+            elif isinstance(value, list):
+                value = self.encode_list(value)
+            elif isinstance(value, dict):
+                value = self.encode_dict(value)
+            rv[key] = value
+        return rv
+    
+    def export_item(self, item):
+        if self.first_item:
+            self.first_item = False
+        else:
+            self.file.write(',\n')
+        itemdict = dict(self._get_serialized_fields(item))
+        itemdict = self.encode_dict(itemdict)
+        self.file.write(self.encoder.encode(itemdict))
