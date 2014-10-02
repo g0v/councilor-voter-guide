@@ -45,7 +45,7 @@ def main():
             obj = obj[index]
     except ValueError, e:
         raise SystemExit(e)
-    jd = json.dumps(obj, indent=4, sort_keys=True, ensure_ascii=False, encoding='utf8')
+    jd = json.dumps(obj, indent=4, sort_keys=True, ensure_ascii=False, encoding='utf8').encode('utf-8')
     outfile.write(jd)
     outfile.write(u'\n')
 

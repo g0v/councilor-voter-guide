@@ -1,0 +1,44 @@
+{
+	"councilors":{
+		"properties":{
+			"name":{
+				"type":"string",
+				"index":"not_analyzed"
+			},
+			"title":{
+				"type":"string",
+				"index":"not_analyzed"
+			},
+			"party":{
+				"type":"string",
+				"index":"not_analyzed"
+			},
+			"district":{
+				"type":"string",
+				"index":"not_analyzed"
+			},
+			"county":{
+				"type":"string",
+				"index":"not_analyzed"
+			},
+			"constituency":{
+				"type":"string",
+				"index":"not_analyzed"
+			},
+			"term_start":{
+				"type":"date"
+			},
+			"platform":{
+				"type":"string",
+				"store":"no",
+				"term_vector":"with_positions_offsets",
+				"indexAnalyzer":"index_ansj",
+				"searchAnalyzer":"query_ansj",
+				"include_in_all":"true",
+				"boost":8
+			}
+
+		}
+
+	}
+}
