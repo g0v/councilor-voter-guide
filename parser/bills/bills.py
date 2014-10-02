@@ -48,8 +48,14 @@ for council in ['../../data/ntcc/bills.json', '../../data/kcc/bills.json', '../.
             name = re.sub(u'．', u'‧', name)
             councilor_id = common.getDetailId(c, name, bill['election_year'], bill['county'])
             if councilor_id:
-                CouncilorsBills(councilor_id, bill['uid'], priproposer, None)
+                CouncilorsBills(councilor_id, bill['uid'], priproposer, False)
             priproposer = False
+        for name in bill.get('petitioned_by', []):
+            name = re.sub(u'\(.*\)', '', name)
+            name = re.sub(u'．', u'‧', name)
+            councilor_id = common.getDetailId(c, name, bill['election_year'], bill['county'])
+            if councilor_id:
+                CouncilorsBills(councilor_id, bill['uid'], False, True)
     conn.commit()
 print 'bills done'
 
