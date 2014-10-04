@@ -4,6 +4,7 @@ from . import fields
 from councilors.models import Councilors, CouncilorsDetail, Attendance
 from votes.models import Votes, Councilors_Votes
 from bills.models import Bills, Councilors_Bills
+from candidates.models import Candidates
 from sittings.models import Sittings
 
 
@@ -49,3 +50,10 @@ class CouncilorsSerializer(serializers.HyperlinkedModelSerializer):
     each_terms = CouncilorsDetailSerializer(many=True)
     class Meta:
         model = Councilors
+
+class CandidatesSerializer(serializers.HyperlinkedModelSerializer):
+    contact_details = fields.Field()
+    links = fields.Field()
+    class Meta:
+        model = Candidates
+

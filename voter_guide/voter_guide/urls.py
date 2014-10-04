@@ -6,6 +6,7 @@ from api import views
 
 #--> rest framework url
 router = routers.DefaultRouter()
+router.register(r'candidates', views.CandidatesViewSet)
 router.register(r'councilors', views.CouncilorsViewSet)
 router.register(r'councilors_terms', views.CouncilorsDetailViewSet)
 router.register(r'sittings', views.SittingsViewSet)

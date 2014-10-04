@@ -7,6 +7,7 @@ from .serializers import *
 from councilors.models import Councilors, CouncilorsDetail, Attendance
 from votes.models import Votes, Councilors_Votes
 from bills.models import Bills, Councilors_Bills
+from candidates.models import Candidates
 from sittings.models import Sittings
 
 
@@ -49,3 +50,8 @@ class Councilors_BillsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Councilors_Bills.objects.all()
     serializer_class = Councilors_BillsSerializer
     filter_fields = ('councilor', 'bill', 'priproposer', 'petition')
+
+class CandidatesViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Candidates.objects.all()
+    serializer_class = CandidatesSerializer
+    filter_fields = ('councilor', 'last_election_year', 'election_year', 'name', 'birth', 'gender', 'party', 'title', 'constituency', 'county', 'district', 'votes', 'elected')
