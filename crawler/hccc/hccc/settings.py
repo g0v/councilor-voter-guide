@@ -19,9 +19,9 @@ SPIDER_MODULES = ['hccc.spiders']
 NEWSPIDER_MODULE = 'hccc.spiders'
 LOG_FILE = 'log.txt'
 
-# FEED_EXPORTERS = {
-#    'json': 'hccc.pipelines.UnicodeJsonItemExporter',
-# }
+FEED_EXPORTERS = {
+   'json': 'hccc.pipelines.UnicodeJsonItemExporter',
+}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'taipei (+http://www.yourdomain.com)'

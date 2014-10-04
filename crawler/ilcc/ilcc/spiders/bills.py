@@ -64,6 +64,7 @@ class Spider(scrapy.Spider):
             # u'議案程序':'',
             # u'系統編號':'',
             u'動議人': 'proposed_by',
+            u'提案單位': 'proposed_by',
             u'案號': 'bill_no',
             u'附議人': 'petitioned_by',
             u'類別': 'category',

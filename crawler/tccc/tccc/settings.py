@@ -5,8 +5,11 @@
 #
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #
-import os,sys
+import os
+import sys
 from os.path import dirname
+
+
 # add python path for crawler_lib
 _PROJECT_PATH = dirname(dirname(dirname(dirname(__file__))))
 sys.path.append(os.path.join(_PROJECT_PATH, 'crawler'))

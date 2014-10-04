@@ -36,7 +36,7 @@ class Spider(scrapy.Spider):
         item['type'] = sel.xpath('//span[@id="lab_BillType"]/text()').extract()[0].strip() if sel.xpath('//span[@id="lab_BillType"]/text()').extract() else ''
         item['category'] = sel.xpath('//span[@id="lab_BillClass"]/text()').extract()[0].strip() if sel.xpath('//span[@id="lab_BillClass"]/text()').extract() else ''
         item['proposed_by'] = sel.xpath('//span[@id="lab_Provider"]/text()').extract()[0].strip().split(u',') if sel.xpath('//span[@id="lab_Provider"]/text()').extract() else []
-        item['brought_by'] = sel.xpath('//span[@id="lab_SupportMan"]/text()').extract()[0].strip().split(u',') if sel.xpath('//span[@id="lab_SupportMan"]/text()').extract() else []
+        item['petitioned_by'] = sel.xpath('//span[@id="lab_SupportMan"]/text()').extract()[0].strip().split(u',') if sel.xpath('//span[@id="lab_SupportMan"]/text()').extract() else []
         item['abstract'] = '\n'.join([re.sub('\s', '', x) for x in sel.xpath('//span[@id="lab_Reason"]/div//text()').extract()])
         item['description'] = '\n'.join([re.sub('\s', '', x) for x in sel.xpath('//span[@id="lab_Description"]/div//text()').extract()])
         item['methods'] = '\n'.join([re.sub('\s', '', x) for x in sel.xpath('//span[@id="lab_Method"]/div/text()').extract()])

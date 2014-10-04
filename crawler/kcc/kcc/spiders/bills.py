@@ -4,6 +4,7 @@ from datetime import datetime
 import scrapy
 from scrapy.http import Request, FormRequest
 from scrapy.selector import Selector
+from scrapy import log
 from kcc.items import Bills
 
 
@@ -20,6 +21,7 @@ def ROC2AD(text):
 
 class Spider(scrapy.Spider):
     name = "bills"
+    handle_httpstatus_list = [302]
     allowed_domains = ["cissearch.kcc.gov.tw"]
     start_urls = ["http://cissearch.kcc.gov.tw/System/Proposal/AdvancedSearch.aspx",]
     download_delay = 0.5
@@ -67,11 +69,15 @@ class Spider(scrapy.Spider):
                 item['county'] = u'高雄市'
                 item['election_year'] = u'2010'
                 item['type'] = response.request.meta['type']
+                item['category'] = tds[1].xpath('text()').extract()[0].strip()
+                item['proposed_by'] = tds[2].xpath('text()').extract()[0].strip().rstrip(u',').split(u',')
+                item['abstract'] = tds[3].xpath('text()').extract()[0].strip()
                 item['last_action'] = tds[4].xpath('text()').extract()[0]
                 detail = tds[3].xpath('@onclick').re(u'Detail.aspx(.+)')
                 if detail:
                     param = re.sub(u'(amp;|&#39)', '', detail[0])
                     item['id'] = '-'.join(re.findall(u'=([0-9A-Za-z]*)', param))
+                    item['links'] = "http://cissearch.kcc.gov.tw/System/Proposal/Detail.aspx%s" % param
                     yield Request("http://cissearch.kcc.gov.tw/System/Proposal/Detail.aspx%s" % param, callback=self.parse_profile, meta={'dont_redirect': True, 'item': item})
                 else:
                     print tds[3].xpath('@onclick')
@@ -80,6 +86,9 @@ class Spider(scrapy.Spider):
         sel = Selector(response)
         item = response.request.meta['item']
         trs = sel.xpath('//table[@class="table03_blue"]/tr')
+        if not trs:
+            log.msg(item, level=log.ERROR)
+            return item
         motions = []
         for tr in trs:
             tds = tr.xpath('td')

@@ -7,7 +7,3 @@ import json
 class TccPipeline(object):
     def process_item(self, item, spider):
         return item
-
-
-
-

@@ -7,6 +7,14 @@
 #
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #
+import os
+import sys
+from os.path import dirname
+
+
+# add python path for crawler_lib
+_PROJECT_PATH = dirname(dirname(dirname(dirname(__file__))))
+sys.path.append(os.path.join(_PROJECT_PATH, 'crawler'))
 
 BOT_NAME = 'ntcc'
 
@@ -14,6 +22,10 @@ SPIDER_MODULES = ['ntcc.spiders']
 NEWSPIDER_MODULE = 'ntcc.spiders'
 LOG_FILE = 'log.txt'
 COOKIES_ENABLED = False
+
+FEED_EXPORTERS = {
+    'json': 'crawler_lib.misc.UnicodeJsonItemExporter',
+}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'ntcc (+http://www.yourdomain.com)'

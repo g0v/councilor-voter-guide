@@ -45,6 +45,276 @@
         "type": "報告案"
     }, 
     {
+        "abstract": "臺北市政府函送財團法人臺北市文化基金會97年度營運及資金運用計畫1份，請　查照。", 
+        "bill_no": "10206", 
+        "category": "教育", 
+        "county": "臺北市", 
+        "election_year": "2010", 
+        "execution": "存參", 
+        "id": "28523", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28523", 
+        "motions": [
+            {
+                "date": "2008-08-29", 
+                "motion": "來文", 
+                "no": "府授文化三字第09730453100號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2008-09-01", 
+                "motion": "收文", 
+                "resolution": null
+            }, 
+            {
+                "date": "2011-06-30", 
+                "motion": "發文", 
+                "no": "議教字第10006001590號", 
+                "resolution": null
+            }, 
+            {
+                "date": "民國98年6月18日", 
+                "motion": "委員會審查意見", 
+                "resolution": "備查。"
+            }, 
+            {
+                "date": "2011-06-29", 
+                "motion": "大會議決", 
+                "resolusion": "照審查意見通過。", 
+                "sitting": "第11屆第01次臨時大會第04次會議"
+            }
+        ], 
+        "proposed_by": [
+            "文化局"
+        ], 
+        "remark": "依預算法第41條第3項「各部門投資或經營之其他事業及政府捐助之財團法人，每年應由各該主管機關就以前年度投資或捐助之效益評估，併入決算辦理後，分別編製營運及資金運用計畫送立法院。」及第96條「地方政府預算，另以法律定之。前項法律未制定前，準用本法之規定。」規定辦理。\n委員會成員：許淑華(一召)  莊瑞雄(二召)\n            陳錦祥  林晉章  李建昌  吳世正  徐佳青  \n            陳碧峰  李慶鋒\n提二讀會〈98.06.29;100.05.25〉", 
+        "type": "報告案"
+    }, 
+    {
+        "abstract": "檢送「臺北市市有財產委託經營案96年度執行情形報告」，請  查照。", 
+        "bill_no": "10201", 
+        "category": "財建", 
+        "county": "臺北市", 
+        "election_year": "2010", 
+        "execution": "存參", 
+        "id": "28512", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28512", 
+        "motions": [
+            {
+                "date": "2008-08-20", 
+                "motion": "來文", 
+                "no": "府財產字第09732328000號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2008-08-20", 
+                "motion": "收文", 
+                "resolution": null
+            }, 
+            {
+                "date": "2011-05-26", 
+                "motion": "發文", 
+                "no": "議財字第10005000730號", 
+                "resolution": null
+            }, 
+            {
+                "date": "民國98年6月23日", 
+                "motion": "委員會審查意見", 
+                "resolution": "備查。"
+            }, 
+            {
+                "date": "2011-05-25", 
+                "motion": "大會議決", 
+                "resolusion": "照審查意見通過。", 
+                "sitting": "第11屆第01次定期大會第08次會議"
+            }
+        ], 
+        "proposed_by": [
+            "財政局"
+        ], 
+        "remark": "委員會議員：洪健益〈一召〉黃向𠍾〈二召〉　林瑞圖  陳嘉銘\n            厲耿桂芳  周威佑   張茂楠  闕枚莎  吳思瑤\n提二讀會〈98.06.29〉", 
+        "type": "報告案"
+    }, 
+    {
+        "abstract": "為修正「臺北市私立老人福利機構獎助及獎勵辦法」乙案，敬請查照。", 
+        "bill_no": "10199", 
+        "category": "民政、法規", 
+        "county": "臺北市", 
+        "election_year": "2010", 
+        "execution": "存參", 
+        "id": "28508", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28508", 
+        "motions": [
+            {
+                "date": "2008-08-13", 
+                "motion": "來文", 
+                "no": "府授法一字第09731778001號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2008-08-13", 
+                "motion": "收文", 
+                "resolution": null
+            }, 
+            {
+                "date": "2011-06-07", 
+                "motion": "發文", 
+                "no": "議法委字第10010000330號", 
+                "resolution": null
+            }, 
+            {
+                "date": "民國97年12月2日", 
+                "motion": "委員會審查意見", 
+                "resolution": "備查。"
+            }, 
+            {
+                "date": "2011-05-25", 
+                "motion": "大會議決", 
+                "resolusion": "照審查意見通過。", 
+                "sitting": "第11屆第01次定期大會第08次會議"
+            }
+        ], 
+        "proposed_by": [
+            "社會局"
+        ], 
+        "remark": "委員會成員：林奕華(一召)　吳志剛(二召) \n　　　　　　李仁人　 闕枚莎　 陳政忠　 徐佳青　 李慶鋒\n提二讀會〈98.06.29〉", 
+        "type": "報告案"
+    }, 
+    {
+        "abstract": "修正「臺北市檢舉違反廢棄物清理法案件獎勵辦法」第5條條文乙案，敬請查照。", 
+        "bill_no": "10195", 
+        "category": "警衛、法規", 
+        "county": "臺北市", 
+        "election_year": "2010", 
+        "execution": "存參", 
+        "id": "28502", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28502", 
+        "motions": [
+            {
+                "date": "2008-07-23", 
+                "motion": "來文", 
+                "no": "府授法三字第09731411001號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2008-07-23", 
+                "motion": "收文", 
+                "resolution": null
+            }, 
+            {
+                "date": "2011-07-07", 
+                "motion": "發文", 
+                "no": "議法委字第10010000450號", 
+                "resolution": null
+            }, 
+            {
+                "date": "民國97年11月25日", 
+                "motion": "委員會審查意見", 
+                "resolution": "備查。"
+            }, 
+            {
+                "date": "2011-06-29", 
+                "motion": "大會議決", 
+                "resolusion": "照審查意見通過。", 
+                "sitting": "第11屆第01次臨時大會第04次會議"
+            }
+        ], 
+        "proposed_by": [
+            "環境保護局"
+        ], 
+        "remark": "委員會成員：王正德（一召）　黃珊珊（二召）　\n            吳碧珠　王　浩　陳永德　秦儷舫　李文英　\n            莊瑞雄　林國成\n提二讀會〈98.06.29;100.05.25〉", 
+        "type": "報告案"
+    }, 
+    {
+        "abstract": "有關臺北都會區大眾捷運系統建設計畫新莊線CK570J區段標新莊機廠工程需動支該線經費賸餘款約38億5000萬元，請 備查。", 
+        "bill_no": "10193", 
+        "category": "交通", 
+        "county": "臺北市", 
+        "election_year": "2010", 
+        "execution": "存參", 
+        "id": "28500", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28500", 
+        "motions": [
+            {
+                "date": "2008-07-22", 
+                "motion": "來文", 
+                "no": "府授捷北字第09760266300號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2008-07-22", 
+                "motion": "收文", 
+                "resolution": null
+            }, 
+            {
+                "date": "2011-07-01", 
+                "motion": "發文", 
+                "no": "議交字第10007001610號", 
+                "resolution": null
+            }, 
+            {
+                "date": "民國98年6月5日", 
+                "motion": "委員會審查意見", 
+                "resolution": "備查。"
+            }, 
+            {
+                "date": "2011-06-29", 
+                "motion": "大會議決", 
+                "resolusion": "照審查意見通過。", 
+                "sitting": "第11屆第01次臨時大會第04次會議"
+            }
+        ], 
+        "proposed_by": [
+            "臺北市政府"
+        ], 
+        "remark": "本案市府係依據本會審議臺北市97年度捷運特別預算案綜合決議(97.01.02)「捷運局及所屬各單位動支『經費賸餘』單筆超過新台幣5,000萬元(含)以上者，須送本會備查。」規定辦理。\n委員會議員：秦儷舫(一召) 賴素如(二召) 陳政忠 李  新 陳孋輝\n            王正德 戴錫欽 李彥秀 王孝維\n提二讀會〈98.06.29;100.05.25〉", 
+        "type": "報告案"
+    }, 
+    {
+        "abstract": "關於訂定「臺北市優良汽車駕駛人訓練機構獎勵辦法」乙案，業經本府97年7月22日府法三字第09731819300號令發布在案，敬請查照。", 
+        "bill_no": "10194", 
+        "category": "交通、法規", 
+        "county": "臺北市", 
+        "election_year": "2010", 
+        "execution": "存參", 
+        "id": "28501", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28501", 
+        "motions": [
+            {
+                "date": "2008-07-22", 
+                "motion": "來文", 
+                "no": "府授法二字第09731631501號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2008-07-22", 
+                "motion": "收文", 
+                "resolution": null
+            }, 
+            {
+                "date": "2011-06-07", 
+                "motion": "發文", 
+                "no": "議法委字第10010000330號", 
+                "resolution": null
+            }, 
+            {
+                "date": "民國97年12月18日", 
+                "motion": "委員會審查意見", 
+                "resolution": "一、備查。\n二、本辦法第六條本文「給予一般獎勵」建議修正為 「得給予一般獎勵」。\n第七條本文「給予特別獎勵」建議修正為「得給予特別獎勵」。"
+            }, 
+            {
+                "date": "2011-05-25", 
+                "motion": "大會議決", 
+                "resolusion": "照審查意見通過。", 
+                "sitting": "第11屆第01次定期大會第08次會議"
+            }
+        ], 
+        "proposed_by": [
+            "交通局"
+        ], 
+        "remark": "委員會成員：李慶元(一召)  陳玉梅(二召)\n            陳錦祥  歐陽龍  戴錫欽  李  新  李銀來\n            王孝維  吳思瑤\n提二讀會〈98.06.29〉", 
+        "type": "報告案"
+    }, 
+    {
         "abstract": "本府秘書處等機關〈學校〉經管之本市大安區龍泉段一小段1032地號等23處42戶眷舍房地，擬依土地法第25條規定完成處分程序後依有關規定辦理，敬請同意惠復。", 
         "bill_no": "10137", 
         "category": "財建", 
@@ -473,313 +743,118 @@
         "type": "市法規"
     }, 
     {
-        "abstract": "修正「臺北市營建工程剩餘土石方及營建混合物資源分類處理場設置及管理暫行要點」，請查照。", 
-        "bill_no": "10169", 
-        "category": "法規", 
+        "abstract": "檢送「臺北市政府交通局處理道路交通安全人員獎勵金發給要點」，請  備查。", 
+        "bill_no": "11564", 
+        "category": "交通", 
         "county": "臺北市", 
         "election_year": "2010", 
-        "execution": "存參", 
-        "id": "28442", 
-        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28442", 
+        "execution": "已完成", 
+        "id": "30224", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=30224", 
         "motions": [
             {
-                "date": "2008-05-06", 
+                "date": "2014-09-19", 
                 "motion": "來文", 
-                "no": "府都建字第09762657501號", 
+                "no": "府授交人字第10330981700號", 
                 "resolution": null
             }, 
             {
-                "date": "2008-05-06", 
+                "date": "2014-09-19", 
                 "motion": "收文", 
                 "resolution": null
             }, 
             {
-                "date": "2011-06-07", 
+                "date": "2014-09-25", 
                 "motion": "發文", 
-                "no": "議法委字第10010000330號", 
+                "no": "議交字第10307001820號", 
                 "resolution": null
             }, 
             {
-                "date": "民國99年7月28日", 
-                "motion": "委員會審查意見", 
-                "resolution": "備查。"
-            }, 
-            {
-                "date": "2011-05-25", 
-                "motion": "大會議決", 
-                "resolusion": "照審查意見通過。", 
-                "sitting": "第11屆第01次定期大會第08次會議"
-            }
-        ], 
-        "proposed_by": [
-            "法規委員會"
-        ], 
-        "remark": "委員會成員：\n林晉章（一召）  秦儷舫（二召）  周威佑  李建昌  \n李慶鋒    林國成    李彥秀    陳玉梅    王鴻薇 ", 
-        "type": "報告案"
-    }, 
-    {
-        "abstract": "檢送「臺北市都市計畫容積移轉審查許可條件」公告發布實施條文1份，請查照。", 
-        "bill_no": "10162", 
-        "category": "法規", 
-        "county": "臺北市", 
-        "election_year": "2010", 
-        "execution": "存參", 
-        "id": "28424", 
-        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28424", 
-        "motions": [
-            {
-                "date": "2008-04-29", 
-                "motion": "來文", 
-                "no": "府授都綜字第09702029202號", 
-                "resolution": null
-            }, 
-            {
-                "date": "2008-04-29", 
-                "motion": "收文", 
-                "resolution": null
-            }, 
-            {
-                "date": "2011-06-07", 
-                "motion": "發文", 
-                "no": "議法委字第10010000330號", 
-                "resolution": null
-            }, 
-            {
-                "date": "民國98年1月7日", 
-                "motion": "委員會審查意見", 
-                "resolution": "請市政府以自治條例定之，於下會期（第5次定期大會）送會審議。"
-            }, 
-            {
-                "date": "2011-05-25", 
-                "motion": "大會議決", 
-                "resolusion": "照審查意見通過。", 
-                "sitting": "第11屆第01次定期大會第08次會議"
-            }
-        ], 
-        "proposed_by": [
-            "都市發展局"
-        ], 
-        "remark": "委員會成員：林晉章（一召）  蔣乃辛（二召）\n            闕枚莎  周威佑  李  新  秦儷舫  洪健益  \n            李慶鋒  潘懷宗\n提二讀會〈98.06.29〉", 
-        "type": "報告案"
-    }, 
-    {
-        "abstract": "97年度『臺北市建築物無障礙設備與設施改善基金』預算附帶決議乙案，經市府檢討執行困難，詳如說明，請查照。", 
-        "bill_no": "10161", 
-        "category": "工務", 
-        "county": "臺北市", 
-        "election_year": "2010", 
-        "execution": "存參", 
-        "id": "28421", 
-        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28421", 
-        "motions": [
-            {
-                "date": "2008-04-22", 
-                "motion": "來文", 
-                "no": "府授都建字第09763861800號", 
-                "resolution": null
-            }, 
-            {
-                "date": "2008-04-22", 
-                "motion": "收文", 
-                "resolution": null
-            }, 
-            {
-                "date": "2011-05-27", 
-                "motion": "發文", 
-                "no": "議工字第10009001070號", 
-                "resolution": null
-            }, 
-            {
-                "date": "民國97年6月5日", 
-                "motion": "委員會審查意見", 
-                "resolution": "退回；請市府於2個月內重新檢討提報本會。"
-            }, 
-            {
-                "date": "2011-05-25", 
-                "motion": "大會議決", 
-                "resolusion": "照審查意見通過。", 
-                "sitting": "第11屆第01次定期大會第08次會議"
-            }
-        ], 
-        "proposed_by": [
-            "臺北市政府"
-        ], 
-        "remark": "委員會成員：黃珊珊（一召）闕枚莎（二召）\n            陳碧峰 陳建銘 林晉章 吳志剛 \n            陳政忠 賴素如 簡余晏\n提二讀會〈98.06.29〉", 
-        "type": "報告案"
-    }, 
-    {
-        "abstract": "臺北市政府發布修正「臺北市土地使用分區附條件允許使用核准標準」第2條乙案，業經本府於97年4月1日府法三字第09730692900號令發布在案，敬請查照。", 
-        "bill_no": "10156", 
-        "category": "法規", 
-        "county": "臺北市", 
-        "election_year": "2010", 
-        "execution": "存參", 
-        "id": "28406", 
-        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28406", 
-        "motions": [
-            {
-                "date": "2008-04-01", 
-                "motion": "來文", 
-                "no": "府授法二字第09730838501號", 
-                "resolution": null
-            }, 
-            {
-                "date": "2008-04-01", 
-                "motion": "收文", 
-                "resolution": null
-            }, 
-            {
-                "date": "2011-06-07", 
-                "motion": "發文", 
-                "no": "議法委字第10010000330號", 
-                "resolution": null
-            }, 
-            {
-                "date": "民國98年1月7日", 
-                "motion": "委員會審查意見", 
-                "resolution": "備查。"
-            }, 
-            {
-                "date": "2011-05-25", 
-                "motion": "大會議決", 
-                "resolusion": "照審查意見通過。", 
-                "sitting": "第11屆第01次定期大會第08次會議"
-            }
-        ], 
-        "proposed_by": [
-            "法規委員會"
-        ], 
-        "remark": "市府97.04.01府法三字第09730692900號令發布修正44組宗祠宗教建築之部分暫停適用。\n委員會成員：林晉章（一召）  蔣乃辛（二召） \n            闕枚莎  周威佑  李  新  秦儷舫  洪健益  \n            李慶鋒  潘懷宗\n提二讀會〈98.06.29〉", 
-        "type": "報告案"
-    }, 
-    {
-        "abstract": "訂定「臺北市基層運動選手訓練站實施辦法」，業經本府於97年3月7日以府法三字第09730489200號令發布在案，敬請查照。", 
-        "bill_no": "10151", 
-        "category": "教育、法規", 
-        "county": "臺北市", 
-        "election_year": "2010", 
-        "execution": "存參", 
-        "id": "28393", 
-        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28393", 
-        "motions": [
-            {
-                "date": "2008-03-11", 
-                "motion": "來文", 
-                "no": "府授法一字第09730641200號", 
-                "resolution": null
-            }, 
-            {
-                "date": "2008-03-11", 
-                "motion": "收文", 
-                "resolution": null
-            }, 
-            {
-                "date": "2011-06-07", 
-                "motion": "發文", 
-                "no": "議法委字第10010000330號", 
-                "resolution": null
-            }, 
-            {
-                "date": "民國98年6月11日", 
-                "motion": "委員會審查意見", 
-                "resolution": "備查。"
-            }, 
-            {
-                "date": "2011-05-25", 
-                "motion": "大會議決", 
-                "resolusion": "照審查意見通過。", 
-                "sitting": "第11屆第01次定期大會第08次會議"
-            }
-        ], 
-        "proposed_by": [
-            "法規委員會"
-        ], 
-        "remark": "委員會成員：許淑華(一召)  莊瑞雄(二召)\n            陳錦祥  林晉章  李建昌  吳世正  徐佳青  \n            陳碧峰  李慶鋒\n提二讀會〈98.06.29〉", 
-        "type": "報告案"
-    }, 
-    {
-        "abstract": "本市警察局經管之本市松山區敦化段三小段444地號等9處28戶眷舍房地，擬依土地法第25條規定完成處分程序後依有關規定辦理，敬請同意惠復。", 
-        "bill_no": "10110", 
-        "category": "財建", 
-        "county": "臺北市", 
-        "election_year": "2010", 
-        "execution": "存參", 
-        "id": "28389", 
-        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28389", 
-        "motions": [
-            {
-                "date": "2008-03-06", 
-                "motion": "來文", 
-                "no": "府財管字第09730593700號", 
-                "resolution": null
-            }, 
-            {
-                "date": "2008-03-07", 
-                "motion": "收文", 
-                "resolution": null
-            }, 
-            {
-                "date": "2011-06-16", 
-                "motion": "發文", 
-                "no": "議財字第10005000890號", 
-                "resolution": null
-            }, 
-            {
-                "date": "民國99年5月20日", 
-                "motion": "委員會審查意見", 
-                "resolution": "除基地編號2-1不同意處分外，餘同意處分。"
-            }, 
-            {
-                "date": "2011-06-15", 
-                "motion": "大會議決", 
-                "resolusion": "照審查意見通過。", 
-                "sitting": "第11屆第01次定期大會第11次會議"
-            }
-        ], 
-        "proposed_by": [
-            "財政局"
-        ], 
-        "remark": "財產處分小組議員:秦儷舫(召集人) 吳世正 戴錫欽 洪健益 \n                 黃向𠍾 潘懷宗 林國成\n委員會議員:楊實秋(一召) 戴錫欽(二召) 吳碧珠 秦儷舫 林晉章\n           厲耿桂芳 李慶元 林瑞圖 簡余晏\n提二讀會(99.08.04) ", 
-        "type": "一般提案"
-    }, 
-    {
-        "abstract": "本府修正「臺北市立天文科學教育館組織規程」及編制表一案，敬請  備查。", 
-        "bill_no": "11296", 
-        "category": "法規", 
-        "county": "臺北市", 
-        "election_year": "2010", 
-        "execution": "存參", 
-        "id": "29741", 
-        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=29741", 
-        "motions": [
-            {
-                "date": "2012-10-22", 
-                "motion": "來文", 
-                "no": "府授人管字第10132267601號", 
-                "resolution": null
-            }, 
-            {
-                "date": "2012-10-22", 
-                "motion": "收文", 
-                "resolution": null
-            }, 
-            {
-                "date": "2013-01-11", 
-                "motion": "發文", 
-                "no": "議法委字第10210000080號", 
-                "resolution": null
-            }, 
-            {
-                "date": "2013-01-04", 
+                "date": "2014-09-24", 
                 "motion": "大會議決", 
                 "resolusion": "備查。", 
-                "sitting": "第11屆第12次臨時大會第01次會議"
+                "sitting": "第11屆第08次定期大會第11次會議"
             }
         ], 
         "proposed_by": [
-            "人事處"
+            "交通局"
         ], 
-        "remark": "提大會報告〈101.10.24   101.10.31   101.11.21〉", 
+        "remark": "依據本會審議103年度地方總預算案綜合決議：「市政府各機關\n發給道路交通安全人員獎勵金應以基層從業人員為主，並將支給\n規定送本會備查。」辦理。", 
+        "type": "報告事項"
+    }, 
+    {
+        "abstract": "檢送本府文化局依「臺北市市有財產委託經營管理自治條例」辦理共9案101年度財務報表暨會計師查核報告影本1式220份，請同意備查，請查照。", 
+        "bill_no": "11563", 
+        "category": "教育", 
+        "county": "臺北市", 
+        "election_year": "2010", 
+        "execution": "存參", 
+        "id": "30220", 
+        "last_action": "發文", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=30220", 
+        "motions": [
+            {
+                "date": "2014-09-10", 
+                "motion": "來文", 
+                "no": "府授文化資源字第10330593800號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2014-09-10", 
+                "motion": "收文", 
+                "resolution": null
+            }, 
+            {
+                "date": "2014-09-24", 
+                "motion": "大會議決", 
+                "resolusion": "備查。", 
+                "sitting": "第11屆第08次定期大會第11次會議"
+            }
+        ], 
+        "proposed_by": [
+            "文化局"
+        ], 
+        "remark": "依據「臺北市市有財產委託經營管理自治條例」第12條「……十一、受託人每年對於受託業務之損益表、資產負債表等財務決算報表應經會計師查核簽證，並送市政府查核後報市議會備查。但受託人為非營利法人或團體時，財務決算報表得不經會計師簽證……。」辦理。", 
+        "type": "報告事項"
+    }, 
+    {
+        "abstract": "檢送臺北市勞動力重建運用處公有庇護工場102年財務報表彙整冊。", 
+        "bill_no": "11562", 
+        "category": "民政", 
+        "county": "臺北市", 
+        "election_year": "2010", 
+        "execution": "存參", 
+        "id": "30223", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=30223", 
+        "motions": [
+            {
+                "date": "2014-09-01", 
+                "motion": "來文", 
+                "no": "府勞資字第10332493900號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2014-09-09", 
+                "motion": "收文", 
+                "resolution": null
+            }, 
+            {
+                "date": "2014-09-26", 
+                "motion": "發文", 
+                "no": "議民字第10304002560號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2014-09-24", 
+                "motion": "大會議決", 
+                "resolusion": "備查。", 
+                "sitting": "第11屆第08次定期大會第11次會議"
+            }
+        ], 
+        "proposed_by": [
+            "勞動局"
+        ], 
+        "remark": "依據臺北市市有財產委託經營管理自治條例第12條第11款但書「受託人每年對於受託業務之損益表、資產負債表等財務決算應經會計師查核簽證，並送市政府查核後報市議會備查。但受託人為非營利組織或團體時，財務報表得不經會計師簽證」辦理。", 
         "type": "報告事項"
     }, 
     {
@@ -18371,6 +18446,46 @@
         "type": "報告事項"
     }, 
     {
+        "abstract": "本府修正「臺北市立天文科學教育館組織規程」及編制表一案，敬請  備查。", 
+        "bill_no": "11296", 
+        "category": "法規", 
+        "county": "臺北市", 
+        "election_year": "2010", 
+        "execution": "存參", 
+        "id": "29741", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=29741", 
+        "motions": [
+            {
+                "date": "2012-10-22", 
+                "motion": "來文", 
+                "no": "府授人管字第10132267601號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2012-10-22", 
+                "motion": "收文", 
+                "resolution": null
+            }, 
+            {
+                "date": "2013-01-11", 
+                "motion": "發文", 
+                "no": "議法委字第10210000080號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2013-01-04", 
+                "motion": "大會議決", 
+                "resolusion": "備查。", 
+                "sitting": "第11屆第12次臨時大會第01次會議"
+            }
+        ], 
+        "proposed_by": [
+            "人事處"
+        ], 
+        "remark": "提大會報告〈101.10.24   101.10.31   101.11.21〉", 
+        "type": "報告事項"
+    }, 
+    {
         "abstract": "關於訂定「臺北市兒童及少年財產管理及信託辦法」乙案，業經本府101年10月19日府法綜字第10133158200號令發布在案，敬請  查照。", 
         "bill_no": "11297", 
         "category": "法規", 
@@ -25424,46 +25539,6 @@
         "type": "議員提案"
     }, 
     {
-        "abstract": "檢送本府文化局依「臺北市市有財產委託經營管理自治條例」辦理案99年度財務報表暨會計師查核報告影本，請同意備查，請　查照。", 
-        "bill_no": "11212", 
-        "category": "教育", 
-        "county": "臺北市", 
-        "election_year": "2010", 
-        "execution": "存參", 
-        "id": "29568", 
-        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=29568", 
-        "motions": [
-            {
-                "date": "2012-05-07", 
-                "motion": "來文", 
-                "no": "府授文化四字第10130597100號", 
-                "resolution": null
-            }, 
-            {
-                "date": "2012-05-07", 
-                "motion": "收文", 
-                "resolution": null
-            }, 
-            {
-                "date": "2012-05-31", 
-                "motion": "發文", 
-                "no": "議教字第10106001620號", 
-                "resolution": null
-            }, 
-            {
-                "date": "2012-05-30", 
-                "motion": "大會議決", 
-                "resolusion": "備查。", 
-                "sitting": "第11屆第03次定期大會第10次會議"
-            }
-        ], 
-        "proposed_by": [
-            "文化局"
-        ], 
-        "remark": "依據臺北市市有財產委託經營管理自治條例第12條第1款辦理。", 
-        "type": "報告事項"
-    }, 
-    {
         "abstract": "制定『臺北市遊民輔導自治條例』。", 
         "bill_no": "11066", 
         "category": "民政", 
@@ -25509,6 +25584,46 @@
             "洪健益"
         ], 
         "type": "市法規"
+    }, 
+    {
+        "abstract": "檢送本府文化局依「臺北市市有財產委託經營管理自治條例」辦理案99年度財務報表暨會計師查核報告影本，請同意備查，請　查照。", 
+        "bill_no": "11212", 
+        "category": "教育", 
+        "county": "臺北市", 
+        "election_year": "2010", 
+        "execution": "存參", 
+        "id": "29568", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=29568", 
+        "motions": [
+            {
+                "date": "2012-05-07", 
+                "motion": "來文", 
+                "no": "府授文化四字第10130597100號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2012-05-07", 
+                "motion": "收文", 
+                "resolution": null
+            }, 
+            {
+                "date": "2012-05-31", 
+                "motion": "發文", 
+                "no": "議教字第10106001620號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2012-05-30", 
+                "motion": "大會議決", 
+                "resolusion": "備查。", 
+                "sitting": "第11屆第03次定期大會第10次會議"
+            }
+        ], 
+        "proposed_by": [
+            "文化局"
+        ], 
+        "remark": "依據臺北市市有財產委託經營管理自治條例第12條第1款辦理。", 
+        "type": "報告事項"
     }, 
     {
         "abstract": "變更艋舺公園土地使用分區，改變為宗教文化專區案。", 
@@ -45297,113 +45412,23 @@
         "type": "報告案"
     }, 
     {
-        "abstract": "臺北市政府函送財團法人臺北市文化基金會97年度營運及資金運用計畫1份，請　查照。", 
-        "bill_no": "10206", 
-        "category": "教育", 
+        "abstract": "修正「臺北市營建工程剩餘土石方及營建混合物資源分類處理場設置及管理暫行要點」，請查照。", 
+        "bill_no": "10169", 
+        "category": "法規", 
         "county": "臺北市", 
         "election_year": "2010", 
         "execution": "存參", 
-        "id": "28523", 
-        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28523", 
+        "id": "28442", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28442", 
         "motions": [
             {
-                "date": "2008-08-29", 
+                "date": "2008-05-06", 
                 "motion": "來文", 
-                "no": "府授文化三字第09730453100號", 
+                "no": "府都建字第09762657501號", 
                 "resolution": null
             }, 
             {
-                "date": "2008-09-01", 
-                "motion": "收文", 
-                "resolution": null
-            }, 
-            {
-                "date": "2011-06-30", 
-                "motion": "發文", 
-                "no": "議教字第10006001590號", 
-                "resolution": null
-            }, 
-            {
-                "date": "民國98年6月18日", 
-                "motion": "委員會審查意見", 
-                "resolution": "備查。"
-            }, 
-            {
-                "date": "2011-06-29", 
-                "motion": "大會議決", 
-                "resolusion": "照審查意見通過。", 
-                "sitting": "第11屆第01次臨時大會第04次會議"
-            }
-        ], 
-        "proposed_by": [
-            "文化局"
-        ], 
-        "remark": "依預算法第41條第3項「各部門投資或經營之其他事業及政府捐助之財團法人，每年應由各該主管機關就以前年度投資或捐助之效益評估，併入決算辦理後，分別編製營運及資金運用計畫送立法院。」及第96條「地方政府預算，另以法律定之。前項法律未制定前，準用本法之規定。」規定辦理。\n委員會成員：許淑華(一召)  莊瑞雄(二召)\n            陳錦祥  林晉章  李建昌  吳世正  徐佳青  \n            陳碧峰  李慶鋒\n提二讀會〈98.06.29;100.05.25〉", 
-        "type": "報告案"
-    }, 
-    {
-        "abstract": "檢送「臺北市市有財產委託經營案96年度執行情形報告」，請  查照。", 
-        "bill_no": "10201", 
-        "category": "財建", 
-        "county": "臺北市", 
-        "election_year": "2010", 
-        "execution": "存參", 
-        "id": "28512", 
-        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28512", 
-        "motions": [
-            {
-                "date": "2008-08-20", 
-                "motion": "來文", 
-                "no": "府財產字第09732328000號", 
-                "resolution": null
-            }, 
-            {
-                "date": "2008-08-20", 
-                "motion": "收文", 
-                "resolution": null
-            }, 
-            {
-                "date": "2011-05-26", 
-                "motion": "發文", 
-                "no": "議財字第10005000730號", 
-                "resolution": null
-            }, 
-            {
-                "date": "民國98年6月23日", 
-                "motion": "委員會審查意見", 
-                "resolution": "備查。"
-            }, 
-            {
-                "date": "2011-05-25", 
-                "motion": "大會議決", 
-                "resolusion": "照審查意見通過。", 
-                "sitting": "第11屆第01次定期大會第08次會議"
-            }
-        ], 
-        "proposed_by": [
-            "財政局"
-        ], 
-        "remark": "委員會議員：洪健益〈一召〉黃向𠍾〈二召〉　林瑞圖  陳嘉銘\n            厲耿桂芳  周威佑   張茂楠  闕枚莎  吳思瑤\n提二讀會〈98.06.29〉", 
-        "type": "報告案"
-    }, 
-    {
-        "abstract": "為修正「臺北市私立老人福利機構獎助及獎勵辦法」乙案，敬請查照。", 
-        "bill_no": "10199", 
-        "category": "民政、法規", 
-        "county": "臺北市", 
-        "election_year": "2010", 
-        "execution": "存參", 
-        "id": "28508", 
-        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28508", 
-        "motions": [
-            {
-                "date": "2008-08-13", 
-                "motion": "來文", 
-                "no": "府授法一字第09731778001號", 
-                "resolution": null
-            }, 
-            {
-                "date": "2008-08-13", 
+                "date": "2008-05-06", 
                 "motion": "收文", 
                 "resolution": null
             }, 
@@ -45414,7 +45439,7 @@
                 "resolution": null
             }, 
             {
-                "date": "民國97年12月2日", 
+                "date": "民國99年7月28日", 
                 "motion": "委員會審查意見", 
                 "resolution": "備查。"
             }, 
@@ -45426,119 +45451,119 @@
             }
         ], 
         "proposed_by": [
-            "社會局"
+            "法規委員會"
         ], 
-        "remark": "委員會成員：林奕華(一召)　吳志剛(二召) \n　　　　　　李仁人　 闕枚莎　 陳政忠　 徐佳青　 李慶鋒\n提二讀會〈98.06.29〉", 
+        "remark": "委員會成員：\n林晉章（一召）  秦儷舫（二召）  周威佑  李建昌  \n李慶鋒    林國成    李彥秀    陳玉梅    王鴻薇 ", 
         "type": "報告案"
     }, 
     {
-        "abstract": "修正「臺北市檢舉違反廢棄物清理法案件獎勵辦法」第5條條文乙案，敬請查照。", 
-        "bill_no": "10195", 
-        "category": "警衛、法規", 
+        "abstract": "檢送「臺北市都市計畫容積移轉審查許可條件」公告發布實施條文1份，請查照。", 
+        "bill_no": "10162", 
+        "category": "法規", 
         "county": "臺北市", 
         "election_year": "2010", 
         "execution": "存參", 
-        "id": "28502", 
-        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28502", 
+        "id": "28424", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28424", 
         "motions": [
             {
-                "date": "2008-07-23", 
+                "date": "2008-04-29", 
                 "motion": "來文", 
-                "no": "府授法三字第09731411001號", 
+                "no": "府授都綜字第09702029202號", 
                 "resolution": null
             }, 
             {
-                "date": "2008-07-23", 
+                "date": "2008-04-29", 
                 "motion": "收文", 
                 "resolution": null
             }, 
             {
-                "date": "2011-07-07", 
+                "date": "2011-06-07", 
                 "motion": "發文", 
-                "no": "議法委字第10010000450號", 
+                "no": "議法委字第10010000330號", 
                 "resolution": null
             }, 
             {
-                "date": "民國97年11月25日", 
+                "date": "民國98年1月7日", 
                 "motion": "委員會審查意見", 
-                "resolution": "備查。"
+                "resolution": "請市政府以自治條例定之，於下會期（第5次定期大會）送會審議。"
             }, 
             {
-                "date": "2011-06-29", 
+                "date": "2011-05-25", 
                 "motion": "大會議決", 
                 "resolusion": "照審查意見通過。", 
-                "sitting": "第11屆第01次臨時大會第04次會議"
+                "sitting": "第11屆第01次定期大會第08次會議"
             }
         ], 
         "proposed_by": [
-            "環境保護局"
+            "都市發展局"
         ], 
-        "remark": "委員會成員：王正德（一召）　黃珊珊（二召）　\n            吳碧珠　王　浩　陳永德　秦儷舫　李文英　\n            莊瑞雄　林國成\n提二讀會〈98.06.29;100.05.25〉", 
+        "remark": "委員會成員：林晉章（一召）  蔣乃辛（二召）\n            闕枚莎  周威佑  李  新  秦儷舫  洪健益  \n            李慶鋒  潘懷宗\n提二讀會〈98.06.29〉", 
         "type": "報告案"
     }, 
     {
-        "abstract": "有關臺北都會區大眾捷運系統建設計畫新莊線CK570J區段標新莊機廠工程需動支該線經費賸餘款約38億5000萬元，請 備查。", 
-        "bill_no": "10193", 
-        "category": "交通", 
+        "abstract": "97年度『臺北市建築物無障礙設備與設施改善基金』預算附帶決議乙案，經市府檢討執行困難，詳如說明，請查照。", 
+        "bill_no": "10161", 
+        "category": "工務", 
         "county": "臺北市", 
         "election_year": "2010", 
         "execution": "存參", 
-        "id": "28500", 
-        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28500", 
+        "id": "28421", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28421", 
         "motions": [
             {
-                "date": "2008-07-22", 
+                "date": "2008-04-22", 
                 "motion": "來文", 
-                "no": "府授捷北字第09760266300號", 
+                "no": "府授都建字第09763861800號", 
                 "resolution": null
             }, 
             {
-                "date": "2008-07-22", 
+                "date": "2008-04-22", 
                 "motion": "收文", 
                 "resolution": null
             }, 
             {
-                "date": "2011-07-01", 
+                "date": "2011-05-27", 
                 "motion": "發文", 
-                "no": "議交字第10007001610號", 
+                "no": "議工字第10009001070號", 
                 "resolution": null
             }, 
             {
-                "date": "民國98年6月5日", 
+                "date": "民國97年6月5日", 
                 "motion": "委員會審查意見", 
-                "resolution": "備查。"
+                "resolution": "退回；請市府於2個月內重新檢討提報本會。"
             }, 
             {
-                "date": "2011-06-29", 
+                "date": "2011-05-25", 
                 "motion": "大會議決", 
                 "resolusion": "照審查意見通過。", 
-                "sitting": "第11屆第01次臨時大會第04次會議"
+                "sitting": "第11屆第01次定期大會第08次會議"
             }
         ], 
         "proposed_by": [
             "臺北市政府"
         ], 
-        "remark": "本案市府係依據本會審議臺北市97年度捷運特別預算案綜合決議(97.01.02)「捷運局及所屬各單位動支『經費賸餘』單筆超過新台幣5,000萬元(含)以上者，須送本會備查。」規定辦理。\n委員會議員：秦儷舫(一召) 賴素如(二召) 陳政忠 李  新 陳孋輝\n            王正德 戴錫欽 李彥秀 王孝維\n提二讀會〈98.06.29;100.05.25〉", 
+        "remark": "委員會成員：黃珊珊（一召）闕枚莎（二召）\n            陳碧峰 陳建銘 林晉章 吳志剛 \n            陳政忠 賴素如 簡余晏\n提二讀會〈98.06.29〉", 
         "type": "報告案"
     }, 
     {
-        "abstract": "關於訂定「臺北市優良汽車駕駛人訓練機構獎勵辦法」乙案，業經本府97年7月22日府法三字第09731819300號令發布在案，敬請查照。", 
-        "bill_no": "10194", 
-        "category": "交通、法規", 
+        "abstract": "臺北市政府發布修正「臺北市土地使用分區附條件允許使用核准標準」第2條乙案，業經本府於97年4月1日府法三字第09730692900號令發布在案，敬請查照。", 
+        "bill_no": "10156", 
+        "category": "法規", 
         "county": "臺北市", 
         "election_year": "2010", 
         "execution": "存參", 
-        "id": "28501", 
-        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28501", 
+        "id": "28406", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28406", 
         "motions": [
             {
-                "date": "2008-07-22", 
+                "date": "2008-04-01", 
                 "motion": "來文", 
-                "no": "府授法二字第09731631501號", 
+                "no": "府授法二字第09730838501號", 
                 "resolution": null
             }, 
             {
-                "date": "2008-07-22", 
+                "date": "2008-04-01", 
                 "motion": "收文", 
                 "resolution": null
             }, 
@@ -45549,9 +45574,9 @@
                 "resolution": null
             }, 
             {
-                "date": "民國97年12月18日", 
+                "date": "民國98年1月7日", 
                 "motion": "委員會審查意見", 
-                "resolution": "一、備查。\n二、本辦法第六條本文「給予一般獎勵」建議修正為 「得給予一般獎勵」。\n第七條本文「給予特別獎勵」建議修正為「得給予特別獎勵」。"
+                "resolution": "備查。"
             }, 
             {
                 "date": "2011-05-25", 
@@ -45561,10 +45586,100 @@
             }
         ], 
         "proposed_by": [
-            "交通局"
+            "法規委員會"
         ], 
-        "remark": "委員會成員：李慶元(一召)  陳玉梅(二召)\n            陳錦祥  歐陽龍  戴錫欽  李  新  李銀來\n            王孝維  吳思瑤\n提二讀會〈98.06.29〉", 
+        "remark": "市府97.04.01府法三字第09730692900號令發布修正44組宗祠宗教建築之部分暫停適用。\n委員會成員：林晉章（一召）  蔣乃辛（二召） \n            闕枚莎  周威佑  李  新  秦儷舫  洪健益  \n            李慶鋒  潘懷宗\n提二讀會〈98.06.29〉", 
         "type": "報告案"
+    }, 
+    {
+        "abstract": "訂定「臺北市基層運動選手訓練站實施辦法」，業經本府於97年3月7日以府法三字第09730489200號令發布在案，敬請查照。", 
+        "bill_no": "10151", 
+        "category": "教育、法規", 
+        "county": "臺北市", 
+        "election_year": "2010", 
+        "execution": "存參", 
+        "id": "28393", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28393", 
+        "motions": [
+            {
+                "date": "2008-03-11", 
+                "motion": "來文", 
+                "no": "府授法一字第09730641200號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2008-03-11", 
+                "motion": "收文", 
+                "resolution": null
+            }, 
+            {
+                "date": "2011-06-07", 
+                "motion": "發文", 
+                "no": "議法委字第10010000330號", 
+                "resolution": null
+            }, 
+            {
+                "date": "民國98年6月11日", 
+                "motion": "委員會審查意見", 
+                "resolution": "備查。"
+            }, 
+            {
+                "date": "2011-05-25", 
+                "motion": "大會議決", 
+                "resolusion": "照審查意見通過。", 
+                "sitting": "第11屆第01次定期大會第08次會議"
+            }
+        ], 
+        "proposed_by": [
+            "法規委員會"
+        ], 
+        "remark": "委員會成員：許淑華(一召)  莊瑞雄(二召)\n            陳錦祥  林晉章  李建昌  吳世正  徐佳青  \n            陳碧峰  李慶鋒\n提二讀會〈98.06.29〉", 
+        "type": "報告案"
+    }, 
+    {
+        "abstract": "本市警察局經管之本市松山區敦化段三小段444地號等9處28戶眷舍房地，擬依土地法第25條規定完成處分程序後依有關規定辦理，敬請同意惠復。", 
+        "bill_no": "10110", 
+        "category": "財建", 
+        "county": "臺北市", 
+        "election_year": "2010", 
+        "execution": "存參", 
+        "id": "28389", 
+        "links": "http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=28389", 
+        "motions": [
+            {
+                "date": "2008-03-06", 
+                "motion": "來文", 
+                "no": "府財管字第09730593700號", 
+                "resolution": null
+            }, 
+            {
+                "date": "2008-03-07", 
+                "motion": "收文", 
+                "resolution": null
+            }, 
+            {
+                "date": "2011-06-16", 
+                "motion": "發文", 
+                "no": "議財字第10005000890號", 
+                "resolution": null
+            }, 
+            {
+                "date": "民國99年5月20日", 
+                "motion": "委員會審查意見", 
+                "resolution": "除基地編號2-1不同意處分外，餘同意處分。"
+            }, 
+            {
+                "date": "2011-06-15", 
+                "motion": "大會議決", 
+                "resolusion": "照審查意見通過。", 
+                "sitting": "第11屆第01次定期大會第11次會議"
+            }
+        ], 
+        "proposed_by": [
+            "財政局"
+        ], 
+        "remark": "財產處分小組議員:秦儷舫(召集人) 吳世正 戴錫欽 洪健益 \n                 黃向𠍾 潘懷宗 林國成\n委員會議員:楊實秋(一召) 戴錫欽(二召) 吳碧珠 秦儷舫 林晉章\n           厲耿桂芳 李慶元 林瑞圖 簡余晏\n提二讀會(99.08.04) ", 
+        "type": "一般提案"
     }, 
     {
         "abstract": "為修正「臺北市大眾捷運系統與地下街設施移設及連通申請辦法」為「臺北市大眾捷運系統與地下街設施移設及連通申請自治條例」乙案，敬請　審議。", 
