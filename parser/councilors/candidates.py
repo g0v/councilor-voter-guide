@@ -54,7 +54,7 @@ def insertCandidates(candidate):
 
 conn = db_settings.con()
 c = conn.cursor()
-df = pd.read_excel(u'../../data/candidates_2014.xlsx', 'Table 1' )
+df = pd.read_excel(u'../../data/candidates_2014.xlsx', sheetname=0)
 df = df[df['name'] != u'姓名']
 df['party'] = map(lambda x: u'無黨籍' if re.search(u'^無$', x) else x, df['party'])
 df['party'] = map(lambda x: u'臺灣團結聯盟' if re.search(u'台灣團結聯盟', x) else x, df['party'])

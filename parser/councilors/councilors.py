@@ -116,7 +116,7 @@ for council in ['../../data/ntcc/councilors_terms.json', '../../data/ntcc/counci
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
-        councilor['name'] = re.sub(u'．', u'‧', councilor['name'])
+        councilor['name'] = re.sub(u'[.．]', u'‧', councilor['name'])
         councilor['name'] = re.sub('\s', '', councilor['name'])
         if councilor.get('party'):
             councilor['party'] = re.sub(u'無黨?$', u'無黨籍', councilor['party'])
@@ -130,7 +130,7 @@ for council in ['../../data/kcc/councilors.json', '../../data/tcc/councilors.jso
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
-        councilor['name'] = re.sub(u'．', u'‧', councilor['name'])
+        councilor['name'] = re.sub(u'[.．]', u'‧', councilor['name'])
         councilor['name'] = re.sub('\s', '', councilor['name'])
         if councilor.get('party'):
             councilor['party'] = re.sub(u'無黨?$', u'無黨籍', councilor['party'])

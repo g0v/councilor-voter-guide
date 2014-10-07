@@ -17,16 +17,14 @@ def FileLog(c, sitting):
         WHERE NOT EXISTS (SELECT 1 FROM councilors_filelog WHERE sitting = %s) RETURNING id
     ''', (sitting, datetime.now(), sitting))
 
-def GetDate(text):
+def ROC2AD(text):
     matchTerm = re.search(u'''
-        (?P<year>[\d]+)[\s]*年[\s]*
-        (?P<month>[\d]+)[\s]*月[\s]*
+        (?P<year>[\d]+)[\s]*(?:年|[-/.])[\s]*
+        (?P<month>[\d]+)[\s]*(?:月|[-/.])[\s]*
         (?P<day>[\d]+)
     ''', text, re.X)
     if matchTerm:
         return '%04d-%02d-%02d' % (int(matchTerm.group('year'))+1911, int(matchTerm.group('month')), int(matchTerm.group('day')))
-    else:
-        return None
 
 def getId(c, name, election_year, county):
     c.execute('''
@@ -48,7 +46,8 @@ def getDetailId(c, name, election_year, county):
     r = c.fetchone()
     if r:
         return r[0]
-    print name
+    print '"%s"' % name
+    raw_input()
 
 def getIdList(c, name_list, sitting_dict):
     c.execute('''
@@ -60,7 +59,8 @@ def getIdList(c, name_list, sitting_dict):
     if r:
         return r
     for name in name_list:
-        print name
+        print '"%s"' % name
+    raw_input()
     return []
 
 def getNameList(text):
