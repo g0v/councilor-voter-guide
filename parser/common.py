@@ -35,7 +35,7 @@ def getId(c, name, election_year, county):
     r = c.fetchone()
     if r:
         return r[0]
-    print name
+    print '"%s"' % name
 
 def getDetailId(c, name, election_year, county):
     c.execute('''
@@ -47,7 +47,6 @@ def getDetailId(c, name, election_year, county):
     if r:
         return r[0]
     print '"%s"' % name
-    raw_input()
 
 def getIdList(c, name_list, sitting_dict):
     c.execute('''

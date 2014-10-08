@@ -133,6 +133,7 @@ INSTALLED_APPS = (
     'sittings',
     'bills',
     'votes',
+    'suggestions',
     'search',
     'commontag',
     'pagination',
