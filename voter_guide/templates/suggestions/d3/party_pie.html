@@ -1,0 +1,91 @@
+{% load extras %}
+<style>
+
+    .arc text {
+        font: 16px sans-serif;
+        font-weight: bold;
+    }
+
+    .arc path {
+        stroke: #fff;
+    }
+
+</style>
+<script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/d3.min.js"></script>
+<script>
+
+    var data = {{parties|as_json}}
+
+    var width = 480,
+    height = 360,
+    radius = Math.min(width, height) / 3,
+    labelr = radius + 10; // radius for label anchor
+
+    var color = d3.scale.ordinal()
+    .range(["#0033FF", "#009900", "#FF6600", "#FFCC00", "brown", "#FF00FF", "#777777"])
+    .domain(['中國國民黨', '民主進步黨', '親民黨', '新黨', '臺灣團結聯盟', '無黨團結聯盟', '無黨籍']);
+
+    var arc = d3.svg.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(0);
+
+    var pie = d3.layout.pie()
+    .sort(null)
+    .value(function(d) { return d.sum; });
+
+    var svg = d3.select("#party_pie").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    var g = svg.selectAll(".arc")
+    .data(pie(data))
+    .enter().append("g")
+    .attr("class", "arc");
+
+    g.append("path")
+    .attr("d", arc)
+    .style("fill", function(d) { return color(d.data.party); });
+
+    g.append("text")
+    .attr("transform", function(d) {
+        var c = arc.centroid(d),
+        x = c[0],
+        y = c[1],
+        // pythagorean theorem for hypotenuse
+        h = Math.sqrt(x*x + y*y);
+        return "translate(" + (x/h * labelr) +  ',' +
+        (y/h * labelr) +  ")";
+    })
+    .attr("dy", ".35em")
+    .attr("text-anchor", function(d) {
+        return (d.endAngle + d.startAngle)/2 > Math.PI ?
+        "end" : "start";
+    })
+    .text(function(d) {
+        if (d.value != 0)
+        return d.value;
+    })
+    .style("fill", function(d) { return color(d.data.party); });
+
+    var legend = d3.select("#party_pie").append("svg")
+        .attr("class", "legend")
+        .attr("width", radius * 2)
+        .attr("height", radius * 2)
+    .selectAll("g")
+        .data(color.domain().slice())
+    .enter().append("g")
+        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+    legend.append("rect")
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", color);
+
+    legend.append("text")
+        .attr("x", 24)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .text(function(d) { return d; });
+</script>

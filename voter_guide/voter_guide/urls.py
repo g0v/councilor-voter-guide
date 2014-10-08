@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, include, url
-from django.contrib.auth.views import login, logout
 from rest_framework import routers
 from api import views
 
@@ -20,6 +19,7 @@ router.register(r'attendance', views.AttendanceViewSet)
 urlpatterns = patterns('',
     url(r'^candidates/', include('candidates.urls', namespace="candidates")),
     url(r'^councilors/', include('councilors.urls', namespace="councilors")),
+    url(r'^suggestions/', include('suggestions.urls', namespace="suggestions")),
     url(r'^bills/', include('bills.urls', namespace="bills")),
     url(r'^votes/', include('votes.urls', namespace="votes")),
     url(r'^about/$', 'voter_guide.views.about', name='about'),

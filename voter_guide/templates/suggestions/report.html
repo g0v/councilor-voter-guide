@@ -1,0 +1,119 @@
+﻿{% extends "base.html" %}
+{% load extras %}
+
+{% block title %}
+    <title>議員投票指南:議員配合款</title>
+    <meta property="og:title" content="議員投票指南:議員配合款"/>
+    <meta itemprop="name" content="議員投票指南:議員配合款">
+{% endblock %}
+
+{% block right %}
+    <div class="row-fluid">
+        <div class="span8">
+            <div id="party_pie" align="center">
+            </div>
+        </div>
+        <div class="span4">
+            <table class="table table-bordered table-condensed sortable zebra" >
+                <thead>
+                    <tr style="font-weight:bold;background-color: #CCFF99;">
+                        <th>政黨</th>
+                        <th>提案次數</th>
+                        <th>通過預算</th>
+                        <th>每筆平均預算</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in parties %}
+                        <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
+                            <td style="text-align:center; vertical-align:middle;">{{obj.party}}</td>
+                            <td style="text-align:center; vertical-align:middle;">{{obj.count}}</td>
+                            <td style="text-align:center; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
+                            <td style="text-align:center; vertical-align:middle;">{{obj.sum|divide:obj.count}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="row-fluid">
+        <div class="span8">
+            <div id="county_pie" align="center">
+            </div>
+        </div>
+        <div class="span4">
+            <table class="table table-bordered table-condensed sortable zebra" >
+                <thead>
+                    <tr style="font-weight:bold;background-color: #CCFF99;">
+                        <th>政黨</th>
+                        <th>提案次數</th>
+                        <th>通過預算</th>
+                        <th>每筆平均預算</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in counties %}
+                        <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
+                            <td style="text-align:center; vertical-align:middle;">{{obj.county}}</td>
+                            <td style="text-align:center; vertical-align:middle;">{{obj.count}}</td>
+                            <td style="text-align:center; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
+                            <td style="text-align:center; vertical-align:middle;">{{obj.sum|divide:obj.count}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="row-fluid">
+        <div class="span12">
+            <table class="table table-bordered table-condensed sortable zebra" >
+                <thead>
+                    <tr style="font-weight:bold;background-color: #CCFF99;">
+                        <th>姓名</th>
+                        <th>提案次數</th>
+                        <th>通過預算</th>
+                        <th>每筆平均預算</th>
+                        <th>縣市</th>
+                        <th>政黨</th>
+                        <th>職稱</th>
+                        <th>行政區</th>
+                        <th>在職情形</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in councilors %}
+                        <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
+                            <td style="text-align:center; vertical-align:middle;">{{obj.name}}</td>
+                            <td style="text-align:center; vertical-align:middle;">{{obj.count}}</td>
+                            <td style="text-align:center; vertical-align:middle;">{% if obj.sum %}<p class="price">{{obj.sum}}</p>{% endif %}</td>
+                            <td style="text-align:center; vertical-align:middle;">{% if obj.sum %}<p class="price">{{obj.sum|divide:obj.count}}{% endif %}</td>
+                            <td style="text-align:center; vertical-align:middle;">{{obj.county}}</td>
+                            <td style="text-align:center; vertical-align:middle;">{{obj.party}}</td>
+                            <td style="text-align:center; vertical-align:middle;">{{obj.title}}</td>
+                            <td style="text-align:center; vertical-align:middle;"><abbr title="{{ obj.district }}">{{ obj.district|truncatechars:10 }}</abbr></td>
+                            <td style="text-align:center; vertical-align:middle;">{% if not obj.in_office %}已去職{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    {% include "suggestions/d3/party_pie.html" %}
+    {% include "suggestions/d3/county_pie.html" %}
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
+    <script>
+        $(document).ready( function() {
+            $('#suggestions').addClass('active');
+            $('.price').each(function(index,ele){
+                var number = $(ele).text()
+                zh_number = zhutil.approximate(number, {base: '億', extra_decimal: 2});
+                $(ele).replaceWith(zh_number)
+            })
+        });
+    </script>
+{% endblock script %}

@@ -51,7 +51,7 @@ def subtract(value, arg):
 def divide(value, arg):
     if arg:
         try:
-            return "{0:.2f}".format(100.0 * value / arg)
+            return "{0:.0f}".format(value / arg)
         except Exception, e:
             print e
     else:

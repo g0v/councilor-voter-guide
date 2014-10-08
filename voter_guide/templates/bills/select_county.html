@@ -23,3 +23,11 @@
     <div class="span1">
     </div>
 {% endblock right %}
+
+{% block script %}
+    <script>
+        $(document).ready( function() {
+            $('#bills').addClass('active');
+        });
+    </script>
+{% endblock script %}

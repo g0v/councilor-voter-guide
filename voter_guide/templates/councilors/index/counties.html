@@ -1,16 +1,16 @@
 ﻿{% extends "councilors/index/index.html" %}
 {% block table %}
-{% if councilors %}
-    <table class="table table-bordered table-condensed">
-        {% for councilor in councilors %}
-            {% ifchanged councilor.district %}
-                </tr><tr><td><abbr title="{{ councilor.district }}"><b>{{ councilor.district|truncatechars:20 }}</b></abbr></td>
-            {% endifchanged %}
-            {% include "common/person_dropdown.html" with color=True %}
-        {% endfor %}
-        {% include "common/color_info_of_party.html" with column=20 %}
-    </table>
-{% else %}
-    <p class="text-error">沒有議員</p>
-{% endif %}
+    {% if councilors %}
+        <table class="table table-bordered table-condensed">
+            {% for councilor in councilors %}
+                {% ifchanged councilor.district %}
+                    </tr><tr><td><abbr title="{{ councilor.district }}"><b>{{ councilor.district|truncatechars:20 }}</b></abbr></td>
+                {% endifchanged %}
+                {% include "common/person_dropdown.html" with color=True %}
+            {% endfor %}
+            {% include "common/color_info_of_party.html" with column=20 %}
+        </table>
+    {% else %}
+        <p class="text-error">沒有議員</p>
+    {% endif %}
 {% endblock table %}
