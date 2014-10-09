@@ -2,10 +2,11 @@
 import operator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.db.models import Count, Q
+from django.db.models import Count, Sum, Q
 from .models import CouncilorsDetail, Attendance
 from votes.models import Votes, Councilors_Votes
 from bills.models import Bills
+from suggestions.models import Suggestions
 from sittings.models import Sittings
 from search.views import keyword_list, keyword_been_searched, keyword_normalize
 
@@ -98,6 +99,25 @@ def index(request, index, election_year, county):
         councilors = CouncilorsDetail.objects.filter(basic_query).order_by('district', 'party')
         return render(request, 'councilors/index/counties.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'councilors': councilors, 'out_office': out_office, 'index': index})
 
+def suggestor(request, councilor_id, election_year):
+    q = dict(zip(['councilor_id', 'election_year'], [councilor_id, election_year]))
+    try:
+        councilor = CouncilorsDetail.objects.get(**q)
+    except Exception, e:
+        return HttpResponseRedirect('/')
+    q = dict(zip(['election_year', 'councilors_suggestions__councilor_id'], [election_year, councilor.id]))
+    index = request.GET.get('index')
+    if not index:
+        suggestions = Suggestions.objects.filter(**q)\
+                                        .values('bid_by')\
+                                        .annotate(sum=Sum('approved_expense'), count=Count('uid'))\
+                                        .order_by('-sum')
+    elif index == u'rawdata':
+        suggestions = Suggestions.objects.filter(**q)\
+                                        .order_by('-uid')
+        return render(request, 'councilors/suggestor.html', {'county': councilor.county, 'index': index, 'suggestions': list(suggestions), 'councilor': councilor})
+    return render(request, 'councilors/suggestor.html', {'county': councilor.county, 'suggestions': list(suggestions), 'councilor': councilor})
+
 def biller(request, councilor_id, election_year):
     proposertype = False
     try:
@@ -112,8 +132,7 @@ def biller(request, councilor_id, election_year):
             keyword_been_searched(keyword, 'bills')
     else:
         bills = Bills.objects.filter(query).order_by('-uid')
-    data = bills.values('category').annotate(totalNum=Count('id')).order_by('-totalNum')
-    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), 'county': councilor.county, 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'proposertype': proposertype, 'data': list(data)})
+    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), 'county': councilor.county, 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'proposertype': proposertype})
 
 def voter(request, councilor_id, election_year):
     votes, notvote, query = None, False, Q()

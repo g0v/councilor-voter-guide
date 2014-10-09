@@ -21,7 +21,7 @@
                     <th>候選人</th>
                     <th>黨籍</th>
                     <th>最近任期</th>
-                    <th>提出議案數</th>
+                    <th>主提案數 / 參與提案數</th>
                     <th>投票缺席率（%）</th>
                     <th>脫黨投票率（%）</th>
                 </tr>
@@ -40,18 +40,18 @@
                                 {% endif %}
                             {% endif %}
                             {% if councilor.last_election_year == '2010' %}
-                                <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}">（當時競選政見）</a>
+                                <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}">（{{councilor.last_election_year}} 競選政見）</a>
                             {% endif %}
                         </td>
                         <td style="text-align:center; vertical-align:middle;">
-                            {{councilor.npribill}}
                             {% if councilor.last_election_year == '2010' %}
+                                {{councilor.npribill}} / {{councilor.nbill}}
                                 <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}">（看完整議案）</a>
                             {% endif %}
                         </td>
                         <td style="text-align:center; vertical-align:middle;">
-                            {{councilor.pnotvote}}
                             {% if councilor.last_election_year == '2010' %}
+                                {{councilor.pnotvote}}
                                 <a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}">（看完整表決）</a>
                             {% endif %}
                         </td>

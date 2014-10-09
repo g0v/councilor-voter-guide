@@ -91,6 +91,8 @@ if not DEBUG:
         }
     }
 
+# for django-debug-toolbar
+INTERNAL_IPS = ('127.0.0.1',)
 
 MIDDLEWARE_CLASSES = (
     #'django.middleware.cache.UpdateCacheMiddleware',
@@ -139,6 +141,7 @@ INSTALLED_APPS = (
     'pagination',
     'rest_framework',
     'south',
+    'debug_toolbar',
 )
 
 REST_FRAMEWORK = {

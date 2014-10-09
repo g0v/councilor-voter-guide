@@ -68,6 +68,16 @@ class Candidates(models.Model):
         return Councilors_Bills.objects.filter(councilor_id=councilor.id, priproposer=True).count()
     npribill = property(_pribiller_count)
 
+    def _biller_count(self):
+        if self.last_election_year != '2010':
+            return ''
+        try:
+            councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
+        except Exception, e:
+            return ''
+        return Councilors_Bills.objects.filter(councilor_id=councilor.id, petition=False).count()
+    nbill = property(_biller_count)
+
     def _term_end(self):
         try:
             councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)

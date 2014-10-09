@@ -8,18 +8,14 @@ from councilors.models import CouncilorsDetail
 
 
 def report(request):
-    councilors = CouncilorsDetail.objects\
-                           .filter(election_year='2010', county__in=[u'臺北市', u'高雄市'])\
-                           .annotate(sum=Sum('suggestions__suggestion__approved_expense'), count=Count('suggestions__id'))\
-                           .order_by('-sum')
-    parties = CouncilorsDetail.objects\
-                            .filter(election_year='2010', county__in=[u'臺北市', u'高雄市'])\
-                            .values('party')\
-                            .annotate(sum=Sum('suggestions__suggestion__approved_expense'), count=Count('suggestions__id'))\
-                            .order_by('-sum')
-    counties = CouncilorsDetail.objects\
-                            .filter(election_year='2010', county__in=[u'臺北市', u'高雄市'])\
-                            .values('county')\
-                            .annotate(sum=Sum('suggestions__suggestion__approved_expense'), count=Count('suggestions__id'))\
-                            .order_by('-sum')
+    base = CouncilorsDetail.objects.filter(election_year='2010', county__in=[u'臺北市', u'高雄市'])
+    councilors = base.annotate(sum=Sum('suggestions__suggestion__approved_expense'), count=Count('suggestions__id'))\
+                    .order_by('-sum')
+    parties = base.values('party')\
+                    .annotate(sum=Sum('suggestions__suggestion__approved_expense'), count=Count('suggestions__id'))\
+                    .order_by('-sum')
+    counties = Suggestions.objects.filter(election_year='2010', county__in=[u'臺北市', u'高雄市'])\
+                    .values('county', 'suggest_year')\
+                    .annotate(sum=Sum('approved_expense'), count=Count('uid'))\
+                    .order_by('county', 'suggest_year')
     return render(request,'suggestions/report.html', {'councilors': councilors, 'parties': list(parties), 'counties': list(counties)})
