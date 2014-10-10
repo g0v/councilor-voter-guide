@@ -42,7 +42,7 @@ for f in files:
     df = pd.read_excel(f, sheetname=0, header=None, encoding='utf-8')
     county = re.search(u'\S*?[縣市]', df.icol(0)[0]).group()
     year, month = re.sub('\D', ' ', df.icol(0)[1]).split()
-    if month != '12':
+    if year != '103' and month != '12':
         continue
     df = pd.read_excel(f, sheetname=0, header=None, usecols=range(0, 9), skiprows=5, names=['councilor', 'suggestion', 'position', 'suggest_expense', 'approved_expense', 'expend_on', 'brought_by', 'bid_type', 'bid_by'], encoding='utf-8')
     df.dropna(inplace=True, how='any', subset=['suggestion'])

@@ -35,7 +35,7 @@
             <table class="table table-bordered table-condensed sortable zebra" >
                 <thead>
                     <tr style="font-weight:bold;background-color: #E1D0D0;">
-                        <th>縣市</th>
+                        <th>政黨</th>
                         <th>提案次數</th>
                         <th>通過預算</th>
                         <th>每筆平均預算</th>
@@ -45,9 +45,9 @@
                     {% for obj in parties %}
                         <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
                             <td style="text-align:center; vertical-align:middle;">{{obj.party}}</td>
-                            <td style="text-align:center; vertical-align:middle;">{{obj.count}}</td>
-                            <td style="text-align:center; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
-                            <td style="text-align:center; vertical-align:middle;"><p class="price">{{obj.sum|divide:obj.count}}</p></td>
+                            <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
+                            <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
+                            <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum|divide:obj.count}}</p></td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -78,9 +78,9 @@
                         <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
                             <td style="text-align:center; vertical-align:middle;">{{obj.county}}</td>
                             <td style="text-align:center; vertical-align:middle;">{{obj.suggest_year}}</td>
-                            <td style="text-align:center; vertical-align:middle;">{{obj.count}}</td>
-                            <td style="text-align:center; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
-                            <td style="text-align:center; vertical-align:middle;"><p class="price">{{obj.sum|divide:obj.count}}</p></td>
+                            <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
+                            <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
+                            <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum|divide:obj.count}}</p></td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -140,7 +140,7 @@
             $('#suggestions').addClass('active');
             $('.price').each(function(index,ele){
                 var number = $(ele).text()
-                zh_number = zhutil.approximate(number, {base: '億', extra_decimal: 2});
+                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
                 $(ele).replaceWith(zh_number)
             })
         });
