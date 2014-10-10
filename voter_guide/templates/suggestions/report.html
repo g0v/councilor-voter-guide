@@ -1,11 +1,12 @@
 ﻿{% extends "base.html" %}
+{% load staticfiles %}
 {% load extras %}
 
 {% block title %}
     <title>議員投票指南:議員配合款</title>
     <meta property="og:title" content="議員投票指南:議員配合款"/>
     <meta itemprop="name" content="議員投票指南:議員配合款">
-    <link href="../static/css/g0v.css" rel="stylesheet">
+    <link href="{% static 'css/g0v.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block right %}
@@ -57,12 +58,11 @@
     <hr>
     <div class="row-fluid">
         <div class="span8">
-         <h4><center>提案次數與金額 - 依縣市區分</center></h4>
+         <h4><center>提案次數與金額 - 依各縣市各年度區分</center></h4>
             <div id="county_pie" align="center">
             </div>
         </div>
         <div class="span4">
-
             <table class="table table-bordered table-condensed sortable zebra" >
                 <thead>
                     <tr style="font-weight:bold;background-color: #E1D0D0;">
@@ -89,9 +89,8 @@
     </div>
     <hr>
     <div class="row-fluid">
-     <h7><center>提案次數與金額 - 依議員區分</center></h7><br>
-    <div class="text-center">（點擊議員連結可檢視每件提案工程得標廠商）</div>
-
+        <h7><center>提案次數與金額 - 依議員區分</center></h7><br>
+        <div class="text-center">（點擊議員連結可檢視每件提案工程得標廠商）</div>
         <div class="span12">
             <table class="table table-bordered table-condensed sortable zebra" >
                 <thead>
