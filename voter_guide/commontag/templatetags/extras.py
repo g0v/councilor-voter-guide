@@ -9,6 +9,14 @@ from councilors.models import CouncilorsDetail
 
 register = template.Library()
 
+@register.filter(name='suggestions_offical_link')
+def suggestions_offical_link(value):
+    maps = {
+        u'臺北市': 'http://www.dbas.taipei.gov.tw/ct.asp?xItem=69201832&ctNode=31636&mp=120001',
+        u'高雄市': 'http://dbaskmg.kcg.gov.tw/business3.php?type=128',
+    }
+    return maps.get(value, '')
+
 @register.filter(name='distinct_district')
 def distinct_district(value, arg):
     return CouncilorsDetail.objects.filter(county=value, election_year=arg).exclude(district='').values_list('district', flat=True).distinct()

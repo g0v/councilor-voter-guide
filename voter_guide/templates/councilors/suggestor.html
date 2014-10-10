@@ -22,6 +22,12 @@
         </div>
         <div class="span6">
             <a class="lead" href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?index=rawdata">細目展開</a>
+            <div class="pull-right">
+                資料來源
+                <a href="{{councilor.county|suggestions_offical_link}}" target="_blank">{{councilor.county}}主計處</a></li><br>
+                    <br>
+                </ul>
+            </div>
             <table class="table table-bordered table-condensed sortable zebra" >
                 <thead>
                     <tr style="font-weight:bold;background-color: #CCFF99;">
@@ -41,17 +47,17 @@
                                     {{obj.bid_by}}
                                 {% endif %}
                             </td>
-                            <td style="text-align:center; vertical-align:middle;">
+                            <td style="text-align:right; vertical-align:middle;">
                                 {{obj.count}}
                             </td>
-                            <td style="text-align:center; vertical-align:middle;">
+                            <td style="text-align:right; vertical-align:middle;">
                                 {% if obj.sum == None %}
                                     【來源檔案無資料】
                                 {% else %}
                                     <p class="price">{{obj.sum}}</p>
                                 {% endif %}
                             </td>
-                            <td style="text-align:center; vertical-align:middle;">
+                            <td style="text-align:right; vertical-align:middle;">
                                 {% if obj.sum != None %}
                                     <p class="price">{{obj.sum|divide:obj.count}}</p>
                                 {% endif %}
@@ -63,6 +69,12 @@
         </div>
     {% else %}
         <div class="span12">
+            <div class="pull-right">
+                資料來源
+                <a href="{{councilor.county|suggestions_offical_link}}" target="_blank">{{councilor.county}}主計處</a></li><br>
+                    <br>
+                </ul>
+            </div>
         {% if suggestions %}
             {% include "common/suggestions.html" %}
         {% else %}
@@ -74,6 +86,7 @@
 {% endblock person_detail %}
 
 {% block script %}
+    {% include "common/sorttable.html" %}
     {% if index != 'rawdata' %}
         {{ block.super }}
         {% include "councilors/d3/suggestor_bid_by_pie.html" %}
@@ -94,7 +107,7 @@
             $('#councilors_suggestor').addClass("btn-info");
             $('.price').each(function(index,ele){
                 var number = $(ele).text()
-                zh_number = zhutil.approximate(number, {base: '億', extra_decimal: 2});
+                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
                 $(ele).replaceWith(zh_number)
             })
         });
