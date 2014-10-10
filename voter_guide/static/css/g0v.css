@@ -1,0 +1,41 @@
+@margin: 20px;
+@pad: 20px;
+@small_pad: 10px;
+@sidebar_width: 241px;
+@grayLight: #999;
+
+.container-fluid {
+  padding-right: 20px;
+  padding-left: 20px;
+  *zoom: 1;
+  margin:0 50px 0 50px;
+}
+
+
+.description {
+  padding: 20px 60px 20px 60px;
+  margin: 10px;
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 30px;
+  color: inherit;
+  background-color: #eeeeee;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+
+
+h7 {
+  margin: 10px 0;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 1px;
+  color: inherit;
+  text-rendering: optimizelegibility;
+}
+
+h7 {
+  font-size: 22.5px;
+}
