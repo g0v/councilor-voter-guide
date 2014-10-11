@@ -41,7 +41,7 @@
                 </tr>
                 <tr>
                     <td style="background-color: lightgrey;">選區縣市</td>
-                    <td>{{councilor.county}}</td>
+                    <td><a href="{% url 'candidates:districts' county=councilor.county election_year=2014 %}">{{councilor.county}}</a></td>
                 </tr>
                 <tr>
                     <td style="background-color: lightgrey;">職稱</td>
@@ -54,7 +54,8 @@
                 {% if councilor.district %}
                 <tr>
                     <td style="background-color: lightgrey;">行政區</td>
-                    <td><abbr title="{{ councilor.district }}">{{ councilor.district|truncatechars:20 }}</abbr></td>
+
+                    <td><abbr title="{{ councilor.district }}"><a href="{% url 'candidates:district' county=councilor.county election_year=2014 constituency=councilor.constituency %}">{{ councilor.district|truncatechars:20 }}</a></abbr></td>
                 </tr>
                 {% endif %}
                 <tr>
