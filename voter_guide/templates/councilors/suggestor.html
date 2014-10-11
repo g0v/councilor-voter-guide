@@ -44,10 +44,10 @@
                     {% for obj in suggestions %}
                         <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
                             <td style="text-align:center; vertical-align:middle;">
-                                {% if obj.bid_by == None %}
-                                    【來源檔案無資料】
-                                {% else %}
+                                {% if obj.bid_by %}
                                     {{obj.bid_by}}
+                                {% else %}
+                                    【來源檔案無資料】
                                 {% endif %}
                             </td>
                             <td style="text-align:right; vertical-align:middle;">
