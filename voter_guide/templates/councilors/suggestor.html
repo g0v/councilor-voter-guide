@@ -46,8 +46,7 @@
                         <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
                             <td style="text-align:center; vertical-align:middle;">
                                 {% if obj.bid_by %}
-                                    <a href="{% url 'suggestions:bid_by' bid_by=obj.bid_by %}">{{obj.bid_by}}</a>
-
+                                    <a href="{% url 'suggestions:bid_by' bid_by=obj.bid_by|urlencode %}">{{obj.bid_by}}</a>
                                 {% else %}
                                     【來源檔案無資料】
                                 {% endif %}
