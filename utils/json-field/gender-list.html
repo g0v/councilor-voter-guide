@@ -1,0 +1,80 @@
+<!-- Import Polymer -->
+<link rel="import" href="http://www.polymer-project.org/components/polymer/polymer.html">
+<link rel="import" href="http://www.polymer-project.org/components/paper-elements/paper-elements.html">
+<link rel="import" href="http://www.polymer-project.org/components/core-elements/core-elements.html">
+<polymer-element name="gender-list" attributes="resp dataurl">
+  <template>
+    <style>
+      .itemdiv {
+        margin: 5px;
+        padding-top: 5px;
+        padding-left: 20px;
+        font-size: 0.8em;
+        background-color: #EEEEEE;
+        border-radius: 8px;
+      }
+      .itemdiv .name {
+        font-size: 1.125em;
+        margin-right: 10px;
+      }
+      .itemimg {
+        margin-right: 15px;
+      }
+      textarea {
+        width: 90%;
+        height: 600px;
+        margin: 10px;
+        padding: 10px;
+      }
+      paper-button {
+        font-size: 0.4em;
+      }
+      .taheader{
+          margin:8px;
+          padding:6px;
+      }
+    </style>
+    <core-ajax auto url="{{dataurl}}" handleAs="json" response="{{resp}}"></core-ajax>
+    <div>
+      <div center horizontal layout>
+        <div class="taheader">JSON顯示切換 </div>
+        <paper-toggle-button on-click="{{foo}}"></paper-toggle-button>
+      </div>
+      <core-collapse id="collapse1">
+        <h2>全選 Ctrl+A 後複製 Ctrl+C </h2>
+        <textarea value="{{gmsg}}" placeholder="Type something"> </textarea>
+      </core-collapse>
+      <div class="alldiv" horizontal layout wrap>
+        <template repeat="{{c in resp['items']}}">
+          <div class="itemdiv" horizontal layout center>
+            <paper-shadow z="1"></paper-shadow>
+            <div class="itemimg"><img width="60" src="{{c.image}}" />
+            </div>
+            <div><span class="name">{{c.name}}</span>
+              <a href="{{c.links[0]['url']}}" target="_blank">
+                <core-icon icon="open-in-browser"></core-icon>
+              </a>
+              <div>
+                <paper-radio-group selected="{{c.gender}}">
+                  <paper-radio-button name="男" label="男"></paper-radio-button>
+                  <paper-radio-button name="女" label="女"></paper-radio-button>
+                </paper-radio-group>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      ready: function() {
+        //...
+      },
+      foo: function(event, detail, sender) {
+        this.gmsg = JSON.stringify(this.resp, null, 4);
+        this.$.collapse1.toggle();
+      }
+    });
+  </script>
+</polymer-element>

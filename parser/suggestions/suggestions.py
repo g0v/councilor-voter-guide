@@ -61,6 +61,9 @@ for f in files:
     df_concat = concat([df_concat, df])
 
 def Suggestions(suggestion):
+    for column in ['position', 'expend_on', 'brought_by', 'bid_type', 'bid_by']:
+        suggestion[column] = suggestion[column].strip() if suggestion[column] else ''
+    suggestion['bid_by'] = re.sub(u'(股份)?有限公司', '', suggestion['bid_by'])
     c.execute('''
         UPDATE suggestions_suggestions
         SET county = %(county)s, election_year = %(election_year)s, suggest_year = %(suggest_year)s, suggest_month = %(suggest_month)s, suggestion = %(suggestion)s, position = %(position)s, suggest_expense = %(suggest_expense)s, approved_expense = %(approved_expense)s, expend_on = %(expend_on)s, brought_by = %(brought_by)s, bid_type = %(bid_type)s, bid_by = %(bid_by)s, district = %(district)s, constituency = %(constituency)s
