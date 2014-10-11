@@ -1,0 +1,133 @@
+﻿{% extends "base.html" %}
+{% load staticfiles %}
+{% load extras %}
+
+{% block title %}
+    <title>議員投票指南:議員配合款</title>
+    <meta property="og:title" content="議員投票指南:議員配合款"/>
+    <meta itemprop="name" content="議員投票指南:議員配合款">
+    <link href="{% static 'css/g0v.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block right %}
+    <div class="page-header">
+        <a href="{% url 'suggestions:report' %}"><h3 class="text-center">什麼是工程建議款？</h3></a>
+        <a href="http://company.g0v.ronny.tw/index/search?q={{bid_by}}" target="_blank"><h4 class="text-center">查看{{bid_by}}的董事與股東</h4></a>
+        <div class="pull-right">
+            資料來源
+            <ul class="inline">
+                <li><a href="http://www.dbas.taipei.gov.tw/ct.asp?xItem=69201832&ctNode=31636&mp=120001" target="_blank">臺北市主計處</a>（2011-2014上半年）</li><br>
+                <li><a href="http://dbaskmg.kcg.gov.tw/business3.php?type=128" target="_blank">高雄市主計處</a>（2012-2014上半年）</li>
+                <br>
+            </ul>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span8">
+            <h4><center>{{bid_by}} 得標案中的政黨分布</center></h4>
+            <div id="party_pie" align="center"></div>
+        </div>
+        <div class="span4">
+            <table class="table table-bordered table-condensed sortable zebra" >
+                <thead>
+                    <tr style="font-weight:bold;background-color: #E1D0D0;">
+                        <th style="width: 40%">得標廠商</th>
+                        <th style="width: 10%">得標次數</th>
+                        <th style="width: 30%">通過預算</th>
+                        <th style="width: 20%">每筆平均預算</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in parties %}
+                        <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
+                            <td style="text-align:center; vertical-align:middle;">
+                                {{obj.party}}
+                            </td>
+                            <td style="text-align:right; vertical-align:middle;">
+                                {{obj.count}}
+                            </td>
+                            <td style="text-align:right; vertical-align:middle;">
+                                {% if obj.sum == None %}
+                                    【來源檔案無資料】
+                                {% else %}
+                                    <p class="price">{{obj.sum}}</p>
+                                {% endif %}
+                            </td>
+                            <td style="text-align:right; vertical-align:middle;">
+                                {% if obj.sum != None %}
+                                    <p class="price">{{obj.sum|divide:obj.count}}</p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="row-fluid">
+        <div class="span8">
+            <h4><center>{{bid_by}} 得標案中的議員分布</center></h4>
+            <div id="councilors_pie" align="center"></div>
+        </div>
+        <div class="span4">
+            <table class="table table-bordered table-condensed sortable zebra" >
+                <thead>
+                    <tr style="font-weight:bold;background-color: #E1D0D0;">
+                        <th style="width: 20%">議員</th>
+                        <th style="width: 25%">政黨</th>
+                        <th style="width: 5%">提案次數</th>
+                        <th style="width: 30%">通過預算</th>
+                        <th style="width: 20%">每筆平均預算</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for councilor in councilors %}
+                        <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
+                            <td style="text-align:center; vertical-align:middle;">
+                                <a href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">
+                                {% include "common/name_color_by_party.html" %}
+                                </a>
+                            </td>
+                            <td style="text-align:center; vertical-align:middle;">
+                                {{councilor.party}}
+                            </td>
+                            <td style="text-align:right; vertical-align:middle;">
+                                {{councilor.count}}
+                            </td>
+                            <td style="text-align:right; vertical-align:middle;">
+                                {% if councilor.sum == None %}
+                                    【來源檔案無資料】
+                                {% else %}
+                                    <p class="price">{{councilor.sum}}</p>
+                                {% endif %}
+                            </td>
+                            <td style="text-align:right; vertical-align:middle;">
+                                {% if councilor.sum != None %}
+                                    <p class="price">{{councilor.sum|divide:councilor.count}}</p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock right %}
+
+{% block script %}
+    {% include "suggestions/d3/party_pie.html" %}
+    {% include "suggestions/d3/councilors_pie.html" %}
+    {% include "common/sorttable.html" %}
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
+    <script>
+        $(document).ready( function() {
+            $('#suggestions').addClass('active');
+            $('.price').each(function(index,ele){
+                var number = $(ele).text()
+                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
+                $(ele).replaceWith(zh_number)
+            })
+        });
+    </script>
+{% endblock script %}

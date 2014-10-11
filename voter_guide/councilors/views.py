@@ -107,16 +107,16 @@ def suggestor(request, councilor_id, election_year):
         return HttpResponseRedirect('/')
     q = dict(zip(['election_year', 'councilors_suggestions__councilor_id'], [election_year, councilor.id]))
     index = request.GET.get('index')
+    suggestions_base = Suggestions.objects.filter(**q)
+    total_expense = suggestions_base.aggregate(sum=Sum('approved_expense'))
     if not index:
-        suggestions = Suggestions.objects.filter(**q)\
-                                        .values('bid_by')\
+        suggestions = suggestions_base.values('bid_by')\
                                         .annotate(sum=Sum('approved_expense'), count=Count('uid'))\
                                         .order_by('-sum')
     elif index == u'rawdata':
-        suggestions = Suggestions.objects.filter(**q)\
-                                        .order_by('-uid')
-        return render(request, 'councilors/suggestor.html', {'county': councilor.county, 'index': index, 'suggestions': list(suggestions), 'councilor': councilor})
-    return render(request, 'councilors/suggestor.html', {'county': councilor.county, 'suggestions': list(suggestions), 'councilor': councilor})
+        suggestions = suggestions_base.order_by('-uid')
+        return render(request, 'councilors/suggestor.html', {'county': councilor.county, 'index': index, 'suggestions': list(suggestions), 'councilor': councilor, 'total_expense': total_expense})
+    return render(request, 'councilors/suggestor.html', {'county': councilor.county, 'suggestions': list(suggestions), 'councilor': councilor, 'total_expense': total_expense})
 
 def biller(request, councilor_id, election_year):
     proposertype = False

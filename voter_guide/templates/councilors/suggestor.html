@@ -16,6 +16,7 @@
 {% block person_detail %}
     <div class="page-header">
         <a href="{% url 'suggestions:report' %}" ><h3 class="text-center">什麼是工程建議款？</h3></a>
+        <p class="lead">{{councilor.name}}的工程款提案共通過：<font class="price">{{total_expense.sum}}</font></p>
     </div>
     <div class="row-fluid">
     {% if index != 'rawdata' %}
@@ -45,7 +46,8 @@
                         <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
                             <td style="text-align:center; vertical-align:middle;">
                                 {% if obj.bid_by %}
-                                    {{obj.bid_by}}
+                                    <a href="{% url 'suggestions:bid_by' bid_by=obj.bid_by %}">{{obj.bid_by}}</a>
+
                                 {% else %}
                                     【來源檔案無資料】
                                 {% endif %}
