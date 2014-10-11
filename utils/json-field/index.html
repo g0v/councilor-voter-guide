@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Json Field Editor</title>
+  <meta name="description" content="polymer" />
+  <meta charset="UTF-8">
+  <script src="http://www.polymer-project.org/components/platform/platform.js"></script>
+  <link rel="import" href="http://www.polymer-project.org/components/polymer/polymer.html">
+  <link rel="import" href="http://www.polymer-project.org/components/paper-elements/paper-elements.html">
+  <link rel="import" href="http://www.polymer-project.org/components/core-elements/core-elements.html">
+  <link rel="import" href="gender-list.html">
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body unresolved>
+  <j-app></j-app>
+  <polymer-element name="j-app">
+    <template>
+      <style>
+        paper-tabs,
+        core-toolbar {
+          background-color: #00bcd4;
+          color: #fff;
+          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+        }
+        core-toolbar paper-tabs {
+          box-shadow: none;
+        }
+        paper-tabs[noink][nobar] paper-tab.core-selected {
+          color: #ffff8d;
+        }
+        textarea {
+          width: 90%;
+          height: 600px;
+          margin: 10px;
+          padding: 10px;
+        }
+      </style>
+      <paper-tabs id="tabs" selected="{{tindex}}">
+        <paper-tab>編輯 新北市</paper-tab>
+        <paper-tab>編輯 台中市</paper-tab>
+        <paper-tab>編輯 台北市</paper-tab>
+      </paper-tabs>
+      <core-pages flex selected={{tindex}}>
+        <gender-list dataurl="/data/final/ntcc/councilors.json"></gender-list>
+        <gender-list dataurl="/data/final/tccc/councilors.json"></gender-list>
+        <gender-list dataurl="/data/final/tcc/councilors.json"></gender-list>
+      </core-pages>
+    </template>
+    <script>
+      // switch page on tab
+      Polymer({
+        tindex: 0,
+        tindexChanged: function() {
+          console.info(this.tindex);
+        },
+        ready: function() {}
+      });
+    </script>
+
+  </polymer-element>
+
+
+  <script>
+    window.addEventListener('polymer-ready', function(e) {});
+  </script>
+</body>
+
+</html>

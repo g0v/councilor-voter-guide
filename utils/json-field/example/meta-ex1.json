@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "ver": [{
+      "id": "scrapy",
+      "date": "2014-10-01",
+      "desc": "scrapy output",
+      "output": "data/tccc/councilors.json",
+      "app": "crawler/tccc"
+    }, {
+      "id": "gender-fix",
+      "date": "2014-10-10",
+      "desc": "補性別欄位",
+      "output": "data/final/tccc/councilors.json",
+      "app": "utils/json-field/gender-fix"
+    }]
+  },
+  "items": [{
+    "title": "議員",
+    "in_office": true,
+    "constituency": "第15選區",
+    "name": "陳oo"
+  }, {
+    "title": "議員",
+    "in_office": true,
+    "constituency": "第15選區",
+    "name": "王oo"
+  }]
+}
