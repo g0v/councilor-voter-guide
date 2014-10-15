@@ -5,8 +5,6 @@ councilor-voter-guide
 [Hackpad 開發討論區](https://g0v.hackpad.com/KjfdRZ08FZ3)       
 [Hackpad 意見回饋](https://g0v.hackpad.com/--5PNuk4XGGrj)
 
-In Ubuntu 12.04 LTS
-=================
 ## Project Layout Introduce
 
 -   crawler  
@@ -18,7 +16,7 @@ In Ubuntu 12.04 LTS
     
 -   data  
     由上述crawler產出的各縣市原始JSON
-    > reformat.json.py: 產出indent、unicode好讀版的JSON  
+    > util/prettyjson.py: 產出indent好讀版的JSON, [README](https://github.com/g0v/councilor-voter-guide/tree/master/utils)  
     > pretty_format: 放置上述產出的各縣市好讀版JSON  
     > hashlist_meeting_minutes-v141001.json: links map, 存放由meeting_minutes cralwer抓下的binaries [detail](https://github.com/g0v/councilor-voter-guide/tree/master/utils/bin-hash)  
     > candidates_2014.xlsx: 中選會公告的議員候選人  
@@ -33,6 +31,8 @@ In Ubuntu 12.04 LTS
 -   voter\_guide  
     Web application using Django, [Enviroment Setup](https://github.com/g0v/councilor-voter-guide#for-website-pythondjango)
       
+In Ubuntu 12.04 LTS
+=================
 ## For Crawler (Scrapy 0.24.4)
 
 [Scrapy offcial install doc](http://doc.scrapy.org/en/latest/intro/install.html)

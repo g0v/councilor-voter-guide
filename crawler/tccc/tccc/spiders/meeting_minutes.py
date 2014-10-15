@@ -7,7 +7,6 @@ import subprocess
 import scrapy
 from scrapy.http import Request, FormRequest
 from scrapy.selector import Selector
-from scrapy.spider import BaseSpider
 from tccc.items import MeetingMinutes
 
 
