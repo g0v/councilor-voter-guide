@@ -8,7 +8,7 @@
       "app": "crawler/ntcc"
     }, {
       "id": "gender-fix",
-      "date": "2014-10-10",
+      "date": "2014-10-17",
       "desc": "補性別欄位",
       "output": "data/final/ntcc/councilors.json",
       "app": "utils/json-field/gender-fix"
@@ -54,6 +54,7 @@
             "八里獅子會顧問。",
             "八里五福宮主任委員。"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1651.jpg",
         "in_office": true,
         "links": [
@@ -134,6 +135,7 @@
             "立法委員蘇貞昌助理",
             "中國文化大學美國研究所"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0124.jpg",
         "in_office": true,
         "links": [
@@ -202,6 +204,7 @@
             "板橋市黨部總幹事",
             "家扶中心扶幼委員會副主委。"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1202.jpg",
         "in_office": true,
         "links": [
@@ -267,6 +270,7 @@
             "行政院院長室專門委員",
             "高雄市政府市長機要"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0121.jpg",
         "in_office": true,
         "links": [
@@ -331,6 +335,7 @@
             "三重市大愛同濟會副會長",
             "三重女獅會理監事"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1636.jpg",
         "in_office": true,
         "links": [
@@ -399,6 +404,7 @@
             "板橋區商圈景觀發展協會/執行長",
             "中興菁英班第8期/學員長"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0127.jpg",
         "in_office": true,
         "links": [
@@ -464,6 +470,7 @@
             "中國國民黨第18屆全國黨代表",
             "中國國民黨板橋市青年工作委員會會長"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0126.jpg",
         "in_office": true,
         "links": [
@@ -528,6 +535,7 @@
             "中國國民黨16、17、18全代表",
             "台北縣第15、16屆議員"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1537.jpg",
         "in_office": true,
         "links": [
@@ -604,6 +612,7 @@
             "綠色和平電台主持人。",
             "中國技術學院肄業。"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1434.jpg",
         "in_office": true,
         "links": [
@@ -674,6 +683,7 @@
             "國民黨臺北縣議會黨團副書記長",
             "台北縣第16屆議員"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1608.jpg",
         "in_office": true,
         "links": [
@@ -751,6 +761,7 @@
             "慈笙文教基金會執行長",
             "蘆洲婦女防火宣導隊副分隊長"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1630.jpg",
         "in_office": true,
         "links": [
@@ -820,6 +831,7 @@
             "三重市調解委員會委員",
             "三重市第10、11屆市長候選人"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1437.jpg",
         "in_office": true,
         "links": [
@@ -891,6 +903,7 @@
             "蘆洲市愛兒福利協會、插花協會顧問、勞工聯誼協會榮譽理事長。",
             "三重扶輪社發展委員。"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/%E8%AD%B0%E9%95%B7%E5%A4%A7%E9%A0%AD%E7%85%A7.jpg",
         "in_office": true,
         "links": [
@@ -959,6 +972,7 @@
             "體育會外內丹功主委。",
             "關懷高高屏（高雄縣市、屏東縣）旅北同鄉會會長。"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0113.jpg",
         "in_office": true,
         "links": [
@@ -1032,6 +1046,7 @@
             "台北縣第16屆議員",
             "台北縣原住民體育發展協會理事長"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1664.jpg",
         "in_office": true,
         "links": [
@@ -1106,6 +1121,7 @@
             "義警、民防、義消、義交顧問。",
             "愛心關懷協會、身心障礙運動委員會、社區健康營造協會、公寓大廈管理協進會、蘆笙會、蘆笙環保志工大隊發起人。"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0114.jpg",
         "in_office": true,
         "links": [
@@ -1181,6 +1197,7 @@
             "為爭取原住民族權利遭司法迫害入獄一年",
             "台灣原住民族權利促進會長"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0164.jpg",
         "in_office": true,
         "links": [
@@ -1250,6 +1267,7 @@
             "台北縣三重市社會扶助協會理事長",
             "三重市康福養生運動協會理事長"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1638.jpg",
         "in_office": true,
         "links": [
@@ -1313,6 +1331,7 @@
             "臺北縣福山國小教師、組長。",
             "臺北縣永安國小教師。"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1665.jpg",
         "in_office": true,
         "links": [
@@ -1382,6 +1401,7 @@
             "中華民國紅十字會急救員",
             "正業代書業務主任"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0167.jpg",
         "in_office": true,
         "links": [
@@ -1454,6 +1474,7 @@
             "2007民主進步黨政策會首席副執行長",
             "2008民主進步黨社會發展部主任"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1455.jpg",
         "in_office": true,
         "links": [
@@ -1531,6 +1552,7 @@
             "汐止市黨部常務委員",
             "台北縣第16屆議員、議會審查委員會召集人"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1656.jpg",
         "in_office": true,
         "links": [
@@ -1607,6 +1629,7 @@
             "臺北縣體育會合球委員會主委",
             "國立政治大學行政管理碩士班兩岸研究組"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1653.jpg",
         "in_office": true,
         "links": [
@@ -1675,6 +1698,7 @@
             "民進黨台北縣議會黨團副總召",
             "臺北縣第15、16屆議員"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1551.jpg",
         "in_office": true,
         "links": [
@@ -1736,6 +1760,7 @@
             "榮民服務處第21服務區總聯絡人",
             "國防管理學院"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1461.jpg",
         "in_office": true,
         "links": [
@@ -1805,6 +1830,7 @@
             "財團法人青潭坑文教公益基金會顧問",
             "憲兵學校士官班"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0157.jpg",
         "in_office": true,
         "links": [
@@ -1884,6 +1910,7 @@
             "鶯歌鎮志工協進會理事長",
             "國際獅子會300B2區第一副總監"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1624.jpg",
         "in_office": true,
         "links": [
@@ -1951,6 +1978,7 @@
             "8.八堵礦工醫院董事長",
             "9.考試院公職候選人檢覈合格（動公覈縣字第１３８２號）"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1157.jpg",
         "in_office": true,
         "links": [
@@ -2015,6 +2043,7 @@
             "台北縣第13、14、15、16屆議員",
             "台北縣議會第三審查委員會召集人（水利、工務、城鄉）"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1361.jpg",
         "in_office": true,
         "links": [
@@ -2089,6 +2118,7 @@
             "臺北縣家長會長協會文山區顧問",
             "臺北縣警察之友會新店顧問"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0155.jpg",
         "in_office": true,
         "links": [
@@ -2154,6 +2184,7 @@
             "樹林中學家長會會長",
             "明德中學家長會會長"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1428.jpg",
         "in_office": true,
         "links": [
@@ -2224,6 +2255,7 @@
             "台灣世界新聞傳播協會副秘書長",
             "300B2區國際獅子會第十一分區主席"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0156.jpg",
         "in_office": true,
         "links": [
@@ -2296,6 +2328,7 @@
             "三峽工商婦女會創會會長",
             "三鶯女獅第六屆會長"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1231.jpg",
         "in_office": true,
         "links": [
@@ -2364,6 +2397,7 @@
             "土城市客屬會理事長",
             "國立台北大學公共行政管理研習班"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0147.jpg",
         "in_office": true,
         "links": [
@@ -2427,6 +2461,7 @@
             "台北縣第13、14、15屆議員",
             "樹林市第3屆市長"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1329.jpg",
         "in_office": true,
         "links": [
@@ -2507,6 +2542,7 @@
             "民進黨團書記長",
             "同濟會會長"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1622.jpg",
         "in_office": true,
         "links": [
@@ -2583,6 +2619,7 @@
             "救國團樹林市團委會會長",
             "2004年世界愛滋預防代言人"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1623.jpg",
         "in_office": true,
         "links": [
@@ -2645,6 +2682,7 @@
             "國大代表",
             "市民代表"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1627.jpg",
         "in_office": true,
         "links": [
@@ -2713,6 +2751,7 @@
             "東吳大學企管研究班結業",
             "國立台北科技大學土木與防災研究所在職專班"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1419.jpg",
         "in_office": true,
         "links": [
@@ -2797,6 +2836,7 @@
             "永和市調解委員會委員",
             "中和國小教師"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1519.jpg",
         "in_office": true,
         "links": [
@@ -2871,6 +2911,7 @@
             "永和市公德服務協會顧問",
             "安徽省桐城同鄉會理事長"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1319.jpg",
         "in_office": true,
         "links": [
@@ -2945,6 +2986,7 @@
             "市公所雇員",
             "義消大隊中和顧問團長"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1215.jpg",
         "in_office": true,
         "links": [
@@ -3019,6 +3061,7 @@
             "中華民國青年管理國家促進會理事",
             "台北縣健康關懷協會名譽理事長"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0142.jpg",
         "in_office": true,
         "links": [
@@ -3086,6 +3129,7 @@
             "中和市婦女會",
             "婦聯會顧問"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0138.jpg",
         "in_office": true,
         "links": [
@@ -3163,6 +3207,7 @@
             "浙江溫嶺、寧波、舟山同鄉會顧問",
             "機車、糕餅、中藥、照相等同業公會顧問"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1312.jpg",
         "in_office": true,
         "links": [
@@ -3247,6 +3292,7 @@
             "北縣公寓大廈暨社區協會等榮譽理事長",
             "北縣總工會常務理事"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/%E9%BB%83%E6%B0%B8%E6%98%8C20140618.jpg",
         "in_office": true,
         "links": [
@@ -3318,6 +3364,7 @@
             "凱達格蘭學校校友會監事",
             "陽光之友協會理事長"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1615.jpg",
         "in_office": true,
         "links": [
@@ -3384,6 +3431,7 @@
             "臺北登山會顧問",
             "中華民國紅十字會總會浮洲救生隊等顧問"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/%E6%9E%97%E6%B0%B4%E5%B1%B1_180.jpg",
         "in_office": true,
         "links": [
@@ -3451,6 +3499,7 @@
             "宜蘭同鄉會中和分會長",
             "宜蘭女兒台南同鄉會中和分會長媳婦"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1512.jpg",
         "in_office": true,
         "links": [
@@ -3521,6 +3570,7 @@
             "國立板橋高中家長會長",
             "板橋市後埔國小家長會長"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1105.jpg",
         "in_office": true,
         "links": [
@@ -3590,6 +3640,7 @@
             "讓愛走動浮萍兒計劃發起人",
             "慈濟功德會志工及各社團顧問"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0135.jpg",
         "in_office": true,
         "links": [
@@ -3668,6 +3719,7 @@
             "雲林媳婦女兒聯誼會會員",
             "雲林社顧問"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0128.jpg",
         "in_office": true,
         "links": [
@@ -3737,6 +3789,7 @@
             "台北縣幼兒教育學會顧問",
             "台北縣佛教會顧問"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1643.jpg",
         "in_office": true,
         "links": [
@@ -3802,6 +3855,7 @@
             "民進黨台北縣議會黨團97年總召集人",
             "台北縣第15、16屆議員"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1514.jpg",
         "in_office": true,
         "links": [
@@ -3874,6 +3928,7 @@
             "台北縣聲暉協會創會理事長",
             "台北縣警察志工協進會新莊中隊中隊長"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1250.jpg",
         "in_office": true,
         "links": [
@@ -3945,6 +4000,7 @@
             "客家事務的推動者",
             "義消總隊海山救護中隊長"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1410.jpg",
         "in_office": true,
         "links": [
@@ -4012,6 +4068,7 @@
             "台北縣救難協會五股分會創會會長",
             "台北縣榮民服務處服務組長"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1641.jpg",
         "in_office": true,
         "links": [
@@ -4080,6 +4137,7 @@
             "泰山鄉婦女成長推廣協會理事長。",
             "泰山鄉民代表。"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0112.jpg",
         "in_office": true,
         "links": [
@@ -4157,6 +4215,7 @@
             "林口國中家長會副會長",
             "林口鄉體育會理事長"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1642.jpg",
         "in_office": true,
         "links": [
@@ -4232,6 +4291,7 @@
             "五股鄉民代表會副主席",
             "國立空中大學公共行政學系"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0108.jpg",
         "in_office": true,
         "links": [
@@ -4299,6 +4359,7 @@
             "新莊市體育會理事長。",
             "新莊市警友站副主任委員。"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0106.jpg",
         "in_office": true,
         "links": [
@@ -4364,6 +4425,7 @@
             "民進黨台北縣黨部執行委員",
             "新莊市昌隆國小家長會會長"
         ],
+        "gender": "女",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1540.jpg",
         "in_office": true,
         "links": [
@@ -4433,6 +4495,7 @@
             "淡水正興宮管理委員會榮譽主任委員",
             "淡水清水巖管理委員會常務監察委員"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1051.jpg",
         "in_office": true,
         "links": [
@@ -4500,6 +4563,7 @@
             "淡水鎮民代會第14、15、16屆主席",
             "淡水鎮後備軍人輔導中心主任"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/XCC0103.jpg",
         "in_office": true,
         "links": [
@@ -4562,6 +4626,7 @@
             "蘇貞昌縣長連任新莊總部總幹事",
             "民進黨台北縣議會黨團總召"
         ],
+        "gender": "男",
         "image": "http://www.ntp.gov.tw/UpFile/CouncilorFile/TTCC1444.jpg",
         "in_office": true,
         "links": [
