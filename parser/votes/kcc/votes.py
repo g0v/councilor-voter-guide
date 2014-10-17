@@ -76,12 +76,13 @@ election_year = '2010'
 county, county_abbreviation = u'高雄市', 'KHH'
 
 total_text = unicodedata.normalize('NFC', codecs.open(u"../../../data/kcc/meeting_minutes-%s.txt" % election_year, "r", "utf-8").read())
+meetings = json.load(open('../../../data/kcc/meeting_minutes-%s.json' % election_year))
 total_text = re.sub(u'．', u'‧', total_text)
 
 Session_Token = re.compile(u'''
     [\s]*
     (?P<name>
-        (?P<county>[\W]{1,3}(市|縣))議會
+        %s議會
         第\s*(?P<ad>[\d]+)屆
         第\s*(?P<session>[\d]+)次(?P<type>(定期|臨時))大?會
         (預備會議暨)?
@@ -89,7 +90,7 @@ Session_Token = re.compile(u'''
         會議
     )
     紀錄
-''', re.X)
+''' % county, re.X)
 
 Absent_Token = re.compile(u'''
     \s請\s*假[:：]
@@ -112,7 +113,7 @@ for match in Session_Token.finditer(total_text):
             uid = '%s-%s-%02d-CS-%02d' % (county_abbreviation, election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
         elif match.group('type') == u'臨時':
             uid = '%s-%s-T%02d-CS-%02d' % (county_abbreviation, election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
-        sittings.append({"uid":uid, "name": match.group('name'), "county": match.group('county'), "election_year": election_years[int(match.group('ad'))], "session": match.group('session'), "date": common.ROC2AD(total_text[match.end():]), "start": match.start(), "end": match.end()})
+        sittings.append({"uid":uid, "name": re.sub('\s', '', match.group('name')), "county": county, "election_year": election_years[int(match.group('ad'))], "session": match.group('session'), "date": common.ROC2AD(total_text[match.end():]), "start": match.start(), "end": match.end()})
 for i in range(0, len(sittings)):
     # --> sittings, attendance, filelog
     if i != len(sittings)-1:
@@ -257,5 +258,18 @@ for vote_id, vote_ad, vote_date in vote_list():
 conn.commit()
 print 'done!'
 # <-- not voting & vote results end
+
+# --> update meeting_minutes download links
+print 'update meeting_minutes download links'
+meetings = json.load(open('../../../data/kcc/meeting_minutes-%s.json' % election_year))
+for meeting in meetings:
+    meeting['links'] = {'url': meeting['download_url'], 'note': u'議會官網會議紀錄'}
+    meeting['name'] = re.sub(u'第0+', u'第', u'%s議會%s' % (meeting['county'], meeting['meeting']))
+    meeting['name'] = re.sub(u'紀錄.*$', '', meeting['name'])
+    print meeting['name']
+    common.UpdateSittingLinks(c, meeting)
+conn.commit()
+print 'done!'
+# <-- update meeting_minutes download links end
 
 print 'Succeed'

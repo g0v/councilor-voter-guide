@@ -61,6 +61,7 @@ class Spider(scrapy.Spider):
             item = MeetingMinutes()
             tds = tr.xpath('td')
             if tds:
+                item['county'] = u'高雄市'
                 item['date'] = ROC2AD(tds[1].xpath('text()').extract()[0])
                 item['meeting'] = tds[2].xpath('text()').extract()[0].strip()
                 item['download_url'] = "http://cissearch.kcc.gov.tw%s" % tds[3].xpath('a/@href').extract()[0].strip()

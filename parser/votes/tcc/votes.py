@@ -4,6 +4,7 @@ import sys
 sys.path.append('../../')
 import re
 import codecs
+import unicodedata
 import json
 import glob
 import psycopg2
@@ -71,14 +72,13 @@ conn = db_settings.con()
 c = conn.cursor()
 election_years = {1: '1969', 2: '1973', 3: '1977', 4: '1981', 5: '1985', 6: '1989', 7: '1994', 8: '1998', 9: '2002', 10: '2006', 11: '2010', 12: '2014'}
 election_year = '2010'
-county = u'臺北市'
-total_text = codecs.open(u"../../../data/tcc/meeting_minutes-%s.txt" % election_year, "r", "utf-8").read()
-util = json.load(open('../../util.json'))
+county, county_abbreviation = u'臺北市', 'TPE'
+total_text = unicodedata.normalize('NFC', codecs.open(u"../../../data/tcc/meeting_minutes-%s.txt" % election_year, "r", "utf-8").read())
 
 Session_Token = re.compile(u'''
     [\s]*
     (?P<name>
-        (?P<county>[\W]{1,3}(市|縣))議會
+        %s議會
         第(?P<ad>[\d]+)屆
         第(?P<session>[\d]+)次(?P<type>(定期|臨時))大會
         (預備會議暨)?
@@ -86,7 +86,7 @@ Session_Token = re.compile(u'''
         會議
     )
     紀錄
-''', re.X)
+''' % county, re.X)
 
 Present_Token = re.compile(u'''
     出席議員[:：]?
@@ -115,10 +115,10 @@ sittings = []
 for match in Session_Token.finditer(total_text):
     if match:
         if match.group('type') == u'定期':
-            uid = '%s-%s-%02d-CS-%02d' % (util[match.group('county')], election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
+            uid = '%s-%s-%02d-CS-%02d' % (county_abbreviation, election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
         elif match.group('type') == u'臨時':
-            uid = '%s-%s-T%02d-CS-%02d' % (util[match.group('county')], election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
-        sittings.append({"uid":uid, "name": match.group('name'), "county": match.group('county'), "election_year": election_years[int(match.group('ad'))], "session": match.group('session'), "date": common.ROC2AD(total_text[match.end():]), "start": match.start(), "end": match.end()})
+            uid = '%s-%s-T%02d-CS-%02d' % (county_abbreviation, election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
+        sittings.append({"uid":uid, "name": re.sub('\s', '', match.group('name')), "county": county, "election_year": election_years[int(match.group('ad'))], "session": match.group('session'), "date": common.ROC2AD(total_text[match.end():]), "start": match.start(), "end": match.end()})
 for i in range(0, len(sittings)):
     # --> sittings, attendance, filelog
     if i != len(sittings)-1:
@@ -250,9 +250,21 @@ for vote_id, vote_ad, vote_date in vote_list():
         insert_not_voting_record(councilor_id, vote_id)
     key, value = get_vote_results(vote_id)
     update_vote_results(vote_id, dict(zip(key, value)))
-
 conn.commit()
 print 'done!'
 # <-- not voting & vote results end
+
+# --> update meeting_minutes download links
+print 'update meeting_minutes download links'
+meetings = json.load(open('../../../data/tcc/meeting_minutes-%s.json' % election_year))
+for meeting in meetings:
+    meeting['links'] = {'url': meeting['download_url'], 'note': u'議會官網會議紀錄'}
+    meeting['name'] = re.sub(u'第0+', u'第', u'%s議會%s%s' % (meeting['county'], meeting['sitting'], meeting['meeting']))
+    meeting['name'] = re.sub(u'紀錄$', '', meeting['name'])
+    print meeting['name']
+    common.UpdateSittingLinks(c, meeting)
+conn.commit()
+print 'done!'
+# <-- update meeting_minutes download links end
 
 print 'Succeed'

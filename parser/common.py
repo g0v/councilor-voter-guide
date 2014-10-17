@@ -105,17 +105,16 @@ def InsertSitting(c, sitting_dict):
         WHERE NOT EXISTS (SELECT 1 FROM sittings_sittings WHERE uid = %(uid)s)
     ''', complement)
 
-def UpdateSitting(c, uid, name):
+def UpdateSittingLinks(c, meeting):
     c.execute('''
         UPDATE sittings_sittings
-        SET name = %s
-        WHERE uid = %s
-    ''', (name, uid))
-
-def remote_newline_in_sittings(c):
-    c.execute('''
-        select uid, name
-        from sittings_sittings
-    ''')
-    for uid, name in c.fetchall():
-        UpdateSitting(c, uid, re.sub(u'[\s]', '', name))
+        SET links = %(links)s
+        WHERE name = %(name)s
+        RETURNING id
+    ''', meeting)
+    if not c.fetchall():
+        c.execute('''
+            UPDATE sittings_sittings
+            SET links = %(links)s
+            WHERE county = %(county)s AND date = %(date)s
+        ''', meeting)

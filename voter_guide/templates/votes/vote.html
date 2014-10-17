@@ -24,12 +24,8 @@
                 <span class="badge badge-important"><font class="lead">{{vote.result|vote_result:'cht'}}</font></span>
             </div>
             <div class="hero-unit">
-                <p class="text-success">表決日期：{{ vote.sitting.date|date:"Y-m-d" }}</p>
-                {% if vote.summary %}
-                <span class="badge badge-warning"><font class="lead">精簡版</font></span><br>
-                <p class="lead">{{ vote.summary }}</p>
-                {% endif %}
-                <span class="badge badge-info"><font class="lead">原文</font></span><br>
+                <p class="text-success">表決日期：{{ vote.sitting.date|date:"Y-m-d" }}<span class="badge pull-right"><a href="{{vote.sitting.links.url}}" target="_blank"><font class="lead">下載原始會議紀錄</font></a></span></p>
+                <span class="badge badge-info"><font class="lead">表決內容</font></span><br>
                 <p>{{ vote.content|linebreaksbr }}</p>
             </div>
         </div><!--end: span6 -->

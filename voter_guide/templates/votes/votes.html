@@ -14,6 +14,8 @@
 {% endblock %}
 
 {% block right %}
+    <div class="span1">
+    </div>
     <div class="span10">
         {% include "common/search_keyword_form.html" with placeholder_text="例:預算 世運...空格有交集效果" %}
         {% if keyword_hot and index != 'conscience' %}
@@ -54,21 +56,20 @@
         <table class="table table-bordered zebra" >
             <thead>
                 <tr style="background-color: #FFFFCC;">
-                    <th style="width: 14%">表決結果</th>
+                    <th style="width: 14%">日期</th>
+                    <th style="width: 40%">表決內容</th>
+                    <th style="width: 9%">表決結果</th>
                     <th style="width: 3%">贊成票</th>
                     <th style="width: 3%">反對票</th>
                     <th style="width: 3%">棄權票</th>
                     <th style="width: 3%">沒投票</th>
-                    <th style="width: 14%">日期</th>
-                    <th style="width: 50%">表決內容</th>
                     <th style="width: 10%">備註</th>
+                    <th style="width: 15%">會議紀錄</th>
                 </tr>
             </thead>
             <tbody>
                 {% for fragment in votes %}
                 <tr style="background-color: {% cycle '#DDDDDD' 'white' %};">
-                    <td style="text-align:center; vertical-align:middle; background-color: #{{fragment.result|vote_result:'td_bgcolor'}}">{{fragment.result|vote_result:'cht'}}</td>
-                    <td style="text-align:center; vertical-align:middle; background-color: #66CC66;">{{fragment.results.agree}}</td><td style="text-align:center; vertical-align:middle; background-color: #FF66CC;">{{fragment.results.disagree}}</td><td style="text-align:center; vertical-align:middle; background-color: #999999;">{{fragment.results.abstain}}</td><td style="text-align:center; vertical-align:middle; background-color: #FFFF99;">{{fragment.results.not_voting}}</td>
                     <td style="text-align:center; vertical-align:middle;">{{ fragment.date|date:"Y-m-d" }}</td>
                     <td>
                         <a href="{% url 'votes:vote' fragment.uid %}" rel="tooltip" title="查看各議員投什麼票">查看投票名單和完整內容</a><br>
@@ -80,10 +81,15 @@
                             {{fragment.content|linebreaksbr|truncatechars:120}}
                         {% endif %}
                     </td>
+                    <td style="text-align:center; vertical-align:middle; background-color: #{{fragment.result|vote_result:'td_bgcolor'}}">{{fragment.result|vote_result:'cht'}}</td>
+                    <td style="text-align:center; vertical-align:middle; background-color: #66CC66;">{{fragment.results.agree}}</td><td style="text-align:center; vertical-align:middle; background-color: #FF66CC;">{{fragment.results.disagree}}</td><td style="text-align:center; vertical-align:middle; background-color: #999999;">{{fragment.results.abstain}}</td><td style="text-align:center; vertical-align:middle; background-color: #FFFF99;">{{fragment.results.not_voting}}</td>
                     <td style="text-align:center; vertical-align:middle;">
                     {% if fragment.conflict %}
                     <p class="text-error">脫黨表決</p>
                     {% endif %}
+                    </td>
+                    <td style="vertical-align:middle;">
+                        <a href="{{fragment.sitting.links.url}}" target="_blank">{{fragment.sitting.links.note}}</a>
                     </td>
                 </tr>
                 {% empty %}
@@ -93,6 +99,8 @@
         </table>
         {% paginate %}
         {% endif %}
+    </div>
+    <div class="span1">
     </div>
 {% endblock right %}
 

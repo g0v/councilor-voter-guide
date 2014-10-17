@@ -60,6 +60,7 @@ class Bills(Item):
     links = Field()
 
 class MeetingMinutes(Item):
+    county = Field()
     sitting = Field()
     category = Field()
     date = Field()
