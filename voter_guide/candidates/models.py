@@ -34,7 +34,7 @@ class Candidates(models.Model):
         try:
             councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
             if councilor.title == u'議長':
-                return u'0 % （議長不參加表決）'
+                return u'議長不參加表決'
         except Exception, e:
             return ''
         if Councilors_Votes.objects.filter(councilor_id=councilor.id):
