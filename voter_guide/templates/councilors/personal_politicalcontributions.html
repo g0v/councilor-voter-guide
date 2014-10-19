@@ -1,0 +1,47 @@
+﻿{% extends "common/person_info.html" %}
+{% load extras %}
+
+{% block title %}
+    {% if councilor %}
+        <title>議員投票指南:{{councilor.name}}的政治獻金</title>
+        <meta property="og:title" content="議員投票指南:{{councilor.name}}的政治獻金"/>
+        <meta itemprop="name" content="議員投票指南:{{councilor.name}}的政治獻金">
+    {% else %}
+        <title>議員投票指南:立委的政治獻金</title>
+        <meta property="og:title" content="議員投票指南:立委的政治獻金"/>
+        <meta itemprop="name" content="議員投票指南:立委的政治獻金">
+    {% endif %}
+{% endblock title %}
+
+{% block person_detail %}
+    <div align="center">
+        <br>
+        <div class="hero-unit">
+            <p class="lead">收入：共<span class="price text-right">{{data_total.in_total}}</span>元</p>
+            <div id="d3_in" align="center"></div>
+        </div>
+            <br>
+        <div class="hero-unit">
+            <p class="lead">支出：共<span class="price text-right">{{data_total.out_total}}</span>元</p>
+            <div id="d3_out" align="center"></div>
+        </div>
+    </div>
+{% endblock person_detail %}
+
+{% block script %}
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/d3.min.js"></script>
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
+    {% include "councilors/d3/personal_politicalcontributions_in_pie_chart.html" %}
+    {% include "councilors/d3/personal_politicalcontributions_out_pie_chart.html" %}
+    <script>
+        $(document).ready( function() {
+            $('#polticalcontributions').addClass("btn-info");
+            $('.price').each(function(index,ele){
+                var number = $(ele).text()
+                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 2});
+                $(ele).replaceWith(zh_number)
+            })
+        });
+    </script>
+    {{ block.super }}
+{% endblock script %}

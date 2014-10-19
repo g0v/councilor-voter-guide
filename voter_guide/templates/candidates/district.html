@@ -14,16 +14,26 @@
         <div class="page-header text-center">
             <h3>{{election_year}} {{county}} - {{candidates.0.district}} 議員候選人</h3>
         </div>
+        <div class="description">
+            <p class="lead">☞ 點選下表中任一藍字連結，可再進一步看該議員的<b>財產申報</b>、<b>政治獻金</b>、<b>工程建議款</b>等詳細資訊</p>
+        </div>
         {% if candidates %}
         <table class="table table-bordered table-condensed sortable zebra" >
             <thead>
-                <tr style="font-weight:bold;background-color: #CCFF99;">
-                    <th>候選人</th>
-                    <th>黨籍</th>
-                    <th>最近任期</th>
-                    <th>主提案數 / 參與提案數</th>
-                    <th>投票缺席率（%）</th>
-                    <th>脫黨投票率（%）</th>
+                <tr style="font-weight:bold;background-color: #E1D0D0;">
+                    <th rowspan="2">候選人</th>
+                    <th rowspan="2">黨籍</th>
+                    <th rowspan="2">最近任期</th>
+                    <th rowspan="2">主提案數 / 參與提案數</th>
+                    <th rowspan="2">投票缺席率（%）</th>
+                    <th rowspan="2">議會缺席次數</th>
+                    <th colspan="3">上次競選政治獻金</th>
+                </tr>
+                <tr style="background-color: #CCFFCC;">
+                    <th>收入</th>
+                    <th>支出</th>
+                    <th>餘額</th>
+                    </tr>
                 </tr>
             </thead>
             <tbody>
@@ -31,31 +41,36 @@
                     <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
                         <td style="text-align:center; vertical-align:middle;">{{councilor.name}}</td>
                         <td style="text-align:center; vertical-align:middle;">{{councilor.party}}</td>
+                        {% if councilor.councilor_id %}
                         <td style="text-align:center; vertical-align:middle;">
-                            {% if councilor.councilor_id %}
                                 {% if councilor.term_end %}
                                     {{councilor.last_election_year}}~<font color="red">{{councilor.term_end|date:"Y-m-d"}} (中途離職)</font>
                                 {% else %}
                                     {{councilor.last_election_year|election_year_range}}
                                 {% endif %}
-                            {% endif %}
                             {% if councilor.last_election_year == '2010' %}
-                                <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}">（{{councilor.last_election_year}} 競選政見）</a>
+                                <a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}"><br>（{{councilor.last_election_year}} 競選政見）</a>
                             {% endif %}
                         </td>
                         <td style="text-align:center; vertical-align:middle;">
                             {% if councilor.last_election_year == '2010' %}
                                 {{councilor.npribill}} / {{councilor.nbill}}
-                                <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}">（看完整議案）</a>
+                                <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}"><br>（看完整議案）</a>
                             {% endif %}
                         </td>
                         <td style="text-align:center; vertical-align:middle;">
                             {% if councilor.last_election_year == '2010' %}
                                 {{councilor.pnotvote}}
-                                <a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}">（看完整表決）</a>
+                                <a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}"><br>（看完整表決）</a>
                             {% endif %}
                         </td>
-                        <td style="text-align:center; vertical-align:middle;">{{councilor.pconsciencevote}}</td>
+                        <td style="text-align:center; vertical-align:middle;">{{councilor.cs_absent}}</td>
+                        <td style="text-align:center; vertical-align:middle;"><font class="price">{{councilor.in_total}}</font></td>
+                        <td style="text-align:center; vertical-align:middle;"><font class="price">{{councilor.out_total}}</font></td>
+                        <td style="text-align:center; vertical-align:middle;"><font class="price">{{councilor.balance}}</font></td>
+                        {% else %}
+                        <td colspan="7"/>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </tbody>
@@ -67,3 +82,15 @@
     <div class="span1">
     </div>
 {% endblock right %}
+
+{% block script %}
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
+    <script>
+        $('.price').each(function(index,ele){
+            var number = $(ele).text()
+            zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
+            $(ele).replaceWith(zh_number)
+        })
+    </script>
+    {{ block.super }}
+{% endblock script %}

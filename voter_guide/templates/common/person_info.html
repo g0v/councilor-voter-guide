@@ -84,7 +84,7 @@
                     <td colspan=2 style="text-align:center; vertical-align:middle;">學歷</td>
                 </tr>
                 <tr>
-                    <td colspan=2>{{councilor.education|linebreaksbr}}</td>
+                    <td colspan=2><abbr title="{{councilor.education}}">{{councilor.education|linebreaksbr|truncatechars:50}}</abbr></td>
                 </tr>
                 {% endif %}
                 {% if councilor.experience %}
@@ -95,16 +95,16 @@
                     <td colspan=2 style="text-align:center; vertical-align:middle;">經歷</td>
                 </tr>
                 <tr>
-                    <td colspan=2>{{councilor.experience|linebreaksbr}}</td>
+                    <td colspan=2><abbr title="{{councilor.experience}}">{{councilor.experience|linebreaksbr|truncatechars:50}}</abbr></td>
                 </tr>
                 {% endif %}
-                {% if councilor.links.council %}
+                {% if councilor.links %}
                 <tr>
                     <td colspan=2></td>
                 </tr>
                 <tr>
                     <td style="background-color: lightgrey;">外部連結</td>
-                    <td><a href="{{ councilor.links.council }}" target="_blank">{{ councilor.name }}的議會官網</a></td>
+                    <td><a href="{{ councilor.links.0.url }}" target="_blank">{{ councilor.name }}的議會官網</a></td>
                 </tr>
                 {% endif %}
             </tbody>
@@ -117,8 +117,9 @@
         <div class="row-fluid">
             <div class="span12">
                 <b>{{ councilor.name }}</b>的&nbsp;
-                <a class="btn btn-large" id='url_property' href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" target="_blank">個人財產申報</a>
+                <a class="btn btn-large" id='property' href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" target="_blank">個人財產申報</a>
                 <a class="btn btn-large" id='councilors_suggestor' href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">工程建議款</a>
+                <a class="btn btn-large" id='polticalcontributions' href="{% url 'councilors:personal_political_contributions' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">政治獻金</a>
                 <div class="btn-group">
                     <a id='councilors_voter' class="btn btn-large dropdown-toggle" href="#" data-toggle="dropdown">投票紀錄 <span class="caret"></span></a>
                     <ul class="dropdown-menu">

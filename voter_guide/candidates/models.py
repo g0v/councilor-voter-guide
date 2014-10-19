@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from json_field import JSONField
-from councilors.models import CouncilorsDetail
+from councilors.models import CouncilorsDetail, Attendance
 from votes.models import Councilors_Votes
 from bills.models import Councilors_Bills
 
@@ -85,3 +85,11 @@ class Candidates(models.Model):
             return ''
         return councilor.term_end.get('date') if not councilor.in_office else None
     term_end = property(_term_end)
+
+    def _cs_absent_count(self):
+        try:
+            councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
+            return Attendance.objects.filter(councilor_id=councilor.id, category='CS', status='absent').count()
+        except Exception, e:
+            return ''
+    cs_absent = property(_cs_absent_count)

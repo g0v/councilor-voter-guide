@@ -3,7 +3,7 @@ import operator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.db.models import Count, Sum, Q
-from .models import CouncilorsDetail, Attendance
+from .models import CouncilorsDetail, Attendance, PoliticalContributions
 from votes.models import Votes, Councilors_Votes
 from bills.models import Bills
 from suggestions.models import Suggestions
@@ -73,6 +73,7 @@ def index(request, index, election_year, county):
         if not Attendance.objects.filter(sitting__county=county):
             return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'no_count_list': None, 'councilors': None, 'out_office': out_office, 'index': index})
         compare = Sittings.objects.filter(election_year=election_year, county=county, committee='').count()
+        print compare
         councilors = CouncilorsDetail.objects.filter(basic_query & Q(attendance__category='CS', attendance__status='absent'))\
                                              .annotate(totalNum=Count('attendance__id'))\
                                              .order_by('-totalNum','party')
@@ -171,3 +172,17 @@ def platformer(request, councilor_id, election_year):
     except Exception, e:
         return HttpResponseRedirect('/')
     return render(request, 'councilors/platformer.html', {'county': councilor.county, 'councilor': councilor})
+
+def personal_political_contributions(request, councilor_id, election_year):
+    data_income, data_expenses, data_total = None, None, None
+    try:
+        councilor = CouncilorsDetail.objects.get(election_year=election_year, councilor_id=councilor_id)
+    except Exception, e:
+        return HttpResponseRedirect('/')
+    try:
+        data_income = dict(PoliticalContributions.objects.values("in_individual", "in_profit", "in_party", "in_civil", "in_anonymous", "in_others").get(councilor_id=councilor.id))
+        data_expenses = dict(PoliticalContributions.objects.values("out_personnel", "out_propagate", "out_campaign_vehicle", "out_campaign_office", "out_rally", "out_travel", "out_miscellaneous", "out_return", "out_exchequer", "out_public_relation").get(councilor_id=councilor.id))
+        data_total = PoliticalContributions.objects.values("in_total", "out_total").get(councilor_id=councilor.id)
+    except Exception, e:
+        print e
+    return render(request,'councilors/personal_politicalcontributions.html', {'councilor': councilor, 'data_total': data_total, 'data_income': data_income, 'data_expenses': data_expenses})

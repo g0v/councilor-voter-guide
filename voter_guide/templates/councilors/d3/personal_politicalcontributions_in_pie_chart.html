@@ -1,0 +1,75 @@
+{% load extras %}
+<style>
+
+    .arc text {
+        font: 16px sans-serif;
+        font-weight: bold;
+    }
+
+    .arc path {
+        stroke: #fff;
+    }
+
+</style>
+<script>
+
+    var data = {{data_income|as_json}}
+
+    var width = 720,
+    height = 360,
+    radius = Math.min(width, height) / 2 -20,
+    labelr = radius + 10; // radius for label anchor
+
+    var color = d3.scale.ordinal()
+    .range(["#FF66CC", "#6699FF", "#66CC66", "#FFCC33", "#999999", "#FFCC66"])
+    .domain(["in_individual", "in_profit", "in_party", "in_civil", "in_anonymous", "in_others"]);
+
+    var legend = d3.scale.ordinal()
+    .range(["個人捐贈", "營利事業捐贈", "政黨捐贈", "人民團體捐贈", "匿名捐贈", "其他"])
+    .domain(["in_individual", "in_profit", "in_party", "in_civil", "in_anonymous", "in_others"]);
+
+    var arc = d3.svg.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(0);
+
+    var pie = d3.layout.pie()
+    .sort(null)
+    .value(function(d) { return d.value; });
+
+    var svg = d3.select("#d3_in").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    var g = svg.selectAll(".arc")
+    .data(pie(d3.entries(data)))
+    .enter().append("g")
+    .attr("class", "arc");
+
+    g.append("path")
+    .attr("d", arc)
+    .style("fill", function(d) { return color(d.data.key); });
+
+    g.append("text")
+    .attr("transform", function(d) {
+        var c = arc.centroid(d),
+        x = c[0],
+        y = c[1],
+        // pythagorean theorem for hypotenuse
+        h = Math.sqrt(x*x + y*y);
+        return "translate(" + (x/h * labelr) +  ',' +
+        (y/h * labelr) +  ")";
+    })
+    .attr("dy", ".35em")
+    .attr("text-anchor", function(d) {
+        return (d.endAngle + d.startAngle)/2 > Math.PI ?
+        "end" : "start";
+    })
+    .text(function(d) {
+        if (d.value > 1000)
+        return legend(d.data.key) + '：' + zhutil.approximate(d.value, {base: '萬', extra_decimal: 1});
+    })
+    .style("fill", function(d) { return color(d.data.key); });
+
+</script>

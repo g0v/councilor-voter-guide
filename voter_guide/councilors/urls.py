@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^biller/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.biller, name='biller'),
     url(r'^voter/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.voter, name='voter'),
     url(r'^suggestor/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.suggestor, name='suggestor'),
+    url(r'^personal_political_contributions/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.personal_political_contributions, name='personal_political_contributions'),
 )
