@@ -55,11 +55,21 @@ def subtract(value, arg):
 def subtract(value, arg):
     return value * arg
 
+@register.filter(name='percentage')
+def percentage(value, arg):
+    if arg:
+        try:
+            return "{0:.1f}".format(value * 100.0 / arg)
+        except Exception, e:
+            print e
+    else:
+        return 0
+
 @register.filter(name='divide')
 def divide(value, arg):
     if arg:
         try:
-            return "{0:.0f}".format(value / arg)
+            return "{0:.2f}".format(value / arg)
         except Exception, e:
             print e
     else:
