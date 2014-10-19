@@ -54,3 +54,26 @@ class CouncilorsDetail(models.Model):
         return CouncilorsDetail.objects.filter(councilor_id=self.councilor_id).values_list('election_year', flat=True).order_by('-election_year')
     in_office_year = property(_in_office_year)
 
+class PoliticalContributions(models.Model):
+    councilor = models.ForeignKey(CouncilorsDetail, related_name='politicalcontributions')
+    in_individual = models.IntegerField(blank=True, null=True)
+    in_profit = models.IntegerField(blank=True, null=True)
+    in_party = models.IntegerField(blank=True, null=True)
+    in_civil = models.IntegerField(blank=True, null=True)
+    in_anonymous = models.IntegerField(blank=True, null=True)
+    in_others = models.IntegerField(blank=True, null=True)
+    in_total = models.IntegerField(blank=True, null=True)
+    out_personnel = models.IntegerField(blank=True, null=True)
+    out_propagate = models.IntegerField(blank=True, null=True)
+    out_campaign_vehicle = models.IntegerField(blank=True, null=True)
+    out_campaign_office = models.IntegerField(blank=True, null=True)
+    out_rally = models.IntegerField(blank=True, null=True)
+    out_travel = models.IntegerField(blank=True, null=True)
+    out_miscellaneous = models.IntegerField(blank=True, null=True)
+    out_return = models.IntegerField(blank=True, null=True)
+    out_exchequer = models.IntegerField(blank=True, null=True)
+    out_public_relation = models.IntegerField(blank=True, null=True)
+    out_total = models.IntegerField(blank=True, null=True)
+    balance = models.IntegerField(blank=True, null=True)
+    def __unicode__(self):
+        return self.balance
