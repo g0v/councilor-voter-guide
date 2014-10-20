@@ -37,6 +37,20 @@ def getId(c, name, election_year, county):
         return r[0]
     print '"%s"' % name
 
+def getDetailIdFuzzy(c, name, election_year, county):
+    m = re.match(u'(?P<cht>.+?)[a-zA-Z]', name)
+    if m:
+        name = m.group('cht')
+    c.execute('''
+        SELECT id
+        FROM councilors_councilorsdetail
+        WHERE name like %s and election_year = %s and county = %s
+    ''', (name + '%', election_year, county))
+    r = c.fetchone()
+    if r:
+        return r[0]
+    print '"%s"' % name
+
 def getDetailId(c, name, election_year, county):
     c.execute('''
         SELECT id
@@ -46,7 +60,8 @@ def getDetailId(c, name, election_year, county):
     r = c.fetchone()
     if r:
         return r[0]
-    print '"%s"' % name
+    else:
+        return getDetailIdFuzzy(c, name, election_year, county)
 
 def getIdList(c, name_list, sitting_dict):
     c.execute('''

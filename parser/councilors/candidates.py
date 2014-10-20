@@ -10,11 +10,11 @@ import pandas as pd
 import db_settings
 
 
-def uid(candidate):
+def latest_term(candidate):
     c.execute('''
         SELECT councilor_id, election_year
         FROM councilors_councilorsdetail
-        WHERE name = %(name)s and county = %(county)s
+        WHERE name = %(name)s and county = %(county)s and election_year < %(election_year)s
         ORDER BY election_year DESC
     ''', candidate)
     r = c.fetchone()
@@ -23,7 +23,28 @@ def uid(candidate):
     c.execute('''
         SELECT councilor_id, election_year
         FROM councilors_councilorsdetail
-        WHERE name = %(name)s
+        WHERE name = %(name)s and election_year < %(election_year)s
+        ORDER BY election_year DESC
+    ''', candidate)
+    r = c.fetchone()
+    if r:
+        return r
+    # non-cht in name
+    m = re.match(u'(?P<cht>.+?)[a-zA-Z]', candidate['name'])
+    candidate['name_like'] = m.group('cht') if m else candidate['name']
+    c.execute('''
+        SELECT councilor_id, election_year
+        FROM councilors_councilorsdetail
+        WHERE name like %(name_like)s and county = %(county)s and election_year < %(election_year)s
+        ORDER BY election_year DESC
+    ''', candidate)
+    r = c.fetchone()
+    if r:
+        return r
+    c.execute('''
+        SELECT councilor_id, election_year
+        FROM councilors_councilorsdetail
+        WHERE name like %(name_like)s and election_year < %(election_year)s
         ORDER BY election_year DESC
     ''', candidate)
     r = c.fetchone()
@@ -44,7 +65,7 @@ def insertCandidates(candidate):
     for key in ['education', 'experience', 'platform', 'remark']:
         if candidate.get(key):
             candidate[key] = '\n'.join(candidate[key])
-    complement = {"election_year": '2014', "councilor_id":None, "birth":None, "gender":'', "party":'', "contact_details":None, "title":'', "district":'', "elected":None, "votes":None, "education":None, "experience":None, "remark":None, "image":'', "links":None, "platform":''}
+    complement = {"councilor_id":None, "birth":None, "gender":'', "party":'', "contact_details":None, "title":'', "district":'', "elected":None, "votes":None, "education":None, "experience":None, "remark":None, "image":'', "links":None, "platform":''}
     complement.update(candidate)
     c.execute('''
         INSERT into candidates_candidates(councilor_id, last_election_year, election_year, name, birth, gender, party, title, constituency, county, district, elected, contact_details, votes, education, experience, remark, image, links, platform)
@@ -54,7 +75,8 @@ def insertCandidates(candidate):
 
 conn = db_settings.con()
 c = conn.cursor()
-df = pd.read_excel(u'../../data/candidates_2014.xlsx', sheetname=0)
+election_year = '2014'
+df = pd.read_excel(u'../../data/candidates_%s.xlsx' % election_year, sheetname=0)
 df = df[df['name'] != u'姓名']
 df['party'] = map(lambda x: u'無黨籍' if re.search(u'^無$', x) else x, df['party'])
 df['party'] = map(lambda x: u'臺灣團結聯盟' if re.search(u'台灣團結聯盟', x) else x, df['party'])
@@ -67,6 +89,7 @@ for candidate in candidates:
         continue
     candidate['name'] = re.sub('\s', '', candidate['name'])
     candidate['name'] = re.sub(u'[•．]', u'‧', candidate['name'])
-    candidate['uid'], candidate['last_election_year'] = uid(candidate)
+    candidate['election_year'] = election_year
+    candidate['uid'], candidate['last_election_year'] = latest_term(candidate)
     insertCandidates(candidate)
 conn.commit()
