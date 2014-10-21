@@ -29,7 +29,7 @@ class AttendanceViewSet(viewsets.ReadOnlyModelViewSet):
 class SittingsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Sittings.objects.all()
     serializer_class = SittingsSerializer
-    filter_fields = ('uid', 'name', 'committee', 'date', 'election_year', 'session')
+    filter_fields = ('uid', 'name', 'committee', 'date', 'election_year')
 
 class VotesViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Votes.objects.all()
