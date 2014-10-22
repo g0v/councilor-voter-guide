@@ -10,7 +10,7 @@ def write_file(data, file_name):
     file.write(data)
     file.close()
 
-for file_name in ['tncc/tnccp/tnccp.json']:
+for file_name in ['tncc/bills.json', 'tncc/tnccp/tnccp.json']:
     print file_name
     objs = json.load(open(file_name))
     dump_data = json.dumps(objs, sort_keys=True, indent=4, ensure_ascii=False)

@@ -34,9 +34,8 @@ def CouncilorsBills(councilor_id, bill_id, priproposer, petition):
 
 conn = db_settings.con()
 c = conn.cursor()
-#dict_c = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-for council in ['../../data/ntcc/bills.json', '../../data/kcc/bills.json', '../../data/tccc/bills.json', '../../data/tcc/bills.json']:
+for council in ['../../data/tncc/bills.json', '../../data/ntcc/bills.json', '../../data/kcc/bills.json', '../../data/tccc/bills.json', '../../data/tcc/bills.json']:
     print council
     dict_list = json.load(open(council))
     for bill in dict_list:
@@ -46,6 +45,7 @@ for council in ['../../data/ntcc/bills.json', '../../data/kcc/bills.json', '../.
         for name in bill['proposed_by']:
             name = re.sub(u'\(.*\)', '', name)
             name = re.sub(u'．', u'‧', name)
+            name = re.sub(u'副?議長', '', name)
             councilor_id = common.getDetailId(c, name, bill['election_year'], bill['county'])
             if councilor_id:
                 CouncilorsBills(councilor_id, bill['uid'], priproposer, False)
