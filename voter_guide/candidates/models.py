@@ -89,7 +89,8 @@ class Candidates(models.Model):
     def _cs_absent_count(self):
         try:
             councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
-            return Attendance.objects.filter(councilor_id=councilor.id, category='CS', status='absent').count()
+            councilor_records = Attendance.objects.filter(councilor_id=councilor.id, category='CS')
+            return councilor_records.filter(status='absent').count() if councilor_records else u''
         except Exception, e:
             return ''
     cs_absent = property(_cs_absent_count)

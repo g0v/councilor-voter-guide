@@ -81,7 +81,7 @@ def index(request, index, election_year, county):
                                                 .exclude(councilor_id__in=councilors.values_list('councilor_id', flat=True))
         return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'compare': compare, 'index': index})
     if index == 'bills':
-        query = basic_query
+        query = basic_query & Q(councilors_bills__petition=False)
         proposertype = False
         if 'proposertype' in request.GET:
             proposertype = request.GET['proposertype']
