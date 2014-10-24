@@ -65,7 +65,7 @@
     })
     .text(function(d) {
         if (d.value != 0)
-        return d.value;
+        return zhutil.approximate(d.value, {base: '萬', extra_decimal: 0});
     })
     .style("fill", function(d) { return color(d.data.party); });
 

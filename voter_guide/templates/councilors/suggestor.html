@@ -15,10 +15,11 @@
 
 {% block person_detail %}
     <div class="page-header">
-    <div class="ui raised segment">
-        <p><b>說明</b>：民代建議款是由地方政府制定，分配一定款項。如果地方有需求的話，可以找議員來陳情，「建議」政府撥款進行建設。<u>由議員提案地方工程內容，縣市政府核定預算金額，民代雖無決定權，但同時身兼建議預算、審查預算的角色。</u>「議員配合款」、「小型工程建議款」、「議員建議款」、「基層建設配合款」、「議員所提地方建設建議事項」指的都是民代建議款。<p>
-        <b>資料</b>：目前有公布建議細項的縣市有限，僅有北高兩市有列出建議的議員名單。</p>
-        <h4>☞ 更多資料請看<a href="{% url 'suggestions:report' %}" target="_blank">工程建議款專頁</a></h4> 
+        <div class="ui raised segment">
+            <p><b>說明</b>：民代建議款是由地方政府制定，分配一定款項。如果地方有需求的話，可以找議員來陳情，「建議」政府撥款進行建設。<u>由議員提案地方工程內容，縣市政府核定預算金額，民代雖無決定權，但同時身兼建議預算、審查預算的角色。</u>「議員配合款」、「小型工程建議款」、「議員建議款」、「基層建設配合款」、「議員所提地方建設建議事項」指的都是民代建議款。</p>
+            <p><b>資料</b>：目前有公布建議細項的縣市有限，僅有北高兩市有列出建議的議員名單。</p>
+            <h4>☞ 更多資料請看<a href="{% url 'suggestions:report' %}" target="_blank">工程建議款專頁</a></h4>
+        </div>
     </div>
     <p class="lead">{{councilor.name}}的工程款提案共通過：<font class="price">{{total_expense.sum}}</font></p>
     <div class="row-fluid">
@@ -93,6 +94,7 @@
 {% endblock person_detail %}
 
 {% block script %}
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     {% include "common/sorttable.html" %}
     {% if index != 'rawdata' %}
         {{ block.super }}
@@ -101,7 +103,6 @@
     <link href="//cdn.jsdelivr.net/jquery.datatables/1.9.4/css/jquery.dataTables.css" rel="stylesheet">
     <link href="//cdn.jsdelivr.net/jquery.datatables/1.9.4/css/jquery.dataTables_themeroller.css" rel="stylesheet">
     <script src="//datatables.net/download/build/nightly/jquery.dataTables.js"></script>
-    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     <script>
         $(document).ready( function() {
             $('#datatable').dataTable({
