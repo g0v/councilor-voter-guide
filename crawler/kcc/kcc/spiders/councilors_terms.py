@@ -76,7 +76,7 @@ class Spider(scrapy.Spider):
                 item['party'] = node.xpath('table/tr/td/text()').extract()[0]
             if re.search(u'聯絡電話', th):
                 for phone in [re.sub(u'\s', '', x) for x in node.xpath('text()').extract()]:
-                    item['contact_details'].append({'type': 'voice', 'label': u'傳真', 'value': phone})
+                    item['contact_details'].append({'type': 'voice', 'label': u'電話', 'value': phone})
             if re.search(u'傳真電話', th):
                 for phone in [re.sub(u'\s', '', x) for x in node.xpath('text()').extract()]:
                     item['contact_details'].append({'type': 'fax', 'label': u'傳真', 'value': phone})

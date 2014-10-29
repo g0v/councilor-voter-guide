@@ -37,45 +37,43 @@ class Candidates(models.Model):
                 return u'議長不參加表決'
         except Exception, e:
             return ''
-        if Councilors_Votes.objects.filter(councilor_id=councilor.id):
-            not_vote = Councilors_Votes.objects.filter(decision__isnull=True, councilor_id=councilor.id).count()
-            should_vote = Councilors_Votes.objects.filter(councilor_id=councilor.id).count()
+        all_vote = Councilors_Votes.objects.filter(councilor_id=councilor.id)
+        if all_vote:
+            not_vote = all_vote.filter(decision__isnull=True).count()
+            should_vote = all_vote.count()
             return u'%.2f %% ' % (not_vote * 100.0 / should_vote)
-        return u'沒有表決紀錄'
+        return u''
     pnotvote = property(_not_vote_percentage)
 
     def _conscience_vote_percentage(self):
-        if self.last_election_year != '2010':
-            return ''
         try:
             councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
         except Exception, e:
             return ''
-        if Councilors_Votes.objects.filter(councilor_id=councilor.id):
-            not_vote = Councilors_Votes.objects.filter(conflict=True, councilor_id=councilor.id).count()
-            should_vote = Councilors_Votes.objects.filter(councilor_id=councilor.id).count()
+        all_vote = Councilors_Votes.objects.filter(councilor_id=councilor.id)
+        if all_vote:
+            not_vote = all_vote.filter(conflict=True).count()
+            should_vote = all_vote.count()
             return u'%.2f %% ' % (not_vote * 100.0 / should_vote)
-        return u'沒有表決紀錄'
+        return ''
     pconsciencevote = property(_conscience_vote_percentage)
 
     def _pribiller_count(self):
-        if self.last_election_year != '2010':
-            return ''
         try:
             councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
         except Exception, e:
             return ''
-        return Councilors_Bills.objects.filter(councilor_id=councilor.id, priproposer=True).count()
+        all_bill = Councilors_Bills.objects.filter(councilor_id=councilor.id, priproposer=True)
+        return all_bill.count() if all_bill else ''
     npribill = property(_pribiller_count)
 
     def _biller_count(self):
-        if self.last_election_year != '2010':
-            return ''
         try:
             councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
         except Exception, e:
             return ''
-        return Councilors_Bills.objects.filter(councilor_id=councilor.id, petition=False).count()
+        all_bill = Councilors_Bills.objects.filter(councilor_id=councilor.id, petition=False)
+        return all_bill.count() if all_bill else ''
     nbill = property(_biller_count)
 
     def _term_end(self):

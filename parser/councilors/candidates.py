@@ -4,6 +4,7 @@ import sys
 sys.path.append('../')
 import re
 import json
+import glob
 import psycopg2
 from psycopg2.extras import Json
 import pandas as pd
@@ -76,20 +77,22 @@ def insertCandidates(candidate):
 conn = db_settings.con()
 c = conn.cursor()
 election_year = '2014'
-df = pd.read_excel(u'../../data/candidates_%s.xlsx' % election_year, sheetname=0)
-df = df[df['name'] != u'姓名']
-df['party'] = map(lambda x: u'無黨籍' if re.search(u'^無$', x) else x, df['party'])
-df['party'] = map(lambda x: u'臺灣團結聯盟' if re.search(u'台灣團結聯盟', x) else x, df['party'])
-candidates = json.loads(df.to_json(orient='records'))
-for candidate in candidates:
-    match = re.search(u'(?P<county>\W+)第(?P<num>\d+)選(?:舉)?區', candidate['constituency'])
-    candidate['county'] = match.group('county') if match else None
-    candidate['constituency'] = match.group('num') if match else None
-    if not (candidate['name'] and (re.search(u'(臺北市|臺中市|高雄市|新北市|臺南市)', candidate['county']))):
-        continue
-    candidate['name'] = re.sub('\s', '', candidate['name'])
-    candidate['name'] = re.sub(u'[・•．]', u'‧', candidate['name'])
-    candidate['election_year'] = election_year
-    candidate['uid'], candidate['last_election_year'] = latest_term(candidate)
-    insertCandidates(candidate)
+files = [f for f in glob.glob('../../data/candidates/%s/undirect.xlsx' % election_year)]
+for f in files:
+    df = pd.read_excel(f, sheetname=0, names=['date', 'constituency', 'name', 'party'])
+    df = df[df['name'] != u'姓名']
+    df['party'] = map(lambda x: u'無黨籍' if re.search(u'^無$', x) else x, df['party'])
+    df['party'] = map(lambda x: u'臺灣團結聯盟' if re.search(u'台灣團結聯盟', x) else x, df['party'])
+    candidates = json.loads(df.to_json(orient='records'))
+    for candidate in candidates:
+        match = re.search(u'(?P<county>\W+)第(?P<num>\d+)選(?:舉)?區', candidate['constituency'])
+        candidate['county'] = match.group('county') if match else None
+        candidate['constituency'] = match.group('num') if match else None
+        if not (candidate['name'] and (re.search(u'(新竹市)', candidate['county']))):
+            continue
+        candidate['name'] = re.sub('\s', '', candidate['name'])
+        candidate['name'] = re.sub(u'[・•．]', u'‧', candidate['name'])
+        candidate['election_year'] = election_year
+        candidate['uid'], candidate['last_election_year'] = latest_term(candidate)
+        insertCandidates(candidate)
 conn.commit()

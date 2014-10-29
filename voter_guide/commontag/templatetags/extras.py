@@ -42,6 +42,10 @@ def election_year_range(value):
     for i in range(0, len(election_years)):
         if election_years[i] == value:
             return '%s~%s' % (value, election_years[i+1])
+    election_years = ['2009', '2014', '2018']
+    for i in range(0, len(election_years)):
+        if election_years[i] == value:
+            return '%s~%s' % (value, election_years[i+1])
 
 @register.filter(name='mod')
 def mod(value, arg):

@@ -9,14 +9,14 @@ Usage::
     $ python ../../utils/prettyjson.py /tmp/test.json
     # print item[3] by indext
     $ python ../../utils/prettyjson.py /tmp/test.json 3
-    
+
 """
 import sys
 import json
 import io
 
 def is_int(s):
-    try: 
+    try:
         int(s)
         return True
     except ValueError:
@@ -45,7 +45,7 @@ def main():
             obj = obj[index]
     except ValueError, e:
         raise SystemExit(e)
-    jd = json.dumps(obj, indent=4, sort_keys=True, ensure_ascii=False, encoding='utf8').encode('utf-8')
+    jd = json.dumps(obj, indent=4, sort_keys=True, ensure_ascii=False, encoding='utf8')
     outfile.write(jd)
     outfile.write(u'\n')
 

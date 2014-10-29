@@ -65,7 +65,6 @@
                 <thead>
                     <tr style="font-weight:bold;background-color: #E1D0D0;">
                         <th>縣市</th>
-                        <th>年度</th>
                         <th>提案次數</th>
                         <th>通過預算</th>
                         <th>每筆平均預算</th>
@@ -75,7 +74,6 @@
                     {% for obj in counties %}
                         <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
                             <td style="text-align:center; vertical-align:middle;">{{obj.county}}</td>
-                            <td style="text-align:center; vertical-align:middle;">{{obj.suggest_year}}</td>
                             <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
                             <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
                             <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum|divide:obj.count}}</p></td>

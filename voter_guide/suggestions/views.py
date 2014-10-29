@@ -8,16 +8,16 @@ from councilors.models import CouncilorsDetail
 
 
 def report(request):
-    councilors= CouncilorsDetail.objects.filter(election_year='2010', county__in=[u'臺北市', u'高雄市'])
+    councilors= CouncilorsDetail.objects.filter(election_year__in=['2009', '2010'], county__in=[u'臺北市', u'高雄市', u'新竹市'])
     councilors = councilors.annotate(sum=Sum('suggestions__suggestion__approved_expense'), count=Count('suggestions__id'))\
                         .order_by('-sum')
     parties = councilors.values('party')\
                         .annotate(sum=Sum('suggestions__suggestion__approved_expense'), count=Count('suggestions__id'))\
                         .order_by('-sum')
-    counties = Suggestions.objects.filter(election_year='2010', county__in=[u'臺北市', u'高雄市'])\
-                        .values('county', 'suggest_year')\
+    counties = Suggestions.objects.all()\
+                        .values('county')\
                         .annotate(sum=Sum('approved_expense'), count=Count('uid'))\
-                        .order_by('county', 'suggest_year')
+                        .order_by('county')
     return render(request,'suggestions/report.html', {'councilors': councilors, 'parties': list(parties), 'counties': list(counties)})
 
 def bid_by(request, bid_by):

@@ -12,6 +12,17 @@ import db_settings
 import common
 
 
+def get_constituency(councilor):
+    if councilor.get('constituency'):
+        return councilor['constituency']
+    try:
+        for k, v in constituency_maps[councilor['county']][councilor['election_year']].iteritems():
+            if v == councilor['district']:
+                return k
+    except:
+        return ''
+    return ''
+
 def normalize_constituency(constituency):
     match = re.search(u'第(?P<num>.+)選(?:舉)?區', constituency)
     if not match:
@@ -41,7 +52,8 @@ def normalize_councilor(councilor):
         councilor['party'] = re.sub(u'台灣', u'臺灣', councilor['party'])
         councilor['party'] = re.sub(u'^國民黨$', u'中國國民黨', councilor['party'])
         councilor['party'] = re.sub(u'^民進黨$', u'民主進步黨', councilor['party'])
-    councilor['constituency'] = normalize_constituency(councilor['constituency']) if councilor.get('constituency') else ''
+    councilor['constituency'] = get_constituency(councilor)
+    councilor['constituency'] = normalize_constituency(councilor['constituency'])
     return councilor
 
 def get_or_create_uid(councilor):
@@ -123,8 +135,9 @@ def insertCouncilorsDetail(councilor):
 
 conn = db_settings.con()
 c = conn.cursor()
-
-for council in ['../../data/tncc/councilors.json', '../../data/ntcc/councilors_terms.json', '../../data/ntcc/councilors.json', '../../data/tccc/councilors.json', '../../data/kcc/councilors_terms.json', '../../data/tcc/councilors_terms.json']:
+constituency_maps = json.load(open('../constituency.json'))
+for council in ['../../data/hsinchucc/councilors.json']:
+#for council in ['../../data/hsinchucc/councilors.json', '../../data/tncc/councilors.json', '../../data/ntcc/councilors_terms.json', '../../data/ntcc/councilors.json', '../../data/tccc/councilors.json', '../../data/kcc/councilors_terms.json', '../../data/tcc/councilors_terms.json']:
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
