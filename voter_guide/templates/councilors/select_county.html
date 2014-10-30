@@ -1,9 +1,9 @@
 ﻿{% extends "base.html" %}
 
 {% block title %}
-    <title>議員投票指南: {{election_year}}</title>
-    <meta property="og:title" content="議員投票指南: {{election_year}}"/>
-    <meta itemprop="name" content="議員投票指南: {{election_year}}">
+    <title>議員投票指南</title>
+    <meta property="og:title" content="議員投票指南"/>
+    <meta itemprop="name" content="議員投票指南">
 {% endblock title %}
 
 {% block right %}
@@ -13,7 +13,7 @@
         <div class="page-header text-center">
             <h3>請選擇縣市</h3>
         {% for county in counties %}
-            <a class="btn btn-large btn-block {% cycle 'btn-primary' 'btn-info' 'btn-success' 'btn-warning' 'btn-danger' %}" type="button" href="{% url 'councilors:index' index=index county=county election_year=election_year %}">{{county}}</a>
+            <a class="btn btn-large btn-block {% cycle 'btn-primary' 'btn-info' 'btn-success' 'btn-warning' 'btn-danger' %}" type="button" href="{% url 'councilors:index' index=index county=county %}">{{county}}</a>
         {% endfor %}
         <a class="btn btn-large btn-block disabled" type="button">其他縣市努力趕工中，歡迎加入開發</a>
         </div>

@@ -2,7 +2,7 @@
 import operator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.db.models import Count, Sum, Q
+from django.db.models import Count, Sum, Q, Max
 from .models import CouncilorsDetail, Attendance, PoliticalContributions
 from votes.models import Votes, Councilors_Votes
 from bills.models import Bills
@@ -11,11 +11,12 @@ from sittings.models import Sittings
 from search.views import keyword_list, keyword_been_searched, keyword_normalize
 
 
-def select_county(request, index, election_year, county):
-    counties = CouncilorsDetail.objects.filter(election_year=election_year).values_list('county', flat=True).order_by('county').distinct()
-    return render(request, 'councilors/select_county.html', {'index': index, 'election_year': election_year, 'counties': counties})
+def select_county(request, index, county):
+    counties = CouncilorsDetail.objects.values_list('county', flat=True).order_by('county').distinct()
+    return render(request, 'councilors/select_county.html', {'index': index, 'counties': counties})
 
-def index(request, index, election_year, county):
+def index(request, index, county):
+    election_year = CouncilorsDetail.objects.filter(county=county).aggregate(Max('election_year'))['election_year__max']
     basic_query = Q(election_year=election_year, county=county, in_office=True)
     out_office = CouncilorsDetail.objects.filter(election_year=election_year, county=county, in_office=False)
     param = {
