@@ -1,49 +1,77 @@
 ﻿{% extends "base.html" %}
-{% block title %}
-<title>議員投票指南:資料來源</title>
-<meta property="og:title" content="議員投票指南:資料來源"/>
-<meta itemprop="name" content="議員投票指南:資料來源">
-{% endblock %}
-{% block right %}
-<div class="row-fluid">
-    <div class="span6">
-        <div class="hero-unit">
-            資料來源
-            <ul class="lead">
-                <li><a href="http://www.tcc.gov.tw/" target="_blank">臺北市議會</a></li>
-                <li><a href="http://www.tccc.gov.tw/" target="_blank">臺中市議會</a></li>
-                <li><a href="http://www.kcc.gov.tw/" target="_blank">高雄市議會</a></li>
-                <li><a href="http://www.ntp.gov.tw/" target="_blank">新北市議會</a></li>
-                <li><a href="http://www.cec.gov.tw/" target="_blank">中央選舉委員會</a></li>
-                <li><a href="http://www.dbas.taipei.gov.tw/ct.asp?xItem=69201832&ctNode=31636&mp=120001" target="_blank">臺北市主計處</a></li>
-                <li><a href="http://dbaskmg.kcg.gov.tw/business3.php?type=128" target="_blank">高雄市主計處</a></li>
-                <li><a href="http://sunshine.cy.gov.tw/GipOpenWeb/wSite/lp?ctNode=442" target="_blank">陽光法案主題網- 廉政專刊</a></li>
-            </ul>
 
-        </div>
-    </div>
-    <div class="span6">
-        <div class="hero-unit">
-            <div class="fb-like pull-right" data-width="50" data-layout="box_count" data-show-faces="false" data-send="false" href="https://www.facebook.com/TW.Voter.Guide"></div>
-            設計參考
-            <ul class="lead">
-                <li><a href="http://sunlightfoundation.com/" target="_blank">Sunlight Foundation</a></li>
-                <li><a href="http://popoloproject.com/" target="_blank">The Popolo Project</a></li>
-            </ul>
-            友站連結
-            <ul class="lead">
-                <li><a href="http://vote.ly.g0v.tw/" target="_blank">立委投票指南</a></li>
-                <li><a href="http://k.olc.tw/tncc/" target="_blank">台南市議員觀測中心</a></li>
-                <li><a href="http://sunshine.cy.g0v.tw/" target="_blank">金錢報 - 公職人員財產申報追蹤</a></li><br>
-            </ul>
-        </div>
-    </div>
-</div>
+{% block title %}
+    <title>議員投票指南:資料來源</title>
+    <meta property="og:title" content="議員投票指南:資料來源"/>
+    <meta itemprop="name" content="議員投票指南:資料來源">
 {% endblock %}
+
+{% block right %}
+    <div class="row-fluid">
+        <div class="span6">
+            <div class="hero-unit">
+                <ul class="lead">
+                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ref_councils"><font class="lead">議員個人資料、議案、表決、出缺席</font></button>
+                    <div id="ref_councils" class="collapse">
+                        <ul class="lead">
+                            <li><a href="http://www.tcc.gov.tw/" target="_blank">臺北市議會</a></li>
+                            <li><a href="http://www.tccc.gov.tw/" target="_blank">臺中市議會</a></li>
+                            <li><a href="http://www.kcc.gov.tw/" target="_blank">高雄市議會</a></li>
+                            <li><a href="http://www.ntp.gov.tw/" target="_blank">新北市議會</a></li>
+                            <li><a href="http://www.hsinchu-cc.gov.tw/" target="_blank">新竹市議會</a></li>
+                        </ul>
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ref_suggestions"><font class="lead">工程建議款</font></button>
+                    <div id="ref_suggestions" class="collapse in">
+                        <ul class="lead">
+                            <li><a href="http://www.dbas.taipei.gov.tw/ct.asp?xItem=69201832&ctNode=31636&mp=120001" target="_blank">臺北市主計處</a></li>
+                            <li><a href="http://dbaskmg.kcg.gov.tw/business3.php?type=128" target="_blank">高雄市主計處</a></li>
+                            <li><a href="http://dep-auditing.hccg.gov.tw/web/SG?pageID=27404&FP=42985" target="_blank">新竹市主計處</a></li>
+                        </ul>
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ref_candidates"><font class="lead">候選人</font></button>
+                    <div id="ref_candidates" class="collapse in">
+                        <ul class="lead">
+                            <li><a href="http://www.cec.gov.tw/" target="_blank">中央選舉委員會</a></li>
+                        </ul>
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ref_politicalcontributions"><font class="lead">政治獻金</font></button>
+                    <div id="ref_politicalcontributions" class="collapse in">
+                        <ul class="lead">
+                            <li><a href="http://sunshine.cy.gov.tw/GipOpenWeb/wSite/lp?ctNode=442" target="_blank">陽光法案主題網- 廉政專刊</a></li>
+                        </ul>
+                    </div>
+                </ul>
+
+            </div>
+        </div>
+        <div class="span6">
+            <div class="hero-unit">
+                <div class="fb-like pull-right" data-width="50" data-layout="box_count" data-show-faces="false" data-send="false" href="https://www.facebook.com/TW.Voter.Guide"></div>
+                設計參考
+                <ul class="lead">
+                    <li><a href="http://sunlightfoundation.com/" target="_blank">Sunlight Foundation</a></li>
+                    <li><a href="http://popoloproject.com/" target="_blank">The Popolo Project</a></li>
+                </ul>
+                友站連結
+                <ul class="lead">
+                    <li><a href="http://vote.ly.g0v.tw/" target="_blank">立委投票指南</a></li>
+                    <li><a href="http://k.olc.tw/tncc/" target="_blank">台南市議員觀測中心</a></li>
+                    <li><a href="http://sunshine.cy.g0v.tw/" target="_blank">金錢報 - 公職人員財產申報追蹤</a></li><br>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block script %}
-<script>
-    $(document).ready( function() {
-        $('#reference').addClass('active');
-    });
-</script>
+    <script>
+        $(document).ready( function() {
+            $('#reference').addClass('active');
+            $(".collapse").collapse()
+        });
+    </script>
 {% endblock %}

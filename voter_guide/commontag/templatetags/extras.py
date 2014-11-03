@@ -14,6 +14,7 @@ def suggestions_offical_link(value):
     maps = {
         u'臺北市': 'http://www.dbas.taipei.gov.tw/ct.asp?xItem=69201832&ctNode=31636&mp=120001',
         u'高雄市': 'http://dbaskmg.kcg.gov.tw/business3.php?type=128',
+        u'新竹市': 'http://dep-auditing.hccg.gov.tw/web/SG?pageID=27404&FP=42985',
     }
     return maps.get(value, '')
 
