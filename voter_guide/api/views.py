@@ -44,7 +44,7 @@ class Councilors_VotesViewSet(viewsets.ReadOnlyModelViewSet):
 class BillsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Bills.objects.all()
     serializer_class = BillsSerializer
-    filter_fields = ('proposer', 'uid', 'county', 'type', 'category', 'last_action', 'bill_no', 'resolusion_date', 'execution')
+    filter_fields = ('proposer', 'uid', 'county', 'type', 'category', 'last_action', 'bill_no', 'execution')
 
 class Councilors_BillsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Councilors_Bills.objects.all()
