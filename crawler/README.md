@@ -9,19 +9,19 @@
 以下缺漏，可能也是暫時找不到資料來源        
 
 -	tcc: 臺北市
--	ntcc: 新北市
+-	ntcc: 新北市        
     >缺meeting_minutes      
--	kcc: 高雄市
+-	kcc: 高雄市     
     >缺councilors_terms     
--	tccc: 臺中市
+-	tccc: 臺中市        
     >缺meeting_minutes      
--	hsinchucc: 新竹市
+-	hsinchucc: 新竹市       
     >缺councilors_terms     
     >缺bills        
     >缺meeting_minutes      
--	ilcc: 宜蘭縣
+-	ilcc: 宜蘭縣        
     >缺councilors_terms     
--	tycc: 桃園縣
+-	tycc: 桃園縣        
     >缺councilors_terms     
     >缺bills        
     >缺meeting_minutes      
