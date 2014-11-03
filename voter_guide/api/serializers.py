@@ -6,6 +6,7 @@ from votes.models import Votes, Councilors_Votes
 from bills.models import Bills, Councilors_Bills
 from candidates.models import Candidates
 from sittings.models import Sittings
+from suggestions.models import Suggestions, Councilors_Suggestions
 
 
 class Councilors_VotesSerializer(serializers.HyperlinkedModelSerializer):
@@ -57,3 +58,11 @@ class CandidatesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Candidates
 
+class Councilors_SuggestionsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Councilors_Suggestions
+
+class SuggestionsSerializer(serializers.HyperlinkedModelSerializer):
+    councilors = Councilors_SuggestionsSerializer(many=True)
+    class Meta:
+        model = Suggestions

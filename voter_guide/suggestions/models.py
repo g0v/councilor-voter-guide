@@ -23,5 +23,5 @@ class Suggestions(models.Model):
 
 class Councilors_Suggestions(models.Model):
     councilor = models.ForeignKey('councilors.CouncilorsDetail', db_index=True, related_name='suggestions')
-    suggestion = models.ForeignKey(Suggestions, to_field='uid')
+    suggestion = models.ForeignKey(Suggestions, to_field='uid', related_name='councilors')
     jurisdiction = models.NullBooleanField(db_index=True)

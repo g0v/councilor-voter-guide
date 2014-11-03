@@ -107,7 +107,7 @@ def suggestor(request, councilor_id, election_year):
         councilor = CouncilorsDetail.objects.get(**q)
     except Exception, e:
         return HttpResponseRedirect('/')
-    q = dict(zip(['election_year', 'councilors_suggestions__councilor_id'], [election_year, councilor.id]))
+    q = dict(zip(['election_year', 'councilors__councilor_id'], [election_year, councilor.id]))
     index = request.GET.get('index')
     suggestions_base = Suggestions.objects.filter(**q)
     total_expense = suggestions_base.aggregate(sum=Sum('approved_expense'))
