@@ -1,0 +1,51 @@
+[
+    {
+        "county": "臺南市",
+        "election_year": "2010",
+        "name": "謝龍介",
+        "term_start": "2010-12-25",
+        "term_end": {
+            "date": "2014-05-22"
+        }
+    },
+    {
+        "county": "新北市",
+        "election_year": "2010",
+        "name": "宋進財",
+        "term_start": "2010-12-25",
+        "term_end": {
+            "date": "2011-07-15",
+            "reason": "賄選判刑定讞",
+            "replacement": "楊春妹"
+        }
+    },
+    {
+        "county": "新北市",
+        "election_year": "2010",
+        "name": "楊春妹",
+        "term_start": "2011-07-26",
+        "term_end": {
+            "date": "2014-12-25"
+        }
+    },
+    {
+        "county": "新北市",
+        "election_year": "2010",
+        "name": "黃俊哲",
+        "term_start": "2010-12-25",
+        "term_end": {
+            "date": "2012-10-03",
+            "reason": "賄選判刑定讞",
+            "replacement": "楊春妹"
+        }
+    },
+    {
+        "county": "新北市",
+        "election_year": "2010",
+        "name": "林水山",
+        "term_start": "2012-10-29",
+        "term_end": {
+            "date": "2014-12-25"
+        }
+    }
+]

@@ -74,7 +74,7 @@ def getIdList(c, name_list, sitting_dict):
         return r
     for name in name_list:
         print '"%s"' % name
-    raw_input()
+    #raw_input()
     return []
 
 def getNameList(text):

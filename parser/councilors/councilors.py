@@ -136,8 +136,9 @@ def insertCouncilorsDetail(councilor):
 conn = db_settings.con()
 c = conn.cursor()
 constituency_maps = json.load(open('../constituency.json'))
-for council in ['../../data/hsinchucc/councilors.json']:
-#for council in ['../../data/hsinchucc/councilors.json', '../../data/tncc/councilors.json', '../../data/ntcc/councilors_terms.json', '../../data/ntcc/councilors.json', '../../data/tccc/councilors.json', '../../data/kcc/councilors_terms.json', '../../data/tcc/councilors_terms.json']:
+# insert
+for council in ['../../data/hsinchucc/councilors.json', '../../data/tncc/councilors.json', '../../data/ntcc/councilors_terms.json', '../../data/ntcc/councilors.json', '../../data/tccc/councilors.json', '../../data/kcc/councilors_terms.json', '../../data/tcc/councilors_terms.json']:
+    break
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
@@ -147,6 +148,7 @@ for council in ['../../data/hsinchucc/councilors.json']:
         insertCouncilorsDetail(councilor)
 conn.commit()
 
+# update
 for council in ['../../data/kcc/councilors.json', '../../data/tcc/councilors.json']:
     break
     print council
@@ -155,4 +157,13 @@ for council in ['../../data/kcc/councilors.json', '../../data/tcc/councilors.jso
         councilor = normalize_councilor(councilor)
         councilor['uid'] = select_uid(councilor)
         updateCouncilorsDetail(councilor)
+conn.commit()
+
+# update term_end councilors
+term_end_councilors = json.load(open('../../data/term_end.json'))
+c.executemany('''
+    UPDATE councilors_councilorsdetail
+    SET term_start = %(term_start)s
+    WHERE county = %(county)s and election_year = %(election_year)s and name = %(name)s
+''', term_end_councilors)
 conn.commit()

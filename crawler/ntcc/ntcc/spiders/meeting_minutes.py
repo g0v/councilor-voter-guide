@@ -51,7 +51,6 @@ class Spider(scrapy.Spider):
             item['meeting'] = tr.xpath('td[3]/text()').extract()[0]
             item['download_url'] = urljoin(response.url, tr.xpath('td[6]/a[1]/@href').extract()[0])
             if re.search('\.pdf$', item['download_url']):
-                continue
                 yield Request(item['download_url'], callback=self.download_pdf, meta={'item': item})
             elif re.search('\.htm$', item['download_url']):
                 yield Request(item['download_url'], callback=self.parse_html, meta={'item': item})
@@ -64,6 +63,7 @@ class Spider(scrapy.Spider):
 
     def parse_html(self, response):
         item = response.meta['item']
+        print '%s_%s' % (item['sitting'], item['meeting'])
         text = '\n'.join(response.xpath('//pre/text()').extract())
         write_file(text, '../../meeting_minutes/ntcc/%s_%s.txt' % (item['sitting'], item['meeting']))
         return item
