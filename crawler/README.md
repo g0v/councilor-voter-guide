@@ -14,7 +14,7 @@
 <tbody>
 <tr><td>臺北市</td><td>tcc</td><td></td><td></td><td></td><td></td></tr>
 <tr><td>新北市</td><td>ntcc</td><td></td><td></td><td></td><td></td></tr>
-<tr><td>高雄市</td><td>kcc</td><td></td><td></td><td>x</td><td></td></tr>
+<tr><td>高雄市</td><td>kcc</td><td></td><td></td><td></td><td></td></tr>
 <tr><td>臺中市</td><td>tccc</td><td></td><td>x</td><td></td><td></td></tr>
 <tr><td>新竹市</td><td>hsinchucc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
 <tr><td>宜蘭縣</td><td>ilcc</td><td></td><td>x</td><td></td><td></td></tr>
