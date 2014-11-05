@@ -7,7 +7,7 @@
         <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議案"/>
         <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議案">
     {% else %}
-        <title>議員投票指南:議員的法條修正草案</title>
+        <title>議員投票指南:議員的議案</title>
         <meta property="og:title" content="議員投票指南:議員的議案"/>
         <meta itemprop="name" content="議員投票指南:議員的議案">
     {% endif %}
@@ -19,7 +19,9 @@
         <br>
         <form action="" method="get" class="form-search" id="form">
             <fieldset>
-                <input type="search" name="keyword" id="keyword" class="span8" maxlength="20" placeholder="例:都市更新 土地徵收...空格有交集效果" autofocus>
+                <input type="search" name="keyword" id="keyword" class="span10" maxlength="20" placeholder="例:都市更新 土地徵收...空格有交集效果" autofocus>
+                <br>
+                <input type="checkbox" name="primaryonly" id="primaryonly" {% if primaryonly %} checked{% endif %}>只看<b class="text-info">{{councilor.name}}</b>是第一提案人的議案
                 <button type="submit" class="btn">Go!</button>
             </fieldset>
         </form>
@@ -43,7 +45,7 @@
     </div>
     <div class="span6">
         <div id="d3" align="center"></div>
-        <p class="lead text-info text-center">共同提案/連署人的政黨分布</p>
+        <p class="lead text-info text-center">和<b>{{councilor.name}}</b>一起提案/連署的議員中，政黨的分布</p>
     </div>
     <div class="span12">
     {% if bills %}
@@ -62,6 +64,9 @@
     <script>
         $(document).ready( function() {
             $('#councilors_biller').removeAttr('href').addClass("btn-info");
+            $('#primaryonly').change(function() {
+                $("#form").trigger('submit');
+            });
         });
     </script>
     {{ block.super }}
