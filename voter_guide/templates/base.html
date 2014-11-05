@@ -37,6 +37,15 @@
     </head>
     <body id="top">
         <div id="fb-root"></div>
+        <script>
+            (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
         <div class="navbar navbar-fixed-top navbar-inverse">
             <div class="navbar-inner">
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -76,6 +85,7 @@
 
         <div class="container-fluid">
             <div class="row-fluid">
+            <div class="fb-like pull-right" data-layout="box_count" data-show-faces="false" data-send="false" href="https://www.facebook.com/TW.Voter.Guide"></div>
                 {% block left %}
                 {% endblock %}
                 {% block right %}
