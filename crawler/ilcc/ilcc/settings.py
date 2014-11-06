@@ -21,7 +21,7 @@ NEWSPIDER_MODULE = 'ilcc.spiders'
 LOG_FILE = 'log.txt'
 
 FEED_EXPORTERS = {
-    'json': 'ilcc.pipelines.UnicodeJsonItemExporter',
+    'json': 'crawler_lib.misc.UnicodeJsonItemExporter',
 }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

@@ -98,7 +98,7 @@ class Spider(scrapy.Spider):
             experience += ex
 
         item['experience'] = experience
+        m = re.search(u'(副?議長)。?$', item['experience'][0])
+        item['title'] = m.group(1) if m else u'議員'
         item['platform'] = parse.get_inner_text(tables[2].xpath('.//td[@bgcolor="#FFFFFF"]')).split()
-
         return item
-
