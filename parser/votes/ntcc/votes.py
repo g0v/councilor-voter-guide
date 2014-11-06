@@ -47,12 +47,6 @@ Present_Token = re.compile(u'''
     列\s*席
 ''', re.X|re.S)
 
-Chair_Token = re.compile(u'''
-    主\s*席[:：]
-    (?P<names>.+?)
-    \s*記\s*錄
-''', re.X)
-
 meetings = json.load(open('../../../data/ntcc/meeting_minutes-%s.json' % election_year))
 #files = glob.glob('../../../data/ntcc/meeting_minutes/*.txt')
 for meeting in meetings:
@@ -71,16 +65,15 @@ for meeting in meetings:
     common.InsertSitting(c, sitting)
     common.FileLog(c, sitting['name'])
     # present
-    for token in [Present_Token, Chair_Token]:
-        present_match = token.search(total_text)
-        exclude = []
-        if present_match:
-            names = re.sub(u'(副?議長|議員)', '', present_match.group('names'))
-            if names:
-                exclude = common.Attendance(c, sitting, names, 'CS', 'present')
-            else:
-                print total_text
-                raise
+    present_match = Present_Token.search(total_text)
+    exclude = []
+    if present_match:
+        names = re.sub(u'(副?議長|議員)', '', present_match.group('names'))
+        if names:
+            exclude.extend(common.Attendance(c, sitting, names, 'CS', 'present'))
+        else:
+            print total_text
+            raise
     # no councilor's name to record
     if exclude == []:
         continue
