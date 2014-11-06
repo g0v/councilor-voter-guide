@@ -30,6 +30,8 @@ c = conn.cursor()
 for f in glob.glob('../../data/political_contribution/*.json'):
     dict_list = json.load(open(f))
     for candidate in dict_list:
+        for wrong, right in [(u'涂淑媚', u'凃淑媚')]:
+            candidate['name'] = re.sub(wrong, right, candidate['name'])
         candidate['councilor_id'] = common.getDetailId(c, candidate['name'], candidate['election_year'], candidate['county'])
         if candidate['councilor_id']:
             PoliticalContributions(candidate)

@@ -49,18 +49,13 @@ class Spider(scrapy.Spider):
         item['image'] = urljoin(response.url, urllib.quote(image.encode('utf8')))
         print item['image']
         #第七選區議員 謝典霖
-        text = sel.xpath('//table/tr/td/img/@alt').extract()[0].encode('utf8')
-        strings = text.split(' ')
-        idx = strings[0].find('議員')
-        print item['constituency']
-        item['name'] = strings[1]
         detail = sel.xpath('//table')
         nodes = detail[6].xpath('tr')
         item['county'] = '彰化縣'
         item['election_year'] = '2009'
         item['term_start'] = '%s-12-25' % item['election_year']
         item['term_end'] = {'date': '2014-12-25'}
-        item['title'] = sel.xpath('//span[@class="orange01"]/text()').extract()[0].split()[0]
+        item['title'], item['name'] = sel.xpath('//span[@class="orange01"]/text()').extract()[0].split()
         item['in_office'] = True
         item['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
         item['contact_details'] = []
@@ -104,8 +99,8 @@ class Spider(scrapy.Spider):
                 print address.encode('utf8')
             if node.xpath('td/text()').re(u'學[\s]*歷'):
                 obj= node.xpath('td/text()').extract()
-                if len(obj)==2:
-                    item['education'] = obj[1]
+                if len(obj)>1:
+                    item['education'] = [x for x in obj[1:]]
             if node.xpath('td/text()').re(u'經[\s]*歷'):
                 for obj in node.xpath('td/text()').extract()[1:]:
                     print obj.encode('utf8')

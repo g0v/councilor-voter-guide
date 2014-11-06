@@ -58,6 +58,10 @@ class Spider(scrapy.Spider):
 
         item = Councilor()
         item['contact_details'] = []
+        item['election_year'] = '2009'
+        item['term_end'] = {'date': '2014-12-25'}
+        item['term_start'] = '%s-12-25' % item['election_year']
+        item['in_office'] = True
         item['county'] = county
         item['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
         img_url = sel.xpath('.//div[@id="Layer2"]/img/@src').extract()[0]
