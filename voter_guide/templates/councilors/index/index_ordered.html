@@ -1,6 +1,17 @@
 ﻿{% extends "councilors/index/index.html" %}
 {% load extras %}
 {% block table %}
+    {% if param.remark %}
+        {% with remark=county|each_county_remark:param.remark %}
+        {% if remark %}
+            <div class="alert">
+                {% autoescape off %}
+                    <font>{{remark}}</font>
+                {% endautoescape %}
+            </div>
+        {% endif %}
+        {% endwith %}
+    {% endif %}
     {% if not councilors and not no_count_list %}
         <h3 class="text-center text-error">
         {% if index == 'not_voting' or index == 'conscience_vote' %}
@@ -35,8 +46,6 @@
             <td class="name {{councilor.district}} {{councilor.gender}}">
                 {% if councilor.compare %}
                     <a href="{% url param.url_name councilor_id=councilor.councilor_id election_year=election_year %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}({{param.compare}}{{councilor.totalNum|percentage:councilor.compare}} %)">
-                {% elif compare %}
-                    <a href="{% url param.url_name councilor_id=councilor.councilor_id election_year=election_year %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}({{param.compare}}{{councilor.totalNum|percentage:compare}} %)">
                 {% else %}
                     <a href="{% url param.url_name councilor_id=councilor.councilor_id election_year=election_year %}" rel="tooltip" title="{{param.tooltip}} {{councilor.totalNum}}{{param.unit}}">
                 {% endif %}

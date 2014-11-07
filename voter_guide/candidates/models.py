@@ -3,7 +3,7 @@ from django.db import models
 from json_field import JSONField
 from councilors.models import CouncilorsDetail, Attendance
 from votes.models import Councilors_Votes
-from bills.models import Councilors_Bills
+from bills.models import Bills, Councilors_Bills
 
 
 class Candidates(models.Model):
@@ -41,22 +41,9 @@ class Candidates(models.Model):
         if all_vote:
             not_vote = all_vote.filter(decision__isnull=True).count()
             should_vote = all_vote.count()
-            return u'%.2f %% ' % (not_vote * 100.0 / should_vote)
-        return u''
-    pnotvote = property(_not_vote_percentage)
-
-    def _conscience_vote_percentage(self):
-        try:
-            councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
-        except Exception, e:
-            return ''
-        all_vote = Councilors_Votes.objects.filter(councilor_id=councilor.id)
-        if all_vote:
-            not_vote = all_vote.filter(conflict=True).count()
-            should_vote = all_vote.count()
-            return u'%.2f %% ' % (not_vote * 100.0 / should_vote)
+            return u'%d / %d（%.1f %%）' % (not_vote, should_vote, not_vote * 100.0 / should_vote)
         return ''
-    pconsciencevote = property(_conscience_vote_percentage)
+    pnotvote = property(_not_vote_percentage)
 
     def _pribiller_count(self):
         try:
@@ -64,7 +51,7 @@ class Candidates(models.Model):
         except Exception, e:
             return ''
         all_bill = Councilors_Bills.objects.filter(councilor_id=councilor.id, priproposer=True)
-        return all_bill.count() if all_bill else ''
+        return all_bill.count() if all_bill else 0
     npribill = property(_pribiller_count)
 
     def _biller_count(self):
@@ -73,7 +60,7 @@ class Candidates(models.Model):
         except Exception, e:
             return ''
         all_bill = Councilors_Bills.objects.filter(councilor_id=councilor.id, petition=False)
-        return all_bill.count() if all_bill else ''
+        return all_bill.count() if all_bill else 0
     nbill = property(_biller_count)
 
     def _term_end(self):
@@ -88,7 +75,11 @@ class Candidates(models.Model):
         try:
             councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
             councilor_records = Attendance.objects.filter(councilor_id=councilor.id, category='CS')
-            return councilor_records.filter(status='absent').count() if councilor_records else u''
+            if not councilor_records:
+                return ''
+            absent = councilor_records.filter(status='absent').count()
+            should_present = councilor_records.count()
+            return u'%d / %d（%.1f %%）' % (absent, should_present, absent * 100.0 / should_present)
         except Exception, e:
             return ''
     cs_absent = property(_cs_absent_count)

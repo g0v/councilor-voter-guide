@@ -6,7 +6,6 @@ import re
 import codecs
 import unicodedata
 import json
-import glob
 import psycopg2
 import db_settings
 import common
@@ -48,7 +47,6 @@ Present_Token = re.compile(u'''
 ''', re.X|re.S)
 
 meetings = json.load(open('../../../data/ntcc/meeting_minutes-%s.json' % election_year))
-#files = glob.glob('../../../data/ntcc/meeting_minutes/*.txt')
 for meeting in meetings:
     total_text = unicodedata.normalize('NFC', codecs.open('../../../data/ntcc/meeting_minutes/%s_%s.txt' % (meeting['sitting'], meeting['meeting']), "r", "utf-8").read())
     total_text = re.sub(u'．', u'‧', total_text)

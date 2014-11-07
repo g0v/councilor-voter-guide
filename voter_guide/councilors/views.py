@@ -26,6 +26,7 @@ def index(request, index, county):
         'cs_attend': {
             'title': u'議會開會缺席次數(多→少)',
             'url_name': u'councilors:platformer',
+            'remark': u'attendance',
             'compare': u'缺席率',
             'tooltip': u'缺席',
             'unit': u'次'
@@ -73,14 +74,13 @@ def index(request, index, county):
     if index == 'cs_attend':
         if not Attendance.objects.filter(sitting__county=county):
             return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'no_count_list': None, 'councilors': None, 'out_office': out_office, 'index': index})
-        compare = Sittings.objects.filter(election_year=election_year, county=county, committee='').count()
-        print compare
         councilors = CouncilorsDetail.objects.filter(basic_query & Q(attendance__category='CS', attendance__status='absent'))\
                                              .annotate(totalNum=Count('attendance__id'))\
-                                             .order_by('-totalNum','party')
+                                             .order_by('-totalNum','party')\
+                                             .extra(select={'compare': "SELECT COUNT(*) FROM councilors_attendance WHERE councilors_attendance.councilor_id = councilors_councilorsdetail.id AND councilors_attendance.category = 'CS' GROUP BY councilors_attendance.councilor_id"},)
         no_count_list = CouncilorsDetail.objects.filter(basic_query)\
                                                 .exclude(councilor_id__in=councilors.values_list('councilor_id', flat=True))
-        return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'compare': compare, 'index': index})
+        return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'index': index})
     if index == 'bills':
         query = basic_query & Q(councilors_bills__petition=False)
         proposertype = False

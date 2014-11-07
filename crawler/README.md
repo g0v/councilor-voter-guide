@@ -20,5 +20,6 @@
 <tr><td>宜蘭縣</td><td>ilcc</td><td></td><td>x</td><td></td><td></td></tr>
 <tr><td>桃園縣</td><td>tycc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
 <tr><td>彰化縣</td><td>chcc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
+<tr><td>嘉義縣</td><td>cyscc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
 </tbody>
 </table>
