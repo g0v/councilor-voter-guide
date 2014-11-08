@@ -8,6 +8,7 @@ from scrapy.selector import Selector
 from tycc.items import Councilor
 from crawler_lib import parse
 from crawler_lib import misc
+import logging
 
 
 class Spider(scrapy.Spider):
@@ -27,6 +28,7 @@ class Spider(scrapy.Spider):
         urls = sel.xpath('//div[@id="ctl04_ctl08_pageControl_PN_LIST"]//a/@href').extract()
         for url in urls:
             url = urljoin(response.url, url)
+            logging.info('to request id: url: %s', url)
             yield Request(url, callback=self.parse_profile)
 
     def parse_profile(self, response):
@@ -36,6 +38,8 @@ class Spider(scrapy.Spider):
         info_node = main_node.xpath('.//table[2]')
         curr_url = response.url
 
+        logging.info('to setup item: curr_url: %s', curr_url)
+
         item = Councilor()
         item['contact_details'] = []
         item['name'] = \
@@ -43,6 +47,8 @@ class Spider(scrapy.Spider):
         item['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
         img_url = main_node.xpath('.//img[@class="memImg"]/@src').extract()[0]
         item['image'] = urljoin(curr_url, img_url)
+
+        logging.info('after image: item: %s', item)
 
         key_map = {
             u'學歷': 'education',
@@ -58,33 +64,51 @@ class Spider(scrapy.Spider):
                 is_contact_info = True
             elif key == u'首頁圖示':
                 info = parse.get_inner_text(row).split()
+                logging.info('info: %s', info)
+
+                address_str = info[0] + info[1]
+                address = re.sub(ur'.*服務處：', '', address_str).strip()
+                misc.append_contact(item, 'address', '服務處', address)
+
                 for group in info:
-                    split = group.split(u'：')
-                    if len(split) > 1:
-                        left, right = split
-                        misc.append_contact(item, 'address', left, right)
+                    if re.search(ur'電話:', group):
+                        tel_val = re.sub(ur'/.*', '', re.sub(ur'.*電話:', '', group)).strip()
+                        if tel_val:
+                            misc.append_contact(item, 'voice', '電話', tel_val)
+                    if re.search(ur'傳真:', group):
+                        fax_val = re.sub(ur'/.*', '', re.sub(ur'.*傳真:', '', group)).strip()
+                        if fax_val:
+                            misc.append_contact(item, 'fax', '傳真', fax_val)
 
             td = row.xpath('./td[2]')
             value = parse.get_inner_text(td)
             if not value:
                 continue
 
+            logging.info('contact_info: key: %s value: %s td: %s is_contact_info: %s', key, value, td, is_contact_info)
+
             k_eng = key_map.get(key)
             if is_contact_info:
-                left, right = value.split(u'：')
-                url = parse.get_extracted(row.xpath('.//a/@href'))
-                if left == 'EMAIL':
-                    url = url.lstrip('mailto://')
-                    for u in url.split(';'):
-                        misc.append_contact(item, 'email', left, u.strip())
-                if left == u'聯絡電話':
-                    for x in right.split(';'):
-                        misc.append_contact(item, 'voice', left, x.strip())
-                if left == u'傳真':
-                    for x in right.split(';'):
-                        misc.append_contact(item, 'fax', left, x.strip())
-                if left in [u'部落格', u'FACEBOOK', u'臉書']:
-                    item['links'].append({'url': url, 'note': left})
+                blog_url = td.xpath('.//span[@id="ctl04_ctl08_pageControl_LB_MEM_BLOG"]/a/@href').extract()
+                if blog_url:
+                    blog_url = blog_url[0].strip()
+                    logging.info('blog_url: %s dir: %s', blog_url, dir(blog_url))
+                    item['links'].append({"url": blog_url, "note": "部落格"})
+
+                facebook_url = td.xpath('.//span[@id="ctl04_ctl08_pageControl_LB_MEM_FACEBOOK"]/a/@href').extract()
+                if facebook_url:
+                    facebook_url = facebook_url[0].strip()
+                    logging.info('facebook_url: %s', facebook_url)
+                    item['links'].append({"url": facebook_url, "note": "臉書"})
+
+                emails = td.xpath('.//span[@id="ctl04_ctl08_pageControl_LB_MEM_EMAIL"]/a/@href').extract()
+                if emails:
+                    emails = emails[0]
+                    emails = emails.split(';')
+                    emails = [re.sub(ur'^mailto://', '', email.strip()) for email in emails]
+                    logging.info('emails: %s', emails)
+                    for each_email in emails:
+                        misc.append_contact(item, 'email', 'EMAIL', each_email)
             elif k_eng:
                 values = parse.get_inner_text_lines(td)
                 values = [parse.remove_whitespaces(v) for v in values]
@@ -95,5 +119,6 @@ class Spider(scrapy.Spider):
                 item['district'] = split[1] if len(split) > 1 else ''
                 item['constituency'] = county + split[0]
 
-        return item
+        logging.info('to return: item: %s', item)
 
+        return item
