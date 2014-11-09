@@ -1,1 +1,3359 @@
-[
+[{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "yosefo5118@gmail.com", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca121@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "桃園縣龜山鄉大同路138號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-3501177", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-3500975", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "楊進福", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=971", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://tw.myblog.yahoo.com/jw!brA_6Q6BABjDXdfN1Wm7LNBpF6A3kvy8iSOoIwU-", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/profile.php?id=100006467623948", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a635128547908151959楊進福-白背景.jpg", 
+    "experience": [
+        "現職:", 
+        "桃園縣政府勞資爭議調解委員會調解委員(原住民委員)", 
+        "桃園縣原住民社會服務權益促進會(法律諮詢顧問)", 
+        "龜山鄉公所都市計劃委員會(委員)", 
+        "龜山鄉原住民協進會法律、地政諮詢(委員)", 
+        "經歷:", 
+        "桃園縣龜山鄉鄉民代表會(第16、18屆)鄉民代表", 
+        "桃園地方法院檢察署更生協會入監輔導員", 
+        "桃園地方法院檢察署犯罪被害人志工", 
+        "龜山鄉公所調解委員會調解委員", 
+        "龜山鄉原住民協進會副主席、輔導員", 
+        "桃園縣龜山鄉福源國小原住民母語(教師)", 
+        "龍辰地產法律研究室法律顧問", 
+        "龍辰法律代書事務所地政顧問", 
+        "邱正明律師事務所法務助理", 
+        "天主教旅北原住民教友傳教協會副總會長", 
+        "天主教旅北龜山鄉原住民教友傳教協會會長"
+    ], 
+    "county": "桃園縣", 
+    "district": "", 
+    "constituency": "桃園縣平地原住民", 
+    "education": [
+        "銘傳大學公共事務學系碩士班", 
+        "文化大學法律研究所學分班結業", 
+        "文化大學地政學分班結業", 
+        "黎明工專機械工程系畢業", 
+        "省立內埔農工農機科畢業", 
+        "花蓮縣立美崙國民中學畢業", 
+        "花蓮縣立光復國中", 
+        "花蓮市明恥國民小學畢業", 
+        "花蓮縣光復鄉太巴塱國小(北富國小)"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca073@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "大溪鎮埔頂路二段118號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-3896645~6", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-3909585", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "洪國治", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=88", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/maro.karu#!/maro.karu?sk=info", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641653370582893洪國治議員.jpg", 
+    "experience": [
+        "桃園縣議會第14、15、16屆議員", 
+        "桃園縣體育會棒球委員會主任委員", 
+        "大溪鎮民代表會第十五屆代表", 
+        "大溪鎮調解會委員", 
+        "行政院原住民族基本法推動會第一屆委員", 
+        "桃園縣原住民教育審議委員", 
+        "大溪瑞興國宅管理委員會主委", 
+        "淡江大學結業"
+    ], 
+    "county": "桃園縣", 
+    "district": "", 
+    "constituency": "桃園縣平地原住民", 
+    "education": [
+        "大溪僑愛國小", 
+        "仁和國中內壢國中", 
+        "桃園縣私立新興工商", 
+        "逢甲大學經營管理碩士班畢業"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "wu.16948677@yahoo.com.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca072@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "龍潭鄉神龍路270號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "480-2337", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "470-1439", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "吳春芳", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=89", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/profile.php?id=100007063428726", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641650811866399吳春芳議員.jpg", 
+    "experience": [
+        "桃園縣政府原住民行政課", 
+        "大溪鎮公所大溪稅捐處", 
+        "石門國小教師"
+    ], 
+    "county": "桃園縣", 
+    "district": "", 
+    "constituency": "桃園縣平地原住民", 
+    "education": [
+        "花蓮縣宜昌國小畢業", 
+        "花蓮縣宜昌國中畢業", 
+        "私立世界新聞大學畢業", 
+        "淡江大學科學管理研究所碩士", 
+        "美國明尼蘇達州州立大學公共行政管理碩士畢業"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "034995555@yu-shu.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca119@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "龍潭鄉五福街9號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-499-5555", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-499-0000", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "徐玉樹", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=82", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/people/%E5%BE%90%E7%8E%89%E6%A8%B9/100000135334354#!/profile.php?id=100002178632778", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641654432008758徐玉樹議員.jpg", 
+    "experience": [
+        "經歷", 
+        "龍潭國際青年商會2000年會長", 
+        "桃園縣菱潭陂人文促進會創會長", 
+        "龍潭鄉體育會滑輪溜冰委員會主委", 
+        "龍潭鄉民代表會第17.18屆副主席", 
+        "現職", 
+        "龍潭義勇消防中隊副中隊長", 
+        "中華民國渡台始祖君桂公徐氏宗親會理事長", 
+        "桃園縣體育會龍舟委員會主委", 
+        "龍潭鄉體育會籃球委員會主委", 
+        "中國國民黨龍潭鄉黨部副主任委員", 
+        "桃園縣第17屆縣議員"
+    ], 
+    "county": "桃園縣", 
+    "district": "龍潭鄉", 
+    "constituency": "桃園縣第十選區", 
+    "education": [
+        "龍潭國小", 
+        "凌雲國中", 
+        "國立龍潭農工", 
+        "南亞技術學院-觀光休閒管理系"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "zao.liang@msa.hinet.net", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "龍潭鄉中正路326號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "479-8751", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "479-6696", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "張肇良", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=83", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.wretch.cc/blog/zaoliang8751", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100001391464555&ref=ts#!/profile.php?id=100001910838457", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641654190676334張肇良議員.jpg", 
+    "experience": [
+        "中原大學桃園縣校友會理事、監事二屆", 
+        "龍潭鄉公所調解委員會調解委員二屆", 
+        "民主進步黨龍潭鄉黨部總幹事二任", 
+        "阿扁總統競選連任龍潭鄉總幹事二任", 
+        "龍潭鄉張廖簡宗親會總幹事二任", 
+        "龍潭鄉第17屆鄉民代表會代表", 
+        "民主進步黨全國黨員代表(二屆)", 
+        "桃園縣民主進步黨縣黨部執行委員(二屆)", 
+        "桃園縣張廖簡宗親會理事、監事(二屆)", 
+        "總統府國策顧問張貴木秘書", 
+        "桃園縣政府勞資爭議委員會委員", 
+        "中壢青年商會理事、監事(二屆)", 
+        "石門國際同濟會理事、監事(二屆)", 
+        "國立中壢高中校友會理監事", 
+        "治平中學家長會副會長", 
+        "龍潭國防獅子會副會長"
+    ], 
+    "county": "桃園縣", 
+    "district": "龍潭鄉", 
+    "constituency": "桃園縣第十選區", 
+    "education": [
+        "龍潭國小畢業", 
+        "復旦中學(初中部)畢業", 
+        "中壢高中畢業", 
+        "中原大學機械系畢業", 
+        "中原大學企業管理研究所學分班結業", 
+        "凱達格蘭學校地方領袖班結業"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca063@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "楊梅鎮楊梅里梅山西街147號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "488-4566", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "478-2309", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "周玉琴", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=79", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.wretch.cc/blog/kc0463", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100002901823334", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634810704215279613周玉琴議員高133.jpg", 
+    "experience": [
+        "桃園縣議員", 
+        "桃園縣警局婦女志工楊梅中隊長", 
+        "桃園縣楊梅四季游泳協會第3、4屆理事長", 
+        "桃園縣婦女會理事", 
+        "婦聯會楊梅分會主委", 
+        "中壢高商校友會理事長", 
+        "楊梅農會家政義務指導員", 
+        "楊梅農會家政班班長", 
+        "楊梅市婦女會理事", 
+        "2004年連戰、宋楚瑜競選總統副總統楊梅鎮競選服務處總幹事"
+    ], 
+    "county": "桃園縣", 
+    "district": "楊梅市", 
+    "constituency": "桃園縣第九選區", 
+    "education": [
+        "中壢高商", 
+        "清雲科技大學國貿系", 
+        "清雲科技大學經管所碩士"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "su.mei0110@yahoo.com.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca096@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "楊梅鎮新農街137號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "478-5555", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "475-2740", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "陳賴素美", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=78", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://tw.myblog.yahoo.com/su.mei0110", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/people/%E9%99%B3%E8%B3%B4%E7%B4%A0%E7%BE%8E/100003570733627", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634810702592252763陳賴素美議員122.jpg", 
+    "experience": [
+        "聯合代書事務所負責人", 
+        "民進黨桃園縣楊梅市黨部主任委員", 
+        "民進黨全國黨代表", 
+        "桃園縣議會第16屆縣議員", 
+        "現任：", 
+        "桃園縣陳姓宗親會副會長", 
+        "桃園縣楊梅市陽光婦女會理事長", 
+        "桃園縣活力康福養生協會理事長", 
+        "民進黨桃園縣黨部執行委員", 
+        "桃園縣議會第17屆縣議員"
+    ], 
+    "county": "桃園縣", 
+    "district": "楊梅鎮", 
+    "constituency": "桃園縣第九選區", 
+    "education": [
+        "國立新竹高商", 
+        "萬能科技大學畢", 
+        "中央大學EMBA企管碩士班", 
+        "國家地政士特考及格"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca120@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "平鎮市中豐路南勢二段241號電話:03-4399969/傳真:03-4399523", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-4399969", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-4399523", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "黃李月琴", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=345", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/?ref=home#!/profile.php?id=100003999005008", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a6347381952947958301337788144leechin.jpg", 
+    "experience": [
+        "現任第十七屆桃園縣議員", 
+        "第十四屆桃園縣議會議員", 
+        "桃園縣平鎮市市長", 
+        "平鎮市民大學創校校長", 
+        "萬能科技大學講師", 
+        "巾幗獅子會會長"
+    ], 
+    "county": "桃園縣", 
+    "district": "平鎮市", 
+    "constituency": "桃園縣第八選區", 
+    "education": [
+        "宋屋國民小學", 
+        "平鎮國民中學", 
+        "國立中壢高級商業職業學校", 
+        "國立台北商業專科學校", 
+        "元智大學研究所", 
+        "淡江大學碩士畢業"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "yanga030@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "大溪鎮僑愛一街101號電話:307-8585/傳真:307-8686", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "307-8585", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "307-8686", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "楊朝偉", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=104", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.wretch.cc/blog/yang00516", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100001593609300", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634656906902274077106914036906010.jpg", 
+    "experience": [
+        "桃園縣大溪鎮第十五屆鎮民代表", 
+        "桃園縣議會第14、15、16屆議員"
+    ], 
+    "county": "桃園縣", 
+    "district": "大溪復興", 
+    "constituency": "桃園縣第六選區", 
+    "education": [
+        "僑愛國小", 
+        "桃園國中", 
+        "大華工專", 
+        "淡江大學公共行政系", 
+        "淡江大學管理科學研究所", 
+        "美國曼徹州立大學公共行政管理碩士"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca021@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "八德市永豐路358-1號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "2181102", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "2181104", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "劉茂群", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=52", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://tw.myblog.yahoo.com/bade-1688", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100001754655561", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641658973956735劉茂群議員.jpg", 
+    "experience": [
+        "八德劉姓宗親會會長", 
+        "八德警友會主任", 
+        "八德地政、戶政、警察分局志工", 
+        "黃復興黨部八支黨部委員", 
+        "中國國民黨黃園瑞、黃園苳指導員", 
+        "群芳同濟會創會長", 
+        "國際佛光會八德第一分會委員"
+    ], 
+    "county": "桃園縣", 
+    "district": "八德市", 
+    "constituency": "桃園縣第三選區", 
+    "education": [
+        "僑愛國小", 
+        "八德國中", 
+        "育達高商", 
+        "淡江大學公共行政", 
+        "美國南加大企業管理碩士"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca104@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "桃園市大業路一段378號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "325-5836", 
+            "label": "電話"
+        }
+    ], 
+    "name": "陳美梅", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=43", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://tw.myblog.yahoo.com/taoyuan-city", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/taoyuanct", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641660377491200陳美梅議員.jpg", 
+    "experience": [
+        "桃園市民代表", 
+        "桃園縣青年志工服務協會副總會長", 
+        "桃園縣陳姓宗親會理事", 
+        "桃園市大檜溪區陳姓宗親會副理事長", 
+        "桃園市中路區陳姓宗親會顧問", 
+        "桃園縣客家會顧問", 
+        "社區發展促進委員會委員", 
+        "水漾世代婦女協會監事", 
+        "中國國民黨第十八次全國黨代表"
+    ], 
+    "county": "桃園縣", 
+    "district": "桃園市", 
+    "constituency": "桃園縣第一選區", 
+    "education": [
+        "會稽國小", 
+        "文昌國中", 
+        "復旦中學", 
+        "聖德基督學院大眾傳播系", 
+        "美國羅倫斯科技大學資訊系統碩士"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "chung0935503213@yahoo.com.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca114@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "中壢市龍東里6鄰龍東12街23號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-466-3607", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-446-5013", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "蔣中千", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=71", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100001391464555&ref=ts", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641656757660842蔣中千議員.jpg", 
+    "experience": [
+        "桃園縣第14屆縣議員", 
+        "貴州省同鄉會前理事長", 
+        "榮民榮眷基金會常務董事", 
+        "黃復興前29區主任、輔導員", 
+        "桃園縣傘兵協會總幹事、榮譽理事長", 
+        "陸軍官校校友會副會長", 
+        "治平高中校友會會長", 
+        "龍岡國中家長會會長", 
+        "華夏書藝協會第五屆理事長"
+    ], 
+    "county": "桃園縣", 
+    "district": "中壢市", 
+    "constituency": "桃園縣第七選區", 
+    "education": [
+        "忠貞國小", 
+        "龍岡國中", 
+        "治平高中", 
+        "陸軍官校專38期步校正規班", 
+        "淡江大學公共行政科系"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca115@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "新屋鄉新生村中興北路112號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-477-3100", 
+            "label": "電話"
+        }
+    ], 
+    "name": "邱佳亮", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=84", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100001391464555&ref=ts#!/profile.php?id=100002489476189", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641654035612061邱佳亮議員.jpg", 
+    "experience": [
+        "土地代書國家特考合格", 
+        "新屋鄉鄉民代表", 
+        "邱代書事務所負責人", 
+        "擔任副議長黃金德服務處主任秘書16年", 
+        "新屋鄉太極氣功運動推展協會理事長", 
+        "新屋國小家長會副會長", 
+        "新屋鄉邱姓宗親會理事", 
+        "新屋義消分隊顧問", 
+        "桃園縣邱姓宗親會理事"
+    ], 
+    "county": "桃園縣", 
+    "district": "新屋鄉", 
+    "constituency": "桃園縣第十一選區", 
+    "education": [
+        "國立嘉義大學畢業（原國立嘉義農專二年制）"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca116@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "觀音鄉富林村大觀路三段149號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-483-6666", 
+            "label": "電話"
+        }
+    ], 
+    "name": "郭蔡美英", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=85", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://tw.myblog.yahoo.com/jw!TZWDE4KfFR73sV6vUlmRF7Rg1XY-/", 
+            "note": "部落格"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641653888659803郭蔡美英議員.jpg", 
+    "experience": [
+        "富林國小任教6年", 
+        "郭榮宗服務處主任18年", 
+        "觀音鄉愛心媽媽發展協會創會會長", 
+        "民主進步黨桃園縣黨部執行委員", 
+        "民主進步黨桃園縣觀音鄉黨部第八、九屆主任委員"
+    ], 
+    "county": "桃園縣", 
+    "district": "觀音鄉", 
+    "constituency": "桃園縣第十二選區", 
+    "education": [
+        "省立中壢中學", 
+        "國立中壢高商畢"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca028@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "大園鄉大海村1鄰8號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "381-5989", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "381-6989", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "王淳長", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=58", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/ling4387668#!/profile.php?id=100003127468354", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641658189899358王淳長議員.jpg", 
+    "experience": [
+        "大園鄉大海村第13、14屆村長", 
+        "大園鄉第15屆代表", 
+        "第15、16屆桃園縣縣議員"
+    ], 
+    "county": "桃園縣", 
+    "district": "大園鄉", 
+    "constituency": "桃園縣第五選區", 
+    "education": [
+        "埔心國小第24屆畢業", 
+        "大園國中第二屆畢業", 
+        "大興工商第一屆畢業"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca108@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "蘆竹鄉新南路一段124號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-3211086", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-3210244", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "呂宏仁", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=56", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://tycca108.pixnet.net/blog", 
+            "note": "部落格"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634806371612978851呂宏仁.png", 
+    "experience": [
+        "新興國小家長會長", 
+        "虎頭山青商會會長", 
+        "蘆竹鄉衛生促進會主委", 
+        "大竹區巡守大隊創隊主委", 
+        "蘆竹鄉青年志工服務協會創會會長", 
+        "蘆竹鄉民代表會第十四、十六、十七屆代表", 
+        "蘆竹鄉代表會第17屆補選主席"
+    ], 
+    "county": "桃園縣", 
+    "district": "蘆竹鄉", 
+    "constituency": "桃園縣第四選區", 
+    "education": [
+        "新興國小", 
+        "大竹國中", 
+        "新興工商", 
+        "萬能工專"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca018@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "龜山鄉大崗村新興一街61巷1弄35號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "328-2871", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "328-0182", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "李麗珠", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=46", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/iabc.iabc", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641659869554308李麗珠議員.jpg", 
+    "experience": [
+        "桃園縣議員", 
+        "龜山鄉第16屆鄉民代表", 
+        "中國國民黨17、18全黨代表", 
+        "桃園縣脊髓損傷能發展中心董事", 
+        "桃園縣志願服務協會理事", 
+        "龜山鄉李氏宗親常務理事", 
+        "龜山鄉婦女會第20屆理事長", 
+        "龜山分局婦女志工中隊長", 
+        "龜山分局交通愛心小天使隊長", 
+        "林口長庚醫院社會志願工作隊志工", 
+        "龜山農會家政、四健會義務指導員", 
+        "龜山鄉高齡者志工"
+    ], 
+    "county": "桃園縣", 
+    "district": "龜山鄉", 
+    "constituency": "桃園縣第二選區", 
+    "education": [
+        "靜修女中商業科", 
+        "開南大學企業與創業管理系"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca106@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "李雲強服務處", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-320-6763", 
+            "label": "電話"
+        }
+    ], 
+    "name": "李雲強", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=47", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/strong3206763", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641659784222158李雲強議員.jpg", 
+    "experience": [
+        "龜山鄉民代表會第18屆代表會副主席", 
+        "龜山鄉民代表會16、17屆鄉民代表", 
+        "黃園仁黨部前常委", 
+        "龜山退伍軍人協會顧問", 
+        "龜山李氏宗親會顧問", 
+        "桃園空軍聯合校友會顧問"
+    ], 
+    "county": "桃園縣", 
+    "district": "龜山鄉", 
+    "constituency": "桃園縣第二選區", 
+    "education": [
+        "龜山新路國小", 
+        "龜山壽山國中", 
+        "中壢高中", 
+        "空軍機械學校專科班"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "address", 
+            "value": "自強東路152號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-3192377", 
+            "label": "電話"
+        }, 
+        {
+            "type": "address", 
+            "value": "萬壽路一段340號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "02-82001127", 
+            "label": "電話"
+        }
+    ], 
+    "name": "許森能", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=45", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/?ref=logo#!/profile.php?id=100001481402999", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641660074226668許森能議員.jpg", 
+    "experience": [
+        "龍華科技大學學分班", 
+        "龜山鄉民代表會第17、18屆代表", 
+        "迴龍義消分隊長", 
+        "迴龍國中小學第3、4屆家長會長", 
+        "龜山扶輪社2007~2008社長", 
+        "桃園縣龜山鄉機動救援協會第4、5屆理事長", 
+        "龜山鄉體育會自行車委員會主任委員", 
+        "龍華社區發展協會第1、2屆常務理事", 
+        "嘉義同鄉會副理事長", 
+        "常務理事、龜山分會主任委員", 
+        "龍華社區發展協會第3屆理事長", 
+        "龜山義消中隊副中隊長", 
+        "迴龍警友站榮譽顧問", 
+        "龜山鄉住戶管理促進會副會長", 
+        "桃園東方扶輪社創社秘書"
+    ], 
+    "county": "桃園縣", 
+    "district": "龜山鄉", 
+    "constituency": "桃園縣第二選區", 
+    "education": [
+        "國立體育大學"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "linlieling@gmail.com", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca086@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "龜山鄉山鶯路一巷15之1號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "320-7676", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "320-6401", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "林俐玲", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=44", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://blog.sina.com.tw/tony199619/", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/linlieling", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641660258150991林俐玲議員.jpg", 
+    "experience": [
+        "龜山社區日語巡迴教師", 
+        "龜山鄉鄉民代表", 
+        "民進黨全國黨代表", 
+        "民進黨龜山鄉黨部主任委員", 
+        "民進黨桃園縣黨部執委", 
+        "龜山鄉林姓宗親會副會長", 
+        "龜山鄉婦女愛心發展協會理事長", 
+        "龜山鄉體育會太極拳委員會主任委員"
+    ], 
+    "county": "桃園縣", 
+    "district": "龜山鄉", 
+    "constituency": "桃園縣第二選區", 
+    "education": [
+        "雲林國小", 
+        "竹山國中", 
+        "臺中家商", 
+        "僑光商專", 
+        "銘傳大學公共事務研究所"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "lily.chen1957@gmail.com", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca089@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "蘆竹鄉上竹村愛國一路96號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "323-2041", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "323-3873", 
+            "label": "傳真"
+        }, 
+        {
+            "type": "address", 
+            "value": "陳麗莉服務處(二)：蘆竹鄉吉林路13號5樓", 
+            "label": "服務處"
+        }
+    ], 
+    "name": "陳麗莉", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=55", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/lily.chen1957", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641658583020048陳麗莉議員.jpg", 
+    "experience": [
+        "現任", 
+        "1.桃園縣議會第17屆議員", 
+        "2.蘆竹鄉婦女會理事長", 
+        "3.蘆竹分局警政志工中隊長", 
+        "4.蘆竹鄉陳姓婦工隊長", 
+        "5.榮民榮欣志工", 
+        "經歷：", 
+        "1.空軍五聯隊政戰官", 
+        "2.曾文家商教官", 
+        "3.永平工商教官", 
+        "4.大竹國小義工媽媽創隊隊長", 
+        "5.梅荷分會會長", 
+        "6.黃復興十二區黨部常委", 
+        "7.婦聯會蘆竹支會主委", 
+        "8.蘆竹鄉青年守望相助協會理事長", 
+        "9.蘆竹鄉土風舞協會理事長", 
+        "10.蘆竹鄉第17屆鄉民代表", 
+        "11.桃園縣議會第16屆議員"
+    ], 
+    "county": "桃園縣", 
+    "district": "蘆竹鄉", 
+    "constituency": "桃園縣第四選區", 
+    "education": [
+        "縣立大園國小", 
+        "縣立大園國中", 
+        "省立桃園高中", 
+        "政治作戰學校六十八年班外文系"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca027@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "蘆竹鄉大竹路426之8號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "323-5624", 
+            "label": "電話"
+        }
+    ], 
+    "name": "李訓求", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=54", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/profile.php?id=100008334763759", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634834906749418562_MG_1758-2.jpg", 
+    "experience": [
+        "現任:", 
+        "桃園縣體育會獨輪車委員會顧問", 
+        "蘆竹鄉愛加倍歌唱協會顧問", 
+        "蘆竹鄉李氏宗親會顧問", 
+        "桃園縣李氏宗親總會常務監事", 
+        "海山戶外活動協會顧問", 
+        "桃園縣議會無黨籍聯盟總召集人", 
+        "經歷:", 
+        "桃園縣議會第14、15屆議員", 
+        "蘆竹鄉社教文教基金會董事", 
+        "啟榮機械公司負責人", 
+        "蘆竹鄉李氏宗親會理事長", 
+        "蘆竹鄉慢速壘球委員會主任委員", 
+        "桃園縣退伍軍人協會理事", 
+        "蘆竹鄉退伍軍人協會副會長", 
+        "蘆竹鄉民防、義交、花卉、同濟、海山委員顧問"
+    ], 
+    "county": "桃園縣", 
+    "district": "蘆竹鄉", 
+    "constituency": "桃園縣第四選區"
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca107@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "蘆竹鄉五福一路11號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-3129777", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-3525757", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "許清順", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=53", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://tw.myblog.yahoo.com/scs3242288", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/?ref=logo#!/profile.php?id=100000998447993", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641658832932487許清順議員.jpg", 
+    "experience": [
+        "惠興通企業（有）負責人", 
+        "民主進步黨桃園縣黨部第12、13屆執行委員", 
+        "民主進步黨全國黨代表", 
+        "蘆竹鄉第18屆鄉民代表副主席", 
+        "蘆竹鄉第17屆鄉民代表", 
+        "民進黨蘆竹鄉黨部第五屆主任委員", 
+        "蘆竹鄉鄉民大學副校長", 
+        "公埔國小校友會會長", 
+        "錦興國小家長會顧問", 
+        "蘆竹鄉體育會第21屆常務監事", 
+        "桃園縣迅雷救援協會顧問"
+    ], 
+    "county": "桃園縣", 
+    "district": "蘆竹鄉", 
+    "constituency": "桃園縣第四選區", 
+    "education": [
+        "公埔國小", 
+        "南崁國中", 
+        "振聲高中", 
+        "開南大學研究所畢業"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "g85908@kimo.com", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca109@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "大園鄉內海村4鄰41之3號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-385-5666", 
+            "label": "電話"
+        }
+    ], 
+    "name": "徐其萬", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=57", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.wretch.cc/blog/flydayuan123", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/ling4387668#!/profile.php?id=100000400748239", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641658337943618徐其萬議員.jpg", 
+    "experience": [
+        "大園鄉徐氏宗親會理事長", 
+        "內海國小家長會會長", 
+        "大園國中家長會副會長", 
+        "大園鄉民代表會第十五十六屆代表", 
+        "第十七屆副主席", 
+        "大園鄉後備軍人輔導中心副主任", 
+        "大園鄉老人會顧問", 
+        "大園鄉守望相助協會常務理事", 
+        "臺灣更生保護會輔導員"
+    ], 
+    "county": "桃園縣", 
+    "district": "大園鄉", 
+    "constituency": "桃園縣第五選區", 
+    "education": [
+        "內海國小", 
+        "大園國中", 
+        "大興高中"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "wu.help@msa.hinet.net", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "觀音鄉保障村大觀路1段572號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "483-0509", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "483-8989", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "吳宗憲", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=86", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100003559597717#!/TaoYuanXianYiYuanWuZongXian?fref=ts", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641653749975560吳宗憲議員.jpg", 
+    "experience": [
+        "桃園縣議會15、16屆議員", 
+        "觀音鄉民代表會第十五屆代表會副主席", 
+        "觀音鄉民代表第十六屆代表", 
+        "救國團觀音鄉團委會會長", 
+        "觀音鄉青年志工服務協會創會長", 
+        "觀音獅子會會長", 
+        "桃園縣主區志工推展協會創會會長", 
+        "草漯國小教育事務基金會董事長"
+    ], 
+    "county": "桃園縣", 
+    "district": "觀音鄉", 
+    "constituency": "桃園縣第十二選區", 
+    "education": [
+        "草漯國小", 
+        "新坡國中", 
+        "清華工商汽修科", 
+        "開南管理學院法律學系學士"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "address", 
+            "value": "中壢市長春路261巷35號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "462-6286", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "433-6719", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "葉明月", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=70", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/yehmoonTW", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641656892445079葉明月議員.jpg", 
+    "experience": [
+        "國大代表葉正林服務處秘書", 
+        "國泰人公司展業處主任", 
+        "榮民服務處志工", 
+        "桃園縣警友會文化站站長", 
+        "縣青溪婦聯會中壢分會副主委", 
+        "中壢市民代表"
+    ], 
+    "county": "桃園縣", 
+    "district": "中壢市", 
+    "constituency": "桃園縣第七選區", 
+    "education": [
+        "內壢國小", 
+        "內壢國中", 
+        "振聲高中", 
+        "淡江大學行政管理系學分班進修"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca038@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "中壢市中原里十鄰信義路20號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "462-4662", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "451-0627", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "張運炳", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=113", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/profile.php?id=100008339101455", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634701820931020372張運炳.jpg", 
+    "experience": [
+        "桃園縣第12、13、15、16屆縣議員", 
+        "中壢市第6屆市民代表", 
+        "桃園縣張廖簡宗親會顧問和中壢、內壢、大崙會顧問", 
+        "桃園縣巧固球主任委員及體育會監察委員"
+    ], 
+    "county": "桃園縣", 
+    "district": "中壢市", 
+    "constituency": "桃園縣第七選區", 
+    "education": [
+        "內定、內壢國小", 
+        "內壢國中", 
+        "振聲中學", 
+        "元培科學技術學院"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "address", 
+            "value": "中壢市義民路二段145號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "461-5528", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "462-5918", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "梁新武", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=68", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/people/%E6%A2%81%E6%96%B0%E6%AD%A6/100006207361480", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641657118021475梁新武議員.jpg", 
+    "experience": [
+        "桃園縣議員", 
+        "民進黨桃園縣黨部執行長", 
+        "民進黨觀音鄉黨部主任委員", 
+        "民進黨桃園縣黨部執行委員、評議委員、", 
+        "全國黨代表", 
+        "中壢青商會、龍岡同濟會、壢青獅子會、", 
+        "工商交流協進會", 
+        "桃園縣梁姓宗親會理事長", 
+        "中壢高中校友會理事長、常務監事"
+    ], 
+    "county": "桃園縣", 
+    "district": "中壢市", 
+    "constituency": "桃園縣第七選區", 
+    "education": [
+        "新坡國小", 
+        "中壢初中", 
+        "中壢高中", 
+        "文化大學政治系畢業"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "super4280606@yahoo.com.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca113@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "中壢市廣州路190號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-428-0606", 
+            "label": "電話"
+        }
+    ], 
+    "name": "梁為超", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=97", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://blog.udn.com/super4280606", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100000434767763", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634643993664088688議員梁為超.jpg", 
+    "experience": [
+        "立法委員吳志揚國會助理", 
+        "中壢市青年志工服務協會理事長", 
+        "中華民國水上救生協會桃園分會常務理事", 
+        "中國國民黨桃園縣青年團支團長", 
+        "中國國民黨桃園縣黨部副主委", 
+        "中壢國際青年商會第34屆會長", 
+        "全國奧瑞岡辯論比賽冠軍辯士", 
+        "中國文化大學餐飲人才管理班結業", 
+        "救國團桃園縣工商青年社會服務隊第四隊召集人"
+    ], 
+    "county": "桃園縣", 
+    "district": "中壢市", 
+    "constituency": "桃園縣第七選區", 
+    "education": [
+        "醒吾商業專科學校企業管理科", 
+        "台北市立體育學院運動教育研究所"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca051@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "中壢市龍東路416號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-4566167", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-4665853", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "沐平波", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=66", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/penpo.mu", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641657218173651沐平波議員.jpg", 
+    "experience": [
+        "【現任】", 
+        "桃園縣議會第17屆議員", 
+        "桃園縣議會國民黨團副書記長", 
+        "黃復興第8支黨部委員", 
+        "桃園縣婦聯分會顧問", 
+        "國民黨中壢市黨部委員", 
+        "桃園縣中壢市退伍軍人協會顧問", 
+        "桃園縣中壢市婦女會顧問", 
+        "中壢市民眾服務社顧問", 
+        "健行科技大學企管系兼任講師", 
+        "健行清雲校友會常務理事", 
+        "董楊童宗親會顧問", 
+        "安徽同鄉會常務理事", 
+        "【經歷】", 
+        "清雲科技大學企管系兼任講師", 
+        "健行工專人事主任", 
+        "健行工專專任教師", 
+        "美國東南大學研究助理", 
+        "桃園縣婦聯分會委員", 
+        "救國團真善美聯誼會委員", 
+        "桃園縣議會第15、16屆議員"
+    ], 
+    "county": "桃園縣", 
+    "district": "中壢市", 
+    "constituency": "桃園縣第七選區", 
+    "education": [
+        "健行工專電子工程科畢業", 
+        "清雲科技大學經營管理研究所碩士", 
+        "中原大學工業與系統工程學系博士班"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca039@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "中壢市中央里六鄰中台路38號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "425-9001", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "425-8615", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "徐景文", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=65", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100000258577253&ref=ffa", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641657353269888徐景文議員.jpg", 
+    "experience": [
+        "民進黨全國黨代表（現任）", 
+        "民進黨中壢市黨部評議委員", 
+        "中壢青商會2000年會長", 
+        "崇友實業研發部主任"
+    ], 
+    "county": "桃園縣", 
+    "district": "中壢市", 
+    "constituency": "桃園縣第七選區", 
+    "education": [
+        "觀音國小", 
+        "新街國小", 
+        "興南國中", 
+        "健行工專", 
+        "元智大學管研所碩士"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca112@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "中壢市中福路116號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "4616678", 
+            "label": "電話"
+        }
+    ], 
+    "name": "劉曾玉春", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=64", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.ucute.com.tw/spring", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100002709445121", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634801432729887191286026_108038849296429_7998907_o.jpg", 
+    "experience": [
+        "中壢市第10、11屆市民代表", 
+        "劉姓宗親會中壢分會婦女部執行長", 
+        "曾氏宗親會中壢分會名譽會長", 
+        "桃園縣關懷人生愛心協會首席顧問", 
+        "桃園縣義勇消防隊興國分隊顧問", 
+        "首華大飯店董事", 
+        "桃園縣武術協會理事長", 
+        "桃園縣劉姓青年會顧問", 
+        "曾氏宗親會中壢分會名譽會長", 
+        "中壢婦聯會委員", 
+        "中壢女青年會顧問", 
+        "桃園縣警察之友中壢分會大崙站顧問", 
+        "桃園縣鄉土文化推廣協會理事長", 
+        "桃園縣曾氏宗親會顧問", 
+        "桃園縣新都心生活文化協會顧問"
+    ], 
+    "county": "桃園縣", 
+    "district": "中壢市", 
+    "constituency": "桃園縣第七選區", 
+    "education": [
+        "育達商職"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca111@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "中壢市信義里嘉興街63號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-465-0145", 
+            "label": "電話"
+        }
+    ], 
+    "name": "黃傅淑香", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=63", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.wretch.cc/blog/rjsstygo", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100000258577253&ref=ffa#!/profile.php?id=100001879664076", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641657659030425傅淑香議員.jpg", 
+    "experience": [
+        "中壢市民代表。", 
+        "桃園縣地政士公會理事長。", 
+        "桃園縣婦女發展協會理事長。", 
+        "桃園縣健康育樂協會理事長。", 
+        "民進黨全國黨代表。", 
+        "民進黨桃園縣黨部執行委員。", 
+        "民進黨中壢市黨部執行委員。"
+    ], 
+    "county": "桃園縣", 
+    "district": "中壢市", 
+    "constituency": "桃園縣第七選區", 
+    "education": [
+        "竹南高中"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca002@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "中壢市中正路二段385號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-4222912", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-4220280", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "邱奕勝", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=130", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.ucute.com.tw/sheng/", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=581386764", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a635451621625917561img004.jpg", 
+    "experience": [
+        "現任第17屆桃園縣議會議長", 
+        "第8屆中壢市民代表會主席", 
+        "第14屆桃園縣議員", 
+        "第15、16屆桃園縣副議長", 
+        "桃園縣議會國民黨團副書記長", 
+        "中壢市民眾服務站理事長", 
+        "中壢市丘(邱)姓宗親會第4、5、6屆理事長", 
+        "桃園縣軟式網球協會主任委員", 
+        "桃園縣警察局民防副大隊長", 
+        "桃園縣元極舞蹈推展協會顧問", 
+        "桃園縣義勇消防總隊長", 
+        "國民黨桃園縣黨部副主委", 
+        "國民黨中壢市黨部主委"
+    ], 
+    "county": "桃園縣", 
+    "district": "中壢市", 
+    "constituency": "桃園縣第七選區", 
+    "education": [
+        "大崙國小", 
+        "大崙國中", 
+        "啟英高中", 
+        "美國聖里奧大學企管系碩士"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca007@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "桃園市國際路一段1124巷12弄6號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-220-3296", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-2203298", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "黃哲鍾", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=42", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/people/%E9%BB%83%E5%93%B2%E9%8D%BE/100004523405854", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641660529279467黃哲鍾議員.jpg", 
+    "experience": [
+        "桃園縣議會第14、15屆議員", 
+        "桃園市第十屆市民代表", 
+        "桃園市中山里里長", 
+        "桃園縣國立台北科技大學校友會常務監事", 
+        "中華航空公司修護工廠飛機檢驗領班", 
+        "桃園縣黃姓宗親會副會長", 
+        "桃園縣客屬聯誼會常務理事", 
+        "國立桃園高中家長會副會長", 
+        "桃園縣立中興國中家長會副會長", 
+        "桃園縣立中山國小家長會副會長", 
+        "桃園縣太極拳協會常務理事", 
+        "桃園市晉福宮主任委員", 
+        "桃園市長山寺監事", 
+        "桃園縣老人守望相助協會理事長", 
+        "桃園縣老人健康促進會顧問"
+    ], 
+    "county": "桃園縣", 
+    "district": "桃園市", 
+    "constituency": "桃園縣第一選區", 
+    "education": [
+        "國立台北科技大學機械系"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "hjm3356777@yahoo.com.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca008@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "桃園市永康街36-1號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "333-6666", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "335-1875", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "黃智銘", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=41", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.wretch.cc/blog/hjm3356777", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100000693856184", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641660641599664黃智銘議員.jpg", 
+    "experience": [
+        "桃園縣第12、13、15、16屆縣議員", 
+        "桃園市第四、五屆市民代表", 
+        "中華民國拳擊代表隊國手、教練", 
+        "桃園縣太極拳協會主任委員", 
+        "桃園縣元極舞創會會長", 
+        "桃園縣集郵協會理事長", 
+        "國際青商會虎頭山分會資深會主席", 
+        "桃園縣仁愛慈善協進會首席顧問", 
+        "桃園縣啟智殘障協會顧問", 
+        "桃園市成功國小副會長", 
+        "桃園市信用合作社理事", 
+        "桃園區黃姓宗親會會長", 
+        "中華國際勞務服務協會桃園分會會長"
+    ], 
+    "county": "桃園縣", 
+    "district": "桃園市", 
+    "constituency": "桃園縣第一選區", 
+    "education": [
+        "桃園市成功國小", 
+        "省立桃園中學初中部", 
+        "中國海專(航海科畢業)", 
+        "淡江大學碩士學分班"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "jj52@anet.net.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca080@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "桃園市永安路350號2樓", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "262-6119", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "261-0699", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "詹江村", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=40", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/jiangcunz", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641660730051819詹江村議員.jpg", 
+    "experience": [
+        "桃園縣議會第16屆議員", 
+        "市民代表", 
+        "馬英九後援會召集人", 
+        "朱立倫縣長競選宣傳部主任", 
+        "產經新聞報講師", 
+        "全國第一屆證券營業員證照", 
+        "桃園縣青工會總會執行長", 
+        "國民黨菁英參議會參議長", 
+        "正義心聲，小市民電台、桃廣等節目主持人", 
+        "1996傑出企業家獎", 
+        "2002獲聘國民黨全國文宣諮詢委員"
+    ], 
+    "county": "桃園縣", 
+    "district": "桃園市", 
+    "constituency": "桃園縣第一選區", 
+    "education": [
+        "陸軍軍官學校土木工程系畢業", 
+        "開南大學企業管理學系碩士", 
+        "國家發展研究院結業"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "jefflin48@yahoo.com.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca076@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "桃園市大業路一段301巷6號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "317-9977", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "356-3889", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "林政賢", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=39", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://tw.myblog.yahoo.com/jeff-greenglade/", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100002127038159", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641660856100041林政賢議員.jpg", 
+    "experience": [
+        "現職:", 
+        "小森林美語學校校長", 
+        "中國國民黨桃園市黨部主任委員", 
+        "桃園縣議會中國國民黨黨團執行長", 
+        "桃園啟智文教基金會董事長", 
+        "桃園縣體委會圍棋委員會主任委員", 
+        "桃園市體育會滑輪溜冰委員會主任委員", 
+        "國際獅子會2004-2005年度會長聯誼會主席", 
+        "中華臺灣林姓宗親總會理事", 
+        "經歷:", 
+        "桃園縣第16屆縣議員", 
+        "雲林縣台西鄉公所秘書", 
+        "中國國民黨全國黨代表", 
+        "桃園福宏扶輪社創社社長", 
+        "桃園市民眾服務社第19、20屆理事長", 
+        "武陵高中家長會96、97年度會長", 
+        "救國團桃園市團委會2008年會長", 
+        "桃園縣雲林同鄉會第五、六屆理事長", 
+        "桃園縣遠東獅子會2004-2005年會長", 
+        "桃園資深青商會97年會長", 
+        "振聲中學第15屆家長會會長", 
+        "桃園國小第101屆家長會會長", 
+        "桃園市青年志工服務協會91年會長"
+    ], 
+    "county": "桃園縣", 
+    "district": "桃園市", 
+    "constituency": "桃園縣第一選區", 
+    "education": [
+        "雲林縣臺西國小", 
+        "台北市仁愛國中", 
+        "台北縣辭修高中", 
+        "東吳大學政治系", 
+        "政治大學行政管理碩士學分班"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca103@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "桃園市莊一街182號之1", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-3029906", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-3029907", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "陳宗義", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=38", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/pages/%E9%99%B3%E5%AE%97%E7%BE%A9/1379956275558514", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641660952352210陳宗義議員.jpg", 
+    "experience": [
+        "第五屆立法委員", 
+        "第八屆桃園市長", 
+        "法務部簡任11職等秘書", 
+        "行政院簡任12職等秘書兼七組組長", 
+        "行政院簡任14職等政務顧問"
+    ], 
+    "county": "桃園縣", 
+    "district": "桃園市", 
+    "constituency": "桃園縣第一選區", 
+    "education": [
+        "中山國小", 
+        "桃園國中", 
+        "振聲中學", 
+        "國立臺灣大學法律系畢業"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca003@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "桃園市中山北路33號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-335-9701", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-334-9595", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "黃婉如", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=37", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.wretch.cc/blog/wanru100", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/?ref=home#!/profile.php?id=100000030263542", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641661080896436黃婉如議員.jpg", 
+    "experience": [
+        "桃園縣議會第11、12、13、14、", 
+        "15、16屆議員", 
+        "桃園國際女青年商會會長", 
+        "黃復興黨部第十屆委員", 
+        "桃園縣優秀社會青年代表接受全國表揚", 
+        "桃園市第三、四屆市民代表", 
+        "桃園縣生命線協會發起人暨理事", 
+        "財團法人家庭扶助中心扶幼委員", 
+        "桃園國小校友會監事主席救國團", 
+        "桃園市團委會會長暨諮詢委員", 
+        "銘傳大學校友會理事", 
+        "桃園縣弱勢動物保育協會常務理事", 
+        "桃園縣自然生態保護協會常務理事"
+    ], 
+    "county": "桃園縣", 
+    "district": "桃園市", 
+    "constituency": "桃園縣第一選區", 
+    "education": [
+        "桃園國小", 
+        "台北市立古亭女中畢業", 
+        "私立銘傳大學銀行保險系", 
+        "私立銘傳大學公共事務學研究所畢業"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca079@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "桃園市國際路一段399號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "364-2622", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "364-5408", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "邱素芬", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=36", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://tw.myblog.yahoo.com/jw!.Pbd7UmBBRmMku39yaJyxuCY/", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100000030263542#!/profile.php?id=100000100424595", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641661328000870邱素芬議員.jpg", 
+    "experience": [
+        "桃園縣議會第16屆議員", 
+        "桃園市市民代表會第七、八、九屆市民代表", 
+        "桃園市邱(丘)姓宗親會顧問", 
+        "桃園縣晋福民藝推廣協會理事長", 
+        "桃園晋福社社長", 
+        "桃園縣婦女發展協會監事水蓮會", 
+        "桃園市中路分會區會長"
+    ], 
+    "county": "桃園縣", 
+    "district": "桃園市", 
+    "constituency": "桃園縣第一選區", 
+    "education": [
+        "中山國小", 
+        "桃園國中", 
+        "中壢高商", 
+        "空中大學", 
+        "中興大學公共行政班"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "huang.c515@msa.hinet.net", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "桃園市國際路二段479號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "3609198、3609298", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "3794800、3791002", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "黃景熙", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=35", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://tw.myblog.yahoo.com/jingsi_0515", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/pages/%E9%BB%83%E6%99%AF%E7%86%99/1442211956015694", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641661433301055黃景熙議員.jpg", 
+    "experience": [
+        "第15、16、17屆縣議員", 
+        "立法委員邱垂貞國會辦公室主任", 
+        "桃園市國中小學家長會長聯誼會總會長", 
+        "現任:", 
+        "桃園縣家長會長協會理事長", 
+        "桃園縣攤販協會理事長", 
+        "桃園縣勞工育樂推展協會理事長"
+    ], 
+    "county": "桃園縣", 
+    "district": "桃園市", 
+    "constituency": "桃園縣第一選區", 
+    "education": [
+        "明新工業技術學院"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "liao891.a68@msa.hinet.net", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca101@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "桃園市春日路1057號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "357-1578", 
+            "label": "電話"
+        }
+    ], 
+    "name": "廖輝星", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=34", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.wretch.cc/blog/liao3571578", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/?ref=logo#!/profile.php?id=100001994356561", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641661601001349廖輝星議員.jpg", 
+    "experience": [
+        "桃園縣議會第16屆議員", 
+        "桃園縣議會民進黨黨團第16屆幹事長、第17屆總召", 
+        "民進黨市黨部主任委員、民進黨縣黨部執評委", 
+        "民進黨第14、15屆全國黨代表", 
+        "虎頭山青春陽光隊顧問", 
+        "桃園青商會會長、陽光獅子會09~10會長", 
+        "信光里兩任里長、第8~9屆市民代表", 
+        "市農會代表、桃市早泳會創會長,1~2屆理事長", 
+        "桃園市張簡廖宗親會理事長、嘉義、台南同鄉會顧問", 
+        "北門國小、慈文國小、同德國中、文昌國中家長會副會長", 
+        "桃園縣雲林同鄉會復會發起人"
+    ], 
+    "county": "桃園縣", 
+    "district": "桃園市", 
+    "constituency": "桃園縣第一選區", 
+    "education": [
+        "清雲科技大學工業管理系畢業", 
+        "開南科技大學公共事務管理學碩士"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "idea.power@msa.hinet.net", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "桃園市泰昌三街30號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "228-8959", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "228-8956", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "萬美玲", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=33", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100000455670302", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641661727829572萬美玲議員.jpg", 
+    "experience": [
+        "桃園縣第15、16、17屆縣議員", 
+        "桃園市中山國小家長會會長", 
+        "桃園縣江西同鄕會理事長", 
+        "桃園縣嘉義同鄉會常務理事", 
+        "桃園縣兒童少年保護協會理事長", 
+        "桃園市女青年會理事長", 
+        "桃園縣婦女企業管理協會理事長", 
+        "桃園縣幼兒足球協會理事長", 
+        "桃園縣岳群健身發展協會理事長", 
+        "桃園廣播電台節目主持製作"
+    ], 
+    "county": "桃園縣", 
+    "district": "桃園市", 
+    "constituency": "桃園縣第一選區", 
+    "education": [
+        "美國明尼蘇達州立曼徹普立敦大學", 
+        "國立政治大學民主與立法管理碩士班", 
+        "廣州暨南大學國際關係研究所"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca005@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "桃園市同安街482號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "325-8595", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "326-0826", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "李曉鐘", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=31", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/profile.php?id=100006132073856", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641661917525905副議長李曉鐘.jpg", 
+    "experience": [
+        "現任第17屆桃園縣議會副議長", 
+        "桃園縣議會第13、14、15、16屆議員", 
+        "桃園縣民防總隊義警大隊副大隊長", 
+        "桃園縣桃園市後備軍人輔導中心主任", 
+        "桃園縣武術太極拳協會理事長", 
+        "桃園市社區民俗發展促進會理事長", 
+        "桃園縣桃園市槌球協進會理事長", 
+        "桃園縣舞珈皮體適能運動協會理事長", 
+        "桃園市武術委員會主任委員", 
+        "財團法人台灣省桃園縣桃園鎮撫宮重建委員會", 
+        "主任委員", 
+        "桃園市中埔國民小學90週年校慶主任委員", 
+        "荷顯宮興建委員會主任秘書", 
+        "國際同濟會桃園市分會會長", 
+        "同安國小家長會創會會長", 
+        "新興獅子會會長", 
+        "桃園市國際早泳會前會長", 
+        "桃園市文昌國中第四屆同學會會長", 
+        "桃園市慈文國中家長會副會長", 
+        "桃園市南通、莊敬社區發展協會顧問", 
+        "桃園威尼斯游泳會、晨泳會、三民早泳會顧問", 
+        "桃園市埔子長年會顧問", 
+        "桃園縣鋼鐵拓展協會顧問", 
+        "桃園縣機械同業公會顧問", 
+        "台灣李氏宗親總會顧問", 
+        "桃園縣議會無黨籍聯盟幹事長", 
+        "桃園市李氏宗親會常務理事"
+    ], 
+    "county": "桃園縣", 
+    "district": "桃園市", 
+    "constituency": "桃園縣第一選區", 
+    "education": [
+        "桃園創新技術學院"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca085@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "八德市介壽路一段180號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "364-1888", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "364-1889", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "呂淑真", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=51", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.wretch.cc/blog/lususan", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/?ref=logo#!/profile.php?id=100002171857223", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641659081284924呂淑真議員.jpg", 
+    "experience": [
+        "桃園縣第16屆議員", 
+        "中國國民黨八德市黨部委員", 
+        "群芳同濟會會長", 
+        "八德市元極舞主任委員", 
+        "八德市婦聯會主任委員", 
+        "八德市張廖簡親會婦女聯誼會創會長", 
+        "八德市婦女會理事長", 
+        "八德市婦女愛心協會理事長", 
+        "婦聯青溪桃園縣支會主任委員", 
+        "桃園縣八德市健康會理事長"
+    ], 
+    "county": "桃園縣", 
+    "district": "八德市", 
+    "constituency": "桃園縣第三選區", 
+    "education": [
+        "南亞技術學院", 
+        "婦聯青溪幹部研習第17期副學員長"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca083@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "八德市桃德路153巷1號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "366-7438", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "367-3011", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "張文瑜", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=50", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://tw.myblog.yahoo.com/jw!03I6NtGdHhJDfhotiW.qekd5", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100002086591541", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641659277377268張文瑜議員.jpg", 
+    "experience": [
+        "桃園縣第16屆議員", 
+        "八德市市民代表", 
+        "民進黨桃園縣黨部評議委員", 
+        "民進黨桃園縣黨部執行委員", 
+        "真善美婦女舞蹈推廣協會理事長"
+    ], 
+    "county": "桃園縣", 
+    "district": "八德市", 
+    "constituency": "桃園縣第三選區", 
+    "education": [
+        "開南大學公共事務管理學系畢業"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca020@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "八德市永福西街38號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "366-1613", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "361-7569", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "趙正宇", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=49", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.wretch.cc/blog/Jhaojhengyu", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100001662662964", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641659480489625趙正宇議員.jpg", 
+    "experience": [
+        "桃園縣第15、16屆縣議員", 
+        "八德市公所秘書", 
+        "八德市民代表", 
+        "退伍軍人協會八德分會會長", 
+        "太極拳委員會八德分會主委", 
+        "八德市桌球委員會主委", 
+        "八德市音樂操健康會理事長", 
+        "八德市太極氣功發展協會會長", 
+        "中國國民黨十六、十七全黨代表", 
+        "黃園德區黨部主任", 
+        "八德市大成國小家長會會長"
+    ], 
+    "county": "桃園縣", 
+    "district": "八德市", 
+    "constituency": "桃園縣第三選區", 
+    "education": [
+        "革命實踐研究所", 
+        "中興大學公共研究班", 
+        "銘傳大學公共事務學研究所碩士"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "address", 
+            "value": "八德市興仁里興豐路295號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "368-2906;368-2972", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "368-1325", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "呂林小鳳", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=48", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://tw.myblog.yahoo.com/bade-8888", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/siaofong.lin", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641659604197842呂林小鳳議員.jpg", 
+    "experience": [
+        "桃園縣第16屆議員", 
+        "八德市第二、三屆市民代表", 
+        "八德國小百年校慶主任委員", 
+        "八德國小兩屆家長會長", 
+        "八德國中兩屆家長會長", 
+        "民進黨八德市黨部第三、四屆主任委員", 
+        "民進黨桃園縣黨部評議委員", 
+        "八德市婦女發展協會理事長", 
+        "呂姓宗親會八德分會委員", 
+        "林姓宗親會八德分會副會長"
+    ], 
+    "county": "桃園縣", 
+    "district": "八德市", 
+    "constituency": "桃園縣第三選區", 
+    "education": [
+        "省立中壢高商畢", 
+        "清雲大學財金系"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "l88892583@gmail.com", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca081@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "大溪鎮仁武里介壽路886號2樓", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "380-8585", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "390-7559", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "李柏坊", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=60", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://blog.udn.com/survey", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/l88892583", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641657978830987李柏坊議員.jpg", 
+    "experience": [
+        "大溪鎮仁武里里長", 
+        "圳頂義消幹事", 
+        "圳頂民防分隊副分隊長", 
+        "太平洋電線電纜公司助理工程師", 
+        "大溪鎮後備軍人輔導中心秘書", 
+        "大溪鎮兵役協會委員", 
+        "大溪鎮衛生所社區健康營造中心委員", 
+        "大溪鎮讀經會理事長", 
+        "桃園縣議會第16屆議員", 
+        "", 
+        "現任：", 
+        "大溪鎮仁和宮董事", 
+        "大溪鎮後備軍人輔導中心主任", 
+        "桃園縣議會第17屆議員"
+    ], 
+    "county": "桃園縣", 
+    "district": "大溪復興", 
+    "constituency": "桃園縣第六選區", 
+    "education": [
+        "員樹林國小", 
+        "大溪國中", 
+        "健行工專"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "victor.chiou22@msa.hinet.net", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca110@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "大溪鎮中華路308號1樓", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-388-5633", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-388-6202", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "陳治文", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=59", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100001891607924", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641658072119151陳治文議員.jpg", 
+    "experience": [
+        "縣議員邱顯二服務處秘書", 
+        "大溪早起會會員", 
+        "大溪同仁會會員", 
+        "大溪佛光會會員", 
+        "大溪工商協進會會員", 
+        "大溪普修協進會會員", 
+        "大溪金蘭同心會會員", 
+        "大溪婦女發展協會會員"
+    ], 
+    "county": "桃園縣", 
+    "district": "大溪復興", 
+    "constituency": "桃園縣第六選區", 
+    "education": [
+        "高雄市瑞豐國小", 
+        "獅甲國中", 
+        "大榮高中", 
+        "南亞技術學院二專部資訊管理科", 
+        "南亞技術學院二技部觀光與休閒事業管理系"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "lu57721@hotmail.com", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "平鎮市延平路二段330號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "491-0432", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "491-0409", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "劉邦鉉", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=77", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100001838693488", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634856527601457518桃園縣議員劉邦鉉133_96.jpg", 
+    "experience": [
+        "桃園縣第15、16、17屆縣議員", 
+        "桃園縣議會教育小組召集人", 
+        "平鎮市家長會長協會93-94總會長", 
+        "義興文教基金會第一、二屆董事長", 
+        "義興國小家長會第五、六屆會長", 
+        "桃園縣合球委員會主任委員", 
+        "平鎮市網球委員會理事長", 
+        "桃園縣救難協會名譽理事長", 
+        "救國團平鎮分會93-94會長", 
+        "桃園縣警局義交中隊長", 
+        "桃園縣劉姓宗親會理事長", 
+        "桃園縣直排輪運動暨檢定協會理事長", 
+        "桃園縣饒平發展促進協會理事長", 
+        "桃園縣議會無黨籍聯盟副總召集人"
+    ], 
+    "county": "桃園縣", 
+    "district": "平鎮市", 
+    "constituency": "桃園縣第八選區", 
+    "education": [
+        "芭里國小", 
+        "新明國中", 
+        "永平工商", 
+        "空中大學", 
+        "南亞技術學院", 
+        "元智大學社會暨政策科學研究所"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "tycca059@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "平鎮市中庸路108號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-4399229", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-4397270", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "莊玉輝", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=75", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/#!/yuhui.chuang.52", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641656132255744莊玉輝議員.jpg", 
+    "experience": [
+        "桃園縣議會第15、16、17屆議員", 
+        "平鎮市農會第14屆理事長", 
+        "平鎮市農會第16屆常務監事", 
+        "桃園縣莊氏宗親會常務理事", 
+        "桃園縣養豬事業發展協會第2、3屆理事長", 
+        "桃園縣救國團平鎮團委會99年、100年理事長", 
+        "桃園縣警察局義勇交通警察副大隊長", 
+        "平鎮國中86~92年、94年、95年家長會會長", 
+        "平鎮高中88~91年家長會會長", 
+        "龍潭農工第13屆家長會會長", 
+        "永平工商97年家長會會長", 
+        "89年度十大傑出專業農民（神農獎）", 
+        "桃園縣議會農業委員會召集人", 
+        "莊玉輝畜牧場負責人"
+    ], 
+    "county": "桃園縣", 
+    "district": "平鎮市", 
+    "constituency": "桃園縣第八選區", 
+    "education": [
+        "新勢國小", 
+        "平鎮國中", 
+        "清華高中", 
+        "南亞技術學院二專部企業管理科", 
+        "南亞技術學院二技部觀光與休閒事業管理系"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "ling4387668@yahoo.com.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "平鎮市龍興里龍德路87號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "438-7668", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "438-7669", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "舒翠玲", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=74", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.tsuiling.org/", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/ling4387668", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641656230535916舒翠玲議員.jpg", 
+    "experience": [
+        "桃園縣議會第14、15、16屆縣議員", 
+        "平鎮市第2屆市民代表", 
+        "國民黨第18屆全國黨代表", 
+        "平鎮市女青年會第1、2屆理事長", 
+        "桃園縣湖南同鄉會第4、5屆理事長", 
+        "省立桃園醫院書記", 
+        "南山人壽壽險顧問"
+    ], 
+    "county": "桃園縣", 
+    "district": "平鎮市", 
+    "constituency": "桃園縣第八選區", 
+    "education": [
+        "忠貞國小", 
+        "龍岡國中", 
+        "楊梅高中", 
+        "淡江大學公共行政學系", 
+        "輔仁大學大眾傳播系", 
+        "國立政治大學社會科學院行政管理碩士", 
+        "上海復旦大學國際關係與公共事務學院博士研究生"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "hsieh2225@hotmail.com", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca053@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "平鎮市華安里平東路239巷27弄18號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "456-1264", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "450-5338", 
+            "label": "傳真"
+        }, 
+        {
+            "type": "address", 
+            "value": "中正里中正二路2巷19號6樓", 
+            "label": "服務處"
+        }
+    ], 
+    "name": "謝彰文", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=73", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.ucute.com.tw/hsieh", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=581117306", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641656337708105謝彰文議員.jpg", 
+    "experience": [
+        "【現任】", 
+        "1.桃園縣議會第17屆縣議員", 
+        "2.桃園縣議會國民黨團副書記長兼發言人", 
+        "3.中國國民黨第18屆全國黨代表", 
+        "4.黃復興第八支黨部委員", 
+        "5.平鎮市黨部委員會委員", 
+        "6.桃園縣擎天青年協會創會會長", 
+        "7.桃園縣榮欣聯誼會創會會長", 
+        "8.桃園縣平鎮市婦女會理事長", 
+        "9.桃園縣平鎮市婦聯分會顧問", 
+        "10.桃園縣平鎮市謝姓宗親會顧問", 
+        "11.平鎮市退伍軍人協會首席顧問", 
+        "12.桃園縣關懷兒童教育協會顧問", 
+        "13.桃園縣多元教育發展協會顧問", 
+        "14.桃園縣陽光幼教協會顧問", 
+        "15.桃園縣補習教育事業協會榮譽理事長", 
+        "16.桃園縣榮興志願服務協會名譽理事長", 
+        "17.桃園縣身心障礙者權益保障推動小組委員", 
+        "【黨內經歷】", 
+        "1.革命實踐研究院婦女助講班第一期結業", 
+        "2.革命實踐研究院婦工班第五期結業", 
+        "3.革命實踐研究院青年領導幹部第一期結業", 
+        "4.中央婦女會問政研習營第一期結業", 
+        "5.黃國園第39區黨部小組長、委員", 
+        "6.國民黨第14、15、16、17、18全黨代表", 
+        "7.貫徹同德演習及安和計畫各記兩大功", 
+        "8.97年榮獲國民黨中央黨部頒贈華夏三等獎章", 
+        "【議會、社會經歷】", 
+        "1.桃園縣議會", 
+        "第11、12、13、14、15、16、17屆議員", 
+        "2.桃園縣議會教育委員會召集人", 
+        "3.桃園縣議會財政委員會召集人", 
+        "4.桃園縣議會建設委員會召集人", 
+        "5.桃園縣議會警政衛生委員會召集人", 
+        "6.桃園縣議會工務委員會召集人", 
+        "7.桃園縣議會民政委員會召集人", 
+        "8.桃園縣議會程序委員會召集人", 
+        "9.桃園縣教師申訴評議委員會委員", 
+        "10.中華民國77年當選全國優秀青年", 
+        "11.台北市南門國中英文老師", 
+        "12.桃園私立啟英工商英文老師", 
+        "13.南亞技術學院講師", 
+        "14.總統大選連宋桃園縣南區競選總部發言人", 
+        "15.總統大選馬蕭桃園縣南區競選總部執行長", 
+        "16.桃園縣議會國民黨團副書記長"
+    ], 
+    "county": "桃園縣", 
+    "district": "平鎮市", 
+    "constituency": "桃園縣第八選區", 
+    "education": [
+        "桃園縣立忠貞國小畢業", 
+        "桃園縣立龍岡國中畢業", 
+        "省立武陵高級中學畢業", 
+        "國立台灣師範大學英語系畢業", 
+        "淡江大學管理學院碩士學分班結業", 
+        "淡江大學管理學院管理學碩士", 
+        "美國曼徹普立敦大學管理行政碩士", 
+        "英國國立里茲都會大學企管博士班"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "polo242@pchome.com.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "平鎮市延平路二段242號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "492-2188", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "491-9057", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "羅文欽", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=72", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100000258577253&ref=ffa#!/profile.php?id=100002572683839", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641656505408399羅文欽議員.jpg", 
+    "experience": [
+        "故前縣議員莊順興秘書", 
+        "平鎮青商會2004年會長", 
+        "中華民國勞工事務基金會副會長", 
+        "平鎮市公所專員", 
+        "書誠代書事務所所長", 
+        "民進黨平鎮市黨部執行委員", 
+        "桃園縣議會民進黨團副總召", 
+        "桃園縣客家公共事務協會副理事長", 
+        "桃園縣羅氏宗親會副理事長", 
+        "桃園縣排球委員會主任委員"
+    ], 
+    "county": "桃園縣", 
+    "district": "平鎮市", 
+    "constituency": "桃園縣第八選區", 
+    "education": [
+        "大崙國小、國中", 
+        "智光商職", 
+        "萬能科技大學環境工程", 
+        "開南大學公共行政學系碩士班"
+    ]
+}]
