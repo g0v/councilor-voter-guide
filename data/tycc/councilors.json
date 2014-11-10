@@ -2,6 +2,57 @@
     "contact_details": [
         {
             "type": "email", 
+            "value": "tycca118@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "大溪鎮仁善里仁善二街19號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "address", 
+            "value": "復興鄉華陵村巴陵20號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-391-2849", 
+            "label": "電話"
+        }
+    ], 
+    "name": "陳瑛", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=90", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/profile.php?id=100004389331041", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634642466342922804A63464~1.JPG", 
+    "experience": [
+        "復興鄉鄉民代表", 
+        "復興鄉婦聯會總幹事", 
+        "復興鄉青溪婦聯會總幹事", 
+        "復興鄉華陵社區發展協會理事", 
+        "納桑麻谷音樂工作室負責人", 
+        "國際種子福音音樂總幹事", 
+        "縣議員助理"
+    ], 
+    "county": "桃園縣", 
+    "district": "", 
+    "constituency": "桃園縣山地原住民", 
+    "education": [
+        "世界新聞專科畢業"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
             "value": "yosefo5118@gmail.com", 
             "label": "EMAIL"
         }, 
@@ -384,78 +435,12 @@
     "contact_details": [
         {
             "type": "email", 
-            "value": "su.mei0110@yahoo.com.tw", 
-            "label": "EMAIL"
-        }, 
-        {
-            "type": "email", 
-            "value": "tycca096@tycc.gov.tw", 
-            "label": "EMAIL"
-        }, 
-        {
-            "type": "address", 
-            "value": "楊梅鎮新農街137號", 
-            "label": "服務處"
-        }, 
-        {
-            "type": "voice", 
-            "value": "478-5555", 
-            "label": "電話"
-        }, 
-        {
-            "type": "fax", 
-            "value": "475-2740", 
-            "label": "傳真"
-        }
-    ], 
-    "name": "陳賴素美", 
-    "links": [
-        {
-            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=78", 
-            "note": "議會個人官網"
-        }, 
-        {
-            "url": "http://tw.myblog.yahoo.com/su.mei0110", 
-            "note": "部落格"
-        }, 
-        {
-            "url": "http://https://www.facebook.com/people/%E9%99%B3%E8%B3%B4%E7%B4%A0%E7%BE%8E/100003570733627", 
-            "note": "臉書"
-        }
-    ], 
-    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634810702592252763陳賴素美議員122.jpg", 
-    "experience": [
-        "聯合代書事務所負責人", 
-        "民進黨桃園縣楊梅市黨部主任委員", 
-        "民進黨全國黨代表", 
-        "桃園縣議會第16屆縣議員", 
-        "現任：", 
-        "桃園縣陳姓宗親會副會長", 
-        "桃園縣楊梅市陽光婦女會理事長", 
-        "桃園縣活力康福養生協會理事長", 
-        "民進黨桃園縣黨部執行委員", 
-        "桃園縣議會第17屆縣議員"
-    ], 
-    "county": "桃園縣", 
-    "district": "楊梅鎮", 
-    "constituency": "桃園縣第九選區", 
-    "education": [
-        "國立新竹高商", 
-        "萬能科技大學畢", 
-        "中央大學EMBA企管碩士班", 
-        "國家地政士特考及格"
-    ]
-},
-{
-    "contact_details": [
-        {
-            "type": "email", 
             "value": "tycca120@tycc.gov.tw", 
             "label": "EMAIL"
         }, 
         {
             "type": "address", 
-            "value": "平鎮市中豐路南勢二段241號電話:03-4399969/傳真:03-4399523", 
+            "value": "平鎮市中豐路南勢二段241號", 
             "label": "服務處"
         }, 
         {
@@ -510,7 +495,7 @@
         }, 
         {
             "type": "address", 
-            "value": "大溪鎮僑愛一街101號電話:307-8585/傳真:307-8686", 
+            "value": "大溪鎮僑愛一街101號", 
             "label": "服務處"
         }, 
         {
@@ -1187,7 +1172,7 @@
         }, 
         {
             "type": "address", 
-            "value": "陳麗莉服務處(二)：蘆竹鄉吉林路13號5樓", 
+            "value": "蘆竹鄉吉林路13號5樓", 
             "label": "服務處"
         }
     ], 
@@ -3355,5 +3340,71 @@
         "智光商職", 
         "萬能科技大學環境工程", 
         "開南大學公共行政學系碩士班"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "su.mei0110@yahoo.com.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca096@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "楊梅鎮新農街137號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "478-5555", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "475-2740", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "陳賴素美", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=78", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://tw.myblog.yahoo.com/su.mei0110", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/people/%E9%99%B3%E8%B3%B4%E7%B4%A0%E7%BE%8E/100003570733627", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634810702592252763陳賴素美議員122.jpg", 
+    "experience": [
+        "聯合代書事務所負責人", 
+        "民進黨桃園縣楊梅市黨部主任委員", 
+        "民進黨全國黨代表", 
+        "桃園縣議會第16屆縣議員", 
+        "現任：", 
+        "桃園縣陳姓宗親會副會長", 
+        "桃園縣楊梅市陽光婦女會理事長", 
+        "桃園縣活力康福養生協會理事長", 
+        "民進黨桃園縣黨部執行委員", 
+        "桃園縣議會第17屆縣議員"
+    ], 
+    "county": "桃園縣", 
+    "district": "楊梅鎮", 
+    "constituency": "桃園縣第九選區", 
+    "education": [
+        "國立新竹高商", 
+        "萬能科技大學畢", 
+        "中央大學EMBA企管碩士班", 
+        "國家地政士特考及格"
     ]
 }]
