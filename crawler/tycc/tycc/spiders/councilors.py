@@ -71,8 +71,10 @@ class Spider(scrapy.Spider):
                 info = parse.get_inner_text(row).split()
                 logging.info('info: %s', info)
 
-                address_str = info[0] + info[1]
-                address = re.sub(ur'.*服務處：', '', address_str).strip()
+                address_str = info[0]
+                if u'電話:' not in info[1]:
+                    address_str += info[1]
+                address = re.sub(ur'.*服務處.*：', '', address_str).strip()
                 misc.append_contact(item, 'address', '服務處', address)
 
                 for group in info:
