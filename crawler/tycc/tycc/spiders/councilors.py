@@ -25,8 +25,9 @@ class Spider(scrapy.Spider):
 
         # XXX hack for correcting information
 
-        special_url = "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&town=%E5%B1%B1%E5%9C%B0%E5%8E%9F%E4%BD%8F%E6%B0%91"
-        yield Request(special_url, callback=self.parse_selection_index)
+        special_urls = ["http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&town=%E5%B1%B1%E5%9C%B0%E5%8E%9F%E4%BD%8F%E6%B0%91", "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&page=2&town=%E7%AC%AC%E4%B8%80%E9%81%B8%E5%8D%80"]
+        for special_url in special_urls:
+            yield Request(special_url, callback=self.parse_selection_index)
 
     def parse_selection_index(self, response):
         sel = Selector(response)

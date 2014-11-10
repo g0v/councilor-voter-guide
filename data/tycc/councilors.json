@@ -1,6 +1,123 @@
 [{
     "contact_details": [
         {
+            "type": "address", 
+            "value": "楊梅鎮高山里青年路2段418號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "475-3628", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "475-4048", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "李家興", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=81", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/profile.php?id=100002057584408", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641654953985674李家興議員.jpg", 
+    "experience": [
+        "第14、15、16、17屆桃園縣議員", 
+        "第14、15屆鎮民代表", 
+        "桃園縣勞資調解委員", 
+        "楊梅後備軍人小組組長", 
+        "治平高級中學校友會會長"
+    ], 
+    "county": "桃園縣", 
+    "district": "楊梅市", 
+    "constituency": "桃園縣第一選區", 
+    "education": [
+        "高榮國小畢", 
+        "仁美國中畢", 
+        "治平高級中學畢", 
+        "中華企業管理修畢", 
+        "先鋒企業管理修畢", 
+        "淡江大學公共行政系畢"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "chl470320@yahoo.com.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "326桃園縣楊梅鎮梅新里中山路92號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "03-4755787", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "03-4883888", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "張火爐", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=80", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://tw.myblog.yahoo.com/chl470320", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/chl470320", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641655131513986張火爐議員.jpg", 
+    "experience": [
+        "現職", 
+        "桃園縣議會第十七屆議員", 
+        "中華民國跆拳道協會國際捌段總教練", 
+        "中華民國跆拳道協會副理事長", 
+        "桃園縣跆拳道委員會主任委員", 
+        "桃園縣歌謠推廣協會理事長", 
+        "民主進步黨第15屆全國黨代表", 
+        "楊梅市一指禪氣功委員會主任委員", 
+        "桃園縣楊梅志願服務協會理事長", 
+        "經歷", 
+        "桃園縣議會第14、15屆議員", 
+        "楊梅鎮第14、15屆鎮民代表", 
+        "楊梅鎮第31屆調解委員會主席", 
+        "楊梅鎮張廖簡宗親會會長", 
+        "楊梅鎮體育會理事長", 
+        "楊梅警察分局、義警分隊長", 
+        "莒光跆拳道總館總教練兼館長"
+    ], 
+    "county": "桃園縣", 
+    "district": "楊梅市", 
+    "constituency": "桃園縣第一選區", 
+    "education": [
+        "大山國小", 
+        "後龍國中", 
+        "清華工商", 
+        "淡江大學學分班"
+    ]
+},
+{
+    "contact_details": [
+        {
             "type": "email", 
             "value": "tycca118@tycc.gov.tw", 
             "label": "EMAIL"
@@ -186,62 +303,6 @@
     "contact_details": [
         {
             "type": "email", 
-            "value": "wu.16948677@yahoo.com.tw", 
-            "label": "EMAIL"
-        }, 
-        {
-            "type": "email", 
-            "value": "tycca072@tycc.gov.tw", 
-            "label": "EMAIL"
-        }, 
-        {
-            "type": "address", 
-            "value": "龍潭鄉神龍路270號", 
-            "label": "服務處"
-        }, 
-        {
-            "type": "voice", 
-            "value": "480-2337", 
-            "label": "電話"
-        }, 
-        {
-            "type": "fax", 
-            "value": "470-1439", 
-            "label": "傳真"
-        }
-    ], 
-    "name": "吳春芳", 
-    "links": [
-        {
-            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=89", 
-            "note": "議會個人官網"
-        }, 
-        {
-            "url": "http://https://www.facebook.com/profile.php?id=100007063428726", 
-            "note": "臉書"
-        }
-    ], 
-    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641650811866399吳春芳議員.jpg", 
-    "experience": [
-        "桃園縣政府原住民行政課", 
-        "大溪鎮公所大溪稅捐處", 
-        "石門國小教師"
-    ], 
-    "county": "桃園縣", 
-    "district": "", 
-    "constituency": "桃園縣平地原住民", 
-    "education": [
-        "花蓮縣宜昌國小畢業", 
-        "花蓮縣宜昌國中畢業", 
-        "私立世界新聞大學畢業", 
-        "淡江大學科學管理研究所碩士", 
-        "美國明尼蘇達州州立大學公共行政管理碩士畢業"
-    ]
-},
-{
-    "contact_details": [
-        {
-            "type": "email", 
             "value": "034995555@yu-shu.tw", 
             "label": "EMAIL"
         }, 
@@ -300,75 +361,6 @@
         "凌雲國中", 
         "國立龍潭農工", 
         "南亞技術學院-觀光休閒管理系"
-    ]
-},
-{
-    "contact_details": [
-        {
-            "type": "email", 
-            "value": "zao.liang@msa.hinet.net", 
-            "label": "EMAIL"
-        }, 
-        {
-            "type": "address", 
-            "value": "龍潭鄉中正路326號", 
-            "label": "服務處"
-        }, 
-        {
-            "type": "voice", 
-            "value": "479-8751", 
-            "label": "電話"
-        }, 
-        {
-            "type": "fax", 
-            "value": "479-6696", 
-            "label": "傳真"
-        }
-    ], 
-    "name": "張肇良", 
-    "links": [
-        {
-            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=83", 
-            "note": "議會個人官網"
-        }, 
-        {
-            "url": "http://www.wretch.cc/blog/zaoliang8751", 
-            "note": "部落格"
-        }, 
-        {
-            "url": "http://www.facebook.com/profile.php?id=100001391464555&ref=ts#!/profile.php?id=100001910838457", 
-            "note": "臉書"
-        }
-    ], 
-    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641654190676334張肇良議員.jpg", 
-    "experience": [
-        "中原大學桃園縣校友會理事、監事二屆", 
-        "龍潭鄉公所調解委員會調解委員二屆", 
-        "民主進步黨龍潭鄉黨部總幹事二任", 
-        "阿扁總統競選連任龍潭鄉總幹事二任", 
-        "龍潭鄉張廖簡宗親會總幹事二任", 
-        "龍潭鄉第17屆鄉民代表會代表", 
-        "民主進步黨全國黨員代表(二屆)", 
-        "桃園縣民主進步黨縣黨部執行委員(二屆)", 
-        "桃園縣張廖簡宗親會理事、監事(二屆)", 
-        "總統府國策顧問張貴木秘書", 
-        "桃園縣政府勞資爭議委員會委員", 
-        "中壢青年商會理事、監事(二屆)", 
-        "石門國際同濟會理事、監事(二屆)", 
-        "國立中壢高中校友會理監事", 
-        "治平中學家長會副會長", 
-        "龍潭國防獅子會副會長"
-    ], 
-    "county": "桃園縣", 
-    "district": "龍潭鄉", 
-    "constituency": "桃園縣第十選區", 
-    "education": [
-        "龍潭國小畢業", 
-        "復旦中學(初中部)畢業", 
-        "中壢高中畢業", 
-        "中原大學機械系畢業", 
-        "中原大學企業管理研究所學分班結業", 
-        "凱達格蘭學校地方領袖班結業"
     ]
 },
 {
@@ -3406,5 +3398,130 @@
         "萬能科技大學畢", 
         "中央大學EMBA企管碩士班", 
         "國家地政士特考及格"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "zao.liang@msa.hinet.net", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "龍潭鄉中正路326號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "479-8751", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "479-6696", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "張肇良", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=83", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://www.wretch.cc/blog/zaoliang8751", 
+            "note": "部落格"
+        }, 
+        {
+            "url": "http://www.facebook.com/profile.php?id=100001391464555&ref=ts#!/profile.php?id=100001910838457", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641654190676334張肇良議員.jpg", 
+    "experience": [
+        "中原大學桃園縣校友會理事、監事二屆", 
+        "龍潭鄉公所調解委員會調解委員二屆", 
+        "民主進步黨龍潭鄉黨部總幹事二任", 
+        "阿扁總統競選連任龍潭鄉總幹事二任", 
+        "龍潭鄉張廖簡宗親會總幹事二任", 
+        "龍潭鄉第17屆鄉民代表會代表", 
+        "民主進步黨全國黨員代表(二屆)", 
+        "桃園縣民主進步黨縣黨部執行委員(二屆)", 
+        "桃園縣張廖簡宗親會理事、監事(二屆)", 
+        "總統府國策顧問張貴木秘書", 
+        "桃園縣政府勞資爭議委員會委員", 
+        "中壢青年商會理事、監事(二屆)", 
+        "石門國際同濟會理事、監事(二屆)", 
+        "國立中壢高中校友會理監事", 
+        "治平中學家長會副會長", 
+        "龍潭國防獅子會副會長"
+    ], 
+    "county": "桃園縣", 
+    "district": "龍潭鄉", 
+    "constituency": "桃園縣第十選區", 
+    "education": [
+        "龍潭國小畢業", 
+        "復旦中學(初中部)畢業", 
+        "中壢高中畢業", 
+        "中原大學機械系畢業", 
+        "中原大學企業管理研究所學分班結業", 
+        "凱達格蘭學校地方領袖班結業"
+    ]
+},
+{
+    "contact_details": [
+        {
+            "type": "email", 
+            "value": "wu.16948677@yahoo.com.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "email", 
+            "value": "tycca072@tycc.gov.tw", 
+            "label": "EMAIL"
+        }, 
+        {
+            "type": "address", 
+            "value": "龍潭鄉神龍路270號", 
+            "label": "服務處"
+        }, 
+        {
+            "type": "voice", 
+            "value": "480-2337", 
+            "label": "電話"
+        }, 
+        {
+            "type": "fax", 
+            "value": "470-1439", 
+            "label": "傳真"
+        }
+    ], 
+    "name": "吳春芳", 
+    "links": [
+        {
+            "url": "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&id=89", 
+            "note": "議會個人官網"
+        }, 
+        {
+            "url": "http://https://www.facebook.com/profile.php?id=100007063428726", 
+            "note": "臉書"
+        }
+    ], 
+    "image": "http://www.tycc.gov.tw/file\\person\\app\\a634641650811866399吳春芳議員.jpg", 
+    "experience": [
+        "桃園縣政府原住民行政課", 
+        "大溪鎮公所大溪稅捐處", 
+        "石門國小教師"
+    ], 
+    "county": "桃園縣", 
+    "district": "", 
+    "constituency": "桃園縣平地原住民", 
+    "education": [
+        "花蓮縣宜昌國小畢業", 
+        "花蓮縣宜昌國中畢業", 
+        "私立世界新聞大學畢業", 
+        "淡江大學科學管理研究所碩士", 
+        "美國明尼蘇達州州立大學公共行政管理碩士畢業"
     ]
 }]
