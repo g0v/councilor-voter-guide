@@ -1,0 +1,975 @@
+[
+    {
+        "constituency": "第6選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-7851111"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-7850000"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "水林鄉灣東村宏仁路21-6號"
+            }, 
+            {
+                "label": "電子信箱", 
+                "type": "voice", 
+                "value": "wensiang1210@yahoo.com.tw"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "北港鎮、水林鄉、口湖鄉", 
+        "education": "", 
+        "election_year": "2009", 
+        "experience": "", 
+        "image": "http://www.ylcc.gov.tw/images/6-2.jpg", 
+        "name": "黃文祥"
+    }, 
+    {
+        "constituency": "第6選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-7732026"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-7825690"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "北港鎮華勝里公園路32號"
+            }, 
+            {
+                "label": "電子信箱", 
+                "type": "voice", 
+                "value": "taiwanyouth168@hotmail.com"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "北港鎮、水林鄉、口湖鄉", 
+        "education": "", 
+        "election_year": "2009", 
+        "experience": "", 
+        "image": "http://www.ylcc.gov.tw/images/6-3.jpg", 
+        "name": "蔡岳儒", 
+        "party": "民進黨"
+    }, 
+    {
+        "constituency": "第6選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "北港鎮大同路６６號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "北港鎮、水林鄉、口湖鄉", 
+        "election_year": "2009", 
+        "experience": "前國大代表蔡永常特別助理、文生高級中學家長會長。", 
+        "image": "http://www.ylcc.gov.tw/images/6-4.jpg", 
+        "name": "蔡孟真"
+    }, 
+    {
+        "constituency": "第6選區", 
+        "contact_details": [], 
+        "county": "雲林縣", 
+        "district": "北港鎮、水林鄉、口湖鄉", 
+        "election_year": "2009", 
+        "image": "http://www.ylcc.gov.tw/images/6-5.jpg", 
+        "name": "翁水上"
+    }, 
+    {
+        "constituency": "第3選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-6336810"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-6332987"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "虎尾溪安溪里7鄰134號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "虎尾鎮、土庫鎮、褒忠鄉、元長鄉", 
+        "education": "育英國小、建國國中、國立土庫商工。", 
+        "election_year": "2009", 
+        "experience": "謝長廷競選高雄市長顧問、蘇貞昌競選台北縣長顧問、1997雲林女青商會會長、國立土庫商工校友會會長、中正國小愛心媽媽創會會長、虎尾婦女防火宣導隊創會分隊長、家扶中心莪馨媽媽、第14.15屆雲林縣議員、身心障礙者保護委員、雲林地方法院少年法庭少年志工。", 
+        "image": "http://www.ylcc.gov.tw/images/3-1.jpg", 
+        "name": "蔡秋敏", 
+        "party": "民進黨"
+    }, 
+    {
+        "constituency": "第3選區", 
+        "contact_details": [], 
+        "county": "雲林縣", 
+        "district": "虎尾鎮、土庫鎮、褒忠鄉、元長鄉", 
+        "education": "國立虎尾農工肄業、私立永年中學畢業、立仁國民小學畢業。", 
+        "election_year": "2009", 
+        "experience": "台大設校促進會會長、雲林家扶中心扶助委員、融獻慈善基金會顧問、虎尾鎮民防分隊顧問、東仁國中家長委員會顧問、馬光國小家長委員會顧問、雲林白沙屯媽祖會公關組。", 
+        "image": "http://www.ylcc.gov.tw/images/3-2.jpg", 
+        "name": "黃凱"
+    }, 
+    {
+        "constituency": "第3選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-6629288"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-6622977"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "土庫鎮越港里仁美街260號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "虎尾鎮、土庫鎮、褒忠鄉、元長鄉", 
+        "education": "永年中學", 
+        "election_year": "2009", 
+        "experience": "土庫鎮民代會第十四屆主席、雲林縣第十三屆、第十四屆縣議員、土庫鎮第十四屆鎮長、雲林縣第十六屆縣議員(副議長)。", 
+        "image": "http://www.ylcc.gov.tw/images/3-3.jpg", 
+        "name": "沈宗隆"
+    }, 
+    {
+        "constituency": "第3選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-6652117"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-6655638"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "土庫鎮馬光東平里民生路32號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "虎尾鎮、土庫鎮、褒忠鄉、元長鄉", 
+        "education": "虎尾高中肄業。", 
+        "election_year": "2009", 
+        "experience": "土庫鎮第11.12.15.16屆鎮民代表、土庫鎮農會第九屆理事、雲林縣議會第15.16屆議員。", 
+        "image": "http://www.ylcc.gov.tw/images/3-4.jpg", 
+        "name": "王士壬", 
+        "party": "臺灣團結聯盟"
+    }, 
+    {
+        "constituency": "第3選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-6326611"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-6365511"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "虎尾鎮公安里林森路1段360巷40號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "虎尾鎮、土庫鎮、褒忠鄉、元長鄉", 
+        "education": "大德商工、南華大學企管系畢業。", 
+        "election_year": "2009", 
+        "experience": "虎尾聖心幼稚園家長會長、虎尾國小家長會長、順天宮管理委員會顧問、雲林體育會羽球委員會主任委員、第十六屆縣議員。", 
+        "image": "http://www.ylcc.gov.tw/images/3-5.jpg", 
+        "name": "黃進一", 
+        "party": "無"
+    }, 
+    {
+        "constituency": "第3選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-7888649"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-7888648"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "元長鄉長南村中山路24鄰233之4號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "虎尾鎮、土庫鎮、褒忠鄉、元長鄉", 
+        "education": "", 
+        "election_year": "2009", 
+        "experience": "", 
+        "name": "李健福", 
+        "party": "民進黨"
+    }, 
+    {
+        "constituency": "第3選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-6335910"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-6360181"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "虎尾鎮西安里白宮街25號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "虎尾鎮、土庫鎮、褒忠鄉、元長鄉", 
+        "education": "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t立仁國小畢業、崇德國中畢業、省立虎尾高中畢業、東海大學企業管理研究班。", 
+        "election_year": "2009", 
+        "experience": "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t虎尾鎮第13.14屆鎮民代表、雲林縣第13.15.16屆縣議員、台灣省農會第15屆理事、雲林鳳凰志工大隊副大隊長、崇德國中校友會理事長、雲林縣農會常務監事16屆。", 
+        "image": "http://www.ylcc.gov.tw/images/3-8.jpg", 
+        "name": "陳瑞雄", 
+        "party": "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t國民黨"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5341689"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5330689"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "斗六市鎮南里南興街23號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "斗六市、莿桐鄉、林內鄉", 
+        "education": "鎮西國小畢業、正心中學初中畢業、正心中學高中畢業、文化大學畢業。", 
+        "election_year": "2009", 
+        "experience": "永久保留人文公園自救會會長、義消第一大隊大隊長、老人長期照護協會創會理事長、雲林縣後備憲兵榮譽主任委員、雲林縣議會第14.15.16屆議員、議會2007-8民進黨黨團總召、雲林維新會政策組組長。", 
+        "image": "http://www.ylcc.gov.tw/images/1-1.jpg", 
+        "name": "李建昇", 
+        "party": "民進黨"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5370500"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5325208"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "斗六市上海路265號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "斗六市、莿桐鄉、林內鄉", 
+        "education": "環球技術學院公共事務管理所研究生、環球技術學院國際貿易科、省立斗六家商、斗六國中、公誠國小。", 
+        "election_year": "2009", 
+        "experience": "雲林縣生命線理事、陸軍十字團作戰官、斗六天聖宮副主任委員、斗六大乾宮總幹事、斗六牛挑灣發展協會創辦招集人、中華民國撞球協會總幹事、斗六市第八屆、第九屆市民代表。", 
+        "image": "http://www.ylcc.gov.tw/images/1-2.jpg", 
+        "name": "王又民", 
+        "party": "國民黨"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5338550"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5333236"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "斗六市仁愛里1鄰中華路382號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "斗六市、莿桐鄉、林內鄉", 
+        "education": "鎮東國小、斗六國中、西螺農工、吳鳳技術學院。", 
+        "election_year": "2009", 
+        "experience": "第八屆斗六市民代表、民進黨斗六市代表會黨團召集人、民進黨斗六市黨部主任委員、第十屆民進黨全國黨代表、社團法人雲林縣社會關懷協會常務理事、斗六市震天府顧問、雲林縣議員劉建國助理。", 
+        "image": "http://www.ylcc.gov.tw/images/1-3.jpg", 
+        "name": "江文登"
+    }, 
+    {
+        "constituency": "第5選區", 
+        "contact_details": [], 
+        "county": "雲林縣", 
+        "district": "臺西鄉、麥寮鄉、四湖鄉、東勢鄉", 
+        "education": "三崙國小、四湖文生初中、省立台南一中、國立台灣大學政治系公共行政組畢業、中正大學政治研究所畢業。", 
+        "election_year": "2009", 
+        "image": "http://www.ylcc.gov.tw/images/5-2.jpg", 
+        "name": "鄭東來"
+    }, 
+    {
+        "constituency": "第5選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-6936776"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-6938677"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "麥寮鄉後安村12鄰後安222之64號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "臺西鄉、麥寮鄉、四湖鄉、東勢鄉", 
+        "education": "豐安國民小學、麥寮國民中學、中台醫專醫技科畢業、南華大學歐洲研究所研究生。", 
+        "election_year": "2009", 
+        "experience": "麥寮鄉公所機要秘書、麥寮鄉公所主任秘書、麥寮鄉民代表會副主席。", 
+        "image": "http://www.ylcc.gov.tw/images/5-3.jpg", 
+        "name": "林深", 
+        "party": "無"
+    }, 
+    {
+        "constituency": "第5選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-6910577"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-6910519"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "麥寮鄉新吉村8鄰新吉115號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "臺西鄉、麥寮鄉、四湖鄉、東勢鄉", 
+        "election_year": "2009", 
+        "experience": "麥寮鄉新吉村村長、橋頭國小五育基金會常委、橋頭國小家長會會長、麥寮高級中學家長會會長、麥寮高級中學助學貸款基金會副會長、嘉義市立仁高級中學家長會副會長、麥寮拱範宮委員、北五村巡守隊顧問、台西地政事務所區域性不動產糾紛調處委員會委員。", 
+        "image": "http://www.ylcc.gov.tw/images/5-4.jpg", 
+        "name": "林建鴻", 
+        "party": "無"
+    }, 
+    {
+        "constituency": "第3選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-6973892"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-6977889"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "褒忠鄉中民村中民路123巷14之1號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "虎尾鎮、土庫鎮、褒忠鄉、元長鄉", 
+        "education": "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t宗聖家商、革命實踐研究院第八期。", 
+        "election_year": "2009", 
+        "image": "http://www.ylcc.gov.tw/images/3-9.jpg", 
+        "name": "謝翠蓮"
+    }, 
+    {
+        "constituency": "第3選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-6656777"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-6655019"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "虎尾鎮西屯里大屯231號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "虎尾鎮、土庫鎮、褒忠鄉、元長鄉", 
+        "education": "<spanclass=\"word_black\"><br>\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</span>", 
+        "election_year": "2009", 
+        "experience": "<spanclass=\"word_black\"><br>\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</span>", 
+        "image": "http://www.ylcc.gov.tw/images/3-10.jpg", 
+        "name": "陳俊龍", 
+        "party": "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t無"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5515199"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5517979"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "斗六市虎溪里文生路8之1號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "斗六市、莿桐鄉、林內鄉", 
+        "education": "環球技術學院環境資源管理所碩士、嘉義高商、斗六國中、草嶺國小。", 
+        "election_year": "2009", 
+        "experience": "公誠國小家長會會長、公誠國小志工大隊大隊長、婦聯青溪雲林縣支會主任委員、雲林縣工商婦女聯誼會會長、雲鳳獅子會會長、雲林縣真善美聯誼會會長。", 
+        "image": "http://www.ylcc.gov.tw/images/1-4.jpg", 
+        "name": "賴淑娞", 
+        "party": "國民黨"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5841900"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5849500,05-5351634"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "莿桐鄉延平路191號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "斗六市、莿桐鄉、林內鄉", 
+        "education": "吳鳳工專畢。", 
+        "election_year": "2009", 
+        "experience": "務農、模板工、水電工、貨運捆工、砂石車司機、聯結車司機、旅館業經理人、第十六屆縣議員。", 
+        "image": "http://www.ylcc.gov.tw/images/1-5.jpg", 
+        "name": "黃耀煌", 
+        "party": "民進黨"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5848577"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5848578"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "莿桐鄉中山路174號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "斗六市、莿桐鄉、林內鄉", 
+        "education": "", 
+        "election_year": "2009", 
+        "experience": "", 
+        "image": "http://www.ylcc.gov.tw/images/1-6.jpg", 
+        "name": "林琨富", 
+        "party": "無"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5261581"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5261680"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "斗六市重光路212之1號"
+            }, 
+            {
+                "label": "電子信箱", 
+                "type": "voice", 
+                "value": "068588@gmail.com"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "斗六市、莿桐鄉、林內鄉", 
+        "education": "國立中正大學政治研究所碩士、南華大學企業管理系學士、環球技術學院、西螺農工、斗六國中、林頭國小", 
+        "election_year": "2009", 
+        "experience": "第15屆雲林縣議員、第16屆雲林縣議員、第15屆雲林縣溜冰委員會主委、雲林縣生命線協會理事、雲林縣愛鳥協會理事長、雲林縣濁水溪同濟會副會長、雲林縣地價評議會委員、雲林縣議會第16屆無黨聯盟總召集人。", 
+        "image": "http://www.ylcc.gov.tw/images/1-7.jpg", 
+        "name": "李建志", 
+        "party": "無"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5892976"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5800456"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "林內鄉烏塗村15鄰烏塗105之1號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "斗六市、莿桐鄉、林內鄉", 
+        "education": "民生國小、正心中學、大成商工電子科畢。", 
+        "election_year": "2009", 
+        "experience": "鐵路局台北機廠10年、福懋興業助理員4年、秀躍公司2年、林內鄉14.15屆鄉民代表、林內鄉13.14屆鄉長、全國鄉鎮市長聯誼總會副總會長、雲林縣鄉鎮市長聯誼會會長、林內鄉後備軍人輔導中心主任、正修科技大學電子工程科肄業二年、雲科大事業經營管理班第一期結業。", 
+        "image": "http://www.ylcc.gov.tw/images/1-8.jpg", 
+        "name": "陳河山", 
+        "party": "國民黨"
+    }, 
+    {
+        "constituency": "第5選區", 
+        "contact_details": [], 
+        "county": "雲林縣", 
+        "district": "臺西鄉、麥寮鄉、四湖鄉、東勢鄉", 
+        "election_year": "2009", 
+        "image": "http://www.ylcc.gov.tw/images/5-5.jpg", 
+        "name": "王清貴"
+    }, 
+    {
+        "constituency": "第4選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5990101"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5986119"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "二崙鄉三和村17鄰深坑27號"
+            }, 
+            {
+                "label": "電子信箱", 
+                "type": "voice", 
+                "value": "bigjohnwalking@yahoo.com.tw"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "西螺鎮、二崙鄉、崙背鄉", 
+        "education": "三和國小、二崙國中、虎尾高中、東吳大學、淡江大學美國研究所法學碩士、台灣大學農業經濟研究所研究生。", 
+        "election_year": "2009", 
+        "image": "http://www.ylcc.gov.tw/images/4-1.jpg", 
+        "name": "廖清祥", 
+        "party": "民進黨"
+    }, 
+    {
+        "constituency": "第4選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5870228"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5863511"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "西螺鎮光華里建興路365-1號"
+            }, 
+            {
+                "label": "電子信箱", 
+                "type": "voice", 
+                "value": "p981205@kimo.com"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "西螺鎮、二崙鄉、崙背鄉", 
+        "education": "中山國小、東南國中、西螺農工、環球科技大學肄業。", 
+        "election_year": "2009", 
+        "experience": "立法委員國會辦公室助理、第16屆民進黨提名雲林縣議員候選人、第6屆民進黨西螺鎮黨部執行委員、第8屆民進黨西螺鎮黨部主任委員。", 
+        "image": "http://www.ylcc.gov.tw/images/4-2.jpg", 
+        "name": "廖秋萍", 
+        "party": "民進黨"
+    }, 
+    {
+        "constituency": "第4選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5867100"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5863300"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "西螺鎮詔安里埔心路72號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "西螺鎮、二崙鄉、崙背鄉", 
+        "education": "西光幼稚園、安定國小、正心中學、私立中國文化大學、國立體育學院運動科學碩士。", 
+        "election_year": "2009", 
+        "experience": "雲林科技大學.虎尾科技大學.環球技術學院講師、雲林地檢署觀護志工、西螺鎮體育會理事長、彰化社教站委員、國立西螺農工傳統武術社指導老師、西螺.二崙.崙背各國中小家長會顧問。", 
+        "image": "http://www.ylcc.gov.tw/images/4-3.jpg", 
+        "name": "李明哲", 
+        "party": "國民黨"
+    }, 
+    {
+        "constituency": "第2選區", 
+        "contact_details": [], 
+        "county": "雲林縣", 
+        "district": "斗南鎮、古坑鄉、大埤鄉", 
+        "education": "台灣大學哲學系、嶺東商專商業設計科、東明國中、石龜國小、台灣大學中國藝術史研究所。", 
+        "election_year": "2009", 
+        "experience": "縣議員簡錦全助理、雲林縣義消斗南中隊顧問。", 
+        "image": "http://www.ylcc.gov.tw/images/2-1.jpg", 
+        "name": "簡慈坊", 
+        "party": "無"
+    }, 
+    {
+        "constituency": "第2選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5952323"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5951496"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "斗南鎮順安路23號"
+            }, 
+            {
+                "label": "電子信箱", 
+                "type": "voice", 
+                "value": "ming2323@cn15.tinp.net.tw"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "斗南鎮、古坑鄉、大埤鄉", 
+        "education": "民主進步黨、嘉興國小、大埤國中、崇先中學、臺灣警察專科學校(乙等特考及格)。", 
+        "election_year": "2009", 
+        "experience": "前立委李應元助理、斗南國際同濟會會長、斗南鎮他里霧羽球協會理事長、社團法人雲林縣山岳協會理事長、雲林縣議員、國立虎尾科技大學(休閒遊憩系-碩士班)。", 
+        "image": "http://www.ylcc.gov.tw/images/2-2.jpg", 
+        "name": "沈銘恭", 
+        "party": "民進黨"
+    }, 
+    {
+        "constituency": "第2選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5911850"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5951496"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "大埤鄉松竹村松西路41號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "斗南鎮、古坑鄉、大埤鄉", 
+        "education": "高中畢業", 
+        "election_year": "2009", 
+        "experience": "大埤鄉衛生促進會主委、大埤鄉兵役委員、雲林縣廢棄物公會第一、二屆理事長、大埤鄉民代表會第13、14、15、16屆代表、大埤鄉第14、15屆鄉長。", 
+        "image": "http://www.ylcc.gov.tw/images/2-3.jpg", 
+        "name": "陳樹吉", 
+        "party": "國民黨"
+    }, 
+    {
+        "constituency": "第2選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5953341"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5963995"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "斗南鎮黎明二街26號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "斗南鎮、古坑鄉、大埤鄉", 
+        "education": "", 
+        "election_year": "2009", 
+        "experience": "耀升播送系統(股)公司總經理、佳聯有線電視(股)公司董事、縣議員張嘉元服務處主任、斗南鎮民眾服務社理事長、第十六屆縣議員。", 
+        "image": "http://www.ylcc.gov.tw/images/2-5.jpg", 
+        "name": "王秋足"
+    }, 
+    {
+        "constituency": "第2選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5968723"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5963472"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "斗南鎮西岐里八德街17號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "斗南鎮、古坑鄉、大埤鄉", 
+        "education": "國中畢業。", 
+        "election_year": "2009", 
+        "experience": "斗南國際獅子會會長、斗南國小家長會會長、斗南體育會理事長、雲林縣農會理事、斗南鎮民代表會主席。", 
+        "image": "http://www.ylcc.gov.tw/images/2-6.jpg", 
+        "name": "蔡東富", 
+        "party": "無"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5331311"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5347008"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "斗六市八德里引善路99號"
+            }, 
+            {
+                "label": "電子信箱", 
+                "type": "voice", 
+                "value": "moon578811@gmail.com"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "斗六市、莿桐鄉、林內鄉", 
+        "education": "南華大學公共行政與政策研究所法學碩士、國立台灣藝術大學音樂舞蹈系藝術學士。", 
+        "election_year": "2009", 
+        "experience": "第16屆雲林縣議員、斗六市民代表、環球技術學院講師、義峰高中東和東勢飛沙國中音樂教師、雲林縣文化諮詢委員、社區大學救國團講師、國立師範大學音樂教育學分、雲林科技大學運動休閒研究所學分。", 
+        "image": "http://www.ylcc.gov.tw/images/1-9.jpg", 
+        "name": "周秀月", 
+        "party": "民進黨"
+    }, 
+    {
+        "constituency": "第4選區", 
+        "contact_details": [], 
+        "county": "雲林縣", 
+        "district": "西螺鎮、二崙鄉、崙背鄉", 
+        "education": "", 
+        "election_year": "2009", 
+        "experience": "", 
+        "image": "http://www.ylcc.gov.tw/images/4-4.jpg", 
+        "name": "鄭玲惠"
+    }, 
+    {
+        "constituency": "第4選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5982040"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5991926"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "二崙鄉楊賢村楊賢路94號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "西螺鎮、二崙鄉、崙背鄉", 
+        "education": "二崙國小、二崙國中、土庫商工。", 
+        "election_year": "2009", 
+        "experience": "雲林縣第15.16屆縣議員、二崙鄉第20.21屆婦女會理事長。", 
+        "image": "http://www.ylcc.gov.tw/images/4-5.jpg", 
+        "name": "廖錦珠"
+    }, 
+    {
+        "constituency": "第4選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-6961567"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-6961299"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "崙背鄉羅厝村4鄰東興149號"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "西螺鎮、二崙鄉、崙背鄉", 
+        "education": "大德高級工商職業學校結業。", 
+        "election_year": "2009", 
+        "image": "http://www.ylcc.gov.tw/images/4-6.jpg", 
+        "name": "李合同"
+    }, 
+    {
+        "constituency": "第4選區", 
+        "contact_details": [
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-5865007"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "voice", 
+                "value": "05-5881917"
+            }, 
+            {
+                "label": "通訊處", 
+                "type": "voice", 
+                "value": "西螺鎮振興里9鄰振興128號"
+            }, 
+            {
+                "label": "電子信箱", 
+                "type": "voice", 
+                "value": "wtt8897@yahoo.com.tw"
+            }
+        ], 
+        "county": "雲林縣", 
+        "district": "西螺鎮、二崙鄉、崙背鄉", 
+        "education": "中山國小、東南中學、西螺農工、環球科技大學。", 
+        "election_year": "2009", 
+        "image": "http://www.ylcc.gov.tw/images/4-7.jpg", 
+        "name": "王鐵道", 
+        "party": "無"
+    }
+]
