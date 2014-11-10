@@ -48,11 +48,16 @@ class Spider(scrapy.Spider):
 
         item = Councilor()
         item['contact_details'] = []
-        item['name'] = \
-            info_node.xpath('.//span[@id="ctl04_ctl08_pageControl_LB_MEM_NAME"]/text()').extract()[0].split()[0]
+        item['county'] = u'桃園縣'
+        item['election_year'] = '2009'
+        item['term_start'] = '%s-12-25' % item['election_year']
+        item['term_end'] = {'date': '2014-12-25'}
+        item['in_office'] = True
+        item['name'], item['title'] = \
+            sel.xpath('//span[@id="ctl04_ctl08_pageControl_LB_MEM_NAME"]/text()').extract()[0].split()
         item['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
         img_url = main_node.xpath('.//img[@class="memImg"]/@src').extract()[0]
-        item['image'] = urljoin(curr_url, img_url)
+        item['image'] = urljoin(response.url, urllib.quote(img_url.encode('utf8')))
 
         logging.info('after image: item: %s', item)
 
@@ -61,8 +66,7 @@ class Spider(scrapy.Spider):
             u'經歷': 'experience'
         }
 
-        county = u'桃園縣'
-        rows = info_node.xpath('.//tr')
+        rows = main_node.xpath('.//tr')
         is_contact_info = False
         for row in rows:
             key = parse.get_extracted(row.xpath('.//img/@alt'))
@@ -123,14 +127,13 @@ class Spider(scrapy.Spider):
                 item[k_eng] = values
             elif key == u'選區':
                 split = value.split()
-                item['county'] = county
-                item['district'] = split[1] if len(split) > 1 else ''
-                item['constituency'] = county + split[0]
+                item['district'] = split[1] if len(split) > 1 else split[0]
+                item['constituency'] = split[0] if len(split) > 1 else ''
+        item['platform'] = [x.strip() for x in sel.xpath('//span[@id="ctl04_ctl08_pageControl_LB_MEM_IDEA"]/text()').extract()]
 
-        # XXX hack for correcting information
-        if item['name'] == u'張火爐':
-            item['district'] = u'楊梅市'
-        if item['name'] == u'李家興':
+        # XXX hack for correcting information, https://github.com/g0v/councilor-voter-guide/issues/26
+        if item['name'] == u'張火爐' or item['name'] == u'李家興':
+            item['constituency'] = u'第九選區'
             item['district'] = u'楊梅市'
 
         logging.info('to return: item: %s', item)
