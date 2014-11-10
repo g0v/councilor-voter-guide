@@ -23,6 +23,12 @@ class Spider(scrapy.Spider):
             url = urljoin(response.url, url)
             yield Request(url, callback=self.parse_selection_index)
 
+        # XXX hack for correcting information
+
+        special_urls = ["http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&town=%E5%B1%B1%E5%9C%B0%E5%8E%9F%E4%BD%8F%E6%B0%91", "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&page=2&town=%E7%AC%AC%E4%B8%80%E9%81%B8%E5%8D%80"]
+        for special_url in special_urls:
+            yield Request(special_url, callback=self.parse_selection_index)
+
     def parse_selection_index(self, response):
         sel = Selector(response)
         urls = sel.xpath('//div[@id="ctl04_ctl08_pageControl_PN_LIST"]//a/@href').extract()
@@ -66,8 +72,10 @@ class Spider(scrapy.Spider):
                 info = parse.get_inner_text(row).split()
                 logging.info('info: %s', info)
 
-                address_str = info[0] + info[1]
-                address = re.sub(ur'.*服務處：', '', address_str).strip()
+                address_str = info[0]
+                if u'電話:' not in info[1]:
+                    address_str += info[1]
+                address = re.sub(ur'.*服務處.*：', '', address_str).strip()
                 misc.append_contact(item, 'address', '服務處', address)
 
                 for group in info:
@@ -118,6 +126,12 @@ class Spider(scrapy.Spider):
                 item['county'] = county
                 item['district'] = split[1] if len(split) > 1 else ''
                 item['constituency'] = county + split[0]
+
+        # XXX hack for correcting information
+        if item['name'] == u'張火爐':
+            item['district'] = u'楊梅市'
+        if item['name'] == u'李家興':
+            item['district'] = u'楊梅市'
 
         logging.info('to return: item: %s', item)
 
