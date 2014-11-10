@@ -23,6 +23,11 @@ class Spider(scrapy.Spider):
             url = urljoin(response.url, url)
             yield Request(url, callback=self.parse_selection_index)
 
+        # XXX hack for correcting information
+
+        special_url = "http://www.tycc.gov.tw/page.aspx?wtp=1&wnd=204&town=%E5%B1%B1%E5%9C%B0%E5%8E%9F%E4%BD%8F%E6%B0%91"
+        yield Request(special_url, callback=self.parse_selection_index)
+
     def parse_selection_index(self, response):
         sel = Selector(response)
         urls = sel.xpath('//div[@id="ctl04_ctl08_pageControl_PN_LIST"]//a/@href').extract()
@@ -118,6 +123,12 @@ class Spider(scrapy.Spider):
                 item['county'] = county
                 item['district'] = split[1] if len(split) > 1 else ''
                 item['constituency'] = county + split[0]
+
+        # XXX hack for correcting information
+        if item['name'] == u'張火爐':
+            item['district'] = u'楊梅市'
+        if item['name'] == u'李家興':
+            item['district'] = u'楊梅市'
 
         logging.info('to return: item: %s', item)
 
