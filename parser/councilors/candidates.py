@@ -15,7 +15,7 @@ def latest_term(candidate):
     c.execute('''
         SELECT councilor_id, election_year
         FROM councilors_councilorsdetail
-        WHERE name = %(name)s and county = %(county)s and election_year < %(election_year)s
+        WHERE name = %(name)s and county = %(previous_county)s and election_year < %(election_year)s
         ORDER BY election_year DESC
     ''', candidate)
     r = c.fetchone()
@@ -36,7 +36,7 @@ def latest_term(candidate):
     c.execute('''
         SELECT councilor_id, election_year
         FROM councilors_councilorsdetail
-        WHERE name like %(name_like)s and county = %(county)s and election_year < %(election_year)s
+        WHERE name like %(name_like)s and county = %(previous_county)s and election_year < %(election_year)s
         ORDER BY election_year DESC
     ''', candidate)
     r = c.fetchone()
@@ -57,7 +57,7 @@ def insertCandidates(candidate):
     c.execute('''
         SELECT district
         FROM councilors_councilorsdetail
-        WHERE county = %(county)s AND constituency = %(constituency)s
+        WHERE county = %(previous_county)s AND constituency = %(constituency)s
         ORDER BY election_year DESC
     ''', candidate)
     r = c.fetchone()
@@ -77,9 +77,10 @@ def insertCandidates(candidate):
 conn = db_settings.con()
 c = conn.cursor()
 election_year = '2014'
-files = [f for f in glob.glob('../../data/candidates/%s/undirect.xlsx' % election_year)]
+county_versions = json.load(open('../county_versions.json'))
+files = [f for f in glob.glob('../../data/candidates/%s/*.xlsx' % election_year)]
 for f in files:
-    df = pd.read_excel(f, sheetname=0, names=['date', 'constituency', 'name', 'party'])
+    df = pd.read_excel(f, sheetname=0, names=['date', 'constituency', 'name', 'party'], usecols=[0, 1, 2, 3])
     df = df[df['name'] != u'姓名']
     df['party'] = map(lambda x: u'無黨籍' if re.search(u'^無$', x) else x, df['party'])
     df['party'] = map(lambda x: u'臺灣團結聯盟' if re.search(u'台灣團結聯盟', x) else x, df['party'])
@@ -88,8 +89,10 @@ for f in files:
         match = re.search(u'(?P<county>\W+)第(?P<num>\d+)選(?:舉)?區', candidate['constituency'])
         candidate['county'] = match.group('county') if match else None
         candidate['constituency'] = match.group('num') if match else None
-        if not (candidate['name'] and (re.search(u'(臺北市|臺中市|高雄市|新北市|臺南市|新竹市|彰化縣|宜蘭縣)', candidate['county']))):
+        if not (candidate['name'] and (re.search(u'(臺北市|臺中市|高雄市|新北市|臺南市|新竹市|彰化縣|宜蘭縣|桃園市)', candidate['county']))):
             continue
+        for county_change in county_versions[election_year]:
+            candidate['previous_county'] = county_change['from'] if candidate['county'] == county_change['to'] else candidate['county']
         candidate['name'] = re.sub('\s', '', candidate['name'])
         candidate['name'] = re.sub(u'[・•．]', u'‧', candidate['name'])
         candidate['election_year'] = election_year
