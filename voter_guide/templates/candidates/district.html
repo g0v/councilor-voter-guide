@@ -20,7 +20,7 @@
                     <font class="lead">☞ 點選下表中任一藍字連結，可再進一步看該議員的<b>財產申報</b>、<b>政治獻金</b>、<b>工程建議款</b>等資訊。沒有連結表示不是現任議員，還只是候選人，所以沒有議會資料。</font>
                 </div>
             </div>
-            {% with remark=county|each_county_remark:"attendance" %}
+            {% with remark=county|each_county_remark %}
             {% if remark %}
                 <div class="span5">
                     <div class="alert">

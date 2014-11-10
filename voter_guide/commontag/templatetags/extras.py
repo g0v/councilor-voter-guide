@@ -11,16 +11,20 @@ from bills.models import Bills
 register = template.Library()
 
 @register.filter(name='each_county_remark')
-def each_county_remark(value, arg):
+def each_county_remark(value):
     maps = {
-        u'新北市': {
-            'attendance': u'新北市議會出缺席為2012-09-05到現在的紀錄，2012-09-05之前的會議紀錄找不到記名的出缺席名單，<a href="http://www.ntp.gov.tw/content/information/information04.aspx">詳見議會官網</a>',
-        },
-        u'臺中市': {
-            'attendance': u'臺中市議會除了第一次會議，其餘紀錄找不到記名的出缺席名單，<a href="http://www.tccc.gov.tw/govknowledge/know_docview.asp?id={A3251160-17E2-4B5B-9F99-1A985453159A}&wfid=23&info=1837">詳見議會官網</a>',
-        },
+        u'桃園市': [
+            u'找不到議案的資料來源，歡迎一起幫忙找，<a href="http://www.tycc.gov.tw/">議會官網</a>',
+            u'出缺席紀錄處理中',
+        ],
+        u'新北市': [
+            u'新北市議會出缺席為2012-09-05到現在的紀錄，2012-09-05之前的會議紀錄找不到記名的出缺席名單，<a href="http://www.ntp.gov.tw/content/information/information04.aspx">詳見議會官網</a>',
+        ],
+        u'臺中市': [
+            u'臺中市議會除了第一次會議，其餘紀錄找不到記名的出缺席名單，<a href="http://www.tccc.gov.tw/govknowledge/know_docview.asp?id={A3251160-17E2-4B5B-9F99-1A985453159A}&wfid=23&info=1837">詳見議會官網</a>',
+        ],
     }
-    return maps.get(value, {}).get(arg, '')
+    return '<br>'.join(maps.get(value, ''))
 
 @register.filter(name='suggestions_offical_link')
 def suggestions_offical_link(value):
