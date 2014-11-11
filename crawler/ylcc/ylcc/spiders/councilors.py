@@ -28,7 +28,7 @@ class Spider(scrapy.Spider):
 
     def parse(self, response):  
         result=[]
-        patterns=['y4']
+        patterns=['y5']
         
         for idx in range(1,7):
             url='http://www.ylcc.gov.tw/index.php?inner=member_precinct'+ str(idx) 
@@ -43,7 +43,7 @@ class Spider(scrapy.Spider):
             profile = Request(url, callback=self.parse_profile)
             result.append(profile)
         return result
-        '''
+        '''  
 
     def parse_profile(self, response):
         district=int(response.url[-1])
@@ -63,12 +63,20 @@ class Spider(scrapy.Spider):
             photolink [imagename]=photourl
         #print photolink
         itemresult=[]
+
         candidates = sel.xpath(".//span[@class='word_orange']/..")
-        print len(candidates)
+        candidates_2 = sel.xpath(".//p[@class='word_orange']/..")
+        for candidate in candidates_2:
+            candidates.append(candidate)
+        
+        #print len(candidates)
         for candidate in candidates:
-            
+            #print candidate.extract().encode('utf8')
             item = Councilor() 
             names = candidate.xpath(".//span[@class='word_orange']/text()").extract()
+            if not len(names):
+                names = candidate.xpath(".//p[@class='word_orange']/text()").extract()
+
             if len(names):
                 item['name']=names[0].encode('utf8')
                 print item['name']
@@ -93,17 +101,20 @@ class Spider(scrapy.Spider):
                     #print idx, details[idx].extract().encode('utf8')
                     if details[idx].re(u'[\s]*學[\s]*歷[\s]*'):
                         if (idx+1) < length:
-                            obj=details[idx+1].extract().encode('utf8').replace('\n','').replace(' ','').replace('\r','')
+                            obj=details[idx+1].extract().encode('utf8').replace('\n','').replace(' ','')\
+                            .replace('\r','').replace('\t','')
                             item['education']=obj
                             #print idx, 'education=',item['education']
                     if details[idx].re(u'[\s]*經[\s]*歷[\s]*'):
                         if (idx+1) < length:
-                            obj=details[idx+1].extract().encode('utf8').replace('\n','').replace(' ','').replace('\r','')
+                            obj=details[idx+1].extract().encode('utf8').replace('\n','').replace(' ','')\
+                            .replace('\r','').replace('\t','')
                             item['experience']=obj
                             #print idx, 'experience=',item['experience']
                     if details[idx].re(u'[\s]*黨[\s]*籍[\s]*'):
                         if (idx+1) < length:
-                            obj=details[idx+1].extract().encode('utf8').replace('\n','').replace(' ','').replace('\r','')
+                            obj=details[idx+1].extract().encode('utf8').replace('\n','').replace(' ','')\
+                            .replace('\r','').replace('\t','')
                             item['party']=obj
                             #print 'party=',item['party']
                     if details[idx].re(u'[\s]*服[\s]*務[\s]*處[\s]*電[\s]*話[\s]*'):
