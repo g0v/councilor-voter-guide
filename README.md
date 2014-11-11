@@ -40,6 +40,7 @@ In Ubuntu 12.04 LTS
 apt-get install libxml2-dev libxslt1-dev python-dev libffi-dev
 pip install lxml
 pip install Scrapy
+pip install requests
 ```
 After install scrapy, you can run commands to test, below using tcc(臺北市議會) for example:
 ```
