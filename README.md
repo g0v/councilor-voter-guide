@@ -78,6 +78,8 @@ sudo -u <username> psql -c "ALTER USER <username> with encrypted PASSWORD 'put_y
 ```
 
 ## Clone source code from GitHub to local
+
+It is quite big now. please be patient. don't use command like git --depth
 ```
 git clone https://github.com/g0v/councilor-voter-guide.git       
 cd councilor-voter-guide/voter_guide/
