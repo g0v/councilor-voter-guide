@@ -46,16 +46,17 @@ def split_orz_format(value):
 
         if u"\uff0c" in tmp:
             split_token = u"\uff0c"
-        elif u"\u3002" in tmp:
-            split_token = u"\u3002"
-        else:
+        elif u"\u3001" in tmp:
             split_token = u"\u3001"
+        else:
+            split_token = u"\u3002"
 
         value = tmp.split(split_token)
 
     return [item.strip() for item in value]
 
 def text(value):
+    value = map(lambda item: item.strip(), value)
     return "".join(value)
 
 
@@ -63,6 +64,7 @@ class Spider(scrapy.Spider):
     name = "councilors"
     allowed_domains = ["www.hlcc.gov.tw"]
     start_urls = ["http://www.hlcc.gov.tw/councillor.php", ]
+    
     download_delay = 0.5
 
     ROOT_URL = "http://www.hlcc.gov.tw/"
@@ -76,9 +78,9 @@ class Spider(scrapy.Spider):
 
         # contact_details
         u"服務處地址": ListFieldHandler("contact_details",
-            lambda value: {"type": "address", "label": u"通訊處", "value": value}),
+            lambda value: {"type": "address", "label": u"通訊處", "value": text(value)}),
         u"聯絡電話": ListFieldHandler("contact_details",
-            lambda value: {"type": "voice", "label": u"電話", "value": value}),
+            lambda value: {"type": "voice", "label": u"電話", "value": text(value)}),
     }
 
     def parse(self, response):
