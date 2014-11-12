@@ -137,7 +137,7 @@ conn = db_settings.con()
 c = conn.cursor()
 constituency_maps = json.load(open('../constituency.json'))
 # insert
-for council in ['../../data/tycc/councilors.json', '../../data/ilcc/councilors.json', '../../data/chcc/councilors.json', '../../data/hsinchucc/councilors.json', '../../data/tncc/councilors.json', '../../data/ntcc/councilors_terms.json', '../../data/ntcc/councilors.json', '../../data/tccc/councilors.json', '../../data/kcc/councilors_terms.json', '../../data/tcc/councilors_terms.json']:
+for council in ['../../data/hlcc/councilors.json', '../../data/tycc/councilors.json', '../../data/ilcc/councilors.json', '../../data/chcc/councilors.json', '../../data/hsinchucc/councilors.json', '../../data/tncc/councilors.json', '../../data/ntcc/councilors_terms.json', '../../data/ntcc/councilors.json', '../../data/tccc/councilors.json', '../../data/kcc/councilors_terms.json', '../../data/tcc/councilors_terms.json']:
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
