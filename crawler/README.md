@@ -21,5 +21,7 @@
 <tr><td>桃園縣</td><td>tycc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
 <tr><td>彰化縣</td><td>chcc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
 <tr><td>嘉義縣</td><td>cyscc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
+<tr><td>雲林縣</td><td>ylcc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
+<tr><td>花蓮縣</td><td>hlcc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
 </tbody>
 </table>
