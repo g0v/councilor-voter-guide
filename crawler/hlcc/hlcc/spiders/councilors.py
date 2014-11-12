@@ -10,13 +10,17 @@ import logging
 
 
 class FieldHandler(object):
-    def __init__(self, field_name, wrapper=None):
+    def __init__(self, field_name, wrapper=None, default_value=None):
         self.field_name = field_name
         self.wrapper = wrapper
+        self.default_value = default_value
 
     def fill_field(self, item, value):
         if self.wrapper:
             value = self.wrapper(value)
+
+        if not value and self.default_value:
+            value = self.default_value
 
         item[self.field_name] = value
 
@@ -37,16 +41,16 @@ class ListFieldHandler(FieldHandler):
         return item
 
 def split_orz_format(value):
-    # If there is only 1 value, try to split the value by 、|，|。,
+    # If there is only 1 value, try to split the value by 、(\u3001)|，(\uff0c)|。(\u3002),
     # Because format is not consistent
     if len(value) == 1:
-        tmp = value[0]
+        tmp = value[0].strip()
 
         split_token = None
 
         if u"\uff0c" in tmp:
             split_token = u"\uff0c"
-        elif u"\u3002" in tmp:
+        elif u"\u3002" in tmp and (not tmp.endswith(u"\u3002") if tmp.count(u"\u3002") == 1 else True):
             split_token = u"\u3002"
         else:
             split_token = u"\u3001"
@@ -56,6 +60,7 @@ def split_orz_format(value):
     return [item.strip() for item in value]
 
 def text(value):
+    value = map(lambda item: item.strip(), value)
     return "".join(value)
 
 
@@ -63,22 +68,23 @@ class Spider(scrapy.Spider):
     name = "councilors"
     allowed_domains = ["www.hlcc.gov.tw"]
     start_urls = ["http://www.hlcc.gov.tw/councillor.php", ]
+    
     download_delay = 0.5
 
     ROOT_URL = "http://www.hlcc.gov.tw/"
 
     handler_map = {
         u"性別": FieldHandler("gender", text),
-        u"黨籍": FieldHandler("party", text),
+        u"黨籍": FieldHandler("party", text, u"無黨籍"),
         u"出生地": None,
         u"學歷": FieldHandler("education", split_orz_format),
         u"經歷": FieldHandler("experience", split_orz_format),
 
         # contact_details
         u"服務處地址": ListFieldHandler("contact_details",
-            lambda value: {"type": "address", "label": u"通訊處", "value": value}),
+            lambda value: {"type": "address", "label": u"通訊處", "value": text(value)}),
         u"聯絡電話": ListFieldHandler("contact_details",
-            lambda value: {"type": "voice", "label": u"電話", "value": value}),
+            lambda value: {"type": "voice", "label": u"電話", "value": text(value)}),
     }
 
     def parse(self, response):
