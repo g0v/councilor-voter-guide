@@ -2,7 +2,7 @@ venv
 htmlcov
 migrations
 local_settings.py
-meeting_minutes
+/meeting_minutes
 *~
 *.swp
 ############

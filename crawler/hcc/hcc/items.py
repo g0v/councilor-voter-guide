@@ -9,14 +9,23 @@ from scrapy import Item, Field
 
 
 class Councilor(Item):
-    # define the fields for your item here like:
     name = Field()
+    stage = Field()
+    election_year = Field()
+    title = Field()
+    gender = Field()
+    birth = Field()
+    party = Field()
+    constituency = Field()
     county = Field()
     district = Field()
+    contact_details = Field()
     education = Field()
     experience = Field()
+    platform = Field()
+    remark = Field()
+    in_office = Field()
+    term_end = Field()
+    term_start = Field()
     image = Field()
     links = Field()
-    platform = Field()
-    party = Field()
-    contact_details = Field()

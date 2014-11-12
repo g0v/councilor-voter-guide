@@ -37,27 +37,34 @@ class Spider(scrapy.Spider):
 
         for area in areas:
             urls = area.xpath('.//a/@href').extract()
+            urls = area.xpath('.//a')
             for url in urls:
-
-                if not re.search('^view.asp\?id=', url):
+                href = url.xpath('@href').extract()[0]
+                if not re.search('^view.asp\?id=', href):
                     continue
-
-                logging.warning('url: %s', url)
-                the_url = urljoin(base_url, url)
-                yield Request(the_url, callback=self.parse_profile)
+                item = Councilor()
+                item['constituency'] = url.xpath('preceding::strong[1]/text()').re(u'第(\d+)選區')[0]
+                logging.warning('url: %s', href)
+                the_url = urljoin(base_url, href)
+                yield Request(the_url, callback=self.parse_profile, meta={'item': item})
 
     def parse_profile(self, response):
         response = parse.get_decoded_response(response, 'Big5')
         sel = Selector(response)
-
         name_node = sel.xpath('//td[@class="w06"]')
         logging.warning('name_node: %s', name_node)
         name_str = parse.get_inner_text(name_node)
 
         logging.warning('name_str: %s', name_str)
 
-        item = Councilor()
-        item['name'] = re.sub(ur'.*-', '', name_str)
+        item = response.request.meta['item']
+        item['county'] = u'新竹縣'
+        item['election_year'] = '2009'
+        item['term_start'] = '%s-12-25' % item['election_year']
+        item['term_end'] = {'date': '2014-12-25'}
+        item['in_office'] = True
+        item['name'] = name_str.split('-')[-1]
+        item['title'] = re.search(u'(副?議長|議員)', name_str).group()
 
         w02_nodes = sel.xpath('//th[@class="w02"]')
         for each_node in w02_nodes:
@@ -74,12 +81,12 @@ class Spider(scrapy.Spider):
             image_str = parse.get_extracted(image_node)
 
             logging.warning('key: %s education_str: %s image_str: %s', key, education_str, image_str)
-            item['image'] = 'http://www.hcc.gov.tw/03councilor/' + image_str
+            item['image'] = urljoin(response.url, urllib.quote(image_str.encode('utf8')))
 
         main_nodes = sel.xpath('//tr[@class="line_02"]')
 
         contact_details = []
-        links = []
+        links = [{'url': response.url, 'note': u'議會個人官網'}]
         for each_node in main_nodes:
             key = parse.get_inner_text(each_node.xpath('./th'))
             item_key = _key_map.get(key, '')
@@ -112,7 +119,6 @@ class Spider(scrapy.Spider):
             logging.warning('key: %s val: %s item_key: %s', key, val, item_key)
 
             # item[item_key] = val
-        item['county'] = u'桃園市'
         item['contact_details'] = contact_details
         item['links'] = links
 
