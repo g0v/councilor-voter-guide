@@ -124,6 +124,40 @@ Because local_settings.py is list in .gitignore, so this file won't be appear in
 ```
 python manage.py runserver
 ```
+## Mac Related Instructions
+
+###Prepare Compiler
+
+There are some python package written in C or C++ such as lxml. so a compiler is required. you can install a compiler via the following command:
+
+```bash
+xcode-select --install
+```
+
+
+
+###Prepare PostgreSQL
+
+You can install the packaged app [here](http://postgresapp.com).
+put the app in your Application folder and click it to start. 
+
+And please add the following line to your ~/.bash_profile
+
+```bash
+export PATH=/Applications/Postgres.app/Contents/Versions/9.3/bin/:$PATH
+
+```
+
+please change the version number 9.3 if you download a different version of PostgreSQL. 
+
+after you add the PATH environment variable, source it. 
+
+```bash
+source ~/.bash_profile
+```
+
+if you don't add the PATH variable, installation of psycopg2 will not success. 
+
 
 CC0 1.0 Universal
 =================
