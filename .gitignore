@@ -2,7 +2,7 @@ venv
 htmlcov
 migrations
 local_settings.py
-meeting_minutes
+/meeting_minutes
 *~
 *.swp
 ############
@@ -37,3 +37,6 @@ pip-log.txt
 .mr.developer.cfg
 
 log.txt
+
+# vim python-mode
+.ropeproject
