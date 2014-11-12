@@ -87,12 +87,24 @@
                                 {% endwith %}
                             </td>
                             <td style="text-align:center; vertical-align:middle;">{{councilor.cs_absent}}</td>
-                            <td style="text-align:center; vertical-align:middle;"><a href="{% url 'councilors:personal_political_contributions' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}#d3_in"><font class="price">{{councilor.in_total}}</font></a></td>
-                            <td style="text-align:center; vertical-align:middle;"><a href="{% url 'councilors:personal_political_contributions' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}#d3_out"><font class="price">{{councilor.out_total}}</font></a></td>
-                            <td style="text-align:center; vertical-align:middle;"><font class="price">{{councilor.balance}}</font></td>
+                            <td style="text-align:center; vertical-align:middle;">
+                                {% if councilor.in_total != None %}
+                                    <a href="{% url 'councilors:personal_political_contributions' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}#d3_in"><font class="price">{{councilor.in_total}}</font></a>
+                                {% endif %}
+                            </td>
+                            <td style="text-align:center; vertical-align:middle;">
+                                {% if councilor.out_total != None %}
+                                    <a href="{% url 'councilors:personal_political_contributions' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}#d3_out"><font class="price">{{councilor.out_total}}</font></a>
+                                {% endif %}
+                            </td>
+                            <td style="text-align:center; vertical-align:middle;">
+                                {% if councilor.balance != None %}
+                                    <font class="price">{{councilor.balance}}</font>
+                                {% endif %}
+                            </td>
                             <td style="text-align:center; vertical-align:middle;"><a href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" target="_blank">{{councilor.name}}</a></td>
                         {% else %}
-                            <td colspan="7"/>
+                            <td colspan="8"/>
                         {% endif %}
                     </tr>
                 {% endfor %}

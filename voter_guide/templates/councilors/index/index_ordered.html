@@ -2,7 +2,7 @@
 {% load extras %}
 {% block table %}
     {% if param.remark %}
-        {% with remark=county|each_county_remark:param.remark %}
+        {% with remark=county|each_county_remark %}
         {% if remark %}
             <div class="alert">
                 {% autoescape off %}
