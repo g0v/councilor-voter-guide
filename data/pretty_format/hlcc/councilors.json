@@ -1,90 +1,5 @@
 [
     {
-        "constituency": "第二選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "address", 
-                "value": "花蓮縣新城鄉嘉里村嘉里三街112~13號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "03-8262685．0963-338157"
-            }
-        ], 
-        "county": "花蓮縣", 
-        "district": "新城鄉、秀林鄉", 
-        "education": [
-            "國立花蓮高工"
-        ], 
-        "election_year": "2009", 
-        "experience": [
-            "新城鄉長", 
-            "新城鄉民代表會主席", 
-            "國立花蓮高工校友會會長", 
-            "中國國民黨第十七全代表", 
-            "新秀地區農會農民代表", 
-            "新城國際獅子會常務監事", 
-            "花蓮縣第17屆議員。"
-        ], 
-        "gender": "男", 
-        "image": "http://www.hlcc.gov.tw/upfile/20100226141821-130.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.hlcc.gov.tw/councillor-data.php?index_no=15"
-            }
-        ], 
-        "name": "何禮臺", 
-        "party": "中國國民黨", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第二選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "address", 
-                "value": "花蓮縣新城鄉北埔村光復路167號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "03-8268989．0975-711830"
-            }
-        ], 
-        "county": "花蓮縣", 
-        "district": "新城鄉、秀林鄉", 
-        "education": [
-            "花蓮縣私立中華工商職業學校"
-        ], 
-        "election_year": "2009", 
-        "experience": [
-            "花蓮縣秀林鄉民代表會第15、16、17、18屆主席", 
-            "花蓮縣議會第十七屆副議長"
-        ], 
-        "gender": "男", 
-        "image": "http://www.hlcc.gov.tw/upfile/20100226141837-133.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.hlcc.gov.tw/councillor-data.php?index_no=16"
-            }
-        ], 
-        "name": "賴進坤", 
-        "party": "中國國民黨", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
         "constituency": "第一選區", 
         "contact_details": [
             {
@@ -289,11 +204,16 @@
         ], 
         "election_year": "2009", 
         "experience": [
-            "民主進步黨花蓮縣黨部第一", 
-            "二屆主任委員。黃信介競選總部執行總幹事。花蓮縣第十四", 
-            "十五", 
-            "十六", 
-            "十七屆縣議員。救國團花蓮縣團委會委員。花蓮縣義消大隊長。花蓮縣觀光旅館商業公會顧問。台灣之友花蓮縣會長。凱達格蘭學校校友會理事。花蓮縣正義宮文化藝術基金會董事長。"
+            "民主進步黨花蓮縣黨部第一、二屆主任委員", 
+            "黃信介競選總部執行總幹事", 
+            "花蓮縣第十四、十五、十六、十七屆縣議員", 
+            "救國團花蓮縣團委會委員", 
+            "花蓮縣義消大隊長", 
+            "花蓮縣觀光旅館商業公會顧問", 
+            "台灣之友花蓮縣會長", 
+            "凱達格蘭學校校友會理事", 
+            "花蓮縣正義宮文化藝術基金會董事長", 
+            ""
         ], 
         "gender": "男", 
         "image": "http://www.hlcc.gov.tw/upfile/20100226141718-144.jpg", 
@@ -478,47 +398,6 @@
             }
         ], 
         "name": "楊文值", 
-        "party": "中國國民黨", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第十選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "address", 
-                "value": "花蓮縣卓溪鄉古風村13鄰古楓23號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "03-8846150．0911-275081"
-            }
-        ], 
-        "county": "花蓮縣", 
-        "district": "【玉里鎮、富里鄉、卓溪鄉】、山地原住民", 
-        "education": [
-            "國立政治大學教育系畢業"
-        ], 
-        "election_year": "2009", 
-        "experience": [
-            "1.曾任國小教師、主任、校長34年", 
-            "2.曾任東華大學語傳系教師10年", 
-            "3.花蓮縣議會第16屆、17屆議員"
-        ], 
-        "gender": "男", 
-        "image": "http://www.hlcc.gov.tw/upfile/20100226142305-124.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.hlcc.gov.tw/councillor-data.php?index_no=38"
-            }
-        ], 
-        "name": "呂必賢", 
         "party": "中國國民黨", 
         "term_end": {
             "date": "2014-12-25"
@@ -834,6 +713,47 @@
         "term_start": "2009-12-25"
     }, 
     {
+        "constituency": "第十選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
+                "value": "花蓮縣卓溪鄉古風村13鄰古楓23號"
+            }, 
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "03-8846150．0911-275081"
+            }
+        ], 
+        "county": "花蓮縣", 
+        "district": "【玉里鎮、富里鄉、卓溪鄉】、山地原住民", 
+        "education": [
+            "國立政治大學教育系畢業"
+        ], 
+        "election_year": "2009", 
+        "experience": [
+            "1.曾任國小教師、主任、校長34年", 
+            "2.曾任東華大學語傳系教師10年", 
+            "3.花蓮縣議會第16屆、17屆議員"
+        ], 
+        "gender": "男", 
+        "image": "http://www.hlcc.gov.tw/upfile/20100226142305-124.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.hlcc.gov.tw/councillor-data.php?index_no=38"
+            }
+        ], 
+        "name": "呂必賢", 
+        "party": "中國國民黨", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
         "constituency": "第五選區", 
         "contact_details": [
             {
@@ -872,6 +792,50 @@
         ], 
         "name": "余夏夫", 
         "party": "中國國民黨", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第五選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
+                "value": "花連市主權里德安二街124號"
+            }, 
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "03-8355928．0919-355001"
+            }
+        ], 
+        "county": "花蓮縣", 
+        "district": "【花蓮市、吉安鄉、新城鄉、秀林鄉】平地原住民", 
+        "education": [
+            "淡江大學", 
+            "東華大學族群關係與文化研究所肄業"
+        ], 
+        "election_year": "2009", 
+        "experience": [
+            "飛碟聯播網太魯閣之音、東台灣廣播、台北電台等製作主持人", 
+            "蓮友原住民電台創台台長", 
+            "更生日報記者", 
+            "嘉仁有線電視經理", 
+            "洄瀾台原住民節目製作主持人、文化工作。花蓮縣議會教育小組副召集人、花蓮縣原動力舞蹈團團長、宜昌國小家長會顧問、花蓮縣慢壘協會顧問等。花蓮縣議會第十六屆、第十七屆議員。"
+        ], 
+        "gender": "女", 
+        "image": "http://www.hlcc.gov.tw/upfile/20100226142116-194.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.hlcc.gov.tw/councillor-data.php?index_no=29"
+            }
+        ], 
+        "name": "笛布斯顗賚", 
+        "party": "無黨籍", 
         "term_end": {
             "date": "2014-12-25"
         }, 
@@ -1007,7 +971,7 @@
             }
         ], 
         "name": "王燕美", 
-        "party": "", 
+        "party": "無黨籍", 
         "term_end": {
             "date": "2014-12-25"
         }, 
@@ -1095,50 +1059,6 @@
         ], 
         "name": "林春生", 
         "party": "中國國民黨", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第五選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "address", 
-                "value": "花連市主權里德安二街124號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "03-8355928．0919-355001"
-            }
-        ], 
-        "county": "花蓮縣", 
-        "district": "【花蓮市、吉安鄉、新城鄉、秀林鄉】平地原住民", 
-        "education": [
-            "淡江大學", 
-            "東華大學族群關係與文化研究所肄業"
-        ], 
-        "election_year": "2009", 
-        "experience": [
-            "飛碟聯播網太魯閣之音、東台灣廣播、台北電台等製作主持人", 
-            "蓮友原住民電台創台台長", 
-            "更生日報記者", 
-            "嘉仁有線電視經理", 
-            "洄瀾台原住民節目製作主持人、文化工作。花蓮縣議會教育小組副召集人、花蓮縣原動力舞蹈團團長、宜昌國小家長會顧問、花蓮縣慢壘協會顧問等。花蓮縣議會第十六屆、第十七屆議員。"
-        ], 
-        "gender": "女", 
-        "image": "http://www.hlcc.gov.tw/upfile/20100226142116-194.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.hlcc.gov.tw/councillor-data.php?index_no=29"
-            }
-        ], 
-        "name": "笛布斯顗賚", 
-        "party": "無黨籍", 
         "term_end": {
             "date": "2014-12-25"
         }, 
@@ -1463,7 +1383,92 @@
             }
         ], 
         "name": "張峻", 
-        "party": "", 
+        "party": "無黨籍", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第二選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
+                "value": "花蓮縣新城鄉嘉里村嘉里三街112~13號"
+            }, 
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "03-8262685．0963-338157"
+            }
+        ], 
+        "county": "花蓮縣", 
+        "district": "新城鄉、秀林鄉", 
+        "education": [
+            "國立花蓮高工"
+        ], 
+        "election_year": "2009", 
+        "experience": [
+            "新城鄉長", 
+            "新城鄉民代表會主席", 
+            "國立花蓮高工校友會會長", 
+            "中國國民黨第十七全代表", 
+            "新秀地區農會農民代表", 
+            "新城國際獅子會常務監事", 
+            "花蓮縣第17屆議員。"
+        ], 
+        "gender": "男", 
+        "image": "http://www.hlcc.gov.tw/upfile/20100226141821-130.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.hlcc.gov.tw/councillor-data.php?index_no=15"
+            }
+        ], 
+        "name": "何禮臺", 
+        "party": "中國國民黨", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第二選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
+                "value": "花蓮縣新城鄉北埔村光復路167號"
+            }, 
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "03-8268989．0975-711830"
+            }
+        ], 
+        "county": "花蓮縣", 
+        "district": "新城鄉、秀林鄉", 
+        "education": [
+            "花蓮縣私立中華工商職業學校"
+        ], 
+        "election_year": "2009", 
+        "experience": [
+            "花蓮縣秀林鄉民代表會第15、16、17、18屆主席", 
+            "花蓮縣議會第十七屆副議長"
+        ], 
+        "gender": "男", 
+        "image": "http://www.hlcc.gov.tw/upfile/20100226141837-133.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.hlcc.gov.tw/councillor-data.php?index_no=16"
+            }
+        ], 
+        "name": "賴進坤", 
+        "party": "中國國民黨", 
         "term_end": {
             "date": "2014-12-25"
         }, 

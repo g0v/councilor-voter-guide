@@ -21,9 +21,10 @@ BOT_NAME = 'hlcc'
 
 SPIDER_MODULES = ['hlcc.spiders']
 NEWSPIDER_MODULE = 'hlcc.spiders'
+LOG_FILE = 'log.txt'
 
 FEED_EXPORTERS = {
-   'json': 'hlcc.pipelines.UnicodeJsonItemExporter',
+    'json': 'crawler_lib.misc.UnicodeJsonItemExporter',
 }
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'hlcc (+http://www.yourdomain.com)'
