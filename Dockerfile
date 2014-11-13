@@ -7,6 +7,10 @@ RUN cd /tmp/g0v-cvg/crawler/ && python setup.py install && pip install  -r requi
 
 RUN mkdir items
 RUN mkdir logs
+
 VOLUME ["/items", "/logs"]
 
+EXPOSE 6800
+
+CMD scrapyd
 
