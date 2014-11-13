@@ -7,23 +7,53 @@
 
 ## 各縣市
 以下缺漏，可能也是暫時找不到資料來源        
-<table>
-<thead>
-<tr><th>縣市</th><th>代號</th><th>現任議員</th><th> 歷屆議員</th><th>議案</th><th>議事錄</th></tr>
-</thead>
-<tbody>
-<tr><td>臺北市</td><td>tcc</td><td></td><td></td><td></td><td></td></tr>
-<tr><td>新北市</td><td>ntp</td><td></td><td></td><td></td><td></td></tr>
-<tr><td>高雄市</td><td>kcc</td><td></td><td></td><td></td><td></td></tr>
-<tr><td>臺中市</td><td>tccc</td><td></td><td>x</td><td></td><td></td></tr>
-<tr><td>新竹市</td><td>hsinchucc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
-<tr><td>新竹縣</td><td>hcc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
-<tr><td>宜蘭縣</td><td>ilcc</td><td></td><td>x</td><td></td><td></td></tr>
-<tr><td>桃園縣</td><td>tycc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
-<tr><td>彰化縣</td><td>chcc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
-<tr><td>嘉義縣</td><td>cyscc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
-<tr><td>雲林縣</td><td>ylcc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
-<tr><td>花蓮縣</td><td>hlcc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
-<tr><td>南投縣</td><td>ntcc</td><td></td><td>x</td><td>x</td><td>x</td></tr>
-</tbody>
-</table>
+
+### 北部
+
+`X` 代表還沒有資料, 連代號都沒有的表示完全沒有開始
+
+| 縣市   | 代號      | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
+|--------|-----------|----------|----------|------|--------|
+| 基隆市 |           |          |          |      |        |
+| 台北市 | tcc       |          |          |      |        |
+| 新北市 | ntp       |          |          |      |        |
+| 桃園縣 | tycc      |          | X        | X    | X      |
+| 新竹市 | hsinchucc |          | X        | X    | X      |
+| 新竹縣 | hcc       |          | X        | X    | X      |
+| 苗栗縣 |           |          |          |      |        |
+
+
+### 中部
+
+| 縣市   | 代號  | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
+|--------|-------|----------|----------|------|--------|
+| 台中市 | tccc  |          | X        |      |        |
+| 彰化縣 | chcc  |          | X        | X    | X      |
+| 南投縣 | ntcc  |          | X        | X    | X      |
+| 雲林縣 | ylcc  |          | X        | X    | X      |
+| 嘉義縣 | cyscc |          | X        | X    | X      |
+| 嘉義市 |       |          |          |      |        |
+
+### 東部
+
+| 縣市   | 代號 | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
+|--------|------|----------|----------|------|--------|
+| 宜蘭縣 | ilcc |          | X        |      |        |
+| 花蓮縣 | hlcc |          | X        | X    | X      |
+| 台東縣 |      |          |          |      |        |
+
+### 南部
+
+| 縣市   | 代號 | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
+|--------|------|----------|----------|------|--------|
+| 台南市 |      |          |          |      |        |
+| 高雄市 | kcc  |          |          |      |        |
+| 屏東縣 |      |          |          |      |        |
+
+### 外島
+
+| 縣市   | 代號 | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
+|--------|------|----------|----------|------|--------|
+| 連江縣 |      |          |          |      |        |
+| 金門縣 |      |          |          |      |        |
+| 澎湖縣 |      |          |          |      |        |
