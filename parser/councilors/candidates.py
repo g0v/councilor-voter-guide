@@ -63,6 +63,9 @@ def insertCandidates(candidate):
     r = c.fetchone()
     if r:
         candidate['district'] = r[0]
+    else:
+        for district_change in district_versions[election_year]:
+            candidate['district'] = district_change['district'] if candidate['county'] == district_change['county'] and candidate['constituency'] == district_change['constituency'] else ''
     for key in ['education', 'experience', 'platform', 'remark']:
         if candidate.get(key):
             candidate[key] = '\n'.join(candidate[key])
@@ -78,6 +81,7 @@ conn = db_settings.con()
 c = conn.cursor()
 election_year = '2014'
 county_versions = json.load(open('../county_versions.json'))
+district_versions = json.load(open('../district_versions.json'))
 files = [f for f in glob.glob('../../data/candidates/%s/*.xlsx' % election_year)]
 for f in files:
     df = pd.read_excel(f, sheetname=0, names=['date', 'constituency', 'name', 'party'], usecols=[0, 1, 2, 3])
@@ -89,12 +93,12 @@ for f in files:
         match = re.search(u'(?P<county>\W+)第(?P<num>\d+)選(?:舉)?區', candidate['constituency'])
         candidate['county'] = match.group('county') if match else None
         candidate['constituency'] = match.group('num') if match else None
-        if not (candidate['name'] and (re.search(u'(臺北市|臺中市|高雄市|新北市|臺南市|新竹市|彰化縣|宜蘭縣|桃園市|花蓮縣)', candidate['county']))):
+        if not (candidate['name'] and (re.search(u'(臺北市|臺中市|高雄市|新北市|臺南市|新竹市|彰化縣|宜蘭縣|桃園市|花蓮縣|南投縣)', candidate['county']))):
             continue
         for county_change in county_versions[election_year]:
             candidate['previous_county'] = county_change['from'] if candidate['county'] == county_change['to'] else candidate['county']
         candidate['name'] = re.sub('\s', '', candidate['name'])
-        candidate['name'] = re.sub(u'[・•．]', u'‧', candidate['name'])
+        candidate['name'] = re.sub(u'[˙・•．]', u'‧', candidate['name'])
         candidate['election_year'] = election_year
         candidate['uid'], candidate['last_election_year'] = latest_term(candidate)
         insertCandidates(candidate)
