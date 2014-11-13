@@ -149,7 +149,6 @@ conn.commit()
 
 # update
 for council in ['../../data/kcc/councilors.json', '../../data/tcc/councilors.json']:
-    break
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:

@@ -26,7 +26,7 @@ def write_file(data, file_name):
 
 df_concat = pd.DataFrame()
 for i in range(1, 8):
-    df = pd.read_excel('ntcc/councilors.xlsx', sheetname=u'第%d選區' % i, skiprows=1, header=None, usecols=range(1, 12), names=['name', 'education', 'contact_details', 'title', 'birth', 'gender', 'birth_place', 'district', 'party', 'experience', 'platform'], parse_dates='birth', encoding='utf-8')
+    df = pd.read_excel('ntcc/councilors.xlsx', sheetname=u'第%d選區' % i, skiprows=1, header=None, usecols=range(1, 13), names=['name', 'education', 'image', 'contact_details', 'title', 'birth', 'gender', 'birth_place', 'district', 'party', 'experience', 'platform'], parse_dates='birth', encoding='utf-8')
     print i
     df['constituency'] = u'第%d選區' % i
     df_concat = pd.concat([df_concat, df])
