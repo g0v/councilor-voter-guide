@@ -23,6 +23,10 @@ SPIDER_MODULES = ['hlcc.spiders']
 NEWSPIDER_MODULE = 'hlcc.spiders'
 LOG_FILE = 'log.txt'
 
+ITEM_PIPELINES = {
+    "hlcc.pipelines.ReferenceDataPipeline": 1
+}
+
 FEED_EXPORTERS = {
     'json': 'crawler_lib.misc.UnicodeJsonItemExporter',
 }
