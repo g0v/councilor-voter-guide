@@ -16,7 +16,7 @@ from os.path import dirname
 _PROJECT_PATH = dirname(dirname(dirname(dirname(__file__))))
 sys.path.append(os.path.join(_PROJECT_PATH, 'crawler'))
 
-BOT_NAME = 'ntcc'
+BOT_NAME = 'ntp'
 
 SPIDER_MODULES = ['ntcc.spiders']
 NEWSPIDER_MODULE = 'ntcc.spiders'

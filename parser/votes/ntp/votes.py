@@ -46,9 +46,9 @@ Present_Token = re.compile(u'''
     列\s*席
 ''', re.X|re.S)
 
-meetings = json.load(open('../../../data/ntcc/meeting_minutes-%s.json' % election_year))
+meetings = json.load(open('../../../data/ntp/meeting_minutes-%s.json' % election_year))
 for meeting in meetings:
-    total_text = unicodedata.normalize('NFC', codecs.open('../../../data/ntcc/meeting_minutes/%s_%s.txt' % (meeting['sitting'], meeting['meeting']), "r", "utf-8").read())
+    total_text = unicodedata.normalize('NFC', codecs.open('../../../data/ntp/meeting_minutes/%s_%s.txt' % (meeting['sitting'], meeting['meeting']), "r", "utf-8").read())
     total_text = re.sub(u'．', u'‧', total_text)
     total_text = re.sub(u'　', ' ', total_text)
     match = Session_Token.search(meeting['sitting'])
