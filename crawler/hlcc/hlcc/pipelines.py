@@ -8,47 +8,21 @@ import json
 from scrapy.contrib.exporter import BaseItemExporter, JsonLinesItemExporter, JsonItemExporter
 
 
-class HlccPipeline(object):
+class ReferenceDataPipeline(object):
+    def __init__(self):
+        with open("reference.json", "r") as reference_data_file:
+            self.reference_data = json.load(reference_data_file)
+            self.councilors = self.reference_data["councilors"]
+            self.districts = self.reference_data["districts"]
+
     def process_item(self, item, spider):
+        # Add platfrom and birth from reference.json
+        for councilor in self.councilors:
+            if councilor["name"] == item["name"]:
+                item["platform"] = councilor["platform"]
+                item["birth"] = councilor["birth"]
+                break
+        
+        # Add district
+        item["district"] = self.districts[item["constituency"]]
         return item
-
-def encode_list(data):
-    rv = []
-    for item in data:
-        if isinstance(item, unicode):
-            item = item.encode('utf-8')
-        elif isinstance(item, list):
-            item = encode_list(item)
-        elif isinstance(item, dict):
-            item = encode_dict(item)
-        rv.append(item)
-    return rv
-
-
-def encode_dict(data):
-    rv = {}
-    for key, value in data.iteritems():
-        if isinstance(key, unicode):
-            key = key.encode('utf-8')
-        if isinstance(value, unicode):
-            value = value.encode('utf-8')
-        elif isinstance(value, list):
-            value = encode_list(value)
-        elif isinstance(value, dict):
-            value = encode_dict(value)
-        rv[key] = value
-    return rv
-
-
-class UnicodeJsonItemExporter(JsonItemExporter):
-    def __init__(self, file, **kwargs):
-        JsonItemExporter.__init__(self, file, ensure_ascii=False, indent=4, **kwargs)
-
-    def export_item(self, item):
-        if self.first_item:
-            self.first_item = False
-        else:
-            self.file.write(',\n')
-        itemdict = dict(self._get_serialized_fields(item))
-        itemdict = encode_dict(itemdict)
-        self.file.write(self.encoder.encode(itemdict))
