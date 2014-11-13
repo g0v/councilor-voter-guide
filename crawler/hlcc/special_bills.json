@@ -1,0 +1,25 @@
+{
+    "http://www.hlcc.gov.tw/case-2-data.php?index_no=927&keyword1=&keyword2=": {  
+       "execution":"一、本案經勘查現況，確實因農路破損造及排水設施老舊，造成當地農路運輸農產品較為困難，本府先予以錄案彙整後，再行提報計畫爭取經費辦理。二、請提案議員協助提供土地同意書等相關資料以供本府憑辦。",
+       "links":"http://www.hlcc.gov.tw/case-2-data.php?index_no=927&keyword1=&keyword2=",
+       "abstract":"建請施作壽豐鄉溪口村牧場農路排水溝改善工程。一、建請施作壽豐鄉溪口村牧場尚有農地無路、無水溝，造成農民工作不便。二、由於無路、無溝，部份路段僅能以徒步通行，農地用水需靠天幫忙。",
+       "resolusion_sitting":"第17屆 第1次 臨時大會",
+       "motions":[  
+          {  
+             "date":null,
+             "motion":"審查意見",
+             "resolution":"同意"
+          },
+          {  
+             "date":null,
+             "motion":"議決",
+             "resolution":"照案通過"
+          }
+       ],
+       "type":"議員提案",
+       "proposed_by": ["葉鯤璟"],
+       "petitioned_by": ["施慧萍", "何禮臺"],
+       "bill_no": 6,
+       "category": "農業"
+    }
+}

@@ -16,13 +16,15 @@ class ReferenceDataPipeline(object):
             self.districts = self.reference_data["districts"]
 
     def process_item(self, item, spider):
-        # Add platfrom and birth from reference.json
-        for councilor in self.councilors:
-            if councilor["name"] == item["name"]:
-                item["platform"] = councilor["platform"]
-                item["birth"] = councilor["birth"]
-                break
-        
-        # Add district
-        item["district"] = self.districts[item["constituency"]]
+        if spider.name == "councilors":
+            # Add platfrom and birth from reference.json
+            for councilor in self.councilors:
+                if councilor["name"] == item["name"]:
+                    item["platform"] = councilor["platform"]
+                    item["birth"] = councilor["birth"]
+                    break
+            
+            # Add district
+            item["district"] = self.districts[item["constituency"]]
+
         return item
