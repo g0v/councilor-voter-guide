@@ -73,6 +73,7 @@
                                 {% if nbill %}
                                     {{councilor.npribill}} / {{nbill}}
                                     <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.last_election_year %}"><br>（看完整議案）</a>
+                                {% elif nbill == '' %}
                                 {% else %}
                                     0 / 0
                                 {% endif %}
