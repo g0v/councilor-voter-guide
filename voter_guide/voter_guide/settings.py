@@ -1,6 +1,6 @@
 # Django settings for voter_guide project.
 from os.path import join, abspath, dirname
-
+import os
 
 here = lambda *x: join(abspath(dirname(__file__)), *x)
 PROJECT_ROOT = here("..")
@@ -11,6 +11,16 @@ TEMPLATE_DEBUG = DEBUG
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
+
+
+SECRET_KEY = 'some_random_secrect'
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
+    }
+}
+
 
 MANAGERS = ADMINS
 
@@ -194,4 +204,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 SITE_DOMAIN = 'http://councils.g0v.tw'
-from local_settings import *
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
+    

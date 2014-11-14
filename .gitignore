@@ -22,6 +22,7 @@ var/
 sdist/
 develop-eggs/
 .installed.cfg
+db.sqlite3
 
 # Installer logs
 pip-log.txt
