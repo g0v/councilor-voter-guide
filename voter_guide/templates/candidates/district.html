@@ -8,9 +8,7 @@
 {% endblock title %}
 
 {% block right %}
-    <div class="span1">
-    </div>
-    <div class="span10">
+    <div class="span10 offset1">
         <div class="page-header text-center">
             <h3>{{election_year}} {{county}} - {{candidates.0.district}} 議員候選人</h3>
         </div>
@@ -114,8 +112,6 @@
         {% endif %}
         <hr>
         <div id="disqus_thread"></div>
-    </div>
-    <div class="span1">
     </div>
 {% endblock right %}
 
