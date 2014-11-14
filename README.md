@@ -135,7 +135,7 @@ if you don't add the PATH variable, installation of psycopg2 will not success.
 
 ## Load Data to your database
 
-We use sqlite3 by default, if you want to use another database, please set your database engine in local_settings.py.
+We use SQLite as the default database, if you want to use another database, please set your database engine in local_settings.py.
 
 ## Create Table & restore data
 
