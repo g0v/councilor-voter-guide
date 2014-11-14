@@ -88,7 +88,6 @@ cd councilor-voter-guide/voter_guide/
 ## Start virtualenv and install packages         
 (if you don' mind packages installed into your local environment, just `pip install -r requirements.txt`)
 ```
-cd voter_guide
 virtualenv --no-site-packages venv      
 source venv/bin/activate        
 pip install -r requirements.txt     
