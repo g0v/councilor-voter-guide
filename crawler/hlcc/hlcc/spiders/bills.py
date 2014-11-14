@@ -8,6 +8,7 @@ from scrapy.selector import Selector
 from hlcc.items import Bills
 import logging
 import json
+import os
 
 
 class FieldHandler(object):
@@ -79,7 +80,7 @@ class Spider(scrapy.Spider):
     ROOT_URL = "http://www.hlcc.gov.tw/"
 
     def __init__(self):
-        with open("special_bills.json", "r") as special_bills_file:
+        with open(os.path.join(os.path.dirname(__file__), "special_bills.json"), "r") as special_bills_file:
             self.special_bills = json.load(special_bills_file)
 
     def parse(self, response):
@@ -109,6 +110,13 @@ class Spider(scrapy.Spider):
         u"議決": ListFieldHandler("motions", lambda value: {"date": None, "motion": "議決", "resolution": text(value)})
     }
 
+    election_year_map = {
+        u"第14屆": "1998",
+        u"第15屆": "2002",
+        u"第16屆": "2005",
+        u"第17屆": "2009"
+    }
+
     def parse_bill(self, response):
         sel = Selector(response)
         item = Bills()
@@ -121,8 +129,14 @@ class Spider(scrapy.Spider):
         tmp = sel.xpath('//div[@class="area-2"]/table/tr[2]/td[@class="td-content"]/text()').extract()[0].split()
 
         item["resolusion_sitting"] = " ".join(tmp[:-1])
+        election = item["resolusion_sitting"].split()[0]
+
+        item["election_year"] = self.election_year_map[election]
+        item["county"] = u"花蓮縣"
+
         item["type"] = tmp[-1]
         item["links"] = response.url
+        item["id"] = re.match(r".*index_no=([\d]+)", response.url).group(1)
 
         rows = sel.xpath('//div[@class="area-2"]/table/tr[4]//tr')
 
