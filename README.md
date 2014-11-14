@@ -94,32 +94,6 @@ source venv/bin/activate
 pip install -r requirements.txt     
 ```
 
-## Restore data into database       
-Please new a database(eg. voter_guide), below will use voter_guide for example
-```
-createdb -h localhost -U <username> voter_guide
-pg_restore --verbose --clean --no-acl --no-owner -h localhost -U <username> -d voter_guide local_db.dump
-```
-
-## Django settings.py          
-create and edit local_settings.py in councilor-voter-guide/voter_guide/voter_guide/ to configing your database parameter(notice **USER**, **PASSWORD** below) and **SECRET_KEY**
-See [Django tutorial](https://docs.djangoproject.com/en/dev/intro/tutorial01/) or maybe use [online generator](http://www.miniwebtool.com/django-secret-key-generator/) to get SECRET_KEY for convenience				
-```
-SECRET_KEY = '' # put random string inside and don't share it with anybody.
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'voter_guide', # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': 'username',
-        'PASSWORD': 'password',
-        'HOST': 'localhost', # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '', # Set to empty string for default.
-    }
-}
-```
-Because local_settings.py is list in .gitignore, so this file won't be appear in source control, for safety.
-
 ## runserver
 ```
 python manage.py runserver
@@ -157,6 +131,31 @@ source ~/.bash_profile
 ```
 
 if you don't add the PATH variable, installation of psycopg2 will not success. 
+
+
+## Load Data to your database
+
+We use SQLite as the default database, if you want to use another database, please set your database engine in local_settings.py.
+
+## Create Table & restore data
+
+Create Table
+
+``` 
+python manage.py syncdb --noinput 
+```
+
+This step may take some time, be patient.
+
+```
+python manage.py loaddata db.json
+```
+
+## Dumpdata 
+
+```
+python manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
+```
 
 
 CC0 1.0 Universal
