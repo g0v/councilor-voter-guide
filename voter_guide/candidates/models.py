@@ -59,6 +59,8 @@ class Candidates(models.Model):
             councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
         except Exception, e:
             return ''
+        if not Bills.objects.filter(county=councilor.county, election_year=councilor.election_year):
+            return ''
         all_bill = Councilors_Bills.objects.filter(councilor_id=councilor.id, petition=False)
         return all_bill.count() if all_bill else 0
     nbill = property(_biller_count)
