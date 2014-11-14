@@ -37,10 +37,10 @@ In Ubuntu 12.04 LTS
 
 [Scrapy offcial install doc](http://doc.scrapy.org/en/latest/intro/install.html)
 ```
-apt-get install libxml2-dev libxslt1-dev python-dev libffi-dev
-pip install lxml
-pip install Scrapy
-pip install requests
+sudo apt-get install libxml2-dev libxslt1-dev python-dev libffi-dev python-pip
+sudo pip install lxml
+sudo pip install Scrapy
+sudo pip install requests
 ```
 After install scrapy, you can run commands to test, below using tcc(臺北市議會) for example:
 ```
@@ -67,7 +67,7 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo reboot
 sudo apt-get install git python-pip python-dev python-setuptools postgresql libpq-dev
-easy_install virtualenv
+sudo easy_install virtualenv
 ```
 
 0.2 set a password in your database(If you already have one, just skip this step)        
