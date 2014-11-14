@@ -115,7 +115,7 @@
     <div class="span9">
         <br>
         <div class="row-fluid">
-            <div class="span12">
+            <div class="span12 person-btn-margin">
                 <b>{{ councilor.name }}</b>的&nbsp;
                 <a class="btn btn-large" id='property' href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" target="_blank">個人財產申報</a>
                 <a class="btn btn-large" id='councilors_suggestor' href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">工程建議款</a>
