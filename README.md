@@ -61,20 +61,13 @@ scrapy crawl meeting -o bills.json -t json
 
 ## For Website (Python/Django)
 
-0.1 install basic tools
+install basic tools
 ```
 sudo apt-get update
 sudo apt-get upgrade
 sudo reboot
 sudo apt-get install git python-pip python-dev python-setuptools postgresql libpq-dev
 sudo easy_install virtualenv
-```
-
-0.2 set a password in your database(If you already have one, just skip this step)        
-(you can use `whoami` to check your username, notice **&lt;username&gt;**  below, please replace with your own)
-
-```
-sudo -u <username> psql -c "ALTER USER <username> with encrypted PASSWORD 'put_your_password_here';"
 ```
 
 ## Clone source code from GitHub to local
@@ -93,10 +86,37 @@ source venv/bin/activate
 pip install -r requirements.txt     
 ```
 
+## Load Data to your database
+
+We use SQLite as the default database, if you want to use another database, please set your database engine in local_settings.py.
+
+## Create Table & restore data
+
+Create Table
+
+``` 
+python manage.py syncdb --noinput 
+```
+
+This step may take some time, be patient.
+
+```
+python manage.py loaddata db.json
+```
+
+## Dumpdata 
+
+```
+python manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
+```
+
 ## runserver
 ```
 python manage.py runserver
 ```
+Now you should able to see the web page at http://localhost:8000        
+
+
 ## Mac Related Instructions
 
 ###Prepare Compiler
@@ -130,31 +150,6 @@ source ~/.bash_profile
 ```
 
 if you don't add the PATH variable, installation of psycopg2 will not success. 
-
-
-## Load Data to your database
-
-We use SQLite as the default database, if you want to use another database, please set your database engine in local_settings.py.
-
-## Create Table & restore data
-
-Create Table
-
-``` 
-python manage.py syncdb --noinput 
-```
-
-This step may take some time, be patient.
-
-```
-python manage.py loaddata db.json
-```
-
-## Dumpdata 
-
-```
-python manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
-```
 
 
 CC0 1.0 Universal
