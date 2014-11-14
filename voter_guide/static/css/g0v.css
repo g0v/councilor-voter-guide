@@ -39,3 +39,7 @@ h7 {
 h7 {
   font-size: 22.5px;
 }
+
+.person-btn-margin a{
+  margin: 5px;
+}
