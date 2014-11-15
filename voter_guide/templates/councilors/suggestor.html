@@ -29,14 +29,21 @@
             <p class="lead text-center">{{councilor.name}}的提案中<font class="text-success ">各個廠商得標的預算</font></p>
         </div>
         <div class="span6">
+<!--
             <a class="lead" href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?index=rawdata">細目展開</a>
+-->
             <div class="pull-right">
                 資料來源
                 <a href="{{councilor.county|suggestions_offical_link}}" target="_blank">{{councilor.county}}主計處</a></li><br>
                     <br>
                 </ul>
             </div>
-            <table class="table table-bordered table-condensed sortable zebra" >
+            <table class="table table-bordered table-condensed sortable zebra tablesorter" >
+		<caption style="font-weight:bold;background-color: #ffed80;" height="20px">
+<p> </p>
+		    <a class="lead" href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?index=rawdata">工程款提案細目展開</a>
+<p> </p>
+		</caption>
                 <thead>
                     <tr style="font-weight:bold;background-color: #CCFF99;">
                         <th style="width: 40%">得標廠商</th>
