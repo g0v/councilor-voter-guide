@@ -11,7 +11,7 @@ import json
 
 class Spider(scrapy.Spider):
     name = "councilors"
-    '''
+    
     allowed_domains = ["localhost"]
     start_urls = [
          "http://localhost/y4.html"
@@ -21,15 +21,15 @@ class Spider(scrapy.Spider):
     start_urls = [
          "http://www.ylcc.gov.tw/index.php?"
     ]
-    
+    '''
     def __init__(self):
         fh=open(os.path.join(os.path.dirname(__file__), 'constituency.json'), 'r')
         self.constituency = json.loads(fh.read())
 
     def parse(self, response):  
         result=[]
-        patterns=['y5']
-        
+        patterns=['y6']
+        '''
         for idx in range(1,7):
             url='http://www.ylcc.gov.tw/index.php?inner=member_precinct'+ str(idx) 
             print url
@@ -43,12 +43,11 @@ class Spider(scrapy.Spider):
             profile = Request(url, callback=self.parse_profile)
             result.append(profile)
         return result
-        '''  
-
+        
     def parse_profile(self, response):
-        district=int(response.url[-1])
-        #tail=response.url.split("/")[-1]
-        #district=int(tail[1:2])
+        #district=int(response.url[-1])
+        tail=response.url.split("/")[-1]
+        district=int(tail[1:2])
         print district
 
         sel = Selector(response)  
