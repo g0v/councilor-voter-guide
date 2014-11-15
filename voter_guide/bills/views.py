@@ -3,7 +3,7 @@ import operator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.db.models import Count, Q
-from .models import Bills
+from .models import Bills, Councilors_Bills
 from councilors.models import CouncilorsDetail
 from search.models import Keyword
 from search.views import keyword_list, keyword_been_searched, keyword_normalize
@@ -26,10 +26,10 @@ def bills(request, county, index):
     else:
         bills = Bills.objects.filter(query)
 
+    print district
     if district and district != 'all':
-        all_councilor_id_in_district = list(set([i.councilor.id for i in CouncilorsDetail.objects.filter(county=county).filter(district=district)]))
+        all_councilor_id_in_district = list(set([i.id for i in CouncilorsDetail.objects.filter(county=county).filter(district__contains=district)]))
         bills = bills.filter(proposer__in=all_councilor_id_in_district)
-
 
     bills = bills.order_by('-uid')
 
