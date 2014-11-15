@@ -151,6 +151,80 @@ source ~/.bash_profile
 
 if you don't add the PATH variable, installation of psycopg2 will not success. 
 
+Web Docker [c3h3 / g0v-cvg-web](https://registry.hub.docker.com/u/c3h3/g0v-cvg-web/)
+=================
+# How to use this images
+
+### First Step: Download and Extract pgdata 
+
+```
+git clone https://github.com/c3h3/g0v-cvg-pgdata.git && cd g0v-cvg-pgdata && tar xfzv 11a90d6e0eca89450654e0788f938b586f488484.tar.gz
+```
+- After that, you will get pgdata dir. 
+- Assume pgdata's absolute path is "your_pgdata"
+ 
+
+### Second Step: RUN postgres with pgdata
+
+```
+docker run --name pgdb -v your_pgdata:/var/lib/postgresql/data postgres:9.3
+```
+
+If you want to use pgadmin connect with your db, you could also forwarding the port out ... with command ...
+
+```
+docker run --name pgdb -p 5432:5432 -v your_pgdata:/var/lib/postgresql/data postgres:9.3
+```
+
+- "your_pgdata" is pgdata's absolute path in previous step.
+
+
+### Third Step: RUN web linked with pgdb
+
+```
+docker run --name g0v-cvg-web --link pgdb:postgres -p port_on_host:8000 -d c3h3/g0v-cvg-web
+```
+- "port_on_host" is the port forwarding out to your host, which you could find your web on http://localhost:port_on_host
+
+
+Crawler Docker [c3h3 / g0v-cvg-crawler](https://registry.hub.docker.com/u/c3h3/g0v-cvg-crawler/)
+=================
+
+# How to use this images
+
+### Run Scarpy Server:
+
+```
+docker run --name g0v -p forward_port:6800 -v outside_items:/items -v outside_logs:/logs -d c3h3/g0v-cvg-crawler
+```
+- "forward_port" is the port you want to forward into docker image (EXPOSE 6800)
+- "outside_items" is the directory you want to mount into docker image as /items 
+- "outside_logs" is the directory you want to mount into docker image as /logs 
+
+### Link Scarpy Server for Deploy and Submit Job:
+
+```
+docker run --link g0v:g0v -it c3h3/g0v-cvg-crawler /bin/bash
+```
+
+### Example of Deploy ttc:
+
+in a running docker instance which linked with g0v (Scarpy Server), you can use the following command to deploy tcc crawler to server:
+
+```
+cd /tmp/g0v-cvg/crawler/tcc && python deploy.py
+```
+
+### Example of Crawl ttc.bills :
+
+in a running docker instance which linked with g0v (Scarpy Server), you can use the following command to deploy tcc crawler to server:
+
+```
+cd /tmp/g0v-cvg/crawler/bin && python crawl_tcc_bills.py
+```
+
+
+
 
 CC0 1.0 Universal
 =================

@@ -1,3 +1,9 @@
 [submodule "data/tncc"]
 	path = data/tncc
 	url = https://github.com/kiang/tncc
+[submodule "dockers/crawler"]
+	path = dockers/crawler
+	url = https://github.com/c3h3/docker-g0v-cvg-crawler.git
+[submodule "dockers/web"]
+	path = dockers/web
+	url = https://github.com/c3h3/docker-g0v-cvg-web.git
