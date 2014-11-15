@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for ntcc project
+# Scrapy settings for ntp project
 #
 # For simplicity, this file contains only the most important settings by
 # default. All the other settings are documented here:
@@ -18,8 +18,8 @@ sys.path.append(os.path.join(_PROJECT_PATH, 'crawler'))
 
 BOT_NAME = 'ntp'
 
-SPIDER_MODULES = ['ntcc.spiders']
-NEWSPIDER_MODULE = 'ntcc.spiders'
+SPIDER_MODULES = ['ntp.spiders']
+NEWSPIDER_MODULE = 'ntp.spiders'
 LOG_FILE = 'log.txt'
 COOKIES_ENABLED = False
 
@@ -28,7 +28,7 @@ FEED_EXPORTERS = {
 }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'ntcc (+http://www.yourdomain.com)'
+#USER_AGENT = 'ntp (+http://www.yourdomain.com)'
 #ITEM_PIPELINES = {
-#        'ntcc.pipelines.NtccPipeline': 100
+#        'ntp.pipelines.NtccPipeline': 100
 #        }

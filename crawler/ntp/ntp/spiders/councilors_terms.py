@@ -5,7 +5,7 @@ from urlparse import urljoin
 import scrapy
 from scrapy.http import Request, FormRequest
 from scrapy.selector import Selector
-from ntcc.items import Councilor
+from ..items import Councilor
 
 
 def ROC2AD(text):
