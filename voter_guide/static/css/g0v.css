@@ -48,6 +48,7 @@ h7 {
 }
 
 .direct-item{
+  font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", "標楷體", DFKai-SB, sans-serif;
   text-decoration:none;
   display: inline-block;
   position: relative;
@@ -66,7 +67,9 @@ h7 {
 }
 
 .direct-item > h4{
-  text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
+  font-size: 24px;
+  text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .75);
+  line-height: 150%;
 }
 
 .county-district:before{
@@ -84,25 +87,17 @@ h7 {
 }
 
 .council-blue{
-  background: #13BCBC;
-}
-
-.council-red{
-  background: #FF1919;
-}
-
-.council-yellow{
-  background: #FFB219;
+  background: #6699FF;
 }
 
 .council-darkblue{
-  background: #275757;
+  background: #3366CC;
 }
 
-.council-lightyellow{
-  background: #FFB219;
+.council-bluegreen{
+  background: #339999;
 }
 
-.council-orange{
-  background: #FF8119;
+.council-darkbluegreen{
+  background: #00CCCC;
 }
