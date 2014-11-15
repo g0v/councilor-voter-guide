@@ -7,7 +7,7 @@ from urlparse import urljoin
 import scrapy
 from scrapy import log
 
-from ntcc.items import Councilor
+from ..items import Councilor
 
 def extract(elem, xpath, default=''):
     ## some ditry work here
