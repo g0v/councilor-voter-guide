@@ -11,7 +11,8 @@
     <div class="span1">
     </div>
     <div class="span10">
-        {% include "common/search_keyword_form.html" with placeholder_text="例:都市更新 土地徵收...空格有交集效果" %}
+        {% include "bills/billsearch.html" with placeholder_text="例:都市更新 土地徵收...空格有交集效果" %}
+
         {% if keyword_hot %}
             <h4>熱門：
                 {% for keyword in keyword_hot %}
@@ -20,6 +21,7 @@
                     {% endif %}
                 {% endfor %}
             </h4>
+
         {% endif %}
         <div class="well well-small">
             <font class="lead">
