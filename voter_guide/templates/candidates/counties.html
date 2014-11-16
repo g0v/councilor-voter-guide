@@ -13,7 +13,7 @@
     </div>
         {% for county, district, candidate in hashList %}
             <div class="column direct-container">
-            <a href="{% url 'candidates:districts' county=county election_year=election_year %}" class="direct-item {% cycle 'council-blue' 'council-red' 'council-yellow' %}">
+            <a href="{% url 'candidates:districts' county=county election_year=election_year %}" class="direct-item {% cycle 'council-blue' 'council-darkblue' %}">
                 <h4>{{county}}</h4>
                 <div>&nbsp;</div>
                 <p class="county-district">{{district}}</p>
