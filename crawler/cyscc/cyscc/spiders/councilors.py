@@ -30,6 +30,7 @@ class Spider(scrapy.Spider):
     def parse(self, response):
         result=[]
         patterns=[9,10,11,12,1,2,13,14,15,16,17,18,3,19,20,21,22,23,24,26,27,81,28,4,29,30,31,32,33,34,35,37,38,39,40,79,5]
+        #patterns=[9]
 
         for pattern in patterns:
             url='http://www.cyscc.gov.tw/chinese/Parliamentary_Detail.aspx?s='+ str(pattern)
@@ -79,7 +80,7 @@ class Spider(scrapy.Spider):
         print len(obj)
         if len(obj):
             for obj in schools:
-                school=obj.extract().encode('utf8').replace(' ','').replace('\n','')
+                school=obj.extract().encode('utf8').replace(' ','').replace('\n','').replace('\r','')
                 item['education'].append(school)
         print item['education']
 
@@ -87,7 +88,7 @@ class Spider(scrapy.Spider):
         #print len(experiences)
         if len(experiences):
             for obj in experiences:
-                experience=obj.extract().encode('utf8').replace(' ','').replace('\r','')
+                experience=obj.extract().encode('utf8').replace(' ','').replace('\r','').replace('\t','')
                 #print experience
                 item['experience'].append(experience)
 
@@ -102,10 +103,11 @@ class Spider(scrapy.Spider):
         names=sel.xpath("//td[@class='name']/text()")
         #print len(names)
         if len(names):
-            obj=names[2].extract().encode('utf8').replace(' ','').replace('\r','').replace('\r\n','').replace('\n','')
+            obj=names[2].extract().replace(' ','').replace('\r','').replace('\r\n','').replace('\n','')
+            print len(obj)
             idx=obj.find('(')
-            item['name']=obj[0:idx]    
-            #print item['name']
+            item['name']=obj[0:idx-1]    
+            print item['name']
         
         return item	
         	
