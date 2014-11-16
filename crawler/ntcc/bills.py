@@ -8,6 +8,7 @@ from ntc.items import Bills
 from crawler_lib import parse
 from crawler_lib import misc
 from scrapy.utils.url import canonicalize_url
+from urlparse import urlparse, parse_qs
 
 
 
@@ -34,6 +35,7 @@ class Spider(scrapy.Spider):
 
         extract_result = nodes.xpath('td[2]/text()').extract()
 
+
         
 
         item['proposed_by'] = extract_result[0].strip().split(u'、')
@@ -49,5 +51,7 @@ class Spider(scrapy.Spider):
         item['last_action'] = extract_result[8].strip()
         item['remark'] = extract_result[9].strip()
         item['links'] = response.url
+        item['id'] = response.url[51:66]
+        print item['id']
 
         return item
