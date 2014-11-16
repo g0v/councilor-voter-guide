@@ -16,6 +16,7 @@
             <a href="{% url 'candidates:district' county=county election_year=election_year constituency=district.constituency %}" class="direct-item {% cycle 'council-bluegreen' 'council-darkbluegreen' %}">
                 <h4>{{district.constituency|stringformat:"02d"}}. {{district.district}}</h4>
                 <div>&nbsp;</div>
+                <br>
                 <p class="county-candidate">{{candidate}}</p>
             </a>
             </div>
