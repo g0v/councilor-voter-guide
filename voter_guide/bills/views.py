@@ -27,9 +27,8 @@ def bills(request, county, index):
         bills = Bills.objects.filter(query)
 
     if district and district != 'all':
-        all_councilor_id_in_district = list(set([i.councilor.id for i in CouncilorsDetail.objects.filter(county=county).filter(district=district)]))
+        all_councilor_id_in_district = list(set([i.id for i in CouncilorsDetail.objects.filter(county=county).filter(district__contains=district)]))
         bills = bills.filter(proposer__in=all_councilor_id_in_district)
-
 
     bills = bills.order_by('-uid')
 
