@@ -9,16 +9,17 @@
 {% block right %}
     <div class="five column doubling ui grid">
     <div class="page-header text-center span10 offset1">
-        <h3>{{election_year}} - 議員選區</h3>
+        <h3>{{election_year}} - 全台各縣市</h3>
     </div>
-        {% for county, district, candidate in hashList %}
+        {% for county in counties %}
             <div class="column direct-container">
-            <a href="{% url 'candidates:districts' county=county election_year=election_year %}" class="direct-item {% cycle 'council-bluegreen' 'council-darkbluegreen' %}">
-                <h4>{{county}}</h4>
+            <a href="{% url 'candidates:districts' county=county.county election_year=election_year %}" class="direct-item {% cycle 'council-bluegreen' 'council-darkbluegreen' %}">
+                <h4>{{county.county}}</h4>
                 <div>&nbsp;</div>
                 <br>
-                <p class="county-district">{{district}}</p>
-                <p class="county-candidate">{{candidate}}</p>
+                <br>
+                <p class="county-district">{{county.constituency}}</p>
+                <p class="county-candidate">{{county.candidates}}</p>
             </a>
             </div>
         {% endfor %}

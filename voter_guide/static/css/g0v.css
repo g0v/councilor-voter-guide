@@ -68,7 +68,7 @@ h7 {
 
 .direct-item > h4{
   font-size: 24px;
-  text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .75);
+  text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .5);
   line-height: 150%;
 }
 
@@ -86,16 +86,8 @@ h7 {
   }
 }
 
-.council-blue{
-  background: #6699FF;
-}
-
-.council-darkblue{
-  background: #3366CC;
-}
-
 .council-bluegreen{
-  background: #339999;
+  background: #02E8E8;
 }
 
 .council-darkbluegreen{
