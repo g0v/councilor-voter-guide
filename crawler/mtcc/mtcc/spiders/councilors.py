@@ -14,7 +14,7 @@ class Spider(scrapy.Spider):
     '''
     allowed_domains = ["localhost"]
     start_urls = [
-         "http://localhost/m3.html"
+         "http://localhost/m7.html"
     ]
     '''
     allowed_domains = ["www.mtcc.gov.tw"]
@@ -35,7 +35,6 @@ class Spider(scrapy.Spider):
             print pattern
             profile = Request(pattern, callback=self.parse_profile)
             result.append(profile)
-        
         
         for idx in range(1, 8):
             url='http://www.mtcc.gov.tw/cu_representative'+str(idx)+'.htm'
@@ -62,6 +61,8 @@ class Spider(scrapy.Spider):
         print item['image']
         details=sel.xpath(".//td[@style='background-image: url(images/table_2.gif);']/table/tr")
         print len(details)
+        if not len(details):
+            details=sel.xpath(".//td[@style='background-image: url(images/table_2.gif);']/table/tbody/tr")
         item['contact_details']=[]
         item['experience']=[]
         item['platform']=[]
@@ -112,7 +113,7 @@ class Spider(scrapy.Spider):
                 experiences=detail.xpath(".//td/p/text()").extract()
                 #print len(experiences)
                 for experience in experiences:
-                    obj=experience.replace(' ','').replace('\r\n','')
+                    obj=experience.replace(' ','').replace('\r\n','').replace('\n','')
                     #print obj
                     item['experience'].append(obj)
             if info[0].re(u'[\s]*政[\s]*見[\s]*'):  
@@ -127,12 +128,17 @@ class Spider(scrapy.Spider):
                     else:
                         platforms=platform_parent[1].xpath(".//table/tbody/tr")    
                         print '2 type=',len(platforms)
-                        for platform in platforms:
-                            texts=platform.xpath(".//td/span")
-                            if len(texts) > 1:
-                                obj=texts[1].xpath("..//text()").extract()[0].replace('\r\n','')
-                                item['platform'].append(obj)
-        return item                  
+                        platforms=platform_parent[1].xpath(".//table/tr")  
+                        print '3 type=',len(platforms)
+                        if len(platforms):
+                            for platform in platforms:
+                                texts=platform.xpath(".//td/span")
+                                if len(texts) > 1:
+                                    obj=texts[1].xpath("..//text()").extract()[0].replace('\r\n','')
+                                    item['platform'].append(obj)
+                                        
+        return item     
+
                             
                                
 
