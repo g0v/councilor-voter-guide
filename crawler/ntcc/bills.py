@@ -4,11 +4,11 @@ import urllib
 import scrapy
 from scrapy.http import Request, FormRequest
 from scrapy.selector import Selector
-from ntc.items import Bills
+from ntcc.items import Bills
 from crawler_lib import parse
 from crawler_lib import misc
 from scrapy.utils.url import canonicalize_url
-from urlparse import urlparse, parse_qs
+
 
 
 
@@ -45,6 +45,7 @@ class Spider(scrapy.Spider):
         item['methods'] = extract_result[4].strip()
         value = extract_result[5].strip()
         item['category'] = value[0:2]
+        item['bill_no'] = value
         item['motions'] = []
         item['motions'].append({"motion": u'審查意見', "resolution": extract_result[6]})
         item['motions'].append({"motion": u'大會決議', "resolution": extract_result[7]})
@@ -52,6 +53,6 @@ class Spider(scrapy.Spider):
         item['remark'] = extract_result[9].strip()
         item['links'] = response.url
         item['id'] = response.url[51:66]
-        print item['id']
+        print item['links']
 
         return item
