@@ -65,6 +65,12 @@ class Spider(scrapy.Spider):
             item['contact_details'].append({'type': 'fax', 'label': u'傳真', 'value': fax[0].strip()}) # 傳真
         if address:
             item['contact_details'].append({'type': 'address', 'label': u'通訊處', 'value': address[0].strip()}) # 服務處
+	page = re.search("\w+.\w+$",response.url).group()
+	pageNum = re.search("[0-9]+",page).group()
+	if (int(pageNum) < 17):
+            districtXpath = "//table/tr/td/a[@href='%s']/../../td[1]/text()" % page
+	else:
+            districtXpath = "//table/tr/td/a[@href='%s']/../../td[7]/text()" % page
         item['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
         item['district'] = sel.xpath("//table/tr/td/a[@href='%s']/../../td[1]/text()" % re.search("\w+.\w+$",response.url).group()).extract()[0] # 行政區
         item['gender'] = GetGender(namejson,name) # 性別 : 網頁上沒有標性別....使用開放資料比對議員性別
