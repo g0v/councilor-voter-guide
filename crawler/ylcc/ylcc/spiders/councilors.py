@@ -1,143 +1,79 @@
 # -*- coding: utf-8 -*-
 import re
-import scrapy
-from scrapy.selector import Selector
-from ylcc.items import Councilor
-import urllib
-from urlparse import urljoin
-from scrapy.http import Request
 import os
 import json
+import urllib
+from urlparse import urljoin
+import scrapy
+from scrapy.selector import Selector
+from scrapy.http import Request
+from ylcc.items import Councilor
+
 
 class Spider(scrapy.Spider):
     name = "councilors"
-    
+    allowed_domains = ["www.ylcc.gov.tw"]
+    start_urls = [
+         "http://www.ylcc.gov.tw/index.php"
+    ]
+    '''
     allowed_domains = ["localhost"]
     start_urls = [
          "http://localhost/y4.html"
-    ]
-    '''
-    allowed_domains = ["www.ylcc.gov.tw"]
-    start_urls = [
-         "http://www.ylcc.gov.tw/index.php?"
     ]
     '''
     def __init__(self):
         fh=open(os.path.join(os.path.dirname(__file__), 'constituency.json'), 'r')
         self.constituency = json.loads(fh.read())
 
-    def parse(self, response):  
-        result=[]
-        patterns=['y6']
-        '''
-        for idx in range(1,7):
-            url='http://www.ylcc.gov.tw/index.php?inner=member_precinct'+ str(idx) 
+    def parse(self, response):
+        for idx in range(1, 7):
+            url='http://www.ylcc.gov.tw/index.php?inner=member_precinct%d' % idx
             print url
-            profile = Request(url, callback=self.parse_profile)
-            result.append(profile)
-        return result          
+            yield Request(url, callback=self.parse_profile, meta={"constituency": u'第%d選區' % idx})
         '''
+        patterns=['y6']
         for pattern in patterns:
             url='http://localhost/'+ pattern + '.html'
             print url
             profile = Request(url, callback=self.parse_profile)
             result.append(profile)
         return result
-        
+        '''
+
     def parse_profile(self, response):
-        #district=int(response.url[-1])
-        tail=response.url.split("/")[-1]
-        district=int(tail[1:2])
-        print district
-
-        sel = Selector(response)  
-        photourls=sel.xpath(".//td[@class='bg_member_1']")
-        #print len(photourls)
-        photolink={}
-        for obj in photourls:
-            image=obj.xpath('.//following-sibling::node()/img/@src').extract()[0].encode('utf8')
-            imagename=obj.xpath('.//following-sibling::node()/img/@alt').extract()[0].encode('utf8')
-            #print imagename
-            photourl = urljoin(response.url, urllib.quote(image))
-            photolink [imagename]=photourl
-        #print photolink
+        sel = Selector(response)
         itemresult=[]
-
-        candidates = sel.xpath(".//span[@class='word_orange']/..")
-        candidates_2 = sel.xpath(".//p[@class='word_orange']/..")
-        for candidate in candidates_2:
-            candidates.append(candidate)
-        
-        #print len(candidates)
-        for candidate in candidates:
+        for candidate in sel.xpath("//span[@class='word_orange']/ancestor::td[1] | //p[@class='word_orange']/ancestor::td[1]"):
             #print candidate.extract().encode('utf8')
-            item = Councilor() 
-            names = candidate.xpath(".//span[@class='word_orange']/text()").extract()
-            if not len(names):
-                names = candidate.xpath(".//p[@class='word_orange']/text()").extract()
-
-            if len(names):
-                item['name']=names[0].encode('utf8')
-                print item['name']
-                photoname=item['name']+'照片'
-                if photolink.has_key(photoname):
-                    item['image']=photolink[photoname]
-                item['election_year']='2009'
-                item['county']='雲林縣'
-                item['district']=self.constituency[str(district)]
-                place=u'第'+unicode(district)+u'選區'
-                item['constituency']=place
-                #print item['constituency']
-
-                item['contact_details']=[]
-
-                #details=candidate.xpath(".//node()[translate(preceding-sibling::br,'ABCDEFGHIJKLMNOPQRSTUVWXYZ',\
-                #    'abcdefghijklmnopqrstuvwxyz')]\
-                #    [not(translate(self::br,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')]")
-                details=candidate.xpath(".//node()[preceding-sibling::br][not(self::br)]")
-                length=len(details)
-                for idx in range(length):
-                    #print idx, details[idx].extract().encode('utf8')
-                    if details[idx].re(u'[\s]*學[\s]*歷[\s]*'):
-                        if (idx+1) < length:
-                            obj=details[idx+1].extract().encode('utf8').replace('\n','').replace(' ','')\
-                            .replace('\r','').replace('\t','')
-                            item['education']=obj
-                            #print idx, 'education=',item['education']
-                    if details[idx].re(u'[\s]*經[\s]*歷[\s]*'):
-                        if (idx+1) < length:
-                            obj=details[idx+1].extract().encode('utf8').replace('\n','').replace(' ','')\
-                            .replace('\r','').replace('\t','')
-                            item['experience']=obj
-                            #print idx, 'experience=',item['experience']
-                    if details[idx].re(u'[\s]*黨[\s]*籍[\s]*'):
-                        if (idx+1) < length:
-                            obj=details[idx+1].extract().encode('utf8').replace('\n','').replace(' ','')\
-                            .replace('\r','').replace('\t','')
-                            item['party']=obj
-                            #print 'party=',item['party']
-                    if details[idx].re(u'[\s]*服[\s]*務[\s]*處[\s]*電[\s]*話[\s]*'):
-                        if (idx+1) < length: 
-                            phone=details[idx+1].extract().encode('utf8').replace('\n','').replace(' ','')\
-                            .replace('\r','').replace('\t','')
-                            item['contact_details'].append({'type': 'voice', 'label': u'電話', 'value': phone})
-                    if details[idx].re(u'[\s]*服[\s]*務[\s]*處[\s]*傳[\s]*真[\s]*'):
-                        if (idx+1) < length: 
-                            fax=details[idx+1].extract().encode('utf8').replace('\n','').replace(' ','')\
-                            .replace('\r','').replace('\t','')
-                            item['contact_details'].append({'type': 'voice', 'label': u'傳真', 'value': fax})
-                    if details[idx].re(u'[\s]*服[\s]*務[\s]*處[\s]*地[\s]*址[\s]*'):
-                        if (idx+1) < length: 
-                            address=details[idx+1].extract().encode('utf8').replace('\n','').replace(' ','')\
-                            .replace('\r','').replace('\t','')
-                            item['contact_details'].append({'type': 'voice', 'label': u'通訊處', 'value': address})
-                    if details[idx].re(u'[\s]*電[\s]*子[\s]*信[\s]*箱[\s]*'):
-                        if (idx+1) < length: 
-                            email=details[idx+1].extract().encode('utf8').replace('\n','').replace(' ','')\
-                            .replace('\r','').replace('\t','')
-                            item['contact_details'].append({'type': 'voice', 'label': u'電子信箱', 'value': email})
+            item = Councilor()
+            item['name'] = candidate.xpath(".//*[@class='word_orange']/text()").extract()[0]
+            print item['name']
+            item['image'] = urljoin(response.url, candidate.xpath(u'preceding::img[contains(@alt, "照片")]/@src').extract()[-1])
+            item['election_year'] = '2009'
+            item['county'] = u'雲林縣'
+            item['term_start'] = '%s-12-25' % item['election_year']
+            item['term_end'] = {'date': '2014-12-25'}
+            item['in_office'] = True
+            item['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
+            item["constituency"] = response.request.meta["constituency"]
+            item['district'] = self.constituency[item["constituency"]]
+            item['contact_details']=[]
+            lines = [x.strip() for x in candidate.xpath('.//text()').extract()[1:] if x.strip() != '']
+            for i in range(0, len(lines), 2):
+                if re.search(u'學\s*歷', lines[i]):
+                    item['education'] = [lines[i+1]]
+                if re.search(u'經\s*歷', lines[i]):
+                    item['experience'] = [lines[i+1]]
+                if re.search(u'黨\s*籍', lines[i]):
+                    item['party'] = lines[i+1]
+                if re.search(u'服\s*務\s*處\s*電\s*話', lines[i]):
+                    item['contact_details'].append({'type': 'voice', 'label': u'電話', 'value': lines[i+1]})
+                if re.search(u'服\s*務\s*處\s*傳\s*真', lines[i]):
+                    item['contact_details'].append({'type': 'fax', 'label': u'傳真', 'value': lines[i+1]})
+                if re.search(u'服\s*務\s*處\s*地\s*址', lines[i]):
+                    item['contact_details'].append({'type': 'address', 'label': u'通訊處', 'value': lines[i+1]})
+                if re.search(u'電\s*子\s*信\s*箱', lines[i]):
+                    item['contact_details'].append({'type': 'email', 'label': u'電子信箱', 'value': lines[i+1]})
             itemresult.append(item)
-
         return itemresult
-        
-        
