@@ -29,7 +29,7 @@ class Spider(scrapy.Spider):
 
     def parse(self, response):
         for link in response.xpath('//a[contains(@href, "chinese/Parliamentary_Detail.aspx")]'):
-            image = urljoin("http://www.cyscc.gov.tw", urllib.quote(link.xpath("img/@src").extract()[0].encode('utf8')))
+            image = urljoin("http://www.cyscc.gov.tw", link.xpath("img/@src").extract()[0])
             yield Request(urljoin("http://www.cyscc.gov.tw", link.xpath('@href').extract()[0]), callback=self.parse_profile, meta={"image": image})
 
 
@@ -43,7 +43,7 @@ class Spider(scrapy.Spider):
         item['term_end'] = {'date': '2014-12-25'}
         item['in_office'] = True
         item['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
-        item["image"] = response.meta["image"]
+        item["image"] = response.request.meta["image"]
         item['contact_details']=[]
         item['experience']=[]
         item['platform']=[]

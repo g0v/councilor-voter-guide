@@ -76,13 +76,13 @@ class Spider(scrapy.Spider):
                 print item['district']
             if info.re(u'[\s]*地[\s]*址[\s]*'):
                 print content
-                item['contact_details'].append({'type': 'voice', 'label': u'通訊處', 'value': content})
+                item['contact_details'].append({'type': 'address', 'label': u'通訊處', 'value': content})
             if info.re(u'[\s]*電[\s]*話[\s]*'):
                 print content
                 item['contact_details'].append({'type': 'voice', 'label': u'電話', 'value': content})
             if info.re(u'[\s]*傳[\s]*真[\s]*'):
                 print content
-                item['contact_details'].append({'type': 'voice', 'label': u'傳真', 'value': content})
+                item['contact_details'].append({'type': 'fax', 'label': u'傳真', 'value': content})
             if info.re(u'[\s]*學[\s]*歷[\s]*'):
                 item['education'] = [x.strip() for x in detail.xpath(".//td/span/text()").extract()]
                 print item['education']

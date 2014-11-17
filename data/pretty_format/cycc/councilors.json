@@ -4,39 +4,7 @@
         "contact_details": [
             {
                 "label": "通訊處", 
-                "type": "voice", 
-                "value": "嘉義市西區新厝里15鄰保安一路120號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "05-2328228　　"
-            }
-        ], 
-        "county": "嘉義市", 
-        "district": "西區", 
-        "election_year": "2009", 
-        "image": "http://www.cycc.gov.tw/files/b/%E9%99%B3%E5%B9%B8%E6%9E%9D%281%29.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=2&id=23"
-            }
-        ], 
-        "name": "陳幸枝", 
-        "party": "民主進步黨", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第2選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "voice", 
+                "type": "address", 
                 "value": "嘉義市新榮路162號"
             }, 
             {
@@ -68,50 +36,7 @@
         "contact_details": [
             {
                 "label": "通訊處", 
-                "type": "voice", 
-                "value": "嘉義市德安路138號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "05-2337030　　"
-            }, 
-            {
-                "label": "傳真", 
-                "type": "voice", 
-                "value": "052337204　　"
-            }
-        ], 
-        "county": "嘉義市", 
-        "district": "西區", 
-        "education": [
-            "省立嘉義高工畢"
-        ], 
-        "election_year": "2009", 
-        "experience": [
-            "嘉市第１、２、３、５、６、７屆議員、嘉義縣市第十屆議員、嘉義北區扶輪社1997-98年度社長、國際扶輪社3470地區1998-99嘉義市第二分區助理總監、國際扶輪社3470地區1999-00副秘書長、嘉義市商業會理事長、嘉義市進出口公會理事長、嘉義市調解委員、嘉義市工業策進會委員、吳姓文教基金會董事、張進通許文賢文教基金會監事"
-        ], 
-        "image": "http://www.cycc.gov.tw/files/b/%E5%90%B3%E4%B8%8A%E6%98%8E%281%29.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=2&id=19"
-            }
-        ], 
-        "name": "吳上明", 
-        "party": "無黨籍", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第2選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "voice", 
+                "type": "address", 
                 "value": "嘉義市自由路121號"
             }, 
             {
@@ -121,7 +46,7 @@
             }, 
             {
                 "label": "傳真", 
-                "type": "voice", 
+                "type": "fax", 
                 "value": "05-2318789　　"
             }
         ], 
@@ -154,7 +79,82 @@
         "contact_details": [
             {
                 "label": "通訊處", 
+                "type": "address", 
+                "value": "嘉義市西區新厝里15鄰保安一路120號"
+            }, 
+            {
+                "label": "電話", 
                 "type": "voice", 
+                "value": "05-2328228　　"
+            }
+        ], 
+        "county": "嘉義市", 
+        "district": "西區", 
+        "election_year": "2009", 
+        "image": "http://www.cycc.gov.tw/files/b/%E9%99%B3%E5%B9%B8%E6%9E%9D%281%29.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=2&id=23"
+            }
+        ], 
+        "name": "陳幸枝", 
+        "party": "民主進步黨", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第2選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
+                "value": "嘉義市德安路138號"
+            }, 
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-2337030　　"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "fax", 
+                "value": "052337204　　"
+            }
+        ], 
+        "county": "嘉義市", 
+        "district": "西區", 
+        "education": [
+            "省立嘉義高工畢"
+        ], 
+        "election_year": "2009", 
+        "experience": [
+            "嘉市第１、２、３、５、６、７屆議員、嘉義縣市第十屆議員、嘉義北區扶輪社1997-98年度社長、國際扶輪社3470地區1998-99嘉義市第二分區助理總監、國際扶輪社3470地區1999-00副秘書長、嘉義市商業會理事長、嘉義市進出口公會理事長、嘉義市調解委員、嘉義市工業策進會委員、吳姓文教基金會董事、張進通許文賢文教基金會監事"
+        ], 
+        "image": "http://www.cycc.gov.tw/files/b/%E5%90%B3%E4%B8%8A%E6%98%8E%281%29.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=2&id=19"
+            }
+        ], 
+        "name": "吳上明", 
+        "party": "無黨籍", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第2選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
                 "value": "嘉義市友忠路328號"
             }, 
             {
@@ -186,7 +186,7 @@
         "contact_details": [
             {
                 "label": "通訊處", 
-                "type": "voice", 
+                "type": "address", 
                 "value": "嘉義市自由路300號"
             }, 
             {
@@ -218,7 +218,7 @@
         "contact_details": [
             {
                 "label": "通訊處", 
-                "type": "voice", 
+                "type": "address", 
                 "value": "嘉義市建成街65號"
             }, 
             {
@@ -250,7 +250,70 @@
         "contact_details": [
             {
                 "label": "通訊處", 
+                "type": "address", 
+                "value": "嘉義市重慶路269號"
+            }, 
+            {
+                "label": "電話", 
                 "type": "voice", 
+                "value": "05-2835838　　"
+            }
+        ], 
+        "county": "嘉義市", 
+        "district": "西區", 
+        "election_year": "2009", 
+        "image": "http://www.cycc.gov.tw/files/b/%E8%94%A1%E6%96%87%E6%97%AD%281%29.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=2&id=13"
+            }
+        ], 
+        "name": "蔡文旭", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第2選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
+                "value": "嘉義市西區香湖里6鄰文化路550號"
+            }, 
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-2326776　　"
+            }
+        ], 
+        "county": "嘉義市", 
+        "district": "西區", 
+        "election_year": "2009", 
+        "image": "http://www.cycc.gov.tw/files/b/%E9%BB%83%E6%AD%A3%E7%94%B7%281%29.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=2&id=15"
+            }
+        ], 
+        "name": "黃正男", 
+        "party": "民主進步黨", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第2選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
                 "value": "嘉義市新榮路35巷15號"
             }, 
             {
@@ -260,7 +323,7 @@
             }, 
             {
                 "label": "傳真", 
-                "type": "voice", 
+                "type": "fax", 
                 "value": "05-2232873　　"
             }
         ], 
@@ -293,71 +356,7 @@
         "contact_details": [
             {
                 "label": "通訊處", 
-                "type": "voice", 
-                "value": "嘉義市玉康路353號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "05-2351690　　"
-            }
-        ], 
-        "county": "嘉義市", 
-        "district": "西區", 
-        "election_year": "2009", 
-        "image": "http://www.cycc.gov.tw/files/b/we001.JPG", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=2&id=12"
-            }
-        ], 
-        "name": "李忠曆", 
-        "party": "無黨籍", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第2選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "voice", 
-                "value": "嘉義市西區香湖里6鄰文化路550號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "05-2326776　　"
-            }
-        ], 
-        "county": "嘉義市", 
-        "district": "西區", 
-        "election_year": "2009", 
-        "image": "http://www.cycc.gov.tw/files/b/%E9%BB%83%E6%AD%A3%E7%94%B7%281%29.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=2&id=15"
-            }
-        ], 
-        "name": "黃正男", 
-        "party": "民主進步黨", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第2選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "voice", 
+                "type": "address", 
                 "value": "嘉義市竹圍路167號"
             }, 
             {
@@ -391,11 +390,147 @@
         "term_start": "2009-12-25"
     }, 
     {
+        "constituency": "第2選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
+                "value": "嘉義市玉康路353號"
+            }, 
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-2351690　　"
+            }
+        ], 
+        "county": "嘉義市", 
+        "district": "西區", 
+        "election_year": "2009", 
+        "image": "http://www.cycc.gov.tw/files/b/we001.JPG", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=2&id=12"
+            }
+        ], 
+        "name": "李忠曆", 
+        "party": "無黨籍", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
         "constituency": "第1選區", 
         "contact_details": [
             {
                 "label": "通訊處", 
+                "type": "address", 
+                "value": "嘉義市中正路172號"
+            }, 
+            {
+                "label": "電話", 
                 "type": "voice", 
+                "value": "05-2274888　　"
+            }
+        ], 
+        "county": "嘉義市", 
+        "district": "東區", 
+        "election_year": "2009", 
+        "image": "http://www.cycc.gov.tw/files/b/ee0001.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=9"
+            }
+        ], 
+        "name": "戴　寧", 
+        "party": "無黨籍", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
+                "value": "嘉義市立人路333號"
+            }, 
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-2256960　　"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "fax", 
+                "value": "05-2256101　　"
+            }
+        ], 
+        "county": "嘉義市", 
+        "district": "東區", 
+        "education": [
+            "國中畢"
+        ], 
+        "election_year": "2009", 
+        "image": "http://www.cycc.gov.tw/files/b/%E5%BC%B5%E6%95%8F%E7%90%AA.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=11"
+            }
+        ], 
+        "name": "張敏琪", 
+        "party": "中國國民黨", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
+                "value": "嘉義市東區短竹里12鄰日新街100巷8號"
+            }, 
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-2787461　　"
+            }
+        ], 
+        "county": "嘉義市", 
+        "district": "東區", 
+        "election_year": "2009", 
+        "image": "http://www.cycc.gov.tw/files/b/%E9%BB%83%E9%9C%B2%E6%85%A7%281%29.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=10"
+            }
+        ], 
+        "name": "黃露慧", 
+        "party": "民主進步黨", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
                 "value": "嘉義市東區公園街87號"
             }, 
             {
@@ -427,7 +562,188 @@
         "contact_details": [
             {
                 "label": "通訊處", 
+                "type": "address", 
+                "value": "嘉義市共和路131號5樓2"
+            }, 
+            {
+                "label": "電話", 
                 "type": "voice", 
+                "value": "0916851289、05-2781192　　"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "fax", 
+                "value": "05-2780676　　"
+            }
+        ], 
+        "county": "嘉義市", 
+        "district": "東區", 
+        "education": [
+            "考試院乙等人事行政特考及格、乙等普通行政特考及格、政戰大學部政治學系、文化大學政治學研究所、革命實踐研究院"
+        ], 
+        "election_year": "2009", 
+        "experience": [
+            "總幹事、主任委員、總經理、董事長、名譽理事長、。嘉義市議會第一、二、四、五、六、七、八屆市議員。"
+        ], 
+        "image": "http://www.cycc.gov.tw/files/b/%E5%BC%B5%E6%A6%AE%E8%97%8F%281%29.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=2"
+            }
+        ], 
+        "name": "張榮藏", 
+        "party": "無黨籍", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
+                "value": "嘉義市東區民樂街34號"
+            }, 
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-2765487　　"
+            }
+        ], 
+        "county": "嘉義市", 
+        "district": "東區", 
+        "election_year": "2009", 
+        "image": "http://www.cycc.gov.tw/files/b/%E8%94%A1%E6%B0%B8%E6%B3%89%281%29.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=4"
+            }
+        ], 
+        "name": "蔡永泉", 
+        "party": "台聯黨", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
+                "value": "嘉義市大雅路二段418號"
+            }, 
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-2813636　　"
+            }
+        ], 
+        "county": "嘉義市", 
+        "district": "東區", 
+        "election_year": "2009", 
+        "experience": [
+            "歷任桃城國際獅子會會長、興華中學家長會會長、嘉義市殘障服務協會顧問、湖內里上帝廟榮譽主任委員、財團法人天后宮管理委員會顧問、九天殿共義堂榮譽主任委員、嘉義市邱丘姓宗親會第十屆理事長、嘉義市議會第六屆議員，嘉義市議會第七屆副議長，現任嘉義市議會第八屆副議長。"
+        ], 
+        "image": "http://www.cycc.gov.tw/files/b/%E9%82%B1%E8%8A%B3%E6%AC%BD.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=1"
+            }
+        ], 
+        "name": "邱芳欽", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
+                "value": "嘉義市興安里3鄰興安街66號"
+            }, 
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-2249407、05-2292955、0955377999　　"
+            }, 
+            {
+                "label": "傳真", 
+                "type": "fax", 
+                "value": "05-2292958　　"
+            }
+        ], 
+        "county": "嘉義市", 
+        "district": "東區", 
+        "election_year": "2009", 
+        "experience": [
+            "三屆興安里里長、市議員(第6、7屆)、市議會警政小組召集人、市議會無黨問政聯盟書記長"
+        ], 
+        "image": "http://www.cycc.gov.tw/files/b/%E9%BB%83%E7%A7%8B%E6%BE%A4%281%29.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=5"
+            }
+        ], 
+        "name": "黃秋澤", 
+        "party": "無黨籍", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
+                "value": "嘉義市號"
+            }, 
+            {
+                "label": "電話", 
+                "type": "voice", 
+                "value": "05-　　"
+            }
+        ], 
+        "county": "嘉義市", 
+        "district": "東區", 
+        "election_year": "2009", 
+        "image": "http://www.cycc.gov.tw/files/b/ee003.jpg", 
+        "in_office": true, 
+        "links": [
+            {
+                "note": "議會個人官網", 
+                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=3"
+            }
+        ], 
+        "name": "黃國村", 
+        "party": "中國國民黨籍", 
+        "term_end": {
+            "date": "2014-12-25"
+        }, 
+        "term_start": "2009-12-25"
+    }, 
+    {
+        "constituency": "第1選區", 
+        "contact_details": [
+            {
+                "label": "通訊處", 
+                "type": "address", 
                 "value": "嘉義市東區吳鳳南路112號"
             }, 
             {
@@ -465,7 +781,7 @@
         "contact_details": [
             {
                 "label": "通訊處", 
-                "type": "voice", 
+                "type": "address", 
                 "value": "嘉義市民權路92-2號"
             }, 
             {
@@ -475,7 +791,7 @@
             }, 
             {
                 "label": "傳真", 
-                "type": "voice", 
+                "type": "fax", 
                 "value": "05-2743456　　"
             }
         ], 
@@ -498,322 +814,6 @@
         ], 
         "name": "郭明賓", 
         "party": "中國國民黨", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第1選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "voice", 
-                "value": "嘉義市興安里3鄰興安街66號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "05-2249407、05-2292955、0955377999　　"
-            }, 
-            {
-                "label": "傳真", 
-                "type": "voice", 
-                "value": "05-2292958　　"
-            }
-        ], 
-        "county": "嘉義市", 
-        "district": "東區", 
-        "election_year": "2009", 
-        "experience": [
-            "三屆興安里里長、市議員(第6、7屆)、市議會警政小組召集人、市議會無黨問政聯盟書記長"
-        ], 
-        "image": "http://www.cycc.gov.tw/files/b/%E9%BB%83%E7%A7%8B%E6%BE%A4%281%29.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=5"
-            }
-        ], 
-        "name": "黃秋澤", 
-        "party": "無黨籍", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第2選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "voice", 
-                "value": "嘉義市重慶路269號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "05-2835838　　"
-            }
-        ], 
-        "county": "嘉義市", 
-        "district": "西區", 
-        "election_year": "2009", 
-        "image": "http://www.cycc.gov.tw/files/b/%E8%94%A1%E6%96%87%E6%97%AD%281%29.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=2&id=13"
-            }
-        ], 
-        "name": "蔡文旭", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第1選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "voice", 
-                "value": "嘉義市中正路172號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "05-2274888　　"
-            }
-        ], 
-        "county": "嘉義市", 
-        "district": "東區", 
-        "election_year": "2009", 
-        "image": "http://www.cycc.gov.tw/files/b/ee0001.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=9"
-            }
-        ], 
-        "name": "戴　寧", 
-        "party": "無黨籍", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第1選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "voice", 
-                "value": "嘉義市立人路333號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "05-2256960　　"
-            }, 
-            {
-                "label": "傳真", 
-                "type": "voice", 
-                "value": "05-2256101　　"
-            }
-        ], 
-        "county": "嘉義市", 
-        "district": "東區", 
-        "education": [
-            "國中畢"
-        ], 
-        "election_year": "2009", 
-        "image": "http://www.cycc.gov.tw/files/b/%E5%BC%B5%E6%95%8F%E7%90%AA.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=11"
-            }
-        ], 
-        "name": "張敏琪", 
-        "party": "中國國民黨", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第1選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "voice", 
-                "value": "嘉義市東區短竹里12鄰日新街100巷8號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "05-2787461　　"
-            }
-        ], 
-        "county": "嘉義市", 
-        "district": "東區", 
-        "election_year": "2009", 
-        "image": "http://www.cycc.gov.tw/files/b/%E9%BB%83%E9%9C%B2%E6%85%A7%281%29.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=10"
-            }
-        ], 
-        "name": "黃露慧", 
-        "party": "民主進步黨", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第1選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "voice", 
-                "value": "嘉義市號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "05-　　"
-            }
-        ], 
-        "county": "嘉義市", 
-        "district": "東區", 
-        "election_year": "2009", 
-        "image": "http://www.cycc.gov.tw/files/b/ee003.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=3"
-            }
-        ], 
-        "name": "黃國村", 
-        "party": "中國國民黨籍", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第1選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "voice", 
-                "value": "嘉義市共和路131號5樓2"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "0916851289、05-2781192　　"
-            }, 
-            {
-                "label": "傳真", 
-                "type": "voice", 
-                "value": "05-2780676　　"
-            }
-        ], 
-        "county": "嘉義市", 
-        "district": "東區", 
-        "education": [
-            "考試院乙等人事行政特考及格、乙等普通行政特考及格、政戰大學部政治學系、文化大學政治學研究所、革命實踐研究院"
-        ], 
-        "election_year": "2009", 
-        "experience": [
-            "總幹事、主任委員、總經理、董事長、名譽理事長、。嘉義市議會第一、二、四、五、六、七、八屆市議員。"
-        ], 
-        "image": "http://www.cycc.gov.tw/files/b/%E5%BC%B5%E6%A6%AE%E8%97%8F%281%29.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=2"
-            }
-        ], 
-        "name": "張榮藏", 
-        "party": "無黨籍", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第1選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "voice", 
-                "value": "嘉義市大雅路二段418號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "05-2813636　　"
-            }
-        ], 
-        "county": "嘉義市", 
-        "district": "東區", 
-        "election_year": "2009", 
-        "experience": [
-            "歷任桃城國際獅子會會長、興華中學家長會會長、嘉義市殘障服務協會顧問、湖內里上帝廟榮譽主任委員、財團法人天后宮管理委員會顧問、九天殿共義堂榮譽主任委員、嘉義市邱丘姓宗親會第十屆理事長、嘉義市議會第六屆議員，嘉義市議會第七屆副議長，現任嘉義市議會第八屆副議長。"
-        ], 
-        "image": "http://www.cycc.gov.tw/files/b/%E9%82%B1%E8%8A%B3%E6%AC%BD.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=1"
-            }
-        ], 
-        "name": "邱芳欽", 
-        "term_end": {
-            "date": "2014-12-25"
-        }, 
-        "term_start": "2009-12-25"
-    }, 
-    {
-        "constituency": "第1選區", 
-        "contact_details": [
-            {
-                "label": "通訊處", 
-                "type": "voice", 
-                "value": "嘉義市東區民樂街34號"
-            }, 
-            {
-                "label": "電話", 
-                "type": "voice", 
-                "value": "05-2765487　　"
-            }
-        ], 
-        "county": "嘉義市", 
-        "district": "東區", 
-        "election_year": "2009", 
-        "image": "http://www.cycc.gov.tw/files/b/%E8%94%A1%E6%B0%B8%E6%B3%89%281%29.jpg", 
-        "in_office": true, 
-        "links": [
-            {
-                "note": "議會個人官網", 
-                "url": "http://www.cycc.gov.tw/form1/index-2.asp?m=99&m1=4&m2=15&mode=1&id=4"
-            }
-        ], 
-        "name": "蔡永泉", 
-        "party": "台聯黨", 
         "term_end": {
             "date": "2014-12-25"
         }, 

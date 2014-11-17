@@ -1,3 +1,5 @@
+About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPath_1.html)       
+
 ## crawler名稱和功能
 
 -	councilors: 現任議員資料
@@ -39,7 +41,7 @@
 | 縣市   | 代號 | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
 |--------|------|----------|----------|------|--------|
 | 宜蘭縣 | ilcc |          | X        |      |        |
-| 花蓮縣 | hlcc |          | X        | X    | X      |
+| 花蓮縣 | hlcc |          | X        |      | X      |
 | 台東縣 |      |          |          |      |        |
 
 ### 南部
@@ -72,7 +74,7 @@
 
 | 欄位名稱     | 說明                  |
 |--------------|-----------------------|
-| county       | 選區所在的城市        |
+| county       | 選區所在的縣市        |
 | constituency | 選區編號 ex. 第一選區 |
 | district     | 選區所包含的區域      |
 
@@ -246,16 +248,20 @@
 
 | 欄位名稱           | 說明                                                          |
 |--------------------|---------------------------------------------------------------|
-| abstract           | 議案的摘要或 Title                                            |
-| bill_no            | 議案在縣議會的編號，例如 `甲01號` 之類                        |
+| county             | 議案所屬縣市                                                  |
+| election_year      | 議案所屬屆期，例如臺北市第11屆: 2010~2014                     |
 | id                 | 議案在議會資料庫的 id，一般可以從網址或者 request body 中取得 |
+| bill_no            | 議案在縣議會的編號，例如 `甲01號` 之類                        |
+| type               | 議案的種類，例如 `議員提案`, `市府提案`等                     |
 | category           | 議案的種類，例如 `建設`, `農業` 等                            |
-| description        | 議案的詳細內容描述                                            |
-| links              | 議案的網址                                                    |
-| resolusion_sitting | 提議此議案時的議會名稱                                        |
+| proposed_by        | 提議此議案的議員，儲存型態為 `list`，第一個即為第一提案人     |
 | petitioned_by      | 連署此議案的議員，儲存型態為 `list`                           |
-| proposed_by        | 提議此議案的議員，儲存型態為 `list`                           |
+| abstract           | 議案的摘要或 Title                                            |
+| description        | 議案的詳細內容描述                                            |
 | methods            | 議案所提議的處理方式                                          |
+| execution          | 議案執行情形                                                  |
+| last_action        | 議案最新狀態(motion)                                          |
+| links              | 議案的網址                                                    |
 
 ### motions
 
@@ -312,8 +318,7 @@
         "張耀中", 
         "陳淑華", 
         "張廖萬堅"
-    ], 
-    "resolusion_sitting": "第1屆 第14次臨時會"
+    ] 
 }
 
 ```
