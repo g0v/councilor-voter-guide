@@ -35,16 +35,20 @@ def CouncilorsBills(councilor_id, bill_id, priproposer, petition):
 conn = db_settings.con()
 c = conn.cursor()
 
-for council in ['../../data/tncc/bills.json', '../../data/ntcc/bills.json', '../../data/kcc/bills.json', '../../data/tccc/bills.json', '../../data/tcc/bills.json']:
+for council in ['../../data/chcc/bills.json', '../../data/cyscc/bills.json', '../../data/ntcc/bills.json', '../../data/hlcc/bills.json', '../../data/tncc/bills.json', '../../data/ntp/bills.json', '../../data/kcc/bills.json', '../../data/tccc/bills.json', '../../data/tcc/bills.json']:
     print council
     dict_list = json.load(open(council))
     for bill in dict_list:
+        print bill
         bill.update({'uid': u'%s-%s' % (bill['county'], bill['id'])})
         Bill(bill)
         priproposer = True
         for name in bill['proposed_by']:
             name = re.sub(u'\(.*\)', '', name)
-            name = re.sub(u'．', u'‧', name)
+            name = re.sub(u'[˙・•．]', u'‧', name)
+            name = name.strip()
+            if name == u'笛布斯‧顗賚':
+                name = u'笛布斯顗賚'
             name = re.sub(u'副?議長', '', name)
             councilor_id = common.getDetailId(c, name, bill['election_year'], bill['county'])
             if councilor_id:
@@ -52,7 +56,10 @@ for council in ['../../data/tncc/bills.json', '../../data/ntcc/bills.json', '../
             priproposer = False
         for name in bill.get('petitioned_by', []):
             name = re.sub(u'\(.*\)', '', name)
-            name = re.sub(u'．', u'‧', name)
+            name = re.sub(u'[˙・•．]', u'‧', name)
+            name = name.strip()
+            if name == u'笛布斯‧顗賚':
+                name = u'笛布斯顗賚'
             councilor_id = common.getDetailId(c, name, bill['election_year'], bill['county'])
             if councilor_id:
                 CouncilorsBills(councilor_id, bill['uid'], False, True)

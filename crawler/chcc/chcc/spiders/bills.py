@@ -9,7 +9,7 @@ from urlparse import urljoin
 
 class Spider(scrapy.Spider):
     name = "bills"
-    
+
     allowed_domains = ["www.chcc.gov.tw"]
     start_urls = ["http://www.chcc.gov.tw/content/review/review01.aspx?PType=1"]
     '''
@@ -35,7 +35,7 @@ class Spider(scrapy.Spider):
     def parse_table(self, response):
     	sel = Selector(response)
     	item = response.request.meta['item']
-    	table=sel.xpath(".//table[@bgcolor='#DBDBDB']/tr")	
+    	table=sel.xpath(".//table[@bgcolor='#DBDBDB']/tr")
     	print 'parse_table=',len(table)
     	for table_idx in range(1,len(table)):
     		href=table[table_idx].xpath(".//td/a/@href").extract()[0]
@@ -53,6 +53,8 @@ class Spider(scrapy.Spider):
     	print title
     	table=sel.xpath(".//table[@bgcolor='#DBDBDB']/tr")
     	#print len(table)
+    	item['county']=u'彰化縣'
+    	item['election_year']='2009'
     	item['proposed_by']=[]
     	item['petitioned_by']=[]
     	item['motions']=[]
@@ -68,7 +70,7 @@ class Spider(scrapy.Spider):
     		itemNames=detail.xpath(".//th")
     		itemInfo=detail.xpath(".//td")
     		#print itemNames[0].xpath("text()").extract()
-    		
+
     		for idx in range(0, len(itemNames)):
     			if itemNames[idx].re(u'審查意見'):
     				committee_motion={'motion':u'委員會審查意見', 'resolution':itemInfo[idx].xpath("text()").extract()[0], 'sitting': title}
@@ -105,10 +107,10 @@ class Spider(scrapy.Spider):
     				description=''
     				for obj in texts:
     					description += obj
-    				#print len(texts), description	
+    				#print len(texts), description
     				item['description']=description
     			if itemNames[idx].re(u'大會決議'):
 					print '大會決議'
 					committee_motion={'motion':u'大會決議', 'resolution':itemInfo[idx].xpath("text()").extract()[0], 'sitting': title}
 					item['motions'].append(committee_motion)
-    	return item			
+    	return item
