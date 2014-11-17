@@ -81,13 +81,17 @@ class Spider(scrapy.Spider):
     				item['category']=itemInfo[idx].xpath("text()").extract()[0]
     				#print item['category']
     			if itemNames[idx].re(u'提案人'):
-    				person=itemInfo[idx].xpath("text()").extract()[0]
-    				item['proposed_by'].append(person)
-    				#print item['proposed_by']
+    				people=itemInfo[idx].xpath("text()").extract()[0]
+    				persons=people.split(u'、')
+    				print len(persons)
+    				for obj in persons:
+    					item['proposed_by'].append(obj)
     			if itemNames[idx].re(u'連署人') or itemNames[idx].re(u'附議人'):
-    				person=itemInfo[idx].xpath("text()").extract()[0]
-    				item['petitioned_by'].append(person)
-    				#print item['petitioned_by']
+    				people=itemInfo[idx].xpath("text()").extract()[0]
+    				persons=people.split(u'、')
+    				print len(persons)
+    				for obj in persons:
+    					item['petitioned_by'].append(obj)
     			if itemNames[idx].re(u'案由'):
     				#item['abstract']=itemInfo[idx].xpath("text()").extract()
     				texts=itemInfo[idx].xpath("text()").extract()
