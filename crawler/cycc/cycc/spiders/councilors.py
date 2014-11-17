@@ -24,7 +24,8 @@ class Spider(scrapy.Spider):
     ]
 
     def __init__(self):
-        pass
+        with open(os.path.join(os.path.dirname(__file__), "reference.json"), "r") as reference_data_file:
+            self.reference_data = json.load(reference_data_file)
 
     def parse(self, response):
         # section 1
@@ -49,6 +50,12 @@ class Spider(scrapy.Spider):
         item = Councilor()
         item['name'] = sel.xpath(".//span[@class='title1']/text()").extract()[0]
         print item['name']
+
+        # Add information from reference data
+        for data in self.reference_data:
+            if data["name"] == item["name"]:
+                item.update(data)
+
         item['election_year'] = '2009'
         item['county'] = '嘉義市'
         item['term_start'] = '%s-12-25' % item['election_year']
@@ -89,4 +96,5 @@ class Spider(scrapy.Spider):
             if info.re(u'[\s]*經[\s]*歷[\s]*'):
                 item['experience'] = [x.strip() for x in detail.xpath(".//td/span/text()").extract()]
                 print item['experience']
+
         return item
