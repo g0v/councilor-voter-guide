@@ -75,7 +75,7 @@ class Spider(scrapy.Spider):
                   "http://www.hlcc.gov.tw/case-3.php",
                   "http://www.hlcc.gov.tw/case-4.php"]
 
-    download_delay = 0.5
+    download_delay = 0.1
 
     ROOT_URL = "http://www.hlcc.gov.tw/"
 
@@ -102,6 +102,8 @@ class Spider(scrapy.Spider):
         u"類別": FieldHandler("category", text),
         u"案號": FieldHandler("bill_no", number),
         u"提案人": FieldHandler("proposed_by", split_orz_format),
+        u"請願人": FieldHandler("proposed_by", split_orz_format),
+        u"提案單位": FieldHandler("proposed_by", split_orz_format),
         u"案由": FieldHandler("abstract", text),
         u"連署人": FieldHandler("petitioned_by", split_orz_format),
         u"執行情形": FieldHandler("execution", text),
@@ -122,9 +124,9 @@ class Spider(scrapy.Spider):
         item = Bills()
 
         # Because there are some bills format with error, I manually save the bill data in the special_bills.json.
-        if response.url in self.special_bills:
-           item.update(self.special_bills[response.url]) 
-           return item
+#       if response.url in self.special_bills:
+#          item.update(self.special_bills[response.url])
+#          return item
 
         tmp = sel.xpath('//div[@class="area-2"]/table/tr[2]/td[@class="td-content"]/text()').extract()[0].split()
 

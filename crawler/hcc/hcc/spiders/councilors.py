@@ -43,7 +43,7 @@ class Spider(scrapy.Spider):
                 if not re.search('^view.asp\?id=', href):
                     continue
                 item = Councilor()
-                item['constituency'] = url.xpath('preceding::strong[1]/text()').re(u'第(\d+)選區')[0]
+                item['constituency'] = url.xpath('preceding::strong[1]/text()').re(u'第\d+選區')[0]
                 logging.warning('url: %s', href)
                 the_url = urljoin(base_url, href)
                 yield Request(the_url, callback=self.parse_profile, meta={'item': item})
