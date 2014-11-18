@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
-from urlparse import urljoin
+from urlparse import urljoin, urlparse, parse_qs
 import scrapy
 from scrapy.http import Request, FormRequest
 from scrapy.selector import Selector
@@ -12,9 +12,9 @@ from scrapy.utils.url import canonicalize_url
 
 class Spider(scrapy.Spider):
     name = "bills"
-    base_url = "http://www.hsinchu-cc.gov.tw/Agenda/"
     start_urls = ["http://www.ilcc.gov.tw/Html/H_08/H_08.aspx?change_img=2", ]
-    download_delay = 0.5
+    election_year = {14: '1998', 15: '2002', 16: '2005', 17: '2009'}
+    download_delay = 0.1
 
     def parse(self, response):
         sel = Selector(response)
@@ -51,7 +51,15 @@ class Spider(scrapy.Spider):
         pairs = misc.rows_to_pairs(rows)
 
         item = Bills()
+        item['election_year'] = self.election_year[int(sel.xpath('//span[@id="lbFmotion_expireb"]/text()').re('\d+')[0])]
+        item['county'] = u'宜蘭縣'
         item['links'] = response.url
+        print response.url
+        get_param = parse_qs(urlparse(response.url).query)
+        item['id'] = get_param['Fmotion_instanceOS'][0].decode('Big5')
+        item['proposed_by'] = re.sub(u'、', ' ', sel.xpath('//*[@id="lbFmotion_People"]/text()').extract()[0]).split()
+        petitioned_by = sel.xpath('//*[@id="lbFmotion_AddTo"]/text()').extract()
+        item['petitioned_by'] = re.sub(u'、', ' ', petitioned_by[0]).split() if petitioned_by else []
         item['motions'] = []
         main_title = parse.get_inner_text(sel.xpath('//font[@color="#800000"]'), remove_white=True)
         m = re.match(u'宜蘭縣議會(.*)議案資料', main_title)
@@ -59,14 +67,11 @@ class Spider(scrapy.Spider):
             main_sitting = m.group(1)
 
         k_map = {
-            # u'來源別':'',
+            u'來源別':'type',
             # u'建檔日期':'',
             # u'議案程序':'',
             # u'系統編號':'',
-            u'動議人': 'proposed_by',
-            u'提案單位': 'proposed_by',
             u'案號': 'bill_no',
-            u'附議人': 'petitioned_by',
             u'類別': 'category',
             # u'小組':'',
             u'案由': 'abstract',
@@ -100,10 +105,7 @@ class Spider(scrapy.Spider):
             k_eng = k_map.get(k)
 
             if k_eng:
-                new_v = v
-                if k_eng in ['petitioned_by', 'proposed_by']:
-                    new_v = v.split()
-                item[k_eng] = new_v
+                item[k_eng] = v
             elif k == u'建檔日期':
                 misc.append_motion(item, u'建檔', None, v, main_sitting)
 

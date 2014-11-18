@@ -29,7 +29,6 @@ class Councilor(Item):
     image = Field()
     links = Field()
 
-
 class Bills(Item):
     election_year = Field()
     county = Field()
@@ -61,12 +60,6 @@ class Bills(Item):
     execution = Field()
     remark = Field()
     links = Field()
-
-    # def __repr__(self):
-    #     s = json.dumps(dict(self), ensure_ascii=False)
-    #     s = s.encode('utf8')
-    #     return s
-
 
 class MeetingMinutes(Item):
     sitting = Field()
