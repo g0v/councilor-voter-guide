@@ -55,6 +55,7 @@ function crawl (id) {
       results.push({
         id : id,
         election_year : "2009",
+        county : "嘉義縣",
         links : "http://www.cyscc.gov.tw/chinese/Discussing_Detail.aspx?s=" + id,
         bill_no : $('#ctl00_ContentPlaceHolder1_fvDetail_Label7').text(),
         type : $('#ctl00_ContentPlaceHolder1_fvDetail_Label2').text(),
