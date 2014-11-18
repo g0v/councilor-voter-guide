@@ -12,5 +12,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "mmis1000",
-  "license": " "
+  "license": "WTFPL"
 }

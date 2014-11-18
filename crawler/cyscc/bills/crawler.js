@@ -53,7 +53,9 @@ function crawl (id) {
       
       var $ = cheerio.load(data);
       results.push({
-        link : "http://www.cyscc.gov.tw/chinese/Discussing_Detail.aspx?s=" + id,
+        id : id,
+        election_year : "2009",
+        links : "http://www.cyscc.gov.tw/chinese/Discussing_Detail.aspx?s=" + id,
         bill_no : $('#ctl00_ContentPlaceHolder1_fvDetail_Label7').text(),
         type : $('#ctl00_ContentPlaceHolder1_fvDetail_Label2').text(),
         category : $('#ctl00_ContentPlaceHolder1_fvDetail_lbType').text()
