@@ -73,8 +73,18 @@ h7 {
   content:"選區：";
 }
 
+.county-district{
+  font-size: 18px;
+  text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .3);
+}
+
 .county-candidate:before{
   content: "參選人數：";
+}
+
+.county-candidate{
+  font-size: 18px;
+  text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .3);
 }
 
 @media screen and (min-width: 767px){
@@ -88,5 +98,6 @@ h7 {
 }
 
 .council-darkbluegreen{
+  font-size: 16px;
   background: #00CCCC;
 }
