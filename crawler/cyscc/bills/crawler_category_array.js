@@ -59,7 +59,11 @@ function crawl (id) {
         links : "http://www.cyscc.gov.tw/chinese/Discussing_Detail.aspx?s=" + id,
         bill_no : $('#ctl00_ContentPlaceHolder1_fvDetail_Label7').text(),
         type : $('#ctl00_ContentPlaceHolder1_fvDetail_Label2').text(),
-        category : $('#ctl00_ContentPlaceHolder1_fvDetail_lbType').text(),
+        category : $('#ctl00_ContentPlaceHolder1_fvDetail_lbType').text()
+          .replace(/[\r\n]+/g," ")
+          .replace(/(?:縣長|副?議長|代理)/g, '')
+          .replace(/(?:^\s+|\s+$)/g, "")
+          .split(/[\.，、\s,]+/g),
         proposed_by : $('#ctl00_ContentPlaceHolder1_fvDetail_Label8').text()
           .replace(/[\r\n]+/g," ")
           .replace(/(?:縣長|副?議長|代理)/g, '')
