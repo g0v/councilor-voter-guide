@@ -65,13 +65,13 @@ class Candidates(models.Model):
         return all_bill.count() if all_bill else 0
     nbill = property(_biller_count)
 
-    def _term_end(self):
+    def _term_range(self):
         try:
             councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
         except Exception, e:
             return ''
-        return councilor.term_end.get('date') if not councilor.in_office else None
-    term_end = property(_term_end)
+        return '%s ~ %s' % (councilor.term_start.year, councilor.term_end.get('date').year,)
+    term_range = property(_term_range)
 
     def _cs_absent_count(self):
         try:

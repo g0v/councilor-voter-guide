@@ -57,9 +57,9 @@
                         <td style="text-align:center; vertical-align:middle;">{{councilor.party}}</td>
                         {% if councilor.councilor_id %}
                             <td style="text-align:center; vertical-align:middle;">
-                                {% with term_end=councilor.term_end %}
-                                {% if term_end %}
-                                    {{councilor.last_election_year}}~<font color="red">{{term_end|date:"Y-m-d"}} (中途離職)</font>
+                                {% with term_range=councilor.term_range %}
+                                {% if term_range %}
+                                    {{term_range}}
                                 {% else %}
                                     {{councilor.last_election_year|election_year_range}}
                                 {% endif %}
