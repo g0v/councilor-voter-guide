@@ -59,44 +59,44 @@ class Spider(scrapy.Spider):
         item_index = image_index[12][7:16]
         item['uid'] = item_index
 
-        Councilor_Dict = {"01_name01" : ["張國洲", "台東市、綠島鄉、蘭嶼鄉", "true"],
-                        "01_name02" : ["陳志峰", "台東市、綠島鄉、蘭嶼鄉", "true"],
-                        "01_name03" : ["林參天", "台東市、綠島鄉、蘭嶼鄉", "true"],
-                        "01_name04" : ["李建智", "台東市、綠島鄉、蘭嶼鄉", "true"],
-                        "01_name05" : ["謝明珠", "台東市、綠島鄉、蘭嶼鄉", "true"],
-                        "01_name06" : ["饒慶鈴", "台東市、綠島鄉、蘭嶼鄉", "true"],
-                        "01_name07" : ["田石雄", "台東市、綠島鄉、蘭嶼鄉", "true"],
-                        "15_name01" : ["鄭安定", "台東市、綠島鄉、蘭嶼鄉", "false"],
-                        "01_name09" : ["吳景愧", "台東市、綠島鄉、蘭嶼鄉", "true"],
-                        "01_name10" : ["黃秋", "台東市、綠島鄉、蘭嶼鄉", "true"],
-                        "02_name01" : ["張卓然", "卑南鄉、延平鄉", "true"],
-                        "02_name02" : ["張清忠", "卑南鄉、延平鄉", "true"],
-                        "03_name01" : ["許進榮", "成功鎮、東河鄉、長濱鄉", "true"],
-                        "03_name02" : ["林東滿", "成功鎮、東河鄉、長濱鄉", "true"],
-                        "04_name01" : ["陳宏宗", "關山鎮、鹿野鄉、池上鄉、海端鄉", "true"],
-                        "04_name02" : ["李振源", "關山鎮、鹿野鄉、池上鄉、海端鄉", "true"],
-                        "05_name01" : ["李錦慧", "大武鄉、達仁鄉、金峰鄉、太麻里鄉", "true"],
-                        "06_name01" : ["林琮翰", "平地原住民（臺東市）", "true"],
-                        "06_name02" : ["陳。藍姆洛", "平地原住民（臺東市）", "true"],
-                        "06_name03" : ["王清堅", "平地原住民（臺東市）", "true"],
-                        "07_name01" : ["蔡義勇", "平地原住民（大武鄉、達仁鄉、金峰鄉、太麻里鄉、蘭嶼鄉）", "true"],
-                        "07_name02" : ["江堅壽", "平地原住民（大武鄉、達仁鄉、金峰鄉、太麻里鄉、蘭嶼鄉）", "true"],
-                        "08_name01" : ["張萬生", "平地原住民（關山鎮、池上鄉、鹿野鄉、海端鄉、延平鄉）", "true"],
-                        "09_name01" : ["嚴惠美", "平地原住民（成功鎮、東河鄉、長濱鄉）", "true"],
-                        "09_name02" : ["劉純歌", "平地原住民（成功鎮、東河鄉、長濱鄉）", "true"],
-                        "10_name01" : ["胡秋金", "山地原住民（成功鎮、卑南鄉、延平鄉、東河鄉、長濱鄉）", "true"],
-                        "11_name01" : ["余秀芳", "山地原住民（關山鎮、池上鄉、鹿野鄉、海端鄉）", "true"],
-                        "12_name01" : ["宋賢一", "山地原住民（金峰鄉、太麻里鄉）", "true"],
-                        "13_name01" : ["朱連濟", "山地原住民（大武鄉、達仁鄉）", "true"],
-                        "14_name01" : ["夏曼。瑪德能", "山地原住民（臺東市、綠島鄉、蘭嶼鄉）", "true"]}
+        Councilor_Dict = {"01_name01" : ["張國洲", "台東市、綠島鄉、蘭嶼鄉", "true", "http://www.taitungcc.gov.tw/ourteam/02ourteam_detail01.html"],
+                        "01_name02" : ["陳志峰", "台東市、綠島鄉、蘭嶼鄉", "true", "http://www.taitungcc.gov.tw/ourteam/02ourteam_detail02.html"],
+                        "01_name03" : ["林參天", "台東市、綠島鄉、蘭嶼鄉", "true", "http://www.taitungcc.gov.tw/ourteam/02ourteam_detail03.html"],
+                        "01_name04" : ["李建智", "台東市、綠島鄉、蘭嶼鄉", "true", "http://www.taitungcc.gov.tw/ourteam/02ourteam_detail04.html"],
+                        "01_name05" : ["謝明珠", "台東市、綠島鄉、蘭嶼鄉", "true", "http://www.taitungcc.gov.tw/ourteam/02ourteam_detail05.html"],
+                        "01_name06" : ["饒慶鈴", "台東市、綠島鄉、蘭嶼鄉", "true", "http://www.taitungcc.gov.tw/ourteam/02ourteam_detail06.html"],
+                        "01_name07" : ["田石雄", "台東市、綠島鄉、蘭嶼鄉", "true", "http://www.taitungcc.gov.tw/ourteam/02ourteam_detail07.html"],
+                        "15_name01" : ["鄭安定", "台東市、綠島鄉、蘭嶼鄉", "false", "http://www.taitungcc.gov.tw/ourteam/02ourteam_detail08.html"],
+                        "01_name09" : ["吳景愧", "台東市、綠島鄉、蘭嶼鄉", "true", "http://www.taitungcc.gov.tw/ourteam/02ourteam_detail09.html"],
+                        "01_name10" : ["黃秋", "台東市、綠島鄉、蘭嶼鄉", "true", "http://www.taitungcc.gov.tw/ourteam/02ourteam_detail10.html"],
+                        "02_name01" : ["張卓然", "卑南鄉、延平鄉", "true", "http://www.taitungcc.gov.tw/ourteam/03ourteam_detail01.html"],
+                        "02_name02" : ["張清忠", "卑南鄉、延平鄉", "true", "http://www.taitungcc.gov.tw/ourteam/03ourteam_detail02.html"],
+                        "03_name01" : ["許進榮", "成功鎮、東河鄉、長濱鄉", "true", "http://www.taitungcc.gov.tw/ourteam/04ourteam_detail01.html"],
+                        "03_name02" : ["林東滿", "成功鎮、東河鄉、長濱鄉", "true", "http://www.taitungcc.gov.tw/ourteam/04ourteam_detail02.html"],
+                        "04_name01" : ["陳宏宗", "關山鎮、鹿野鄉、池上鄉、海端鄉", "true", "http://www.taitungcc.gov.tw/ourteam/05ourteam_detail01.html"],
+                        "04_name02" : ["李振源", "關山鎮、鹿野鄉、池上鄉、海端鄉", "true", "http://www.taitungcc.gov.tw/ourteam/05ourteam_detail02.html"],
+                        "05_name01" : ["李錦慧", "大武鄉、達仁鄉、金峰鄉、太麻里鄉", "true", "http://www.taitungcc.gov.tw/ourteam/06ourteam_detail01.html"],
+                        "06_name01" : ["林琮翰", "平地原住民（臺東市）", "true", "http://www.taitungcc.gov.tw/ourteam/07ourteam_detail01.html"],
+                        "06_name02" : ["陳。藍姆洛", "平地原住民（臺東市）", "true", "http://www.taitungcc.gov.tw/ourteam/07ourteam_detail02.html"],
+                        "06_name03" : ["王清堅", "平地原住民（臺東市）", "true", "http://www.taitungcc.gov.tw/ourteam/07ourteam_detail03.html"],
+                        "07_name01" : ["蔡義勇", "平地原住民（大武鄉、達仁鄉、金峰鄉、太麻里鄉、蘭嶼鄉）", "true", "http://www.taitungcc.gov.tw/ourteam/08ourteam_detail01.html"],
+                        "07_name02" : ["江堅壽", "平地原住民（大武鄉、達仁鄉、金峰鄉、太麻里鄉、蘭嶼鄉）", "true", "http://www.taitungcc.gov.tw/ourteam/08ourteam_detail02.html"],
+                        "08_name01" : ["張萬生", "平地原住民（關山鎮、池上鄉、鹿野鄉、海端鄉、延平鄉）", "true", "http://www.taitungcc.gov.tw/ourteam/09ourteam_detail01.html"],
+                        "09_name01" : ["嚴惠美", "平地原住民（成功鎮、東河鄉、長濱鄉）", "true", "http://www.taitungcc.gov.tw/ourteam/10ourteam_detail01.html"],
+                        "09_name02" : ["劉純歌", "平地原住民（成功鎮、東河鄉、長濱鄉）", "true", "http://www.taitungcc.gov.tw/ourteam/10ourteam_detail02.html"],
+                        "10_name01" : ["胡秋金", "山地原住民（成功鎮、卑南鄉、延平鄉、東河鄉、長濱鄉）", "true", "http://www.taitungcc.gov.tw/ourteam/11ourteam_detail01.html"],
+                        "11_name01" : ["余秀芳", "山地原住民（關山鎮、池上鄉、鹿野鄉、海端鄉）", "true", "http://www.taitungcc.gov.tw/ourteam/12ourteam_detail01.html"],
+                        "12_name01" : ["宋賢一", "山地原住民（金峰鄉、太麻里鄉）", "true", "http://www.taitungcc.gov.tw/ourteam/13ourteam_detail01.html"],
+                        "13_name01" : ["朱連濟", "山地原住民（大武鄉、達仁鄉）", "true", "http://www.taitungcc.gov.tw/ourteam/14ourteam_detail01.html"],
+                        "14_name01" : ["夏曼。瑪德能", "山地原住民（臺東市、綠島鄉、蘭嶼鄉）", "true", "http://www.taitungcc.gov.tw/ourteam/15ourteam_detail01.html"],}
 
         item['name'] = Councilor_Dict[item_index][0]
-        item['district'] = u"第" + image_index[12][7:9] + u"選區"
-        item['constituency'] = Councilor_Dict[item_index][1]
+        item['constituency'] = u"第" + image_index[12][7:9] + u"選區"
+        item['district'] = Councilor_Dict[item_index][1]
         item['image'] = 'http://www.taitungcc.gov.tw/ourteam/' + image_index[7]
         item['county'] = u"臺東縣"
         if item_index == "01_name06":
-            itme['title'] = u"議長"
+            item['title'] = u"議長"
         elif item_index == "04_name01":
             item['title'] = u"副議長"
         else:
@@ -164,30 +164,25 @@ class Spider(scrapy.Spider):
         info = sel.xpath('//td[@width="80"]/following-sibling::*').extract()
         mail_info = sel.css('a').xpath('@href').extract()
         item['gender'] = info[0][4:5]
-        item['party'] = info[1][40:-10]
+        item['party'] = info[1][40:-9]
+        item['links'] = [{"note" : "議會個人官網", "url" : Councilor_Dict[item_index][3]}]
         if len(info) == 7:
-            phone = info[2][20:-5]
-            fax = info[3][20:-5]
-            address = info[4][20:-5]
-            email = mail_info[3][7:]
-            facebook = mail_info[4]
+            contact = {"voice" : info[2][20:-5], "fax" : info[3][20:-5], "address" : info[4][20:-5], "email" : mail_info[3][7:]}
+            link = {"note" : "Facebook","url" : mail_info[4]}
+            item['links'].append(link)
         elif len(info) == 5:
-            phone = info[2][4:-5]
-            fax = u"無"
-            email = mail_info[3][7:]
-            address = info[4][4:-5]
-            facebook = u"無"
+            if item_index == "15_name01":
+                contact = {}
+            else:
+                contact = {"voice" : info[2][4:-5], "email" : mail_info[3][7:], "address" : info[4][4:-5]}
         else:
-            phone = info[2][4:-5]
-            fax = u"無"
-            email = u"無"
-            address = info[3][4:-5]
-            facebook = u"無"
-        item['contact_details'] = [{"label" : u"通訊處", "type" : "address", "value" : address},
-                                    {"label" : u"電話", "type" : "voice", "value" : phone},
-                                    {"label" : u"傳真", "type" : "fax", "value" : fax},
-                                    {"label" : "e-Mail", "type" : "e-Mail", "value" : email},
-                                    {"label" : "Facebook", "type" : "link", "value" : facebook}]
-
+            contact = {"voice" : info[2][4:-5], "address" : info[3][4:-5]}
+        contact_list = {"address" : u"通訊處", 
+                        "voice" : u"電話", 
+                        "fax" : u"傳真", 
+                        "email" : u"電子郵件信箱"}
+        item['contact_details'] = []
+        for i in contact:
+            item['contact_details'].append({"label" : contact_list[i], "type" : i, "value" : contact[i]})
 
         return item
