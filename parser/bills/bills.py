@@ -35,7 +35,8 @@ def CouncilorsBills(councilor_id, bill_id, priproposer, petition):
 conn = db_settings.con()
 c = conn.cursor()
 
-for council in ['../../data/chcc/bills.json', '../../data/cyscc/bills.json', '../../data/ntcc/bills.json', '../../data/hlcc/bills.json', '../../data/tncc/bills.json', '../../data/ntp/bills.json', '../../data/kcc/bills.json', '../../data/tccc/bills.json', '../../data/tcc/bills.json']:
+for council in ['../../data/cyscc/bills.json', ]:
+#for council in ['../../data/ilcc/bills.json', '../../data/chcc/bills.json', '../../data/cyscc/bills.json', '../../data/ntcc/bills.json', '../../data/hlcc/bills.json', '../../data/tncc/bills.json', '../../data/ntp/bills.json', '../../data/kcc/bills.json', '../../data/tccc/bills.json', '../../data/tcc/bills.json']:
     print council
     dict_list = json.load(open(council))
     for bill in dict_list:

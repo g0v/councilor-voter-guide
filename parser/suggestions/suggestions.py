@@ -47,7 +47,7 @@ def getIdList(name_list, election_year, county):
 
 conn = db_settings.con()
 c = conn.cursor()
-files = [f for f in glob.glob('../../data/*/suggestions/*.xls*')]
+files = [f for f in glob.glob('../../data/tycc/suggestions/*.xls*')]
 df_concat = DataFrame()
 for f in files:
     print open(f, 'r').name
