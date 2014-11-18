@@ -41,8 +41,8 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 | 縣市   | 代號 | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
 |--------|------|----------|----------|------|--------|
 | 宜蘭縣 | ilcc |          | X        |      |        |
-| 花蓮縣 | hlcc |          | X        |      | X      |
-| 台東縣 |      |          |          |      |        |
+| 花蓮縣 | hlcc |          | X        | X    | X      |
+| 台東縣 | ttcc |          |          | X    | X      |
 
 ### 南部
 
