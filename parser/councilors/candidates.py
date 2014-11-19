@@ -63,9 +63,10 @@ def insertCandidates(candidate):
     r = c.fetchone()
     if r:
         candidate['district'] = r[0]
-    else:
-        for district_change in district_versions[election_year]:
-            candidate['district'] = district_change['district'] if candidate['county'] == district_change['county'] and candidate['constituency'] == district_change['constituency'] else ''
+    for district_change in district_versions[election_year].get(candidate['county'], []):
+        if candidate['constituency'] == district_change['constituency']:
+            candidate['district'] = district_change['district']
+            break
     for key in ['education', 'experience', 'platform', 'remark']:
         if candidate.get(key):
             candidate[key] = '\n'.join(candidate[key])
@@ -93,12 +94,14 @@ for f in files:
         match = re.search(u'(?P<county>\W+)第(?P<num>\d+)選(?:舉)?區', candidate['constituency'])
         candidate['county'] = match.group('county') if match else None
         candidate['constituency'] = match.group('num') if match else None
-        if not (candidate['name'] and (re.search(u'(臺北市|臺中市|高雄市|新北市|臺南市|新竹市|彰化縣|宜蘭縣|桃園市|花蓮縣|南投縣|新竹縣|嘉義縣|嘉義市|雲林縣|基隆市|屏東縣|連江縣)', candidate['county']))):
+        if not (candidate['name'] and (re.search(u'(臺北市|臺中市|高雄市|新北市|臺南市|新竹市|彰化縣|宜蘭縣|桃園市|花蓮縣|南投縣|新竹縣|嘉義縣|嘉義市|雲林縣|基隆市|屏東縣|連江縣|臺東縣)', candidate['county']))):
             continue
         for county_change in county_versions[election_year]:
             candidate['previous_county'] = county_change['from'] if candidate['county'] == county_change['to'] else candidate['county']
         candidate['name'] = re.sub('\s', '', candidate['name'])
         candidate['name'] = re.sub(u'[˙・•．]', u'‧', candidate['name'])
+        if candidate['name'] == u'李姸慧':
+            candidate['name'] = u'李妍慧'
         candidate['election_year'] = election_year
         candidate['uid'], candidate['last_election_year'] = latest_term(candidate)
         insertCandidates(candidate)
