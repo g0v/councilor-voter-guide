@@ -69,22 +69,19 @@ h7 {
   line-height: 150%;
 }
 
+.county-sub, .districts-sub{
+  position: absolute;
+  bottom:10px;
+  font-size: 18px;
+  text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .3);
+}
+
 .county-district:before{
   content:"選區：";
 }
 
-.county-district{
-  font-size: 18px;
-  text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .3);
-}
-
 .county-candidate:before{
   content: "參選人數：";
-}
-
-.county-candidate{
-  font-size: 18px;
-  text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .3);
 }
 
 @media screen and (min-width: 767px){
