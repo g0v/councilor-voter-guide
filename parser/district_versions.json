@@ -1,9 +1,72 @@
 {
-    "2014": [
-        {
-            "county":  "南投縣",
-            "constituency":  "8",
-            "district":  "山地原住民"
-        }
-    ]
+    "2014":  {
+        "南投縣":  [
+            {
+                "constituency":  "8",
+                "district":  "山地原住民"
+            }
+        ],
+        "臺東縣":  [
+            {
+                "constituency":  "1",
+                "district":  "臺東市、蘭嶼鄉"
+            },
+            {
+                "constituency":  "2",
+                "district":  "卑南鄉、延平鄉"
+            },
+            {
+                "constituency":  "3",
+                "district":  "東河鄉、成功鎮、長濱鄉"
+            },
+            {
+                "constituency":  "4",
+                "district":  "鹿野鄉、關山鎮、海端鄉、池上鄉"
+            },
+            {
+                "constituency":  "5",
+                "district":  "太麻里鄉、金峰鄉、達仁鄉、大武鄉"
+            },
+            {
+                "constituency":  "6",
+                "district":  "綠島鄉"
+            },
+            {
+                "constituency":  "7",
+                "district":  "居住臺東市之平地原住民"
+            },
+            {
+                "constituency":  "8",
+                "district":  "居住卑南鄉、太麻里鄉、金峰鄉、達仁鄉、大武鄉、蘭嶼鄉之平地原住民"
+            },
+            {
+                "constituency":  "9",
+                "district":  "居住鹿野鄉、延平鄉、關山鎮、海端鄉、池上鄉之平地原住民"
+            },
+            {
+                "constituency":  "10",
+                "district":  "居住東河鄉、綠島鄉、成功鎮、長濱鄉之平地原住民"
+            },
+            {
+                "constituency":  "11",
+                "district":  "居住延平鄉及卑南鄉、東河鄉、成功鎮、長濱鄉之山地原住民"
+            },
+            {
+                "constituency":  "12",
+                "district":  "居住海端鄉及鹿野鄉、關山鎮、池上2鄉之山地原住民"
+            },
+            {
+                "constituency":  "13",
+                "district":  "居住金峰鄉及太麻里鄉、臺東市、綠島鄉之山地原住民"
+            },
+            {
+                "constituency":  "14",
+                "district":  "居住達仁鄉及大武鄉之山地原住民"
+            },
+            {
+                "constituency":  "15",
+                "district":  "居住蘭嶼鄉之山地原住民"
+            }
+        ]
+    }
 }
