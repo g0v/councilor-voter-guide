@@ -6,6 +6,20 @@
                 "district":  "山地原住民"
             }
         ],
+        "金門縣":  [
+            {
+                "constituency":  "1",
+                "district":  "金城鎮、金寧鄉、烏坵鄉"
+            },
+            {
+                "constituency":  "2",
+                "district":  "金湖鎮、金沙鎮"
+            },
+            {
+                "constituency":  "3",
+                "district":  "烈嶼鄉"
+            }
+        ],
         "臺東縣":  [
             {
                 "constituency":  "1",

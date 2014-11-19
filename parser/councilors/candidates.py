@@ -94,7 +94,7 @@ for f in files:
         match = re.search(u'(?P<county>\W+)第(?P<num>\d+)選(?:舉)?區', candidate['constituency'])
         candidate['county'] = match.group('county') if match else None
         candidate['constituency'] = match.group('num') if match else None
-        if not (candidate['name'] and (re.search(u'(臺北市|臺中市|高雄市|新北市|臺南市|新竹市|彰化縣|宜蘭縣|桃園市|花蓮縣|南投縣|新竹縣|嘉義縣|嘉義市|雲林縣|基隆市|屏東縣|連江縣|臺東縣)', candidate['county']))):
+        if not (candidate['name'] and (re.search(u'(臺北市|臺中市|高雄市|新北市|臺南市|新竹市|彰化縣|宜蘭縣|桃園市|花蓮縣|南投縣|新竹縣|嘉義縣|嘉義市|雲林縣|基隆市|屏東縣|連江縣|臺東縣|苗栗縣|金門縣)', candidate['county']))):
             continue
         for county_change in county_versions[election_year]:
             candidate['previous_county'] = county_change['from'] if candidate['county'] == county_change['to'] else candidate['county']

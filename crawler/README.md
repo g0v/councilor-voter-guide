@@ -57,7 +57,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 | 縣市   | 代號 | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
 |--------|------|----------|----------|------|--------|
 | 連江縣 | mtcc |          | X        | X    | X      |
-| 金門縣 |      |          |          |      |        |
+| 金門縣 | kmcc |          | X        | X    | X      |
 | 澎湖縣 |      |          |          |      |        |
 
 ## councilors.json 格式範例說明
