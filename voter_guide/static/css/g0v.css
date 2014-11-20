@@ -91,10 +91,34 @@ h7 {
 }
 
 .council-bluegreen{
-  background: #02E8E8;
+  background: #32CBCB;
 }
 
 .council-darkbluegreen{
   font-size: 16px;
-  background: #00CCCC;
+  background: #3FA1A1;
+}
+
+.council-purple{
+  background: #CC66CC;
+}
+
+.council-darkpurple{
+  background: #996699;
+}
+
+.council-blue{
+  background: #6699FF;
+}
+
+.council-darkblue{
+  background: #3366CC;
+}
+
+.council-orange{
+  background: #F6C151;
+}
+
+.council-darkorange{
+  background: #996666;
 }
