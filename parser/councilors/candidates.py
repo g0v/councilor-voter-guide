@@ -21,15 +21,6 @@ def latest_term(candidate):
     r = c.fetchone()
     if r:
         return r
-    c.execute('''
-        SELECT councilor_id, election_year
-        FROM councilors_councilorsdetail
-        WHERE name = %(name)s and election_year < %(election_year)s
-        ORDER BY election_year DESC
-    ''', candidate)
-    r = c.fetchone()
-    if r:
-        return r
     # non-cht in name
     m = re.match(u'(?P<cht>.+?)[a-zA-Z]', candidate['name'])
     candidate['name_like'] = m.group('cht') if m else candidate['name']
