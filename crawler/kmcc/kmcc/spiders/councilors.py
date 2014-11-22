@@ -22,7 +22,10 @@ class Spider(scrapy.Spider):
 
     def parse_profile(self, response):
         item = Councilor()
-        item['image'] = urljoin(response.url, response.xpath('//table[@id="table7"]/descendant::img/@src').extract()[0])
+        try:
+            item['image'] = urljoin(response.url, response.xpath('//table[@id="table7"]/descendant::img/@src').extract()[0])
+        except:
+            return
         item['name'] = response.xpath('//title/text()').extract()[0].split('-')[-1].strip()
         item['county'] = u'金門縣'
         item['election_year'] = '2009'
@@ -45,8 +48,9 @@ class Spider(scrapy.Spider):
                 item['contact_details'].append({"label" : u'地址', "type" : "address", "value" : text.split(u'：')[-1]})
             elif re.search(u'聯絡電話：', text):
                 item['contact_details'].append({"label" : u'電話', "type" : "voice", "value" : text.split(u'：')[-1]})
-        item['platform'] = Request(urljoin(response.url, response.xpath('//iframe/@src').extract()[0]), callback=self.parse_platform)
-        return item
+        return Request(urljoin(response.url, response.xpath('//iframe/@src').extract()[0]), callback=self.parse_platform, meta={'item': item}, dont_filter=True)
 
     def parse_platform(self, response):
-        return [x.strip() for x in response.xpath('//li/text()').extract()]
+        item = response.meta['item']
+        item['platform'] = [x.strip() for x in response.xpath('//li/text()').extract()]
+        return item
