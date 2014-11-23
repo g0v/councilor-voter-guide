@@ -7,7 +7,12 @@ from .models import Bills
 from councilors.models import CouncilorsDetail
 from search.models import Keyword
 from search.views import keyword_list, keyword_been_searched, keyword_normalize
+from re import compile as _Re
 
+_unicode_chr_splitter = _Re( '(?s)((?:[\ud800-\udbff][\udc00-\udfff])|.)' ).split
+
+def split_unicode_chrs( text ):
+  return [ chr for chr in _unicode_chr_splitter( text ) if (chr!=' ' and chr) ]
 
 def select_county(request, index, county):
     counties = CouncilorsDetail.objects.values_list('county', flat=True).order_by('county').distinct()
@@ -20,7 +25,7 @@ def bills(request, county, index):
 
 
     if keyword:
-        bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in keyword.split())))
+        bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in split_unicode_chrs(keyword))))
         if bills:
             keyword_been_searched(keyword, 'bills')
     else:
