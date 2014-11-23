@@ -3,6 +3,7 @@ import os
 import csv
 import json
 import codecs
+import re
 
 def get_link(filename):
 	links = {
@@ -33,6 +34,8 @@ def get_proposed_name(proposed_by):
 			if (len(name) == 3):
 				yield proposed_by[i:i+3]
 
+def generate_id(filename, count):
+	return filename + "{:0>3d}".format(count)
 
 def covert2csv(rawdata_dir):
 	for file in os.listdir(rawdata_dir):
@@ -50,9 +53,9 @@ def csv2json(rawdata_dir):
 	all_billsfile = codecs.open("bills.json", 'w', 'utf-8')
 
 	for file in os.listdir(rawdata_dir):
+		bill_count = 0
 		if file.endswith(".csv"):
 			csvfile = rawdata_dir + "/" + file
-			link = get_link(os.path.basename(csvfile[:-4]))
 			fieldnames = ("bill_no", "proposed_by", "abstract", "committee_motion", "councile_motion")
 			reader = csv.DictReader(open(csvfile, 'r'), fieldnames)
 			bills = json.dumps([row for row in reader], indent=4, sort_keys=True, ensure_ascii=False)
@@ -60,8 +63,9 @@ def csv2json(rawdata_dir):
 
 			for bill in bills:
 				if bill['proposed_by'] != u'提案人':
+					bill_count += 1
 					bill['election_year'] = 2009
-					bill['link'] = link
+					bill['links'] = get_link(os.path.basename(csvfile[:-4]))
 					bill['country'] = u'雲林縣'
 					bill['last_action'] = ''
 					bill['petitioned_by'] = ''
@@ -71,6 +75,7 @@ def csv2json(rawdata_dir):
 						{"date": "", "motion": u'大會議決', "resolution": bill['councile_motion']}
 					]
 					bill['proposed_by'] = list(get_proposed_name(bill['proposed_by']))
+					bill['id'] = generate_id(os.path.basename(csvfile[:-4]), bill_count)
 					all_bills.append(bill)
 
 	all_bills = json.dumps(all_bills,indent=4, sort_keys=True, ensure_ascii=False)
