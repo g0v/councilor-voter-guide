@@ -34,11 +34,6 @@
             ga('create', 'UA-41993330-2', 'g0v.tw');
             ga('send', 'pageview');
         </script>
-        <style type="text/css">
-            #search {width: 20%; float:right;}
-            #reference {float:right;}
-            #about {float:right;}
-        </style>
     </head>
     <body id="top">
         <div id="fb-root"></div>
@@ -53,7 +48,7 @@
         </script>
         <div class="navbar navbar-fixed-top navbar-inverse">
             <div class="navbar-inner">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" style="margin-top: 16px;">
                     <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                 </a>
                 
@@ -80,8 +75,8 @@
                             </ul>
                         </li>
                         <li id="suggestions"><a href="{% url 'suggestions:report' %}" >工程建議款</a></li>
-                        <li id="about"><a href="{% url 'about' %}">關於</a></li>
-                        <li id="reference"><a href="{% url 'reference' %}">資料來源</a></li>
+                    </ul>
+                    <ul class="nav pull-right">
                         <li id="search">
                             <script>
                               (function() {
@@ -97,6 +92,8 @@
                             </script>
                             <gcse:search></gcse:search>
                         </li>
+                        <li id="reference"><a href="{% url 'reference' %}">資料來源</a></li>
+                        <li id="about"><a href="{% url 'about' %}">關於</a></li>
                     </ul>
                 </div>
             </div>
