@@ -136,7 +136,25 @@ def biller(request, councilor_id, election_year):
             keyword_been_searched(keyword, 'bills')
     else:
         bills = Bills.objects.filter(query).order_by('-uid')
-    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), 'county': councilor.county, 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'primaryonly': primaryonly})
+    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), 'county': councilor.county, 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'primaryonly': primaryonly, 'category':None, 'index':'councilor'})
+
+def biller_category(request, councilor_id, election_year, category):
+    try:
+        councilor = CouncilorsDetail.objects.get(election_year=election_year, councilor_id=councilor_id)
+    except Exception, e:
+        return HttpResponseRedirect('/')
+    query = Q(proposer__id=councilor.id, councilors_bills__petition=False, category=category)
+    primaryonly = request.GET.get('primaryonly', False)
+    if primaryonly:
+        query = query & Q(councilors_bills__priproposer=True)
+    keyword = keyword_normalize(request.GET)
+    if keyword:
+        bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in keyword.split()))).order_by('-uid')
+        if bills:
+            keyword_been_searched(keyword, 'bills')
+    else:
+        bills = Bills.objects.filter(query).order_by('-uid')
+    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), '`county': councilor.county, 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'primaryonly': primaryonly, 'category':category})
 
 def voter(request, councilor_id, election_year):
     votes, notvote, query = None, False, Q()
