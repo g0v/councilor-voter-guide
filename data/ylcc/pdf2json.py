@@ -22,6 +22,18 @@ def get_link(filename):
 			return links[i]
 
 
+def get_proposed_name(proposed_by):
+	for i in xrange(0, len(proposed_by), 3):
+		name = proposed_by[i:i+3]
+		if ('  ' in name):
+			name = proposed_by[i:i+5]
+			i = i+2
+			yield name.replace('  ', '')
+		else:
+			if (len(name) == 3):
+				yield proposed_by[i:i+3]
+
+
 def covert2csv(rawdata_dir):
 	for file in os.listdir(rawdata_dir):
 		if file.endswith(".pdf"):
@@ -31,6 +43,7 @@ def covert2csv(rawdata_dir):
 				tabula_cmd = "jruby %s -r -p all -o %s %s" % (tabula_script, csvfile, pdffile)
 				print tabula_cmd
 				os.system(tabula_cmd)
+
 
 def csv2json(rawdata_dir):
 	all_bills = []
@@ -53,10 +66,16 @@ def csv2json(rawdata_dir):
 					bill['last_action'] = ''
 					bill['petitioned_by'] = ''
 					bill['methods'] = ''
+					bill['motions'] = [
+						{"date": "", "motion": u'審查意見', "resolution": bill['committee_motion']},
+						{"date": "", "motion": u'大會議決', "resolution": bill['councile_motion']}
+					]
+					bill['proposed_by'] = list(get_proposed_name(bill['proposed_by']))
 					all_bills.append(bill)
 
 	all_bills = json.dumps(all_bills,indent=4, sort_keys=True, ensure_ascii=False)
 	all_billsfile.write(all_bills)
+
 
 if __name__ == '__main__':
 	script_path = os.path.dirname(os.path.abspath(__file__))
