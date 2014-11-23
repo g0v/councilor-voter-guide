@@ -66,7 +66,7 @@ def csv2json(rawdata_dir):
 					bill_count += 1
 					bill['election_year'] = 2009
 					bill['links'] = get_link(os.path.basename(csvfile[:-4]))
-					bill['country'] = u'雲林縣'
+					bill['county'] = u'雲林縣'
 					bill['last_action'] = ''
 					bill['petitioned_by'] = ''
 					bill['methods'] = ''
