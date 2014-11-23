@@ -34,11 +34,6 @@
             ga('create', 'UA-41993330-2', 'g0v.tw');
             ga('send', 'pageview');
         </script>
-        <style type="text/css">
-            #search {width: 20%; height: 60px; float:right;}
-            #reference {float:right;}
-            #about {float:right;}
-        </style>
     </head>
     <body id="top">
         <div id="fb-root"></div>
@@ -80,8 +75,8 @@
                             </ul>
                         </li>
                         <li id="suggestions"><a href="{% url 'suggestions:report' %}" >工程建議款</a></li>
-                        <li id="about"><a href="{% url 'about' %}">關於</a></li>
-                        <li id="reference"><a href="{% url 'reference' %}">資料來源</a></li>
+                    </ul>
+                    <ul class="nav pull-right">
                         <li id="search">
                             <script>
                               (function() {
@@ -97,6 +92,8 @@
                             </script>
                             <gcse:search></gcse:search>
                         </li>
+                        <li id="about"><a href="{% url 'about' %}">關於</a></li>
+                        <li id="reference"><a href="{% url 'reference' %}">資料來源</a></li>
                     </ul>
                 </div>
             </div>
