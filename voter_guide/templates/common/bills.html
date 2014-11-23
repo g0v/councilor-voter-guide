@@ -12,7 +12,8 @@
         {% for fragment in bills %}
         <tr style="background-color: {% cycle '#DDDDDD' 'white' %};">
             <td style="text-align:center; vertical-align:middle;">
-                {{fragment.category}}
+                <a href="{% url 'bills:bills_category' index=index county=fragment.county category=fragment.category %}">{{fragment.category}}
+                </a>
             </td>
             <td style="text-align:center; vertical-align:middle;">
                 {% with councilor=fragment.primary_proposer.0 %}
