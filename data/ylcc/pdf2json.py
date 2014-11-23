@@ -24,6 +24,9 @@ def get_link(filename):
 
 
 def get_proposed_name(proposed_by):
+	# remove single extra space
+	proposed_by = re.sub('\s(?=\S{3})', '', proposed_by)
+
 	for i in xrange(0, len(proposed_by), 3):
 		name = proposed_by[i:i+3]
 		if ('  ' in name):
