@@ -20,7 +20,6 @@ def select_county(request, index, county):
 
 
 def bills(request, county, index):
-    print 'bills'
     query = Q(county=county)
     keyword = keyword_normalize(request.GET)
     district = request.GET.get('district', None)
@@ -41,7 +40,7 @@ def bills(request, county, index):
     district_list = list(set([i.district for i in CouncilorsDetail.objects.filter(county=county).filter(~Q(district=''))]))
     return render(request, 'bills/bills.html', {'county': county, 'index': index, 'keyword_hot': keyword_list('bills'), 'category':None, 'keyword': keyword, 'bills': bills, 'district_list': district_list})
 
-def bills_category(request, county, category, index):
+def bills_category(request, county, index, category):
     query = Q(county=county, category=category)
     keyword = keyword_normalize(request.GET)
     district = request.GET.get('district', None)
