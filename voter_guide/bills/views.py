@@ -18,12 +18,12 @@ def select_county(request, index, county):
     counties = CouncilorsDetail.objects.values_list('county', flat=True).order_by('county').distinct()
     return render(request, 'bills/select_county.html', {'index': index, 'counties': counties})
 
+
 def bills(request, county, index):
     query = Q(county=county)
     keyword = keyword_normalize(request.GET)
     district = request.GET.get('district', None)
-
-
+         
     if keyword:
         bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in split_unicode_chrs(keyword))))
         if bills:
@@ -34,11 +34,32 @@ def bills(request, county, index):
     if district and district != 'all':
         all_councilor_id_in_district = list(set([i.id for i in CouncilorsDetail.objects.filter(county=county).filter(district__contains=district)]))
         bills = bills.filter(proposer__in=all_councilor_id_in_district)
-
+ 
     bills = bills.order_by('-uid')
 
     district_list = list(set([i.district for i in CouncilorsDetail.objects.filter(county=county).filter(~Q(district=''))]))
-    return render(request, 'bills/bills.html', {'county': county, 'index': index, 'keyword_hot': keyword_list('bills'), 'keyword': keyword, 'bills': bills, 'district_list': district_list})
+    return render(request, 'bills/bills.html', {'county': county, 'index': index, 'keyword_hot': keyword_list('bills'), 'category':None, 'keyword': keyword, 'bills': bills, 'district_list': district_list})
+
+def bills_category(request, county, index, category):
+    query = Q(county=county, category=category)
+    keyword = keyword_normalize(request.GET)
+    district = request.GET.get('district', None)
+         
+    if keyword:
+        bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in split_unicode_chrs(keyword))))
+        if bills:
+            keyword_been_searched(keyword, 'bills')
+    else:
+        bills = Bills.objects.filter(query)
+
+    if district and district != 'all':
+        all_councilor_id_in_district = list(set([i.id for i in CouncilorsDetail.objects.filter(county=county).filter(district__contains=district)]))
+        bills = bills.filter(proposer__in=all_councilor_id_in_district)
+ 
+    bills = bills.order_by('-uid')
+
+    district_list = list(set([i.district for i in CouncilorsDetail.objects.filter(county=county).filter(~Q(district=''))]))
+    return render(request, 'bills/bills.html', {'category':category, 'county': county, 'index': index, 'keyword_hot': keyword_list('bills'), 'keyword': keyword, 'bills': bills, 'district_list': district_list})
 
 def bill_detail(request, county, bill_id):
     try:
