@@ -90,59 +90,37 @@ class Spider(scrapy.Spider):
 		    			#print title
 		    			bill_id=sid+'_'+item['category']+'_'+item['bill_no']
 		    			item['id']=bill_id
+		    			if 0<=int(sid)<=14:
+		    				item['election_year']='2005'
+		    			else:
+		    				item['election_year']='2009' 
 		    			print item['id']    			
     				if itemNames[idx].re(u'[\s]*提[\s]*案[\s]*人'):
-	    				people=itemInfo[idx].xpath("text()").extract()[0].replace(u'\r\n', u'\u3000')
-	    				persons=people.split(u'\u3000')
-	    				#print len(persons)
-	    				for obj in persons:
-	    					#print obj
-	    					if len(obj):
-	    						names=obj.split(u' ')
-
-		    					name_count=0;
-		    					#print len(names)
-		    					while(name_count<len(names)):
-		    						if len(names[name_count])==0:
-		    							name_count +=1
-		    							continue
-		    						if len(names[name_count])==1:
-		    							if (name_count+2) < len(names):
-		    								proposed_name=names[name_count]+names[name_count+2]
-		    							else:
-		    								proposed_name=names[name_count]+names[len(names)-1]
-		    							name_count += 3
-		    						else:
-		    							proposed_name=names[name_count]
-		    							name_count += 1
-		    						#print proposed_name
-	    							item['proposed_by'].append(proposed_name)
+    					people = re.sub(u'[\u3000\s、]', ' ', itemInfo[idx].xpath("text()").extract()[0])
+    					persons = people.split()
+    					firstname=''
+    					for obj in persons:
+    						if len(obj)<2 and firstname=='':
+		    					firstname=obj
+		    					continue
+		    				if firstname != '':
+		    					obj=firstname+obj
+		    					firstname=''
+		    				item['proposed_by'].append(obj)
 	    			if itemNames[idx].re(u'[\s]*連[\s]*署[\s]*人') or itemNames[idx].re(u'[\s]*附[\s]*議[\s]*人'):
 	    				if itemInfo[idx].xpath("text()").extract():
-		    				people=itemInfo[idx].xpath("text()").extract()[0].replace(u'\r\n', u'\u3000')
-
-		    				persons=people.split(u'\u3000')
-		    				#print len(persons)
+		    				#people=itemInfo[idx].xpath("text()").extract()[0].replace(u'\r\n', u'\u3000')
+		    				people = re.sub(u'[\u3000\s、]', ' ', itemInfo[idx].xpath("text()").extract()[0])
+		    				persons = people.split()
+		    				firstname=''
 		    				for obj in persons:
-		    					names=obj.split(u' ')
-
-		    					name_count=0;
-		    					#print len(names)
-		    					while(name_count<len(names)):
-		    						if len(names[name_count])==0:
-			    						name_count +=1
-			    						continue	
-		    						if len(names[name_count])==1:
-		    							if (name_count+2) < len(names):
-		    								petitioned_name=names[name_count]+names[name_count+2]
-		    							else:
-		    								petitioned_name=names[name_count]+names[len(names)-1]
-		    							name_count += 3
-		    						else:
-		    							petitioned_name=names[name_count]
-		    							name_count += 1
-		    						#print petitioned_name	
-		    						item['petitioned_by'].append(petitioned_name)
+		    					if len(obj)<2 and firstname=='':
+		    						firstname=obj
+		    						continue
+		    					if firstname != '':
+		    						obj=firstname+obj
+		    						firstname=''
+		    					item['petitioned_by'].append(obj)
 	    			if itemNames[idx].re(u'[\s]*案[\s]*由'):
 	    				#item['abstract']=itemInfo[idx].xpath("text()").extract()
 	    				texts=itemInfo[idx].xpath("text()").extract()
@@ -158,10 +136,12 @@ class Spider(scrapy.Spider):
 	    				item['description']=description
     				if itemNames[idx].re(u'[\s]*決[\s]*議[\s]*'):
     					print '大會決議'
-    					committee_motion={'motion':u'大會決議', 'resolution':itemInfo[idx].xpath("text()").extract()[0], 'sitting':title}
+    					obj=itemInfo[idx].xpath("text()").extract()[0].replace('\r\n','')
+    					committee_motion={'motion':u'大會決議', 'resolution':obj, 'sitting':title}
     					item['motions'].append(committee_motion)
     				if itemNames[idx].re(u'[\s]*審[\s]*查[\s]*意[\s]*見'):
-    					committee_motion={'motion':u'委員會審查意見', 'resolution':itemInfo[idx].xpath("text()").extract()[0],'sitting':title}
+    					obj=itemInfo[idx].xpath("text()").extract()[0].replace('\r\n','')	
+    					committee_motion={'motion':u'委員會審查意見', 'resolution':obj,'sitting':title}
     					item['motions'].append(committee_motion)
     		itemResult.append(item)		
 
