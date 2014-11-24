@@ -147,17 +147,24 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
   height: 60px;
 }
 
-#search > div{
+#___gcse_0{
   height: inherit;
   display: table-caption;
   width: 300px;
   text-align: -webkit-match-parent;
 }
 
+#___gcse_1{
+  display: none;
+}
+
 @media (max-width: 979px) {
-  #search > div{
+  #___gcse_1{
     width: 100%;
     display: block;
+  }
+  #___gcse_0{
+    display:none;
   }
 }
 
@@ -167,7 +174,7 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
   }
 }
 
-#gs_tti50 > input{
+#gs_tti50 > input, #gs_tti51 > input{
   height: 25px!important;
   margin-top: -3px!important;
 }
