@@ -54,7 +54,7 @@ h7 {
   height: auto;
   vertical-align: top;
   background-color: rgb(0, 204, 204);
-  color:white;
+  color:#444;
   box-shadow: 2px 2px 4px #aaa;
 }
 
@@ -65,7 +65,7 @@ h7 {
 
 .direct-item > h4{
   font-size: 24px;
-  text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .5);
+  text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .25);
   line-height: 150%;
 }
 
@@ -73,7 +73,8 @@ h7 {
   position: absolute;
   bottom:10px;
   font-size: 18px;
-  text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .3);
+  color:#666;
+  text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .2);
 }
 
 @media screen and (max-width: 400px){
@@ -97,12 +98,12 @@ h7 {
 }
 
 .council-bluegreen{
-  background: #32CBCB;
+  background: #EDEDED;
 }
 
 .council-darkbluegreen{
   font-size: 16px;
-  background: #3FA1A1;
+  background: #D5D5D5;
 }
 
 .council-purple{
@@ -147,10 +148,15 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
     filter: none;
 }
 
+.gsc-control-cse{
+  border-color: #151515;
+  background-color: #151515;
+}
+
 .gsc-input-box{
   background: none!important;
   border: none!important;
-  height: 60px;
+  /*height: 60px;*/
 }
 
 #___gcse_0{
@@ -158,10 +164,14 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
   display: table-caption;
   width: 300px;
   text-align: -webkit-match-parent;
+  border-color: #151515;
+  background-color: #151515;
 }
 
 #___gcse_1{
   display: none;
+  border-color: #151515;
+  background-color: #151515;
 }
 
 @media (max-width: 979px) {
