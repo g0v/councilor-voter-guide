@@ -141,12 +141,10 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
     border-color: none !important;
     filter: none;
 }
-
 .gsc-control-cse{
   border-color: #151515;
   background-color: #151515;
 }
-
 .gsc-input-box{
   background: none!important;
   border: none!important;
@@ -154,8 +152,12 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
 }
 
 #___gcse_0{
+
+  border-color: #151515;
+  background-color: #151515;
   height: inherit;
   display: table-caption;
+  display:inline-block;
   width: 300px;
   text-align: -webkit-match-parent;
   border-color: #151515;
