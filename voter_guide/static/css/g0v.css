@@ -142,10 +142,15 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
     filter: none;
 }
 
+.gsc-control-cse{
+  border-color: #151515;
+  background-color: #151515;
+}
+
 .gsc-input-box{
   background: none!important;
   border: none!important;
-  height: 60px;
+  /*height: 60px;*/
 }
 
 #___gcse_0{
@@ -153,10 +158,14 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
   display: table-caption;
   width: 300px;
   text-align: -webkit-match-parent;
+  border-color: #151515;
+  background-color: #151515;
 }
 
 #___gcse_1{
   display: none;
+  border-color: #151515;
+  background-color: #151515;
 }
 
 @media (max-width: 979px) {
