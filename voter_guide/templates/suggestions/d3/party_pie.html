@@ -11,8 +11,15 @@
     }
 
 </style>
+
 <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/d3.min.js"></script>
 <script>
+var tooltip = d3.select("body")
+    .append("div")
+        .style("position", "absolute")
+            .style("z-index", "10")
+                .style("visibility", "hidden")
+                    .text("a simple tooltip");
 
     var data = {{parties|as_json}}
 
@@ -42,12 +49,17 @@
     var g = svg.selectAll(".arc")
     .data(pie(data))
     .enter().append("g")
-    .attr("class", "arc");
+    .attr("class", "arc")
+    .on("mouseover", function(d){
+        return tooltip.style("visibility", "visible").text("0");})
+    .on("mousemove", function(d){
+        return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px").text(zhutil.approximate(d.value, {base: '萬', extra_decimal: 0}))})
+    .on("mouseout", function(){
+        return tooltip.style("visibility", "hidden");});
 
     g.append("path")
     .attr("d", arc)
     .style("fill", function(d) { return color(d.data.party); });
-
     g.append("text")
     .attr("transform", function(d) {
         var c = arc.centroid(d),
@@ -63,11 +75,14 @@
         return (d.endAngle + d.startAngle)/2 > Math.PI ?
         "end" : "start";
     })
+    /*
     .text(function(d) {
         if (d.value != 0)
         return zhutil.approximate(d.value, {base: '萬', extra_decimal: 0});
     })
+    */
     .style("fill", function(d) { return color(d.data.party); });
+
 
     var legend = d3.select("#party_pie").append("svg")
         .attr("class", "legend")
