@@ -20,7 +20,7 @@
         <link href="https://s3-ap-northeast-1.amazonaws.com/twly.tw/bootstrap.min.css" rel="stylesheet">
         <link href="https://s3-ap-northeast-1.amazonaws.com/twly.tw/bootstrap-responsive.min.css" rel="stylesheet" >
         <link href="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/g0v.css" rel="stylesheet">
-        <link rel="shortcut icon" href="https://s3-ap-northeast-1.amazonaws.com/twly.tw/favicon.png">
+        <link rel="shortcut icon" href="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/favicon.ico.png">
         <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/css/semantic.css" rel="stylesheet">
         <script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/javascript/semantic.js"></script>
         <!--[if lt IE 9]>
@@ -53,8 +53,8 @@
                 </a>
 
                 <div class="nav-collapse collapse">
+                    <a class="brand" href="/"><img style="max-height:25px;" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/facebook-icon-universal.png"></img><font><b>{% if county %}（{{county}}）{% endif %}</b></font></a>
                     <ul class="nav">
-                        <li><a class="brand" href="/">&nbsp;<font><b>議員投票指南{% if county %}（{{county}}）{% endif %}</b></font></a></li>
                         <li id="candidates"><a href="{% url 'candidates:counties' election_year='2014' %}" >2014候選人</a></li>
                         <li id="councilors" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">找議員<b class="caret"></b></a>
