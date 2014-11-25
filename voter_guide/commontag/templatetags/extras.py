@@ -57,7 +57,7 @@ def each_county_remark(value):
             u'連江縣議會找不到記名的出缺席名單和記名表決，<a href="http://www.mtcc.gov.tw/">詳見議會官網</a>',
         ],
         u'金門縣': [
-            u'臺東縣議會找不到記名的出缺席名單和記名表決，<a href="http://www.kmcc.gov.tw/">詳見議會官網</a>',
+            u'金門縣議會找不到記名的出缺席名單和記名表決，<a href="http://www.kmcc.gov.tw/">詳見議會官網</a>',
         ],
     }
     return '<br>'.join(maps.get(value, ''))
