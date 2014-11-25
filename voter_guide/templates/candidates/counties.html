@@ -14,8 +14,8 @@
         {% for county in counties %}
             <div class="column direct-container">
             <a href="{% url 'candidates:districts' county=county.county election_year=election_year %}" class="direct-item {% cycle 'council-bluegreen' 'council-darkbluegreen' %}">
-                <h4>{{county.county}}</h4>
-                <div>&nbsp;</div>
+                <h4>{{county.county}}<img class="pull-right" width="50%" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county.county}}.png"></img></h4>
+                <div></div>
                 <br>
                 <br>
                 <div class="county-sub">

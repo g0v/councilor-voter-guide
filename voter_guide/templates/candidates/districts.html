@@ -9,7 +9,8 @@
 {% block right %}
     <div class="five column doubling ui grid row">
         <div class="page-header text-center span10 offset1">
-            <h3>{{election_year}} {{county}} - 議員選區</h3>
+
+            <h3><img width="10%" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img> {{election_year}} {{county}} - 議員選區</h3>
         </div>
             {% for district in districts %}
             <div class="column direct-container">
