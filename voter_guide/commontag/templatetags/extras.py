@@ -23,6 +23,42 @@ def each_county_remark(value):
         u'臺中市': [
             u'臺中市議會除了第一次會議，其餘紀錄找不到記名的出缺席名單，<a href="http://www.tccc.gov.tw/govknowledge/know_docview.asp?id={A3251160-17E2-4B5B-9F99-1A985453159A}&wfid=23&info=1837">詳見議會官網</a>',
         ],
+        u'彰化縣': [
+            u'彰化縣議會找不到記名的出缺席名單和記名表決，<a href="http://www.chcc.gov.tw/">詳見議會官網</a>',
+        ],
+        u'嘉義市': [
+            u'嘉義市議會找不到記名的出缺席名單和記名表決，<a href="http://www.cycc.gov.tw/form/index.asp?m=2&m1=7&m2=23">詳見議會官網</a>',
+        ],
+        u'嘉義縣': [
+            u'嘉義縣議會找不到記名的出缺席名單和記名表決，<a href="http://www.cyscc.gov.tw/chinese/FormDownLoad_2.aspx?p=4&n=48">詳見議會官網</a>',
+        ],
+        u'新竹縣': [
+            u'新竹縣議會找不到記名的出缺席名單和記名表決，<a href="http://www.hcc.gov.tw/">詳見議會官網</a>',
+        ],
+        u'新竹市': [
+            u'新竹市議會找不到記名的出缺席名單和記名表決，<a href="http://www.hsinchu-cc.gov.tw/">詳見議會官網</a>',
+        ],
+        u'苗栗縣': [
+            u'苗栗縣議會找不到議案、記名的出缺席名單和記名表決，<a href="http://www.mcc.gov.tw/">詳見議會官網</a>',
+        ],
+        u'南投縣': [
+            u'南投縣議會找不到記名的出缺席名單和記名表決，<a href="http://www.ntcc.gov.tw/">詳見議會官網</a>',
+        ],
+        u'花蓮縣': [
+            u'花蓮縣議會找不到記名的出缺席名單和記名表決，<a href="http://www.hlcc.gov.tw/">詳見議會官網</a>',
+        ],
+        u'臺東縣': [
+            u'臺東縣議會找不到記名的出缺席名單和記名表決，<a href="http://www.taitungcc.gov.tw/">詳見議會官網</a>',
+        ],
+        u'屏東縣': [
+            u'屏東縣議會找不到記名的出缺席名單和記名表決，<a href="http://www.ptcc.gov.tw/">詳見議會官網</a>',
+        ],
+        u'連江縣': [
+            u'連江縣議會找不到記名的出缺席名單和記名表決，<a href="http://www.mtcc.gov.tw/">詳見議會官網</a>',
+        ],
+        u'金門縣': [
+            u'臺東縣議會找不到記名的出缺席名單和記名表決，<a href="http://www.kmcc.gov.tw/">詳見議會官網</a>',
+        ],
     }
     return '<br>'.join(maps.get(value, ''))
 
