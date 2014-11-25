@@ -76,6 +76,12 @@ h7 {
   text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .3);
 }
 
+@media screen and (max-width: 400px){
+  .county-sub, .districts-sub{
+    display: none;
+  }
+}
+
 .county-district:before{
   content:"選區：";
 }
@@ -177,4 +183,22 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
 #gs_tti50 > input, #gs_tti51 > input{
   height: 25px!important;
   margin-top: -3px!important;
+}
+
+.hero-unit{
+  position: relative;
+}
+
+.hero-unit img{
+  position: absolute;
+  right: 5%;
+  top: 10%;
+  height: 80%;
+  opacity: .65;
+}
+
+@media (max-width: 979px) {
+  .hero-unit img{
+    display:none;
+  }
 }

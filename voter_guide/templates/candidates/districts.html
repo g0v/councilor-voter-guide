@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load extras %}
 
 {% block title %}
     <title>議員投票指南: {{election_year}}{{county}}候選人</title>
@@ -7,11 +8,14 @@
 {% endblock title %}
 
 {% block right %}
+    <div class="hero-unit span12" style="margin-left: 0px;">
+        <img class="pull-right" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img>
+        <h2>{{election_year}} {{county}} - 議員選區</h2>
+        {% with county_url=county|county_urls %}
+        <a href="{{county_url}}" class="btn btn-primary btn-large" target="_blank">{{county}}議會網站</a>
+        {% endwith %}
+    </div>
     <div class="five column doubling ui grid row">
-        <div class="page-header text-center span10 offset1">
-
-            <h3><img width="10%" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img> {{election_year}} {{county}} - 議員選區</h3>
-        </div>
             {% for district in districts %}
             <div class="column direct-container">
             <a href="{% url 'candidates:district' county=county election_year=election_year constituency=district.constituency %}" class="direct-item {% cycle 'council-bluegreen' 'council-darkbluegreen' %}">
