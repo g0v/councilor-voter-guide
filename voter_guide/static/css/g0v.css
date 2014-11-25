@@ -54,7 +54,7 @@ h7 {
   height: auto;
   vertical-align: top;
   background-color: rgb(0, 204, 204);
-  color:#444;
+  color:white;
   box-shadow: 2px 2px 4px #aaa;
 }
 
@@ -73,7 +73,7 @@ h7 {
   position: absolute;
   bottom:10px;
   font-size: 18px;
-  color:#666;
+  color:white;
   text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .2);
 }
 
@@ -98,12 +98,12 @@ h7 {
 }
 
 .council-bluegreen{
-  background: #EDEDED;
+  background: #32CBCB;
 }
 
 .council-darkbluegreen{
   font-size: 16px;
-  background: #D5D5D5;
+  background: #3FA1A1;
 }
 
 .council-purple{
