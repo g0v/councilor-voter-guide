@@ -14,12 +14,11 @@
 
 <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/d3.min.js"></script>
 <script>
-var tooltip = d3.select("body")
+    var tooltip = d3.select("body")
     .append("div")
-        .style("position", "absolute")
-            .style("z-index", "10")
-                .style("visibility", "hidden")
-                    .text("a simple tooltip");
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden");
 
     var data = {{parties|as_json}}
 
@@ -75,12 +74,6 @@ var tooltip = d3.select("body")
         return (d.endAngle + d.startAngle)/2 > Math.PI ?
         "end" : "start";
     })
-    /*
-    .text(function(d) {
-        if (d.value != 0)
-        return zhutil.approximate(d.value, {base: '萬', extra_decimal: 0});
-    })
-    */
     .style("fill", function(d) { return color(d.data.party); });
 
 
