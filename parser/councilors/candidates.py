@@ -91,8 +91,9 @@ for f in files:
             candidate['previous_county'] = county_change['from'] if candidate['county'] == county_change['to'] else candidate['county']
         candidate['name'] = re.sub('\s', '', candidate['name'])
         candidate['name'] = re.sub(u'[˙・•．]', u'‧', candidate['name'])
-        if candidate['name'] == u'李姸慧':
-            candidate['name'] = u'李妍慧'
+        for case in [(u'新竹市', '4', u'李姸慧', u'李妍慧'), (u'臺南市', '9', u'林慶鎭', u'林慶鎮'), ]:
+            if (candidate['county'], candidate['constituency'], candidate['name']) == case[:3]:
+                candidate['name'] = case[3]
         candidate['election_year'] = election_year
         candidate['uid'], candidate['last_election_year'] = latest_term(candidate)
         insertCandidates(candidate)

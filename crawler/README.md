@@ -17,7 +17,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 | 縣市   | 代號      | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
 |--------|-----------|----------|----------|------|--------|
 | 基隆市 | kmc       |          | X        | X    | X      |
-| 台北市 | tcc       |          |          |      |        |
+| 臺北市 | tcc       |          |          |      |        |
 | 新北市 | ntp       |          |          |      |        |
 | 桃園縣 | tycc      |          | X        | X    | X      |
 | 新竹市 | hsinchucc |          | X        | X    | X      |
@@ -29,11 +29,11 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 
 | 縣市   | 代號  | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
 |--------|-------|----------|----------|------|--------|
-| 台中市 | tccc  |          | X        |      |        |
+| 臺中市 | tccc  |          | X        |      |        |
 | 彰化縣 | chcc  |          | X        |      | X      |
 | 南投縣 | ntcc  |          | X        |      | X      |
 | 雲林縣 | ylcc  |          | X        | X    | X      |
-| 嘉義縣 | cyscc |          | X        | X    | X      |
+| 嘉義縣 | cyscc |          | X        |      | X      |
 | 嘉義市 | cycc  |          | X        | X    | X      |
 
 ### 東部
@@ -41,14 +41,14 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 | 縣市   | 代號      | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
 |--------|-----------|----------|----------|------|--------|
 | 宜蘭縣 | ilcc      |          | X        |      |        |
-| 花蓮縣 | hlcc      |          | X        | X    | X      |
-| 台東縣 | taitungcc |          | X        | X    | X      |
+| 花蓮縣 | hlcc      |          | X        |      | X      |
+| 臺東縣 | taitungcc |          | X        | X    | X      |
 
 ### 南部
 
 | 縣市   | 代號 | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
 |--------|------|----------|----------|------|--------|
-| 台南市 | tncc |          | X        |      | X      |
+| 臺南市 | tncc |          | X        |      | X      |
 | 高雄市 | kcc  |          |          |      |        |
 | 屏東縣 | ptcc |          | X        | X    | X      |
 
@@ -140,7 +140,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
     "election_year": "2010", 
     "in_office": true, 
     "platform": [
-        "致力於開發公民參與社會的資訊平台與工具", 
+        "致力於開發公民參與社會的資訊平臺與工具", 
     ], 
     "term_end": {
         "date": "2014-12-25"
