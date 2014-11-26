@@ -32,9 +32,9 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 | 臺中市 | tccc  |          | X        |      |        |
 | 彰化縣 | chcc  |          | X        |      | X      |
 | 南投縣 | ntcc  |          | X        |      | X      |
-| 雲林縣 | ylcc  |          | X        | X    | X      |
+| 雲林縣 | ylcc  |          | X        |      | X      |
 | 嘉義縣 | cyscc |          | X        |      | X      |
-| 嘉義市 | cycc  |          | X        | X    | X      |
+| 嘉義市 | cycc  |          | X        |      | X      |
 
 ### 東部
 
