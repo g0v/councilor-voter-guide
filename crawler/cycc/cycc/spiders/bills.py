@@ -11,7 +11,7 @@ import json
 
 class Spider(scrapy.Spider):
     name = "bills"
-    
+
     allowed_domains = ["www.cycc.gov.tw"]
     start_urls = ["http://www.cycc.gov.tw/form3/index.asp?m=99&m1=7&m2=24&sid="]
     '''
@@ -53,7 +53,7 @@ class Spider(scrapy.Spider):
     	sid=''
     	title=''
     	#itemResult=[]
-  	
+
     	tables=sel.xpath(".//table[@bgcolor='#37B7FB']")
     	print len(tables)
     	for table in tables:
@@ -61,6 +61,7 @@ class Spider(scrapy.Spider):
     		#print len(detailes)
     		item = Bills()
 
+    		item['county']=u'嘉義市'
     		item['proposed_by']=[]
     		item['petitioned_by']=[]
     		item['motions']=[]
@@ -76,10 +77,10 @@ class Spider(scrapy.Spider):
     				if itemNames[idx].re(u'[\s]*類[\s]*別[\s]*'):
     					infos=itemInfo[idx].xpath("text()").extract()
     					if len(infos):
-    						item['category']=itemInfo[idx].xpath("text()").extract()[0]		
+    						item['category']=itemInfo[idx].xpath("text()").extract()[0]
     					#print item['category']
     				if itemNames[idx].re(u'[\s]*編[\s]*號[\s]*'):
-    					item['bill_no']=itemInfo[idx].xpath("text()").extract()[0]		
+    					item['bill_no']=itemInfo[idx].xpath("text()").extract()[0]
     					#print item['bill_no']
     					meeting_id_startidx=response.url.find('sid=')+4
 		    			subUrl=response.url[meeting_id_startidx:]
@@ -93,8 +94,8 @@ class Spider(scrapy.Spider):
 		    			if 0<=int(sid)<=14:
 		    				item['election_year']='2005'
 		    			else:
-		    				item['election_year']='2009' 
-		    			print item['id']    			
+		    				item['election_year']='2009'
+		    			print item['id']
     				if itemNames[idx].re(u'[\s]*提[\s]*案[\s]*人'):
     					people = re.sub(u'[\u3000\s、]', ' ', itemInfo[idx].xpath("text()").extract()[0])
     					persons = people.split()
@@ -127,12 +128,12 @@ class Spider(scrapy.Spider):
 	    				abstract=''
 	    				for obj in texts:
 	    					abstract += obj.replace('\r\n','')
-	    				item['abstract']=abstract	
+	    				item['abstract']=abstract
     				if itemNames[idx].re(u'[\s]*理[\s]*由'):
 	    				texts=itemInfo[idx].xpath("text()").extract()
 	    				description=''
 	    				for obj in texts:
-	    					description += obj.replace('\r\n','')	
+	    					description += obj.replace('\r\n','')
 	    				item['description']=description
     				if itemNames[idx].re(u'[\s]*決[\s]*議[\s]*'):
     					print '大會決議'
@@ -140,10 +141,9 @@ class Spider(scrapy.Spider):
     					committee_motion={'motion':u'大會決議', 'resolution':obj, 'sitting':title}
     					item['motions'].append(committee_motion)
     				if itemNames[idx].re(u'[\s]*審[\s]*查[\s]*意[\s]*見'):
-    					obj=itemInfo[idx].xpath("text()").extract()[0].replace('\r\n','')	
+    					obj=itemInfo[idx].xpath("text()").extract()[0].replace('\r\n','')
     					committee_motion={'motion':u'委員會審查意見', 'resolution':obj,'sitting':title}
     					item['motions'].append(committee_motion)
-    		itemResult.append(item)		
+    		itemResult.append(item)
 
-    	return itemResult			
-    					
+    	return itemResult
