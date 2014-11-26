@@ -28,3 +28,11 @@ class Councilor(Item):
 	term_start = Field()
 	image = Field()
 	links = Field()
+
+class MeetingMinutes(Item):
+    county = Field()
+    sitting = Field()
+    category = Field()
+    date = Field()
+    meeting = Field()
+    download_url = Field()
