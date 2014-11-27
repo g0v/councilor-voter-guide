@@ -116,7 +116,6 @@
         'class': 'label-text'
     })
     .text(function(d) {
-        //if (d.value > 0.03)
         return d3.format("%")(d.value);
     })
     .style("fill", function(d) { return color(d.data.key); });

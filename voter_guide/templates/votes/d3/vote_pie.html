@@ -61,29 +61,6 @@
     .attr("d", arc)
     .style("fill", function(d) { return color(d.data.key); });
 
-    /*
-    g.append("text")
-    .attr("transform", function(d) {
-        var c = arc.centroid(d),
-        x = c[0],
-        y = c[1],
-        // pythagorean theorem for hypotenuse
-        h = Math.sqrt(x*x + y*y);
-        return "translate(" + (x/h * labelr) +  ',' +
-        (y/h * labelr) +  ")";
-    })
-    .attr("dy", ".35em")
-    .attr("text-anchor", function(d) {
-        return (d.endAngle + d.startAngle)/2 > Math.PI ?
-        "end" : "start";
-    })
-    .text(function(d) {
-        if (d.value != 0)
-        return legend(d.data.key) + '：' + d.value;
-    })
-    .style("fill", function(d) { return color(d.data.key); });
-    */
-    
     g.append("circle").attr({
         x: 0,
         y: 0,
