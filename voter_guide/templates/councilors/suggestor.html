@@ -124,7 +124,8 @@
                 var number = $(ele).text()
                 zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
                 $(ele).replaceWith(zh_number)
-            })
+            });
+            relax();
         });
     </script>
 {% endblock script %}
