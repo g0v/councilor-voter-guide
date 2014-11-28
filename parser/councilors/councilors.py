@@ -46,6 +46,7 @@ def normalize_constituency(constituency):
 def normalize_councilor(councilor):
     councilor['name'] = re.sub(u'[。˙・•．]', u'‧', councilor['name'])
     councilor['name'] = re.sub(u'[　\s]', '', councilor['name'])
+    councilor['name'] = re.sub(u'(副?議長|議員)', '', councilor['name'])
     councilor['gender'] = re.sub(u'性', '', councilor.get('gender', ''))
     if councilor.get('party'):
         councilor['party'] = councilor['party'].strip()
