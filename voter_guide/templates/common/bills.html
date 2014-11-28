@@ -1,58 +1,59 @@
 {% load extras %}
-<table class="table table-bordered zebra" >
-    <thead>
-        <tr style="background-color: #FFCCFF;">
-            <th style="width: 10%">類別</th>
-            <th style="width: 10%">第一提案人</th>
-            <th style="width: 40%">案由</th>
-            <th style="width: 10%">執行情形</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for fragment in bills %}
-        <tr style="background-color: {% cycle '#DDDDDD' 'white' %};">
-            <td style="text-align:center; vertical-align:middle;">
-                {% if fragment.category %}
-                    {% if index == "normal" %}
-                    <a href="{% url 'bills:bills_category' index=index county=fragment.county category=fragment.category %}">{{fragment.category}}
-                    </a>
+<ul class="media-list">
+    {% for fragment in bills %}
+    <li class="media">
+        <div class="media-body well">
+            <h5>
+                <small>第一提案人</small>
+                {% with councilor=fragment.primary_proposer.0 %}
+                    {% if councilor %}
+                        <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}" rel="tooltip" title="{{ councilor.name }}的所有議案">
+                            {% include "common/name_color_by_party.html" %}
+                        </a>
                     {% else %}
-                    <a href="{% url 'councilors:biller_category' councilor_id=councilor.councilor_id election_year=councilor.election_year category=fragment.category %}">{{fragment.category}}
-                    </a>
+                        {{fragment.proposed_by}}
+                    {% endif %}
+                {% endwith %}
+            </h5>
+            <h3 class="media-heading">
+                <strong>
+                    {% if fragment.category %}
+                        {% if index == "normal" %}
+                            <a href="{% url 'bills:bills_category' index=index county=fragment.county category=fragment.category %}">
+                                {{fragment.category}}
+                            </a>
+                        {% else %}
+                            <a href="{% url 'councilors:biller_category' councilor_id=councilor.councilor_id election_year=councilor.election_year category=fragment.category %}">
+                                {{fragment.category}}
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                ：</strong>
+                
+                {% if fragment.abstract %}
+                    {% if keyword %}
+                        {{fragment.abstract|linebreaksbr|replace:keyword|safe}}
+                    {% else %}
+                        {{fragment.abstract}}
                     {% endif %}
                 {% endif %}
-            </td>
-            <td style="text-align:center; vertical-align:middle;">
-                {% with councilor=fragment.primary_proposer.0 %}
-                {% if councilor %}
-                    <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}" rel="tooltip" title="{{ councilor.name }}的所有議案">{% include "common/name_color_by_party.html" %}</a>
-                {% else %}
-                    {{fragment.proposed_by}}
-                {% endif %}
-                {% endwith %}
-            </td>
-            <td style="vertical-align:middle;">
-                <a href="{% url 'bills:bill_detail' county=fragment.county bill_id=fragment.uid %}">查看完整議案</a><br>
-            {% if fragment.abstract %}
-                {% if keyword %}
-                    {{fragment.abstract|linebreaksbr|replace:keyword|safe}}
-                {% else %}
-                    {{fragment.abstract}}
-                {% endif %}
-            {% endif %}
-            </td>
-            <td style="vertical-align:middle;">
-                {% if fragment.execution %}
-                    {{fragment.execution}}
-                {% elif fragment.last_action %}
-                    {{fragment.last_action}}
-                {% else %}
-                    尚無資料
-                {% endif %}
-            </td>
-        </tr>
-        {% empty %}
-            <p>完全沒有議案</p>
-        {% endfor %}
-    </tbody>
-</table>
+            </h3>
+            <div>
+                <h5>執行情形</h5> 
+                <blockquote>
+                    {% if fragment.execution %}
+                        {{fragment.execution}}
+                    {% elif fragment.last_action %}
+                        {{fragment.last_action}}
+                    {% else %}
+                        尚無資料
+                    {% endif %}
+                </blockquote>
+            </div>
+            <a href="{% url 'bills:bill_detail' county=fragment.county bill_id=fragment.uid %}">查看完整議案</a>
+        </div>
+    </li>
+    {% empty %}
+        <p>完全沒有議案</p>
+    {% endfor %}
+</ul>
