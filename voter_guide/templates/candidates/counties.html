@@ -7,22 +7,21 @@
 {% endblock title %}
 
 {% block right %}
-    <div class="hero-unit span12" style="margin-left: 0px;">
+    <div class="hero-unit span12" style="margin-left: 1%;">
         <img src="static/img/logo.png" alt="" class="pull-right"></img>
         <h2>{{election_year}} - 議會投票指南</h2>
         <p>減少盲目投票，讓民主社會的台灣更進步；輸入關鍵字，關心你關心的議題</p>
     </div>
-    <div class="five column doubling ui grid">
+    <div class="four column doubling ui grid">
         {% for county in counties %}
             <div class="column direct-container">
-            <a href="{% url 'candidates:districts' county=county.county election_year=election_year %}" class="direct-item council-light {% cycle 'council-bluegreen' 'council-darkbluegreen' %}">
-                <h4>{{county.county}}</h4>
-                <div></div>
+            <a href="{% url 'candidates:districts' county=county.county election_year=election_year %}" class="direct-item council-light {% cycle 'council-lightyellow' 'council-yellow' %}">
+                <img class="" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county.county}}.png">
+								<div></div>
                 <br>
                 <br>
-                <div class="county-sub">
-                    <p class="county-district">{{county.constituency}}</p>
-                    <p class="county-candidate">{{county.candidates}}</p>
+                <div class="direct-sub right">
+                		<h4>{{county.county}}</h4>
                 </div>
             </a>
             </div>

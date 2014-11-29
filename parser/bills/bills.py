@@ -35,13 +35,13 @@ def CouncilorsBills(councilor_id, bill_id, priproposer, petition):
 conn = db_settings.con()
 c = conn.cursor()
 
-for council in ['../../data/cyscc/bills.json', ]:
-#for council in ['../../data/ilcc/bills.json', '../../data/chcc/bills.json', '../../data/cyscc/bills.json', '../../data/ntcc/bills.json', '../../data/hlcc/bills.json', '../../data/tncc/bills.json', '../../data/ntp/bills.json', '../../data/kcc/bills.json', '../../data/tccc/bills.json', '../../data/tcc/bills.json']:
+for council in ['../../data/ylcc/bills.json', '../../data/cycc/bills.json', '../../data/ilcc/bills.json', '../../data/hcc/bills.json', '../../data/chcc/bills.json', '../../data/cyscc/bills.json', '../../data/ntcc/bills.json', '../../data/hlcc/bills.json', '../../data/tncc/bills.json', '../../data/ntp/bills.json', '../../data/kcc/bills.json', '../../data/tccc/bills.json', '../../data/tcc/bills.json']:
     print council
     dict_list = json.load(open(council))
     for bill in dict_list:
         print bill
         bill.update({'uid': u'%s-%s' % (bill['county'], bill['id'])})
+        bill['election_year'] = str(bill['election_year'])
         Bill(bill)
         priproposer = True
         for name in bill['proposed_by']:
@@ -61,6 +61,7 @@ for council in ['../../data/cyscc/bills.json', ]:
             name = name.strip()
             if name == u'笛布斯‧顗賚':
                 name = u'笛布斯顗賚'
+            name = re.sub(u'副?議長', '', name)
             councilor_id = common.getDetailId(c, name, bill['election_year'], bill['county'])
             if councilor_id:
                 CouncilorsBills(councilor_id, bill['uid'], False, True)
@@ -120,7 +121,7 @@ def distinct_party(election_year, county):
     ''', (election_year, county))
     return c.fetchall()
 
-for election_year, county in [('2010', u'臺北市'), ('2010', u'臺中市'), ('2010', u'高雄市'), ('2010', u'新北市')]:
+for election_year, county in [('2009', u'雲林縣'), ('2009', u'新竹縣'), ('2009', u'彰化縣'), ('2009', u'南投縣'), ('2009', u'嘉義縣'), ('2009', u'嘉義市'), ('2009', u'宜蘭縣'), ('2009', u'花蓮縣'), ('2010', u'高雄市'), ('2010', u'臺北市'), ('2010', u'臺中市'), ('2010', u'高雄市'), ('2010', u'新北市')]:
     parties = [x[0] for x in distinct_party(election_year, county)]
     bill_party_diversity(parties)
     for councilor_id in councilors(election_year, county):

@@ -19,7 +19,8 @@
         <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/facebook-og-image.png">
         <link href="https://s3-ap-northeast-1.amazonaws.com/twly.tw/bootstrap.min.css" rel="stylesheet">
         <link href="https://s3-ap-northeast-1.amazonaws.com/twly.tw/bootstrap-responsive.min.css" rel="stylesheet" >
-        <link href="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/g0v.css" rel="stylesheet">
+        <!--link href="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/g0v.css" rel="stylesheet"-->
+		<link href="{% static 'css/g0v.css' %}" rel="stylesheet" >
         <link rel="shortcut icon" href="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/favicon.ico.png">
         <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/css/semantic.css" rel="stylesheet">
         <script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/javascript/semantic.js"></script>
@@ -34,6 +35,19 @@
             ga('create', 'UA-41993330-2', 'g0v.tw');
             ga('send', 'pageview');
         </script>
+        <script>
+            (function() {
+                var cx = '008666008342719404591:eyd0kji9v7m';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                    '//www.google.com/cse/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+            })();
+        </script>
+
     </head>
     <body id="top">
         <div id="fb-root"></div>
@@ -77,18 +91,6 @@
                     </ul>
                     <ul class="nav pull-right">
                         <li id="search">
-                            <script>
-                              (function() {
-                                var cx = '008666008342719404591:eyd0kji9v7m';
-                                var gcse = document.createElement('script');
-                                gcse.type = 'text/javascript';
-                                gcse.async = true;
-                                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                                    '//www.google.com/cse/cse.js?cx=' + cx;
-                                var s = document.getElementsByTagName('script')[0];
-                                s.parentNode.insertBefore(gcse, s);
-                              })();
-                            </script>
                             <gcse:search></gcse:search>
                             <gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
                         </li>
@@ -135,4 +137,10 @@
         {% block script %}
         {% endblock %}
     </body>
+    <style>
+    .gsc-control-cse{
+      border-color: #151515;
+      background-color: #151515;
+    }
+    </style>
 </html>

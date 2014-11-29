@@ -48,8 +48,11 @@ def normalize_councilor(councilor):
     councilor['name'] = re.sub(u'[　\s]', '', councilor['name'])
     councilor['gender'] = re.sub(u'性', '', councilor.get('gender', ''))
     if councilor.get('party'):
+        councilor['party'] = councilor['party'].strip()
+        councilor['party'] = re.sub(u'籍$', '', councilor['party'])
         councilor['party'] = re.sub(u'無黨?$', u'無黨籍', councilor['party'])
         councilor['party'] = re.sub(u'台灣', u'臺灣', councilor['party'])
+        councilor['party'] = re.sub(u'台聯黨', u'臺灣團結聯盟', councilor['party'])
         councilor['party'] = re.sub(u'^國民黨$', u'中國國民黨', councilor['party'])
         councilor['party'] = re.sub(u'^民進黨$', u'民主進步黨', councilor['party'])
     councilor['constituency'] = get_constituency(councilor)

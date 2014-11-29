@@ -6,6 +6,15 @@
                 "district":  "山地原住民"
             }
         ],
+        "宜蘭縣":  [
+            {
+                "constituency":  "11",
+                "district":  "平地原住民"
+            },
+            {
+                "constituency":  "13",
+                "district":  "山地原住民"
+            }        ],
         "金門縣":  [
             {
                 "constituency":  "1",
