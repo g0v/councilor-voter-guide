@@ -122,10 +122,9 @@
     })
     .style("fill", function(d) { return color(d.data.party); });
      
-    alpha = 0.5;
-    spacing = 15;
-
-    function relax() {
+    function relax_party() {
+        alpha = 0.5;
+        spacing = 15;
         again = false;
         textLabels.each(function (d, i) {
             a = this;
@@ -163,12 +162,10 @@
                labelForLine = d3.select(labelElements[i]);
                return labelForLine.attr("y");
            });
-           setTimeout(relax,20)
+           setTimeout(relax_party,20)
        }
     }
 
-    relax();
-   
     var legend = d3.select("#party_pie").append("svg")
         .attr("class", "legend")
         .attr("width", radius * 2)
