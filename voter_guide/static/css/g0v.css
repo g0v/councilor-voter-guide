@@ -40,8 +40,13 @@ h7 {
 .person-btn-margin a{
   margin: 5px;
 }
-.direct-container{
-  padding: 0 2%!important;
+
+.five .direct-container{
+	padding: 0 2%!important;
+}
+
+.four .direct-container{
+  padding: 0 5%!important;
 }
 
 .direct-item{
@@ -54,7 +59,7 @@ h7 {
   height: auto;
   vertical-align: top;
   background-color: rgb(0, 204, 204);
-  color:#444;
+  color:white;
   box-shadow: 2px 2px 4px #aaa;
 }
 
@@ -63,18 +68,48 @@ h7 {
   color:white;
 }
 
-.direct-item > h4{
+.direct-item h4{
   font-size: 24px;
   text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .25);
   line-height: 150%;
 }
 
-.county-sub, .districts-sub{
+.council-light, .council-light:hover, .council-light:active, .council-light:focus, .council-light:visited{
+	color: black;
+}
+
+.direct-item img{
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+	filter: gray;
+	filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0'><filter id='greyscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale");
+	opacity: .8;
+	width: auto;
+	height: 40%;
+}
+
+.council-light:hover img, .council-light:focus img{
+	-webkit-filter: grayscale(0%);
+	filter: grayscale(0%);
+	filter: none;
+}
+
+.direct-sub{
   position: absolute;
   bottom:10px;
   font-size: 18px;
-  color:#666;
+  color:inherit;
   text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .2);
+}
+
+.direct-sub.right{
+	right: 5%;
+}
+
+@media screen and (max-width: 400px){
+  .county-sub, .districts-sub{
+    display: none;
+  }
 }
 
 .county-district:before{
@@ -91,13 +126,28 @@ h7 {
   }
 }
 
+.council-lightyellow{
+	background: rgb(254, 254, 154);
+}
+
+.council-yellow{
+	background: rgb(254, 203, 104);
+}
+
+.council-gray{
+	background: #EDEDED;
+}
+
+.council-darkgray{
+	background: #D5D5D5;
+}
+
 .council-bluegreen{
-  background: #EDEDED;
+  background: #32CBCB;
 }
 
 .council-darkbluegreen{
-  font-size: 16px;
-  background: #D5D5D5;
+  background: #3FA1A1;
 }
 
 .council-purple{
@@ -187,4 +237,22 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
 #gs_tti50 > input, #gs_tti51 > input{
   height: 25px!important;
   margin-top: -3px!important;
+}
+
+.hero-unit{
+  position: relative;
+}
+
+.hero-unit img{
+  position: absolute;
+  right: 5%;
+  top: 10%;
+  height: 80%;
+  opacity: .65;
+}
+
+@media (max-width: 979px) {
+  .hero-unit img{
+    display:none;
+  }
 }

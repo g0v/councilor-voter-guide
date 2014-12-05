@@ -146,3 +146,31 @@ def replace(value, arg):
         return value
     else:
         return value
+
+@register.filter(name='county_urls')
+def county_urls(value):
+    maps = {
+        u'基隆市': 'http://www.kmc.gov.tw/',
+        u'新北市': 'http://www.ntp.gov.tw/',
+        u'台北市': 'http://www.tcc.gov.tw/',
+        u'桃園市': 'http://www.tycc.gov.tw/',
+        u'新竹市': 'http://www.hsinchu-cc.gov.tw/',
+        u'新竹縣': 'http://www.hcc.gov.tw/',
+        u'苗栗縣': 'http://www.mcc.gov.tw/',
+        u'臺中市': 'http://www.tccc.gov.tw/',
+        u'彰化縣': 'http://www.chcc.gov.tw/',
+        u'雲林縣': 'http://www.ylcc.gov.tw/',
+        u'南投縣': 'http://www.ntcc.gov.tw/',
+        u'嘉義市': 'http://www.cycc.gov.tw/',
+        u'嘉義縣': 'http://www.cyscc.gov.tw/',
+        u'台南市': 'http://www.tncc.gov.tw/',
+        u'高雄市': 'http://www.kcc.gov.tw/',
+        u'屏東縣': 'http://www.ptcc.gov.tw/',
+        u'宜蘭縣': 'http://www.ilcc.gov.tw/',
+        u'花蓮縣': 'http://www.hlcc.gov.tw/',
+        u'臺東縣': 'http://www.taitungcc.gov.tw/',
+        u'澎湖縣': 'http://www.phcouncil.gov.tw/',
+        u'連江縣': 'http://www.mtcc.gov.tw/',
+        u'金門縣': 'http://www.kmcc.gov.tw/',
+    }
+    return maps.get(value, '')
