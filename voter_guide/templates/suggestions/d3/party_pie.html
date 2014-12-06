@@ -15,7 +15,7 @@
         stroke-width: 1;
         stroke: #393939;
     }
-    
+
     .label-circle {
         fill: #393939;
     }
@@ -57,7 +57,7 @@
     g.append("path")
     .attr("d", arc)
     .style("fill", function(d) { return color(d.data.party); });
-    
+
     g.append("circle").attr({
         x: 0,
         y: 0,
@@ -91,7 +91,7 @@
         },
         'class': "label-line"
     });
-    
+
     textLabels = g.append("text")
     .attr({
         x: function (d,i) {
@@ -112,7 +112,7 @@
             centroid = arc.centroid(d);
             midAngle = Math.atan2(centroid[1], centroid[0]);
             x = Math.cos(midAngle) * labelr;
-            return (x > 0) ? "start" : "end"; 
+            return (x > 0) ? "start" : "end";
         },
         'class': 'label-text'
     })
@@ -121,7 +121,7 @@
         return zhutil.approximate(d.value, {base: '萬', extra_decimal: 0});
     })
     .style("fill", function(d) { return color(d.data.party); });
-     
+
     function relax_party() {
         alpha = 0.5;
         spacing = 15;
@@ -139,13 +139,13 @@
                 // don't collide
                 if (da.attr("text-anchor") != db.attr("text-anchor")) return;
                 // Now let's calculate the distance between
-                // these elements. 
+                // these elements.
                 y2 = db.attr("y");
                 deltaY = y1 - y2;
                 // Our spacing is greater than our specified spacing,
                 // so they don't collide.
                 if (Math.abs(deltaY) > spacing) return;
-                // If the labels collide, we'll push each 
+                // If the labels collide, we'll push each
                 // of the two labels up and down a little bit.
                 again = true;
                 sign = deltaY > 0 ? 1 : -1;
@@ -155,7 +155,7 @@
            });
        });
        // Adjust our line leaders here
-       // so that they follow the labels. 
+       // so that they follow the labels.
        if(again) {
            labelElements = textLabels[0];
            textLines.attr("y2",function(d,i) {
