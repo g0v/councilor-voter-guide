@@ -122,7 +122,7 @@
         if (d.value != 0)
         return legend(d.data.key) + '：' + zhutil.approximate(d.value, {base: '萬', extra_decimal: 1});
     })
-    .style("fill", function(d, i) { return color(i); });
+    .style("fill", function(d, i) { return color(d.data.key); });
 
     function relax_in() {
         alpha = 0.5;
