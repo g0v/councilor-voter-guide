@@ -1,0 +1,55 @@
+
+@font-face{
+  font-family:g0v-ly;
+  src:url('../fonts/g0v-ly.eot') format('embedded-opentype'),
+      url('../fonts/g0v-ly.woff') format('woff'),
+      url('../fonts/g0v-ly.ttf') format('truetype');
+}
+i.g0v-icon{
+  font-style: normal;
+  /* I'd prefer have my own style when using as icons */
+  font-family: g0v-ly!important;
+  border-bottom: none!important;
+  vertical-align: baseline;
+}
+i.g0v-icon:after{display:inline;content: " ";}
+i.g0v-icon.large {font-size: 3em; vertical-align: middle}
+i.g0v-icon.KMT:after { content: "\f001"; color: #0D2393; }
+i.g0v-icon.CON:after { content: "\f002" }
+i.g0v-icon.DIS:after { content: "\f003" }
+i.g0v-icon.DPP:after { content: "\f004"; color: #009900; }
+i.g0v-icon.FIN:after { content: "\f005" }
+i.g0v-icon.EDU:after { content: "\f006" }
+i.g0v-icon.ECO:after { content: "\f007" }
+i.g0v-icon.FND:after { content: "\f008" }
+i.g0v-icon.IAD:after { content: "\f009" }
+i.g0v-icon.JUD:after { content: "\f00a" }
+i.g0v-icon.NON:after { content: "\f00b"; color: #999 }
+i.g0v-icon.NSU:after { content: "\f00c"; color: #CD1659 }
+i.g0v-icon.PFP:after { content: "\f00d"; color: #FF6211; }
+i.g0v-icon.PRO:after { content: "\f00e" }
+i.g0v-icon.SWE:after { content: "\f00f" }
+i.g0v-icon.TRA:after { content: "\f010" }
+i.g0v-icon.TSU:after { content: "\f011"; color: #994500; }
+i.g0v-icon.YS:after { content: "\f012" }
+
+.g0v-icon-list .item {
+  line-height: 3em;
+  margin: 10px 10px 30px;
+  display: inline-block;
+  text-align: center;
+  width: 195px;
+}
+.g0v-icon-list .item .desc { line-height: 1.3em; }
+.g0v-icon-list .item .note { font-size: 0.5em; }
+.g0v-icon-list .item .g0v-icon {
+  margin-bottom: 3px;
+  display: block;
+}
+
+i.icon {
+  /* no one can claim icon from me! no one! */
+  font-family: 'Icons'!important; 
+  /* no one could ever add border-bottom for me! even the han.js! */
+  border-bottom: none!important;
+}
