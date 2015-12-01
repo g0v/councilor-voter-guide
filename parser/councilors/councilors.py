@@ -44,7 +44,7 @@ def normalize_constituency(constituency):
     return total
 
 def normalize_councilor(councilor):
-    councilor['name'] = re.sub(u'[。˙・•．]', u'‧', councilor['name'])
+    candidate['name'] = re.sub(u'[。˙・･•．.]', u'‧', candidate['name'])
     councilor['name'] = re.sub(u'[　\s]', '', councilor['name'])
     councilor['name'] = re.sub(u'(副?議長|議員)', '', councilor['name'])
     councilor['gender'] = re.sub(u'性', '', councilor.get('gender', ''))

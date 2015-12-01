@@ -6,8 +6,8 @@ import re
 import json
 import glob
 import psycopg2
-from psycopg2.extras import Json
 import pandas as pd
+
 import db_settings
 
 
@@ -90,10 +90,13 @@ for f in files:
         for county_change in county_versions[election_year]:
             candidate['previous_county'] = county_change['from'] if candidate['county'] == county_change['to'] else candidate['county']
         candidate['name'] = re.sub('\s', '', candidate['name'])
-        candidate['name'] = re.sub(u'[˙・•．]', u'‧', candidate['name'])
-        if candidate['name'] == u'笛布斯‧顗賚':
-            candidate['name'] = u'笛布斯顗賚'
-        for case in [(u'彰化縣', '2', u'陳秀寳', u'陳秀寶'), (u'屏東縣', '3', u'潘淑眞', u'潘淑真'), (u'苗栗縣', '5', u'鍾褔貴', u'鍾福貴'), (u'臺南市', '9', u'林慶鎭', u'林慶鎮'), ]:
+        candidate['name'] = re.sub(u'[。˙・･•．.]', u'‧', candidate['name'])
+        if candidate['name'] == u'笛布斯顗賚':
+            candidate['name'] = u'笛布斯‧顗賚'
+        candidate['name'] = re.sub(u'黄', u'黃', candidate['name'])
+        candidate['name'] = re.sub(u'眞', u'真', candidate['name'])
+        candidate['name'] = re.sub(u'周鍾.*', u'周鍾㴴', candidate['name'])
+        for case in [(u'臺中市', 15, u'温建華', u'溫建華'), (u'新竹市', 4, u'李姸慧', u'李妍慧'), (u'嘉義縣', 1, u'王啓澧', u'王啟澧'), (u'彰化縣', 1, u'黄育寬', u'黃育寬'), (u'彰化縣', 2, u'陳秀寳', u'陳秀寶'), (u'苗栗縣', 5, u'鍾福貴', u'鍾褔貴'), (u'臺南市', 9, u'林慶鎭', u'林慶鎮'), ]:
             if (candidate['county'], candidate['constituency'], candidate['name']) == case[:3]:
                 candidate['name'] = case[3]
         candidate['election_year'] = election_year

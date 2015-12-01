@@ -147,13 +147,14 @@ INSTALLED_APPS = (
     'commontag',
     'pagination',
     'rest_framework',
+    'debug_toolbar',
 )
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
     'PAGINATE_BY': 10,
     'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.UnicodeJSONRenderer',
+        'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     )
 }
@@ -204,4 +205,3 @@ try:
     from local_settings import *
 except ImportError:
     pass
-

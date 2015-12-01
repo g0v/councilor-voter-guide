@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import urllib
 import operator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
@@ -21,6 +22,7 @@ def report(request):
     return render(request,'suggestions/report.html', {'councilors': councilors, 'parties': list(parties), 'counties': list(counties)})
 
 def bid_by(request, bid_by):
+    bid_by = urllib.unquote_plus(bid_by.encode('utf8'))
     councilors= CouncilorsDetail.objects.filter(suggestions__suggestion__bid_by=bid_by)
     parties = councilors.values('party')\
                     .annotate(sum=Sum('suggestions__suggestion__approved_expense'), count=Count('suggestions__suggestion'))\

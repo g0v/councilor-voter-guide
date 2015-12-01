@@ -10,6 +10,7 @@ class Candidates(models.Model):
     councilor = models.ForeignKey('councilors.Councilors', to_field='uid', blank=True, null=True)
     last_election_year = models.CharField(db_index=True, max_length=100, blank=True, null=True)
     election_year = models.CharField(db_index=True, max_length=100)
+    number = models.IntegerField(db_index=True, blank=True, null=True)
     name = models.CharField(max_length=100)
     birth = models.DateField(blank=True, null=True)
     gender = models.CharField(max_length=100, blank=True, null=True)
@@ -19,6 +20,7 @@ class Candidates(models.Model):
     county = models.CharField(db_index=True, max_length=100)
     district = models.CharField(db_index=True, max_length=100, blank=True, null=True)
     votes = models.IntegerField(blank=True, null=True)
+    votes_percentage = models.CharField(max_length=100, blank=True, null=True)
     elected = models.NullBooleanField(db_index=True)
     contact_details = JSONField(null=True)
     education = models.TextField(blank=True, null=True)
@@ -27,6 +29,7 @@ class Candidates(models.Model):
     image = models.URLField(blank=True, null=True)
     links = JSONField(null=True)
     platform = models.TextField(blank=True, null=True)
+    politicalcontributions = JSONField(null=True)
     def __unicode__(self):
         return self.name
 

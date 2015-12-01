@@ -12,7 +12,7 @@ class Spider(scrapy.Spider):
     name = "councilors"
     allowed_domains = ["www.hsinchu-cc.gov.tw"]
     start_urls = ["http://www.hsinchu-cc.gov.tw/content/Councilor.htm",]
-    download_delay = 1
+    download_delay = 0.5
 
     def parse(self, response):
         sel = Selector(response)
@@ -25,7 +25,7 @@ class Spider(scrapy.Spider):
             item['term_start'] = '%s-12-25' % item['election_year']
             item['term_end'] = {'date': '2014-12-25'}
             item['contact_details'] = []
-            item['name'] = node.xpath('@href').extract()[0].split('.')[0]
+            item['name'] = node.xpath('text()').extract()[0].strip()
             title = node.xpath('../text()').re(u'(\S+)：')
             item['title'] = title[0] if title else u'議員'
             yield Request(urljoin(self.start_urls[0], node.xpath('@href').extract()[0]), callback=self.parse_profile, meta={'item': item})
@@ -33,7 +33,7 @@ class Spider(scrapy.Spider):
     def parse_profile(self, response):
         sel = Selector(response)
         item = response.meta['item']
-        image = sel.xpath(u'//img[contains(@src, "%s")]/@src' % item['name']).extract()[0]
+        image = sel.xpath(u'//img[contains(@src, "image")]/@src').extract()[-1]
         item['image'] = urljoin(response.url, urllib.quote(image.encode('utf8')))
         item['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
         item['gender'] = sel.xpath('//text()').re(u'性\s*別：(\S+)')[0]
