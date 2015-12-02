@@ -1,12 +1,22 @@
 Django==1.8.3
-django-json-field==0.5.5
-django-filter==0.7
-dj-database-url==0.2.2
-dj-static==0.0.6
-gunicorn==18.0
+
+# db related
 psycopg2==2.5.5
-static==0.4
-django-pagination==1.0.7
+django-json-field==0.5.5
+
+# api related
 djangorestframework==3.1.1
-django-discover-runner==1.0
+django-filter==0.9.2
+
+# deploy related
+dj-database-url==0.3.0
+dj-static==0.0.6
+gunicorn==19.1.1
+static==0.4
+
+# testing related
 coverage==3.7.1
+
+# others
+django-pagination==1.0.7
+django-debug-toolbar==1.3
