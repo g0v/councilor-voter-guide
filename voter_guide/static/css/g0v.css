@@ -5,10 +5,10 @@
 @grayLight: #999;
 
 .container-fluid {
-  padding-right: 20px;
-  padding-left: 20px;
+  /*padding-right: 20px;
+  padding-left: 20px;*/
   *zoom: 1;
-  margin:0 50px 0 50px;
+  /*margin:0 50px 0 50px;*/
 }
 
 .description {
