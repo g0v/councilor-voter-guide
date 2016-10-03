@@ -1,6 +1,5 @@
 #from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from . import fields
 from councilors.models import Councilors, CouncilorsDetail, Attendance
 from votes.models import Votes, Councilors_Votes
 from bills.models import Bills, Councilors_Bills
@@ -14,7 +13,6 @@ class Councilors_VotesSerializer(serializers.HyperlinkedModelSerializer):
         model = Councilors_Votes
 
 class VotesSerializer(serializers.HyperlinkedModelSerializer):
-    results = fields.Field()
     class Meta:
         model = Votes
         fields = ('uid', 'sitting', 'date', 'vote_seq', 'content', 'conflict', 'result', 'results')
@@ -24,7 +22,6 @@ class Councilors_BillsSerializer(serializers.HyperlinkedModelSerializer):
         model = Councilors_Bills
 
 class BillsSerializer(serializers.HyperlinkedModelSerializer):
-    param = fields.Field()
     class Meta:
         model = Bills
 
@@ -39,11 +36,6 @@ class SittingsSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('uid', 'name', 'committee', 'date', 'election_year', 'links')
 
 class CouncilorsDetailSerializer(serializers.HyperlinkedModelSerializer):
-    contact_details = fields.Field()
-    term_end = fields.Field()
-    links = fields.Field()
-    social_media = fields.Field()
-    param = fields.Field()
     class Meta:
         model = CouncilorsDetail
 
@@ -53,8 +45,6 @@ class CouncilorsSerializer(serializers.HyperlinkedModelSerializer):
         model = Councilors
 
 class CandidatesSerializer(serializers.HyperlinkedModelSerializer):
-    contact_details = fields.Field()
-    links = fields.Field()
     class Meta:
         model = Candidates
 
