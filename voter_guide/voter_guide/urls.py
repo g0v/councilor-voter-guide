@@ -1,6 +1,10 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
+from django.conf import settings
+
 from rest_framework import routers
+
 from api import views
+from . import views as voter_guide_views
 
 
 #--> rest framework url
@@ -18,14 +22,20 @@ router.register(r'suggestions', views.SuggestionsViewSet)
 router.register(r'councilors_suggestions', views.Councilors_SuggestionsViewSet)
 #<--
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^candidates/', include('candidates.urls', namespace="candidates")),
     url(r'^councilors/', include('councilors.urls', namespace="councilors")),
     url(r'^suggestions/', include('suggestions.urls', namespace="suggestions")),
     url(r'^bills/', include('bills.urls', namespace="bills")),
     url(r'^votes/', include('votes.urls', namespace="votes")),
-    url(r'^about/$', 'voter_guide.views.about', name='about'),
-    url(r'^reference/$', 'voter_guide.views.reference', name='reference'),
+    url(r'^about/$', voter_guide_views.about, name='about'),
+    url(r'^reference/$', voter_guide_views.reference, name='reference'),
     url(r'', include('candidates.urls', namespace="candidates")),
     url(r'^api/', include(router.urls)),
-)
+]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]
