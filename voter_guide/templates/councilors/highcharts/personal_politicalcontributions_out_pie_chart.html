@@ -1,0 +1,83 @@
+{% load extras %}
+<script>
+
+    var resource = {{data_expenses|as_json}};
+    var list = {'out_personnel': {
+                    'name': '人事費用',
+                    'color': '#996699'
+                }, 'out_propagate': {
+                    'name': '宣傳',
+                    'color': '#FF66CC'
+                }, 'out_campaign_vehicle': {
+                    'name': '租用宣傳車輛',
+                    'color': '#66CC66'
+                }, 'out_campaign_office': {
+                    'name': '租用競選辦事處',
+                    'color': '#FF9933'
+                }, 'out_rally': {
+                    'name': '集會',
+                    'color': '#6699FF'
+                }, 'out_travel': {
+                    'name': '交通旅運',
+                    'color': '#999999'
+                }, 'out_miscellaneous': {
+                    'name': '雜支',
+                    'color': '#FF9966'
+                }, 'out_return': {
+                    'name': '返還捐贈',
+                    'color': '#CCCC66'
+                }, 'out_exchequer': {
+                    'name': '繳庫',
+                    'color': '#CC99FF'
+                }, 'out_public_relation': {
+                    'name': '公共關係費用',
+                    'color': '#669999'
+                }};
+    var data = [];
+
+   // Generate highcharts' data format
+    for(var key in resource){
+        data.push({
+            name: list[key]['name'],
+            color: list[key]['color'],
+            y: resource[key]
+        });
+    }
+
+    // Create highcharts pie
+    $('#d3_out').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                backgroundColor: 'rgba(0, 0, 0, 0)'
+            },
+            title: {
+                text: '支出：共<span class="price text-right">{{data_total.out_total}}</span>元',
+                style: {"display": "none"}
+            },
+            tooltip: {
+                formatter: function(){
+                    return '<b>'+this.key+'</b><br>收入：<b>'+zhutil.approximate(this.y, {base: '萬', extra_decimal: 0})+'</b>';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                data: data
+            }],
+            exporting: {
+                enabled: false
+            }
+        });
+
+</script>

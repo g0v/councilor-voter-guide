@@ -31,8 +31,10 @@
 {% block script %}
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/d3.min.js"></script>
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
-    {% include "councilors/d3/personal_politicalcontributions_in_pie_chart.html" %}
-    {% include "councilors/d3/personal_politicalcontributions_out_pie_chart.html" %}
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    {% include "councilors/highcharts/personal_politicalcontributions_in_pie_chart.html" %}
+    {% include "councilors/highcharts/personal_politicalcontributions_out_pie_chart.html" %}
     <script>
         $(document).ready( function() {
             $('#polticalcontributions').addClass("btn-info");

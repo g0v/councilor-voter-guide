@@ -1,0 +1,64 @@
+{% load extras %}
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script>
+
+    var resource = {{data|as_json}};
+    var list = {'disagree': {
+                    'name': '反對',
+                    'color': '#FF66CC'
+                }, 'abstain': {
+                    'name': '棄權',
+                    'color': '#999999'
+                }, 'agree': {
+                    'name': '贊成',
+                    'color': '#66CC66'
+                }, 'not_voting': {
+                    'name': '沒投票',
+                    'color': '#FFCC33'
+                }};
+    var data = [];
+
+   // Generate highcharts' data format
+    for(var key in resource){
+        data.push({
+            name: list[key]['name'],
+            color: list[key]['color'],
+            y: resource[key]
+        });
+    }
+
+    // Create highcharts pie
+    $('#d3').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                backgroundColor: 'rgba(0, 0, 0, 0)'
+            },
+            title: {
+                style: {"display": "none"}
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y}票</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                data: data
+            }],
+            exporting: {
+                enabled: false
+            }
+        });
+
+</script>

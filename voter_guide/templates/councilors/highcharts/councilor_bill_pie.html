@@ -1,0 +1,67 @@
+{% load extras %}
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<script>
+    var resource = {{councilor.param.diversity|as_json}}
+    var list = {'中國國民黨': {
+                    'color': '#0033FF'
+                },'民主進步黨': {
+                    'color': '#009900'
+                }, '親民黨': {
+                    'color': '#FF6600'
+                }, '新黨': {
+                    'color': '#FFCC00'
+                }, '臺灣團結聯盟': {
+                    'color': '#A52A2A'
+                }, '無黨團結聯盟': {
+                    'color': '#FF00FF'
+                }, '無黨籍': {
+                    'color': '#777777'
+                }};
+    var data = [];
+
+   // Generate highcharts' data format
+    for(var key in resource){
+        data.push({
+            name: key,
+            color: list[key]['color'],
+            y: resource[key]*100
+        });
+    }
+
+    // Create highcharts pie
+    $('#d3').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                backgroundColor: 'rgba(0, 0, 0, 0)'
+            },
+            title: {
+                text: '',
+                style: {"display": "none"}
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                data: data
+            }],
+            exporting: {
+                enabled: false
+            }
+        });
+
+</script>

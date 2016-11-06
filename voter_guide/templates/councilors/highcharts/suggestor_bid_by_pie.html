@@ -1,0 +1,48 @@
+{% load extras %}
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<script>
+	var resource = {{suggestions|as_json}}
+	var data = []
+
+	// Generate highcharts' data format
+	resource.forEach(function(element){
+		data.push([element.bid_by||'【來源檔案無資料】', element.sum]);
+	});
+
+    // Create highcharts pie
+	$('#d3').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '{{councilor.name}}的提案中<font class="text-success ">各個廠商得標的預算</font>',
+                style: {"display": "none"}
+            },
+            tooltip: {
+                formatter: function(){
+                    return '<b>'+this.key+'</b><br>通過預算: <b>'+zhutil.approximate(this.y, {base: '萬', extra_decimal: 0})+'</b>';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                data: data
+            }],
+            exporting: {
+            	enabled: false
+            }
+        });
+</script>

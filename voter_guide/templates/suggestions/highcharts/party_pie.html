@@ -1,0 +1,69 @@
+{% load extras %}
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<script>
+    var resource = {{parties|as_json}}
+    var list = {'中國國民黨': {
+                    'color': '#0033FF'
+                },'民主進步黨': {
+                    'color': '#009900'
+                }, '親民黨': {
+                    'color': '#FF6600'
+                }, '新黨': {
+                    'color': '#FFCC00'
+                }, '臺灣團結聯盟': {
+                    'color': '#A52A2A'
+                }, '無黨團結聯盟': {
+                    'color': '#FF00FF'
+                }, '無黨籍': {
+                    'color': '#777777'
+                }};
+    var data = [];
+
+   // Generate highcharts' data format
+    for(var key in resource){
+        data.push({
+            name: resource[key].party,
+            color: list[resource[key].party]['color'],
+            y: resource[key].sum
+        });
+    }
+
+    // Create highcharts pie
+    $('#party_pie').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                backgroundColor: 'rgba(0, 0, 0, 0)'
+            },
+            title: {
+                text: '',
+                style: {"display": "none"}
+            },
+            tooltip: {
+                formatter: function(){
+                    return '<b>'+this.key+'</b><br><b>'+zhutil.approximate(this.y, {base: '萬', extra_decimal: 0})+'</b>';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                data: data
+            }],
+            exporting: {
+                enabled: false
+            }
+        });
+
+</script>

@@ -1,0 +1,71 @@
+{% load extras %}
+<script>
+
+    var resource = {{data_income|as_json}};
+    var list = {'in_individual': {
+                    'name': '個人捐贈',
+                    'color': '#FF66CC'
+                }, 'in_profit': {
+                    'name': '營利事業捐贈',
+                    'color': '#6699FF'
+                }, 'in_party': {
+                    'name': '政黨捐贈',
+                    'color': '#66CC66'
+                }, 'in_civil': {
+                    'name': '人民團體捐贈',
+                    'color': '#FFCC33'
+                }, 'in_anonymous': {
+                    'name': '匿名捐贈',
+                    'color': '#999999'
+                }, 'in_others': {
+                    'name': '其他',
+                    'color': '#FFCC66'
+                }};
+    var data = [];
+
+   // Generate highcharts' data format
+    for(var key in resource){
+        data.push({
+            name: list[key]['name'],
+            color: list[key]['color'],
+            y: resource[key]
+        });
+    }
+
+    // Create highcharts pie
+    $('#d3_in').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                backgroundColor: 'rgba(0, 0, 0, 0)'
+            },
+            title: {
+                text: '收入：共<span class="price text-right">{{data_total.in_total}}</span>元',
+                style: {"display": "none"}
+            },
+            tooltip: {
+                formatter: function(){
+                    return '<b>'+this.key+'</b><br>收入：<b>'+zhutil.approximate(this.y, {base: '萬', extra_decimal: 0})+'</b>';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                data: data
+            }],
+            exporting: {
+                enabled: false
+            }
+        });
+
+</script>

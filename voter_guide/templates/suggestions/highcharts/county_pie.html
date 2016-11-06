@@ -1,0 +1,50 @@
+{% load extras %}
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<script>
+    var resource = {{counties|as_json}}
+    var data = [];
+
+   // Generate highcharts' data format
+    resource.forEach(function(element){
+        data.push([element.county, element.sum]);
+    });
+
+    // Create highcharts pie
+    $('#county_pie').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                backgroundColor: 'rgba(0, 0, 0, 0)'
+            },
+            title: {
+                text: '',
+                style: {"display": "none"}
+            },
+            tooltip: {
+                formatter: function(){
+                    return '<b>'+this.key+'</b><br><b>'+zhutil.approximate(this.y, {base: '萬', extra_decimal: 0})+'</b>';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                data: data
+            }],
+            exporting: {
+                enabled: false
+            }
+        });
+
+</script>
