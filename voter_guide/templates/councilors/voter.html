@@ -68,9 +68,7 @@
         </font>
     </div>
     {% if votes %}
-    {% load pagination_tags %}
-    {% autopaginate votes 10 %}
-    {% paginate %}
+    {% include "common/pagination.html" with items=votes %}
     <table class="table table-bordered zebra">
         <thead>
             <tr style="background-color: #FFFFCC;">
@@ -113,7 +111,7 @@
             {% endfor %}
         </tbody>
     </table>
-    {% paginate %}
+    {% include "common/pagination.html" with items=votes %}
     {% endif %}
 {% endblock person_detail %}
 

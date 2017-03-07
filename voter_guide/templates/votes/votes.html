@@ -39,7 +39,7 @@
         </div>
         {% endif %}
         <div class="well well-small">
-            <font class="lead">{{county}} {{ votes|length }} 個
+            <font class="lead">{{county}} {{ votes.paginator.count }} 個
             {% if keyword %}包含<font style="color: red;">"{{keyword}}"</font>的
             {% endif %}
             {% if index == 'conscience' %}<b>脫黨</b>
@@ -50,9 +50,7 @@
             </font>
         </div>
         {% if votes %}
-        {% load pagination_tags %}
-        {% autopaginate votes 10 %}
-        {% paginate %}
+        {% include "common/pagination.html" with items=votes %}
         <table class="table table-bordered zebra" >
             <thead>
                 <tr style="background-color: #FFFFCC;">
@@ -97,7 +95,7 @@
                 {% endfor %}
             </tbody>
         </table>
-        {% paginate %}
+        {% include "common/pagination.html" with items=votes %}
         {% endif %}
     </div>
     <div class="span1">

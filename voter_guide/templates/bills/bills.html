@@ -27,19 +27,17 @@
             <font class="lead">
             {% if index == 'normal' %}
                 {% if keyword %}
-                    共{{ bills|length }} 個與<font style="color: red;">"{{keyword}}"</font>相關的議案
+                    共{{ bills.paginator.count }} 個與<font style="color: red;">"{{keyword}}"</font>相關的議案
                 {% else %}
-                    共{{ bills|length }} 個議案
+                    共{{ bills.paginator.count }} 個議案
                 {% endif %}
             {% endif %}
             </font>
         </div>
         {% if bills %}
-            {% load pagination_tags %}
-            {% autopaginate bills 10 %}
-            {% paginate %}
+            {% include "common/pagination.html" with items=bills %}
             {% include "common/bills.html" %}
-            {% paginate %}
+            {% include "common/pagination.html" with items=bills %}
         {% endif %}
     </div>
     <div class="span1">

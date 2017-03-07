@@ -14,5 +14,4 @@ gunicorn==19.6.0
 coverage==4.2
 
 # others
-django-pagination==1.0.7
 django-debug-toolbar==1.6

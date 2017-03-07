@@ -3,9 +3,11 @@ import operator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.db.models import Q
+
 from .models import Votes, Councilors_Votes
 from councilors.models import CouncilorsDetail
 from search.views import keyword_list, keyword_been_searched, keyword_normalize
+from commontag.views import paginate
 
 
 def select_county(request, index, county):
@@ -30,6 +32,7 @@ def votes(request, county, index='normal'):
             keyword_been_searched(keyword, 'votes')
     else:
         votes = Votes.objects.filter(query).order_by('-date', 'vote_seq')
+    votes = paginate(request, votes)
     return render(request,'votes/votes.html', {'county': county, 'votes': votes, 'index':index, 'keyword':keyword, 'result':result, 'keyword_hot': keyword_list('votes')})
 
 def vote(request, vote_id):

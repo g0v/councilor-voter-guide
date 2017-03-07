@@ -114,7 +114,6 @@ INSTALLED_APPS = (
     'suggestions',
     'search',
     'commontag',
-    'pagination',
     'rest_framework',
     'debug_toolbar',
 )

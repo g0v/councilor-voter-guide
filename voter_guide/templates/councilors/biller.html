@@ -36,7 +36,7 @@
         {% endif %}
         <div class="well well-small">
             <font class="lead">
-            {{councilor.name}}({{councilor.election_year|election_year_range}})：{{ bills|length }}個
+            {{councilor.name}}({{councilor.election_year|election_year_range}})：{{ bills.paginator.count }}個
             {% if keyword %}
             包含<font style="color: red;">"{{keyword}}"</font>的
             {% endif %}有參與的議案
@@ -49,11 +49,9 @@
     </div>
     <div class="span12">
     {% if bills %}
-        {% load pagination_tags %}
-        {% autopaginate bills 10 %}
-        {% paginate %}
+        {% include "common/pagination.html" with items=bills %}
         {% include "common/bills.html" %}
-        {% paginate %}
+        {% include "common/pagination.html" with items=bills %}
     {% else %}
         <p class="text-error">完全沒有議案</p>
     {% endif %}

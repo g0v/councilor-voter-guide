@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 import operator
+from re import compile as _Re
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.db.models import Count, Q
-from .models import Bills
+
 from councilors.models import CouncilorsDetail
 from search.models import Keyword
 from search.views import keyword_list, keyword_been_searched, keyword_normalize
-from re import compile as _Re
+from .models import Bills
+from commontag.views import paginate
 
 _unicode_chr_splitter = _Re( '(?s)((?:[\ud800-\udbff][\udc00-\udfff])|.)' ).split
 
@@ -23,7 +25,7 @@ def bills(request, county, index):
     query = Q(county=county)
     keyword = keyword_normalize(request.GET)
     district = request.GET.get('district', None)
-         
+
     if keyword:
         bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in split_unicode_chrs(keyword))))
         if bills:
@@ -34,8 +36,9 @@ def bills(request, county, index):
     if district and district != 'all':
         all_councilor_id_in_district = list(set([i.id for i in CouncilorsDetail.objects.filter(county=county).filter(district__contains=district)]))
         bills = bills.filter(proposer__in=all_councilor_id_in_district)
- 
+
     bills = bills.order_by('-uid')
+    bills = paginate(request, bills)
 
     district_list = list(set([i.district for i in CouncilorsDetail.objects.filter(county=county).filter(~Q(district=''))]))
     return render(request, 'bills/bills.html', {'county': county, 'index': index, 'keyword_hot': keyword_list('bills'), 'category':None, 'keyword': keyword, 'bills': bills, 'district_list': district_list})
@@ -44,7 +47,7 @@ def bills_category(request, county, index, category):
     query = Q(county=county, category=category)
     keyword = keyword_normalize(request.GET)
     district = request.GET.get('district', None)
-         
+
     if keyword:
         bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in split_unicode_chrs(keyword))))
         if bills:
@@ -55,8 +58,9 @@ def bills_category(request, county, index, category):
     if district and district != 'all':
         all_councilor_id_in_district = list(set([i.id for i in CouncilorsDetail.objects.filter(county=county).filter(district__contains=district)]))
         bills = bills.filter(proposer__in=all_councilor_id_in_district)
- 
+
     bills = bills.order_by('-uid')
+    bills = paginate(request, bills)
 
     district_list = list(set([i.district for i in CouncilorsDetail.objects.filter(county=county).filter(~Q(district=''))]))
     return render(request, 'bills/bills.html', {'category':category, 'county': county, 'index': index, 'keyword_hot': keyword_list('bills'), 'keyword': keyword, 'bills': bills, 'district_list': district_list})

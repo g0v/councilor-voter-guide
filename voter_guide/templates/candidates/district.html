@@ -30,6 +30,7 @@
         <table class="table table-bordered table-condensed sortable zebra" >
             <thead>
                 <tr style="font-weight:bold;background-color: #E1D0D0;">
+                    <th rowspan="2">當選註記</th>
                     <th rowspan="2">候選人</th>
                     <th rowspan="2">黨籍</th>
                     <th rowspan="2">最近任期</th>
@@ -49,6 +50,11 @@
             <tbody>
                 {% for councilor in candidates %}
                     <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
+                        <td style="text-align:center; vertical-align:middle;">
+                            {% if councilor.elected %}
+                                <span class="badge badge-warning">◎</span>
+                            {% endif %}
+                        </td>
                         <td style="text-align:center; vertical-align:middle;">{{councilor.name}}</td>
                         <td style="text-align:center; vertical-align:middle;">{{councilor.party}}</td>
                         {% if councilor.councilor_id %}

@@ -1,0 +1,23 @@
+<div class="pagination" align="center">
+    <span class="step-links">
+        {% if items.has_previous %}
+            {% if keyword %}
+            <a href="?{{get_params}}&page={{ items.previous_page_number }}">上一頁</a>
+            {% else %}
+            <a href="?page={{ items.previous_page_number }}">上一頁</a>
+            {% endif %}
+        {% endif %}
+
+        <span class="current">
+            這是第{{ items.number }}頁（共{{ items.paginator.num_pages }}頁）
+        </span>
+
+        {% if items.has_next %}
+            {% if keyword %}
+            <a href="?{{get_params}}&page={{ items.next_page_number }}">下一頁</a>
+            {% else %}
+            <a href="?page={{ items.next_page_number }}">下一頁</a>
+            {% endif %}
+        {% endif %}
+    </span>
+</div>

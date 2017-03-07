@@ -3,12 +3,14 @@ import operator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.db.models import Count, Sum, Q, Max
+
 from .models import CouncilorsDetail, Attendance, PoliticalContributions
 from votes.models import Votes, Councilors_Votes
 from bills.models import Bills
 from suggestions.models import Suggestions
 from sittings.models import Sittings
 from search.views import keyword_list, keyword_been_searched, keyword_normalize
+from commontag.views import paginate
 
 
 def select_county(request, index, county):
@@ -136,6 +138,7 @@ def biller(request, councilor_id, election_year):
             keyword_been_searched(keyword, 'bills')
     else:
         bills = Bills.objects.filter(query).order_by('-uid')
+    bills = paginate(request, bills)
     return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), 'county': councilor.county, 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'primaryonly': primaryonly, 'category':None, 'index':'councilor'})
 
 def biller_category(request, councilor_id, election_year, category):
@@ -154,6 +157,7 @@ def biller_category(request, councilor_id, election_year, category):
             keyword_been_searched(keyword, 'bills')
     else:
         bills = Bills.objects.filter(query).order_by('-uid')
+    bills = paginate(request, bills)
     return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), '`county': councilor.county, 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'primaryonly': primaryonly, 'category':category})
 
 def voter(request, councilor_id, election_year):
@@ -185,6 +189,7 @@ def voter(request, councilor_id, election_year):
     else:
         votes = Councilors_Votes.objects.select_related().filter(query).order_by('-vote__date')
     vote_addup = votes.values('decision').annotate(totalNum=Count('vote', distinct=True)).order_by('-decision')
+    votes = paginate(request, votes)
     return render(request,'councilors/voter.html', {'keyword_hot': keyword_list('votes'), 'county': councilor.county, 'councilor': councilor, 'keyword': keyword, 'index': index, 'votes': votes, 'vote_addup': vote_addup, 'notvote': notvote})
 
 def platformer(request, councilor_id, election_year):
