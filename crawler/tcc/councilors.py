@@ -74,4 +74,6 @@ class Spider(scrapy.Spider):
         item['remark'] = remark.strip() if remark.strip() else ''
         item['election_year'] = '2014'
         item['in_office'] = True
+        item['term_start'] = '%s-12-25' % item['election_year']
+        item['term_end'] = {'date': '2018-12-24'}
         yield item
