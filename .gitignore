@@ -1,6 +1,5 @@
 venv
 htmlcov
-migrations
 local_settings.py
 /meeting_minutes
 *~
