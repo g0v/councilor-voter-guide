@@ -42,7 +42,7 @@ class CouncilorsDetail(models.Model):
     education = models.TextField(blank=True, null=True)
     experience = models.TextField(blank=True, null=True)
     remark = models.TextField(blank=True, null=True)
-    image = models.URLField(blank=True, null=True)
+    image = models.URLField(max_length=500, blank=True, null=True)
     links = JSONField(null=True)
     social_media = JSONField(null=True)
     platform = models.TextField(blank=True, null=True)

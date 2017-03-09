@@ -44,7 +44,7 @@ def normalize_constituency(constituency):
     return total
 
 def normalize_councilor(councilor):
-    candidate['name'] = re.sub(u'[。˙・･•．.]', u'‧', candidate['name'])
+    councilor['name'] = re.sub(u'[。˙・･•．.]', u'‧', councilor['name'])
     councilor['name'] = re.sub(u'[　\s]', '', councilor['name'])
     councilor['name'] = re.sub(u'(副?議長|議員)', '', councilor['name'])
     councilor['gender'] = re.sub(u'性', '', councilor.get('gender', ''))
@@ -141,7 +141,7 @@ conn = db_settings.con()
 c = conn.cursor()
 constituency_maps = json.load(open('../constituency.json'))
 # insert
-for council in ['../../data/kmcc/councilors.json', '../../data/mcc/councilors.json', '../../data/taitungcc/councilors.json', '../../data/mtcc/councilors.json', '../../data/ptcc/councilors.json', '../../data/kmc/councilors.json', '../../data/ylcc/councilors.json', '../../data/cycc/councilors.json', '../../data/cyscc/councilors.json', '../../data/hcc/councilors.json', '../../data/ntcc/councilors.json', '../../data/hlcc/councilors.json', '../../data/tycc/councilors.json', '../../data/ilcc/councilors.json', '../../data/chcc/councilors.json', '../../data/hsinchucc/councilors.json', '../../data/tncc/councilors.json', '../../data/ntp/councilors_terms.json', '../../data/ntp/councilors.json', '../../data/tccc/councilors.json', '../../data/kcc/councilors_terms.json', '../../data/tcc/councilors_terms.json']:
+for council in ['../../data/kmc/councilors.json', '../../data/tycc/councilors.json', '../../data/hsinchucc/councilors.json', '../../data/ntp/councilors_terms.json', '../../data/ntp/councilors.json', '../../data/tcc/councilors.json']:
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
@@ -152,14 +152,14 @@ for council in ['../../data/kmcc/councilors.json', '../../data/mcc/councilors.js
 conn.commit()
 
 # update
-for council in ['../../data/kcc/councilors.json', '../../data/tcc/councilors.json']:
-    print council
-    dict_list = json.load(open(council))
-    for councilor in dict_list:
-        councilor = normalize_councilor(councilor)
-        councilor['uid'] = select_uid(councilor)
-        updateCouncilorsDetail(councilor)
-conn.commit()
+#for council in ['../../data/kcc/councilors.json', '../../data/tcc/councilors.json']:
+#    print council
+#    dict_list = json.load(open(council))
+#    for councilor in dict_list:
+#        councilor = normalize_councilor(councilor)
+#        councilor['uid'] = select_uid(councilor)
+#        updateCouncilorsDetail(councilor)
+#conn.commit()
 
 # update term_end councilors
 term_end_councilors = json.load(open('../../data/term_end.json'))
