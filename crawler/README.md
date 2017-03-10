@@ -24,7 +24,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 | 桃園市 | tycc      |    O     |          |      |        |
 | 新竹市 | hsinchucc |    O     |          |      |        |
 | 新竹縣 | hcc       |    O     |          |      |        |
-| 苗栗縣 | mcc       |          |          |      |        |
+| 苗栗縣 | mcc       |    O     |          |      |        |
 
 
 ### 中部
