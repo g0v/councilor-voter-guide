@@ -40,6 +40,8 @@ class Spider(scrapy.Spider):
             item['name'] = node.xpath(u'normalize-space((descendant::td)[1]/text())').extract_first()
             item['image'] = urljoin(response.url, node.xpath(u'(ancestor::td[1]/preceding-sibling::td)[1]/descendant::img[1]/@src').extract_first())
             item['gender'] = self.ref[item['name']]['sex']
+            item['party'] = self.ref[item['name']]['partymship']
+            item['title'] = self.ref[item['name']]['posiname']
             item['contact_details'] = []
             if self.ref[item['name']].get('officeadress'):
                 item['contact_details'].append({
