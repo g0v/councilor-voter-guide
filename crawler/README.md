@@ -25,6 +25,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 | 新竹市 | hsinchucc |    O     |          |      |        |
 | 新竹縣 | hcc       |    O     |          |      |        |
 | 苗栗縣 | mcc       |    O     |          |      |        |
+| 宜蘭縣 | ilcc      |    O     |          |      |        |
 
 
 ### 中部
@@ -42,7 +43,6 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 
 | 縣市   | 代號      | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
 |--------|-----------|----------|----------|------|--------|
-| 宜蘭縣 | ilcc      |          |          |      |        |
 | 花蓮縣 | hlcc      |          |          |      |        |
 | 臺東縣 | taitungcc |          |          |      |        |
 
