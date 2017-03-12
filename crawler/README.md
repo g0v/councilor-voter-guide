@@ -32,8 +32,8 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 
 | 縣市   | 代號  | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
 |--------|-------|----------|----------|------|--------|
-| 臺中市 | tccc  |          |          |      |        |
-| 彰化縣 | chcc  |          |          |      |        |
+| 臺中市 | tccc  |    O     |          |      |        |
+| 彰化縣 | chcc  |    O     |          |      |        |
 | 南投縣 | ntcc  |          |          |      |        |
 | 雲林縣 | ylcc  |          |          |      |        |
 | 嘉義縣 | cyscc |          |          |      |        |
