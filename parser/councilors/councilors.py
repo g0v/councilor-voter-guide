@@ -141,7 +141,7 @@ conn = db_settings.con()
 c = conn.cursor()
 constituency_maps = json.load(open('../constituency.json'))
 # insert
-for council in ['../../data/ylcc/councilors.json', '../../data/ntcc/councilors.json', '../../data/chcc/councilors.json', '../../data/tccc/councilors.json', '../../data/ilcc/councilors.json', '../../data/mcc/councilors.json', '../../data/hcc/councilors.json', '../../data/kmc/councilors.json', '../../data/tycc/councilors.json', '../../data/hsinchucc/councilors.json', '../../data/ntp/councilors_terms.json', '../../data/ntp/councilors.json', '../../data/tcc/councilors.json']:
+for council in ['../../data/cyscc/councilors.json', '../../data/ylcc/councilors.json', '../../data/ntcc/councilors.json', '../../data/chcc/councilors.json', '../../data/tccc/councilors.json', '../../data/ilcc/councilors.json', '../../data/mcc/councilors.json', '../../data/hcc/councilors.json', '../../data/kmc/councilors.json', '../../data/tycc/councilors.json', '../../data/hsinchucc/councilors.json', '../../data/ntp/councilors_terms.json', '../../data/ntp/councilors.json', '../../data/tcc/councilors.json']:
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
@@ -152,14 +152,14 @@ for council in ['../../data/ylcc/councilors.json', '../../data/ntcc/councilors.j
 conn.commit()
 
 ## update
-#for council in ['../../data/mcc/councilors.json', ]:
-#    print council
-#    dict_list = json.load(open(council))
-#    for councilor in dict_list:
-#        councilor = normalize_councilor(councilor)
-#        councilor['uid'] = select_uid(councilor)
-#        updateCouncilorsDetail(councilor)
-#conn.commit()
+for council in ['../../data/cyscc/councilors.json', ]:
+    print council
+    dict_list = json.load(open(council))
+    for councilor in dict_list:
+        councilor = normalize_councilor(councilor)
+        councilor['uid'] = select_uid(councilor)
+        updateCouncilorsDetail(councilor)
+conn.commit()
 
 # update term_end councilors
 term_end_councilors = json.load(open('../../data/term_end.json'))

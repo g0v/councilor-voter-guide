@@ -1,5 +1,25 @@
 [
     {
+        "county": "嘉義縣",
+        "election_year": "2014",
+        "name": "陳保仁",
+        "term_start": "2014-12-25",
+        "term_end": {
+            "date": "2017-01-27",
+            "reason": "已故"
+        }
+    },
+    {
+        "county": "嘉義縣",
+        "election_year": "2014",
+        "name": "黃錦成",
+        "term_start": "2014-12-25",
+        "term_end": {
+            "date": "2015-06-02",
+            "reason": "已故"
+        }
+    },
+    {
         "county": "臺南市",
         "election_year": "2010",
         "name": "謝龍介",
