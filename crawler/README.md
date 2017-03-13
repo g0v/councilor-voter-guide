@@ -37,7 +37,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 | 南投縣 | ntcc  |    O     |          |      |        |
 | 雲林縣 | ylcc  |    O     |          |      |        |
 | 嘉義縣 | cyscc |    O     |          |      |        |
-| 嘉義市 | cycc  |          |          |      |        |
+| 嘉義市 | cycc  |    O     |          |      |        |
 
 ### 東部
 
