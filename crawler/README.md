@@ -43,7 +43,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 
 | 縣市   | 代號      | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
 |--------|-----------|----------|----------|------|--------|
-| 花蓮縣 | hlcc      |          |          |      |        |
+| 花蓮縣 | hlcc      |    O     |          |      |        |
 | 臺東縣 | taitungcc |          |          |      |        |
 
 ### 南部
