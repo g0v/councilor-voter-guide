@@ -51,7 +51,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 | 縣市   | 代號 | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
 |--------|------|----------|----------|------|--------|
 | 臺南市 | tncc |    O     |          |      |        |
-| 高雄市 | kcc  |          |          |      |        |
+| 高雄市 | kcc  |    O     |          |      |        |
 | 屏東縣 | ptcc |          |          |      |        |
 
 ### 外島
