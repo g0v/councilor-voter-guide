@@ -58,7 +58,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 
 | 縣市   | 代號      | 現任議員 | 歷屆議員 | 議案 | 議事錄 |
 |--------|-----------|----------|----------|------|--------|
-| 連江縣 | mtcc      |          |          |      |        |
+| 連江縣 | mtcc      |    O     |          |      |        |
 | 金門縣 | kmcc      |          |          |      |        |
 | 澎湖縣 | phcouncil |          |          |      |        |
 
