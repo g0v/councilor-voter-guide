@@ -60,7 +60,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 |--------|-----------|----------|----------|------|--------|
 | 連江縣 | mtcc      |    O     |          |      |        |
 | 金門縣 | kmcc      |    O     |          |      |        |
-| 澎湖縣 | phcouncil |          |          |      |        |
+| 澎湖縣 | phcouncil |    O     |          |      |        |
 
 ## councilors.json 格式範例說明
 
