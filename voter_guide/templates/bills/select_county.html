@@ -11,23 +11,24 @@
         <div class="page-header text-center span10 offset1">
             <h3>請選擇縣市</h3>
         </div>
-        {% for county in counties %}
-        <div class="column direct-container">
-            <a href="{% url 'bills:bills' index=index county=county %}" class="direct-item {% cycle 'council-purple' 'council-darkpurple' %}">
-                <h4>{{county}}</h4>
-                <div>&nbsp;</div>
-                <br>
-                <br>
-                <div class="direct-sub">
+        {% for region in regions %}
+            {% for county in region.counties %}
+                <div class="column direct-container">
+                <a href="{% url 'bills:bills' index=index county=county %}" class="direct-item council-light {% cycle 'council-lightyellow' 'council-yellow' %}">
+                    <img class="" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png">
+                    <div></div>
+                    <br>
+                    <br>
+                    <div class="direct-sub right">
+                        <h4>{{county}}</h4>
+                    </div>
+                </a>
                 </div>
-            </a>
-        </div>
+            {% endfor %}
+            <hr>
         {% endfor %}
-        <div class="alert alert-info span12" style="margin-left:0px;margin-top:50px;"><h4 class="text-center">其他縣市努力趕工中，歡迎加入開發</h4></div>
-        </div>
-        <hr>
-        <div id="disqus_thread"></div>
     </div>
+    <div id="disqus_thread"></div>
 {% endblock right %}
 
 {% block script %}
