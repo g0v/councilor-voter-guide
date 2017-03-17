@@ -31,6 +31,7 @@
             <thead>
                 <tr style="font-weight:bold;background-color: #E1D0D0;">
                     <th rowspan="2">當選註記</th>
+                    <th rowspan="2">得票數</th>
                     <th rowspan="2">候選人</th>
                     <th rowspan="2">黨籍</th>
                     <th rowspan="2">最近任期</th>
@@ -55,7 +56,8 @@
                                 <span class="badge badge-warning">◎</span>
                             {% endif %}
                         </td>
-                        <td style="text-align:center; vertical-align:middle;">{{councilor.name}}</td>
+                        <td style="text-align:center; vertical-align:middle;">{{councilor.votes}}</td>
+                        <td style="text-align:center; vertical-align:middle;" nowrap>{{councilor.name}}</td>
                         <td style="text-align:center; vertical-align:middle;">{{councilor.party}}</td>
                         {% if councilor.councilor_id %}
                             <td style="text-align:center; vertical-align:middle;">

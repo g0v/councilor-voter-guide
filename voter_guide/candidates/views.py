@@ -21,7 +21,7 @@ def districts(request, election_year, county):
     return render(request, 'candidates/districts.html', {'election_year': election_year, 'county': county, 'districts': districts})
 
 def district(request, election_year, county, constituency):
-    candidates = Candidates.objects.filter(election_year=election_year, county=county, constituency=constituency).order_by('party')\
+    candidates = Candidates.objects.filter(election_year=election_year, county=county, constituency=constituency).order_by('-votes')\
                                    .annotate(
                                        balance=Sum('councilor__each_terms__politicalcontributions__balance'),
                                        in_total=Sum('councilor__each_terms__politicalcontributions__in_total'),
