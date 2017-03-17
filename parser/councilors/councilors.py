@@ -2,15 +2,19 @@
 # -*- coding: utf-8 -*-
 import sys
 sys.path.append('../')
+import os
 import re
 import json
 import uuid
 import codecs
 import psycopg2
 from psycopg2.extras import Json
+import logging
 import db_settings
 import common
 
+
+logging.basicConfig(filename='parser.log', level=logging.ERROR)
 
 def get_constituency(councilor):
     if councilor.get('constituency'):
@@ -30,7 +34,7 @@ def normalize_constituency(constituency):
     try:
         return int(match.group('num'))
     except:
-        print match.group('num')
+        logging.info(match.group('num'))
     ref = {u'一': 1, u'二': 2, u'三': 3, u'四': 4, u'五': 5, u'六': 6, u'七': 7, u'八': 8, u'九': 9}
     if re.search(u'^\s*十\s*$', match.group('num')):
         return 10
@@ -80,7 +84,7 @@ def get_or_create_uid(councilor):
     return r[0] if r else uuid.uuid4().hex
 
 def select_uid(councilor):
-    print councilor
+    logging.info(councilor)
     c.execute('''
         SELECT councilor_id
         FROM councilors_councilorsdetail
@@ -117,6 +121,7 @@ def updateCouncilorsDetail(councilor):
         complement = dict(zip(key, r))
     else:
         print councilor
+        logging.error(councilor)
         raw_input()
     complement.update(councilor)
     c.execute('''
@@ -137,11 +142,24 @@ def insertCouncilorsDetail(councilor):
         WHERE NOT EXISTS (SELECT 1 FROM councilors_councilorsdetail WHERE councilor_id = %(uid)s and election_year = %(election_year)s ) RETURNING id
     ''', complement)
 
+def examinate_with_cand_moi(councilor):
+    matched = [person for person in merged_cand_moi
+        if person['cityname'] == councilor['county'] and re.sub(u'[\s　]', '', person['idname']) == councilor['name']]
+    if len(matched) > 1:
+        logging.error(u'matched more than one of: %s, %s' % (councilor['county'], councilor['name']))
+    elif len(matched) == 0:
+        logging.error(u'no matched of: %s, %s' % (councilor['county'], councilor['name']))
+
+with open(os.path.join(os.path.dirname(__file__), '../../data/cand-moi-county-control-2018.json'), 'r') as infile:
+    merged_cand_moi = json.loads(infile.read())
+with open(os.path.join(os.path.dirname(__file__), '../../data/cand-moi-direct-control-2018.json'), 'r') as infile:
+    direct_control = json.loads(infile.read())
+merged_cand_moi.extend(direct_control)
 conn = db_settings.con()
 c = conn.cursor()
 constituency_maps = json.load(open('../constituency.json'))
 # insert
-for council in ['../../data/phcouncil/councilors.json', '../../data/kmcc/councilors.json', '../../data/mtcc/councilors.json', '../../data/ptcc/councilors.json', '../../data/kcc/councilors.json', '../../data/tncc/councilors.json', '../../data/taitungcc/councilors.json', '../../data/hlcc/councilors.json', '../../data/cycc/councilors.json', '../../data/cyscc/councilors.json', '../../data/ylcc/councilors.json', '../../data/ntcc/councilors.json', '../../data/chcc/councilors.json', '../../data/tccc/councilors.json', '../../data/ilcc/councilors.json', '../../data/mcc/councilors.json', '../../data/hcc/councilors.json', '../../data/kmc/councilors.json', '../../data/tycc/councilors.json', '../../data/hsinchucc/councilors.json', '../../data/ntp/councilors_terms.json', '../../data/ntp/councilors.json', '../../data/tcc/councilors.json']:
+for council in ['../../data/phcouncil/councilors.json', '../../data/kmcc/councilors.json', '../../data/mtcc/councilors.json', '../../data/ptcc/councilors.json', '../../data/kcc/councilors.json', '../../data/tncc/councilors.json', '../../data/taitungcc/councilors.json', '../../data/hlcc/councilors.json', '../../data/cycc/councilors.json', '../../data/cyscc/councilors.json', '../../data/ylcc/councilors.json', '../../data/ntcc/councilors.json', '../../data/chcc/councilors.json', '../../data/tccc/councilors.json', '../../data/ilcc/councilors.json', '../../data/mcc/councilors.json', '../../data/hcc/councilors.json', '../../data/kmc/councilors.json', '../../data/tycc/councilors.json', '../../data/hsinchucc/councilors.json', '../../data/ntp/councilors.json', '../../data/tcc/councilors.json']:
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
@@ -149,6 +167,8 @@ for council in ['../../data/phcouncil/councilors.json', '../../data/kmcc/council
         councilor['uid'] = select_uid(councilor)
         Councilors(councilor)
         insertCouncilorsDetail(councilor)
+        if councilor['in_office']:
+            examinate_with_cand_moi(councilor)
 conn.commit()
 
 ## update
