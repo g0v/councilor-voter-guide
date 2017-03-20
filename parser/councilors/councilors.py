@@ -109,30 +109,6 @@ def Councilors(councilor):
         SET name = %(name)s, birth = %(birth)s, former_names = %(former_names)s, identifiers = %(identifiers)s
     ''', complement)
 
-def updateCouncilorsDetail(councilor):
-    for key in ['education', 'experience', 'platform', 'remark']:
-        if councilor.has_key(key):
-            councilor[key] = '\n'.join(councilor[key])
-    c.execute('''
-        SELECT *
-        FROM councilors_councilorsdetail
-        WHERE councilor_id = %(uid)s and election_year = %(election_year)s
-    ''', councilor)
-    key = [desc[0] for desc in c.description]
-    r = c.fetchone()
-    if r:
-        complement = dict(zip(key, r))
-    else:
-        print councilor
-        logging.error(councilor)
-        raw_input()
-    complement.update(councilor)
-    c.execute('''
-        UPDATE councilors_councilorsdetail
-        SET name = %(name)s, gender = %(gender)s, party = %(party)s, title = %(title)s, constituency = %(constituency)s, in_office = %(in_office)s, contact_details = %(contact_details)s, county = %(county)s, district = %(district)s, term_start = %(term_start)s, term_end = %(term_end)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s, platform = %(platform)s
-        WHERE councilor_id = %(uid)s and election_year = %(election_year)s
-    ''', complement)
-
 def insertCouncilorsDetail(councilor):
     for key in ['education', 'experience', 'platform', 'remark']:
         if councilor.has_key(key):
@@ -140,9 +116,11 @@ def insertCouncilorsDetail(councilor):
     complement = {"gender":'', "party":'', "contact_details":None, "title":'', "constituency":'', "county":'', "district":'', "in_office":True, "term_start":None, "term_end":{}, "education":None, "experience":None, "remark":None, "image":'', "links":None, "platform":''}
     complement.update(councilor)
     c.execute('''
-        INSERT into councilors_councilorsdetail(councilor_id, election_year, name, gender, party, title, constituency, county, district, in_office, contact_details, term_start, term_end, education, experience, remark, image, links, platform)
-        SELECT %(uid)s, %(election_year)s, %(name)s, %(gender)s, %(party)s, %(title)s, %(constituency)s, %(county)s, %(district)s, %(in_office)s, %(contact_details)s, %(term_start)s, %(term_end)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s
-        WHERE NOT EXISTS (SELECT 1 FROM councilors_councilorsdetail WHERE councilor_id = %(uid)s and election_year = %(election_year)s ) RETURNING id
+        INSERT INTO councilors_councilorsdetail(councilor_id, election_year, name, gender, party, title, constituency, county, district, in_office, contact_details, term_start, term_end, education, experience, remark, image, links, platform)
+        VALUES (%(uid)s, %(election_year)s, %(name)s, %(gender)s, %(party)s, %(title)s, %(constituency)s, %(county)s, %(district)s, %(in_office)s, %(contact_details)s, %(term_start)s, %(term_end)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s)
+        ON CONFLICT (councilor_id, election_year)
+        DO UPDATE
+        SET name = %(name)s, gender = %(gender)s, party = %(party)s, title = %(title)s, constituency = %(constituency)s, in_office = %(in_office)s, contact_details = %(contact_details)s, county = %(county)s, district = %(district)s, term_start = %(term_start)s, term_end = %(term_end)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s, platform = %(platform)s
     ''', complement)
 
 def examinate_with_cand_moi(councilor):
@@ -173,16 +151,6 @@ for council in ['../../data/phcouncil/councilors.json', '../../data/kmcc/council
         if councilor['in_office']:
             examinate_with_cand_moi(councilor)
 conn.commit()
-
-## update
-#for council in ['../../data/taitungcc/councilors.json', ]:
-#    print council
-#    dict_list = json.load(open(council))
-#    for councilor in dict_list:
-#        councilor = normalize_councilor(councilor)
-#        councilor['uid'] = select_uid(councilor)
-#        updateCouncilorsDetail(councilor)
-#conn.commit()
 
 # update term_end councilors
 term_end_councilors = json.load(open('../../data/term_end.json'))
