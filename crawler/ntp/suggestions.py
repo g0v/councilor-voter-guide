@@ -21,7 +21,7 @@ class Spider(scrapy.Spider):
     def parse_file(self, response):
         for node in response.xpath(u'//a[contains(@title, "議員所提")]'):
             item = {}
-            m = re.search(u'(?P<year>\d+)年度(?P<month_from>\d+)\s*[-~]+\s*(?P<month_to>\d+)月', node.xpath('@title').extract_first())
+            m = re.search(u'(?P<year>\d+)年度(?P<month_from>\d+)\s*[-~]+\s*(?P<month_to>\d+)月', node.xpath('normalize-space(string())').extract_first())
             item['year'] = int(m.group('year')) + 1911
             item['month_from'] = m.group('month_from').zfill(2)
             item['month_to'] = m.group('month_to').zfill(2)
