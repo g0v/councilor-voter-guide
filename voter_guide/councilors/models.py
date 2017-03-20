@@ -48,6 +48,10 @@ class CouncilorsDetail(models.Model):
     social_media = JSONField(null=True)
     platform = models.TextField(blank=True, null=True)
     param = JSONField(null=True)
+
+    class Meta:
+        unique_together = ("councilor", "election_year")
+
     def __unicode__(self):
         return self.name
 
