@@ -98,12 +98,15 @@ def select_uid(councilor):
 
 def Councilors(councilor):
     councilor['former_names'] = '\n'.join(councilor['former_names']) if councilor.has_key('former_names') else ''
+    councilor['identifiers'] = list((set(councilor['former_names']) | {councilor['name'], re.sub(u'[\w‧]', '', councilor['name']), re.sub(u'\W', '', councilor['name']).lower(), }) - {''})
     complement = {"birth": None}
     complement.update(councilor)
     c.execute('''
-        INSERT INTO councilors_councilors(uid, name, birth, former_names)
-        SELECT %(uid)s, %(name)s, %(birth)s, %(former_names)s
-        WHERE NOT EXISTS (SELECT 1 FROM councilors_councilors WHERE uid = %(uid)s)
+        INSERT INTO councilors_councilors(uid, name, birth, former_names, identifiers)
+        VALUES (%(uid)s, %(name)s, %(birth)s, %(former_names)s, %(identifiers)s)
+        ON CONFLICT (uid)
+        DO UPDATE
+        SET name = %(name)s, birth = %(birth)s, former_names = %(former_names)s, identifiers = %(identifiers)s
     ''', complement)
 
 def updateCouncilorsDetail(councilor):
