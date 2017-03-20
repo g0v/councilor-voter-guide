@@ -6,6 +6,32 @@ import json
 from datetime import datetime
 
 
+def county_abbr2string(abbr):
+    return {
+        'ntp': u'新北市',
+        'tcc': u'臺北市',
+        'tycc': u'桃園市',
+        'kmc': u'基隆市',
+        'ilcc': u'宜蘭縣',
+        'hcc': u'新竹縣',
+        'hsinchucc': u'新竹市',
+        'mcc': u'苗栗縣',
+        'tccc': u'臺中市',
+        'chcc': u'彰化縣',
+        'ylcc': u'雲林縣',
+        'ntcc': u'南投縣',
+        'cyscc': u'嘉義縣',
+        'cycc': u'嘉義市',
+        'tncc': u'臺南市',
+        'kcc': u'高雄市',
+        'ptcc': u'屏東縣',
+        'hlcc': u'花蓮縣',
+        'taitungcc': u'臺東縣',
+        'mtcc': u'連江縣',
+        'kmcc': u'金門縣',
+        'phcouncil': u'澎湖縣'
+    }[abbr]
+
 def SittingsAbbreviation(key):
     d = json.load(open('util.json'))
     return d.get(key)
@@ -77,20 +103,26 @@ def getIdList(c, name_list, sitting_dict):
     #raw_input()
     return []
 
-def getNameList(text):
-    name_list, firstName = [], ''
+def GetCouncilorId(c, name):
+    identifiers = {name, re.sub(u'[\w‧]', '', name), re.sub(u'\W', '', name).lower(), } - {''}
+    if identifiers:
+        c.execute('''
+            SELECT uid
+            FROM councilors_councilors
+            WHERE identifiers ?| array[%s]
+        ''' % ','.join(["'%s'" % x for x in identifiers]))
+        return [x[0] for x in c.fetchall()]
+
+def getCouncilorIdList(c, text):
+    id_list = []
     for name in text.split():
-        if re.search(u'[）)。】」]$', name):   #名字後有標點符號
-            name = name[:-1]
-        #中文姓名中間有空白
-        if len(name) < 2 and firstName == '':
-            firstName = name
-            continue
-        if firstName != '':
-            name = firstName + name
-            firstName = ''
-        name_list.append(name)
-    return name_list
+        name = re.sub(u'(.*)[）)。】」]$', '\g<1>', name) # 名字後有標點符號
+        councilor_ids = GetCouncilorId(c, name)
+        if councilor_ids:
+            id_list.extend(councilor_ids)
+        else:
+            print u'%s not an councilor?' % name
+    return id_list
 
 def AddAttendanceRecord(c, councilor_id, sitting_id, category, status):
     c.execute('''

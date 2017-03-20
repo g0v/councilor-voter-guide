@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.contrib.postgres.fields import JSONField
 
 
 class Suggestions(models.Model):
@@ -15,13 +16,16 @@ class Suggestions(models.Model):
     expend_on = models.TextField(blank=True, null=True)
     brought_by = models.TextField(blank=True, null=True)
     bid_type = models.TextField(blank=True, null=True)
-    bid_by = models.TextField(blank=True, null=True)
+    bid_by = JSONField(null=True)
     district = models.CharField(db_index=True, max_length=100, blank=True, null=True)
     constituency = models.IntegerField(db_index=True, blank=True, null=True)
     def __unicode__(self):
-        return self.name
+        return self.uid
 
 class Councilors_Suggestions(models.Model):
     councilor = models.ForeignKey('councilors.CouncilorsDetail', db_index=True, related_name='suggestions')
     suggestion = models.ForeignKey(Suggestions, to_field='uid', related_name='councilors')
     jurisdiction = models.NullBooleanField(db_index=True)
+
+    class Meta:
+        unique_together = ("councilor", "suggestion")
