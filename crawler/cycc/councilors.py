@@ -49,7 +49,7 @@ class Spider(scrapy.Spider):
         item['district'] = response.xpath(u'string(//th[re:test(., "個 人 網 站選[\s　]*區")]/following-sibling::td[1])').extract_first().strip()
         values = [x.strip() for x in response.xpath(u'string(//th[re:test(., "%s")]/following-sibling::td[1])' % u'[\s　]*'.join(u'個人網站')).extract() if x.strip()]
         for value in values:
-            item['contact_details'].append({
+            item['links'].append({
                 'note': u'個人網站',
                 'url': value
             })
