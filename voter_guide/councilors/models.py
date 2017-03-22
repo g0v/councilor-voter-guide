@@ -33,7 +33,7 @@ class CouncilorsDetail(models.Model):
     gender = models.CharField(max_length=100, blank=True, null=True)
     party = models.CharField(db_index=True, max_length=100, blank=True, null=True)
     title = models.CharField(max_length=100, blank=True, null=True)
-    constituency = models.CharField(db_index=True, max_length=100, blank=True, null=True)
+    constituency = models.IntegerField(db_index=True, null=True)
     county = models.CharField(db_index=True, max_length=100)
     district = models.CharField(db_index=True, max_length=100, blank=True, null=True)
     in_office = models.BooleanField(db_index=True)
