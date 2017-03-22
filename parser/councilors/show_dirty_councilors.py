@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import sys
 sys.path.append('../')
+import re
 import db_settings
 import common
 
