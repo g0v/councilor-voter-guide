@@ -31,7 +31,6 @@ c = conn.cursor()
 c.execute('''
     SELECT *
     FROM councilors_councilors
-    WHERE identifiers is null
 ''')
 key = [desc[0] for desc in c.description]
 for row in c.fetchall():
