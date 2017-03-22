@@ -104,7 +104,7 @@ def getIdList(c, name_list, sitting_dict):
     return []
 
 def GetCouncilorId(c, name):
-    identifiers = {name, re.sub(u'[\w‧]', '', name), re.sub(u'\W', '', name).lower(), } - {''}
+    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’]', '', name), re.sub(u'\W', '', name).lower(), } - {''}
     if identifiers:
         c.execute('''
             SELECT uid

@@ -24,13 +24,13 @@ def get_constituency(councilor):
             if v == councilor['district']:
                 return k
     except:
-        return ''
+        pass
     return ''
 
 def normalize_constituency(constituency):
     match = re.search(u'第(?P<num>.+)選(?:舉)?區', constituency)
     if not match:
-        return ''
+        return None
     try:
         return int(match.group('num'))
     except:
@@ -65,40 +65,36 @@ def normalize_councilor(councilor):
     return councilor
 
 def get_or_create_uid(councilor):
-    # same name and county different election_year first
+    logging.info(councilor)
+    print councilor['name']
+    councilor['councilor_ids'] = tuple(common.GetCouncilorId(c, councilor['name']))
     c.execute('''
         SELECT councilor_id
         FROM councilors_councilorsdetail
-        WHERE name = %(name)s and election_year != %(election_year)s and county = %(county)s
-    ''', councilor)
-    r = c.fetchone()
-    if r:
-        return r[0]
-    # same name different election_year
-    c.execute('''
-        SELECT councilor_id
-        FROM councilors_councilorsdetail
-        WHERE name = %(name)s and election_year != %(election_year)s
+        WHERE councilor_id in %(councilor_ids)s
+        ORDER BY
+            CASE
+                WHEN election_year = %(election_year)s AND county = %(county)s AND constituency = %(constituency)s AND name = %(name)s THEN 1
+                WHEN election_year = %(election_year)s AND county = %(county)s AND constituency = %(constituency)s THEN 2
+                WHEN county = %(county)s AND constituency = %(constituency)s AND name = %(name)s THEN 3
+                WHEN county = %(county)s AND constituency = %(constituency)s THEN 4
+                WHEN county = %(county)s AND name = %(name)s THEN 5
+                WHEN county = %(county)s THEN 6
+            END,
+            election_year DESC
+        LIMIT 1
     ''', councilor)
     r = c.fetchone()
     return r[0] if r else uuid.uuid4().hex
 
-def select_uid(councilor):
-    logging.info(councilor)
-    c.execute('''
-        SELECT councilor_id
-        FROM councilors_councilorsdetail
-        WHERE name = %(name)s and election_year = %(election_year)s and county = %(county)s
-    ''', councilor)
-    r = c.fetchone()
-    if r:
-        return r[0]
-    else:
-        return get_or_create_uid(councilor)
-
 def Councilors(councilor):
-    councilor['former_names'] = '\n'.join(councilor['former_names']) if councilor.has_key('former_names') else ''
-    councilor['identifiers'] = list((set(councilor['former_names']) | {councilor['name'], re.sub(u'[\w‧]', '', councilor['name']), re.sub(u'\W', '', councilor['name']).lower(), }) - {''})
+    councilor['former_names'] = councilor.get('former_names', [])
+    variants = set()
+    for variant in [(u'温', u'溫'), (u'黄', u'黃'), (u'寳', u'寶'), (u'真', u'眞'), (u'福', u'褔'), (u'鎭', u'鎮'), (u'姸', u'妍'), (u'市', u'巿'), (u'衛', u'衞'), (u'館', u'舘'), (u'峰', u'峯'), (u'群', u'羣'), (u'啓', u'啟'), (u'鳳', u'鳯'), (u'冗', u'宂'), ]:
+        variants.add(re.sub(variant[0], variant[1], councilor['name']))
+        variants.add(re.sub(variant[1], variant[0], councilor['name']))
+    councilor['identifiers'] = list((variants | set(councilor['former_names']) | {councilor['name'], re.sub(u'[\w‧’]]', '', councilor['name']), re.sub(u'\W', '', councilor['name']).lower(), }) - {''})
+    councilor['former_names'] = '\n'.join(councilor['former_names'])
     complement = {"birth": None}
     complement.update(councilor)
     c.execute('''
@@ -111,9 +107,9 @@ def Councilors(councilor):
 
 def insertCouncilorsDetail(councilor):
     for key in ['education', 'experience', 'platform', 'remark']:
-        if councilor.has_key(key):
+        if councilor.has_key(key) and type(councilor[key]) is list:
             councilor[key] = '\n'.join(councilor[key])
-    complement = {"gender":'', "party":'', "contact_details":None, "title":'', "constituency":'', "county":'', "district":'', "in_office":True, "term_start":None, "term_end":{}, "education":None, "experience":None, "remark":None, "image":'', "links":None, "platform":''}
+    complement = {"gender": '', "party": '', "contact_details": None, "title": u'議員', "constituency": None, "county": '', "district": '', "in_office": True, "term_start": None, "term_end": {}, "education": None, "experience": None, "remark": None, "image": '', "links": None, "platform": ''}
     complement.update(councilor)
     c.execute('''
         INSERT INTO councilors_councilorsdetail(councilor_id, election_year, name, gender, party, title, constituency, county, district, in_office, contact_details, term_start, term_end, education, experience, remark, image, links, platform)
@@ -139,13 +135,27 @@ merged_cand_moi.extend(direct_control)
 conn = db_settings.con()
 c = conn.cursor()
 constituency_maps = json.load(open('../constituency.json'))
-# insert
+
+# update all councilor's identifiers
+c.execute('''
+    SELECT *
+    FROM councilors_councilors
+    WHERE identifiers is null
+''')
+key = [desc[0] for desc in c.description]
+for row in c.fetchall():
+    person = dict(zip(key, row))
+    person['name'] = person['name'].decode('utf-8')
+    Councilors(person)
+conn.commit()
+
+# upsert from json
 for council in ['../../data/phcouncil/councilors.json', '../../data/kmcc/councilors.json', '../../data/mtcc/councilors.json', '../../data/ptcc/councilors.json', '../../data/kcc/councilors.json', '../../data/tncc/councilors.json', '../../data/taitungcc/councilors.json', '../../data/hlcc/councilors.json', '../../data/cycc/councilors.json', '../../data/cyscc/councilors.json', '../../data/ylcc/councilors.json', '../../data/ntcc/councilors.json', '../../data/chcc/councilors.json', '../../data/tccc/councilors.json', '../../data/ilcc/councilors.json', '../../data/mcc/councilors.json', '../../data/hcc/councilors.json', '../../data/kmc/councilors.json', '../../data/tycc/councilors.json', '../../data/hsinchucc/councilors.json', '../../data/ntp/councilors.json', '../../data/tcc/councilors.json']:
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
         councilor = normalize_councilor(councilor)
-        councilor['uid'] = select_uid(councilor)
+        councilor['uid'] = get_or_create_uid(councilor)
         Councilors(councilor)
         insertCouncilorsDetail(councilor)
         if councilor['in_office']:
