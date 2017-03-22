@@ -49,7 +49,15 @@
                     {{obj.bid_type}}
                 </td>
                 <td style="vertical-align:middle;">
-                    {{obj.bid_by}}
+                    {% for company in obj.bid_by %}
+                        {% if company %}
+                        <p>
+                            {{company}}
+                        </p>
+                        {% endif %}
+                    {% empty %}
+                        【來源檔案無資料】
+                    {% endfor %}
                 </td>
             </tr>
         {% endfor %}

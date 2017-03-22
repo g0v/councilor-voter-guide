@@ -57,7 +57,11 @@
                         <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
                             <td style="text-align:center; vertical-align:middle;">
                                 {% for company in obj.bid_by %}
-                                    <a href="{% url 'suggestions:bid_by' bid_by=company|urlencode %}">{{company}}</a>
+                                    {% if company %}
+                                    <p>
+                                        <a href="{% url 'suggestions:bid_by' bid_by=company|urlencode %}">{{company}}</a>
+                                    </p>
+                                    {% endif %}
                                 {% empty %}
                                     【來源檔案無資料】
                                 {% endfor %}
