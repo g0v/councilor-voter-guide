@@ -28,6 +28,10 @@ def get_constituency(councilor):
     return ''
 
 def normalize_constituency(constituency):
+    try:
+        return int(constituency)
+    except:
+        pass
     match = re.search(u'第(?P<num>.+)選(?:舉)?區', constituency)
     if not match:
         return None
@@ -48,8 +52,7 @@ def normalize_constituency(constituency):
     return total
 
 def normalize_councilor(councilor):
-    councilor['name'] = re.sub(u'[。˙・･•．.]', u'‧', councilor['name'])
-    councilor['name'] = re.sub(u'[　\s]', '', councilor['name'])
+    councilor['name'] = common.normalize_person_name(councilor['name'])
     councilor['name'] = re.sub(u'(副?議長|議員)', '', councilor['name'])
     councilor['gender'] = re.sub(u'性', '', councilor.get('gender', ''))
     if councilor.get('party'):
@@ -65,8 +68,10 @@ def normalize_councilor(councilor):
     return councilor
 
 def get_or_create_uid(councilor):
+    '''
+        return councilor_uid, created
+    '''
     logging.info(councilor)
-    print councilor['name']
     councilor['councilor_ids'] = tuple(common.GetCouncilorId(c, councilor['name']))
     c.execute('''
         SELECT councilor_id
@@ -85,15 +90,15 @@ def get_or_create_uid(councilor):
         LIMIT 1
     ''', councilor)
     r = c.fetchone()
-    return r[0] if r else uuid.uuid4().hex
+    return (r[0], True) if r else (uuid.uuid4().hex, False)
 
 def Councilors(councilor):
     councilor['former_names'] = councilor.get('former_names', [])
     variants = set()
-    for variant in [(u'温', u'溫'), (u'黄', u'黃'), (u'寳', u'寶'), (u'真', u'眞'), (u'福', u'褔'), (u'鎭', u'鎮'), (u'姸', u'妍'), (u'市', u'巿'), (u'衛', u'衞'), (u'館', u'舘'), (u'峰', u'峯'), (u'群', u'羣'), (u'啓', u'啟'), (u'鳳', u'鳯'), (u'冗', u'宂'), ]:
+    for variant in [(u'溫', u'温'), (u'黃', u'黄'), (u'寶', u'寳'), (u'真', u'眞'), (u'福', u'褔'), (u'鎮', u'鎭'), (u'妍', u'姸'), (u'市', u'巿'), (u'衛', u'衞'), (u'館', u'舘'), (u'峰', u'峯'), (u'群', u'羣'), (u'啟', u'啓'), (u'鳳', u'鳯'), (u'冗', u'宂'), ]:
         variants.add(re.sub(variant[0], variant[1], councilor['name']))
         variants.add(re.sub(variant[1], variant[0], councilor['name']))
-    councilor['identifiers'] = list((variants | set(councilor['former_names']) | {councilor['name'], re.sub(u'[\w‧’]]', '', councilor['name']), re.sub(u'\W', '', councilor['name']).lower(), }) - {''})
+    councilor['identifiers'] = list((variants | set(councilor['former_names']) | {councilor['name'], re.sub(u'[\w‧]', '', councilor['name']), re.sub(u'\W', '', councilor['name']).lower(), }) - {''})
     councilor['former_names'] = '\n'.join(councilor['former_names'])
     complement = {"birth": None}
     complement.update(councilor)
@@ -140,12 +145,12 @@ constituency_maps = json.load(open('../constituency.json'))
 c.execute('''
     SELECT *
     FROM councilors_councilors
-    WHERE identifiers is null
 ''')
 key = [desc[0] for desc in c.description]
 for row in c.fetchall():
     person = dict(zip(key, row))
     person['name'] = person['name'].decode('utf-8')
+    person['name'] = common.normalize_person_name(person['name'])
     Councilors(person)
 conn.commit()
 
@@ -155,11 +160,46 @@ for council in ['../../data/phcouncil/councilors.json', '../../data/kmcc/council
     dict_list = json.load(open(council))
     for councilor in dict_list:
         councilor = normalize_councilor(councilor)
-        councilor['uid'] = get_or_create_uid(councilor)
+        councilor['uid'], created = get_or_create_uid(councilor)
         Councilors(councilor)
         insertCouncilorsDetail(councilor)
         if councilor['in_office']:
             examinate_with_cand_moi(councilor)
+conn.commit()
+
+# insert councilor which elected=true in candidates but already gone in councils website
+election_year = '2014'
+c.execute('''
+    SELECT *
+    FROM candidates_candidates
+    WHERE election_year = %s and elected = true
+    ORDER BY county
+''', [election_year])
+key = [desc[0] for desc in c.description]
+for row in c.fetchall():
+    person = dict(zip(key, row))
+    person['name'] = person['name'].decode('utf-8')
+    councilor_ids = common.GetCouncilorId(c, person['name'])
+    if not councilor_ids: # 完全沒出現過
+        continue
+    else: # 出現過，但該屆還沒有資料的需 insert
+        person['uid'], created = get_or_create_uid(person)
+        if not created:
+            logging.error(u'exist in councilor but not exist in councilordetail: %s, %s' % (person['county'], person['name'], person['']))
+            continue
+        if len(councilor_ids) > 1:
+            c.execute('''
+                SELECT councilor_id, name, election_year
+                FROM councilors_councilorsdetail
+                WHERE councilor_id in %s
+            ''', [tuple(councilor_ids)])
+            r = c.fetchall()
+            uids = {x[0] for x in r}
+            if len(uids) > 1:
+                for i in r:
+                    selected = ' (selected)' if i[0] == person['uid'] else ''
+                    print ', '.join([x for x in i]) + selected
+                print 'If they are same person, need to check which should be delete!!\n'
 conn.commit()
 
 # update term_end councilors

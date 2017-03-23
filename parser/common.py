@@ -6,6 +6,12 @@ import json
 from datetime import datetime
 
 
+def normalize_person_name(name):
+    name = re.sub(u'[。˙・･•．.]', u'‧', name)
+    name = re.sub(u'[　\s()（）’]', '',name)
+    name = name.title()
+    return name
+
 def county_abbr2string(abbr):
     return {
         'ntp': u'新北市',
