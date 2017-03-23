@@ -179,8 +179,13 @@ key = [desc[0] for desc in c.description]
 for row in c.fetchall():
     person = dict(zip(key, row))
     person['name'] = person['name'].decode('utf-8')
+    person = normalize_councilor(person)
+    person['in_office'] = False
     councilor_ids = common.GetCouncilorId(c, person['name'])
     if not councilor_ids: # 完全沒出現過
+        person['uid'] = uuid.uuid4().hex
+        Councilors(person)
+        insertCouncilorsDetail(person)
         continue
     else: # 出現過，但該屆還沒有資料的需 insert
         person['uid'], created = get_or_create_uid(person)
@@ -197,9 +202,16 @@ for row in c.fetchall():
             uids = {x[0] for x in r}
             if len(uids) > 1:
                 for i in r:
-                    selected = ' (selected)' if i[0] == person['uid'] else ''
+                    selected = ' selected' if i[0] == person['uid'] else ''
                     print ', '.join([x for x in i]) + selected
                 print 'If they are same person, need to check which should be delete!!\n'
+                raise
+        c.execute('''
+            INSERT INTO councilors_councilorsdetail(councilor_id, election_year, name, gender, party, constituency, county, district, in_office, contact_details, education, experience, remark, image, links, platform)
+            VALUES (%(uid)s, %(election_year)s, %(name)s, %(gender)s, %(party)s, %(constituency)s, %(county)s, %(district)s, %(in_office)s, %(contact_details)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s)
+            ON CONFLICT (councilor_id, election_year)
+            DO NOTHING
+        ''', person)
 conn.commit()
 
 # update term_end councilors
