@@ -91,14 +91,12 @@ for meta_file in glob.glob('../../data/*/suggestions.json'):
             df['suggest_expense'] = map(lambda x: x*1000 if is_number(x) else nan, df['suggest_expense'])
             df['approved_expense'] = map(lambda x: x*1000 if is_number(x) else nan, df['approved_expense'])
             df_concat = concat([df_concat, df])
-print 'df: ', df_concat
 
 def Suggestions(suggestion):
     for column in ['position', 'expend_on', 'brought_by', 'bid_type', 'bid_by']:
         suggestion[column] = suggestion[column].strip() if suggestion[column] else ''
-    suggestion['bid_by'] = suggestion['bid_by'].split()
-    if len(suggestion['bid_by']) == 1:
-        suggestion['bid_by'] = suggestion['bid_by'][0].split(u'、')
+    suggestion['bid_by'] = re.sub(u'、', ' ', suggestion['bid_by'])
+    suggestion['bid_by'] = [x.strip() for x in suggestion['bid_by'].split() if x.strip()]
     c.execute('''
         INSERT INTO suggestions_suggestions(uid, county, election_year, suggest_year, suggest_month, suggestion, position, suggest_expense, approved_expense, expend_on, brought_by, bid_type, bid_by, district, constituency)
         VALUES (%(uid)s, %(county)s, %(election_year)s, %(suggest_year)s, %(suggest_month)s, %(suggestion)s, %(position)s, %(suggest_expense)s, %(approved_expense)s, %(expend_on)s, %(brought_by)s, %(bid_type)s, %(bid_by)s, %(district)s, %(constituency)s)
@@ -153,15 +151,8 @@ def get_jurisdiction(suggestion):
     r = c.fetchall()
     return True if r else False
 
-#files = [f for f in glob.glob('../../data/*/suggestions/*.json')]
-#for f in files:
-#    print open(f).name
-#    df = pd.read_json(f, orient='records', dtype=False)
-#    df_concat = concat([df_concat, df])
-#df_concat.to_json('../../data/suggestions.json', orient='records', force_ascii=False)
 ds = df_concat.to_json(orient='records', force_ascii=False)
 dict_list = json.loads(ds)
-print len(dict_list)
 for item in dict_list:
     if not item['councilor_ids']:
         continue
@@ -172,7 +163,6 @@ for item in dict_list:
     Suggestions(item)
     for councilor_id in item['councilor_ids']:
         item['councilor_id'] = councilor_id
-        item['constituency'] = str(item['constituency'])
         item['jurisdiction'] = get_jurisdiction(item) if item['constituency'] else None
         CouncilorsSuggestions(item)
 conn.commit()
