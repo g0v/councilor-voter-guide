@@ -8,7 +8,7 @@ from bills.models import Bills, Councilors_Bills
 
 
 class Candidates(models.Model):
-    councilor = models.ForeignKey('councilors.Councilors', to_field='uid', blank=True, null=True)
+    councilor = models.ForeignKey('councilors.Councilors', to_field='uid', blank=True, null=True, related_name='elected_candidate')
     last_election_year = models.CharField(db_index=True, max_length=100, blank=True, null=True)
     election_year = models.CharField(db_index=True, max_length=100)
     number = models.IntegerField(db_index=True, blank=True, null=True)
