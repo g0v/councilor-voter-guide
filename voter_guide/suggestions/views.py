@@ -9,7 +9,7 @@ from councilors.models import CouncilorsDetail
 
 
 def report(request):
-    councilors = CouncilorsDetail.objects.filter(election_year__in=['2009', '2010'], county__in=[u'臺北市', u'高雄市', u'新竹市']) | CouncilorsDetail.objects.filter(election_year__in=['2014'], county__in=[u'新北市', ])
+    councilors = CouncilorsDetail.objects.filter(election_year__in=['2009', '2010'], county__in=[u'臺北市', u'高雄市', u'新竹市']) | CouncilorsDetail.objects.filter(election_year__in=['2014'], county__in=[u'新北市', u'桃園市'])
     councilors = councilors.annotate(sum=Sum('suggestions__suggestion__approved_expense'), count=Count('suggestions__id'))\
                         .order_by('-sum')
     parties = councilors.values('party')\
