@@ -73,21 +73,31 @@ for meta_file in glob.glob('../../data/*/suggestions.json'):
             print file_name
             f = '../../data/%s/suggestions/%s' % (county_abbr, file_name)
             df = pd.read_excel(f, sheetname=0, header=None, encoding='utf-8')
-            if len(df.columns) < 9 or not re.search(u'姓名', df.iloc[3:5, 0].to_string(na_rep='', index=False)):
-                print 'no name column!!'
-                continue
-            df = pd.read_excel(f, sheetname=0, header=None, usecols=range(0, 9), skiprows=5, names=['councilor', 'suggestion', 'position', 'suggest_expense', 'approved_expense', 'expend_on', 'brought_by', 'bid_type', 'bid_by'], encoding='utf-8')
-            for key in ['councilor', 'position', 'suggest_expense', 'brought_by', ]:
-                df[key].fillna(inplace=True, method='pad')
+            no_person_name = False
+            if not re.search(u'姓名', df.iloc[3:5, 0].to_string(na_rep='', index=False)):
+                no_person_name = True
             election_year = get_election_year(county, meta['year'])
+            if len(df.columns) < 9:
+                print 'no name column!!'
+                df = pd.read_excel(f, sheetname=0, header=None, usecols=range(0, 8), skiprows=5, names=['suggestion', 'position', 'suggest_expense', 'approved_expense', 'expend_on', 'brought_by', 'bid_type', 'bid_by'], encoding='utf-8')
+                df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'suggest_expense'])
+                for key in ['position', 'suggest_expense', 'brought_by', ]:
+                    df[key].fillna(inplace=True, method='pad')
+            else:
+                df = pd.read_excel(f, sheetname=0, header=None, usecols=range(0, 9), skiprows=5, names=['councilor', 'suggestion', 'position', 'suggest_expense', 'approved_expense', 'expend_on', 'brought_by', 'bid_type', 'bid_by'], encoding='utf-8')
+                df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'suggest_expense'])
+                for key in ['councilor', 'position', 'suggest_expense', 'brought_by', ]:
+                    df[key].fillna(inplace=True, method='pad')
+                if no_person_name:
+                    df.drop(df.columns[0], axis=1, inplace=True)
+                else:
+                    df['councilor'] = map(lambda x: normalize_person_name(x) if x else nan, df['councilor'])
+                    df['councilor_ids'] = map(lambda x: getCouncilordetailIdList(common.getCouncilorIdList(c, x), election_year, county) if x else nan, df['councilor'])
             df['election_year'] = election_year
             df['county'] = county
             df['suggest_year'] = meta['year']
             df['suggest_month'] = meta['month_to']
             df['uid'] = map(lambda x: u'{county}-{year}-{month_from}-{month_to}'.format(**meta) + '-%d' % (x+6), df.index)
-            df.dropna(inplace=True, how='any', subset=['suggestion'])
-            df['councilor'] = map(lambda x: normalize_person_name(x) if x else nan, df['councilor'])
-            df['councilor_ids'] = map(lambda x: getCouncilordetailIdList(common.getCouncilorIdList(c, x), election_year, county) if x else nan, df['councilor'])
             df['suggest_expense'] = map(lambda x: x*1000 if is_number(x) else nan, df['suggest_expense'])
             df['approved_expense'] = map(lambda x: x*1000 if is_number(x) else nan, df['approved_expense'])
             df_concat = concat([df_concat, df])
@@ -154,15 +164,17 @@ def get_jurisdiction(suggestion):
 ds = df_concat.to_json(orient='records', force_ascii=False)
 dict_list = json.loads(ds)
 for item in dict_list:
-    if not item['councilor_ids']:
-        continue
-    for column in ['position', 'suggestion', 'brought_by']:
-        item['constituency'], item['district'] = get_district(item[column], item)
-        if item['constituency']:
-            break
+    if item['councilor_ids']:
+        for column in ['position', 'suggestion', 'brought_by']:
+            item['constituency'], item['district'] = get_district(item[column], item)
+            if item['constituency']:
+                break
+    else:
+        item['constituency'], item['district'] =  None, None
     Suggestions(item)
-    for councilor_id in item['councilor_ids']:
-        item['councilor_id'] = councilor_id
-        item['jurisdiction'] = get_jurisdiction(item) if item['constituency'] else None
-        CouncilorsSuggestions(item)
+    if item.get('councilor_ids'):
+        for councilor_id in item['councilor_ids']:
+            item['councilor_id'] = councilor_id
+            item['jurisdiction'] = get_jurisdiction(item) if item['constituency'] else None
+            CouncilorsSuggestions(item)
 conn.commit()
