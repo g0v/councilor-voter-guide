@@ -9,6 +9,7 @@ import codecs
 from pandas import *
 import pandas as pd
 from numpy import nan
+
 import common
 import db_settings
 
@@ -49,7 +50,7 @@ def getCouncilordetailIdList(id_list, election_year, county):
 
 def normalize_person_name(name):
     name = re.sub(u'[。˙・･•．.]', u'‧', name)
-    name = re.sub(u'[　()（）]', '', name)
+    name = re.sub(u'[　()（） ]', '', name)
     name = re.sub(u'(副?議長|議員)', '', name)
     name = re.sub(u'、', ' ', name)
     for wrong, right in [(u'游輝', u'游輝宂'), (u'連婓璠', u'連斐璠'), (u'羅文幟', u'羅文熾'), (u'郭昭嚴', u'郭昭巖'), (u'闕梅莎', u'闕枚莎'), (u'林亦華', u'林奕華'), (u'周鍾$', u'周鍾㴴'), (u'汪志銘', u'汪志冰'), (u'簡余宴', u'簡余晏'), (u'周佑威', u'周威佑'), (u'黃洋', u'黃平洋'), (u'周玲玟', u'周玲妏')]:
@@ -59,6 +60,7 @@ def normalize_person_name(name):
 
 conn = db_settings.con()
 c = conn.cursor()
+duplicated_reports = json.load(open('duplicated_reports.json'))
 df_concat = DataFrame()
 for meta_file in glob.glob('../../data/*/suggestions.json'):
     county_abbr = meta_file.split('/')[-2]
@@ -66,7 +68,7 @@ for meta_file in glob.glob('../../data/*/suggestions.json'):
     with open(meta_file) as meta_file:
         metas = json.load(meta_file)
         for meta in metas:
-            if meta['file_ext'] == 'ods':
+            if meta['file_ext'] == 'ods' or {x: meta[x] for x in ["month_to", "year", "month_from"]} in duplicated_reports.get(county_abbr, []):
                 continue
             meta['county'] = county
             file_name = '{year}_{month_from}-{month_to}.{file_ext}'.format(**meta)
@@ -105,7 +107,7 @@ for meta_file in glob.glob('../../data/*/suggestions.json'):
 def Suggestions(suggestion):
     for column in ['position', 'expend_on', 'brought_by', 'bid_type', 'bid_by']:
         suggestion[column] = suggestion[column].strip() if suggestion[column] else ''
-    suggestion['bid_by'] = re.sub(u'、', ' ', suggestion['bid_by'])
+    suggestion['bid_by'] = re.sub(u'[\d.,、]', ' ', suggestion['bid_by'])
     suggestion['bid_by'] = [x.strip() for x in suggestion['bid_by'].split() if x.strip()]
     c.execute('''
         INSERT INTO suggestions_suggestions(uid, county, election_year, suggest_year, suggest_month, suggestion, position, suggest_expense, approved_expense, expend_on, brought_by, bid_type, bid_by, district, constituency)
