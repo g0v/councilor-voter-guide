@@ -43,7 +43,7 @@ def getCouncilordetailIdList(id_list, election_year, county):
         ''', (tuple(id_list), election_year, county))
         r = c.fetchall()
         if r:
-            return r[0]
+            return [x[0] for x in r]
         for id in id_list:
             print election_year, county, id
             raw_input()
@@ -85,6 +85,7 @@ for meta_file in glob.glob('../../data/*/suggestions.json'):
                 df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'suggest_expense'])
                 for key in ['position', 'suggest_expense', 'brought_by', ]:
                     df[key].fillna(inplace=True, method='pad')
+                df['councilor_num'] = 1
             else:
                 df = pd.read_excel(f, sheetname=0, header=None, usecols=range(0, 9), skiprows=5, names=['councilor', 'suggestion', 'position', 'suggest_expense', 'approved_expense', 'expend_on', 'brought_by', 'bid_type', 'bid_by'], encoding='utf-8')
                 df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'suggest_expense'])
@@ -92,16 +93,20 @@ for meta_file in glob.glob('../../data/*/suggestions.json'):
                     df[key].fillna(inplace=True, method='pad')
                 if no_person_name:
                     df.drop(df.columns[0], axis=1, inplace=True)
+                    df['councilor_num'] = 1
                 else:
                     df['councilor'] = map(lambda x: normalize_person_name(x) if x else nan, df['councilor'])
                     df['councilor_ids'] = map(lambda x: getCouncilordetailIdList(common.getCouncilorIdList(c, x), election_year, county) if x else nan, df['councilor'])
+                    df['councilor_num'] = map(lambda x: len(x) if x else 1, df['councilor_ids'])
             df['election_year'] = election_year
             df['county'] = county
             df['suggest_year'] = meta['year']
             df['suggest_month'] = meta['month_to']
             df['uid'] = map(lambda x: u'{county}-{year}-{month_from}-{month_to}'.format(**meta) + '-%d' % (x+6), df.index)
             df['suggest_expense'] = map(lambda x: x*1000 if is_number(x) else nan, df['suggest_expense'])
+            df['suggest_expense'] = df['suggest_expense'] / df['councilor_num']
             df['approved_expense'] = map(lambda x: x*1000 if is_number(x) else nan, df['approved_expense'])
+            df['approved_expense'] = df['approved_expense'] / df['councilor_num']
             df_concat = concat([df_concat, df])
 
 def Suggestions(suggestion):
