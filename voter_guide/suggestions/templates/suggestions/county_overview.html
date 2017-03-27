@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load extras %}
+
+{% block title %}
+    <title>議員投票指南:工程建議款</title>
+    <meta property="og:title" content="議員投票指南:工程建議款"/>
+    <meta itemprop="name" content="議員投票指南:工程建議款">
+{% endblock %}
+
+{% block right %}
+    <div class="page-header">
+        <p class="lead text-center">
+        </p>
+    <div class="description">
+    <b>說明</b>：工程建議款是由地方政府制定，分配一定款項。如果地方有需求的話，可以找議員來陳情，「建議」政府撥款進行建設。<u>由議員提案地方工程內容，縣市政府核定預算金額，議員雖無決定權，但同時身兼建議預算、審查預算的角色。</u>「議員配合款」、「小型工程建議款」、「議員建議款」、「基層建設配合款」、「議員所提地方建設建議事項」指的都是工程建議款，各縣市處理狀況不一。<br>
+    </div>
+    <div class="row-fluid">
+        {% regroup counties by county as county_list %}
+            {% for county in county_list %}
+            {% with county=county.grouper %}
+                <div class="span12">
+                    <h2><center>{{county}}--工程建議款</center></h2>
+                </div>
+                <div class="span6">
+                    <div id="year_bar_{{county}}" align="center"></div>
+                </div>
+                {% endwith %}
+                <div class="span5">
+                    <table class="table table-bordered table-condensed sortable zebra" >
+                        <thead>
+                            <tr style="font-weight:bold;background-color: #E1D0D0";>
+                                <th>縣市</th>
+                                <th>年度</th>
+                                <th>案數</th>
+                                <th>通過預算</th>
+                                <th>每筆平均</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for obj in county.list %}
+                            <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
+                                <td style="text-align:center; vertical-align:middle;">{{obj.county}}</td>
+                                <td style="text-align:center; vertical-align:middle;">{{obj.suggest_year}}</td>
+                                <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
+                                <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
+                                <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum|divide:obj.count}}</p></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        {% endfor %}
+    </div>
+    <hr>
+    <div id="disqus_thread"></div>
+{% endblock %}
+
+{% block script %}
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
+    {% regroup counties by county as county_list %}
+        {% for county in county_list %}
+            {% include "suggestions/d3/year_bar.html" with data=county.list id='#year_bar_'|add:county.grouper %}
+        {% endfor %}
+    {% include "common/sorttable.html" %}
+    <script>
+        $(document).ready( function() {
+            $('#suggestions').addClass('active');
+            $('.price').each(function(index,ele){
+                var number = $(ele).text()
+                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
+                $(ele).replaceWith(zh_number)
+            });
+        });
+    </script>
+{% endblock script %}

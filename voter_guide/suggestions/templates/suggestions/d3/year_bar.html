@@ -1,0 +1,132 @@
+{% load extras %}
+<style>
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+    .bar {
+        fill: red;
+    }
+
+    .bar:hover {
+        fill: orangered ;
+    }
+
+    .line {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 1.5px;
+    }
+
+    .x.axis path {
+        display: none;
+    }
+
+    .d3-tip {
+        line-height: 1;
+        font-weight: bold;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        border-radius: 2px;
+    }
+
+    /* Creates a small triangle extender for the tooltip */
+    .d3-tip:after {
+        box-sizing: border-box;
+        display: inline;
+        font-size: 10px;
+        width: 100%;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.8);
+        content: "\25BC";
+        position: absolute;
+        text-align: center;
+    }
+
+    /* Style northward tooltips differently */
+    .d3-tip.n:after {
+        margin: -1px 0 0 0;
+        top: 100%;
+        left: 0;
+    }
+</style>
+<script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/d3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.min.js"></script>
+<script>
+
+    var data = {{data|as_json}}
+    var id = {{id|as_json}}
+
+    var margin = {top: 20, right: 100, bottom: 120, left: 100},
+    width = 480 - margin.left - margin.right,
+    height = 360 - margin.top - margin.bottom;
+
+    var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+    var y = d3.scale.linear()
+    .range([height, 0]);
+
+    var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+    .scale(y)
+    .tickFormat(function(d) { return (d/100000000) + '(億元)'; })
+    .orient("left")
+
+    var tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .html(function(d) {
+        return zhutil.approximate(d.sum, {base: '萬', extra_decimal: 0});
+    });
+
+    var svg = d3.select(id).append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    svg.call(tip);
+
+    x.domain(data.map(function(d) { return d.suggest_year; }));
+    y.domain([0, d3.max(data, function(d) { return d.sum; })]);
+
+    svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis)
+    .selectAll("text")
+    .style("text-anchor", "end")
+    .attr("transform", function(d) {
+        return "rotate(-45)"
+    });
+
+    svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis)
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("dy", "-3em")
+    .style("text-anchor", "end");
+
+    var barGroup = svg.selectAll("rect")
+    .data(data).enter().append("g")
+    .attr("class", "g")
+    .attr("transform", function(d) { return "translate(" + x(d.suggest_year) + ",0)"; });
+
+    barGroup.append("rect")
+    .attr("class", "bar")
+    .attr("width", x.rangeBand())
+    .attr("y", function(d) { return y(d.sum); })
+    .attr("height", function(d) { return height - y(d.sum); })
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide);
+
+</script>
