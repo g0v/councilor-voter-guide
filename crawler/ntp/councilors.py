@@ -23,7 +23,7 @@ class Spider(scrapy.Spider):
         c = {}
         c['image'] = urljoin(
             response.url,
-            urllib.quote(response.xpath('//*[@id="main"]/descendant::img[contains(@src, "CouncilorFile")]').extract_first().encode('utf8'))
+            urllib.quote(response.xpath('//*[@id="main"]/descendant::img[contains(@src, "CouncilorFile")]/@src').extract_first().encode('utf8'))
         )
         c['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
         c['constituency'] = response.xpath(u'//*[@id="printContext"]/descendant::a[re:test(text(), "第\d+選區")]/text()').extract_first()
