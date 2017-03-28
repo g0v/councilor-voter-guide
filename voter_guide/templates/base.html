@@ -17,13 +17,16 @@
         <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/facebook-og-image.png"/>
         <meta itemprop="description" content="減少盲目投票，讓民主社會的台灣更進步；輸入關鍵字，關心你關心的議題">
         <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/facebook-og-image.png">
-        <link href="https://s3-ap-northeast-1.amazonaws.com/twly.tw/bootstrap.min.css" rel="stylesheet">
-        <link href="https://s3-ap-northeast-1.amazonaws.com/twly.tw/bootstrap-responsive.min.css" rel="stylesheet" >
-        <link href="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/g0v.css" rel="stylesheet">
+        <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+        <link href="{% static "css/bootstrap-responsive.min.css" %}" rel="stylesheet">
+        <link href="{% static "css/g0v.css" %}" rel="stylesheet">
         <link rel="shortcut icon" href="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/favicon.ico.png">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/css/semantic.css" rel="stylesheet">
         <script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/javascript/semantic.js"></script>
+        <link href="{% static "css/style.css" %}" rel="stylesheet">
+        <link href="{% static "css/style-responsive.css" %}" rel="stylesheet">
+        <link href="{% static "css/navbar-custom.css" %}" rel="stylesheet">
         <!--[if lt IE 9]>
         <script src="//cdnjs.bootcss.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
         <![endif]-->
@@ -35,93 +38,58 @@
             ga('create', 'UA-41993330-2', 'g0v.tw');
             ga('send', 'pageview');
         </script>
-        <script>
-            (function() {
-                var cx = '008666008342719404591:eyd0kji9v7m';
-                var gcse = document.createElement('script');
-                gcse.type = 'text/javascript';
-                gcse.async = true;
-                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                    '//www.google.com/cse/cse.js?cx=' + cx;
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(gcse, s);
-            })();
-        </script>
-
     </head>
     <body id="top">
-        <div id="fb-root"></div>
-        <script>
-            (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
-            fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
-        <div class="navbar navbar-fixed-top navbar-inverse">
+        <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" style="margin-top: 16px;">
-                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                </a>
-                <a class="brand" href="/"><img style="max-height:25px;" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/logo.png"></img><font><b class="visible-phone">議會投票指南</b><b>{% if county %}（{{county}}）{% endif %}</b></font></a>
-                <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        <li id="candidates"><a href="{% url 'candidates:counties' election_year='2014' %}" >2014候選人</a></li>
-                        <li id="councilors" class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">找議員<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{% url 'councilors:index' index='counties' county=county %}" >依選區分組</a></li>
-                            <li><a href="{% url 'councilors:index' index='cs_attend' county=county %}" ><b>議會開會</b>缺席次數(多&rarr;少)</a></li>
-                            <li><a href="{% url 'councilors:index' index='not_voting' county=county %}" ><b>表決</b>缺席次數(多&rarr;少)</a></li>
-                            <li><a href="{% url 'councilors:index' index='conscience_vote' county=county %}" ><b>脫黨投票</b>次數(多&rarr;少)</a></li>
-                            <li><a href="{% url 'councilors:index' index='bills' county=county %}" ><b>議案數</b>(多&rarr;少)</a></li>
-                        </ul>
-                        </li>
-                        <li id="bills"><a href="{% url 'bills:bills' county=county index='normal' %}" >找議案</a></li>
-                        <li id="votes" class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">找表決<b class="caret"></b></a>
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <a class="brand" href="/"><i class="fa fa-compass"> 議員投票指南</i><b>{% if county %}（{{county}}）{% endif %}</b></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li id="candidates"><a href="{% url 'candidates:counties' election_year='2014' %}" >2014候選人</a></li>
+                            <li id="councilors" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">找議員<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                            <li id="votes"><a href="{% url 'votes:votes' county=county index='normal' %}" >全部表決</a></li>
-                            <li id="votes"><a href="{% url 'votes:votes' county=county index='conscience' %}" >有議員<b>脫黨</b>投票的表決</a></li>
+                                <li><a href="{% url 'councilors:index' index='counties' county=county %}" >依選區分組</a></li>
+                                <li><a href="{% url 'councilors:index' index='cs_attend' county=county %}" ><b>議會開會</b>缺席次數(多&rarr;少)</a></li>
+                                <li><a href="{% url 'councilors:index' index='not_voting' county=county %}" ><b>表決</b>缺席次數(多&rarr;少)</a></li>
+                                <li><a href="{% url 'councilors:index' index='conscience_vote' county=county %}" ><b>脫黨投票</b>次數(多&rarr;少)</a></li>
+                                <li><a href="{% url 'councilors:index' index='bills' county=county %}" ><b>議案數</b>(多&rarr;少)</a></li>
                             </ul>
-                        </li>
-                        <li id="suggestions"><a href="{% url 'suggestions:report' %}" >工程建議款</a></li>
-                    </ul>
-                    <ul class="nav pull-right">
-                        <li id="search">
-                            <gcse:search></gcse:search>
-                            <gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
-                        </li>
-                        <li id="about"><a href="{% url 'about' %}">關於</a></li>
-                        <li id="reference"><a href="{% url 'reference' %}">資料來源</a></li>
-                    </ul>
+                            </li>
+                            <li id="bills"><a href="{% url 'bills:bills' county=county index='normal' %}" >找議案</a></li>
+                            <li id="votes" class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">找表決<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                <li id="votes"><a href="{% url 'votes:votes' county=county index='normal' %}" >全部表決</a></li>
+                                <li id="votes"><a href="{% url 'votes:votes' county=county index='conscience' %}" >有議員<b>脫黨</b>投票的表決</a></li>
+                                </ul>
+                            </li>
+                            <li id="suggestions"><a href="{% url 'suggestions:report' %}" >工程建議款</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="container-fluid">
             <div class="row-fluid">
-            <div class="fb-like pull-right" data-layout="box_count" data-show-faces="false" data-send="false" href="https://www.facebook.com/TW.Voter.Guide"></div>
-                {% block left %}
-                {% endblock %}
+                <div class="fb-like pull-right" data-layout="box_count" data-show-faces="false" data-send="false" href="https://www.facebook.com/TW.Voter.Guide"></div>
                 {% block right %}
                 {% endblock %}
             </div>
         </div>
-        {% block backtotop %}
-            <div align="center">
-                <a href="#top" class="lead">回頭</a>
-            </div>
-        {% endblock %}
         <footer class="footer">
             <div align="center" class="container">
-                <p><a href="https://g0v.hackpad.com/--5PNuk4XGGrj" target="_blank">意見回饋</a> - <a href="mailto:g0v-ly@googlegroups.com">寄給G0V</a></p>
+                <a id="about" href="{% url 'about' %}">關於本站</a>
+                <a id="reference" href="{% url 'reference' %}">資料來源</a>
             </div>
         </footer>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
-        <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/bootstrap.min.js"></script>
+        <script src="{% static "js/bootstrap.min.js" %}" type="text/javascript"></script>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'councils'; // required: replace example with your forum shortname

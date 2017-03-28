@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load staticfiles %}
 {% load extras %}
 
 {% block title %}
@@ -24,16 +23,16 @@
     <div class="row-fluid">
         {% regroup counties by county as county_list %}
             {% for county in county_list %}
-            {% with county=county.grouper %}
+                <hr>
+                {% with county=county.grouper %}
                 <div class="span12">
-                    <h2><center>{{county}}--工程建議款</center></h2>
+                    <a href="#year_bar_{{county}}"><i class="fa fa-link"></i></a>
+                    <h2>{{county}}–工程建議款</h2>
                 </div>
-                <div class="span6">
-                    <div id="year_bar_{{county}}" align="center"></div>
-                </div>
+                <div id="year_bar_{{county}}" class="span6" style="padding-top: 40px; margin-top: -40px;" align="center"></div>
                 {% endwith %}
                 <div class="span5">
-                    <table class="table table-bordered table-condensed sortable zebra" >
+                    <table class="table table-bordered table-condensed table-striped sortable" >
                         <thead>
                             <tr style="font-weight:bold;background-color: #E1D0D0";>
                                 <th>縣市</th>

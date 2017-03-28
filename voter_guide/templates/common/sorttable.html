@@ -1,6 +1,7 @@
+{% load staticfiles %}
 <style>
 table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):after {
     content: " \25B4\25BE"
 }
 </style>
-<script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/sorttable.js"></script>
+<script src="{% static "js/sorttable.js" %}" type="text/javascript"></script>
