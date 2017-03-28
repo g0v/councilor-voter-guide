@@ -9,11 +9,12 @@ from councilors.models import CouncilorsDetail
 
 
 def county_overview(request):
+    suggestions = Suggestions.objects.all()[:3]
     counties = Suggestions.objects.all()\
                         .values('county', 'suggest_year')\
                         .annotate(sum=Sum('approved_expense'), count=Count('uid'))\
                         .order_by('county', 'suggest_year')
-    return render(request,'suggestions/county_overview.html', {'counties': list(counties)})
+    return render(request,'suggestions/county_overview.html', {'suggestions': suggestions, 'counties': list(counties)})
 
 def report(request):
     councilors = CouncilorsDetail.objects.filter(election_year__in=['2009', '2010'], county__in=[u'臺北市', u'高雄市', u'新竹市']) | CouncilorsDetail.objects.filter(election_year__in=['2014'], county__in=[u'新北市', u'桃園市'])

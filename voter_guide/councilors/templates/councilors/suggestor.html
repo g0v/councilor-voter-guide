@@ -14,13 +14,6 @@
 {% endblock title %}
 
 {% block person_detail %}
-    <div class="page-header">
-        <div class="ui raised segment">
-            <p><b>說明</b>：民代建議款是由地方政府制定，分配一定款項。如果地方有需求的話，可以找議員來陳情，「建議」政府撥款進行建設。<u>由議員提案地方工程內容，縣市政府核定預算金額，民代雖無決定權，但同時身兼建議預算、審查預算的角色。</u>「議員配合款」、「小型工程建議款」、「議員建議款」、「基層建設配合款」、「議員所提地方建設建議事項」指的都是民代建議款。</p>
-            <p><b>資料</b>：目前有公布建議細項的縣市有限，僅有北高兩市有列出建議的議員名單。</p>
-            <h4>☞ 更多資料請看<a href="{% url 'suggestions:report' %}" target="_blank">工程建議款專頁</a></h4>
-        </div>
-    </div>
     <p class="lead">{{councilor.name}}的工程款提案共通過：<font class="price">{{total_expense.sum}}</font></p>
     <div class="row-fluid">
     {% if index != 'rawdata' %}
@@ -29,9 +22,7 @@
             <p class="lead text-center">{{councilor.name}}的提案中<font class="text-success ">各個廠商得標的預算</font></p>
         </div>
         <div class="span6">
-<!--
             <a class="lead" href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?index=rawdata">細目展開</a>
--->
             <div class="pull-right">
                 資料來源
                 <a href="{{councilor.county|suggestions_offical_link}}" target="_blank">{{councilor.county}}主計處</a></li><br>
@@ -39,11 +30,6 @@
                 </ul>
             </div>
             <table class="table table-bordered table-condensed sortable zebra tablesorter" >
-		<caption style="font-weight:bold;background-color: #ffed80;" height="20px">
-<p> </p>
-		    <a class="lead" href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?index=rawdata">工程款提案細目展開</a>
-<p> </p>
-		</caption>
                 <thead>
                     <tr style="font-weight:bold;background-color: #CCFF99;">
                         <th style="width: 40%">得標廠商</th>

@@ -1,24 +1,24 @@
 {% load extras %}
-<table id="datatable" class="table table-bordered zebra" >
+<table id="datatable" class="table table-bordered table-condensed zebra" >
     <thead>
         <tr style="background-color: #FFEEFF;">
-            <th style="width: 5%"></th>
+            <th style="width: 2%"></th>
             <th style="width: 10%">年度</th>
-            <th style="width: 20%">建議項目</th>
+            <th style="width: 10%">建議項目</th>
             <th style="width: 10%">地點</th>
-            <th style="width: 10%">建議金額</th>
+            <th style="width: 10%">議員建議金額</th>
             <th style="width: 10%">通過預算</th>
             <th style="width: 10%">經費支用科目</th>
             <th style="width: 10%">主辦機關</th>
             <th style="width: 10%">招標方式</th>
-            <th style="width: 10%">得標廠商</th>
+            <th style="width: 23%">得標廠商</th>
         </tr>
     </thead>
     <tbody>
         {% for obj in suggestions %}
-            <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
-                <td>
-                    <a id="{{obj.uid}}" style="padding-top: 60px; margin-top: -60px;" href="#{{obj.uid}}">#</a>
+            <tr id="{{obj.uid}}">
+                <td style="text-align:center; vertical-align:middle;">
+                    <a href="#{{obj.uid}}"><i class="fa fa-link"></i></a>
                 </td>
                 <td style="text-align:center; vertical-align:middle;">
                     {{obj.suggest_year}}
