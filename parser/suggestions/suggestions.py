@@ -6,6 +6,7 @@ import re
 import glob
 import json
 import codecs
+import subprocess
 from pandas import *
 import pandas as pd
 from numpy import nan
@@ -50,9 +51,10 @@ def getCouncilordetailIdList(id_list, election_year, county):
 
 def normalize_person_name(name):
     name = re.sub(u'[。˙・･•．.]', u'‧', name)
+    name = re.sub(u' {3}', '\n', name)
     name = re.sub(u'[　()（） ]', '', name)
     name = re.sub(u'(副?議長|議員)', '', name)
-    name = re.sub(u'、', ' ', name)
+    name = re.sub(u'[、/]', ' ', name)
     for wrong, right in [(u'游輝', u'游輝宂'), (u'連婓璠', u'連斐璠'), (u'羅文幟', u'羅文熾'), (u'郭昭嚴', u'郭昭巖'), (u'闕梅莎', u'闕枚莎'), (u'林亦華', u'林奕華'), (u'周鍾$', u'周鍾㴴'), (u'汪志銘', u'汪志冰'), (u'簡余宴', u'簡余晏'), (u'周佑威', u'周威佑'), (u'黃洋', u'黃平洋'), (u'周玲玟', u'周玲妏')]:
         name = re.sub(wrong, right, name)
     name = name.title()
@@ -67,13 +69,28 @@ for meta_file in glob.glob('../../data/*/suggestions.json'):
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
         metas = json.load(meta_file)
+        exclude_ods_metas = []
         for meta in metas:
-            if meta['file_ext'] == 'ods' or {x: meta[x] for x in ["month_to", "year", "month_from"]} in duplicated_reports.get(county_abbr, []):
-                continue
+            exclude_ods_metas.append({x: meta[x] for x in ["month_to", "year", "month_from"] if meta['file_ext'] != 'ods'})
+        for meta in metas:
             meta['county'] = county
             file_name = '{year}_{month_from}-{month_to}.{file_ext}'.format(**meta)
             print file_name
             f = '../../data/%s/suggestions/%s' % (county_abbr, file_name)
+            if {x: meta[x] for x in ["month_to", "year", "month_from"]} in duplicated_reports.get(county_abbr, []):
+                print 'pass'
+                continue
+            if meta['file_ext'] == 'ods':
+                if {x: meta[x] for x in ["month_to", "year", "month_from"]} not in exclude_ods_metas:
+                    cmd = 'unoconv -d spreadsheet --format=xls %s' % f
+                    subprocess.call(cmd, shell=True)
+                    meta['file_ext'] = 'xls'
+                    file_name = '{year}_{month_from}-{month_to}.{file_ext}'.format(**meta)
+                    print 'convert to: %s' % file_name
+                    f = '../../data/%s/suggestions/%s' % (county_abbr, file_name)
+                else:
+                    print 'pass'
+                    continue
             df = pd.read_excel(f, sheetname=0, header=None, encoding='utf-8')
             no_person_name = False
             if not re.search(u'姓名', df.iloc[3:5, 0].to_string(na_rep='', index=False)):
