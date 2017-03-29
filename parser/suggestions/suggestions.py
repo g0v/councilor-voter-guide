@@ -82,13 +82,13 @@ for meta_file in glob.glob('../../data/*/suggestions.json'):
             if len(df.columns) < 9:
                 print 'no name column!!'
                 df = pd.read_excel(f, sheetname=0, header=None, usecols=range(0, 8), skiprows=5, names=['suggestion', 'position', 'suggest_expense', 'approved_expense', 'expend_on', 'brought_by', 'bid_type', 'bid_by'], encoding='utf-8')
-                df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'suggest_expense'])
+                df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'approved_expense'])
                 for key in ['position', 'suggest_expense', 'brought_by', ]:
                     df[key].fillna(inplace=True, method='pad')
                 df['councilor_num'] = 1
             else:
                 df = pd.read_excel(f, sheetname=0, header=None, usecols=range(0, 9), skiprows=5, names=['councilor', 'suggestion', 'position', 'suggest_expense', 'approved_expense', 'expend_on', 'brought_by', 'bid_type', 'bid_by'], encoding='utf-8')
-                df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'suggest_expense'])
+                df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'approved_expense'])
                 for key in ['councilor', 'position', 'suggest_expense', 'brought_by', ]:
                     df[key].fillna(inplace=True, method='pad')
                 if no_person_name:
@@ -104,9 +104,9 @@ for meta_file in glob.glob('../../data/*/suggestions.json'):
             df['suggest_month'] = meta['month_to']
             df['uid'] = map(lambda x: u'{county}-{year}-{month_from}-{month_to}'.format(**meta) + '-%d' % (x+6), df.index)
             df['suggest_expense'] = map(lambda x: x*1000 if is_number(x) else nan, df['suggest_expense'])
-            df['suggest_expense'] = df['suggest_expense'] / df['councilor_num']
+            df['suggest_expense_avg'] = df['suggest_expense'] / df['councilor_num']
             df['approved_expense'] = map(lambda x: x*1000 if is_number(x) else nan, df['approved_expense'])
-            df['approved_expense'] = df['approved_expense'] / df['councilor_num']
+            df['approved_expense_avg'] = df['approved_expense'] / df['councilor_num']
             df_concat = concat([df_concat, df])
 
 def Suggestions(suggestion):
@@ -115,8 +115,8 @@ def Suggestions(suggestion):
     suggestion['bid_by'] = re.sub(u'[\d.,、]', ' ', suggestion['bid_by'])
     suggestion['bid_by'] = [x.strip() for x in suggestion['bid_by'].split() if x.strip()]
     c.execute('''
-        INSERT INTO suggestions_suggestions(uid, county, election_year, suggest_year, suggest_month, suggestion, position, suggest_expense, approved_expense, expend_on, brought_by, bid_type, bid_by, district, constituency)
-        VALUES (%(uid)s, %(county)s, %(election_year)s, %(suggest_year)s, %(suggest_month)s, %(suggestion)s, %(position)s, %(suggest_expense)s, %(approved_expense)s, %(expend_on)s, %(brought_by)s, %(bid_type)s, %(bid_by)s, %(district)s, %(constituency)s)
+        INSERT INTO suggestions_suggestions(uid, county, election_year, suggest_year, suggest_month, suggestion, position, suggest_expense, suggest_expense_avg, approved_expense, approved_expense_avg, expend_on, brought_by, bid_type, bid_by, district, constituency)
+        VALUES (%(uid)s, %(county)s, %(election_year)s, %(suggest_year)s, %(suggest_month)s, %(suggestion)s, %(position)s, %(suggest_expense)s, %(suggest_expense_avg)s, %(approved_expense)s, %(approved_expense_avg)s, %(expend_on)s, %(brought_by)s, %(bid_type)s, %(bid_by)s, %(district)s, %(constituency)s)
         ON CONFLICT (uid)
         DO UPDATE
         SET county = %(county)s, election_year = %(election_year)s, suggest_year = %(suggest_year)s, suggest_month = %(suggest_month)s, suggestion = %(suggestion)s, position = %(position)s, suggest_expense = %(suggest_expense)s, approved_expense = %(approved_expense)s, expend_on = %(expend_on)s, brought_by = %(brought_by)s, bid_type = %(bid_type)s, bid_by = %(bid_by)s, district = %(district)s, constituency = %(constituency)s
