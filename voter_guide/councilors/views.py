@@ -13,24 +13,18 @@ from search.views import keyword_list, keyword_been_searched, keyword_normalize
 from commontag.views import paginate
 
 
-def select_county(request, index, county):
-    regions = [
-        {"region": "北部", "counties": ["臺北市", "新北市", "桃園市", "基隆市", "宜蘭縣", "新竹縣", "新竹市"]},
-        {"region": "中部", "counties": ["苗栗縣", "臺中市", "彰化縣", "雲林縣", "南投縣"]},
-        {"region": "南部", "counties": ["嘉義縣", "嘉義市", "臺南市", "高雄市", "屏東縣"]},
-        {"region": "東部", "counties": ["花蓮縣", "臺東縣"]},
-        {"region": "離島", "counties": ["澎湖縣", "金門縣", "連江縣"]}
-    ]
-    return render(request, 'councilors/select_county.html', {'index': index, 'regions': regions})
+def districts(request, county):
+    election_year = CouncilorsDetail.objects.filter(county=county).aggregate(Max('election_year'))['election_year__max']
+    basic_query = Q(election_year=election_year, county=county, in_office=True)
+    out_office = CouncilorsDetail.objects.filter(election_year=election_year, county=county, in_office=False)
+    councilors = CouncilorsDetail.objects.filter(basic_query).order_by('district', 'party')
+    return render(request, 'councilors/index/districts.html', {'election_year': election_year, 'county': county, 'councilors': councilors, 'out_office': out_office, 'index': 'districts'})
 
 def index(request, index, county):
     election_year = CouncilorsDetail.objects.filter(county=county).aggregate(Max('election_year'))['election_year__max']
     basic_query = Q(election_year=election_year, county=county, in_office=True)
     out_office = CouncilorsDetail.objects.filter(election_year=election_year, county=county, in_office=False)
     param = {
-        'countys': {
-            'title': u'%s - 依選區分組' % county
-        },
         'cs_attend': {
             'title': u'議會開會缺席次數(多→少)',
             'url_name': u'councilors:platformer',
@@ -105,9 +99,6 @@ def index(request, index, county):
         no_count_list = CouncilorsDetail.objects.filter(basic_query)\
                                                 .exclude(councilor_id__in=councilors.values_list('councilor_id', flat=True))
         return render(request, 'councilors/index/index_ordered.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'proposertype': proposertype, 'no_count_list': no_count_list, 'councilors': councilors, 'out_office': out_office, 'index': index})
-    if index == 'counties':
-        councilors = CouncilorsDetail.objects.filter(basic_query).order_by('district', 'party')
-        return render(request, 'councilors/index/counties.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'councilors': councilors, 'out_office': out_office, 'index': index})
 
 def info(request, councilor_id, election_year):
     try:

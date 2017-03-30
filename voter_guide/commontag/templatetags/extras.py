@@ -4,11 +4,16 @@ import json
 from django.core.serializers.json import DjangoJSONEncoder
 from django import template
 from django.utils.safestring import mark_safe
+from django.core.urlresolvers import reverse
 from councilors.models import CouncilorsDetail
 from bills.models import Bills
 
 
 register = template.Library()
+
+@register.filter(name='select_county_reverse_url')
+def select_county_reverse_url(value, arg):
+    return reverse('%s:%s' % (value, value), kwargs={'county': arg})
 
 @register.filter(name='each_county_remark')
 def each_county_remark(value):

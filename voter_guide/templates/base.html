@@ -49,17 +49,18 @@
                     <a class="brand" href="/"><i class="fa fa-compass"> 議員投票指南</i><b>{% if county %}（{{county}}）{% endif %}</b></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li id="candidates"><a href="{% url 'candidates:counties' election_year='2014' %}" >2014候選人</a></li>
-                            <li id="councilors"><a href="{% url 'councilors:index' index='counties' county=county %}" >找議員</a></li>
+                        {% if county %}
+                            <li id="candidates"><a href="{% url 'candidates:districts' election_year='2014' county=county %}" >2014 候選人</a></li>
+                            <li id="councilors"><a href="{% url 'councilors:councilors' county=county %}">找議員</a></li>
                             <li id="bills"><a href="{% url 'bills:bills' county=county index='normal' %}" >找議案</a></li>
                             <li id="votes" class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">找表決<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                <li id="votes"><a href="{% url 'votes:votes' county=county index='normal' %}" >全部表決</a></li>
-                                <li id="votes"><a href="{% url 'votes:votes' county=county index='conscience' %}" >有議員<b>脫黨</b>投票的表決</a></li>
+                                <li><a href="{% url 'votes:votes' county=county index='normal' %}" >全部表決</a></li>
+                                <li><a href="{% url 'votes:votes' county=county index='conscience' %}" >有議員<b>脫黨</b>投票的表決</a></li>
                                 </ul>
                             </li>
-                            <li id="suggestions"><a href="{% url 'suggestions:report' %}" >工程建議款</a></li>
+                            <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >工程建議款</a></li>
                             <li id="councilors" class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">相關圖表<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -69,6 +70,13 @@
                                     <li><a href="{% url 'councilors:index' index='bills' county=county %}" ><b>議案數</b>(多&rarr;少)</a></li>
                                 </ul>
                             </li>
+                        {% else %}
+                            <li id="councilors"><a href="{% url 'select_county' category='candidates' %}">2014 候選人</a></li>
+                            <li id="councilors"><a href="{% url 'select_county' category='councilors' %}">找議員</a></li>
+                            <li id="councilors"><a href="{% url 'select_county' category='bills' %}">找議案</a></li>
+                            <li id="councilors"><a href="{% url 'select_county' category='votes' %}">找表決</a></li>
+                            <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >工程建議款</a></li>
+                        {% endif %}
                         </ul>
                     </div>
                 </div>

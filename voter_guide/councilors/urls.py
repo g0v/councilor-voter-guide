@@ -3,8 +3,7 @@ from django.conf.urls import url
 from councilors import views
 
 urlpatterns = [
-    url(r'^(?P<index>conscience_vote|not_voting|bills|cs_attend|counties)/(?P<county>)/$', views.select_county, name='index'),
-    url(r'^(?P<index>conscience_vote|not_voting|bills|cs_attend|counties)/(?P<county>\S+)/$', views.index, name='index'),
+    url(r'^(?P<index>conscience_vote|not_voting|bills|cs_attend)/(?P<county>\S+)/$', views.index, name='index'),
     url(r'^platform/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.platformer, name='platformer'),
     url(r'^biller/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.biller, name='biller'),
     url(r'^biller/(?P<councilor_id>\S+)/(?P<election_year>\d+)/(?P<category>.+)$', views.biller_category, name='biller_category'),
@@ -12,4 +11,5 @@ urlpatterns = [
     url(r'^suggestor/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.suggestor, name='suggestor'),
     url(r'^personal_political_contributions/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.personal_political_contributions, name='personal_political_contributions'),
     url(r'^info/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.info, name='info'),
+    url(r'^(?P<county>\S+)/$', views.districts, name='councilors'),
 ]

@@ -29,8 +29,9 @@ urlpatterns = [
     url(r'^bills/', include('bills.urls', namespace="bills")),
     url(r'^votes/', include('votes.urls', namespace="votes")),
     url(r'^about/$', voter_guide_views.about, name='about'),
+    url(r'^select_county/(?P<category>candidates|councilors|bills|votes)/$', voter_guide_views.select_county, name='select_county'),
     url(r'^reference/$', voter_guide_views.reference, name='reference'),
-    url(r'', include('candidates.urls', namespace="candidates")),
+    url(r'^$', voter_guide_views.select_county, {'category': 'candidates'}, name='home'),
     url(r'^api/', include(router.urls)),
 ]
 
