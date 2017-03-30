@@ -118,7 +118,7 @@
 {% block script %}
     <script>
         $(document).ready( function() {
-            $('#councilors_voter').removeAttr('href').addClass("btn-info");
+            $('#url_vote').attr('class', 'active');
         });
     </script>
     {{ block.super }}

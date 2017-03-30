@@ -109,6 +109,13 @@ def index(request, index, county):
         councilors = CouncilorsDetail.objects.filter(basic_query).order_by('district', 'party')
         return render(request, 'councilors/index/counties.html', {'param': param.get(index), 'election_year': election_year, 'county': county, 'councilors': councilors, 'out_office': out_office, 'index': index})
 
+def info(request, councilor_id, election_year):
+    try:
+        councilor = CouncilorsDetail.objects.get(election_year=election_year, councilor_id=councilor_id)
+    except Exception, e:
+        return HttpResponseRedirect('/')
+    return render(request, 'councilors/info.html', {'councilor': councilor})
+
 def suggestor(request, councilor_id, election_year):
     q = dict(zip(['councilor_id', 'election_year'], [councilor_id, election_year]))
     try:

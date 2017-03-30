@@ -61,6 +61,7 @@
 {% block script %}
     <script>
         $(document).ready( function() {
+            $('#url_bill').attr('class', 'active');
             $('#councilors_biller').removeAttr('href').addClass("btn-info");
             $('#primaryonly').change(function() {
                 $("#form").trigger('submit');

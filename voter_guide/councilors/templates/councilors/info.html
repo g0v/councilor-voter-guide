@@ -1,0 +1,64 @@
+{% extends "common/person_info.html" %}
+{% load extras %}
+
+{% block title %}
+    {% if councilor %}
+        <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的基本資料</title>
+        <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的基本資料"/>
+        <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的基本資料">
+    {% endif %}
+{% endblock %}
+
+{% block person_detail %}
+    <dl class="dl-horizontal">
+        {% if councilor.elected_party != councilor.party.0.name %}
+            <dt>當選黨籍</dt>
+            <dd>{{ councilor.elected_party }}
+        {% endif %}
+        <dt>黨籍</dt>
+        <dd>{{ councilor.party }}
+        </dd>
+        <dt>選區縣市</dt>
+        <dd>
+            <a href="{% url 'candidates:districts' county=councilor.county election_year=councilor.election_year %}">{{councilor.county}}</a>
+        </dd>
+        {% if councilor.elected_candidate.district %}
+            <dt>行政區</dt>
+            <dd>{{ councilor.elected_candidate.district }}</dd>
+        {% endif %}
+        <dt>到職日期</dt>
+        <dd>{{ councilor.term_start|date:"Y-m-d" }}</dd>
+        {% if councilor.remark %}
+            <dt>備註</dt>
+            <dd>{{ councilor.remark }}</dd>
+        {% endif %}
+        <hr>
+        {% for item in councilor.contact_details %}
+            <dt>{{item.label}}</dt>
+            <dd>{{item.value}}</dd>
+        {% endfor %}
+        <hr>
+        {% if councilor.education %}
+            <dt>學歷</tt>
+            <dd>{{councilor.education|linebreaksbr}}</dd>
+        {% endif %}
+        {% if councilor.experience %}
+            <dt>經歷</tt>
+            <dd>{{councilor.experience|linebreaksbr}}</dd>
+        {% endif %}
+        {% if councilor.links %}
+            <dt>外部連結</dt>
+            {% for link in councilor.links %}
+                <dd><a href="{{link.url}}" target="_blank">{{link.note}}</a></dd>
+            {% endfor %}
+        {% endif %}
+    </dl>
+{% endblock person_detail %}
+
+{% block script %}
+    <script>
+        $(document).ready( function() {
+            $('#url_info').attr('class', 'active');
+        });
+    </script>
+{% endblock script %}

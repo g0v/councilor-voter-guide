@@ -3,9 +3,9 @@
 
 {% block title %}
     {% if councilor %}
-        <title>議員投票指南:{{councilor.name}}的政治獻金</title>
-        <meta property="og:title" content="議員投票指南:{{councilor.name}}的政治獻金"/>
-        <meta itemprop="name" content="議員投票指南:{{councilor.name}}的政治獻金">
+        <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的政治獻金</title>
+        <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的政治獻金"/>
+        <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的政治獻金">
     {% else %}
         <title>議員投票指南:立委的政治獻金</title>
         <meta property="og:title" content="議員投票指南:立委的政治獻金"/>
@@ -35,7 +35,7 @@
     {% include "councilors/d3/personal_politicalcontributions_out_pie_chart.html" %}
     <script>
         $(document).ready( function() {
-            $('#polticalcontributions').addClass("btn-info");
+            $('#url_polticalcontributions').attr('class', 'active');
             $('.price').each(function(index,ele){
                 var number = $(ele).text()
                 zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 2});

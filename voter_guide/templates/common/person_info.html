@@ -1,143 +1,40 @@
 {% extends "base.html" %}
 {% load extras %}
 {% block right %}
-<div class="row-fluid">
-    <div class="span3">
-        <br>
-        {% if councilor %}
-        <table class="table table-bordered">
-            <thead>
-                <th style="width: 30%"></th>
-                <th style="width: 70%"></th>
-            </thead>
-            <tbody>
-                {% if councilor.image %}
-                <tr>
-                    <td colspan=2>
-                        <div align="center">
-                            <img src="{{councilor.image}}" width="60%">
-                        </div>
-                    </td>
-                </tr>
-                {% endif %}
-                <tr>
-                    <td style="background-color: lightgrey;">屆期</td>
-                    <td>
-
-                        <font class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{councilor.election_year|election_year_range}}<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            {% for year in councilor.in_office_year %}
-                                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=year %}" >{{year|election_year_range}}</a></li>
-                            {% endfor %}
-                        </ul>
-                        <font>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td style="background-color: lightgrey;">議員</td>
-                    <td><b>{{ councilor.name }}</b></td>
-                </tr>
-                <tr>
-                    <td style="background-color: lightgrey;">選區縣市</td>
-                    <td><a href="{% url 'candidates:districts' county=councilor.county election_year=2014 %}">{{councilor.county}}</a></td>
-                </tr>
-                <tr>
-                    <td style="background-color: lightgrey;">職稱</td>
-                    <td>{{councilor.title}}</td>
-                </tr>
-                <tr>
-                    <td style="background-color: lightgrey;">黨籍</td>
-                    <td>{{ councilor.party }}</td>
-                </tr>
-                {% if councilor.district %}
-                <tr>
-                    <td style="background-color: lightgrey;">行政區</td>
-
-                    <td><abbr title="{{ councilor.district }}"><a href="{% url 'candidates:district' county=councilor.county election_year=2014 constituency=councilor.constituency %}">{{ councilor.district|truncatechars:20 }}</a></abbr></td>
-                </tr>
-                {% endif %}
-                <tr>
-                    <td style="background-color: lightgrey;">到職日期</td>
-                    <td>
-                        {{ councilor.term_start|date:"Y-m-d" }}
-                        {% if not councilor.in_office and councilor.term_end.date %}
-                             ~ <font class="text-error">{{ councilor.term_end.date|date:"Y-m-d" }}</font>
-                        {% endif %}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan=2></td>
-                </tr>
-                {% for item in councilor.contact_details %}
-                    <tr>
-                        <td style="background-color: lightgrey; text-align:center; vertical-align:middle;">{{item.label}}</td>
-                        <td>{{item.value}}</td>
-                    </tr>
-                {% endfor %}
-                {% if councilor.education %}
-                <tr>
-                    <td colspan=2></td>
-                </tr>
-                <tr style="background-color: #CCCC66 ;">
-                    <td colspan=2 style="text-align:center; vertical-align:middle;">學歷</td>
-                </tr>
-                <tr>
-                    <td colspan=2><abbr title="{{councilor.education}}">{{councilor.education|linebreaksbr|truncatechars:50}}</abbr></td>
-                </tr>
-                {% endif %}
-                {% if councilor.experience %}
-                <tr>
-                    <td colspan=2></td>
-                </tr>
-                <tr style="background-color: #CCCC99;">
-                    <td colspan=2 style="text-align:center; vertical-align:middle;">經歷</td>
-                </tr>
-                <tr>
-                    <td colspan=2><abbr title="{{councilor.experience}}">{{councilor.experience|linebreaksbr|truncatechars:50}}</abbr></td>
-                </tr>
-                {% endif %}
-                {% if councilor.links %}
-                <tr>
-                    <td colspan=2></td>
-                </tr>
-                <tr>
-                    <td style="background-color: lightgrey;">外部連結</td>
-                    <td><a href="{{ councilor.links.0.url }}" target="_blank">{{ councilor.name }}的議會官網</a></td>
-                </tr>
-                {% endif %}
-            </tbody>
-        </table>
-        {% endif %}
-    </div>
-
-    <div class="span9">
-        <br>
-        <div class="row-fluid">
-            <div class="span12 person-btn-margin">
-                <b>{{ councilor.name }}</b>的&nbsp;
-                <a class="btn btn-large" id='property' href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" target="_blank">個人財產申報</a>
-                <a class="btn btn-large" id='councilors_suggestor' href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">工程建議款</a>
-                <a class="btn btn-large" id='polticalcontributions' href="{% url 'councilors:personal_political_contributions' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">政治獻金</a>
-                <div class="btn-group">
-                    <a id='councilors_voter' class="btn btn-large dropdown-toggle" href="#" data-toggle="dropdown">投票紀錄 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全投票表決紀錄</a></li>
-                        <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?index=conscience" >脫黨投票表決紀錄</a></li>
-                    </ul>
-                </div>
-                <a class="btn btn-large" id='councilors_biller' href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">議案</a>
-                <a class="btn btn-large" id='councilors_platformer' href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">競選政見</a>
+    {% block top-menu %}
+    {% endblock top-menu %}
+    <div class="row-fluid">
+        <div id="sidebar-left" class="span2">
+            <div class="nav-collapse sidebar-nav">
+                <ul class="nav nav-tabs nav-stacked">
+                    <p class="lead">{{ councilor.name }}</p>
+            <font class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{councilor.election_year|election_year_range}}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    {% for year in councilor.in_office_year %}
+                        <li><a href="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=year %}" >{{year|election_year_range}}</a></li>
+                    {% endfor %}
+                </ul>
+            </font>
+                    <img src="{{councilor.image}}" width="50%">
+                    <li id='url_info'><a href="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-info"> 基本資料</i></a></li>
+                    <li id='url_suggestor'><a href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-building"> 工程建議款</i></a></li>
+                    <li id='url_property'><a href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" target="_blank"><i class="fa fa-bank"> 個人財產申報</i></a></li>
+                    <li id='url_vote'><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-balance-scale"> 表決</i></a></li>
+                    <li id='url_polticalcontributions'><a href="{% url 'councilors:personal_political_contributions' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-dollar"> 政治獻金</i></a></li>
+                    <li id='url_bill'><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-book"> 議案</i></a></li>
+                    <li id='url_politics'><a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-comment"> 競選政見</i></a></li>
+                </ul>
             </div>
+            <br>
         </div>
-        <br>
-        {% block person_detail %}
-        {% endblock person_detail %}
-        <hr>
-        <div id="disqus_thread"></div>
+        <div id="content" class="span10" style="min-height: 700px; padding-bottom: 150px;">
+            {% block person_detail %}
+            {% endblock person_detail %}
+            <hr>
+            <div id="disqus_thread"></div>
+        </div>
     </div>
-</div>
 {% endblock right %}
 {% block script %}
 <script>
