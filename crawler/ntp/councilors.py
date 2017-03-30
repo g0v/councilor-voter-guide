@@ -32,7 +32,6 @@ class Spider(scrapy.Spider):
         c['in_office'] = True
         c['term_start'] = '%s-12-25' % c['election_year']
         c['term_end'] = {'date': '2018-12-24'}
-        c['links'] = {'note': u'個人網站', 'url': response.url}
         c['district'] = self.constituency[c['constituency']]
         c['name'] = response.xpath(u'//td[contains(text(), "姓名")]/following-sibling::td[1]/text()').extract_first()
         c['party'] = response.xpath(u'//td[contains(text(), "政黨")]/following-sibling::td[1]/text()').extract_first()
