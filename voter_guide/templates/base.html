@@ -50,16 +50,7 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li id="candidates"><a href="{% url 'candidates:counties' election_year='2014' %}" >2014候選人</a></li>
-                            <li id="councilors" class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">找議員<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{% url 'councilors:index' index='counties' county=county %}" >依選區分組</a></li>
-                                <li><a href="{% url 'councilors:index' index='cs_attend' county=county %}" ><b>議會開會</b>缺席次數(多&rarr;少)</a></li>
-                                <li><a href="{% url 'councilors:index' index='not_voting' county=county %}" ><b>表決</b>缺席次數(多&rarr;少)</a></li>
-                                <li><a href="{% url 'councilors:index' index='conscience_vote' county=county %}" ><b>脫黨投票</b>次數(多&rarr;少)</a></li>
-                                <li><a href="{% url 'councilors:index' index='bills' county=county %}" ><b>議案數</b>(多&rarr;少)</a></li>
-                            </ul>
-                            </li>
+                            <li id="councilors"><a href="{% url 'councilors:index' index='counties' county=county %}" >找議員</a></li>
                             <li id="bills"><a href="{% url 'bills:bills' county=county index='normal' %}" >找議案</a></li>
                             <li id="votes" class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">找表決<b class="caret"></b></a>
@@ -69,6 +60,15 @@
                                 </ul>
                             </li>
                             <li id="suggestions"><a href="{% url 'suggestions:report' %}" >工程建議款</a></li>
+                            <li id="councilors" class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">相關圖表<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'councilors:index' index='cs_attend' county=county %}" ><b>議會開會</b>缺席次數(多&rarr;少)</a></li>
+                                    <li><a href="{% url 'councilors:index' index='not_voting' county=county %}" ><b>表決</b>缺席次數(多&rarr;少)</a></li>
+                                    <li><a href="{% url 'councilors:index' index='conscience_vote' county=county %}" ><b>脫黨投票</b>次數(多&rarr;少)</a></li>
+                                    <li><a href="{% url 'councilors:index' index='bills' county=county %}" ><b>議案數</b>(多&rarr;少)</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
