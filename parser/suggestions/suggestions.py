@@ -64,7 +64,7 @@ conn = db_settings.con()
 c = conn.cursor()
 duplicated_reports = json.load(open('duplicated_reports.json'))
 df_concat = DataFrame()
-for meta_file in glob.glob('../../data/chcc/suggestions.json'):
+for meta_file in glob.glob('../../data/*/suggestions.json'):
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
@@ -136,7 +136,7 @@ def Suggestions(suggestion):
         VALUES (%(uid)s, %(county)s, %(election_year)s, %(suggest_year)s, %(suggest_month)s, %(suggestion)s, %(position)s, %(suggest_expense)s, %(suggest_expense_avg)s, %(approved_expense)s, %(approved_expense_avg)s, %(expend_on)s, %(brought_by)s, %(bid_type)s, %(bid_by)s, %(district)s, %(constituency)s)
         ON CONFLICT (uid)
         DO UPDATE
-        SET county = %(county)s, election_year = %(election_year)s, suggest_year = %(suggest_year)s, suggest_month = %(suggest_month)s, suggestion = %(suggestion)s, position = %(position)s, suggest_expense = %(suggest_expense)s, approved_expense = %(approved_expense)s, expend_on = %(expend_on)s, brought_by = %(brought_by)s, bid_type = %(bid_type)s, bid_by = %(bid_by)s, district = %(district)s, constituency = %(constituency)s
+        SET county = %(county)s, election_year = %(election_year)s, suggest_year = %(suggest_year)s, suggest_month = %(suggest_month)s, suggestion = %(suggestion)s, position = %(position)s, suggest_expense = %(suggest_expense)s, suggest_expense_avg = %(suggest_expense_avg)s, approved_expense_avg = %(approved_expense_avg)s, approved_expense = %(approved_expense)s, expend_on = %(expend_on)s, brought_by = %(brought_by)s, bid_type = %(bid_type)s, bid_by = %(bid_by)s, district = %(district)s, constituency = %(constituency)s
     ''', suggestion)
 
 def CouncilorsSuggestions(suggestion):
