@@ -64,7 +64,7 @@ conn = db_settings.con()
 c = conn.cursor()
 duplicated_reports = json.load(open('duplicated_reports.json'))
 df_concat = DataFrame()
-for meta_file in glob.glob('../../data/kmc/suggestions.json'):
+for meta_file in glob.glob('../../data/chcc/suggestions.json'):
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
@@ -188,7 +188,7 @@ def get_jurisdiction(suggestion):
 ds = df_concat.to_json(orient='records', force_ascii=False)
 dict_list = json.loads(ds)
 for item in dict_list:
-    if item['councilor_ids']:
+    if item.get('councilor_ids'):
         for column in ['position', 'suggestion', 'brought_by']:
             item['constituency'], item['district'] = get_district(item[column], item)
             if item['constituency']:
