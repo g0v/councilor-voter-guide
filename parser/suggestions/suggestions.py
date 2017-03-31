@@ -75,13 +75,13 @@ for meta_file in glob.glob('../../data/*/suggestions.json'):
         for meta in metas:
             meta['county'] = county
             file_name = '{year}_{month_from}-{month_to}.{file_ext}'.format(**meta)
-            print file_name
+            print county, file_name
             f = '../../data/%s/suggestions/%s' % (county_abbr, file_name)
             if {x: meta[x] for x in ["month_to", "year", "month_from"]} in duplicated_reports.get(county_abbr, []):
                 print 'pass'
                 continue
-            if meta['file_ext'] == 'ods':
-                if {x: meta[x] for x in ["month_to", "year", "month_from"]} not in exclude_ods_metas:
+            if not re.search('xls', meta['file_ext']):
+                if meta['file_ext'] == 'ods' and {x: meta[x] for x in ["month_to", "year", "month_from"]} not in exclude_ods_metas:
                     cmd = 'unoconv -d spreadsheet --format=xls %s' % f
                     subprocess.call(cmd, shell=True)
                     meta['file_ext'] = 'xls'
