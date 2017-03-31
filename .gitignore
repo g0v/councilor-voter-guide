@@ -5,6 +5,7 @@ local_settings.py
 *.log
 *~
 *.swp
+.~lock
 ############
 ## Python
 #############
