@@ -4,7 +4,7 @@ import operator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Count, Sum, F, Q
-from .models import Suggestions
+from .models import Suggestions, Councilors_Suggestions
 from councilors.models import CouncilorsDetail
 
 
@@ -15,6 +15,13 @@ def county_overview(request):
                         .annotate(sum=Sum('approved_expense'), count=Count('uid'))\
                         .order_by('county', 'suggest_year')
     return render(request,'suggestions/county_overview.html', {'suggestions': suggestions, 'counties': list(counties)})
+
+def each_year(request, county):
+    years = Councilors_Suggestions.objects.filter(suggestion__county=county)\
+                        .values('suggestion__suggest_year', 'councilor_id')\
+                        .annotate(sum=Sum('suggestion__approved_expense_avg'), )\
+                        .order_by('-suggestion__suggest_year', '-sum')
+    return render(request,'suggestions/years.html', {'county': county, 'years': list(years)})
 
 def report(request):
     councilors = CouncilorsDetail.objects.filter(election_year__in=['2009', '2010'], county__in=[u'臺北市', u'高雄市', u'新竹市']) | CouncilorsDetail.objects.filter(election_year__in=['2014'], county__in=[u'新北市', u'桃園市'])

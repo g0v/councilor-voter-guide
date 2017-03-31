@@ -26,10 +26,9 @@
                 <hr>
                 {% with county=county.grouper %}
                 <div class="span12">
-                    <a href="#year_bar_{{county}}"><i class="fa fa-link"></i></a>
-                    <h2>{{county}}–工程建議款</h2>
+                    <a id="{{county}}" href="#{{county}}"><i class="fa fa-link"></i></a>
                 </div>
-                <div id="year_bar_{{county}}" class="span6" style="padding-top: 40px; margin-top: -40px;" align="center"></div>
+                <div id="years_bar_{{county}}" class="span6" align="center"></div>
                 {% endwith %}
                 <div class="span5">
                     <table class="table table-bordered table-condensed table-striped sortable" >
@@ -54,6 +53,9 @@
                         {% endfor %}
                         </tbody>
                     </table>
+                    <ul class="unstyled">
+                        <li><a href="{% url 'suggestions:each_year' county=county.grouper %}" rel="tooltip" title="{{county.grouper}}的錢是怎麼分配給每位議員的"><i class="fa fa-bar-chart"> {{county.grouper}}的錢是怎麼分配給每位議員的</i></a></li>
+                    </ul>
                 </div>
         {% endfor %}
     </div>
@@ -65,7 +67,7 @@
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     {% regroup counties by county as county_list %}
         {% for county in county_list %}
-            {% include "suggestions/d3/year_bar.html" with data=county.list id='#year_bar_'|add:county.grouper %}
+            {% include "suggestions/d3/years_bar.html" with county=county.grouper data=county.list %}
         {% endfor %}
     {% include "common/sorttable.html" %}
     <script>
