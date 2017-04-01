@@ -2,9 +2,9 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南:工程建議款</title>
-    <meta property="og:title" content="議員投票指南:工程建議款"/>
-    <meta itemprop="name" content="議員投票指南:工程建議款">
+    <title>議員投票指南:工程建議款-各縣市總覽</title>
+    <meta property="og:title" content="議員投票指南:工程建議款-各縣市總覽"/>
+    <meta itemprop="name" content="議員投票指南:工程建議款-各縣市總覽">
 {% endblock %}
 
 {% block right %}
@@ -28,9 +28,9 @@
                 <div class="span12">
                     <a id="{{county}}" href="#{{county}}"><i class="fa fa-link"></i></a>
                 </div>
-                <div id="years_bar_{{county}}" class="span6" align="center"></div>
+                <div id="years_bar_{{county}}" class="span6" style="margin-left: 0px;" align="center"></div>
                 {% endwith %}
-                <div class="span5">
+                <div class="span6">
                     <table class="table table-bordered table-condensed table-striped sortable" >
                         <thead>
                             <tr style="font-weight:bold;background-color: #E1D0D0";>

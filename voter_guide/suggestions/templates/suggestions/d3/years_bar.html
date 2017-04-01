@@ -63,7 +63,7 @@
     var data = {{data|as_json}}
     var id = '#years_bar_' + county
 
-    var margin = {top: 40, right: 100, bottom: 100, left: 100},
+    var margin = {top: 50, right: 100, bottom: 100, left: 100},
     width = 480 - margin.left - margin.right,
     height = 360 - margin.top - margin.bottom;
 
@@ -79,8 +79,9 @@
 
     var yAxis = d3.svg.axis()
     .scale(y)
-    .tickFormat(function(d) { return (d/100000000) + '(億元)'; })
-    .orient("left")
+    .ticks(3)
+    .tickFormat(function(d) { return zhutil.approximate(d, {base: '億', extra_decimal: 0}); })
+    .orient("left");
 
     var tip = d3.tip()
     .attr('class', 'd3-tip')
@@ -132,8 +133,9 @@
 
     svg.append("text")
     .attr("font-size", "22px")
+    .attr("font-weight", "bold")
     .attr("text-anchor", "middle")
-    .attr("transform", "translate("+ (width/2)+","+-10+")")
+    .attr("transform", "translate("+ (width/2)+","+-18+")")
     .text(county+" - 工程建議款");
 
 </script>
