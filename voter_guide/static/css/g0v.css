@@ -225,12 +225,6 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
   }
 }
 
-@media (min-width: 979px) and (max-width: 1084px){
-  .container-fluid{
-    margin-top: 120px;
-  }
-}
-
 #gs_tti50 > input, #gs_tti51 > input{
   height: 25px!important;
   margin-top: -3px!important;

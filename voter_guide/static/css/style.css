@@ -28,10 +28,6 @@ body {
 
 /* Header Section
 =================================================================== */
-.navbar {
-    margin-bottom: 40px;
-}
-
 .navbar-inner {
     margin-bottom: 0px;
     min-height: 40px;
