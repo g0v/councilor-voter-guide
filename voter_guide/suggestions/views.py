@@ -3,7 +3,7 @@ import urllib
 import operator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.db.models import Count, Sum, F, Q
+from django.db.models import Count, Sum, F, Q, Case, When, Value, IntegerField
 from .models import Suggestions, Councilors_Suggestions
 from councilors.models import CouncilorsDetail
 
@@ -12,7 +12,17 @@ def county_overview(request):
     suggestions = Suggestions.objects.all()[:3]
     counties = Suggestions.objects.all()\
                         .values('county', 'suggest_year')\
-                        .annotate(sum=Sum('approved_expense'), count=Count('uid'))\
+                        .annotate(
+                            sum=Sum('approved_expense'),
+                            count=Count('uid'),
+                            small_purchase=Sum(
+                                Case(
+                                    When(approved_expense__lt=100000, then=1),
+                                    output_field=IntegerField(),
+                                    default=Value(0)
+                                )
+                            ),
+                        )\
                         .order_by('county', 'suggest_year')
     return render(request,'suggestions/county_overview.html', {'suggestions': suggestions, 'counties': list(counties)})
 

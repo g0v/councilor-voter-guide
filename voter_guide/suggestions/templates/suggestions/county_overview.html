@@ -37,6 +37,7 @@
                                 <th>縣市</th>
                                 <th>年度</th>
                                 <th>案數</th>
+                                <th>小額採購案數</th>
                                 <th>通過預算</th>
                                 <th>每筆平均</th>
                             </tr>
@@ -47,6 +48,7 @@
                                 <td style="text-align:center; vertical-align:middle;">{{obj.county}}</td>
                                 <td style="text-align:center; vertical-align:middle;">{{obj.suggest_year}}</td>
                                 <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
+                                <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.small_purchase}}</p></td>
                                 <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
                                 <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum|divide:obj.count}}</p></td>
                             </tr>
