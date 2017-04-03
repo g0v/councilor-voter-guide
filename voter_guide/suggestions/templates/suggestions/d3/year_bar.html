@@ -63,9 +63,13 @@
     var data = {{data|as_json}}
     var id = '#year_bar_' + year
 
-    var margin = {top: 40, right: 100, bottom: 100, left: 100},
-    width = 420 - margin.left - margin.right,
+    var margin = {top: 40, right: 100, bottom: 40, left: 100},
+    width = 460 - margin.left - margin.right,
     height = 320 - margin.top - margin.bottom;
+
+    var color = d3.scale.ordinal()
+    .range(["#69F", "#6C6", "#960", "#C06", "#999", "#33F", "#F63", "#F93", "#0C9", "#FC0", "#930", "#660"])
+    .domain(["中國國民黨", "民主進步黨", "臺灣團結聯盟", "無黨團結聯盟", "無黨籍", "民國黨", "親民黨", "新黨", "綠黨", "勞動黨", "臺灣第一民族黨", "在野問政聯盟"]);
 
     var x = d3.scale.ordinal()
     .rangeRoundBands([0, width], .1);
@@ -82,7 +86,7 @@
     var tip = d3.tip()
     .attr('class', 'd3-tip')
     .html(function(d) {
-        return zhutil.approximate(d.sum, {base: '萬', extra_decimal: 0});
+        return d.councilor__name + ' - ' + d.councilor__party + (d.councilor__title ? (d.councilor__title) : '') + ': ' + zhutil.approximate(d.sum, {base: '萬', extra_decimal: 0});
     });
 
     var svg = d3.select(id).append("svg")
@@ -118,6 +122,7 @@
     .attr("width", x.rangeBand()*.8)
     .attr("y", function(d) { return y(d.sum); })
     .attr("height", function(d) { return height - y(d.sum); })
+    .style("fill", function(d) { return color(d.councilor__party); })
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide);
 
@@ -126,12 +131,38 @@
     .attr("font-weight", "bold")
     .attr("text-decoration", "underline")
     .attr("text-anchor", "middle")
-    .attr("transform", "translate("+ (width/2)+","+-10+")")
+    .attr("transform", "translate("+ (width/2) + "," + -10 + ")")
     .text(year+" 年");
 
     svg.append("text")
+    .attr("font-size", "16px")
     .attr("text-anchor", "middle")
-    .attr("transform", "translate("+ (width/2)+","+(height+margin.top)+")")
+    .attr("transform", "translate(" + (width / 2) + "," + (height + margin.top * .5) + ")")
     .text(data.length+" 位議員的建議款");
+
+    var parties = d3.nest()
+    .key(function(d) { return d.councilor__party; })
+    .entries(data);
+
+    var legend = d3.select(id).append("svg")
+    .attr("class", "legend")
+    .attr("width", width)
+    .attr("height", height * .8)
+    .selectAll("g")
+    .data(parties)
+    .enter().append("g")
+    .attr("transform", function(d, i) { return "translate(" + width * .24 + "," + i * 18 + ")"; });
+
+    legend.append("rect")
+    .attr("width", 16)
+    .attr("height", 16)
+    .style("fill", function(d) { return color(d.key); });
+
+    legend.append("text")
+    .attr("font-size", "14px")
+    .attr("x", 20)
+    .attr("y", 7)
+    .attr("dy", ".35em")
+    .text(function(d) { return d.key; });
 
 </script>
