@@ -87,6 +87,7 @@
     var tip = d3.tip()
     .attr('class', 'd3-tip')
     .html(function(d) {
+        d3.select(this).style("cursor", "pointer")
         return zhutil.approximate(d.sum, {base: '萬', extra_decimal: 0});
     });
 

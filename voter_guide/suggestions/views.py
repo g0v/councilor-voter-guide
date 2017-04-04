@@ -28,7 +28,7 @@ def county_overview(request):
 
 def each_year(request, county):
     years = Councilors_Suggestions.objects.filter(suggestion__county=county)\
-                        .values('suggestion__suggest_year', 'councilor_id', 'councilor__name', 'councilor__title', 'councilor__party')\
+                        .values('suggestion__suggest_year', 'councilor_id', 'councilor__name', 'councilor__title', 'councilor__party', 'councilor__councilor_id', 'councilor__election_year')\
                         .annotate(sum=Sum('suggestion__approved_expense_avg'), )\
                         .order_by('-suggestion__suggest_year', '-sum')
     return render(request,'suggestions/years.html', {'county': county, 'years': list(years)})

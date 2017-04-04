@@ -86,6 +86,7 @@
     var tip = d3.tip()
     .attr('class', 'd3-tip')
     .html(function(d) {
+        d3.select(this).style("cursor", "pointer")
         return d.councilor__name + ' - ' + d.councilor__party + (d.councilor__title ? (d.councilor__title) : '') + ': ' + zhutil.approximate(d.sum, {base: '萬', extra_decimal: 0});
     });
 
@@ -123,6 +124,7 @@
     .attr("y", function(d) { return y(d.sum); })
     .attr("height", function(d) { return height - y(d.sum); })
     .style("fill", function(d) { return color(d.councilor__party); })
+    .on('click', function(d) { return window.location.href = "/councilors/suggestor/" + d.councilor__councilor_id + "/" + d.councilor__election_year + "/"; })
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide);
 
