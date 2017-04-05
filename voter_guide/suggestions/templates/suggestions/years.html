@@ -35,11 +35,6 @@
     <script>
         $(document).ready( function() {
             $('#suggestions').addClass('active');
-            $('.price').each(function(index,ele){
-                var number = $(ele).text()
-                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
-                $(ele).replaceWith(zh_number)
-            });
         });
     </script>
 {% endblock script %}
