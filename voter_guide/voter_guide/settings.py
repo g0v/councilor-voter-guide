@@ -87,7 +87,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 #   'django.middleware.security.SecurityMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'pagination.middleware.PaginationMiddleware',
 )
 
 ROOT_URLCONF = 'voter_guide.urls'
@@ -178,6 +177,8 @@ TEMPLATES = [
 ]
 
 SITE_DOMAIN = 'http://councils.g0v.tw'
+
+INTERNAL_IPS = ['127.0.0.1']
 
 try:
     from local_settings import *

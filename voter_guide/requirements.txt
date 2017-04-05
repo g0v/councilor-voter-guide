@@ -1,4 +1,4 @@
-Django==1.10.2
+Django==1.11
 
 # db related
 psycopg2==2.6.2
@@ -14,4 +14,4 @@ gunicorn==19.6.0
 coverage==4.2
 
 # others
-django-debug-toolbar==1.6
+django-debug-toolbar==1.7
