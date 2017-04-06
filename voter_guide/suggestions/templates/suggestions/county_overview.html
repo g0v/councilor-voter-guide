@@ -55,9 +55,8 @@
                         {% endfor %}
                         </tbody>
                     </table>
-                    <ul class="unstyled">
-                        <li><a href="{% url 'suggestions:each_year' county=county.grouper %}" rel="tooltip" title="{{county.grouper}}的錢是怎麼分配給每位議員的"><i class="fa fa-bar-chart"> {{county.grouper}}的錢是怎麼分配給每位議員的</i></a></li>
-                    </ul>
+                    <p><a href="{% url 'suggestions:each_year' county=county.grouper %}" rel="tooltip" title="錢是怎麼分配給每位議員的"><i class="fa fa-handshake-o"> 錢是怎麼分配給每位議員的？</i></a></p>
+                    <p><a href="{% url 'suggestions:positions' county=county.grouper order_by='sum' option='all' %}" rel="tooltip" title="錢是怎麼分配在各地的"><i class="fa fa-map-marker"> 錢是怎麼分配在各地的？</i></a></p>
                 </div>
         {% endfor %}
     </div>

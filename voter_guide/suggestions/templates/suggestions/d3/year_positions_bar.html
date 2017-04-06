@@ -56,16 +56,16 @@
 <script>
 
     var year = {{year}}
-    var data = {{data|as_json}}
+    var data = {{data|as_json}}.slice(0,10)
     var id = '#year_bar_' + year
+    var order_by = '{{order_by}}'
+    console.log(order_by)
 
     var margin = {top: 40, right: 100, bottom: 40, left: 100},
     width = 460 - margin.left - margin.right,
     height = 320 - margin.top - margin.bottom;
 
-    var color = d3.scale.ordinal()
-    .range(["#69F", "#6C6", "#960", "#C06", "#999", "#33F", "#F63", "#F93", "#0C9", "#FC0", "#930", "#660"])
-    .domain(["中國國民黨", "民主進步黨", "臺灣團結聯盟", "無黨團結聯盟", "無黨籍", "民國黨", "親民黨", "新黨", "綠黨", "勞動黨", "臺灣第一民族黨", "在野問政聯盟"]);
+    var color = d3.scale.category10()
 
     var x = d3.scale.ordinal()
     .rangeRoundBands([0, width], .1);
@@ -76,14 +76,18 @@
     var yAxis = d3.svg.axis()
     .scale(y)
     .ticks(5)
-    .tickFormat(function(d) { return zhutil.approximate(d, {base: '萬', extra_decimal: 0}); })
+    {% if order_by == 'count' %}
+        .tickFormat(d3.format("d"))
+    {% else %}
+        .tickFormat(function(d) { return zhutil.approximate(d, {base: '萬', extra_decimal: 0}); })
+    {% endif %}
     .orient("left");
 
     var tip = d3.tip()
     .attr('class', 'd3-tip')
     .html(function(d) {
         d3.select(this).style("cursor", "pointer")
-        return d.councilor__name + ' - ' + d.councilor__party + (d.councilor__title ? (d.councilor__title) : '') + ': ' + zhutil.approximate(d.sum, {base: '萬', extra_decimal: 0});
+        return d.position + ': ' + zhutil.approximate(d.sum, {base: '萬', extra_decimal: 0});
     });
 
     var svg = d3.select(id).append("svg")
@@ -94,8 +98,8 @@
 
     svg.call(tip);
 
-    x.domain(data.map(function(d) { return d.councilor_id; }));
-    y.domain([0, d3.max(data, function(d) { return d.sum; })]);
+    x.domain(data.map(function(d) { return d.position; }));
+    y.domain([0, d3.max(data, function(d) { return d[order_by]; })]);
 
     svg.append("g")
     .attr("class", "x axis")
@@ -109,18 +113,25 @@
     .attr("dy", "-3em")
     .style("text-anchor", "end")
 
+    svg.append("text")
+    .attr("font-size", "16px")
+    .attr("text-anchor", "middle")
+    .attr("transform", "translate(" + (-margin.left/2) + "," + (height/2) + ")")
+    {% if order_by == 'count' %}
+        .text("次數");
+    {% endif %}
+
     var barGroup = svg.selectAll("rect")
     .data(data).enter().append("g")
     .attr("class", "g")
-    .attr("transform", function(d) { return "translate(" + x(d.councilor_id) + ",0)"; });
+    .attr("transform", function(d) { return "translate(" + x(d.position) + ",0)"; });
 
     barGroup.append("rect")
     .attr("class", "bar")
     .attr("width", x.rangeBand()*.8)
-    .attr("y", function(d) { return y(d.sum); })
-    .attr("height", function(d) { return height - y(d.sum); })
-    .style("fill", function(d) { return color(d.councilor__party); })
-    .on('click', function(d) { return window.location.href = "/councilors/suggestor/" + d.councilor__councilor_id + "/" + d.councilor__election_year + "/"; })
+    .attr("y", function(d) { return y(d[order_by]); })
+    .attr("height", function(d) { return height - y(d[order_by]); })
+    .style("fill", function(d) { return color(d.position); })
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide);
 
@@ -132,14 +143,8 @@
     .attr("transform", "translate("+ (width/2) + "," + -10 + ")")
     .text(year+" 年");
 
-    svg.append("text")
-    .attr("font-size", "16px")
-    .attr("text-anchor", "middle")
-    .attr("transform", "translate(" + (width / 2) + "," + (height + margin.top * .5) + ")")
-    .text(data.length+" 位議員的建議款");
-
     var parties = d3.nest()
-    .key(function(d) { return d.councilor__party; })
+    .key(function(d) { return d.position; })
     .entries(data);
 
     var legend = d3.select(id).append("svg")
@@ -149,7 +154,7 @@
     .selectAll("g")
     .data(parties)
     .enter().append("g")
-    .attr("transform", function(d, i) { return "translate(" + width * .24 + "," + i * 18 + ")"; });
+    .attr("transform", function(d, i) { return "translate(" + width * .23 + "," + i * 18 + ")"; });
 
     legend.append("rect")
     .attr("width", 16)

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load extras %}
+
+{% block title %}
+    <title>議員投票指南:{{county}}-工程建議款-各議員每年分配金額</title>
+    <meta property="og:title" content="議員投票指南:{{county}}-工程建議款-各議員每年分配金額"/>
+    <meta itemprop="name" content="議員投票指南:{{county}}-工程建議款-各議員每年分配金額">
+{% endblock %}
+
+{% block right %}
+    <div class="hero-unit row" style="margin-left: 0px;">
+        <img class="pull-right" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img>
+        <h2>{{county}} - 議員工程建議款</h2>
+        <ul class="inline">
+        {% if order_by == 'sum' %}
+        <p>工程地點依金額排序，每年度前十</p>
+        <li><a href="{% url 'suggestions:positions' county=county order_by='count' option=option %}" rel="tooltip" title="改依提案次數排序"><i class="fa fa-sort-numeric-desc"> 改依提案次數排序</i></a></li>
+        {% else %}
+        <p>工程地點依提案次數排序，每年度前十</p>
+        <li><a href="{% url 'suggestions:positions' county=county order_by='sum' option=option %}" rel="tooltip" title="改依金額排序"><i class="fa fa-sort-numeric-desc"> 改依金額排序</i></a></li>
+        {% endif %}
+        {% if option == 'all' %}
+        <li><a href="{% url 'suggestions:positions' county=county order_by=order_by option='no_district' %}" rel="tooltip" title="濾掉鄉鎮市區"><i class="fa fa-filter"> 濾掉鄉鎮市區</i></a></li>
+        {% elif option == 'no_district' %}
+        <li><a href="{% url 'suggestions:positions' county=county order_by=order_by option='all' %}" rel="tooltip" title="不要濾掉鄉鎮市區"><i class="fa fa-filter"> 不要濾掉鄉鎮市區</i></a></li>
+        {% endif %}
+        </ul>
+    </div>
+    <div class="row-fluid">
+        {% regroup positions by suggest_year as year_list %}
+            {% for year in year_list %}
+                <div id="year_bar_{{year.grouper}}" class="span4" style="margin-left: 0px;" align="center"></div>
+        {% empty %}
+        {% if option == 'no_district' %}
+        <p class="alert alert-error">{{county}}濾掉鄉鎮市區後無結果</p>
+        {% else %}
+        <p class="alert alert-error">{{county}}沒有公布議員姓名</p>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <hr>
+    <div id="disqus_thread"></div>
+{% endblock %}
+
+{% block script %}
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
+    {% regroup positions by suggest_year as year_list %}
+        {% for year in year_list %}
+            {% include "suggestions/d3/year_positions_bar.html" with year=year.grouper data=year.list id='#year_bar_'|add:year.grouper order_by=order_by %}
+        {% endfor %}
+    <script>
+        $(document).ready( function() {
+            $('#suggestions').addClass('active');
+        });
+    </script>
+{% endblock script %}

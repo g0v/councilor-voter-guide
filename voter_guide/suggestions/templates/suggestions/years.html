@@ -31,7 +31,6 @@
         {% for year in year_list %}
             {% include "suggestions/d3/year_bar.html" with year=year.grouper data=year.list id='#year_bar_'|add:year.grouper %}
         {% endfor %}
-    {% include "common/sorttable.html" %}
     <script>
         $(document).ready( function() {
             $('#suggestions').addClass('active');
