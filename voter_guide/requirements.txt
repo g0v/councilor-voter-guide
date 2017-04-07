@@ -5,7 +5,7 @@ psycopg2==2.6.2
 
 # api related
 djangorestframework==3.4.7
-django-filter==0.15.2
+django-filter==1.0.2
 
 # deploy related
 gunicorn==19.6.0
