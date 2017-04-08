@@ -50,11 +50,12 @@ def getCouncilordetailIdList(id_list, election_year, county):
             raw_input()
 
 def normalize_person_name(name):
+    name = re.sub(u'(副?議長|議員)[.]', '\n', name)
     name = re.sub(u'[。˙・･•．.]', u'‧', name)
     name = re.sub(u' {3}', '\n', name)
     name = re.sub(u'[　()（） ]', '', name)
     name = re.sub(u'(副?議長|議員)', '', name)
-    name = re.sub(u'[、/]', ' ', name)
+    name = re.sub(u'[、/;]', '\n', name)
     for wrong, right in [(u'游輝', u'游輝宂'), (u'連婓璠', u'連斐璠'), (u'羅文幟', u'羅文熾'), (u'郭昭嚴', u'郭昭巖'), (u'闕梅莎', u'闕枚莎'), (u'林亦華', u'林奕華'), (u'周鍾$', u'周鍾㴴'), (u'汪志銘', u'汪志冰'), (u'簡余宴', u'簡余晏'), (u'周佑威', u'周威佑'), (u'黃洋', u'黃平洋'), (u'周玲玟', u'周玲妏')]:
         name = re.sub(wrong, right, name)
     name = name.title()
@@ -64,7 +65,7 @@ conn = db_settings.con()
 c = conn.cursor()
 duplicated_reports = json.load(open('duplicated_reports.json'))
 df_concat = DataFrame()
-for meta_file in glob.glob('../../data/hcc/suggestions.json'):
+for meta_file in glob.glob('../../data/tccc/suggestions.json'):
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
@@ -130,15 +131,13 @@ for meta_file in glob.glob('../../data/hcc/suggestions.json'):
             df['suggest_year'] = meta['year']
             df['suggest_month'] = meta['month_to']
             df['uid'] = map(lambda x: u'{county}-{year}-{month_from}-{month_to}'.format(**meta) + '-%d' % (x+6), df.index)
+            df['suggest_expense'] = map(lambda x: x if is_number(x) else nan, df['suggest_expense'])
             if df['suggest_expense'].mean() < 5000.0:
                 df['suggest_expense'] = map(lambda x: x*1000 if is_number(x) else nan, df['suggest_expense'])
-            else:
-                df['suggest_expense'] = map(lambda x: x if is_number(x) else nan, df['suggest_expense'])
             df['suggest_expense_avg'] = df['suggest_expense'] / df['councilor_num']
+            df['approved_expense'] = map(lambda x: x if is_number(x) else nan, df['approved_expense'])
             if df['approved_expense'].mean() < 5000.0:
                 df['approved_expense'] = map(lambda x: x*1000 if is_number(x) else nan, df['approved_expense'])
-            else:
-                df['approved_expense'] = map(lambda x: x if is_number(x) else nan, df['approved_expense'])
             df['approved_expense_avg'] = df['approved_expense'] / df['councilor_num']
             df_concat = concat([df_concat, df])
 
