@@ -64,7 +64,7 @@ conn = db_settings.con()
 c = conn.cursor()
 duplicated_reports = json.load(open('duplicated_reports.json'))
 df_concat = DataFrame()
-for meta_file in glob.glob('../../data/*/suggestions.json'):
+for meta_file in glob.glob('../../data/ilcc/suggestions.json'):
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
@@ -94,6 +94,10 @@ for meta_file in glob.glob('../../data/*/suggestions.json'):
             df = pd.read_excel(f, sheetname=0, header=None, encoding='utf-8')
             no_person_name = False
             if not re.search(u'姓名', df.iloc[3:5, 0].to_string(na_rep='', index=False)):
+                if len(df.columns) > 8 and df.iloc[3:5, 8].to_string(na_rep='', index=False).strip() == '':
+                    should_drop_column = 8
+                else:
+                    should_drop_column = 0
                 no_person_name = True
             election_year = get_election_year(county, meta['year'])
             if len(df.columns) < 9:
@@ -104,14 +108,20 @@ for meta_file in glob.glob('../../data/*/suggestions.json'):
                     df[key].fillna(inplace=True, method='pad')
                 df['councilor_num'] = 1
             else:
-                df = pd.read_excel(f, sheetname=0, header=None, usecols=range(0, 9), skiprows=5, names=['councilor', 'suggestion', 'position', 'suggest_expense', 'approved_expense', 'expend_on', 'brought_by', 'bid_type', 'bid_by'], encoding='utf-8')
-                df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'approved_expense'])
-                for key in ['councilor', 'position', 'suggest_expense', 'brought_by', ]:
-                    df[key].fillna(inplace=True, method='pad')
                 if no_person_name:
-                    df.drop(df.columns[0], axis=1, inplace=True)
+                    if should_drop_column == 0:
+                        df = pd.read_excel(f, sheetname=0, header=None, usecols=range(1, 9), skiprows=5, names=['suggestion', 'position', 'suggest_expense', 'approved_expense', 'expend_on', 'brought_by', 'bid_type', 'bid_by'], encoding='utf-8')
+                    elif should_drop_column == 8:
+                        df = pd.read_excel(f, sheetname=0, header=None, usecols=range(0, 8), skiprows=5, names=['suggestion', 'position', 'suggest_expense', 'approved_expense', 'expend_on', 'brought_by', 'bid_type', 'bid_by'], encoding='utf-8')
+                    df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'approved_expense'])
+                    for key in ['position', 'suggest_expense', 'brought_by', ]:
+                        df[key].fillna(inplace=True, method='pad')
                     df['councilor_num'] = 1
                 else:
+                    df = pd.read_excel(f, sheetname=0, header=None, usecols=range(0, 9), skiprows=5, names=['councilor', 'suggestion', 'position', 'suggest_expense', 'approved_expense', 'expend_on', 'brought_by', 'bid_type', 'bid_by'], encoding='utf-8')
+                    df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'approved_expense'])
+                    for key in ['councilor', 'position', 'suggest_expense', 'brought_by', ]:
+                        df[key].fillna(inplace=True, method='pad')
                     df['councilor'] = map(lambda x: normalize_person_name(x) if x else nan, df['councilor'])
                     df['councilor_ids'] = map(lambda x: getCouncilordetailIdList(common.getCouncilorIdList(c, x), election_year, county) if x else nan, df['councilor'])
                     df['councilor_num'] = map(lambda x: len(x) if x else 1, df['councilor_ids'])
