@@ -25,7 +25,7 @@ class Spider(scrapy.Spider):
                 item['month_from'] = '01'
             else:
                 item['month_to'] = '12'
-                item['month_from'] = '06'
+                item['month_from'] = '07'
             yield scrapy.Request(urljoin(response.url, node.xpath('@href').extract_first()), callback=self.parse_file, meta={'item': item})
 
     def parse_file(self, response):
