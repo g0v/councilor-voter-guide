@@ -65,7 +65,7 @@ conn = db_settings.con()
 c = conn.cursor()
 duplicated_reports = json.load(open('duplicated_reports.json'))
 df_concat = DataFrame()
-for meta_file in glob.glob('../../data/tccc/suggestions.json'):
+for meta_file in glob.glob('../../data/ntcc/suggestions.json'):
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
