@@ -23,7 +23,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 | 新北市 | ntp       |    O     |     O      |      |        |
 | 桃園市 | tycc      |    O     |     O      |      |        |
 | 新竹市 | hsinchucc |    O     |     O      |      |        |
-| 新竹縣 | hcc       |    O     |            |      |        |
+| 新竹縣 | hcc       |    O     |     O      |      |        |
 | 苗栗縣 | mcc       |    O     |     O      |      |        |
 | 宜蘭縣 | ilcc      |    O     |     O      |      |        |
 
