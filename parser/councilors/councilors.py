@@ -76,15 +76,14 @@ def get_or_create_uid(councilor):
     c.execute('''
         SELECT councilor_id
         FROM councilors_councilorsdetail
-        WHERE councilor_id in %(councilor_ids)s
+        WHERE councilor_id in %(councilor_ids)s AND county = %(county)s
         ORDER BY
             CASE
-                WHEN election_year = %(election_year)s AND county = %(county)s AND constituency = %(constituency)s AND name = %(name)s THEN 1
-                WHEN election_year = %(election_year)s AND county = %(county)s AND constituency = %(constituency)s THEN 2
-                WHEN county = %(county)s AND constituency = %(constituency)s AND name = %(name)s THEN 3
-                WHEN county = %(county)s AND constituency = %(constituency)s THEN 4
-                WHEN county = %(county)s AND name = %(name)s THEN 5
-                WHEN county = %(county)s THEN 6
+                WHEN election_year = %(election_year)s AND constituency = %(constituency)s AND name = %(name)s THEN 1
+                WHEN election_year = %(election_year)s AND constituency = %(constituency)s THEN 2
+                WHEN constituency = %(constituency)s AND name = %(name)s THEN 3
+                WHEN constituency = %(constituency)s THEN 4
+                WHEN name = %(name)s THEN 5
             END,
             election_year DESC
         LIMIT 1
@@ -95,7 +94,7 @@ def get_or_create_uid(councilor):
 def Councilors(councilor):
     councilor['former_names'] = councilor.get('former_names', [])
     variants = set()
-    for variant in [(u'勳', u'勲'), (u'溫', u'温'), (u'黃', u'黄'), (u'寶', u'寳'), (u'真', u'眞'), (u'福', u'褔'), (u'鎮', u'鎭'), (u'妍', u'姸'), (u'市', u'巿'), (u'衛', u'衞'), (u'館', u'舘'), (u'峰', u'峯'), (u'群', u'羣'), (u'啟', u'啓'), (u'鳳', u'鳯'), (u'冗', u'宂'), (u'穀', u'榖'), (u'曾', u'曽'), (u'賴', u'頼'), ]:
+    for variant in [(u'勳', u'勲'), (u'溫', u'温'), (u'黃', u'黄'), (u'寶', u'寳'), (u'真', u'眞'), (u'福', u'褔'), (u'鎮', u'鎭'), (u'妍', u'姸'), (u'市', u'巿'), (u'衛', u'衞'), (u'館', u'舘'), (u'峰', u'峯'), (u'群', u'羣'), (u'啟', u'啓'), (u'鳳', u'鳯'), (u'冗', u'宂'), (u'穀', u'榖'), (u'曾', u'曽'), (u'賴', u'頼'), (u'蒓', u'莼'), ]:
         variants.add(re.sub(variant[0], variant[1], councilor['name']))
         variants.add(re.sub(variant[1], variant[0], councilor['name']))
     councilor['identifiers'] = list((variants | set(councilor['former_names']) | {councilor['name'], re.sub(u'[\w‧]', '', councilor['name']), re.sub(u'\W', '', councilor['name']).lower(), }) - {''})
@@ -196,8 +195,8 @@ for row in c.fetchall():
             c.execute('''
                 SELECT councilor_id, name, election_year
                 FROM councilors_councilorsdetail
-                WHERE councilor_id in %s
-            ''', [tuple(councilor_ids)])
+                WHERE councilor_id in %s AND county = %s
+            ''', [tuple(councilor_ids), person['county']])
             r = c.fetchall()
             uids = {x[0] for x in r}
             if len(uids) > 1:
