@@ -56,6 +56,8 @@ def normalize_person_name(name):
     name = re.sub(u'[　()（） ]', '', name)
     name = re.sub(u'(副?議長|議員)', '', name)
     name = re.sub(u'[、/;]', '\n', name)
+    if len(name) > 5:
+        name = re.sub(u'(\W+)和(\W+)', u'\g<1>\n\g<2>', name)
     for wrong, right in [(u'游輝', u'游輝宂'), (u'連婓璠', u'連斐璠'), (u'羅文幟', u'羅文熾'), (u'郭昭嚴', u'郭昭巖'), (u'闕梅莎', u'闕枚莎'), (u'林亦華', u'林奕華'), (u'周鍾$', u'周鍾㴴'), (u'汪志銘', u'汪志冰'), (u'簡余宴', u'簡余晏'), (u'周佑威', u'周威佑'), (u'黃洋', u'黃平洋'), (u'周玲玟', u'周玲妏')]:
         name = re.sub(wrong, right, name)
     name = name.title()
@@ -65,7 +67,7 @@ conn = db_settings.con()
 c = conn.cursor()
 duplicated_reports = json.load(open('duplicated_reports.json'))
 df_concat = DataFrame()
-for meta_file in glob.glob('../../data/ntcc/suggestions.json'):
+for meta_file in glob.glob('../../data/ylcc/suggestions.json'):
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
