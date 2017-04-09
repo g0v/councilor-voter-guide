@@ -52,7 +52,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 |--------|------|----------|------------|------|--------|
 | 臺南市 | tncc |    O     |     O      |      |        |
 | 高雄市 | kcc  |    O     |     O      |      |        |
-| 屏東縣 | ptcc |    O     |            |      |        |
+| 屏東縣 | ptcc |    O     |     O      |      |        |
 
 ### 外島
 
