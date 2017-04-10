@@ -47,7 +47,7 @@ def getCouncilordetailIdList(id_list, election_year, county):
             return [x[0] for x in r]
         for id in id_list:
             print election_year, county, id
-            raw_input()
+#           raw_input()
 
 def normalize_person_name(name):
     name = re.sub(u'(副?議長|議員)[.]', '\n', name)
@@ -67,7 +67,7 @@ conn = db_settings.con()
 c = conn.cursor()
 duplicated_reports = json.load(open('duplicated_reports.json'))
 df_concat = DataFrame()
-for meta_file in glob.glob('../../data/ptcc/suggestions.json'):
+for meta_file in glob.glob('../../data/taitungcc/suggestions.json'):
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
