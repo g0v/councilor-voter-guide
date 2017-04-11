@@ -1,0 +1,10 @@
+{
+    "tycc": {
+        "duplicated_reports": [
+            {"month_to": "06", "year": 2016, "month_from": "01"}
+        ],
+    },
+    "mtcc": {
+        "target_sheet": "all"
+    }
+}

@@ -1,4 +1,5 @@
 ```
+scrapy runspider suggestions.py -o ../../data/mtcc/suggestions.json -s FEED_EXPORT_ENCODING=utf-8
 scrapy runspider councilors.py -o ../../data/mtcc/councilors.json -s FEED_EXPORT_ENCODING=utf-8
 scrapy runspider councilors_terms.py -o ../../data/mtcc/councilors_terms.json -s FEED_EXPORT_ENCODING=utf-8
 scrapy runspider bills.py -o ../../data/mtcc/bills.json -s FEED_EXPORT_ENCODING=utf-8
