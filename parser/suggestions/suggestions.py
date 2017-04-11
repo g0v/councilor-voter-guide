@@ -126,9 +126,6 @@ for meta_file in glob.glob('../../data/phcouncil/suggestions.json'):
             exclude_ods_metas.append({x: meta[x] for x in ["month_to", "year", "month_from"] if meta['file_ext'] != 'ods'})
         for meta in metas:
             meta['county'] = county
-            election_year = get_election_year(county, meta['year'])
-            if int(meta['year']) < 2014:
-                continue
             file_name = '{year}_{month_from}-{month_to}.{file_ext}'.format(**meta)
             print county, file_name
             f = '../../data/%s/suggestions/%s' % (county_abbr, file_name)
