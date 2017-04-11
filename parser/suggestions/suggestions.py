@@ -238,4 +238,4 @@ for item in dict_list:
             item['councilor_id'] = councilor_id
             item['jurisdiction'] = get_jurisdiction(item) if item['constituency'] else None
             CouncilorsSuggestions(item)
-#conn.commit()
+conn.commit()
