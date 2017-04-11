@@ -2,9 +2,4 @@
     "tycc": [
         {"month_to": "06", "year": 2016, "month_from": "01"}
     ],
-    "hsinchucc": [
-        {"month_to": "06", "year": 2014, "month_from": "01"},
-        {"month_to": "06", "year": 2015, "month_from": "01"},
-        {"month_to": "06", "year": 2016, "month_from": "01"}
-    ]
 }
