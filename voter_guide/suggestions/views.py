@@ -18,7 +18,7 @@ def county_overview(request):
                             count=Count('uid'),
                             small_purchase=Sum(
                                 Case(
-                                    When(approved_expense__lt=100000, then=1),
+                                    When(approved_expense__lte=100000, then=1),
                                     output_field=IntegerField(),
                                     default=Value(0)
                                 )
