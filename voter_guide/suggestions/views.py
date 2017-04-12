@@ -10,7 +10,7 @@ from councilors.models import CouncilorsDetail
 
 
 def county_overview(request):
-    suggestions = Suggestions.objects.all()[:3]
+    suggestions = Suggestions.objects.all().prefetch_related('councilors__councilor')[:3]
     counties = Suggestions.objects.all()\
                         .values('county', 'suggest_year')\
                         .annotate(

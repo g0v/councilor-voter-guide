@@ -3,11 +3,12 @@
     <thead>
         <tr style="background-color: #FFEEFF;">
             <th style="width: 2%">#</th>
-            <th style="width: 10%">年度</th>
+            <th style="width: 10%">提案議員</th>
+            <th style="width: 5%">年度</th>
             <th style="width: 10%">建議項目</th>
             <th style="width: 10%">地點</th>
             <th style="width: 10%">議員建議金額</th>
-            <th style="width: 10%">通過預算</th>
+            <th style="width: 5%">通過預算</th>
             <th style="width: 10%">經費支用科目</th>
             <th style="width: 10%">主辦機關</th>
             <th style="width: 10%">招標方式</th>
@@ -21,13 +22,21 @@
                     <a href="#{{obj.uid}}"><i class="fa fa-link"></i></a>
                 </td>
                 <td style="text-align:center; vertical-align:middle;">
+                    <ul class="unstyled">
+                    {% for councilor in obj.councilors.all %}
+                    <li><a id='councilors_suggestor' href="{% url 'councilors:suggestor' councilor_id=councilor.councilor.councilor_id election_year=obj.election_year %}">{{councilor.councilor.name}}</a></li>
+
+                    {% endfor %}
+                    </ul>
+                </td>
+                <td style="text-align:center; vertical-align:middle;">
                     {{obj.suggest_year}}
                 </td>
                 <td style="vertical-align:middle;">
                     {{obj.suggestion}}
                 </td>
                 <td style="vertical-align:middle;">
-                    {{obj.position}}
+                    {{obj.county}} - {{obj.position}}
                 </td>
                 <td style="text-align:center; vertical-align:middle;">
                     {% if obj.suggest_expense != None %}
