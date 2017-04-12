@@ -7,6 +7,7 @@ from django.db.models import Count, Sum, F, Q, Case, When, Value, IntegerField
 
 from .models import Suggestions, Councilors_Suggestions
 from councilors.models import CouncilorsDetail
+from commontag.views import paginate
 
 
 def county_overview(request):
@@ -26,6 +27,11 @@ def county_overview(request):
                         )\
                         .order_by('county', 'suggest_year')
     return render(request,'suggestions/county_overview.html', {'suggestions': suggestions, 'counties': counties})
+
+def lists(request, county):
+    suggestions = Suggestions.objects.filter(county=county).prefetch_related('councilors__councilor').order_by('-suggest_year')
+    suggestions = paginate(request, suggestions)
+    return render(request,'suggestions/lists.html', {'suggestions': suggestions, 'county': county})
 
 def positions(request, county, order_by, option):
     args = Q(county=county, approved_expense__isnull=False)

@@ -62,7 +62,8 @@
                         </tbody>
                     </table>
                     <p><a href="{% url 'suggestions:each_year' county=county.grouper %}" rel="tooltip" title="錢是怎麼分配給每位議員的"><i class="fa fa-handshake-o"> 錢是怎麼分配給每位議員的？</i></a></p>
-                    <p><a href="{% url 'suggestions:positions' county=county.grouper order_by='sum' option='all' %}" rel="tooltip" title="錢是怎麼分配在各地的"><i class="fa fa-map-marker"> 錢是怎麼分配在各地的？</i></a></p>
+                    <p><a href="{% url 'suggestions:positions' county=county.grouper order_by='sum' option='all' %}" rel="tooltip" title="錢是怎麼分配在各地的"><i class="fa fa-map-signs"> 錢是怎麼分配在各地的？</i></a></p>
+                    <p><a href="{% url 'suggestions:lists' county=county.grouper %}" rel="tooltip" title="一筆一筆看"><i class="fa fa-list"> 一筆一筆看</i></a></p>
                 </div>
         {% endfor %}
     </div>

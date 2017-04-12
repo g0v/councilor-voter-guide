@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load extras %}
+
+{% block title %}
+    <title>議員投票指南:{{county}}-工程建議款總覽</title>
+    <meta property="og:title" content="議員投票指南:{{county}}-工程建議款總覽"/>
+    <meta itemprop="name" content="議員投票指南:{{county}}-工程建議款總覽">
+{% endblock %}
+
+{% block right %}
+    <div class="hero-unit row" style="margin-left: 0px;">
+        <img class="pull-right" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img>
+        <h2>{{county}} - 議員工程建議款</h2>
+    </div>
+    {% include "common/pagination.html" with items=suggestions %}
+    {% include "common/suggestions.html" %}
+    {% include "common/pagination.html" with items=suggestions %}
+    <hr>
+    <div id="disqus_thread"></div>
+{% endblock %}
+
+{% block script %}
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
+    <script>
+        $(document).ready( function() {
+            $("[rel='tooltip']").tooltip();
+            $('#suggestions').addClass('active');
+            $('.price').each(function(index,ele){
+                var number = $(ele).text()
+                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
+                $(ele).replaceWith(zh_number)
+            });
+        });
+    </script>
+{% endblock script %}
