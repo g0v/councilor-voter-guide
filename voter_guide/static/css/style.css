@@ -550,3 +550,7 @@ hr.candidates-separator {
 .candidate-photo {
     max-width: 200px;
 }
+
+.tooltip-inner {
+    font-size: 18px;
+}
