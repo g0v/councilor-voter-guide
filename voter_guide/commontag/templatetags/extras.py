@@ -68,7 +68,7 @@ def each_county_remark(value):
     return '<br>'.join(maps.get(value, ''))
 
 @register.filter(name='suggestions_offical_link')
-def suggestions_offical_link(value):
+def suggestions_offical_link(value, arg=None):
     maps = {
         u'臺北市': 'http://www.dbas.taipei.gov.tw/ct.asp?xItem=69201832&ctNode=31636&mp=120001',
         u'新竹市': 'http://dep-auditing.hccg.gov.tw/auditing/ch/home.jsp?id=46&parentpath=0,3',
@@ -93,6 +93,8 @@ def suggestions_offical_link(value):
         u'金門縣': 'http://web.kinmen.gov.tw/Layout/sub_F/News_NewsList.aspx?path=13448&DepID=10&LanguageType=1&CategoryID=885&DepartmentID=10',
         u'澎湖縣': 'https://www.penghu.gov.tw/ch/home.jsp?serno=201111070049&mserno=201111070038&contlink=ap/bulletin01.jsp&level3=Y&serno3=201111070053'
     }
+    if arg == 'all':
+        return maps.items()
     return maps.get(value, '')
 
 @register.filter(name='distinct_district')
