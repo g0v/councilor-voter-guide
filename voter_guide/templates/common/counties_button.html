@@ -1,0 +1,52 @@
+<div class="btn-group">
+    <a class="btn btn-large btn-moonc dropdown-toggle hidden-phone hidden-tablet" href="#" data-toggle="dropdown">找縣市 <i class="fa fa-angle-down"></i></a>
+    <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+            <a data-toggle="dropdown" data-target="#" >北部</a>
+            <ul class="dropdown-menu">
+                <li><a href="{% url namespace %}{% if id %}#臺北市{% endif %}">臺北市</a></li>
+                <li><a href="{% url namespace %}{% if id %}#新北市{% endif %}">新北市</a></li>
+                <li><a href="{% url namespace %}{% if id %}#桃園市{% endif %}">桃園市</a></li>
+                <li><a href="{% url namespace %}{% if id %}#基隆市{% endif %}">基隆市</a></li>
+                <li><a href="{% url namespace %}{% if id %}#宜蘭縣{% endif %}">宜蘭縣</a></li>
+                <li><a href="{% url namespace %}{% if id %}#新竹縣{% endif %}">新竹縣</a></li>
+                <li><a href="{% url namespace %}{% if id %}#新竹市{% endif %}">新竹市</a></li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a data-toggle="dropdown" data-target="#" >中部</a>
+            <ul class="dropdown-menu">
+                <li><a href="{% url namespace %}{% if id %}#苗栗縣{% endif %}">苗栗縣</a></li>
+                <li><a href="{% url namespace %}{% if id %}#臺中市{% endif %}">臺中市</a></li>
+                <li><a href="{% url namespace %}{% if id %}#彰化縣{% endif %}">彰化縣</a></li>
+                <li><a href="{% url namespace %}{% if id %}#雲林縣{% endif %}">雲林縣</a></li>
+                <li><a href="{% url namespace %}{% if id %}#南投縣{% endif %}">南投縣</a></li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a data-toggle="dropdown" data-target="#" >南部</a>
+            <ul class="dropdown-menu">
+                <li><a href="{% url namespace %}{% if id %}#嘉義縣{% endif %}">嘉義縣</a></li>
+                <li><a href="{% url namespace %}{% if id %}#嘉義市{% endif %}">嘉義市</a></li>
+                <li><a href="{% url namespace %}{% if id %}#臺南市{% endif %}">臺南市</a></li>
+                <li><a href="{% url namespace %}{% if id %}#高雄市{% endif %}">高雄市</a></li>
+                <li><a href="{% url namespace %}{% if id %}#屏東縣{% endif %}">屏東縣</a></li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a data-toggle="dropdown" data-target="#" >東部</a>
+            <ul class="dropdown-menu">
+                <li><a href="{% url namespace %}{% if id %}#花蓮縣{% endif %}">花蓮縣</a></li>
+                <li><a href="{% url namespace %}{% if id %}#臺東縣{% endif %}">臺東縣</a></li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a data-toggle="dropdown" data-target="#" >離島</a>
+            <ul class="dropdown-menu">
+                <li><a href="{% url namespace %}{% if id %}#澎湖縣{% endif %}">澎湖縣</a></li>
+                <li><a href="{% url namespace %}{% if id %}#金門縣{% endif %}">金門縣</a></li>
+                <li><a href="{% url namespace %}{% if id %}#連江縣{% endif %}">連江縣</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>

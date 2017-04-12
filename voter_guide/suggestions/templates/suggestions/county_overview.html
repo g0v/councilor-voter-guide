@@ -21,9 +21,12 @@
     </div>
     {% include "common/suggestions.html" %}
     <div class="row-fluid">
+        <hr>
+        <div class="text-center">
+            {% include "common/counties_button.html" with namespace='suggestions:county_overview' id=True %}
+        </div>
         {% regroup counties by county as county_list %}
             {% for county in county_list %}
-                <hr>
                 {% with county=county.grouper %}
                 <div class="span12">
                     <a id="{{county}}" href="#{{county}}"><i class="fa fa-link"></i></a>
@@ -65,9 +68,9 @@
                     <p><a href="{% url 'suggestions:positions' county=county.grouper order_by='sum' option='all' %}" rel="tooltip" title="錢是怎麼分配在各地的"><i class="fa fa-map-signs"> 錢是怎麼分配在各地的？</i></a></p>
                     <p><a href="{% url 'suggestions:lists' county=county.grouper %}" rel="tooltip" title="一筆一筆看"><i class="fa fa-list"> 一筆一筆看</i></a></p>
                 </div>
+                <hr>
         {% endfor %}
     </div>
-    <hr>
     <div id="disqus_thread"></div>
 {% endblock %}
 
