@@ -59,7 +59,7 @@
     var data = {{data|as_json}}.slice(0,10)
     var id = '#year_bar_' + year
     var order_by = '{{order_by}}'
-    console.log(order_by)
+    var link = "{% url 'suggestions:lists' county=county %}"
 
     var margin = {top: 40, right: 100, bottom: 40, left: 100},
     width = 460 - margin.left - margin.right,
@@ -132,6 +132,7 @@
     .attr("y", function(d) { return y(d[order_by]); })
     .attr("height", function(d) { return height - y(d[order_by]); })
     .style("fill", function(d) { return color(d.position); })
+    .on('click', function(d) { return window.location.href = link + '?keyword=' + d.position; })
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide);
 
