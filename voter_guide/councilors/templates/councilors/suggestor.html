@@ -14,7 +14,7 @@
 {% endblock title %}
 
 {% block person_detail %}
-    <p class="lead">{{councilor.name}}的工程款提案共通過：<font class="price">{{total_expense.sum}}</font></p>
+    <p class="lead">{{councilor.election_year|election_year_range}}的工程款提案共通過：<font class="price">{{total_expense.sum}}</font></p>
     <div class="row-fluid">
     {% if index != 'rawdata' %}
         <div class="span6">
@@ -41,7 +41,7 @@
                 <tbody>
                     {% for obj in suggestions %}
                         <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
-                            <td style="text-align:center; vertical-align:middle;">
+                            <td style="vertical-align:middle;">
                                 {% for company in obj.bid_by %}
                                     {% if company %}
                                     <p>
@@ -81,7 +81,7 @@
                 </ul>
             </div>
         {% if suggestions %}
-            {% include "common/suggestions.html" %}
+            {% include "common/suggestions.html" with include_councilors=False %}
         {% else %}
             <p class="text-error">完全沒有工程建議款</p>
         {% endif %}

@@ -3,7 +3,9 @@
     <thead>
         <tr style="background-color: #FFEEFF;">
             <th style="width: 0%">#</th>
+            {% if include_councilors %}
             <th style="width: 10%">提案議員</th>
+            {% endif %}
             <th style="width: 5%">年度</th>
             <th style="width: 10%">建議項目</th>
             <th style="width: 10%">地點</th>
@@ -21,6 +23,7 @@
                 <td style="text-align:center; vertical-align:middle;">
                     <a href="#{{obj.uid}}"><i class="fa fa-link"></i></a>
                 </td>
+                {% if include_councilors %}
                 <td style="text-align:center; vertical-align:middle;">
                     <ul class="unstyled">
                     {% for councilor in obj.councilors %}
@@ -28,6 +31,7 @@
                     {% endfor %}
                     </ul>
                 </td>
+                {% endif %}
                 <td style="text-align:center; vertical-align:middle;">
                     {{obj.suggest_year}}
                 </td>

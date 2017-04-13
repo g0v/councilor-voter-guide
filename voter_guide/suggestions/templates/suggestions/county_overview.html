@@ -25,7 +25,7 @@
     <div class="well well-small">
         {{ suggestions.paginator.count }}個搜尋結果，這是第{{ suggestions.number }}頁（共{{ suggestions.paginator.num_pages }}頁）
     </div>
-    {% include "common/suggestions.html" %}
+    {% include "common/suggestions.html" with include_councilors=True %}
     {% include "common/pagination.html" with items=suggestions %}
     <div class="row-fluid">
         <hr>
