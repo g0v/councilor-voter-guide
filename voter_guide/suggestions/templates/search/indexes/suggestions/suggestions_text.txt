@@ -1,0 +1,11 @@
+{{ object.suggestion }}
+{{ object.position }}
+{{ object.expend_on }}
+{{ object.brought_by }}
+{{ object.bid_type }}
+{% for obj in object.bid_by %}
+{{obj}}
+{% endfor %}
+{% for obj in object.councilors.all %}
+{{obj.councilor.name}}
+{% endfor %}

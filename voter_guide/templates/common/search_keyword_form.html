@@ -1,8 +1,10 @@
-<form action="" method="get" class="form-search" id="form">
+<form action="" method="get" class="form-inline" id="form">
     <br>
     <fieldset>
-        <input type="search" name="keyword" id="keyword" class="span5" maxlength="20" autofocus placeholder="{{placeholder_text}}" >
-        {%block extra%} {%endblock%}
-        <button type="submit" class="btn">Go!</button>
+        <div class="input-append">
+            <input type="search" name="keyword" id="keyword" class="span10" maxlength="20" placeholder="{{placeholder_text}}" value="{{keyword}}">
+            {%block extra%} {%endblock%}
+            <button type="submit" class="btn btn-moonc">搜尋</button>
+        </div>
     </fieldset>
 </form>

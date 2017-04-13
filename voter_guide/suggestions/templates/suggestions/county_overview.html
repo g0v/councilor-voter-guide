@@ -8,9 +8,9 @@
 {% endblock %}
 
 {% block right %}
-    <div class="page-header">
-        <h2 class="text-center">議員工程建議款</h2>
-        <p class="text-center">是什麼？直接來看個幾筆吧！
+    <div class="text-center">
+        <h2>議員工程建議款</h2>
+        <p>是什麼？直接來看個幾筆吧！
             <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ref_description"><font>詳細說明 <i class="fa fa-angle-down"></i></font></button>
             <div id="ref_description" class="collapse">
                 <div class="description">
@@ -19,7 +19,14 @@
             </div>
         </p>
     </div>
+    <div class="text-center">
+        {% include "common/search_keyword_form.html" with placeholder_text="例:按摩椅 血壓計 國小" %}
+    </div>
+    <div class="well well-small">
+        {{ suggestions.paginator.count }}個搜尋結果，這是第{{ suggestions.number }}頁（共{{ suggestions.paginator.num_pages }}頁）
+    </div>
     {% include "common/suggestions.html" %}
+    {% include "common/pagination.html" with items=suggestions %}
     <div class="row-fluid">
         <hr>
         <div class="text-center">
@@ -87,7 +94,7 @@
             $('#suggestions').addClass('active');
             $('.price').each(function(index,ele){
                 var number = $(ele).text()
-                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
+                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 1});
                 $(ele).replaceWith(zh_number)
             });
         });

@@ -5,13 +5,17 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Count, Sum, F, Q, Case, When, Value, IntegerField
 
+from haystack.query import SearchQuerySet
+
 from .models import Suggestions, Councilors_Suggestions
 from councilors.models import CouncilorsDetail
 from commontag.views import paginate
 
 
 def county_overview(request):
-    suggestions = Suggestions.objects.all().prefetch_related('councilors__councilor')[:3]
+    qs = Q(content=request.GET['keyword']) if request.GET.get('keyword') else Q()
+    suggestions = SearchQuerySet().filter(qs).models(Suggestions).order_by('-suggest_year')
+    suggestions = paginate(request, suggestions, 3)
     counties = Suggestions.objects.all()\
                         .values('county', 'suggest_year')\
                         .annotate(
@@ -26,12 +30,13 @@ def county_overview(request):
                             ),
                         )\
                         .order_by('county', 'suggest_year')
-    return render(request,'suggestions/county_overview.html', {'suggestions': suggestions, 'counties': counties})
+    return render(request,'suggestions/county_overview.html', {'suggestions': suggestions, 'counties': counties, 'keyword': request.GET.get('keyword', '')})
 
 def lists(request, county):
-    suggestions = Suggestions.objects.filter(county=county).prefetch_related('councilors__councilor').order_by('-suggest_year')
+    qs = Q(county=county, content=request.GET['keyword']) if request.GET.get('keyword') else Q(county=county)
+    suggestions = SearchQuerySet().filter(qs).models(Suggestions).order_by('-suggest_year')
     suggestions = paginate(request, suggestions)
-    return render(request,'suggestions/lists.html', {'suggestions': suggestions, 'county': county})
+    return render(request,'suggestions/lists.html', {'suggestions': suggestions, 'county': county, 'keyword': request.GET.get('keyword', '')})
 
 def positions(request, county, order_by, option):
     args = Q(county=county, approved_expense__isnull=False)

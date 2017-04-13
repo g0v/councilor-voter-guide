@@ -105,6 +105,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'haystack',
     'councilors',
     'candidates',
     'sittings',
@@ -180,6 +181,14 @@ TEMPLATES = [
 SITE_DOMAIN = 'http://councils.g0v.tw'
 
 INTERNAL_IPS = ['127.0.0.1']
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': os.getenv('ES_URL', 'http://127.0.0.1:9200/'),
+        'INDEX_NAME': 'councils',
+    },
+}
 
 try:
     from local_settings import *

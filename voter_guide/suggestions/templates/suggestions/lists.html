@@ -12,7 +12,12 @@
         <img class="pull-right" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img>
         <h2>{{county}} - 議員工程建議款</h2>
     </div>
-    {% include "common/pagination.html" with items=suggestions %}
+    <div class="text-center">
+        {% include "common/search_keyword_form.html" with placeholder_text="例:按摩椅 血壓計 國小" %}
+    </div>
+    <div class="well well-small">
+        {{ suggestions.paginator.count }}個搜尋結果，這是第{{ suggestions.number }}頁（共{{ suggestions.paginator.num_pages }}頁）
+    </div>
     {% include "common/suggestions.html" %}
     {% include "common/pagination.html" with items=suggestions %}
     <hr>
@@ -27,7 +32,7 @@
             $('#suggestions').addClass('active');
             $('.price').each(function(index,ele){
                 var number = $(ele).text()
-                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
+                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 1});
                 $(ele).replaceWith(zh_number)
             });
         });
