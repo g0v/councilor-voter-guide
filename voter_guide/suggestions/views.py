@@ -30,13 +30,15 @@ def county_overview(request):
                             ),
                         )\
                         .order_by('county', 'suggest_year')
-    return render(request,'suggestions/county_overview.html', {'suggestions': suggestions, 'counties': counties, 'keyword': request.GET.get('keyword', '')})
+    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword'] if request.GET.get(x)])
+    return render(request,'suggestions/county_overview.html', {'suggestions': suggestions, 'counties': counties, 'keyword': request.GET.get('keyword', ''), 'get_params': get_params})
 
 def lists(request, county):
     qs = Q(county=county, content=request.GET['keyword']) if request.GET.get('keyword') else Q(county=county)
     suggestions = SearchQuerySet().filter(qs).models(Suggestions).order_by('-suggest_year')
     suggestions = paginate(request, suggestions)
-    return render(request,'suggestions/lists.html', {'suggestions': suggestions, 'county': county, 'keyword': request.GET.get('keyword', '')})
+    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword'] if request.GET.get(x)])
+    return render(request,'suggestions/lists.html', {'suggestions': suggestions, 'county': county, 'keyword': request.GET.get('keyword', ''), 'get_params': get_params})
 
 def positions(request, county, order_by, option):
     args = Q(county=county, approved_expense__isnull=False)
@@ -48,7 +50,7 @@ def positions(request, county, order_by, option):
                       sum=Sum('approved_expense'),
                       count=Count('uid'),
                   )\
-                  .order_by('suggest_year', '-%s' % order_by)
+                  .order_by('-suggest_year', '-%s' % order_by)
     return render(request,'suggestions/positions.html', {'county': county, 'positions': positions, 'order_by': order_by, 'option': option})
 
 def each_year(request, county):
