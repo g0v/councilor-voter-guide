@@ -62,7 +62,8 @@
     var county = "{{county}}"
     var data = {{data|as_json}}
     var id = '#years_bar_' + county
-    var link = "{% url 'suggestions:each_year' county=county %}"
+    var link = link || {}
+    link[county] = "{% url 'suggestions:each_year' county=county %}"
 
     var margin = {top: 50, right: 100, bottom: 100, left: 100},
     width = 480 - margin.left - margin.right,
@@ -130,7 +131,7 @@
     .attr("width", x.rangeBand())
     .attr("y", function(d) { return y(d.sum); })
     .attr("height", function(d) { return height - y(d.sum); })
-    .on('click', function(d) { return window.location.href = link + '#year_bar_' + d.suggest_year; })
+    .on('click', function(d) { return window.location.href = link[d.county] + '#year_bar_' + d.suggest_year; })
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide);
 
