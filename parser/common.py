@@ -4,6 +4,7 @@ import codecs
 import psycopg2
 import json
 from datetime import datetime
+import logging
 
 
 def normalize_person_name(name):
@@ -127,7 +128,7 @@ def getCouncilorIdList(c, text):
         if councilor_ids:
             id_list.extend(councilor_ids)
         else:
-            print u'%s not an councilor?' % name
+            logging.info(u'%s not an councilor?' % name)
     return id_list
 
 def AddAttendanceRecord(c, councilor_id, sitting_id, category, status):

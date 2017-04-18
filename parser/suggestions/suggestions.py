@@ -10,10 +10,13 @@ import subprocess
 from pandas import *
 import pandas as pd
 from numpy import nan
+import logging
 
 import common
 import db_settings
 
+
+logging.basicConfig(filename='suggestions_parser.log', level=logging.INFO)
 
 def is_number(text):
     try:
@@ -46,7 +49,7 @@ def getCouncilordetailIdList(id_list, election_year, county):
         if r:
             return [x[0] for x in r]
         for id in id_list:
-            print election_year, county, id
+            logging.error("Can't find this counculor at this year : %s" % (election_year, county, id))
 #           raw_input()
 
 def normalize_person_name(name):
@@ -74,7 +77,7 @@ def sheet2df(target_sheet=0):
         no_person_name = True
     election_year = get_election_year(county, meta['year'])
     if len(df.columns) < 9:
-        print 'no name column!!'
+        logging.info('no name column!!')
         df = pd.read_excel(f, sheetname=target_sheet, header=None, usecols=range(0, 8), skiprows=5, names=['suggestion', 'position', 'suggest_expense', 'approved_expense', 'expend_on', 'brought_by', 'bid_type', 'bid_by'], encoding='utf-8')
         df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'approved_expense'])
         for key in ['position', 'suggest_expense', 'brought_by', ]:
@@ -95,6 +98,7 @@ def sheet2df(target_sheet=0):
             df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'approved_expense'])
             for key in ['councilor', 'position', 'suggest_expense', 'brought_by', ]:
                 df[key].fillna(inplace=True, method='pad')
+            df['suggestor_name'] = df['councilor']
             df['councilor'] = map(lambda x: normalize_person_name(x) if x else nan, df['councilor'])
             df['councilor_ids'] = map(lambda x: getCouncilordetailIdList(common.getCouncilorIdList(c, x), election_year, county) if x else nan, df['councilor'])
             df['councilor_num'] = map(lambda x: len(x) if x else 1, df['councilor_ids'])
@@ -116,7 +120,7 @@ conn = db_settings.con()
 c = conn.cursor()
 county_config = json.load(open('county_config.json'))
 df_concat = DataFrame()
-for meta_file in glob.glob('../../data/tcc/suggestions.json'):
+for meta_file in glob.glob('../../data/ptcc/suggestions.json'):
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
@@ -127,10 +131,10 @@ for meta_file in glob.glob('../../data/tcc/suggestions.json'):
         for meta in metas:
             meta['county'] = county
             file_name = '{year}_{month_from}-{month_to}.{file_ext}'.format(**meta)
-            print county, file_name
+            logging.info('%s %s' % (county, file_name))
             f = '../../data/%s/suggestions/%s' % (county_abbr, file_name)
             if {x: meta[x] for x in ["month_to", "year", "month_from"]} in county_config.get(county_abbr, {}).get('duplicated_reports', []):
-                print 'pass'
+                logging.info('pass %s %s' % (county, file_name))
                 continue
             if not re.search('xls', meta['file_ext']):
                 if meta['file_ext'] == 'ods' and {x: meta[x] for x in ["month_to", "year", "month_from"]} not in exclude_ods_metas:
@@ -138,10 +142,10 @@ for meta_file in glob.glob('../../data/tcc/suggestions.json'):
                     subprocess.call(cmd, shell=True)
                     meta['file_ext'] = 'xls'
                     file_name = '{year}_{month_from}-{month_to}.{file_ext}'.format(**meta)
-                    print 'convert to: %s' % file_name
+                    logging.info('convert to: %s' % file_name)
                     f = '../../data/%s/suggestions/%s' % (county_abbr, file_name)
                 else:
-                    print 'pass'
+                    logging.info('pass %s %s' % (county, file_name))
                     continue
             target_sheet = county_config.get(county_abbr, {}).get('target_sheet', 0)
             if target_sheet == 'all':
@@ -150,12 +154,24 @@ for meta_file in glob.glob('../../data/tcc/suggestions.json'):
                     if re.search(u'上半年', sheet_name):
                         meta['month_from'] = '01'
                         meta['month_to'] = '06'
+                        logging.info('%s %s' % (meta['year'], meta['month_to']))
                         df = sheet2df(sheet_name)
                     else:
                         meta['month_from'] = '07'
                         meta['month_to'] = '12'
+                        logging.info('%s %s' % (meta['year'], meta['month_to']))
                         df = sheet2df(sheet_name)
                     df_concat = concat([df_concat, df])
+            elif target_sheet == 'second_half_year':
+                xl = pd.ExcelFile(f)
+                for sheet_name in xl.sheet_names:
+                    if re.search(u'\.12', sheet_name):
+                        meta['year'] = int(sheet_name.split('.')[0]) + 1911
+                        meta['month_from'] = '01'
+                        meta['month_to'] = '12'
+                        logging.info('%s %s' % (meta['year'], meta['month_to']))
+                        df = sheet2df(sheet_name)
+                        df_concat = concat([df_concat, df])
             else:
                 df = sheet2df()
             df_concat = concat([df_concat, df])
@@ -166,11 +182,11 @@ def Suggestions(suggestion):
     suggestion['bid_by'] = re.sub(u'[\d.,、]', ' ', suggestion['bid_by'])
     suggestion['bid_by'] = [x.strip() for x in suggestion['bid_by'].split() if x.strip()]
     c.execute('''
-        INSERT INTO suggestions_suggestions(uid, county, election_year, suggest_year, suggest_month, suggestion, position, suggest_expense, suggest_expense_avg, approved_expense, approved_expense_avg, expend_on, brought_by, bid_type, bid_by, district, constituency)
-        VALUES (%(uid)s, %(county)s, %(election_year)s, %(suggest_year)s, %(suggest_month)s, %(suggestion)s, %(position)s, %(suggest_expense)s, %(suggest_expense_avg)s, %(approved_expense)s, %(approved_expense_avg)s, %(expend_on)s, %(brought_by)s, %(bid_type)s, %(bid_by)s, %(district)s, %(constituency)s)
+        INSERT INTO suggestions_suggestions(uid, county, election_year, suggest_year, suggest_month, suggestor_name, suggestion, position, suggest_expense, suggest_expense_avg, approved_expense, approved_expense_avg, expend_on, brought_by, bid_type, bid_by, district, constituency)
+        VALUES (%(uid)s, %(county)s, %(election_year)s, %(suggest_year)s, %(suggest_month)s, %(suggestor_name)s, %(suggestion)s, %(position)s, %(suggest_expense)s, %(suggest_expense_avg)s, %(approved_expense)s, %(approved_expense_avg)s, %(expend_on)s, %(brought_by)s, %(bid_type)s, %(bid_by)s, %(district)s, %(constituency)s)
         ON CONFLICT (uid)
         DO UPDATE
-        SET county = %(county)s, election_year = %(election_year)s, suggest_year = %(suggest_year)s, suggest_month = %(suggest_month)s, suggestion = %(suggestion)s, position = %(position)s, suggest_expense = %(suggest_expense)s, suggest_expense_avg = %(suggest_expense_avg)s, approved_expense_avg = %(approved_expense_avg)s, approved_expense = %(approved_expense)s, expend_on = %(expend_on)s, brought_by = %(brought_by)s, bid_type = %(bid_type)s, bid_by = %(bid_by)s, district = %(district)s, constituency = %(constituency)s
+        SET county = %(county)s, election_year = %(election_year)s, suggest_year = %(suggest_year)s, suggest_month = %(suggest_month)s, suggestor_name = %(suggestor_name)s, suggestion = %(suggestion)s, position = %(position)s, suggest_expense = %(suggest_expense)s, suggest_expense_avg = %(suggest_expense_avg)s, approved_expense_avg = %(approved_expense_avg)s, approved_expense = %(approved_expense)s, expend_on = %(expend_on)s, brought_by = %(brought_by)s, bid_type = %(bid_type)s, bid_by = %(bid_by)s, district = %(district)s, constituency = %(constituency)s
     ''', suggestion)
 
 def CouncilorsSuggestions(suggestion):

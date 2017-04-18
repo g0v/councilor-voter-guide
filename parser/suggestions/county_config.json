@@ -1,4 +1,10 @@
 {
+    "ptcc": {
+        "duplicated_reports": [
+            {"month_to": "12", "year": 2013, "month_from": "01"}
+        ],
+        "target_sheet": "second_half_year"
+    },
     "tycc": {
         "duplicated_reports": [
             {"month_to": "06", "year": 2016, "month_from": "01"}
