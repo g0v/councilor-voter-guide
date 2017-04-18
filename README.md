@@ -119,7 +119,7 @@ Now you should able to see the web page at http://localhost:8000
 
 ## Mac Related Instructions
 
-###Prepare Compiler
+### Prepare Compiler
 
 There are some python package written in C or C++ such as lxml. so a compiler is required. you can install a compiler via the following command:
 
@@ -129,7 +129,7 @@ xcode-select --install
 
 
 
-###Prepare PostgreSQL
+### Prepare PostgreSQL
 
 You can install the packaged app [here](http://postgresapp.com).
 put the app in your Application folder and click it to start. 

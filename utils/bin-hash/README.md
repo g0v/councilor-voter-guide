@@ -15,4 +15,4 @@ Test
 ```
 $ cd utils/bin-hash
 $ nosetests
-```
+``
