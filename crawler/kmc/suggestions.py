@@ -31,7 +31,7 @@ class Spider(scrapy.Spider):
             item['month_from'] = m.group('month_from').zfill(2)
             item['url'] = urljoin(response.url, node.xpath('@href').extract_first())
             item['file_ext'] = node.xpath('@title').extract_first().split('.')[-1]
-            cmd = u'mkdir -p ../../data/kmc/suggestions/ && wget --heade="User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36" -Nc -O ../../data/kmc/suggestions/{year}_{month_from}-{month_to}.{file_ext} "{url}"'.format(**item)
+            cmd = u'mkdir -p ../../data/kmc/suggestions/ && wget --heade="User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36" -q -O ../../data/kmc/suggestions/{year}_{month_from}-{month_to}.{file_ext} "{url}"'.format(**item)
             subprocess.call(cmd, shell=True)
             yield item
         next_page = response.xpath(u'//*[@title="下一頁"]/parent::a/@href').extract_first()

@@ -49,7 +49,7 @@ def getCouncilordetailIdList(id_list, election_year, county):
         if r:
             return [x[0] for x in r]
         for id in id_list:
-            logging.error("Can't find this counculor at this year : %s" % (election_year, county, id))
+            logging.error("Can't find this counculor at this year : %s, %s, %s" % (election_year, county, id))
 #           raw_input()
 
 def normalize_person_name(name):
@@ -69,7 +69,7 @@ def normalize_person_name(name):
 def sheet2df(target_sheet=0):
     df = pd.read_excel(f, sheetname=target_sheet, header=None, encoding='utf-8')
     no_person_name = False
-    if not re.search(u'姓名', df.iloc[3:5, 0].to_string(na_rep='', index=False)):
+    if not re.search(u'(姓名|名稱)', df.iloc[3:5, 0].to_string(na_rep='', index=False)):
         if len(df.columns) > 8 and df.iloc[3:5, 8].to_string(na_rep='', index=False).strip() == '':
             should_drop_column = 8
         else:
@@ -83,6 +83,7 @@ def sheet2df(target_sheet=0):
         for key in ['position', 'suggest_expense', 'brought_by', ]:
             df[key].fillna(inplace=True, method='pad')
         df['councilor_num'] = 1
+        df['suggestor_name'] = nan
     else:
         if no_person_name:
             if should_drop_column == 0:
@@ -93,6 +94,7 @@ def sheet2df(target_sheet=0):
             for key in ['position', 'suggest_expense', 'brought_by', ]:
                 df[key].fillna(inplace=True, method='pad')
             df['councilor_num'] = 1
+            df['suggestor_name'] = nan
         else:
             df = pd.read_excel(f, sheetname=target_sheet, header=None, usecols=range(0, 9), skiprows=5, names=['councilor', 'suggestion', 'position', 'suggest_expense', 'approved_expense', 'expend_on', 'brought_by', 'bid_type', 'bid_by'], encoding='utf-8')
             df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'approved_expense'])
@@ -120,7 +122,7 @@ conn = db_settings.con()
 c = conn.cursor()
 county_config = json.load(open('county_config.json'))
 df_concat = DataFrame()
-for meta_file in glob.glob('../../data/ptcc/suggestions.json'):
+for meta_file in glob.glob('../../data/*/suggestions.json'):
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
@@ -147,8 +149,13 @@ for meta_file in glob.glob('../../data/ptcc/suggestions.json'):
                 else:
                     logging.info('pass %s %s' % (county, file_name))
                     continue
-            target_sheet = county_config.get(county_abbr, {}).get('target_sheet', 0)
-            if target_sheet == 'all':
+            try:
+                target_sheet = county_config.get(county_abbr, {}).get('target_sheet').get('{year}_{month_from}-{month_to}'.format(**meta), 0)
+            except:
+                target_sheet = county_config.get(county_abbr, {}).get('target_sheet', 0)
+            if target_sheet == 0:
+                df = sheet2df()
+            elif target_sheet == 'all':
                 xl = pd.ExcelFile(f)
                 for sheet_name in xl.sheet_names:
                     if re.search(u'上半年', sheet_name):
@@ -173,12 +180,20 @@ for meta_file in glob.glob('../../data/ptcc/suggestions.json'):
                         df = sheet2df(sheet_name)
                         df_concat = concat([df_concat, df])
             else:
-                df = sheet2df()
+                xl = pd.ExcelFile(f)
+                for sheet_name in xl.sheet_names:
+                    if re.search(target_sheet, sheet_name):
+                        df = sheet2df(sheet_name)
+                        df_concat = concat([df_concat, df])
             df_concat = concat([df_concat, df])
 
 def Suggestions(suggestion):
     for column in ['position', 'expend_on', 'brought_by', 'bid_type', 'bid_by']:
-        suggestion[column] = suggestion[column].strip() if suggestion[column] else ''
+        try:
+            suggestion[column] = suggestion[column].strip() if suggestion[column] else ''
+        except:
+            logging.critical('%s, %s, %s' % (suggestion['uid'], column, suggestion[column]))
+            raise
     suggestion['bid_by'] = re.sub(u'[\d.,、]', ' ', suggestion['bid_by'])
     suggestion['bid_by'] = [x.strip() for x in suggestion['bid_by'].split() if x.strip()]
     c.execute('''

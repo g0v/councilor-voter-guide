@@ -1,4 +1,9 @@
 {
+    "kmc": {
+        "target_sheet": {
+            "2016_01-06": "105.06"
+        }
+    },
     "ptcc": {
         "duplicated_reports": [
             {"month_to": "12", "year": 2013, "month_from": "01"}
