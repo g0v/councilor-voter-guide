@@ -1,3 +1,4 @@
+{{ object.suggestor_name }}
 {{ object.suggestion }}
 {{ object.position }}
 {{ object.expend_on }}

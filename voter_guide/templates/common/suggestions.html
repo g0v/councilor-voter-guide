@@ -28,6 +28,8 @@
                     <ul class="unstyled">
                     {% for councilor in obj.councilors %}
                     <li><a id='councilors_suggestor' href="{% url 'councilors:suggestor' councilor_id=councilor.0 election_year=obj.election_year %}">{{councilor.1}}</a></li>
+                    {% empty %}
+                    <span>{{obj.suggestor_name}}</span>
                     {% endfor %}
                     </ul>
                 </td>

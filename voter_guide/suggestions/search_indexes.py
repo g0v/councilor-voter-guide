@@ -11,6 +11,7 @@ class SuggestionsIndex(indexes.SearchIndex, indexes.Indexable):
     election_year = indexes.CharField(model_attr='election_year')
     suggest_year = indexes.CharField(model_attr='suggest_year')
     suggest_month = indexes.CharField(model_attr='suggest_month')
+    suggestor_name = indexes.CharField(default=None, model_attr='suggestor_name')
     suggestion = indexes.CharField(model_attr='suggestion')
     position = indexes.CharField(model_attr='position')
     suggest_expense = indexes.IntegerField(default=0, model_attr='suggest_expense')
