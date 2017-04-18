@@ -9,6 +9,7 @@ class Suggestions(models.Model):
     election_year = models.CharField(db_index=True, max_length=4)
     suggest_year = models.CharField(max_length=4, db_index=True)
     suggest_month = models.CharField(max_length=2, db_index=True)
+    suggestor_name = models.CharField(max_length=100, blank=True, null=True)
     suggestion = models.TextField()
     position = models.TextField(blank=True, null=True)
     suggest_expense = models.IntegerField(blank=True, null=True)
