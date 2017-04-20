@@ -116,7 +116,7 @@ def suggestor(request, councilor_id, election_year):
     q = dict(zip(['election_year', 'councilors__councilor_id'], [election_year, councilor.id]))
     index = request.GET.get('index')
     suggestions_base = Suggestions.objects.filter(**q)
-    total_expense = suggestions_base.aggregate(sum=Sum('approved_expense'))
+    total_expense = suggestions_base.aggregate(sum=Sum('approved_expense_avg'))
     if not index:
         suggestions = suggestions_base.values('bid_by')\
                                         .annotate(sum=Sum('approved_expense'), count=Count('uid'))\
