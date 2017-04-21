@@ -67,7 +67,7 @@
                 <td style="vertical-align:middle;">
                     <ul class="unstyled">
                     {% for company in obj.bid_by %}
-                        {% if company == '辦理中' or company == '-' or company == '尚未發包' or company == '尚未決標' or company == '無' %}
+                        {% if company == '辦理中' or company == '-' or company == '尚未發包' or company == '尚未決標' or company == '專案保留' or company == '無' %}
                             {{company}}
                         {% else %}
                             <li><a href="{% url 'suggestions:bid_by' bid_by=company|urlencode %}">{{company}}</a></li>
