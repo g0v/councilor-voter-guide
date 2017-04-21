@@ -9,7 +9,10 @@ import uuid
 import codecs
 import psycopg2
 from psycopg2.extras import Json
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 import logging
+
 import db_settings
 import common
 
@@ -73,6 +76,8 @@ def get_or_create_uid(councilor):
     '''
     logging.info(councilor)
     councilor['councilor_ids'] = tuple(common.GetCouncilorId(c, councilor['name']))
+    if not councilor['councilor_ids']:
+        return (uuid.uuid4().hex, False)
     c.execute('''
         SELECT councilor_id
         FROM councilors_councilorsdetail
@@ -155,6 +160,7 @@ conn.commit()
 
 # upsert from json
 for council in ['../../data/phcouncil/councilors.json', '../../data/kmcc/councilors.json', '../../data/mtcc/councilors.json', '../../data/ptcc/councilors.json', '../../data/kcc/councilors.json', '../../data/tncc/councilors.json', '../../data/taitungcc/councilors.json', '../../data/hlcc/councilors.json', '../../data/cycc/councilors.json', '../../data/cyscc/councilors.json', '../../data/ylcc/councilors.json', '../../data/ntcc/councilors.json', '../../data/chcc/councilors.json', '../../data/tccc/councilors.json', '../../data/ilcc/councilors.json', '../../data/mcc/councilors.json', '../../data/hcc/councilors.json', '../../data/kmc/councilors.json', '../../data/tycc/councilors.json', '../../data/hsinchucc/councilors.json', '../../data/ntp/councilors.json', '../../data/tcc/councilors.json']:
+    break
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
@@ -176,6 +182,7 @@ c.execute('''
 ''', [election_year])
 key = [desc[0] for desc in c.description]
 for row in c.fetchall():
+    break
     person = dict(zip(key, row))
     person['name'] = person['name'].decode('utf-8')
     person = normalize_councilor(person)
@@ -220,4 +227,68 @@ c.executemany('''
     SET term_start = %(term_start)s
     WHERE county = %(county)s and election_year = %(election_year)s and name = %(name)s
 ''', term_end_councilors)
+
+def rename_dict_key(d):
+    columns = {
+        u"去職原因": "reason",
+        u"判決連結": "judicial_links",
+        u"議員姓名": "name",
+        u"選區": "constituency",
+        u"政黨": "party",
+        u"遞補議員": "replacement",
+        u"遞補議員黨籍": "replacement_party",
+        u"遞補議員性別": "replacement_gender",
+        u"遞補議員生日": "replacement_birth",
+        u"去職日": "date",
+        u"縣市": "county",
+        u"遞補官方資訊": "ref"
+    }
+    for verbose_key, key in columns.items():
+        d[key] = d.pop(verbose_key)
+    return d
+
+scope = ['https://spreadsheets.google.com/feeds']
+credentials = ServiceAccountCredentials.from_json_keyfile_name('credential.json', scope)
+gc = gspread.authorize(credentials)
+sh = gc.open_by_key('1ohhFgdHrxFZPcM7J-RqUskgZX2zqpYoxufNnX8VL4Os')
+worksheets = sh.worksheets()
+for wks in worksheets:
+    rows = wks.get_all_records()
+    for row in rows:
+        row = rename_dict_key(row)
+        row['election_year'] = wks.title
+        if row['replacement']:
+            replacement = {
+                'county': row['county'],
+                'constituency': row['constituency'],
+                'election_year': row['election_year'],
+                'name': row['replacement'],
+                'party': row['replacement_party'],
+                'gender': row['replacement_gender'],
+                'birth': row['replacement_birth'],
+                'in_office': True,
+                'term_start': row['date']
+            }
+            replacement['uid'], created = get_or_create_uid(replacement)
+            if not created:
+                Councilors(replacement)
+            c.execute('''
+                INSERT INTO councilors_councilorsdetail(councilor_id, election_year, name, gender, party, constituency, county, in_office, term_start)
+                VALUES (%(uid)s, %(election_year)s, %(name)s, %(gender)s, %(party)s, %(constituency)s, %(county)s, %(in_office)s, %(term_start)s)
+                ON CONFLICT (councilor_id, election_year)
+                DO UPDATE
+                SET gender = %(gender)s, party = %(party)s, in_office = %(in_office)s, term_start = %(term_start)s
+            ''', replacement)
+        row['in_office'] = False
+        row['uid'], created = get_or_create_uid(row)
+        if not created:
+            Councilors(row)
+        row['term_end'] = {k: row.pop(k) for k in ['reason', 'judicial_links', 'replacement', 'date', 'ref']}
+        c.execute('''
+            INSERT INTO councilors_councilorsdetail(councilor_id, election_year, name, party, constituency, county, in_office, term_end)
+            VALUES (%(uid)s, %(election_year)s, %(name)s, %(party)s, %(constituency)s, %(county)s, %(in_office)s, %(term_end)s)
+            ON CONFLICT (councilor_id, election_year)
+            DO UPDATE
+            SET party = %(party)s, in_office = %(in_office)s, term_end = %(term_end)s
+        ''', row)
 conn.commit()
