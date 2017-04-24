@@ -122,7 +122,7 @@ conn = db_settings.con()
 c = conn.cursor()
 county_config = json.load(open('county_config.json'))
 df_concat = DataFrame()
-for meta_file in glob.glob('../../data/tncc/suggestions.json'):
+for meta_file in glob.glob('../../data/cyscc/suggestions.json'):
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
