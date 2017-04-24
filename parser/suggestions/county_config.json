@@ -1,4 +1,9 @@
 {
+    "tncc": {
+        "redirect": {
+            "2016_01-12.xls": "2016_01-12_unlock.xlsx"
+        }
+    },
     "kmc": {
         "target_sheet": {
             "2016_01-06": "105.06"

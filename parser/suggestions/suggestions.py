@@ -122,7 +122,7 @@ conn = db_settings.con()
 c = conn.cursor()
 county_config = json.load(open('county_config.json'))
 df_concat = DataFrame()
-for meta_file in glob.glob('../../data/*/suggestions.json'):
+for meta_file in glob.glob('../../data/tncc/suggestions.json'):
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
@@ -138,6 +138,13 @@ for meta_file in glob.glob('../../data/*/suggestions.json'):
             if {x: meta[x] for x in ["month_to", "year", "month_from"]} in county_config.get(county_abbr, {}).get('duplicated_reports', []):
                 logging.info('pass %s %s' % (county, file_name))
                 continue
+            if county_config.get(county_abbr, {}).get('redirect'):
+                for file_from, file_to in county_config[county_abbr]['redirect'].items():
+                    if file_name == file_from:
+                        file_name = file_to
+                        f = '../../data/%s/suggestions/%s' % (county_abbr, file_name)
+                        logging.info('redirect to %s %s' % (county, file_name))
+                        break
             if not re.search('xls', meta['file_ext']):
                 if meta['file_ext'] == 'ods' and {x: meta[x] for x in ["month_to", "year", "month_from"]} not in exclude_ods_metas:
                     cmd = 'unoconv -d spreadsheet --format=xls %s' % f
