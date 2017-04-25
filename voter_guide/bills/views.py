@@ -7,7 +7,7 @@ from django.db.models import Count, Q
 
 from councilors.models import CouncilorsDetail
 from search.models import Keyword
-from search.views import keyword_list, keyword_been_searched, keyword_normalize
+from search.views import keyword_list, keyword_been_searched
 from .models import Bills
 from commontag.views import paginate
 
@@ -29,7 +29,7 @@ def select_county(request, index, county):
 
 def bills(request, county, index):
     query = Q(county=county)
-    keyword = keyword_normalize(request.GET)
+    keyword = request.GET.get('keyword', '')
     district = request.GET.get('district', None)
 
     if keyword:
@@ -51,7 +51,7 @@ def bills(request, county, index):
 
 def bills_category(request, county, index, category):
     query = Q(county=county, category=category)
-    keyword = keyword_normalize(request.GET)
+    keyword = request.GET.get('keyword', '')
     district = request.GET.get('district', None)
 
     if keyword:

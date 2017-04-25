@@ -15,7 +15,3 @@ def keyword_been_searched(keyword, category):
     else:
         k = Keyword(content=keyword, category=category, valid=True, hits=1)
         k.save()
-
-def keyword_normalize(GET):
-    if 'keyword' in GET:
-        return re.sub(u'[，。／＼、；］［＝－＜＞？：＂｛｝｜＋＿（）！＠＃％＄︿＆＊～~`!@#$%^&*_+\-=,./<>?;:\'\"\[\]{}\|()]', ' ', GET['keyword']).strip()

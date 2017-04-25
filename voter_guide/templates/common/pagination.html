@@ -1,7 +1,20 @@
 <div class="pagination" align="center">
+    <span class="pull-left">
+        每頁
+        <span class="btn-group">
+            {% if get_params %}
+            <a class="btn" href="?{{get_params}}&page_size=10">10</a>
+            <a class="btn" href="?{{get_params}}&page_size=50">50</a>
+            {% else %}
+            <a class="btn" href="?page_size=10">10</a>
+            <a class="btn" href="?page_size=50">50</a>
+            {% endif %}
+        </span>
+        個
+    </span>
     <span class="step-links">
         {% if items.has_previous %}
-            {% if keyword %}
+            {% if get_params %}
             <a href="?{{get_params}}&page={{ items.previous_page_number }}">上一頁</a>
             {% else %}
             <a href="?page={{ items.previous_page_number }}">上一頁</a>

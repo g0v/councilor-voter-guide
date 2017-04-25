@@ -6,7 +6,7 @@ from django.db.models import Q
 
 from .models import Votes, Councilors_Votes
 from councilors.models import CouncilorsDetail
-from search.views import keyword_list, keyword_been_searched, keyword_normalize
+from search.views import keyword_list, keyword_been_searched
 from commontag.views import paginate
 
 
@@ -31,7 +31,7 @@ def votes(request, county, index='normal'):
         result = request.GET['result']
         query = query & Q(result=result)
     #<--
-    keyword = keyword_normalize(request.GET)
+    keyword = request.GET.get('keyword', '')
     if keyword:
         votes = Votes.objects.filter(query & reduce(operator.and_, (Q(content__icontains=x) for x in keyword.split()))).order_by('-date', 'vote_seq')
         if votes:

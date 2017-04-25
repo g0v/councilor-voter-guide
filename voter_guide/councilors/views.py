@@ -9,7 +9,7 @@ from votes.models import Votes, Councilors_Votes
 from bills.models import Bills
 from suggestions.models import Suggestions
 from sittings.models import Sittings
-from search.views import keyword_list, keyword_been_searched, keyword_normalize
+from search.views import keyword_list, keyword_been_searched
 from commontag.views import paginate
 
 
@@ -135,7 +135,7 @@ def biller(request, councilor_id, election_year):
     primaryonly = request.GET.get('primaryonly', False)
     if primaryonly:
         query = query & Q(councilors_bills__priproposer=True)
-    keyword = keyword_normalize(request.GET)
+    keyword = request.GET.get('keyword', '')
     if keyword:
         bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in keyword.split()))).order_by('-uid')
         if bills:
@@ -154,7 +154,7 @@ def biller_category(request, councilor_id, election_year, category):
     primaryonly = request.GET.get('primaryonly', False)
     if primaryonly:
         query = query & Q(councilors_bills__priproposer=True)
-    keyword = keyword_normalize(request.GET)
+    keyword = request.GET.get('keyword', '')
     if keyword:
         bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in keyword.split()))).order_by('-uid')
         if bills:
@@ -185,7 +185,7 @@ def voter(request, councilor_id, election_year):
         if index == 'conscience':
             query = query & Q(conflict=True)
     #<--
-    keyword = keyword_normalize(request.GET)
+    keyword = request.GET.get('keyword', '')
     if keyword:
         votes = Councilors_Votes.objects.select_related().filter(query & reduce(operator.and_, (Q(vote__content__icontains=x) for x in keyword.split()))).order_by('-vote__date')
         if votes:
