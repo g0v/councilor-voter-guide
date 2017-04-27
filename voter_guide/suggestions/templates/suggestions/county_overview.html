@@ -1,11 +1,13 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% load extras %}
 
 {% block title %}
     <title>議員投票指南:工程建議款-各縣市總覽</title>
     <meta property="og:title" content="議員投票指南:工程建議款-各縣市總覽"/>
-    <meta itemprop="name" content="議員投票指南:工程建議款-各縣市總覽">
-{% endblock %}
+    <meta itemprop="name" content="議員投票指南:工程建議款-各縣市總覽"/>
+    <link href="{% static "css/stacktable.min.css" %}" rel="stylesheet">
+{% endblock title %}
 
 {% block right %}
     <div>
@@ -81,10 +83,11 @@
         {% endfor %}
     </div>
     <div id="disqus_thread"></div>
-{% endblock %}
+{% endblock right %}
 
 {% block script %}
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
+    <script src="{% static "js/stacktable.min.js" %}" type="text/javascript"></script>
     {% regroup counties by county as county_list %}
         {% for county in county_list %}
             {% include "suggestions/d3/years_bar.html" with county=county.grouper data=county.list %}
@@ -92,6 +95,7 @@
     {% include "common/sorttable.html" %}
     <script>
         $(document).ready( function() {
+            $('table').cardtable();
             $("[rel='tooltip']").tooltip();
             $('#suggestions').addClass('active');
             $('.price').each(function(index,ele){

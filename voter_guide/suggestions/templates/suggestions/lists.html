@@ -1,11 +1,13 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% load extras %}
 
 {% block title %}
     <title>議員投票指南:{{county}}-工程建議款總覽</title>
     <meta property="og:title" content="議員投票指南:{{county}}-工程建議款總覽"/>
     <meta itemprop="name" content="議員投票指南:{{county}}-工程建議款總覽">
-{% endblock %}
+    <link href="{% static "css/stacktable.min.css" %}" rel="stylesheet">
+{% endblock title %}
 
 {% block right %}
     <div class="hero-unit row" style="margin-left: 0px;">
@@ -26,8 +28,10 @@
 
 {% block script %}
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
+    <script src="{% static "js/stacktable.min.js" %}" type="text/javascript"></script>
     <script>
         $(document).ready( function() {
+            $('table').cardtable();
             $("[rel='tooltip']").tooltip();
             $('#suggestions').addClass('active');
             $('.price').each(function(index,ele){
