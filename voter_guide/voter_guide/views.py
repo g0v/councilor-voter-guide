@@ -10,7 +10,13 @@ def select_county(request, category):
         {"region": "東部", "counties": ["花蓮縣", "臺東縣"]},
         {"region": "離島", "counties": ["澎湖縣", "金門縣", "連江縣"]}
     ]
-    return render(request, 'common/select_county.html', {'category': category, 'regions': regions})
+    titles = {
+        "candidates": "找候選人",
+        "councilors": "找議員",
+        "bills": "找議案",
+        "votes": "找表決"
+    }
+    return render(request, 'common/select_county.html', {'title': titles.get(category, ''), 'category': category, 'regions': regions})
 
 def about(request):
     return render(request,'about.html', {})
