@@ -73,10 +73,10 @@
                             </li>
                             -->
                         {% else %}
-                            <li id="councilors"><a href="{% url 'select_county' category='candidates' %}">2014 候選人</a></li>
+                            <li id="candidates"><a href="{% url 'select_county' category='candidates' %}">2014 候選人</a></li>
                             <li id="councilors"><a href="{% url 'select_county' category='councilors' %}">找議員</a></li>
-                            <li id="councilors"><a href="{% url 'select_county' category='bills' %}">找議案</a></li>
-                            <li id="councilors"><a href="{% url 'select_county' category='votes' %}">找表決</a></li>
+                            <li id="bills"><a href="{% url 'select_county' category='bills' %}">找議案</a></li>
+                            <li id="votes"><a href="{% url 'select_county' category='votes' %}">找表決</a></li>
                             <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >工程建議款</a></li>
                         {% endif %}
                         </ul>
