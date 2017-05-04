@@ -9,6 +9,16 @@
             "2016_01-06": "105.06"
         }
     },
+    "tcc": {
+        "duplicated_reports": [
+            {"month_to": "06", "year": 2016, "month_from": "01"},
+            {"month_to": "06", "year": 2015, "month_from": "01"},
+            {"month_to": "06", "year": 2014, "month_from": "01"},
+            {"month_to": "06", "year": 2013, "month_from": "01"},
+            {"month_to": "06", "year": 2012, "month_from": "01"},
+            {"month_to": "06", "year": 2011, "month_from": "01"}
+        ],
+    },
     "ptcc": {
         "duplicated_reports": [
             {"month_to": "12", "year": 2013, "month_from": "01"}
