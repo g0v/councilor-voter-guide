@@ -31,20 +31,32 @@
 {% block script %}
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     <script>
-      function initialize() {
-          var place = {lat: {{location.lat}}, lng: {{location.lng}}};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: place,
-          zoom: 17
+      function geocodeAddress(address, fn) {
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            fn({lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()});
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
         });
-        var panorama = new google.maps.StreetViewPanorama(
+      }
+      function initialize() {
+        var address = '{{address}}';
+        geocodeAddress(address, function(place){
+          var map = new google.maps.Map(document.getElementById('map'), {
+            center: place,
+            zoom: 17
+          });
+          var panorama = new google.maps.StreetViewPanorama(
             document.getElementById('pano'), {
               position: place,
               pov: {
                 pitch: 10
               }
             });
-        map.setStreetView(panorama);
+          map.setStreetView(panorama);
+        });
       }
     </script>
     <script async defer

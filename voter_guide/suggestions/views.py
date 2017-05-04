@@ -2,7 +2,6 @@
 import re
 import urllib
 import operator
-import googlemaps
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Count, Sum, F, Q, Case, When, Value, IntegerField
@@ -56,7 +55,6 @@ def detail(request, uid):
         suggestion = SearchQuerySet().filter(uid=uid).models(Suggestions)[0]
     except:
         raise Http404
-    gmaps = googlemaps.Client(key=settings.GOOGLEMAPS_API_KEY)
     if re.search(u'[鄉鎮市區里]$', suggestion.position):
         for p in [u'號', u'弄', u'巷']:
             address = re.sub(u'(.*?%s).*' % p, u'\g<1>', suggestion.suggestion)
@@ -65,11 +63,8 @@ def detail(request, uid):
         address = re.sub(suggestion.position, '', address)
     else:
         address = ''
-    try:
-        location = gmaps.geocode('%s%s%s' % (suggestion.county, suggestion.position, address))[0]['geometry']['location']
-    except:
-        location = {}
-    return render(request,'suggestions/detail.html', {'suggestion': suggestion, 'location': location})
+    address = '%s%s%s' % (suggestion.county, suggestion.position, address)
+    return render(request,'suggestions/detail.html', {'suggestion': suggestion, 'address': address})
 
 def positions(request, county, order_by, option):
     args = Q(county=county, approved_expense__isnull=False)
