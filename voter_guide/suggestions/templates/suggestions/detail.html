@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load extras %}
+
+{% block title %}
+    <title>議員投票指南:{{county}}-工程建議款總覽</title>
+    <meta property="og:title" content="議員投票指南:{{county}}-工程建議款總覽"/>
+    <meta itemprop="name" content="議員投票指南:{{county}}-工程建議款總覽">
+    <link href="{% static "css/stacktable.min.css" %}" rel="stylesheet">
+    <style>
+      #map, #pano {
+        float: right;
+        height: 400px;
+        width: 45%;
+      }
+    </style>
+{% endblock title %}
+
+{% block right %}
+    <br>
+    <div class="span4" style="margin-left: 0px;">
+    {% include "common/suggestion.html" with obj=suggestion include_councilors=True %}
+    </div>
+    <div class="span8">
+        <div id="pano"></div>
+        <div id="map"></div>
+    </div>
+    <div id="disqus_thread"></div>
+{% endblock %}
+
+{% block script %}
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
+    <script>
+      function initialize() {
+          var place = {lat: {{location.lat}}, lng: {{location.lng}}};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: place,
+          zoom: 17
+        });
+        var panorama = new google.maps.StreetViewPanorama(
+            document.getElementById('pano'), {
+              position: place,
+              pov: {
+                pitch: 10
+              }
+            });
+        map.setStreetView(panorama);
+      }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLqASWdh57qsuwbou7XBlHxnEAbuNBCIo&callback=initialize">
+    </script>
+    <script>
+        $(document).ready( function() {
+            $("[rel='tooltip']").tooltip();
+            $('#suggestions').addClass('active');
+            $('.price').each(function(index,ele){
+                var number = $(ele).text()
+                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 1});
+                $(ele).replaceWith(zh_number)
+            });
+        });
+    </script>
+{% endblock script %}

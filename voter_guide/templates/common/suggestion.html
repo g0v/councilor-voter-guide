@@ -1,0 +1,107 @@
+{% load extras %}
+<table id="datatable" class="table table-bordered table-condensed table-striped" >
+    {% if include_councilors %}
+    <tr>
+        <td width="40%" style="vertical-align:middle;">
+            提案議員
+        </td>
+        <td width="60%" style="vertical-align:middle;">
+            <ul class="unstyled">
+            {% for councilor in obj.councilors %}
+            <li><a id='councilors_suggestor' href="{% url 'councilors:suggestor' councilor_id=councilor.0 election_year=obj.election_year %}">{{councilor.1}}</a></li>
+            {% empty %}
+                {% if obj.suggestor_name %}
+                <span>{{obj.suggestor_name}}</span>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </td>
+    </tr>
+    {% endif %}
+    <tr>
+        <td style="vertical-align:middle;">
+            年度
+        </td>
+        <td style="vertical-align:middle;">
+            {{obj.suggest_year}}
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align:middle;">
+            建議項目
+        </td>
+        <td style="vertical-align:middle;">
+            {{obj.suggestion}}
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align:middle;">
+            地點
+        </td>
+        <td style="vertical-align:middle;">
+            <a href="{% url 'suggestions:lists' county=obj.county %}">{{obj.county}}</a> - {{obj.position}}
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align:middle;">
+            議員建議金額
+        </td>
+        <td style="text-align:right; vertical-align:middle;">
+            {% if obj.suggest_expense != None %}
+                <p class="price">{{obj.suggest_expense}}</p>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align:middle;">
+            通過預算
+        </td>
+        <td style="text-align:right; vertical-align:middle;">
+            {% if obj.approved_expense != None %}
+                <p class="price">{{obj.approved_expense}}</p>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align:middle;">
+            經費支用科目
+        </td>
+        <td style="vertical-align:middle;">
+            {{obj.expend_on}}
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align:middle;">
+            主辦機關
+        </td>
+        <td style="vertical-align:middle;">
+            {{obj.brought_by}}
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align:middle;">
+            招標方式
+        </td>
+        <td style="vertical-align:middle;">
+            {{obj.bid_type}}
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align:middle;">
+            得標廠商
+        </td>
+        <td style="vertical-align:middle;">
+            <ul class="unstyled">
+            {% for company in obj.bid_by %}
+                {% if company == '辦理中' or company == '-' or company == '尚未發包' or company == '尚未決標' or company == '專案保留' or company == '無' %}
+                    {{company}}
+                {% else %}
+                    <li><a href="{% url 'suggestions:bid_by' bid_by=company|urlencode %}">{{company}}</a></li>
+                {% endif %}
+            {% empty %}
+                【來源檔案無資料】
+            {% endfor %}
+                    </ul>
+        </td>
+    </tr>
+</table>

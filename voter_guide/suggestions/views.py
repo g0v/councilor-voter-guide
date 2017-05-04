@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
+import re
 import urllib
 import operator
-from django.http import HttpResponseRedirect
+import googlemaps
+from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Count, Sum, F, Q, Case, When, Value, IntegerField
+from django.conf import settings
 
 from haystack.query import SearchQuerySet
 
@@ -47,6 +50,26 @@ def lists(request, county):
     suggestions = paginate(request, suggestions)
     get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword'] if request.GET.get(x)])
     return render(request,'suggestions/lists.html', {'suggestions': suggestions, 'county': county, 'keyword': request.GET.get('keyword', ''), 'get_params': get_params})
+
+def detail(request, uid):
+    try:
+        suggestion = SearchQuerySet().filter(uid=uid).models(Suggestions)[0]
+    except:
+        raise Http404
+    gmaps = googlemaps.Client(key=settings.GOOGLEMAPS_API_KEY)
+    if re.search(u'[鄉鎮市區里]$', suggestion.position):
+        for p in [u'號', u'弄', u'巷']:
+            address = re.sub(u'(.*?%s).*' % p, u'\g<1>', suggestion.suggestion)
+            if len(address) != len(suggestion.suggestion):
+                break
+        address = re.sub(suggestion.position, '', address)
+    else:
+        address = ''
+    try:
+        location = gmaps.geocode('%s%s%s' % (suggestion.county, suggestion.position, address))[0]['geometry']['location']
+    except:
+        location = {}
+    return render(request,'suggestions/detail.html', {'suggestion': suggestion, 'location': location})
 
 def positions(request, county, order_by, option):
     args = Q(county=county, approved_expense__isnull=False)

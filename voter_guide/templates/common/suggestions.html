@@ -21,7 +21,7 @@
         {% for obj in suggestions %}
             <tr id="{{obj.uid}}">
                 <td style="text-align:center; vertical-align:middle;">
-                    <a href="#{{obj.uid}}"><i class="fa fa-link"></i></a>
+                    <a href="{% url 'suggestions:detail' uid=obj.uid  %}"><i class="fa fa-map-marker"> 看地圖</i></a>
                 </td>
                 {% if include_councilors %}
                 <td style="text-align:center; vertical-align:middle;">
@@ -45,12 +45,12 @@
                 <td style="vertical-align:middle;">
                     <a href="{% url 'suggestions:lists' county=obj.county %}">{{obj.county}}</a> - {{obj.position}}
                 </td>
-                <td style="text-align:center; vertical-align:middle;">
+                <td style="text-align:right; vertical-align:middle;">
                     {% if obj.suggest_expense != None %}
                         <p class="price">{{obj.suggest_expense}}</p>
                     {% endif %}
                 </td>
-                <td style="text-align:center; vertical-align:middle;">
+                <td style="text-align:right; vertical-align:middle;">
                     {% if obj.approved_expense != None %}
                         <p class="price">{{obj.approved_expense}}</p>
                     {% endif %}
