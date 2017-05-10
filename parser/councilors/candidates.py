@@ -9,42 +9,31 @@ import psycopg2
 import pandas as pd
 
 import db_settings
+import common
 
 
-def latest_term(candidate):
-    c.execute('''
-        SELECT councilor_id, election_year
-        FROM councilors_councilorsdetail
-        WHERE name = %(name)s and county = %(previous_county)s and election_year < %(election_year)s
-        ORDER BY election_year DESC
-    ''', candidate)
-    r = c.fetchone()
-    if r:
-        return r
-    # non-cht in name
-    m = re.match(u'(?P<cht>.+?)[a-zA-Z]', candidate['name'])
-    candidate['name_like'] = m.group('cht') if m else candidate['name']
-    c.execute('''
-        SELECT councilor_id, election_year
-        FROM councilors_councilorsdetail
-        WHERE name like %(name_like)s and county = %(previous_county)s and election_year < %(election_year)s
-        ORDER BY election_year DESC
-    ''', candidate)
-    r = c.fetchone()
-    if r:
-        return r
-    c.execute('''
-        SELECT councilor_id, election_year
-        FROM councilors_councilorsdetail
-        WHERE name like %(name_like)s and election_year < %(election_year)s
-        ORDER BY election_year DESC
-    ''', candidate)
-    r = c.fetchone()
-    if r:
-        return r
-    return None, None
+def councilor_terms(candidate):
+    '''
+    Parse working recoed before the election_year of this candidate into a json to store in individual candidate, so we could display councilor's working records easier at candidate page(no need of a lot of reference).
+    '''
 
-def insertCandidates(candidate):
+    c.execute('''
+        SELECT councilor_id, election_year, param, to_char(EXTRACT(YEAR FROM term_start), '9999') as term_start_year, substring(term_end->>'date' from '(\d+)-') as term_end_year
+        FROM councilors_councilorsdetail
+        WHERE councilor_id = %(councilor_uid)s AND election_year < %(election_year)s
+        ORDER BY election_year DESC
+    ''', candidate)
+    key = [desc[0] for desc in c.description]
+    terms = []
+    r = c.fetchall()
+    for row in r:
+        terms.append(dict(zip(key, row)))
+    return terms
+
+def upsertCandidates(candidate):
+    candidate['former_names'] = candidate.get('former_names', [])
+    variants = common.make_variants_set(candidate['name'])
+    candidate['identifiers'] = list((variants | set(candidate['former_names']) | {candidate['name'], re.sub(u'[\w‧]', '', candidate['name']), re.sub(u'\W', '', candidate['name']).lower(), }) - {''})
     c.execute('''
         SELECT district
         FROM councilors_councilorsdetail
@@ -58,16 +47,22 @@ def insertCandidates(candidate):
         if candidate['constituency'] == district_change['constituency']:
             candidate['district'] = district_change['district']
             break
-    for key in ['education', 'experience', 'platform', 'remark']:
-        if candidate.get(key):
-            candidate[key] = '\n'.join(candidate[key])
-    complement = {"councilor_id":None, "birth":None, "gender":'', "party":'', "contact_details":None, "title":'', "district":'', "elected":None, "votes":None, "education":None, "experience":None, "remark":None, "image":'', "links":None, "platform":''}
+    complement = {'birth': None, 'gender': '', 'party': '', 'number': None, 'contact_details': None, 'district': '', 'education': None, 'experience': None, 'remark': None, 'image': '', 'links': None, 'platform': ''}
     complement.update(candidate)
     c.execute('''
-        INSERT into candidates_candidates(councilor_id, last_election_year, election_year, name, birth, gender, party, title, constituency, county, district, elected, contact_details, votes, education, experience, remark, image, links, platform)
-        VALUES (%(uid)s, %(last_election_year)s, %(election_year)s, %(name)s, %(birth)s, %(gender)s, %(party)s, %(title)s, %(constituency)s, %(county)s, %(district)s, %(elected)s, %(contact_details)s, %(votes)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s)
+        INSERT INTO candidates_candidates(uid, name, birth, identifiers)
+        VALUES (%(candidate_uid)s, %(name)s, %(birth)s, %(identifiers)s)
+        ON CONFLICT (uid)
+        DO UPDATE
+        SET name = %(name)s, birth = %(birth)s, identifiers = %(identifiers)s
     ''', complement)
-
+    c.execute('''
+        INSERT INTO candidates_terms(uid, candidate_id, councilor_terms, election_year, number, name, gender, party, constituency, county, district, contact_details, education, experience, remark, image, links, platform)
+        VALUES (%(candidate_term_uid)s, %(candidate_uid)s, %(councilor_terms)s, %(election_year)s, %(number)s, %(name)s, %(gender)s, %(party)s, %(constituency)s, %(county)s, %(district)s, %(contact_details)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s)
+        ON CONFLICT (election_year, candidate_id)
+        DO UPDATE
+        SET councilor_terms = %(councilor_terms)s, number = %(number)s, name = %(name)s, gender = %(gender)s, party = %(party)s, constituency = %(constituency)s, county = %(county)s, district = %(district)s, contact_details = %(contact_details)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s
+    ''', complement)
 
 conn = db_settings.con()
 c = conn.cursor()
@@ -78,28 +73,20 @@ files = [f for f in glob.glob('../../data/candidates/%s/*.xlsx' % election_year)
 for f in files:
     df = pd.read_excel(f, sheetname=0, names=['date', 'constituency', 'name', 'party'], usecols=[0, 1, 2, 3])
     df = df[df['name'] != u'姓名']
-    df['party'] = map(lambda x: u'無黨籍' if re.search(u'^無$', x) else x, df['party'])
-    df['party'] = map(lambda x: u'臺灣團結聯盟' if re.search(u'台灣團結聯盟', x) else x, df['party'])
     candidates = json.loads(df.to_json(orient='records'))
     for candidate in candidates:
         match = re.search(u'(?P<county>\W+)第(?P<num>\d+)選(?:舉)?區', candidate['constituency'])
         candidate['county'] = match.group('county') if match else None
         candidate['constituency'] = match.group('num') if match else None
-        if not (candidate['name'] and (re.search(u'(臺北市|臺中市|高雄市|新北市|臺南市|新竹市|彰化縣|宜蘭縣|桃園市|花蓮縣|南投縣|新竹縣|嘉義縣|嘉義市|雲林縣|基隆市|屏東縣|連江縣|臺東縣|苗栗縣|金門縣)', candidate['county']))):
-            continue
         for county_change in county_versions[election_year]:
             candidate['previous_county'] = county_change['from'] if candidate['county'] == county_change['to'] else candidate['county']
-        candidate['name'] = re.sub('\s', '', candidate['name'])
-        candidate['name'] = re.sub(u'[。˙・･•．.]', u'‧', candidate['name'])
-        if candidate['name'] == u'笛布斯顗賚':
-            candidate['name'] = u'笛布斯‧顗賚'
-        candidate['name'] = re.sub(u'黄', u'黃', candidate['name'])
-        candidate['name'] = re.sub(u'眞', u'真', candidate['name'])
+        candidate['name'] = common.normalize_person_name(candidate['name'])
         candidate['name'] = re.sub(u'周鍾.*', u'周鍾㴴', candidate['name'])
-        for case in [(u'臺中市', 15, u'温建華', u'溫建華'), (u'新竹市', 4, u'李姸慧', u'李妍慧'), (u'嘉義縣', 1, u'王啓澧', u'王啟澧'), (u'彰化縣', 1, u'黄育寬', u'黃育寬'), (u'彰化縣', 2, u'陳秀寳', u'陳秀寶'), (u'苗栗縣', 5, u'鍾福貴', u'鍾褔貴'), (u'臺南市', 9, u'林慶鎭', u'林慶鎮'), ]:
-            if (candidate['county'], candidate['constituency'], candidate['name']) == case[:3]:
-                candidate['name'] = case[3]
+        candidate['party'] = common.normalize_party(candidate['party'])
         candidate['election_year'] = election_year
-        candidate['uid'], candidate['last_election_year'] = latest_term(candidate)
-        insertCandidates(candidate)
+        candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
+        candidate['candidate_term_uid'] = '%s-%s' % (candidate['candidate_uid'], election_year)
+        candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate)
+        candidate['councilor_terms'] = councilor_terms(candidate) if created else None
+        upsertCandidates(candidate)
 conn.commit()

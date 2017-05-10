@@ -5,6 +5,7 @@ import sys
 sys.path.append('../')
 import psycopg2
 import json
+
 import db_settings
 import common
 
@@ -36,6 +37,7 @@ conn = db_settings.con()
 c = conn.cursor()
 
 for council in ['../../data/ylcc/bills.json', '../../data/cycc/bills.json', '../../data/ilcc/bills.json', '../../data/hcc/bills.json', '../../data/chcc/bills.json', '../../data/cyscc/bills.json', '../../data/ntcc/bills.json', '../../data/hlcc/bills.json', '../../data/tncc/bills.json', '../../data/ntp/bills.json', '../../data/kcc/bills.json', '../../data/tccc/bills.json', '../../data/tcc/bills.json']:
+    break
     print council
     dict_list = json.load(open(council))
     for bill in dict_list:
@@ -45,9 +47,8 @@ for council in ['../../data/ylcc/bills.json', '../../data/cycc/bills.json', '../
         Bill(bill)
         priproposer = True
         for name in bill['proposed_by']:
-            name = re.sub(u'\(.*\)', '', name)
-            name = re.sub(u'[˙・•．]', u'‧', name)
-            name = name.strip()
+#           name = re.sub(u'\(.*\)', '', name)
+            name = common.normalize_person_name(name)
             if name == u'笛布斯‧顗賚':
                 name = u'笛布斯顗賚'
             name = re.sub(u'副?議長', '', name)
@@ -100,9 +101,9 @@ def personal_vector(parties, councilor_id):
             diversity.update({party: sum([x[0][party.decode('utf8')] for x in r]) / float(len(r))})
     c.execute('''
         UPDATE councilors_councilorsdetail
-        SET param = %s
+        SET param = (COALESCE(param, '{}'::jsonb) || %s::jsonb)
         WHERE id = %s
-    ''', ({'diversity': diversity}, councilor_id))
+    ''', (json.dumps({'bills_party_diversity': diversity}), councilor_id))
 
 def councilors(election_year, county):
     c.execute('''
@@ -122,9 +123,31 @@ def distinct_party(election_year, county):
     return c.fetchall()
 
 for election_year, county in [('2009', u'雲林縣'), ('2009', u'新竹縣'), ('2009', u'彰化縣'), ('2009', u'南投縣'), ('2009', u'嘉義縣'), ('2009', u'嘉義市'), ('2009', u'宜蘭縣'), ('2009', u'花蓮縣'), ('2010', u'高雄市'), ('2010', u'臺北市'), ('2010', u'臺中市'), ('2010', u'高雄市'), ('2010', u'新北市')]:
+    break
     parties = [x[0] for x in distinct_party(election_year, county)]
     bill_party_diversity(parties)
     for councilor_id in councilors(election_year, county):
         personal_vector(parties, councilor_id)
-    conn.commit()
-print 'bills diversity done'
+conn.commit()
+print 'Update bills_party_diversity of People done'
+
+c.execute('''
+    SELECT
+        councilor_id,
+        COUNT(*) total,
+        SUM(CASE WHEN priproposer = true AND petition = false THEN 1 ELSE 0 END) priproposer,
+        SUM(CASE WHEN petition = false THEN 1 ELSE 0 END) sponsor,
+        SUM(CASE WHEN petition = true THEN 1 ELSE 0 END) cosponsor
+    FROM bills_councilors_bills
+    GROUP BY councilor_id
+''')
+response = c.fetchall()
+for r in response:
+    param = dict(zip(['total', 'priproposer', 'sponsor', 'cosponsor'], r[1:]))
+    c.execute('''
+        UPDATE councilors_councilorsdetail
+        SET param = (COALESCE(param, '{}'::jsonb) || %s::jsonb)
+        WHERE id = %s
+    ''', (json.dumps({'bills_role_statistics': param}), r[0]))
+conn.commit()
+print 'Update bills_role_statistics of People done'

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+import uuid
+
 from django.db import models
-from django.contrib.postgres.fields import JSONField
+from django.contrib.postgres.fields import ArrayField, JSONField
 
 from councilors.models import CouncilorsDetail, Attendance
 from votes.models import Councilors_Votes
@@ -8,15 +10,28 @@ from bills.models import Bills, Councilors_Bills
 
 
 class Candidates(models.Model):
-    councilor = models.ForeignKey('councilors.Councilors', to_field='uid', blank=True, null=True, related_name='elected_candidate')
-    last_election_year = models.CharField(db_index=True, max_length=100, blank=True, null=True)
+    uid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=100)
+    birth = models.DateField(blank=True, null=True)
+    former_names = ArrayField(
+        models.CharField(max_length=100),
+        null=True,
+        default=None,
+    )
+    identifiers = JSONField(null=True)
+    def __unicode__(self):
+        return self.name
+
+class Terms(models.Model):
+    uid = models.CharField(max_length=70, unique=True)
+    candidate = models.ForeignKey(Candidates, to_field='uid')
+    elected_councilor = models.OneToOneField('councilors.Councilorsdetail', blank=True, null=True, related_name='elected_candidate')
+    councilor_terms = JSONField(null=True)
     election_year = models.CharField(db_index=True, max_length=100)
     number = models.IntegerField(db_index=True, blank=True, null=True)
     name = models.CharField(max_length=100)
-    birth = models.DateField(blank=True, null=True)
     gender = models.CharField(max_length=100, blank=True, null=True)
     party = models.CharField(db_index=True, max_length=100, blank=True, null=True)
-    title = models.CharField(max_length=100, blank=True, null=True)
     constituency = models.IntegerField(db_index=True)
     county = models.CharField(db_index=True, max_length=100)
     district = models.CharField(db_index=True, max_length=100, blank=True, null=True)
@@ -31,61 +46,9 @@ class Candidates(models.Model):
     links = JSONField(null=True)
     platform = models.TextField(blank=True, null=True)
     politicalcontributions = JSONField(null=True)
+    class Meta:
+        unique_together = ("candidate", "election_year")
+        index_together = ['election_year', 'county', 'constituency']
+
     def __unicode__(self):
         return self.name
-
-    def _not_vote_percentage(self):
-        try:
-            councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
-            if councilor.title == u'議長':
-                return u'議長不參加表決'
-        except Exception, e:
-            return ''
-        all_vote = Councilors_Votes.objects.filter(councilor_id=councilor.id)
-        if all_vote:
-            not_vote = all_vote.filter(decision__isnull=True).count()
-            should_vote = all_vote.count()
-            return u'%d / %d（%.1f %%）' % (not_vote, should_vote, not_vote * 100.0 / should_vote)
-        return ''
-    pnotvote = property(_not_vote_percentage)
-
-    def _pribiller_count(self):
-        try:
-            councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
-        except Exception, e:
-            return ''
-        all_bill = Councilors_Bills.objects.filter(councilor_id=councilor.id, priproposer=True)
-        return all_bill.count() if all_bill else 0
-    npribill = property(_pribiller_count)
-
-    def _biller_count(self):
-        try:
-            councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
-        except Exception, e:
-            return ''
-        if not Bills.objects.filter(county=councilor.county, election_year=councilor.election_year):
-            return ''
-        all_bill = Councilors_Bills.objects.filter(councilor_id=councilor.id, petition=False)
-        return all_bill.count() if all_bill else 0
-    nbill = property(_biller_count)
-
-    def _term_range(self):
-        try:
-            councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
-        except Exception, e:
-            return ''
-        return '%s ~ %s' % (councilor.term_start.year, councilor.term_end.get('date').split('-')[0],)
-    term_range = property(_term_range)
-
-    def _cs_absent_count(self):
-        try:
-            councilor = CouncilorsDetail.objects.get(councilor_id=self.councilor_id, election_year=self.last_election_year)
-            councilor_records = Attendance.objects.filter(councilor_id=councilor.id, category='CS')
-            if not councilor_records:
-                return ''
-            absent = councilor_records.filter(status='absent').count()
-            should_present = councilor_records.count()
-            return u'%d / %d（%.1f %%）' % (absent, should_present, absent * 100.0 / should_present)
-        except Exception, e:
-            return ''
-    cs_absent = property(_cs_absent_count)

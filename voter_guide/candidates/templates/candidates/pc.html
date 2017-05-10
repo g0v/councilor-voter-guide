@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load extras %}
+
+{% block title %}
+    {% if candidate %}
+        <title>議員投票指南:{{candidate.name}}選議員的政治獻金</title>
+        <meta property="og:title" content="議員投票指南:{{candidate.name}}選議員的政治獻金"/>
+        <meta itemprop="name" content="議員投票指南:{{candidate.name}}選議員的政治獻金">
+    {% endif %}
+{% endblock title %}
+
+{% block right %}
+    <div align="center">
+        <div class="text-center">
+            <h2>{{candidate.name}} - 選議員的政治獻金</h2>
+        </div>
+        {% for term in candidate.politicalcontributions %}
+            <div class="span1" style="margin-left: 0px;">
+                <h4>{{term.election_year}}年</h4>
+            </div>
+            <div class="span11">
+                <div class="hero-unit">
+                    <p class="lead">收入：共<span class="price text-right">{{term.pc.in_total}}</span>元</p>
+                    <div id="d3_in" style="padding-top: 60px; margin-top: -60px;" align="center"></div>
+                </div>
+                    <br>
+                <div class="hero-unit">
+                    <p class="lead">支出：共<span class="price text-right">{{term.pc.out_total}}</span>元</p>
+                    <div id="d3_out" style="padding-top: 60px; margin-top: -60px;" align="center"></div>
+                </div>
+            </div>
+        {% empty %}
+        {% endfor %}
+    </div>
+{% endblock right %}
+
+{% block script %}
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/d3.min.js"></script>
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
+    {% for term in candidate.politicalcontributions %}
+        {% include "candidates/d3/pc_in_pie.html" with data=term.pc.in %}
+        {% include "candidates/d3/pc_out_pie.html" with data=term.pc.out %}
+    {% endfor %}
+    <script>
+        $(document).ready( function() {
+            $('.price').each(function(index,ele){
+                var number = $(ele).text()
+                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 2});
+                $(ele).replaceWith(zh_number)
+            });
+            relax_in();
+            relax_out();
+        });
+    </script>
+    {{ block.super }}
+{% endblock script %}

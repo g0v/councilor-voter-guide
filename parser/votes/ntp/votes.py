@@ -7,8 +7,10 @@ import codecs
 import unicodedata
 import json
 import psycopg2
+
 import db_settings
 import common
+import vote_common
 
 
 def in_office_ids(date, exclude):
@@ -48,6 +50,7 @@ Present_Token = re.compile(u'''
 
 meetings = json.load(open('../../../data/ntp/meeting_minutes-%s.json' % election_year))
 for meeting in meetings:
+    break
     total_text = unicodedata.normalize('NFC', codecs.open('../../../data/ntp/meeting_minutes/%s_%s.txt' % (meeting['sitting'], meeting['meeting']), "r", "utf-8").read())
     total_text = re.sub(u'．', u'‧', total_text)
     total_text = re.sub(u'　', ' ', total_text)
@@ -81,3 +84,7 @@ for meeting in meetings:
     # <--
 conn.commit()
 print 'votes, voter done!'
+
+vote_common.person_attendance_param(c, county)
+conn.commit()
+print 'Succeed'

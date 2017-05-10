@@ -59,49 +59,14 @@ def normalize_councilor(councilor):
     councilor['name'] = re.sub(u'(副?議長|議員)', '', councilor['name'])
     councilor['gender'] = re.sub(u'性', '', councilor.get('gender', ''))
     if councilor.get('party'):
-        councilor['party'] = councilor['party'].strip()
-        councilor['party'] = re.sub(u'籍$', '', councilor['party'])
-        councilor['party'] = re.sub(u'無政?黨?$', u'無黨籍', councilor['party'])
-        councilor['party'] = re.sub(u'台灣', u'臺灣', councilor['party'])
-        councilor['party'] = re.sub(u'台聯黨', u'臺灣團結聯盟', councilor['party'])
-        councilor['party'] = re.sub(u'^國民黨$', u'中國國民黨', councilor['party'])
-        councilor['party'] = re.sub(u'^民進黨$', u'民主進步黨', councilor['party'])
+        councilor['party'] = common.normalize_party(councilor['party'])
     councilor['constituency'] = get_constituency(councilor)
     councilor['constituency'] = normalize_constituency(councilor['constituency'])
     return councilor
 
-def get_or_create_uid(councilor):
-    '''
-        return councilor_uid, created
-    '''
-    logging.info(councilor)
-    councilor['councilor_ids'] = tuple(common.GetCouncilorId(c, councilor['name']))
-    if not councilor['councilor_ids']:
-        return (uuid.uuid4().hex, False)
-    c.execute('''
-        SELECT councilor_id
-        FROM councilors_councilorsdetail
-        WHERE councilor_id in %(councilor_ids)s AND county = %(county)s
-        ORDER BY
-            CASE
-                WHEN election_year = %(election_year)s AND constituency = %(constituency)s AND name = %(name)s THEN 1
-                WHEN election_year = %(election_year)s AND constituency = %(constituency)s THEN 2
-                WHEN constituency = %(constituency)s AND name = %(name)s THEN 3
-                WHEN constituency = %(constituency)s THEN 4
-                WHEN name = %(name)s THEN 5
-            END,
-            election_year DESC
-        LIMIT 1
-    ''', councilor)
-    r = c.fetchone()
-    return (r[0], True) if r else (uuid.uuid4().hex, False)
-
 def Councilors(councilor):
     councilor['former_names'] = councilor.get('former_names', [])
-    variants = set()
-    for variant in [(u'勳', u'勲'), (u'溫', u'温'), (u'黃', u'黄'), (u'寶', u'寳'), (u'真', u'眞'), (u'福', u'褔'), (u'鎮', u'鎭'), (u'妍', u'姸'), (u'市', u'巿'), (u'衛', u'衞'), (u'館', u'舘'), (u'峰', u'峯'), (u'群', u'羣'), (u'啟', u'啓'), (u'鳳', u'鳯'), (u'冗', u'宂'), (u'穀', u'榖'), (u'曾', u'曽'), (u'賴', u'頼'), (u'蒓', u'莼'), ]:
-        variants.add(re.sub(variant[0], variant[1], councilor['name']))
-        variants.add(re.sub(variant[1], variant[0], councilor['name']))
+    variants = common.make_variants_set(councilor['name'])
     councilor['identifiers'] = list((variants | set(councilor['former_names']) | {councilor['name'], re.sub(u'[\w‧]', '', councilor['name']), re.sub(u'\W', '', councilor['name']).lower(), }) - {''})
     councilor['former_names'] = '\n'.join(councilor['former_names'])
     complement = {"birth": None}
@@ -164,7 +129,7 @@ for council in ['../../data/phcouncil/councilors.json', '../../data/kmcc/council
     dict_list = json.load(open(council))
     for councilor in dict_list:
         councilor = normalize_councilor(councilor)
-        councilor['uid'], created = get_or_create_uid(councilor)
+        councilor['uid'], created = common.get_or_create_councilor_uid(c, councilor)
         Councilors(councilor)
         insertCouncilorsDetail(councilor)
         if councilor['in_office']:
@@ -192,7 +157,7 @@ for row in c.fetchall():
         insertCouncilorsDetail(person)
         continue
     else: # 出現過，但該屆還沒有資料的需 insert
-        person['uid'], created = get_or_create_uid(person)
+        person['uid'], created = common.get_or_create_councilor_uid(c, person)
         if not created:
             logging.error(u'exist in councilor but not exist in councilordetail: %s, %s' % (person['county'], person['name'], person['']))
             continue
@@ -267,7 +232,7 @@ for wks in worksheets:
                 'in_office': True,
                 'term_start': row['date']
             }
-            replacement['uid'], created = get_or_create_uid(replacement)
+            replacement['uid'], created = common.get_or_create_councilor_uid(c, replacement)
             if not created:
                 Councilors(replacement)
             c.execute('''
@@ -278,7 +243,7 @@ for wks in worksheets:
                 SET gender = %(gender)s, party = %(party)s, in_office = %(in_office)s, term_start = %(term_start)s
             ''', replacement)
         row['in_office'] = False
-        row['uid'], created = get_or_create_uid(row)
+        row['uid'], created = common.get_or_create_councilor_uid(c, row)
         if not created:
             Councilors(row)
         row['term_end'] = {k: row.pop(k) for k in ['reason', 'judicial_links', 'replacement', 'date', 'ref']}

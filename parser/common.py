@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
+import uuid
 import codecs
 import psycopg2
 import json
@@ -7,11 +8,80 @@ from datetime import datetime
 import logging
 
 
+def get_or_create_councilor_uid(c, councilor):
+    '''
+        return councilor_uid, created
+    '''
+    logging.info(councilor)
+    councilor['councilor_ids'] = tuple(GetCouncilorId(c, councilor['name']))
+    if not councilor['councilor_ids']:
+        return (uuid.uuid4().hex, False)
+    c.execute('''
+        SELECT councilor_id
+        FROM councilors_councilorsdetail
+        WHERE councilor_id in %(councilor_ids)s AND county = %(county)s
+        ORDER BY
+            CASE
+                WHEN election_year = %(election_year)s AND constituency = %(constituency)s AND name = %(name)s THEN 1
+                WHEN election_year = %(election_year)s AND constituency = %(constituency)s THEN 2
+                WHEN constituency = %(constituency)s AND name = %(name)s THEN 3
+                WHEN constituency = %(constituency)s THEN 4
+                WHEN name = %(name)s THEN 5
+            END,
+            election_year DESC
+        LIMIT 1
+    ''', councilor)
+    r = c.fetchone()
+    return (r[0], True) if r else (uuid.uuid4().hex, False)
+
+def get_or_create_candidate_uid(c, candidate):
+    '''
+        return candidate_uid, created
+    '''
+    logging.info(candidate)
+    candidate['candidate_ids'] = tuple(GetPossibleCandidateIds(c, candidate['name']))
+    if not candidate['candidate_ids']:
+        return (uuid.uuid4().hex, False)
+    c.execute('''
+        SELECT candidate_id
+        FROM candidates_terms
+        WHERE candidate_id in %(candidate_ids)s AND county = %(county)s
+        ORDER BY
+            CASE
+                WHEN election_year = %(election_year)s AND constituency = %(constituency)s AND name = %(name)s THEN 1
+                WHEN election_year = %(election_year)s AND constituency = %(constituency)s THEN 2
+                WHEN constituency = %(constituency)s AND name = %(name)s THEN 3
+                WHEN constituency = %(constituency)s THEN 4
+                WHEN name = %(name)s THEN 5
+            END,
+            election_year DESC
+        LIMIT 1
+    ''', candidate)
+    r = c.fetchone()
+    return (r[0], True) if r else (uuid.uuid4().hex, False)
+
+def make_variants_set(string):
+    variants = set()
+    for variant in [(u'勳', u'勲'), (u'溫', u'温'), (u'黃', u'黄'), (u'寶', u'寳'), (u'真', u'眞'), (u'福', u'褔'), (u'鎮', u'鎭'), (u'妍', u'姸'), (u'市', u'巿'), (u'衛', u'衞'), (u'館', u'舘'), (u'峰', u'峯'), (u'群', u'羣'), (u'啟', u'啓'), (u'鳳', u'鳯'), (u'冗', u'宂'), (u'穀', u'榖'), (u'曾', u'曽'), (u'賴', u'頼'), (u'蒓', u'莼'), ]:
+        variants.add(re.sub(variant[0], variant[1], string))
+        variants.add(re.sub(variant[1], variant[0], string))
+    return variants
+
 def normalize_person_name(name):
-    name = re.sub(u'[。˙・･•．.]', u'‧', name)
+    name = re.sub(u'[。˙・･•．.-]', u'‧', name)
     name = re.sub(u'[　\s()（）’]', '',name)
     name = name.title()
     return name
+
+def normalize_party(party):
+    party = party.strip()
+    party = re.sub(u'籍$', '', party)
+    party = re.sub(u'無政?黨?$', u'無黨籍', party)
+    party = re.sub(u'台灣', u'臺灣', party)
+    party = re.sub(u'台聯黨', u'臺灣團結聯盟', party)
+    party = re.sub(u'^國民黨$', u'中國國民黨', party)
+    party = re.sub(u'^民進黨$', u'民主進步黨', party)
+    return party
 
 def county_abbr2string(abbr):
     return {
@@ -109,6 +179,16 @@ def getIdList(c, name_list, sitting_dict):
         print '"%s"' % name
     #raw_input()
     return []
+
+def GetPossibleCandidateIds(c, name):
+    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’]', '', name), re.sub(u'\W', '', name).lower(), } - {''}
+    if identifiers:
+        c.execute('''
+            SELECT uid
+            FROM candidates_candidates
+            WHERE identifiers ?| array[%s]
+        ''' % ','.join(["'%s'" % x for x in identifiers]))
+        return [x[0] for x in c.fetchall()]
 
 def GetCouncilorId(c, name):
     identifiers = {name, re.sub(u'[\w。˙・･•．.‧’]', '', name), re.sub(u'\W', '', name).lower(), } - {''}
