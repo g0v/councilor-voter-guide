@@ -144,7 +144,7 @@ conn.commit()
 print 'votes, voter done!'
 
 print 'update meeting_minutes download links'
-meetings = json.load(open('../../../data/tcc/meeting_minutes-%s.json' election_year))
+meetings = json.load(open('../../../data/tcc/meeting_minutes-%s.json' % election_year))
 for meeting in meetings:
     meeting['links'] = {'url': meeting['download_url'], 'note': u'議會官網會議紀錄'}
     meeting['name'] = re.sub(u'第0+', u'第', u'%s議會%s%s' % (meeting['county'], meeting['sitting'], meeting['meeting']))
