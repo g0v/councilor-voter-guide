@@ -7,7 +7,10 @@ import glob
 import json
 import db_settings
 import common
+import logging
 
+
+logging.basicConfig(filename='pc.log', level=logging.ERROR)
 
 def PoliticalContributions(data):
     '''
@@ -43,7 +46,6 @@ for f in glob.glob('../../data/political_contribution/*.json'):
         pc.update({'in': income, 'out': expenses})
         pc = [{'election_year': candidate['election_year'], 'pc': pc}]
         candidate['politicalcontributions'] = json.dumps(pc)
-
         candidate['name'] = common.normalize_person_name(candidate['name'])
 #       candidate['name'] = re.sub(u'周鍾.*', u'周鍾㴴', candidate['name'])
         candidate['constituency'] = None
@@ -51,9 +53,5 @@ for f in glob.glob('../../data/political_contribution/*.json'):
         if created:
             PoliticalContributions(candidate)
         else:
-            print(u'not exist candidate: %s' % candidate['name'])
-
-#       candidate['councilor_id'] = common.getDetailId(c, candidate['name'], candidate['election_year'], candidate['county'])
-#       if candidate['councilor_id']:
-#           PoliticalContributions(candidate)
+            logging.error(u'not exist candidate: %s, %s' % (candidate['name'], candidate['election_year']))
 conn.commit()
