@@ -80,6 +80,11 @@
                             <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >工程建議款</a></li>
                         {% endif %}
                         </ul>
+                        <ul class="nav pull-right">
+                        {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'account_logout' %}"><i class="fa fa-sign-out"> 登出</i></a></li>
+                        {% endif %}
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -87,7 +92,6 @@
 
         <div class="container-fluid">
             <div class="row-fluid">
-                <div class="fb-like pull-right" data-layout="box_count" data-show-faces="false" data-send="false" href="https://www.facebook.com/TW.Voter.Guide"></div>
                 {% block right %}
                 {% endblock %}
             </div>
@@ -102,11 +106,8 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
         <script src="{% static "js/bootstrap.min.js" %}" type="text/javascript"></script>
         <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'councils'; // required: replace example with your forum shortname
+            var disqus_shortname = 'councils';
             var disqus_url = '{{current_url}}';
-
-            /* * * DON'T EDIT BELOW THIS LINE * * */
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
                 dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

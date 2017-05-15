@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load socialaccount %}
+
+{% block title %}
+    <title>議員投票指南:擬參選人註冊登記</title>
+    <meta property="og:title" content="議員投票指南:擬參選人註冊登記"/>
+    <meta itemprop="name" content="議員投票指南:擬參選人註冊登記">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <style>
+        .CodeMirror, .CodeMirror-scroll {
+            display: none;
+        }
+    </style>
+{% endblock title %}
+
+{% block right %}
+    <div class="row-fluid">
+    <div align="center">
+        <div class="text-center">
+            <h2>擬參選人註冊登記</h2>
+        </div>
+    </div>
+    <div class="span12">
+        <ul>
+            <li>{{intent.name}}</li>
+            <li>政見：</li>
+            <textarea style="display: none">{{intent.platform}}</textarea>
+            <div id="platform"></div>
+        </ul>
+    </div>
+    </div>
+{% endblock right %}
+
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script>
+        $(document).ready( function() {
+            var simplemde = new SimpleMDE({ element: $("textarea")[0], toolbar: false , status: false});
+            var renderedHTML = simplemde.options.previewRender(simplemde.value());
+            $('#platform').html(renderedHTML)
+        });
+    </script>
+{% endblock script %}

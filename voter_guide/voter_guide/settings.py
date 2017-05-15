@@ -105,6 +105,10 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
     'haystack',
     'councilors',
     'candidates',
@@ -188,6 +192,29 @@ HAYSTACK_CONNECTIONS = {
         'URL': os.getenv('ES_URL', 'http://127.0.0.1:9200/'),
         'INDEX_NAME': 'councils',
     },
+}
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'SCOPE': ['email', ],
+        'METHOD': 'oauth2',
+        'LOCALE_FUNC': lambda request: 'zh_TW',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.9',
+    }
 }
 
 try:

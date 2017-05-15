@@ -2,6 +2,7 @@
 import uuid
 
 from django.db import models
+from django.conf import settings
 from django.contrib.postgres.fields import ArrayField, JSONField
 
 from councilors.models import CouncilorsDetail, Attendance
@@ -48,6 +49,33 @@ class Terms(models.Model):
     politicalcontributions = JSONField(null=True)
     class Meta:
         unique_together = ("candidate", "election_year")
+        index_together = ['election_year', 'county', 'constituency']
+
+    def __unicode__(self):
+        return self.name
+
+class Intent(models.Model):
+    uid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    candidate = models.ForeignKey(Candidates, to_field='uid', null=True)
+    councilor_terms = JSONField(null=True)
+    election_year = models.CharField(db_index=True, max_length=4, default='2018')
+    likes = models.IntegerField(db_index=True, default=0)
+    name = models.CharField(max_length=100)
+    gender = models.CharField(max_length=100, blank=True, null=True)
+    party = models.CharField(db_index=True, max_length=100, blank=True, null=True)
+    constituency = models.IntegerField(db_index=True)
+    county = models.CharField(db_index=True, max_length=100)
+    district = models.CharField(db_index=True, max_length=100, blank=True, null=True)
+    contact_details = JSONField(null=True)
+    education = models.TextField(blank=True, null=True)
+    experience = models.TextField(blank=True, null=True)
+    remark = models.TextField(blank=True, null=True)
+    links = JSONField(null=True)
+    platform = models.TextField(blank=True, null=True)
+    politicalcontributions = JSONField(null=True)
+    class Meta:
+        unique_together = ("user", "election_year")
         index_together = ['election_year', 'county', 'constituency']
 
     def __unicode__(self):
