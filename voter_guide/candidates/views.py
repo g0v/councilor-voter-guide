@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+import json
+
 from django.shortcuts import render, get_object_or_404, redirect
+from django.db import connections
 from django.db.models import Count, Sum, Q
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 from .models import Candidates, Terms, Intent
 from .forms import IntentForm
@@ -25,10 +29,11 @@ def intent_home(request):
     return render(request, 'candidates/intent_home.html', )
 
 def intent_upsert(request):
+    election_year = '2018'
     if not request.user.is_authenticated:
         return redirect(reverse('candidates:intent_home'))
     try:
-        instance = Intent.objects.get(user=request.user, election_year='2018')
+        instance = Intent.objects.get(user=request.user, election_year=election_year)
     except:
         instance = None
     if request.method == 'GET':
@@ -41,6 +46,14 @@ def intent_upsert(request):
             intent.user = request.user
             intent.status = 'intent_apply'
             intent.save()
+            c = connections['default'].cursor()
+            history = request.POST.copy()
+            history['midify_at'] = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+            c.execute('''
+                UPDATE candidates_intent
+                SET history = (COALESCE(history, '[]'::jsonb) || %s::jsonb)
+                WHERE user_id = %s AND election_year = %s
+            ''', [json.dumps([history]), request.user.id, election_year])
     return render(request, 'candidates/intent_upsert.html', {'form': form})
 
 def intent_detail(request, intent_id):
