@@ -25,17 +25,21 @@ def intent_home(request):
     return render(request, 'candidates/intent_home.html', )
 
 def intent_upsert(request):
-    instances = Intent.objects.filter(user=request.user, election_year=2018)
-    instance = instances[0] if instances else None
     if not request.user.is_authenticated:
         return redirect(reverse('candidates:intent_home'))
+    try:
+        instance = Intent.objects.get(user=request.user, election_year='2018')
+    except:
+        instance = None
     if request.method == 'GET':
         form = IntentForm(instance=instance)
+        form.fields['name'].initial = request.user.last_name + request.user.first_name
     if request.method == 'POST':
         form = IntentForm(request.POST, instance=instance)
         if form.is_valid():
             intent = form.save(commit=False)
             intent.user = request.user
+            intent.status = 'intent_apply'
             intent.save()
     return render(request, 'candidates/intent_upsert.html', {'form': form})
 

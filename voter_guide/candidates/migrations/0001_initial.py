@@ -38,7 +38,6 @@ class Migration(migrations.Migration):
                 ('election_year', models.CharField(db_index=True, max_length=100)),
                 ('number', models.IntegerField(blank=True, db_index=True, null=True)),
                 ('name', models.CharField(max_length=100)),
-                ('birth', models.DateField(blank=True, null=True)),
                 ('gender', models.CharField(blank=True, max_length=100, null=True)),
                 ('party', models.CharField(blank=True, db_index=True, max_length=100, null=True)),
                 ('constituency', models.IntegerField(db_index=True)),

@@ -1,0 +1,40 @@
+<script type="text/javascript">
+var src = [];
+var bounded = typeof {{ form.constituency.value }} != 'undefined' ? true : false;
+(function (app) {
+  window.app = new function () {
+      var _this = this;
+      $.ajax({
+        url: '/static/json/county_district.json',
+        async: false
+      })
+      .done(function (data) {
+        src = data;
+      });
+      this.drawOptions = function (key, srcObj) {
+        var ctrl = $('select[name='+key+']');
+        ctrl[0].options.length = 0; // clean option first
+        var filtered = [];
+        jQuery.each(srcObj, function (index, value) {
+          if (filtered.indexOf(value[key]) == -1 && $('select[name=county]').val() == value['county'])
+            filtered.push(value);
+        });
+        if (filtered.length) {
+          jQuery.each(filtered, function (index, value) {
+            ctrl.append($('<option value="{val}"{attr}>{label}</option>'.replace('{val}', String(value['constituency'])).replace('{label}', '（第' + ("00" + value['constituency']).substr(-2,2) + '選區）' + value['district']).replace('{attr}', (bounded && value['county'] == '{{ form.county.value }}' && value['constituency'] == {{ form.constituency.value }}) ? ' selected' : '')));
+          });
+        }
+      };
+      this.initSelect = function () {
+        var ary = ['constituency'];
+        jQuery.each(ary, function (index, value) {
+          _this.drawOptions(value, src);
+        });
+      };
+      $('select[name=county]').on('change', function() {
+        _this.initSelect();
+      });
+  };
+  window.app.initSelect();
+})(window.app || (window.app = {}));
+</script>

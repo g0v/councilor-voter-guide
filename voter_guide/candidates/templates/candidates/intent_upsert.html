@@ -5,7 +5,7 @@
     <title>議員投票指南:擬參選人註冊登記</title>
     <meta property="og:title" content="議員投票指南:擬參選人註冊登記"/>
     <meta itemprop="name" content="議員投票指南:擬參選人註冊登記">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <link href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" rel="stylesheet">
     <style>
         .CodeMirror, .CodeMirror-scroll {
             min-height: 100px;
@@ -18,27 +18,95 @@
 {% endblock title %}
 
 {% block right %}
-    <div class="row-fluid">
-    <div align="center">
-        <div class="text-center">
-            <h2>擬參選人註冊登記</h2>
-        </div>
+    <div class="page-header text-center">
+        <h2>如果我是候選人</h2>
     </div>
-    <div class="span12">
-        <div id="presentation"></div>
-        <form class="form" action="" method="post">{% csrf_token %}
-            {{form}}
-            <button class="btn btn-info" type="submit">Save</button>
-        </form>
-    </div>
-    </div>
+    <form class="form-horizontal" action="" method="post">{% csrf_token %}
+        <div class="row-fluid">
+            <div class="span1">
+                <button class="btn btn-info btn-large" style="margin-bottom: 40px;margin-top: 20px;" type="submit">儲存</button>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    {{ form.name.errors }}
+                    <label class="control-label" for="{{ form.name.id_for_label }}">{{ form.name.label }}：</label>
+                    <div class="controls">
+                    {{ form.name }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    {{ form.county.errors }}
+                    <label class="control-label" for="{{ form.county.id_for_label }}">{{ form.county.label }}：</label>
+                    <div class="controls">
+                    {{ form.county }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    {{ form.constituency.errors }}
+                    <label class="control-label" for="{{ form.constituency.id_for_label }}">{{ form.constituency.label }}：</label>
+                    <div class="controls">
+                    {{ form.constituency }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    {{ form.party.errors }}
+                    <label class="control-label" for="{{ form.party.id_for_label }}">{{ form.party.label }}：</label>
+                    <div class="controls">
+                    {{ form.party }}
+                    </div>
+                </div>
+            </div>
+            <div class="span7">
+                <div class="control-group">
+                    {{ form.motivation.errors }}
+                    <label class="control-label" for="{{ form.motivation.id_for_label }}">{{ form.motivation.label }}：</label>
+                    <div class="controls">
+                        {{ form.motivation }}
+                    </div>
+                    {% if form.fields.motivation.required %}<span style="color:red;">*</span>{% endif %}
+                </div>
+                <div class="control-group">
+                    {{ form.platform.errors }}
+                    <label class="control-label" for="{{ form.platform.id_for_label }}">{{ form.platform.label }}：</label>
+                    <div class="controls">
+                        {{ form.platform }}
+                    </div>
+                    {% if form.fields.platform.required %}<span style="color:red;">*</span>{% endif %}
+                </div>
+                <div class="control-group">
+                    {{ form.experience.errors }}
+                    <label class="control-label" for="{{ form.experience.id_for_label }}">{{ form.experience.label }}：</label>
+                    <div class="controls">
+                        {{ form.experience }}
+                    </div>
+                    {% if form.fields.experience.required %}<span style="color:red;">*</span>{% endif %}
+                </div>
+                <div class="control-group">
+                        {{ form.education.errors }}
+                    </div>
+                    <label class="control-label" for="{{ form.education.id_for_label }}">{{ form.education.label }}：</label>
+                    <div class="controls">
+                        {{ form.education }}
+                    </div>
+                    {% if form.fields.education.required %}<span style="color:red;">*</span>{% endif %}
+                </div>
+            </div>
+    </form>
 {% endblock right %}
 
 {% block script %}
+    {% include "candidates/county_district_js.html" %}
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script>
         $(document).ready( function() {
-            var simplemde = new SimpleMDE({ element: $("textarea")[0] });
+            $("textarea").each( function() {
+                new SimpleMDE({
+                    element: $(this)[0],
+                    status: false,
+                    spellChecker: false,
+                    {% include "candidates/simplemde_toolbar.html" %}
+                });
+            });
         });
     </script>
 {% endblock script %}
