@@ -17,6 +17,11 @@ import common
 
 def updateCandidates(candidate):
     c.execute('''
+        UPDATE candidates_candidates
+        SET birth = %(birth)s
+        WHERE uid = %(candidate_uid)s
+    ''', candidate)
+    c.execute('''
         UPDATE candidates_terms
         SET number = %(number)s, gender = %(gender)s, votes = %(votes)s, votes_percentage = %(votes_percentage)s, elected = %(elected)s
         WHERE candidate_id = %(candidate_uid)s AND election_year = %(election_year)s
