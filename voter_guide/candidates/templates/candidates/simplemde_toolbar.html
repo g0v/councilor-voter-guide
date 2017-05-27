@@ -1,5 +1,18 @@
 toolbar: [
     {
+        name: "preview",
+        action: SimpleMDE.togglePreview,
+        className: "fa fa-eye no-disable",
+        title: "看呈現",
+    },
+    {
+  		name: "guide",
+  		action: "https://simplemde.com/markdown-guide",
+  		className: "fa fa-question-circle",
+  		title: "協助",
+    },
+    "|",
+    {
         name: "heading",
         action: SimpleMDE.toggleHeadingSmaller,
         className: "fa fa-header",
@@ -68,18 +81,5 @@ toolbar: [
         action: SimpleMDE.toggleBlockquote,
         className: "fa fa-quote-left",
         title: "引用",
-    },
-    "|",
-    {
-        name: "preview",
-        action: SimpleMDE.togglePreview,
-        className: "fa fa-eye no-disable",
-        title: "看呈現",
-    },
-    {
-  		name: "guide",
-  		action: "http://nextstepwebs.github.io/simplemde-markdown-editor/markdown-guide",
-  		className: "fa fa-question-circle",
-  		title: "協助",
     },
 ],

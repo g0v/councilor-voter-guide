@@ -32,6 +32,7 @@
                     <label class="control-label" for="{{ form.name.id_for_label }}">{{ form.name.label }}：</label>
                     <div class="controls">
                     {{ form.name }}
+                    <a href="{{request.user.socialaccount_set.first.extra_data.link}}" target="_blank"><i class="fa fa-facebook-square"> Facebook 個人頁面</i></a>
                     </div>
                 </div>
                 <div class="control-group">
@@ -54,6 +55,9 @@
                     <div class="controls">
                     {{ form.party }}
                     </div>
+                </div>
+                <div style="display: none;">
+                {{ form.district }}
                 </div>
             </div>
             <div class="span7">
