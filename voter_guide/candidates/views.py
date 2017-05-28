@@ -49,13 +49,13 @@ def intent_upsert(request):
             c = connections['default'].cursor()
             history = request.POST.copy()
             history.pop('csrfmiddlewaretoken', None)
-            history['midify_at'] = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+            history['modify_at'] = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
             c.execute('''
                 UPDATE candidates_intent
                 SET history = (COALESCE(history, '[]'::jsonb) || %s::jsonb)
                 WHERE user_id = %s AND election_year = %s
             ''', [json.dumps([history]), request.user.id, election_year])
-        return redirect(reverse('candidates:intent_detail', kwargs={'intent_id': instance.uid or intent.uid}))
+        return redirect(reverse('candidates:intent_detail', kwargs={'intent_id': instance.uid if instance else intent.uid}))
     return render(request, 'candidates/intent_upsert.html', {'form': form})
 
 def intent_detail(request, intent_id):

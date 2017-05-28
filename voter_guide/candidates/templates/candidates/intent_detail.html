@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load socialaccount %}
+{% load humanize %}
+{% load extras %}
 
 {% block title %}
     <title>議員投票指南:擬參選人註冊登記</title>
@@ -37,7 +39,7 @@
             {% endif %}
     </div>
     <div class="row-fluid">
-        <div class="span1">
+        <div class="span2">
             <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-large">
             {% if request.user.is_authenticated and request.user.id == intent.user_id %}
                 編輯
@@ -45,6 +47,45 @@
                 我也來發表
             {% endif %}
             </a>
+            <hr>
+            <h5>修訂紀錄</h5>
+            {% for revision in intent.history %}
+                <!-- Button to trigger modal -->
+                <a href="#modal-idx-{{forloop.counter}}" role="button" data-toggle="modal">{{ revision.modify_at|str2datetime|timesince }} ago</a><br>
+                <!-- Modal -->
+                <div id="modal-idx-{{forloop.counter}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">✖</button>
+                    <h3 id="myModalLabel">版本 {{forloop.counter}}<small>（{{ revision.modify_at|str2datetime|timesince }} ago）</small></h3>
+                </div>
+                <div class="modal-body">
+                <div class="property-header">名字</div>
+                <div class="property-body">{{revision.name}}</div>
+                <div class="property-header">黨籍</div>
+                <div class="property-body">{{revision.party}}</div>
+                <div class="property-header">縣市</div>
+                <div class="property-body">{{revision.county}}</div>
+                <div class="property-header">選區</div>
+                <div class="property-body district">{{revision.constituency}}</div>
+
+                <div class="property-header">為什麼要選：</div>
+                <textarea style="display: none" id="motivation-modal">{{revision.motivation}}</textarea>
+                <div class="property-body hero-unit" id="motivation-modal_display"></div>
+                <div class="property-header">政見：</div>
+                <textarea style="display: none" id="platform-modal">{{revision.platform}}</textarea>
+                <div class="property-body hero-unit" id="platform-modal_display"></div>
+                <div class="property-header">經歷：</div>
+                <textarea style="display: none" id="experience-modal">{{revision.experience}}</textarea>
+                <div class="property-body hero-unit" id="experience-modal_display"></div>
+                <div class="property-header">學歷：</div>
+                <textarea style="display: none" id="education-modal">{{revision.education}}</textarea>
+                <div class="property-body hero-unit" id="education-modal_display"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">關閉</button>
+                </div>
+            </div>
+            {% endfor %}
         </div>
         <div class="span4">
             <div class="property-header">黨籍</div>
@@ -52,15 +93,15 @@
             <div class="property-header">縣市</div>
             <div class="property-body">{{intent.county}}</div>
             <div class="property-header">選區</div>
-            <div class="property-body" id='district'>{{intent.constituency}}</div>
+            <div class="property-body district">{{intent.constituency}}</div>
             <div class="property-header">網站</div>
-            <div class="property-body" id='district'>
+            <div class="property-body">
                 <a href="{{request.user.socialaccount_set.first.extra_data.link}}" target="_blank"><i class="fa fa-facebook-square"> Facebook 個人頁面</i></a>
             </div>
             <hr>
             <div class="fb-comments" data-href="{{current_url}}" data-width="300" data-numposts="5"></div>
         </div>
-        <div class="span7">
+        <div class="span6">
             <div class="property-header">為什麼要選：</div>
             <textarea style="display: none" id="motivation">{{intent.motivation}}</textarea>
             <div class="property-body hero-unit" id="motivation_display"></div>
@@ -96,7 +137,7 @@
             });
             jQuery.each(src, function (index, value) {
                 if ('{{intent.county}}' == value['county'] && '{{intent.constituency}}' == value['constituency'])
-                    $('#district').text('（第' + ("00" + value['constituency']).substr(-2,2) + '選區）' + value['district']);
+                    $('.district').text('（第' + ("00" + value['constituency']).substr(-2,2) + '選區）' + value['district']);
             });
         });
     </script>

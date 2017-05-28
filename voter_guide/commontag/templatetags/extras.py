@@ -1,15 +1,23 @@
 # -*- coding: utf-8 -*-
 import re
 import json
+
 from django.core.serializers.json import DjangoJSONEncoder
 from django import template
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
+from django.utils.dateparse import parse_datetime
+
 from councilors.models import CouncilorsDetail
 from bills.models import Bills
 
 
 register = template.Library()
+
+
+@register.filter(name='str2datetime')
+def str2datetime(value):
+    return parse_datetime(value)
 
 @register.filter(name='select_county_reverse_url')
 def select_county_reverse_url(value, arg):
