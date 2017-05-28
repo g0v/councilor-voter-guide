@@ -24,7 +24,8 @@
     <form class="form-horizontal" action="" method="post">{% csrf_token %}
         <div class="row-fluid">
             <div class="span1">
-                <button class="btn btn-info btn-large" style="margin-bottom: 40px;margin-top: 20px;" type="submit">儲存</button>
+                <button id="submit" class="btn btn-info btn-large" style="margin-bottom: 40px;margin-top: 20px;" type="submit" disabled>儲存</button>
+                <input id="checked" type="checkbox"> 我已閱讀<a href="{% url 'candidates:intent_home' %}" target="_blank">注意事項</a></input>
             </div>
             <div class="span4">
                 <div class="control-group">
@@ -32,6 +33,7 @@
                     <label class="control-label" for="{{ form.name.id_for_label }}">{{ form.name.label }}：</label>
                     <div class="controls">
                     {{ form.name }}
+                    <a rel="tooltip" class="pull-right" title="自動由您的 Facebook 帶入，姓名可自行修改"><i class="fa fa-question-circle"></i></a>
                     <a href="{{request.user.socialaccount_set.first.extra_data.link}}" target="_blank"><i class="fa fa-facebook-square"> Facebook 個人頁面</i></a>
                     </div>
                 </div>
@@ -67,7 +69,6 @@
                     <div class="controls">
                         {{ form.motivation }}
                     </div>
-                    {% if form.fields.motivation.required %}<span style="color:red;">*</span>{% endif %}
                 </div>
                 <div class="control-group">
                     {{ form.platform.errors }}
@@ -75,7 +76,6 @@
                     <div class="controls">
                         {{ form.platform }}
                     </div>
-                    {% if form.fields.platform.required %}<span style="color:red;">*</span>{% endif %}
                 </div>
                 <div class="control-group">
                     {{ form.experience.errors }}
@@ -83,18 +83,23 @@
                     <div class="controls">
                         {{ form.experience }}
                     </div>
-                    {% if form.fields.experience.required %}<span style="color:red;">*</span>{% endif %}
                 </div>
                 <div class="control-group">
                         {{ form.education.errors }}
-                    </div>
                     <label class="control-label" for="{{ form.education.id_for_label }}">{{ form.education.label }}：</label>
                     <div class="controls">
                         {{ form.education }}
                     </div>
-                    {% if form.fields.education.required %}<span style="color:red;">*</span>{% endif %}
+                </div>
+                <div class="control-group">
+                    {{ form.remark.errors }}
+                    <label class="control-label" for="{{ form.remark.id_for_label }}">{{ form.remark.label }}：</label>
+                    <div class="controls">
+                        {{ form.remark }}
+                    </div>
                 </div>
             </div>
+        </div>
     </form>
 {% endblock right %}
 
@@ -111,6 +116,13 @@
                     {% include "candidates/simplemde_toolbar.html" %}
                 });
             });
+            $('#checked').on('click', function() {
+                if ($(this).is(":checked"))
+                    $('#submit').prop('disabled', false);
+                else
+                    $('#submit').prop('disabled', true);
+            });
+            $("[rel='tooltip']").tooltip();
         });
     </script>
 {% endblock script %}

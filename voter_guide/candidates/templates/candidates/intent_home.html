@@ -8,15 +8,46 @@
 {% endblock title %}
 
 {% block right %}
-    <div align="center">
-        <div class="text-center">
-            <h2>擬參選人註冊登記</h2>
+    <div class="page-header text-center">
+        <h2>如果是候選人，你會怎麼做？</h2>
+    </div>
+    <div class="row-fluid">
+        <div class="span1">
+            <a href="{% provider_login_url "facebook" %}?next={% url 'candidates:intent_upsert' %}" class="btn btn-info btn-large"><i class="fa fa-sign-in fa-2x"> 登入發表</i></a>
         </div>
-        {% if request.user.is_authenticated %}
-            <a href="{% url 'account_logout' %}"><i class="fa fa-sign-out"> 登出</i></a>
-        {% else %}
-            <a href="{% provider_login_url "facebook" %}?next={{ request.path }}"><i class="fa fa-sign-in"> 登入</i></a>
-        {% endif %}
+        <div class="span6">
+            <div class="hero-unit">
+                <dl>
+                    <dt>為什麼？</dt>
+                    <dd>
+                        <p>受夠選前兩周才知道有誰可以投了嗎？</p>
+                        <p>平常這些候選人、民意代表到底都在哪？</p>
+                        <br>
+                        <p>2018 縣市議員選舉來點不一樣的吧！</p>
+                        <p>不用繳 20 萬選舉保證金，就可以告訴大家你心目中理想候選人的樣子</p>
+                        <p>現在就<a href="{% provider_login_url "facebook" %}?next={% url 'candidates:intent_upsert' %}"><i class="fa fa-sign-in">登入發表</i></a>，如果是候選人，你會怎麼做？</p>
+                        <br>
+                        <p>本站將於候選人登記後，贊助總獎金 20 萬給 2 位最受歡迎的候選人，<a href="https://hackmd.io/s/By25HSuWb" target="_blank">詳細辦法</a></p>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="span5">
+            <div class="hero-unit">
+                <dl>
+                    <dt>注意事項</dt>
+                    <dd>
+                        <ul>
+                            <li>請勿假冒他人姓名、身分，違者將自負法律責任</li>
+                            <li>可不寫真名，但未寫真名無法參加<a href="https://hackmd.io/s/By25HSuWb" target="_blank">選舉保證金獎助金活動</a></li>
+                            <li>中選會開放候選人登記後，如欲本站將您的資料與真實候選人做連結，將請您提供相關證明，辦法尚在擬訂中</li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <hr>
+        <div id="disqus_thread"></div>
     </div>
 {% endblock right %}
 

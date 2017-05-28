@@ -12,7 +12,7 @@ def parties():
 class IntentForm(forms.ModelForm):
     class Meta:
         model = Intent
-        fields = ['name', 'party', 'county', 'constituency', 'motivation', 'platform', 'experience', 'education']
+        fields = ['name', 'party', 'county', 'constituency', 'motivation', 'platform', 'experience', 'education', 'remark']
         widgets = {
             'county': forms.widgets.Select(choices=counties()),
             'constituency':  forms.widgets.Select(),

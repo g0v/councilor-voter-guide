@@ -24,8 +24,6 @@ def district(request, election_year, county, constituency):
     return render(request, 'candidates/district.html', {'election_year': election_year, 'county': county, 'district': candidates[0].district, 'candidates': candidates})
 
 def intent_home(request):
-    if request.user.is_authenticated:
-        return redirect(reverse('candidates:intent_upsert'))
     return render(request, 'candidates/intent_home.html', )
 
 def intent_upsert(request):
