@@ -90,6 +90,10 @@
             {% endfor %}
         </div>
         <div class="span4">
+            {% with user_id=intent.user.socialaccount_set.first.uid %}
+            <div class="text-center">
+                <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?width=200">
+            </div>
             <div class="property-header">黨籍</div>
             <div class="property-body">{{intent.party}}</div>
             <div class="property-header">縣市</div>
@@ -98,10 +102,11 @@
             <div class="property-body district">{{intent.constituency}}</div>
             <div class="property-header">網站</div>
             <div class="property-body">
-                <a href="{{request.user.socialaccount_set.first.extra_data.link}}" target="_blank"><i class="fa fa-facebook-square"> Facebook 個人頁面</i></a>
+                <a href="https://www.facebook.com/app_scoped_user_id/{{user_id}}/" target="_blank"><i class="fa fa-facebook-square"> Facebook 個人頁面</i></a>
             </div>
             <hr>
             <div class="fb-comments" data-href="{{current_url}}" data-width="300" data-numposts="5"></div>
+            {% endwith %}
         </div>
         <div class="span6">
             <div class="property-header">為什麼要選：</div>

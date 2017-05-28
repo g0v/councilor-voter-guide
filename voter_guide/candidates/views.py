@@ -57,7 +57,7 @@ def intent_upsert(request):
     return render(request, 'candidates/intent_upsert.html', {'form': form})
 
 def intent_detail(request, intent_id):
-    intent = get_object_or_404(Intent.objects, uid=intent_id)
+    intent = get_object_or_404(Intent.objects.select_related('user'), uid=intent_id)
     if request.user.is_authenticated:
         user_liked = Intent_Likes.objects.filter(intent_id=intent_id, user=request.user).exists()
         if request.method == 'POST':

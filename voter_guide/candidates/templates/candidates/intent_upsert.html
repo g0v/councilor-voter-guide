@@ -34,7 +34,7 @@
                     <div class="controls">
                     {{ form.name }}
                     <a rel="tooltip" class="pull-right" title="自動由您的 Facebook 帶入，姓名可自行修改"><i class="fa fa-question-circle"></i></a>
-                    <a href="{{request.user.socialaccount_set.first.extra_data.link}}" target="_blank"><i class="fa fa-facebook-square"> Facebook 個人頁面</i></a>
+                    <a href="https://www.facebook.com/app_scoped_user_id/{{intent.user.socialaccount_set.first.uid}}/" target="_blank"><i class="fa fa-facebook-square"> Facebook 個人頁面</i></a>
                     </div>
                 </div>
                 <div class="control-group">
