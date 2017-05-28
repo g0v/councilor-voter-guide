@@ -19,3 +19,6 @@ django-debug-toolbar==1.7
 # elastic search
 elasticsearch==1.8.0
 django-haystack==2.5.1
+
+# account
+django-allauth==0.32.0
