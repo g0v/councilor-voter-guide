@@ -40,54 +40,59 @@
     </div>
     <div class="row-fluid">
         <div class="span2">
-            <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-large">
             {% if request.user.is_authenticated and request.user.id == intent.user_id %}
-                編輯
+                <a href="{% url 'candidates:intent_upsert' %}" class="btn btn-info btn-large">編輯</a>
             {% else %}
-                我也來發表
+                <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-large">我也來發表</a>
             {% endif %}
-            </a>
             <hr>
             <h5>修訂紀錄</h5>
             {% for revision in intent.history %}
+                {% if forloop.counter0 == 5 %}
+                    <button type="button" class="btn" data-toggle="collapse" data-target="#ref_more_history"><font>..... <i class="fa fa-angle-down"></i></font></button>
+                    <div id="ref_more_history" class="collapse">
+                {% endif %}
                 <!-- Button to trigger modal -->
                 <a href="#modal-idx-{{forloop.counter}}" role="button" data-toggle="modal">{{ revision.modify_at|str2datetime|timesince }} ago</a><br>
                 <!-- Modal -->
                 <div id="modal-idx-{{forloop.counter}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">✖</button>
-                    <h3 id="myModalLabel">版本 {{forloop.counter}}<small>（{{ revision.modify_at|str2datetime|timesince }} ago）</small></h3>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">✖</button>
+                        <h3 id="myModalLabel">版本 {{forloop.counter}}<small>（{{ revision.modify_at|str2datetime|timesince }} ago）</small></h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="property-header">名字</div>
+                        <div class="property-body">{{revision.name}}</div>
+                        <div class="property-header">黨籍</div>
+                        <div class="property-body">{{revision.party}}</div>
+                        <div class="property-header">縣市</div>
+                        <div class="property-body">{{revision.county}}</div>
+                        <div class="property-header">選區</div>
+                        <div class="property-body district">{{revision.constituency}}</div>
+                        <div class="property-header">為什麼要選：</div>
+                        <textarea style="display: none">{{revision.motivation}}</textarea>
+                        <div class="property-body hero-unit"></div>
+                        <div class="property-header">政見：</div>
+                        <textarea style="display: none">{{revision.platform}}</textarea>
+                        <div class="property-body hero-unit"></div>
+                        <div class="property-header">經歷：</div>
+                        <textarea style="display: none">{{revision.experience}}</textarea>
+                        <div class="property-body hero-unit"></div>
+                        <div class="property-header">學歷：</div>
+                        <textarea style="display: none">{{revision.education}}</textarea>
+                        <div class="property-body hero-unit"></div>
+                        <div class="property-header">備註：</div>
+                        <textarea style="display: none">{{revision.remark}}</textarea>
+                        <div class="property-body hero-unit"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">關閉</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <div class="property-header">名字</div>
-                    <div class="property-body">{{revision.name}}</div>
-                    <div class="property-header">黨籍</div>
-                    <div class="property-body">{{revision.party}}</div>
-                    <div class="property-header">縣市</div>
-                    <div class="property-body">{{revision.county}}</div>
-                    <div class="property-header">選區</div>
-                    <div class="property-body district">{{revision.constituency}}</div>
-                    <div class="property-header">為什麼要選：</div>
-                    <textarea style="display: none" id="motivation-modal">{{revision.motivation}}</textarea>
-                    <div class="property-body hero-unit" id="motivation-modal_display"></div>
-                    <div class="property-header">政見：</div>
-                    <textarea style="display: none" id="platform-modal">{{revision.platform}}</textarea>
-                    <div class="property-body hero-unit" id="platform-modal_display"></div>
-                    <div class="property-header">經歷：</div>
-                    <textarea style="display: none" id="experience-modal">{{revision.experience}}</textarea>
-                    <div class="property-body hero-unit" id="experience-modal_display"></div>
-                    <div class="property-header">學歷：</div>
-                    <textarea style="display: none" id="education-modal">{{revision.education}}</textarea>
-                    <div class="property-body hero-unit" id="education-modal_display"></div>
-                    <div class="property-header">備註：</div>
-                    <textarea style="display: none" id="remark-modal">{{revision.remark}}</textarea>
-                    <div class="property-body hero-unit" id="remark-modal_display"></div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">關閉</button>
-                </div>
-            </div>
             {% endfor %}
+            {% if intent.history|length > 5 %}
+                </div>
+            {% endif %}
         </div>
         <div class="span4">
             {% with user_id=intent.user.socialaccount_set.first.uid %}
@@ -110,20 +115,20 @@
         </div>
         <div class="span6">
             <div class="property-header">為什麼要選：</div>
-            <textarea style="display: none" id="motivation">{{intent.motivation}}</textarea>
-            <div class="property-body hero-unit" id="motivation_display"></div>
+            <textarea style="display: none">{{intent.motivation}}</textarea>
+            <div class="property-body hero-unit"></div>
             <div class="property-header">政見：</div>
-            <textarea style="display: none" id="platform">{{intent.platform}}</textarea>
-            <div class="property-body hero-unit" id="platform_display"></div>
+            <textarea style="display: none">{{intent.platform}}</textarea>
+            <div class="property-body hero-unit"></div>
             <div class="property-header">經歷：</div>
-            <textarea style="display: none" id="experience">{{intent.experience}}</textarea>
-            <div class="property-body hero-unit" id="experience_display"></div>
+            <textarea style="display: none">{{intent.experience}}</textarea>
+            <div class="property-body hero-unit"></div>
             <div class="property-header">學歷：</div>
-            <textarea style="display: none" id="education">{{intent.education}}</textarea>
-            <div class="property-body hero-unit" id="education_display"></div>
+            <textarea style="display: none">{{intent.education}}</textarea>
+            <div class="property-body hero-unit"></div>
             <div class="property-header">備註：</div>
-            <textarea style="display: none" id="remark">{{intent.remark}}</textarea>
-            <div class="property-body hero-unit" id="remark_display"></div>
+            <textarea style="display: none">{{intent.remark}}</textarea>
+            <div class="property-body hero-unit"></div>
         </div>
     </div>
 {% endblock right %}
@@ -135,7 +140,9 @@
             $("textarea").each( function() {
                 var simplemde = new SimpleMDE({ element: $(this)[0], toolbar: false , status: false});
                 var renderedHTML = simplemde.options.previewRender(simplemde.value());
-                $('#' + $(this).prop('id') + '_display').html(renderedHTML);
+                var property_body = $(this).nextAll('div.property-body:first');
+                property_body.html(renderedHTML);
+                property_body.children('table').addClass('table table-bordered table-condensed');
             });
             var src = [];
             $.ajax({

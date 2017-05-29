@@ -50,7 +50,7 @@ def intent_upsert(request):
             history['modify_at'] = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
             c.execute('''
                 UPDATE candidates_intent
-                SET history = (COALESCE(history, '[]'::jsonb) || %s::jsonb)
+                SET history = (%s::jsonb || COALESCE(history, '[]'::jsonb))
                 WHERE user_id = %s AND election_year = %s
             ''', [json.dumps([history]), request.user.id, election_year])
         return redirect(reverse('candidates:intent_detail', kwargs={'intent_id': instance.uid if instance else intent.uid}))
