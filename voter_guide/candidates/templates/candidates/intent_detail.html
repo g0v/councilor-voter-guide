@@ -4,9 +4,9 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南:擬參選人註冊登記</title>
-    <meta property="og:title" content="議員投票指南:擬參選人註冊登記"/>
-    <meta itemprop="name" content="議員投票指南:擬參選人註冊登記">
+    <title>議員投票指南:可能參選人：{{intent.county}} - 第{{intent.constituency}}選區 - {{intent.name}}</title>
+    <meta property="og:title" content="議員投票指南:可能參選人：{{intent.county}} - 第{{intent.constituency}}選區 - {{intent.name}}"/>
+    <meta itemprop="name" content="議員投票指南:可能參選人：{{intent.county}} - 第{{intent.constituency}}選區 - {{intent.name}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <style>
         .CodeMirror, .CodeMirror-scroll {
@@ -25,7 +25,7 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
     <div class="page-header text-center">
-        <h2>擬參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small></h2>
+        <h2>可能參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small></h2>
             {% if request.user.is_authenticated %}
                 <form class="form" action="" method="post">{% csrf_token %}
                 {% if user_liked %}
