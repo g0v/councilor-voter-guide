@@ -5,6 +5,7 @@ from rest_framework import routers
 
 from api import views
 from . import views as voter_guide_views
+from candidates import views as candidates_views
 
 
 #--> rest framework url
@@ -32,7 +33,7 @@ urlpatterns = [
     url(r'^about/$', voter_guide_views.about, name='about'),
     url(r'^select_county/(?P<category>candidates|councilors|bills|votes)/$', voter_guide_views.select_county, name='select_county'),
     url(r'^reference/$', voter_guide_views.reference, name='reference'),
-    url(r'^$', voter_guide_views.select_county, {'category': 'candidates'}, name='home'),
+    url(r'^$', candidates_views.intents, {'election_year': '2018'}, name='home'),
     url(r'^api/', include(router.urls)),
 ]
 

@@ -11,12 +11,24 @@ from django.utils import timezone
 
 from .models import Candidates, Terms, Intent, Intent_Likes
 from .forms import IntentForm
+from commontag.views import paginate
 
+
+def intents(request, election_year):
+    ref = {
+        'create_at': 'id',
+        'likes': 'likes'
+    }
+    order_by = ref.get(request.GET.get('order_by'), 'likes')
+    intents = Intent.objects.filter(election_year=election_year).order_by('-%s' % order_by)
+    intents = paginate(request, intents)
+    return render(request, 'candidates/intents.html', {'intents': intents, 'election_year': election_year})
 
 def districts(request, election_year, county):
-    districts = Terms.objects.filter(election_year=election_year, county=county).values('constituency', 'district')\
-                                  .annotate(candidates=Count('id'))\
-                                  .order_by('constituency')
+    districts = Terms.objects.filter(election_year=election_year, county=county)\
+                             .values('constituency', 'district')\
+                             .annotate(candidates=Count('id'))\
+                             .order_by('constituency')
     return render(request, 'candidates/districts.html', {'election_year': election_year, 'county': county, 'districts': districts})
 
 def district(request, election_year, county, constituency):

@@ -178,6 +178,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'voter_guide.context_processor.current_url',
+                'voter_guide.context_processor.site_domain',
             ],
         },
     },

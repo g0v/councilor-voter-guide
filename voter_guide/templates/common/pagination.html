@@ -1,4 +1,5 @@
 <div class="pagination" align="center">
+    {% if page_size != 0 %}
     <span class="pull-left">
         每頁
         <span class="btn-group">
@@ -12,6 +13,7 @@
         </span>
         個
     </span>
+    {% endif %}
     <span class="step-links">
         {% if items.has_previous %}
             {% if get_params %}
