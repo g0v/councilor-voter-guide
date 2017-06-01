@@ -118,6 +118,7 @@ INSTALLED_APPS = (
     'votes',
     'suggestions',
     'search',
+    'standpoints',
     'commontag',
     'rest_framework',
     'django_filters',

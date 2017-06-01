@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load socialaccount %}
 {% load extras %}
 
 {% block title %}
@@ -16,6 +17,40 @@
 {% block right %}
     <div class="row-fluid">
         <div class="span6">
+            <form action="" method="post" class="form-inline">
+                {% csrf_token %}
+                <br>
+                <fieldset>
+                    <label>請輸入您覺得最能代表這個表決的標籤：</label>
+                    {% if user.is_authenticated %}
+                        <input type="search" name="keyword" id="keyword" class="span4" maxlength="20" placeholder="建議動詞+名詞的命題">
+                        <button type="submit" class="btn">確定</button>
+                    {% else %}
+                        <a href="{% provider_login_url "facebook" %}?next={% url 'votes:vote' vote.0.vote_id %}"><i class="fa fa-sign-in"> 登入加標籤</i></a>
+                    {% endif %}
+                </fieldset>
+                {% for standpoint in standpoints_of_vote %}
+                    {% if forloop.counter0 == 5 %}
+                        <button type="button" class="btn" data-toggle="collapse" data-target="#ref_more"><font>..... <i class="fa fa-angle-down"></i></font></button>
+                        <div id="ref_more" class="collapse">
+                    {% endif %}
+                    <h4>{{standpoint.pro}}人認為是
+                        <font style="color: {% cycle '#9999FF' '#99CCCC' '#99CC99' '#999966' '#99CC33' %};"> {{standpoint}}</font>
+                        {% if user.is_authenticated %}
+                            {% if standpoint.have_voted %}
+                                <button name="against" class="btn" value="{{standpoint.uid}}">取消 +1</button>
+                            {% else %}
+                                <button name="pro" class="btn" value="{{standpoint.uid}}">+1</button>
+                            {% endif %}
+                        {% else %}
+                            <a href="{% provider_login_url "facebook" %}?next={% url 'votes:vote' vote.0.vote_id %}" class="btn"> 登入投票</a>
+                        {% endif %}
+                    </h4>
+                {% endfor %}
+                {% if standpoints_of_vote|length > 5 %}
+                    </div>
+                {% endif %}
+            </form>
             {% if vote %}
             {% with vote=vote.0.vote %}
             <div align="center">

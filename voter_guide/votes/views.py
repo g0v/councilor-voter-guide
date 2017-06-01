@@ -2,11 +2,13 @@
 import operator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.db.models import Q
+from django.db.models import Q, F
+from django.db import IntegrityError, transaction
 
 from .models import Votes, Councilors_Votes
 from councilors.models import CouncilorsDetail
 from search.views import keyword_list, keyword_been_searched
+from standpoints.models import Standpoints, User_Standpoint
 from commontag.views import paginate
 
 
@@ -48,6 +50,26 @@ def vote(request, vote_id):
         data = dict(Votes.objects.get(uid=vote_id).results)
         data.pop('total', None)
     except Exception, e:
-        print e
         return HttpResponseRedirect('/')
-    return render(request,'votes/vote.html', {'vote':vote, 'data':data})
+
+    if request.user.is_authenticated():
+        if request.POST:
+            with transaction.atomic():
+                if request.POST.get('keyword', '').strip():
+                    standpoint_id = u'vote-%s-%s' % (vote_id, request.POST['keyword'].strip())
+                    Standpoints.objects.get_or_create(uid=standpoint_id, title=request.POST['keyword'].strip(), vote_id=vote_id)
+                elif request.POST.get('pro'):
+                    User_Standpoint.objects.create(standpoint_id=request.POST['pro'], user=request.user)
+                    Standpoints.objects.filter(uid=request.POST['pro']).update(pro=F('pro') + 1)
+                elif request.POST.get('against'):
+                    User_Standpoint.objects.get(standpoint_id=request.POST['against'], user=request.user).delete()
+                    Standpoints.objects.filter(uid=request.POST['against']).update(pro=F('pro') - 1)
+
+    standpoints_of_vote = Standpoints.objects.filter(vote_id=vote_id)\
+                                             .order_by('-pro')
+    if request.user.is_authenticated():
+        standpoints_of_vote = standpoints_of_vote.extra(select={
+            'have_voted': "SELECT true FROM standpoints_user_standpoint su WHERE su.standpoint_id = standpoints_standpoints.uid AND su.user_id = %s" % request.user.id,
+        },)
+
+    return render(request,'votes/vote.html', {'vote':vote, 'data':data, 'standpoints_of_vote': standpoints_of_vote})
