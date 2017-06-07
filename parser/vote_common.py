@@ -67,6 +67,16 @@ def vote_list(c, county):
     ''', (county,))
     return c.fetchall()
 
+def delete_not_in_terms_voting_record(c, vote_id, vote_ad, vote_date):
+    c.execute('''
+        delete from votes_councilors_votes
+        where id in (
+            select vl.id
+            from votes_votes v, votes_councilors_votes vl, councilors_councilorsdetail l
+            where v.uid = vl.vote_id and l.id = vl.councilor_id and l.election_year = %s and (l.term_start > %s or cast(l.term_end::json->>'date' as date) <= %s) and v.uid = %s
+        )
+    ''', (vote_ad, vote_date, vote_date, vote_id))
+
 def not_voting_list(c, county, vote_id, vote_ad, vote_date):
     c.execute('''
         select id
@@ -96,6 +106,40 @@ def get_vote_results(c, vote_id):
     return [desc[0] for desc in c.description], c.fetchone() # return column name and value
 
 def update_vote_results(c, uid, results):
+    c.execute('''
+        select json_agg(row)
+        from (
+            select decision, json_agg(party_list) as party_list, sum(count)
+            from (
+                select decision, json_build_object('party', party, 'councilors', councilors, 'count', json_array_length(councilors)) as party_list, json_array_length(councilors) as count
+                from (
+                    select decision, party, json_agg(detail) as councilors
+                    from (
+                        select decision, party, json_build_object('name', name, 'councilor_id', councilor_id) as detail
+                        from (
+                            select
+                                case
+                                    when vl.decision = 1 then '贊成'
+                                    when vl.decision = -1 then '反對'
+                                    when vl.decision = 0 then '棄權'
+                                    when vl.decision isnull then '沒投票'
+                                end as decision,
+                                l.party,
+                                l.name,
+                                l.councilor_id
+                            from councilors_councilorsdetail l, votes_votes v , votes_councilors_votes vl, sittings_sittings s
+                            where v.uid = %s and v.uid = vl.vote_id and vl.councilor_id = l.id and v.sitting_id = s.uid and l.term_start < s.date and to_date(l.term_end->>'date', 'YYYY-MM-DD') > s.date
+                        ) _
+                    ) __
+                group by decision, party
+                order by decision, party
+                ) ___
+            ) ____
+        group by decision
+        order by sum desc
+        ) row
+    ''', [uid])
+    decisions = c.fetchone()[0]
     if results['agree'] > results['disagree']:
         result = 'Passed'
     else:
@@ -104,12 +148,13 @@ def update_vote_results(c, uid, results):
         UPDATE votes_votes
         SET result = %s, results = %s
         WHERE uid = %s
-    ''', (result, results, uid))
+    ''', (result, decisions, uid))
 
 def not_voting_and_results(c, county):
     for vote_id, vote_ad, vote_date in vote_list(c, county ):
         for councilor_id in not_voting_list(c, county, vote_id, vote_ad, vote_date):
             insert_not_voting_record(c, councilor_id, vote_id)
+        delete_not_in_terms_voting_record(c, vote_id, vote_ad, vote_date)
         key, value = get_vote_results(c, vote_id)
         update_vote_results(c, vote_id, dict(zip(key, value)))
 # <-- not voting & vote results end
