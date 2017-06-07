@@ -4,9 +4,9 @@
 
 {% block title %}
     {% if vote %}
-        <title>議員投票指南:{{ vote.0.vote.sitting.name }}({{ vote.0.vote.date|date:"Y-m-d" }})第{{vote.0.vote.vote_seq}}個表決</title>
-        <meta property="og:title" content="議員投票指南:{{ vote.0.vote.sitting.name }}({{ vote.0.vote.date|date:"Y-m-d" }})第{{vote.0.vote.vote_seq}}個表決"/>
-        <meta itemprop="name" content="議員投票指南:{{ vote.0.vote.sitting.name }}({{ vote.0.vote.date|date:"Y-m-d" }})第{{vote.0.vote.vote_seq}}個表決">
+        <title>議員投票指南:{{ vote.sitting.name }}({{ vote.date|date:"Y-m-d" }})第{{vote.vote_seq}}個表決</title>
+        <meta property="og:title" content="議員投票指南:{{ vote.sitting.name }}({{ vote.date|date:"Y-m-d" }})第{{vote.vote_seq}}個表決"/>
+        <meta itemprop="name" content="議員投票指南:{{ vote.sitting.name }}({{ vote.date|date:"Y-m-d" }})第{{vote.vote_seq}}個表決">
     {% else %}
         <title>議員投票指南:單一表決名單</title>
         <meta property="og:title" content="議員投票指南:單一表決名單"/>
@@ -26,7 +26,7 @@
                         <input type="search" name="keyword" id="keyword" class="span4" maxlength="20" placeholder="建議動詞+名詞的命題">
                         <button type="submit" class="btn">確定</button>
                     {% else %}
-                        <a href="{% provider_login_url "facebook" %}?next={% url 'votes:vote' vote.0.vote_id %}"><i class="fa fa-sign-in"> 登入加標籤</i></a>
+                        <a href="{% provider_login_url "facebook" %}?next={% url 'votes:vote' vote.uid %}"><i class="fa fa-sign-in"> 登入加標籤</i></a>
                     {% endif %}
                 </fieldset>
                 {% for standpoint in standpoints_of_vote %}
@@ -43,7 +43,7 @@
                                 <button name="pro" class="btn" value="{{standpoint.uid}}">+1</button>
                             {% endif %}
                         {% else %}
-                            <a href="{% provider_login_url "facebook" %}?next={% url 'votes:vote' vote.0.vote_id %}" class="btn"> 登入投票</a>
+                            <a href="{% provider_login_url "facebook" %}?next={% url 'votes:vote' vote.uid %}" class="btn"> 登入投票</a>
                         {% endif %}
                     </h4>
                 {% endfor %}
@@ -52,10 +52,8 @@
                 {% endif %}
             </form>
             {% if vote %}
-            {% with vote=vote.0.vote %}
             <div align="center">
                 <br>
-                <div id="d3" align="center"></div>
                 <span class="badge badge-important"><font class="lead">{{vote.result|vote_result:'cht'}}</font></span>
             </div>
             <div class="hero-unit">
@@ -65,44 +63,39 @@
             </div>
         </div><!--end: span6 -->
         <div class="span6">
-            {% include "common/highlight.html" with county=vote.sitting.county election_year=vote.sitting.election_year %}
-            {% endwith %}
-            {% regroup vote by decision as ly_list %}
-            <table class="table table-bordered table-condensed">
-                {% with col=20 %}
-                <caption style="text-align: left;font-size: 40px;margin-bottom: 20px;"><strong>記名表決名單</strong></caption>
-                {% for decision in ly_list %}
-                {% with decision=decision.grouper %}
-                {% ifequal decision null %}
-                <tr>
-                    <td colspan="{{col}}" style="background-color: #FFCC33;"><strong>沒投票
-                {% endifequal %}
-                {% ifequal decision -1 %}
-                <tr>
-                    <td colspan="{{col}}" style="background-color: #FF99CC;"><strong>反對票
-                {% endifequal %}
-                {% ifequal decision 1 %}
-                <tr>
-                    <td colspan="{{col}}" style="background-color: #CCFF99;"><strong>贊成票
-                {% endifequal %}
-                {% ifequal decision 0 %}
-                <tr>
-                    <td colspan="{{col}}" style="background-color: #CCCCCC;"><strong>棄權票
-                {% endifequal %}
-                </strong></td>
-                {% endwith %}
-                    {% for fragment in decision.list %}
-                    {% if forloop.counter0|divisibleby:col %}
-                    </tr><tr>
-                    {% endif %}
-                    {% with councilor=fragment.councilor %}
-                        <td class="name {{councilor.district}} {{councilor.gender}}"><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}" rel="tooltip" title="這位議員的表決投票紀錄">{% include "common/name_color_by_party.html" %}</a></td>
-                    {% endwith %}
+            <div class="row-fluid">
+            {% for fragment in vote.results %}
+                <div class="span6">
+                    <h3>
+                        {% if fragment.decision == "反對" %}
+                        <i class="fa fa-times-circle"> </i>
+                        {% elif fragment.decision == "贊成" %}
+                        <i class="fa fa-check-circle"> </i>
+                        {% else %}
+                            {% if fragment.decision == "棄權" %}
+                            <i class="fa fa-question-circle"> </i>
+                            {% elif fragment.decision == "沒投票" %}
+                            <i class="fa fa-bed"> </i>
+                            {% endif %}
+                        {% endif %}
+                        {{ fragment.decision }}
+                    </h3>
+                    <ul>
+                    {% for element in fragment.party_list %}
+                        <li data-toggle="collapse" data-target="#ref_vote_{{fragment.decision}}_{{element.party}}"><span>{{element.party}}：{{element.councilors|length}}人 <i class="fa fa-caret-square-o-down"></i></span></li>
+                        <div id="ref_vote_{{fragment.decision}}_{{element.party}}" class="collapse">
+                            <ul class="inline">
+                            {% for councilor in element.councilors %}
+                                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=vote.sitting.election_year %}" rel="tooltip" title="這位立委的表決紀錄">{{councilor.name}}</a></li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                        <br>
                     {% endfor %}
-                {% endfor %}
-                {% include "common/color_info_of_party.html" with column=col %}
-                {% endwith %}
-            </table>
+                    </ul>
+                </div><!--end: span -->
+            {% endfor %}
+            </div><!--end: row-fluid -->
             {% endif %}
             <hr>
             <div id="disqus_thread"></div>
@@ -115,22 +108,10 @@
 {% endblock backtotop %}
 
 {% block script %}
-    {% include "votes/d3/vote_pie.html" %}
     <script>
         $(document).ready( function() {
             $('#votes').addClass('active');
             $("[rel='tooltip']").tooltip();
-            $('#district').change(function() {
-                $('#gender').val("");
-                $('.name').css('backgroundColor', '#FFF');
-                $('.' + $(this).val()).css('backgroundColor', '#FF6');
-            });
-            $('#gender').change(function() {
-                $('#district').val("");
-                $('.name').css('backgroundColor', '#FFF');
-                $('.' + $(this).val()).css('backgroundColor', '#FF6');
-            });
-            relax();
         });
     </script>
 {% endblock script %}

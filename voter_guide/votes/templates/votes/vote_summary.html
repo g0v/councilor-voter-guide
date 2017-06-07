@@ -1,0 +1,30 @@
+{% load extras %}
+{% load highlight %}
+
+<li class="media">
+    <div class="media-body well">
+        <div class="muted media-heading">
+            （{{ fragment.date|date:"Y-m-d" }}）第{{ fragment.vote_seq }}個表決
+        </div>
+        <h5 class="text-success">表決內容</h5>
+            <p>{{ fragment.content|linebreaksbr }}</p>
+        <blockquote>
+            <a href="{% url 'votes:vote' fragment.uid %}" rel="tooltip" title="查看各立委投什麼票"><i class="fa fa-pie-chart"> 看誰贊成誰反對</i></a>
+            <a class="pull-right" href="{% url 'votes:vote' fragment.uid %}" ><i class="fa fa-tag"> 我要加標籤、投票</i></a>
+        </blockquote>
+        {% if fragment.tags %}
+            <h5 class="text-success">標籤</h5>
+            {% for title, votes in fragment.tags %}
+                <a href="{% url 'votes:votes' %}?tag={{title}}" rel="tooltip" title="有同樣標籤的表決">
+                    <font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{title}}</font>
+                </a>
+                （{{votes}}票）&nbsp;&nbsp;
+            {% endfor %}
+        {% endif %}
+        <h5 class="text-success">表決結果</h5>
+            <span class="label label-inverse"><font class="lead">{{fragment.result|vote_result:'cht'}}</font></span>
+            {% if fragment.conflict %}
+                <small class="text-error"><font class="lead text-error">有立委脫黨投票</font></small>
+            {% endif %}
+    </div>
+</li>

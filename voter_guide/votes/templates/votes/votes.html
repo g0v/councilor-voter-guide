@@ -27,17 +27,6 @@
             {% endfor %}
         </h4>
         {% endif %}
-        {% if not keyword %}
-        <div class="btn-group">
-            <button type="button" class="btn dropdown-toggle btn-info" data-toggle="dropdown">
-                <span>以通過、不通過分類</span> <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="{% url 'votes:votes' county=county index=index %}?result=Passed"><font color="#66CC66">通過</font></a></li>
-                <li><a href="{% url 'votes:votes' county=county index=index %}?result=Not Passed"><font color="#FF66CC">不通過</font></a></li>
-            </ul>
-        </div>
-        {% endif %}
         <div class="well well-small">
             <font class="lead">{{county}} {{ votes.paginator.count }} 個
             {% if keyword %}包含<font style="color: red;">"{{keyword}}"</font>的
@@ -50,51 +39,12 @@
             </font>
         </div>
         {% if votes %}
-        {% include "common/pagination.html" with items=votes %}
-        <table class="table table-bordered zebra" >
-            <thead>
-                <tr style="background-color: #FFFFCC;">
-                    <th style="width: 14%">日期</th>
-                    <th style="width: 40%">表決內容</th>
-                    <th style="width: 9%">表決結果</th>
-                    <th style="width: 3%">贊成票</th>
-                    <th style="width: 3%">反對票</th>
-                    <th style="width: 3%">棄權票</th>
-                    <th style="width: 3%">沒投票</th>
-                    <th style="width: 10%">備註</th>
-                    <th style="width: 15%">會議紀錄</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for fragment in votes %}
-                <tr style="background-color: {% cycle '#DDDDDD' 'white' %};">
-                    <td style="text-align:center; vertical-align:middle;">{{ fragment.date|date:"Y-m-d" }}</td>
-                    <td>
-                        <a href="{% url 'votes:vote' fragment.uid %}" rel="tooltip" title="查看各議員投什麼票">查看投票名單和完整內容</a><br>
-                        {% if keyword %}
-                            {{fragment.content|linebreaksbr|replace:keyword|safe}}
-                        {% elif fragment.summary %}
-                            <span class="badge badge-warning">精簡版</span>&nbsp;{{ fragment.summary }}
-                        {% else %}
-                            {{fragment.content|linebreaksbr|truncatechars:120}}
-                        {% endif %}
-                    </td>
-                    <td style="text-align:center; vertical-align:middle; background-color: #{{fragment.result|vote_result:'td_bgcolor'}}">{{fragment.result|vote_result:'cht'}}</td>
-                    <td style="text-align:center; vertical-align:middle; background-color: #66CC66;">{{fragment.results.agree}}</td><td style="text-align:center; vertical-align:middle; background-color: #FF66CC;">{{fragment.results.disagree}}</td><td style="text-align:center; vertical-align:middle; background-color: #999999;">{{fragment.results.abstain}}</td><td style="text-align:center; vertical-align:middle; background-color: #FFFF99;">{{fragment.results.not_voting}}</td>
-                    <td style="text-align:center; vertical-align:middle;">
-                    {% if fragment.conflict %}
-                    <p class="text-error">脫黨表決</p>
-                    {% endif %}
-                    </td>
-                    <td style="vertical-align:middle;">
-                        <a href="{{fragment.sitting.links.url}}" target="_blank">{{fragment.sitting.links.note}}</a>
-                    </td>
-                </tr>
-                {% empty %}
-                <p>完全沒有表決</p>
-                {% endfor %}
-            </tbody>
-        </table>
+        {% include "common/pagination.html" with items=votes page_size=0 %}
+        <ul class="media-list">
+            {% for fragment in votes %}
+                {% include "votes/vote_summary.html" %}
+            {% endfor %}
+        </ul>
         {% include "common/pagination.html" with items=votes %}
         {% endif %}
     </div>

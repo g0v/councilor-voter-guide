@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import operator
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Q, F
 from django.db import IntegrityError, transaction
 
@@ -28,11 +28,6 @@ def votes(request, county, index='normal'):
         query = Q(sitting__county=county, conflict=True)
     else:
         query = Q(sitting__county=county)
-    #--> 依表決結果分類
-    if 'result' in request.GET:
-        result = request.GET['result']
-        query = query & Q(result=result)
-    #<--
     keyword = request.GET.get('keyword', '')
     if keyword:
         votes = Votes.objects.filter(query & reduce(operator.and_, (Q(content__icontains=x) for x in keyword.split()))).order_by('-date', 'vote_seq')
@@ -44,14 +39,7 @@ def votes(request, county, index='normal'):
     return render(request,'votes/votes.html', {'county': county, 'votes': votes, 'index':index, 'keyword':keyword, 'result':result, 'keyword_hot': keyword_list('votes')})
 
 def vote(request, vote_id):
-    data = None
-    vote = Councilors_Votes.objects.select_related().filter(vote_id=vote_id).order_by('-decision', 'councilor__party')
-    try:
-        data = dict(Votes.objects.get(uid=vote_id).results)
-        data.pop('total', None)
-    except Exception, e:
-        return HttpResponseRedirect('/')
-
+    vote = get_object_or_404(Votes.objects.select_related('sitting'), uid=vote_id)
     if request.user.is_authenticated():
         if request.POST:
             with transaction.atomic():
@@ -72,4 +60,4 @@ def vote(request, vote_id):
             'have_voted': "SELECT true FROM standpoints_user_standpoint su WHERE su.standpoint_id = standpoints_standpoints.uid AND su.user_id = %s" % request.user.id,
         },)
 
-    return render(request,'votes/vote.html', {'vote':vote, 'data':data, 'standpoints_of_vote': standpoints_of_vote})
+    return render(request,'votes/vote.html', {'vote': vote, 'standpoints_of_vote': standpoints_of_vote})
