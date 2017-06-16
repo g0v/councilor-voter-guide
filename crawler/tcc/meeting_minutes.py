@@ -42,6 +42,7 @@ class Spider(scrapy.Spider):
 
     def parse_profile(self, response):
         item = {}
+        item['election_year'] = '2014'
         nodes = response.xpath('//table/tbody/tr')
         ref = {
             u'屆別': {'key': 'sitting', 'path': 'td/span/text()'},
@@ -56,6 +57,8 @@ class Spider(scrapy.Spider):
                 item[value['key']] = '%s%s' % (value.get('extra', ''), node.xpath(value['path']).extract_first())
         item['date'] = ROC2AD(item['date'])
         ext = re.search(u'FileName=[\w\d]+\.(\w+)&', item['download_url']).group(1)
-        cmd = 'mkdir -p ../../meeting_minutes/tcc/ && wget -c -O ../../meeting_minutes/tcc/%s_%s.%s %s' % (item['sitting'], item['meeting'], ext, item['download_url'])
+        item['file_name'] = '%s_%s.%s' % (item['sitting'], item['meeting'], ext)
+        output_path = '../../meeting_minutes/tcc/%s/' % item['election_year']
+        cmd = 'mkdir -p %s && wget -c -O %s%s "%s"' % (output_path, output_path, item['file_name'], item['download_url'])
         retcode = subprocess.call(cmd, shell=True)
         return item
