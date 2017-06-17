@@ -55,41 +55,36 @@ def GetVoteContent(text):
 
 
 def IterVote(text, sitting_dict):
-    text = re.sub(u'(議員)(計\s?\d+\s?位)', u'\g<1>：\g<2>', text)
     print sitting_dict["uid"]
     vote_count = 1
     pre_match_end = 0
     for match in Namelist_Token.finditer(text):
         vote_seq = str(vote_count).zfill(3)
         vote_dict = {'uid': '%s-%s' % (sitting_dict["uid"], vote_seq), 'sitting_id': sitting_dict["uid"], 'vote_seq': vote_seq, 'date': sitting_dict["date"], 'content': GetVoteContent(text[pre_match_end:match.end()])}
-        print '=' * 20
-        print vote_seq
         UpsertVote(vote_dict)
         ref = {'agree': 1, 'disagree': -1, 'abstain': 0}
         for key, value in ref.items():
             if match.group(key):
-                names = re.sub(u'[、：，:,]', ' ', re.sub(u'\s', '', match.group(key)))
-                for councilor_id in common.getCouncilorIdList(c, names):
-                    id = common.getDetailIdFromUid(c, councilor_id, sitting_dict['election_year'], sitting_dict['county'])
+                for id, councilor_id in common.getIdList(c, common.getNameList(re.sub(u'[、：，:,]', ' ', match.group(key))), sitting_dict):
                     VoteVoterRelation(id, vote_dict['uid'], value)
         vote_count += 1
         pre_match_end = match.end()
 
 conn = db_settings.con()
 c = conn.cursor()
-election_years = {1: '1969', 2: '1973', 3: '1977', 4: '1981', 5: '1985', 6: '1989', 7: '1994', 8: '1998', 9: '2002', 10: '2006', 11: '2010', 12: '2014', 13: '2018'}
-election_year = '2014'
+election_years = {1: '1969', 2: '1973', 3: '1977', 4: '1981', 5: '1985', 6: '1989', 7: '1994', 8: '1998', 9: '2002', 10: '2006', 11: '2010', 12: '2014'}
+election_year = '2010'
 county, county_abbreviation = u'臺北市', 'TPE'
 total_text = unicodedata.normalize('NFC', codecs.open(u"../../../data/tcc/meeting_minutes-%s.txt" % election_year, "r", "utf-8").read())
 
 Session_Token = re.compile(u'''
-    \s*
+    [\s]*
     (?P<name>
         %s議會
-        第\s*(?P<ad>[\d]+)\s*屆
-        第\s*(?P<session>[\d]+)\s*次(?P<type>(定期|臨時))大會
+        第(?P<ad>[\d]+)屆
+        第(?P<session>[\d]+)次(?P<type>(定期|臨時))大會
         (預備會議暨)?
-        第\s*(?P<times>[\d]+)\s*次
+        第(?P<times>[\d]+)次
         會議
     )
     紀錄
@@ -98,24 +93,25 @@ Session_Token = re.compile(u'''
 Present_Token = re.compile(u'''
     出席議員[:：]?
     (?P<names>.+?)
-    (?=(計\d+位|請假議員|列席))
+    (計[\d]+位)?
+    (請假議員)?
+    列席
 ''', re.X|re.S)
 
 Absent_Token = re.compile(u'''
     請假議員[:：]
-    (?P<names>.+?)
-    (?=(計\d+位|列席))
+    (?P<names>.+)
+    (計[\d]+位)?
+    列席
 ''', re.X|re.S)
 
 Namelist_Token = re.compile(u'''
-    [:：]
-    (?P<agree>[^:：]+?)
-    [:：]
-    (?P<disagree>[^:：]+?)
-    [:：]
-    (?P<abstain>[^:：]+?)
-    [:：](通\s?過|否\s?決|同\s?意)
-''', re.X|re.S)
+    ^.*
+    (?P<agree>贊成議員.*)
+    (?P<disagree>反對議員[^(棄權議員)\n]*)
+    (?P<abstain>棄權議員.*([\d]+位|無))?
+    .*$
+''', re.X | re.M)
 
 sittings = []
 for match in Session_Token.finditer(total_text):
@@ -124,16 +120,9 @@ for match in Session_Token.finditer(total_text):
             uid = '%s-%s-%02d-CS-%02d' % (county_abbreviation, election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
         elif match.group('type') == u'臨時':
             uid = '%s-%s-T%02d-CS-%02d' % (county_abbreviation, election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
-        sittings.append({
-            "uid":uid,
-            "name": re.sub('\s', '', match.group('name')),
-            "county": county,
-            "election_year": election_year,
-            "session": match.group('session'),
-            "date": common.ROC2AD(total_text[match.end():]),
-            "start": match.start(), "end": match.end()
-        })
+        sittings.append({"uid":uid, "name": re.sub('\s', '', match.group('name')), "county": county, "election_year": election_years[int(match.group('ad'))], "session": match.group('session'), "date": common.ROC2AD(total_text[match.end():]), "start": match.start(), "end": match.end()})
 for i in range(0, len(sittings)):
+    break
     # --> sittings, attendance, filelog
     if i != len(sittings)-1:
         one_sitting_text = total_text[sittings[i]['start']:sittings[i+1]['start']]
@@ -157,7 +146,6 @@ print 'votes, voter done!'
 print 'update meeting_minutes download links'
 meetings = json.load(open('../../../data/tcc/meeting_minutes-%s.json' % election_year))
 for meeting in meetings:
-    meeting['county'] = county
     meeting['links'] = {'url': meeting['download_url'], 'note': u'議會官網會議紀錄'}
     meeting['name'] = re.sub(u'第0+', u'第', u'%s議會%s%s' % (meeting['county'], meeting['sitting'], meeting['meeting']))
     meeting['name'] = re.sub(u'紀錄$', '', meeting['name'])

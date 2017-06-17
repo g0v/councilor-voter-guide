@@ -154,6 +154,18 @@ def getDetailIdFuzzy(c, name, election_year, county):
         return r[0]
     print '"%s"' % name
 
+def getDetailIdFromUid(c, uid, election_year, county):
+    c.execute('''
+        SELECT id
+        FROM councilors_councilorsdetail
+        WHERE councilor_id = %s and election_year = %s and county = %s
+    ''', (uid, election_year, county))
+    r = c.fetchone()
+    if r:
+        return r[0]
+    else:
+        return getDetailIdFuzzy(c, name, election_year, county)
+
 def getDetailId(c, name, election_year, county):
     c.execute('''
         SELECT id
@@ -202,6 +214,13 @@ def GetCouncilorId(c, name):
 
 def getCouncilorIdList(c, text):
     id_list = []
+    text = text.strip(u'[　\s]')
+    text = re.sub(u'([^　\w])　([^　\w])　', u'\g<1>\g<2>　', text) # e.g. 楊　曜=>楊曜, 包含句首
+    text = re.sub(u'　([^　\w])　([^　\w])', u'　\g<1>\g<2>', text) # e.g. 楊　曜=>楊曜, 包含句尾
+    text = re.sub(u'(\w+)[ 　](\w+)　', u'\g<1>\g<2>　', text) # e.g. Kolas Yotaka=>KolasYotaka, 包含句首
+    text = re.sub(u'　(\w+)[ 　](\w+)', u'　\g<1>\g<2>', text) # e.g. Kolas Yotaka=>KolasYotaka, 包含句尾
+    text = re.sub(u'^([^　\w])　([^　\w])$', u'\g<1>\g<2>', text) # e.g. 楊　曜=>楊曜, 單獨一人
+    text = re.sub(u'^(\w+)[ 　](\w+)$', u'\g<1>\g<2>', text) # e.g. Kolas Yotaka=>KolasYotaka, 單獨一人
     for name in text.split():
         name = re.sub(u'(.*)[）)。】」]$', '\g<1>', name) # 名字後有標點符號
         councilor_ids = GetCouncilorId(c, name)
@@ -220,7 +239,8 @@ def AddAttendanceRecord(c, councilor_id, sitting_id, category, status):
 
 def Attendance(c, sitting_dict, text, category, status):
     ids = []
-    for id, councilor_id in getIdList(c, getNameList(text), sitting_dict):
+    for councilor_id in getCouncilorIdList(c, text):
+        id = getDetailIdFromUid(c, councilor_id, sitting_dict['election_year'], sitting_dict['county'])
         AddAttendanceRecord(c, id, sitting_dict['uid'], category, status)
         ids.append(id)
     return ids
