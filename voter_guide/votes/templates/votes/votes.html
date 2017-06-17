@@ -45,8 +45,9 @@
                 {% include "votes/vote_summary.html" %}
             {% endfor %}
         </ul>
-        {% include "common/pagination.html" with items=votes %}
+        {% include "common/pagination.html" with items=votes page_size=0 %}
         {% endif %}
+        <hr>
     </div>
     <div class="span1">
     </div>
