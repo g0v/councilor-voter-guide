@@ -128,7 +128,7 @@ def update_vote_results(c, uid, results):
                                 l.name,
                                 l.councilor_id
                             from councilors_councilorsdetail l, votes_votes v , votes_councilors_votes vl, sittings_sittings s
-                            where v.uid = %s and v.uid = vl.vote_id and vl.councilor_id = l.id and v.sitting_id = s.uid and l.term_start < s.date and to_date(l.term_end->>'date', 'YYYY-MM-DD') > s.date
+                            where v.uid = %s and v.uid = vl.vote_id and vl.councilor_id = l.id and v.sitting_id = s.uid
                         ) _
                     ) __
                 group by decision, party
