@@ -1,32 +1,23 @@
 # -*- coding: utf-8 -*-
+import sys
+sys.path.append('../')
+import os
 import re
 import subprocess
 from urlparse import urljoin
 import scrapy
 
+import common
 
-def ROC2AD(text):
-    matchTerm = re.search(u'''
-        (?P<year>[\d]+)[\s]*(?:年|[-/.])[\s]*
-        (?P<month>[\d]+)[\s]*(?:月|[-/.])[\s]*
-        (?P<day>[\d]+)
-    ''', text, re.X)
-    if matchTerm:
-        return '%04d-%02d-%02d' % (int(matchTerm.group('year'))+1911, int(matchTerm.group('month')), int(matchTerm.group('day')))
-    else:
-        return None
-
-def take_first(list_in):
-    if len(list_in) == 1:
-        return list_in[0]
-    else:
-        raise
 
 class Spider(scrapy.Spider):
     name = "meeting"
     allowed_domains = ["obas_front.tcc.gov.tw"]
     start_urls = ["http://obas_front.tcc.gov.tw:8080/Agenda/EFileSearch.aspx?FileGrpKind=2&h=600",]
     download_delay = 0.5
+    county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
+    election_year = common.election_year(county_abbr)
+    output_path = common.meeting_minutes_output_path(county_abbr, election_year)
     payload = {
         'btnCongress': u'大會',
         'txtPageSize': u'300',
@@ -38,11 +29,11 @@ class Spider(scrapy.Spider):
     def parse_post(self, response):
         links = response.xpath('//table/tr/td/a[contains(@href, "EFileDetail.aspx")]/@href').extract()
         for link in links:
-            yield scrapy.Request(urljoin(response.url, link), callback=self.parse_profile)
+            yield response.follow(link, callback=self.parse_profile)
 
     def parse_profile(self, response):
         item = {}
-        item['election_year'] = '2014'
+        item['election_year'] = self.election_year
         nodes = response.xpath('//table/tbody/tr')
         ref = {
             u'屆別': {'key': 'sitting', 'path': 'td/span/text()'},
@@ -55,10 +46,9 @@ class Spider(scrapy.Spider):
             value = ref.get(node.xpath('th/text()').extract_first().strip())
             if value:
                 item[value['key']] = '%s%s' % (value.get('extra', ''), node.xpath(value['path']).extract_first())
-        item['date'] = ROC2AD(item['date'])
+        item['date'] = common.ROC2AD(item['date'])
         ext = re.search(u'FileName=[\w\d]+\.(\w+)&', item['download_url']).group(1)
-        item['file_name'] = '%s_%s.%s' % (item['sitting'], item['meeting'], ext)
-        output_path = '../../meeting_minutes/tcc/%s/' % item['election_year']
-        cmd = 'mkdir -p %s && wget -c -O %s%s "%s"' % (output_path, output_path, item['file_name'], item['download_url'])
+        file_name = '%s_%s.%s' % (item['sitting'], item['meeting'], ext)
+        cmd = 'mkdir -p %s && wget -c -O %s%s "%s"' % (self.output_path, self.output_path, file_name, item['download_url'])
         retcode = subprocess.call(cmd, shell=True)
         return item
