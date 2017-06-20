@@ -34,7 +34,7 @@ c = conn.cursor()
 election_years = {1: '2010', 2: '2014', 3: '2018'}
 county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
 county = common.county_abbr2string(county_abbr)
-election_year = common.election_year(county)
+election_year = '2010'
 county_abbr3 = common.county2abbr3(county)
 
 Session_Token = re.compile(u'''
@@ -53,6 +53,7 @@ Present_Token = re.compile(u'''
 
 meetings = json.load(open('../../../data/ntp/meeting_minutes-%s.json' % election_year))
 for meeting in meetings:
+    break
     total_text = unicodedata.normalize('NFC', codecs.open('../../../data/ntp/meeting_minutes/%s/%s_%s.txt' % (election_year, meeting['sitting'], meeting['meeting']), "r", "utf-8").read())
     total_text = re.sub(u'．', u'‧', total_text)
     total_text = re.sub(u'　', ' ', total_text)
@@ -84,6 +85,7 @@ for meeting in meetings:
     for councilor_id in in_office_ids(sitting['date'], exclude):
         common.AddAttendanceRecord(c, councilor_id, sitting['uid'], 'CS', 'absent')
     # <--
+conn.commit()
 print 'votes, voter done!'
 
 vote_common.person_attendance_param(c, county)

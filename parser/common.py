@@ -8,6 +8,9 @@ from datetime import datetime
 import logging
 
 
+def election_year(county):
+    return '2014'
+
 def get_or_create_councilor_uid(c, councilor):
     '''
         return councilor_uid, created
@@ -82,32 +85,6 @@ def normalize_party(party):
     party = re.sub(u'^國民黨$', u'中國國民黨', party)
     party = re.sub(u'^民進黨$', u'民主進步黨', party)
     return party
-
-def county_abbr2string(abbr):
-    return {
-        'ntp': u'新北市',
-        'tcc': u'臺北市',
-        'tycc': u'桃園市',
-        'kmc': u'基隆市',
-        'ilcc': u'宜蘭縣',
-        'hcc': u'新竹縣',
-        'hsinchucc': u'新竹市',
-        'mcc': u'苗栗縣',
-        'tccc': u'臺中市',
-        'chcc': u'彰化縣',
-        'ylcc': u'雲林縣',
-        'ntcc': u'南投縣',
-        'cyscc': u'嘉義縣',
-        'cycc': u'嘉義市',
-        'tncc': u'臺南市',
-        'kcc': u'高雄市',
-        'ptcc': u'屏東縣',
-        'hlcc': u'花蓮縣',
-        'taitungcc': u'臺東縣',
-        'mtcc': u'連江縣',
-        'kmcc': u'金門縣',
-        'phcouncil': u'澎湖縣'
-    }[abbr]
 
 def SittingsAbbreviation(key):
     d = json.load(open('util.json'))
@@ -272,3 +249,59 @@ def UpdateSittingLinks(c, meeting):
             SET links = %(links)s
             WHERE county = %(county)s AND date = %(date)s
         ''', meeting)
+
+def county_abbr2string(abbr):
+    return {
+        'ntp': u'新北市',
+        'tcc': u'臺北市',
+        'tycc': u'桃園市',
+        'kmc': u'基隆市',
+        'ilcc': u'宜蘭縣',
+        'hcc': u'新竹縣',
+        'hsinchucc': u'新竹市',
+        'mcc': u'苗栗縣',
+        'tccc': u'臺中市',
+        'chcc': u'彰化縣',
+        'ylcc': u'雲林縣',
+        'ntcc': u'南投縣',
+        'cyscc': u'嘉義縣',
+        'cycc': u'嘉義市',
+        'tncc': u'臺南市',
+        'kcc': u'高雄市',
+        'ptcc': u'屏東縣',
+        'hlcc': u'花蓮縣',
+        'taitungcc': u'臺東縣',
+        'mtcc': u'連江縣',
+        'kmcc': u'金門縣',
+        'phcouncil': u'澎湖縣'
+    }[abbr]
+
+def county2abbr3(county):
+    return {
+        u"新北市": "TPQ",
+        u"臺北市": "TPE",
+        u"臺中市": "TXG",
+        u"臺南市": "TNN",
+        u"高雄市": "KHH",
+        u"基隆市": "KEE",
+        u"新竹市": "HSZ",
+        u"嘉義市": "CYI",
+        u"桃園縣": "TAO",
+        u"新竹縣": "HSQ",
+        u"苗栗縣": "MIA",
+        u"彰化縣": "CHA",
+        u"南投縣": "NAN",
+        u"雲林縣": "YUN",
+        u"嘉義縣": "CYQ",
+        u"屏東縣": "PIF",
+        u"宜蘭縣": "ILA",
+        u"花蓮縣": "HUA",
+        u"臺東縣": "TTT",
+        u"澎湖縣": "PEN",
+        u"高雄縣": "KHQ",
+        u"臺南縣": "TNQ",
+        u"臺北縣": "TPQ",
+        u"臺中縣": "TXQ",
+        u"金門縣": "JME",
+        u"連江縣": "LJF"
+    }[county]

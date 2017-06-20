@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import sys
 sys.path.append('../../')
+import os
 import re
 import codecs
 import unicodedata
@@ -78,8 +79,10 @@ def IterVote(text, sitting_dict):
 conn = db_settings.con()
 c = conn.cursor()
 election_years = {1: '1969', 2: '1973', 3: '1977', 4: '1981', 5: '1985', 6: '1989', 7: '1994', 8: '1998', 9: '2002', 10: '2006', 11: '2010', 12: '2014', 13: '2018'}
-election_year = '2014'
-county, county_abbreviation = u'臺北市', 'TPE'
+county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
+county = common.county_abbr2string(county_abbr)
+election_year = common.election_year(county)
+county_abbr3 = common.county2abbr3(county)
 total_text = unicodedata.normalize('NFC', codecs.open(u"../../../data/tcc/meeting_minutes-%s.txt" % election_year, "r", "utf-8").read())
 
 Session_Token = re.compile(u'''
@@ -121,9 +124,9 @@ sittings = []
 for match in Session_Token.finditer(total_text):
     if match:
         if match.group('type') == u'定期':
-            uid = '%s-%s-%02d-CS-%02d' % (county_abbreviation, election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
+            uid = '%s-%s-%02d-CS-%02d' % (county_abbr3, election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
         elif match.group('type') == u'臨時':
-            uid = '%s-%s-T%02d-CS-%02d' % (county_abbreviation, election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
+            uid = '%s-%s-T%02d-CS-%02d' % (county_abbr3, election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
         sittings.append({
             "uid":uid,
             "name": re.sub('\s', '', match.group('name')),
