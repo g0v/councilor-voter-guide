@@ -125,6 +125,7 @@ conn.commit()
 
 # upsert from json
 for council in ['../../data/phcouncil/councilors.json', '../../data/kmcc/councilors.json', '../../data/mtcc/councilors.json', '../../data/ptcc/councilors.json', '../../data/kcc/councilors.json', '../../data/tncc/councilors.json', '../../data/taitungcc/councilors.json', '../../data/hlcc/councilors.json', '../../data/cycc/councilors.json', '../../data/cyscc/councilors.json', '../../data/ylcc/councilors.json', '../../data/ntcc/councilors.json', '../../data/chcc/councilors.json', '../../data/tccc/councilors.json', '../../data/ilcc/councilors.json', '../../data/mcc/councilors.json', '../../data/hcc/councilors.json', '../../data/kmc/councilors.json', '../../data/tycc/councilors.json', '../../data/hsinchucc/councilors.json', '../../data/ntp/councilors.json', '../../data/tcc/councilors.json']:
+    break
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
@@ -140,12 +141,13 @@ conn.commit()
 election_year = '2014'
 c.execute('''
     SELECT *
-    FROM candidates_candidates
+    FROM candidates_terms
     WHERE election_year = %s and elected = true
     ORDER BY county
 ''', [election_year])
 key = [desc[0] for desc in c.description]
 for row in c.fetchall():
+    break
     person = dict(zip(key, row))
     person['name'] = person['name'].decode('utf-8')
     person = normalize_councilor(person)
@@ -202,6 +204,7 @@ def rename_dict_key(d):
         u"遞補議員黨籍": "replacement_party",
         u"遞補議員性別": "replacement_gender",
         u"遞補議員生日": "replacement_birth",
+        u"到職日": "term_start",
         u"去職日": "date",
         u"縣市": "county",
         u"遞補官方資訊": "ref"
@@ -253,5 +256,10 @@ for wks in worksheets:
             ON CONFLICT (councilor_id, election_year)
             DO UPDATE
             SET party = %(party)s, in_office = %(in_office)s, term_end = %(term_end)s
+        ''', row)
+        c.execute('''
+            UPDATE councilors_councilorsdetail
+            SET term_start = %(term_start)s
+            WHERE councilor_id = %(uid)s AND election_year = %(election_year)s AND term_start is null
         ''', row)
 conn.commit()
