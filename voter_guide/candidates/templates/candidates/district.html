@@ -27,7 +27,7 @@
         {% endwith %}
         <a href="http://web.cec.gov.tw/files/11-1000-5373.php"><h4>2014各縣市選舉公報</h4></a>
         {% if candidates %}
-        <table class="table table-bordered table-condensed sortable zebra" >
+        <table class="table table-bordered table-condensed table-striped sortable" >
             <thead>
                 <tr style="font-weight:bold;background-color: #E1D0D0;">
                     <th rowspan="2">當選註記</th>
@@ -50,7 +50,7 @@
             </thead>
             <tbody>
                 {% for candidate in candidates %}
-                    <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
+                    <tr>
                         <td style="text-align:center; vertical-align:middle;">
                             {% if candidate.elected %}
                                 <span class="badge badge-warning">◎</span>
