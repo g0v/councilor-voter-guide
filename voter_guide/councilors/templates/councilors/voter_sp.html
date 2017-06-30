@@ -1,9 +1,10 @@
 {% extends "common/person_info.html" %}
+{% load extras %}
 
 {% block title %}
-    <title>立委投票指南:{{councilor.name}}第{{councilor.election_year}}屆的表決立場</title>
-    <meta property="og:title" content="立委投票指南:{{councilor.name}}第{{councilor.election_year}}屆的表決立場"/>
-    <meta itemprop="name" content="立委投票指南:{{councilor.name}}第{{councilor.election_year}}屆的表決立場">
+    <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的表決立場</title>
+    <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的表決立場"/>
+    <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的表決立場">
 {% endblock title %}
 
 {% block top-menu %}
