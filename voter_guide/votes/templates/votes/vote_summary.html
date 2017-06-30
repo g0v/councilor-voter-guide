@@ -9,16 +9,16 @@
         <h5 class="text-success">表決內容</h5>
             <p>{{ fragment.content|linebreaksbr }}</p>
         <blockquote>
-            <a href="{% url 'votes:vote' fragment.uid %}" rel="tooltip" title="查看各立委投什麼票"><i class="fa fa-pie-chart"> 看誰贊成誰反對</i></a>
+            <a href="{% url 'votes:vote' fragment.uid %}" rel="tooltip" title="看誰贊成誰反對"><i class="fa fa-pie-chart"> 看誰贊成誰反對</i></a>
             <a class="pull-right" href="{% url 'votes:vote' fragment.uid %}" ><i class="fa fa-tag"> 我要加標籤、投票</i></a>
         </blockquote>
-        {% if fragment.tags %}
+        {% if fragment.standpoints.all %}
             <h5 class="text-success">標籤</h5>
-            {% for title, votes in fragment.tags %}
-                <a href="{% url 'votes:votes' %}?tag={{title}}" rel="tooltip" title="有同樣標籤的表決">
-                    <font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{title}}</font>
+            {% for standpoint in fragment.standpoints.all %}
+                <a href="{% url 'votes:votes' county=county %}?tag={{standpoint.title}}" rel="tooltip" title="有同樣標籤的表決">
+                    <font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{standpoint.title}}</font>
                 </a>
-                （{{votes}}票）&nbsp;&nbsp;
+                &nbsp;&nbsp;
             {% endfor %}
         {% endif %}
         <h5 class="text-success">表決結果</h5>

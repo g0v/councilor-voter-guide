@@ -2,7 +2,7 @@
 import operator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.db.models import Q, F
+from django.db.models import Q, F, Sum
 from django.db import IntegrityError, transaction
 
 from .models import Votes, Councilors_Votes
@@ -24,19 +24,21 @@ def select_county(request, index, county):
 
 def votes(request, county, index='normal'):
     result = None
-    if index == 'conscience':
-        query = Q(sitting__county=county, conflict=True)
-    else:
-        query = Q(sitting__county=county)
+    qs = Q(sitting__county=county)
+    qs = qs & Q(conflict=True) if request.GET.get('conscience') else qs
+    if request.GET.get('tag'):
+        vote_ids = Standpoints.objects.filter(county=county, title=request.GET['tag']).values_list('vote', flat=True)
+        qs = qs & Q(uid__in=vote_ids)
     keyword = request.GET.get('keyword', '')
     if keyword:
-        votes = Votes.objects.filter(query & reduce(operator.and_, (Q(content__icontains=x) for x in keyword.split()))).order_by('-date', 'vote_seq')
+        votes = Votes.objects.filter(qs & reduce(operator.and_, (Q(content__icontains=x) for x in keyword.split()))).prefetch_related('standpoints').order_by('-date', 'vote_seq')
         if votes:
             keyword_been_searched(keyword, 'votes')
     else:
-        votes = Votes.objects.filter(query).order_by('-date', 'vote_seq')
+        votes = Votes.objects.filter(qs).prefetch_related('standpoints').order_by('-date', 'vote_seq')
     votes = paginate(request, votes)
-    return render(request,'votes/votes.html', {'county': county, 'votes': votes, 'index':index, 'keyword':keyword, 'result':result, 'keyword_hot': keyword_list('votes')})
+    standpoints = Standpoints.objects.filter(county=county).values('title').annotate(pro_sum=Sum('pro')).order_by('-pro_sum').distinct()
+    return render(request,'votes/votes.html', {'county': county, 'votes': votes, 'index':index, 'keyword':keyword, 'result':result, 'hot_keyword': keyword_list('votes')[:5], 'hot_standpoints': standpoints[:5]})
 
 def vote(request, vote_id):
     vote = get_object_or_404(Votes.objects.select_related('sitting'), uid=vote_id)
@@ -45,7 +47,7 @@ def vote(request, vote_id):
             with transaction.atomic():
                 if request.POST.get('keyword', '').strip():
                     standpoint_id = u'vote-%s-%s' % (vote_id, request.POST['keyword'].strip())
-                    Standpoints.objects.get_or_create(uid=standpoint_id, title=request.POST['keyword'].strip(), vote_id=vote_id)
+                    Standpoints.objects.get_or_create(uid=standpoint_id, county=vote.sitting.county, title=request.POST['keyword'].strip(), vote_id=vote_id)
                 elif request.POST.get('pro'):
                     User_Standpoint.objects.create(standpoint_id=request.POST['pro'], user=request.user)
                     Standpoints.objects.filter(uid=request.POST['pro']).update(pro=F('pro') + 1)
