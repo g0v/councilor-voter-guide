@@ -6,7 +6,7 @@
             {% endif %}
         </a>
         <ul class="dropdown-menu">
-            <li><a id='councilors_voter' href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">表決</a></li>
+            <li><a id='councilors_voter' href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">表決</a></li>
             <li><a id='councilors_biller' href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">議案</a></li>
             <li><a id='councilors_platformer' href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">競選政見</a></li>
             <li><a id='councilors_personal_political_contributions' href="{% url 'councilors:personal_political_contributions' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">政治獻金</a></li>

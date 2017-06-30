@@ -1,6 +1,19 @@
 {% extends "common/person_info.html" %}
 {% load extras %}
 
+{% block top-menu %}
+    <div class="row-fluid">
+        <div id="sidebar-leftx" class="span2">
+        </div>
+        <div class="tabnav">
+            <ul>
+                <li><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">表決立場</a></li>
+                <li class="active"><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
 {% block title %}
     {% if councilor %}
         {% if index == 'conscience' %}
@@ -121,5 +134,4 @@
             $('#url_vote').attr('class', 'active');
         });
     </script>
-    {{ block.super }}
 {% endblock script %}

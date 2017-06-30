@@ -86,7 +86,7 @@
                         <div id="ref_vote_{{fragment.decision}}_{{element.party}}" class="collapse">
                             <ul class="inline">
                             {% for councilor in element.councilors %}
-                                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=vote.sitting.election_year %}" rel="tooltip" title="這位立委的表決紀錄">{{councilor.name}}</a></li>
+                                <li><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=vote.sitting.election_year %}" rel="tooltip" title="這位立委的表決紀錄">{{councilor.name}}</a></li>
                             {% endfor %}
                             </ul>
                         </div>

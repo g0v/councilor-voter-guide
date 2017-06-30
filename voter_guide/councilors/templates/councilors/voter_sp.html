@@ -1,0 +1,80 @@
+{% extends "common/person_info.html" %}
+
+{% block title %}
+    <title>立委投票指南:{{councilor.name}}第{{councilor.election_year}}屆的表決立場</title>
+    <meta property="og:title" content="立委投票指南:{{councilor.name}}第{{councilor.election_year}}屆的表決立場"/>
+    <meta itemprop="name" content="立委投票指南:{{councilor.name}}第{{councilor.election_year}}屆的表決立場">
+{% endblock title %}
+
+{% block top-menu %}
+    <div class="row-fluid">
+        <div id="sidebar-leftx" class="span2">
+        </div>
+        <div class="tabnav">
+            <ul>
+                <li class="active"><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">表決立場</a></li>
+                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block person_detail %}
+    <div class="row-fluid">
+        <div class="description">
+            立場由網友自行標註、投票產生，歡迎進入表決內容一起讓資料更好
+        </div>
+    {% regroup standpoints by decision as decision_list %}
+    {% for decision_group in decision_list %}
+        <div class="span{% widthratio 12 decision_list|length 1 %}">
+            <ul class="media-list">
+                <li>
+                    <h3 align="center">
+                        {% if decision_group.grouper == "反對" %}
+                        <i class="fa fa-times-circle"> </i>
+                        {% elif decision_group.grouper == "贊成" %}
+                        <i class="fa fa-check-circle"> </i>
+                        {% else %}
+                            {% if decision_group.grouper == "棄權" %}
+                            <i class="fa fa-question-circle"> </i>
+                            {% elif decision_group.grouper == "沒投票" %}
+                            <i class="fa fa-bed"> </i>
+                            {% endif %}
+                        {% endif %}
+                        {{ decision_group.grouper }}
+                    </h3>
+                    <ul>
+                    {% for standpoint in decision_group.list %}
+                    <li class="media">
+                        <div class="media-body well">
+                            <div class="media-heading"><font class="lead">{{standpoint.title}}</font>：{{standpoint.times}}次
+                                <div align="right">
+                                    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#ref_vote_{{standpoint.votes.0.uid}}">表決內容&nbsp;<b class="caret"></b></button><br>
+                                    <div id="ref_vote_{{standpoint.votes.0.uid}}" class="collapse">
+                                        {% for fragment in standpoint.votes %}
+                                        <h4><a href="{% url 'votes:vote' fragment.uid %}" target="_blank">☞ 表決{{forloop.counter}}<small>（覺得表決跟立場不符合嗎？點我來改進）</small></a></h4>
+                                        <blockquote>
+                                            <p>{{fragment.content}}</p>
+                                        </blockquote>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock person_detail %}
+
+{% block script %}
+    <script>
+        $(document).ready( function() {
+            $('#url_vote').attr('class', 'active');
+        });
+    </script>
+{% endblock script %}

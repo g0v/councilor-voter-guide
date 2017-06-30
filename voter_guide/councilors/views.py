@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import operator
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.db import connections
 from django.db.models import Count, Sum, Q, Max
 
 from .models import CouncilorsDetail, Attendance, PoliticalContributions
@@ -195,6 +196,41 @@ def voter(request, councilor_id, election_year):
     vote_addup = votes.values('decision').annotate(totalNum=Count('vote', distinct=True)).order_by('-decision')
     votes = paginate(request, votes)
     return render(request,'councilors/voter.html', {'keyword_hot': keyword_list('votes'), 'county': councilor.county, 'councilor': councilor, 'keyword': keyword, 'index': index, 'votes': votes, 'vote_addup': vote_addup, 'notvote': notvote})
+
+def voter_sp(request, councilor_id, election_year):
+    councilor = get_object_or_404(CouncilorsDetail.objects, election_year=election_year, councilor_id=councilor_id)
+    terms_id = tuple(CouncilorsDetail.objects.filter(election_year__lte=election_year,  councilor_id=councilor_id).values_list('id', flat=True))
+    c = connections['default'].cursor()
+    c.execute(u'''
+        SELECT json_agg(row)
+        FROM (
+            SELECT
+                CASE
+                    WHEN lv.decision = 1 THEN '贊成'
+                    WHEN lv.decision = -1 THEN '反對'
+                    WHEN lv.decision = 0 THEN '棄權'
+                    WHEN lv.decision isnull THEN '沒投票'
+                END as decision,
+                s.title,
+                count(*) as times,
+                json_agg((select x from (select v.uid, v.content) x)) as votes
+            FROM votes_councilors_votes lv
+            JOIN standpoints_standpoints s on s.vote_id = lv.vote_id
+            JOIN votes_votes v on lv.vote_id = v.uid
+            WHERE lv.councilor_id in %s AND s.pro = (
+                SELECT max(pro)
+                FROM standpoints_standpoints ss
+                WHERE ss.pro > 0 AND s.vote_id = ss.vote_id
+                GROUP BY ss.vote_id
+            )
+            GROUP BY s.title, lv.decision
+            ORDER BY lv.decision
+        ) row
+    ''', [terms_id])
+    r = c.fetchone()
+    standpoints = r[0] if r else []
+    return render(request, 'councilors/voter_sp.html', {'councilor': councilor, 'standpoints': standpoints})
+
 
 def platformer(request, councilor_id, election_year):
     try:
