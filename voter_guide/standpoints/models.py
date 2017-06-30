@@ -5,6 +5,7 @@ from django.db import models
 
 class Standpoints(models.Model):
     uid = models.CharField(max_length=100, unique=True)
+    county = models.CharField(max_length=100)
     title = models.CharField(max_length=32, db_index=True)
     vote = models.ForeignKey('votes.Votes', to_field='uid', related_name='standpoints', null=True)
     bill = models.ForeignKey('bills.Bills', to_field='uid', related_name='standpoints', null=True)
