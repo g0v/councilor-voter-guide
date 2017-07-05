@@ -32,8 +32,21 @@ class Spider(scrapy.Spider):
             item['download_url'] = urljoin(response.url, node.xpath('@href').extract_first().strip())
             item['sitting'] = u'第%s屆' % self.ad
             item['meeting'] = node.xpath('descendant::*/text()').re(u'屆(.+會)$')[0]
+            item['meeting'] = item['meeting'].replace('.', u'、')
             ext = node.xpath('@href').extract_first().split('.')[-1]
-            print item['meeting']
+            file_name = '%s_%s.%s' % (item['sitting'], item['meeting'], ext)
+            cmd = 'mkdir -p %s && wget -c -O %s%s "%s"' % (self.output_path, self.output_path, file_name, item['download_url'])
+            retcode = subprocess.call(cmd, shell=True)
+            yield item
+        nodes = response.xpath(u'//tr/td[re:test(@title, "第%s屆")]/following-sibling::td/a[re:test(., "(冊|pdf)$")]' % self.ad)
+        for node in nodes:
+            item = {}
+            item['election_year'] = self.election_year
+            item['download_url'] = urljoin(response.url, node.xpath('@href').extract_first().strip())
+            item['sitting'] = u'第%s屆' % self.ad
+            item['meeting'] = '%s%s' % (node.xpath('preceding::td[1]/text()').re(u'屆(.+會)')[0], node.xpath('descendant::*/text()').re(u'(.+冊)')[0])
+            item['meeting'] = item['meeting'].replace('.', u'、')
+            ext = node.xpath('@href').extract_first().split('.')[-1]
             file_name = '%s_%s.%s' % (item['sitting'], item['meeting'], ext)
             cmd = 'mkdir -p %s && wget -c -O %s%s "%s"' % (self.output_path, self.output_path, file_name, item['download_url'])
             retcode = subprocess.call(cmd, shell=True)
