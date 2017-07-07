@@ -287,6 +287,7 @@ def county2abbr3(county):
         u"新竹市": "HSZ",
         u"嘉義市": "CYI",
         u"桃園縣": "TAO",
+        u"桃園市": "TAO",
         u"新竹縣": "HSQ",
         u"苗栗縣": "MIA",
         u"彰化縣": "CHA",
