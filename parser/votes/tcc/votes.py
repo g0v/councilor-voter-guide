@@ -44,6 +44,9 @@ def GetVoteContent(text):
     for i in reversed(range((0-len(lines)), -2)):
         if re.search(u'^議決', lines[i]):
             return '\n'.join(lines[i+1:])
+        if re.search(u'^案號[:：]', lines[i]):
+            return '\n'.join(lines[i:])
+    for i in reversed(range((0-len(lines)), -2)):
         if re.search(u'(請.*審議|審議.*案)', lines[i]):
             return '\n'.join(lines[i:])
     for i in reversed(range((0-len(lines)), -1)):
@@ -117,7 +120,7 @@ Namelist_Token = re.compile(u'''
     (?P<disagree>[^:：]+?)
     [:：]
     (?P<abstain>[^:：]+?)
-    [:：](通\s?過|否\s?決|同\s?意)
+    [:：](?:審\s?查\s?意\s?見)?(通\s?過|否\s?決|同\s?意)
 ''', re.X|re.S)
 
 sittings = []
