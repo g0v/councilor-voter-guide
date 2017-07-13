@@ -57,7 +57,7 @@ class Spider(scrapy.Spider):
                 council_motion['date'] = common.ROC2AD(node.xpath('td/text()').extract()[1].split()[0])
                 council_motion['sitting'] = ''.join(node.xpath('td/text()').extract()[1].split()[1:])
             elif node.xpath('td/text()')[0].re(u'議決文'):
-                council_motion['resolusion'] = node.xpath('td/text()').extract()[1]
+                council_motion['resolution'] = node.xpath('td/text()').extract()[1]
             elif node.xpath('td/text()')[0].re(u'案(\s|　)+?號'):
                 item['bill_no'] = node.xpath('td/text()').extract()[1].strip()
             elif node.xpath('td/text()')[0].re(u'來文文號'):
