@@ -3,8 +3,8 @@
 import re
 import sys
 sys.path.append('../')
-import psycopg2
 import json
+import glob
 
 import db_settings
 import common
@@ -32,42 +32,6 @@ def CouncilorsBills(councilor_id, bill_id, priproposer, petition):
         SELECT %s, %s, %s, %s
         WHERE NOT EXISTS (SELECT 1 FROM bills_councilors_bills WHERE councilor_id = %s AND bill_id = %s)
     ''', (councilor_id, bill_id, priproposer, petition, councilor_id, bill_id))
-
-conn = db_settings.con()
-c = conn.cursor()
-
-for council in ['../../data/ylcc/bills.json', '../../data/cycc/bills.json', '../../data/ilcc/bills.json', '../../data/hcc/bills.json', '../../data/chcc/bills.json', '../../data/cyscc/bills.json', '../../data/ntcc/bills.json', '../../data/hlcc/bills.json', '../../data/tncc/bills.json', '../../data/ntp/bills.json', '../../data/kcc/bills.json', '../../data/tccc/bills.json', '../../data/tcc/bills.json']:
-    break
-    print council
-    dict_list = json.load(open(council))
-    for bill in dict_list:
-        print bill
-        bill.update({'uid': u'%s-%s' % (bill['county'], bill['id'])})
-        bill['election_year'] = str(bill['election_year'])
-        Bill(bill)
-        priproposer = True
-        for name in bill['proposed_by']:
-#           name = re.sub(u'\(.*\)', '', name)
-            name = common.normalize_person_name(name)
-            if name == u'笛布斯‧顗賚':
-                name = u'笛布斯顗賚'
-            name = re.sub(u'副?議長', '', name)
-            councilor_id = common.getDetailId(c, name, bill['election_year'], bill['county'])
-            if councilor_id:
-                CouncilorsBills(councilor_id, bill['uid'], priproposer, False)
-            priproposer = False
-        for name in bill.get('petitioned_by', []):
-            name = re.sub(u'\(.*\)', '', name)
-            name = re.sub(u'[˙・•．]', u'‧', name)
-            name = name.strip()
-            if name == u'笛布斯‧顗賚':
-                name = u'笛布斯顗賚'
-            name = re.sub(u'副?議長', '', name)
-            councilor_id = common.getDetailId(c, name, bill['election_year'], bill['county'])
-            if councilor_id:
-                CouncilorsBills(councilor_id, bill['uid'], False, True)
-    conn.commit()
-print 'bills done'
 
 def bill_party_diversity(parties):
     c.execute('''
@@ -122,14 +86,51 @@ def distinct_party(election_year, county):
     ''', (election_year, county))
     return c.fetchall()
 
-for election_year, county in [('2009', u'雲林縣'), ('2009', u'新竹縣'), ('2009', u'彰化縣'), ('2009', u'南投縣'), ('2009', u'嘉義縣'), ('2009', u'嘉義市'), ('2009', u'宜蘭縣'), ('2009', u'花蓮縣'), ('2010', u'高雄市'), ('2010', u'臺北市'), ('2010', u'臺中市'), ('2010', u'高雄市'), ('2010', u'新北市')]:
-    break
+conn = db_settings.con()
+c = conn.cursor()
+election_year = common.election_year('')
+
+for f in glob.glob('../../data/*/bills-%s.json' % election_year):
+    county_abbr = f.split('/')[-2]
+    county = common.county_abbr2string(county_abbr)
+    county_abbr3 = common.county2abbr3(county)
+    print f
+    dict_list = json.load(open(f))
+    for bill in dict_list:
+        print bill
+        bill['county'] = county
+        bill.update({'uid': u'%s-%s' % (bill['county'], bill['id'])})
+#       bill['election_year'] = str(bill['election_year'])
+        Bill(bill)
+        priproposer = True
+        for name in bill['proposed_by']:
+            name = common.normalize_person_name(name)
+#           if name == u'笛布斯‧顗賚':
+#               name = u'笛布斯顗賚'
+            name = re.sub(u'副?議長', '', name)
+            for councilor_id in common.GetCouncilorId(c, name):
+                id = common.getDetailIdFromUid(c, councilor_id, bill['election_year'], bill['county'])
+                if id:
+                    CouncilorsBills(id, bill['uid'], priproposer, False)
+            priproposer = False
+        for name in bill.get('petitioned_by', []):
+            name = re.sub(u'\(.*\)', '', name)
+            name = re.sub(u'[˙・•．]', u'‧', name)
+            name = name.strip()
+#           if name == u'笛布斯‧顗賚':
+#               name = u'笛布斯顗賚'
+            name = re.sub(u'副?議長', '', name)
+            for councilor_id in common.GetCouncilorId(c, name):
+                id = common.getDetailIdFromUid(c, councilor_id, bill['election_year'], bill['county'])
+                if id:
+                    CouncilorsBills(id, bill['uid'], False, True)
+    # Update bills_party_diversity of People done
     parties = [x[0] for x in distinct_party(election_year, county)]
     bill_party_diversity(parties)
     for councilor_id in councilors(election_year, county):
         personal_vector(parties, councilor_id)
 conn.commit()
-print 'Update bills_party_diversity of People done'
+print 'bills done'
 
 c.execute('''
     SELECT
