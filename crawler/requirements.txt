@@ -1,8 +1,2 @@
-Scrapy==0.24.4
-Twisted==14.0.2
-cffi==0.8.6
-lxml==3.4.0
-queuelib==1.2.2
-requests==2.4.3
-service_identity
-scrapyd
+Scrapy==1.4
+requests==2.11

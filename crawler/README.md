@@ -19,13 +19,13 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 | 縣市   | 代號      | 現任議員 | 工程建議款 | 議案 | 議事錄 |
 |--------|-----------|----------|------------|------|--------|
 | 基隆市 | kmc       |    O     |     O      |      |   O    |
-| 臺北市 | tcc       |    O     |     O      |      |   O    |
+| 臺北市 | tcc       |    O     |     O      |  O   |   O    |
 | 新北市 | ntp       |    O     |     O      |      |   O    |
 | 桃園市 | tycc      |    O     |     O      |      |   O    |
-| 新竹市 | hsinchucc |    O     |     O      |      |        |
-| 新竹縣 | hcc       |    O     |     O      |      |        |
-| 苗栗縣 | mcc       |    O     |     O      |      |        |
-| 宜蘭縣 | ilcc      |    O     |     O      |      |        |
+| 新竹市 | hsinchucc |    O     |     O      |      |   X    |
+| 新竹縣 | hcc       |    O     |     O      |      |   X    |
+| 苗栗縣 | mcc       |    O     |     O      |      |   X    |
+| 宜蘭縣 | ilcc      |    O     |     O      |      |   O    |
 
 
 ### 中部

@@ -1,70 +1,47 @@
 # -*- coding: utf-8 -*-
+import sys
+sys.path.append('../')
+import os
 import re
 import urllib
 import scrapy
-from scrapy.http import Request, FormRequest
-from scrapy.selector import Selector
-from tcc.items import Bills
 
+import common
 
-def ROC2AD(text):
-    matchTerm = re.search(u'''
-        (?P<year>[\d]+)[\s]*(?:年|[-/.])[\s]*
-        (?P<month>[\d]+)[\s]*(?:月|[-/.])[\s]*
-        (?P<day>[\d]+)
-    ''', text, re.X)
-    if matchTerm:
-        return '%04d-%02d-%02d' % (int(matchTerm.group('year'))+1911, int(matchTerm.group('month')), int(matchTerm.group('day')))
-    else:
-        return None
 
 class Spider(scrapy.Spider):
     name = "bills"
-    allowed_domains = ["tccmis.tcc.gov.tw"]
-    start_urls = ["http://tccmis.tcc.gov.tw/OM/OM_SearchList.asp",]
-    election_year = {1: '1969', 2: '1973', 3: '1977', 4: '1981', 5: '1985', 6: '1989', 7: '1994', 8: '1998', 9: '2002', 10: '2006', 11: '2010', 12: '2014'}
-    select_ad = 11
+    allowed_domains = ["www.tcc.gov.tw", "tccmis.tcc.gov.tw"]
+    start_urls = ["http://www.tcc.gov.tw"]
     download_delay = 0.5
-
-    def start_requests(self):
-        payload = {
-            'FTSearch': u'ON',
-            'pagesize': u'20',
-            'omastext': u'',
-            'rdoDE': u'0',
-            'OmasDetr': str(self.select_ad),
-            'OmasDetp': u'',
-            'OmasDetm': u'',
-            'sDateY': u'',
-            'sDateM': u'',
-            'sDateD': u'',
-            'eDateY': u'',
-            'eDateM': u'',
-            'eDateD': u'',
-            'spek': u''
-        }
-        return [FormRequest("http://tccmis.tcc.gov.tw/OM/OM_SearchList.asp", formdata=payload, callback=self.parse)]
+    county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
+    election_year = common.election_year(county_abbr)
+    ads = {'1969': 1, '1973': 2, '1977': 3, '1981': 4, '1985': 5, '1989': 6, '1994': 7, '1998': 8, '2002': 9, '2006': 10, '2010': 11, '2014': 12, '2018': 13}
+    ad = ads[election_year]
 
     def parse(self, response):
-        sel = Selector(response)
-        items = []
-        nodes = sel.xpath('//div/table/tr[@id="tr"]')
-        for node in nodes:
-            item = Bills()
+        return response.follow(response.xpath(u'//a[re:test(., "^議事資訊系統$")]/@href').extract_first(), callback=self.parse_frame)
+
+    def parse_frame(self, response):
+        return response.follow(response.xpath('//frame[@name="Search"]/@src').extract_first(), callback=self.parse_form)
+
+    def parse_form(self, response):
+        return scrapy.FormRequest.from_response(response, formname='OMForm', formdata={'OmasDetr': str(self.ad), 'rdoDE': '0'}, callback=self.parse_post)
+
+    def parse_post(self, response):
+        for node in response.xpath('//tr[@id="tr"]'):
+            item = {}
             td = node.xpath('td/text()').extract()
-            item['election_year'] = self.election_year[self.select_ad]
-            item['county'] = u'臺北市'
-            item['id'] = td[1].encode('latin1').decode('big5')
-            item['type'] = ''.join(td[2].encode('latin1').decode('big5').split())
-            item['category'] = td[3].encode('latin1').decode('big5')
-            request = Request("http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=%s" % item['id'], callback=self.parse_profile)
-            request.meta['item'] = item
-            yield request
+            item['election_year'] = self.election_year
+            item['id'] = td[1]
+            item['bill_no'] = td[2]
+            item['type'] = re.sub('\s', '', td[3])
+            item['category'] = td[4]
+            yield scrapy.Request("http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=%s" % item['id'], callback=self.parse_profile, meta={'item': item})
 
     def parse_profile(self, response):
-        sel = Selector(response)
-        item = response.request.meta['item']
-        nodes = sel.xpath('//div[@id="detail"]/table/tr')
+        item = response.meta['item']
+        nodes = response.xpath('//div[@id="detail"]/table/tr')
         motions, committee_motion, council_motion = [], {}, {}
         for node in nodes:
             if node.xpath('td/text()')[0].re(u'目前處理程序'):
@@ -77,7 +54,7 @@ class Spider(scrapy.Spider):
                 item['proposed_by'] = node.xpath('td/text()').extract()[1].strip().split(u'、')
             elif node.xpath('td/text()')[0].re(u'議決會次'):
                 council_motion['motion'] = u'大會議決'
-                council_motion['date'] = ROC2AD(node.xpath('td/text()').extract()[1].split()[0])
+                council_motion['date'] = common.ROC2AD(node.xpath('td/text()').extract()[1].split()[0])
                 council_motion['sitting'] = ''.join(node.xpath('td/text()').extract()[1].split()[1:])
             elif node.xpath('td/text()')[0].re(u'議決文'):
                 council_motion['resolusion'] = node.xpath('td/text()').extract()[1]
@@ -85,20 +62,20 @@ class Spider(scrapy.Spider):
                 item['bill_no'] = node.xpath('td/text()').extract()[1].strip()
             elif node.xpath('td/text()')[0].re(u'來文文號'):
                 td = node.xpath('td/text()').extract()[1].split()
-                d = dict(zip(['motion', 'resolution', 'date'], [u'來文', None, ROC2AD(td[0])]))
+                d = dict(zip(['motion', 'resolution', 'date'], [u'來文', None, common.ROC2AD(td[0])]))
                 if len(td) > 1:
                     d['no'] = td[1]
                 motions.append(d)
             elif node.xpath('td/text()')[0].re(u'收文日期'):
-                motions.append(dict(zip(['motion', 'resolution', 'date'], [u'收文', None, ROC2AD(node.xpath('td/text()').extract()[1])])))
+                motions.append(dict(zip(['motion', 'resolution', 'date'], [u'收文', None, common.ROC2AD(node.xpath('td/text()').extract()[1])])))
             elif node.xpath('td/text()')[0].re(u'審查日期'):
                 committee_motion['motion'] = u'委員會審查意見'
-                committee_motion['date'] = node.xpath('td/text()').extract()[1]
+                committee_motion['date'] = common.ROC2AD(node.xpath('td/text()').extract()[1])
             elif node.xpath('td/text()')[0].re(u'審查意見'):
                 committee_motion['resolution'] = '\n'.join(node.xpath('td/text()').extract()[1:])
             elif node.xpath('td/text()')[0].re(u'發文文號'):
                 td = node.xpath('td/text()').extract()[1].split()
-                d = dict(zip(['motion', 'resolution', 'date'], [u'發文', None, ROC2AD(td[0])]))
+                d = dict(zip(['motion', 'resolution', 'date'], [u'發文', None, common.ROC2AD(td[0])]))
                 if len(td) > 1:
                     d['no'] = td[1]
                 motions.append(d)
@@ -109,6 +86,6 @@ class Spider(scrapy.Spider):
         for motion in [committee_motion, council_motion]:
             if motion:
                 motions.append(motion)
-        item['motions'] = motions
+        item['motions'] = sorted(motions, key=lambda x: x.get('date'), reverse=True)
         item['links'] = response.url
         return item
