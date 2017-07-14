@@ -9,16 +9,18 @@ import logging
 
 
 def election_year(county):
-    return '2014'
+    return '2010'
 
-def get_or_create_councilor_uid(c, councilor):
+def get_or_create_councilor_uid(c, councilor, create=True):
     '''
         return councilor_uid, created
     '''
     logging.info(councilor)
     councilor['councilor_ids'] = tuple(GetCouncilorId(c, councilor['name']))
-    if not councilor['councilor_ids']:
+    if create and not councilor['councilor_ids']:
         return (uuid.uuid4().hex, False)
+    else:
+        return
     c.execute('''
         SELECT councilor_id
         FROM councilors_councilorsdetail
@@ -36,6 +38,10 @@ def get_or_create_councilor_uid(c, councilor):
     ''', councilor)
     r = c.fetchone()
     return (r[0], True) if r else (uuid.uuid4().hex, False)
+    if r:
+        return (r[0], True)
+    elif create:
+        return (uuid.uuid4().hex, False)
 
 def get_or_create_candidate_uid(c, candidate):
     '''
@@ -140,8 +146,6 @@ def getDetailIdFromUid(c, uid, election_year, county):
     r = c.fetchone()
     if r:
         return r[0]
-    else:
-        return getDetailIdFuzzy(c, name, election_year, county)
 
 def getDetailId(c, name, election_year, county):
     c.execute('''
