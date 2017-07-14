@@ -199,7 +199,7 @@ def voter(request, councilor_id, election_year):
 
 def voter_sp(request, councilor_id, election_year):
     councilor = get_object_or_404(CouncilorsDetail.objects, election_year=election_year, councilor_id=councilor_id)
-    terms_id = tuple(CouncilorsDetail.objects.filter(election_year__lte=election_year,  councilor_id=councilor_id).values_list('id', flat=True))
+    terms_id = tuple(CouncilorsDetail.objects.filter(election_year__lte=election_year, councilor_id=councilor_id).values_list('id', flat=True))
     c = connections['default'].cursor()
     c.execute(u'''
         SELECT json_agg(row)

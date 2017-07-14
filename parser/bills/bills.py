@@ -90,36 +90,42 @@ def update_sponsor_param(uid):
     c.execute('''
         update bills_bills
         set param = (COALESCE(param, '{}'::jsonb) || (
-            select jsonb_build_object('sponsors_groupby_party', jsonb_agg(row))
-            from (
-                select role, json_agg(party_list) as party_list, sum(count)
+            select jsonb_build_object('sponsors_groupby_party', (
+                select jsonb_object_agg("role", "detail")
                 from (
+                    select role, json_build_object('party_list', party_list, 'sum', sum) as detail
+                    from (
+    select role, json_agg(party_list) as party_list, sum(count)
+                    from (
                     select role, json_build_object('party', party, 'councilors', councilors, 'count', json_array_length(councilors)) as party_list, json_array_length(councilors) as count
                     from (
-                        select role, party, json_agg(detail) as councilors
-                        from (
-                select role, party, json_build_object('name', name, 'councilor_id', councilor_id) as detail
+                            select role, party, json_agg(detail) as councilors
                             from (
-                                select
-                                    case
-                                        WHEN priproposer = true AND petition = false THEN 'priproposer'
-                                        WHEN petition = false THEN 'sponsor'
-                                        WHEN petition = true THEN 'cosponsor'
-                                    end as role,
-                                    l.party,
-                                    l.name,
-                                    l.councilor_id
-                                from councilors_councilorsdetail l, bills_bills v , bills_councilors_bills vl
-                                where v.uid = %s and v.uid = vl.bill_id and vl.councilor_id = l.id
-                            ) _
+                                select role, party, json_build_object('name', name, 'councilor_id', councilor_id) as detail
+                                from (
+                                    select
+                                        case
+                                            WHEN priproposer = true AND petition = false THEN 'priproposer'
+                                            WHEN petition = false THEN 'sponsor'
+                                            WHEN petition = true THEN 'cosponsor'
+                                        end as role,
+                                        l.party,
+                                        l.name,
+                                        l.councilor_id
+                                    from councilors_councilorsdetail l, bills_bills v , bills_councilors_bills vl
+                                    where v.uid = %s and v.uid = vl.bill_id and vl.councilor_id = l.id
+                                ) _
                             ) __
-                    group by role, party
-                    order by role, party
-                    ) ___
-                ) ____
-            group by role
-            order by sum desc
-            ) row
+                            group by role, party
+                            order by role, party
+                        ) ___
+                        order by role, count desc
+                                        ) ____
+                group by role
+                order by sum desc
+                ) _____
+                ) row
+            ))
         ))
         where uid = %s
 	''', [uid, uid])

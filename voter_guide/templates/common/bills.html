@@ -3,33 +3,7 @@
     {% for fragment in bills %}
     <li class="media">
         <div class="media-body well">
-            <h5>
-                <small>第一提案人</small>
-                {% with councilor=fragment.primary_proposer.0 %}
-                    {% if councilor %}
-                        <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}" rel="tooltip" title="{{ councilor.name }}的所有議案">
-                            {% include "common/name_color_by_party.html" %}
-                        </a>
-                    {% else %}
-                        {{fragment.proposed_by}}
-                    {% endif %}
-                {% endwith %}
-            </h5>
             <h3 class="media-heading">
-                <strong>
-                    {% if fragment.category %}
-                        {% if index == "normal" %}
-                            <a href="{% url 'bills:bills_category' index=index county=fragment.county category=fragment.category %}">
-                                {{fragment.category}}
-                            </a>
-                        {% else %}
-                            <a href="{% url 'councilors:biller_category' councilor_id=councilor.councilor_id election_year=councilor.election_year category=fragment.category %}">
-                                {{fragment.category}}
-                            </a>
-                        {% endif %}
-                    {% endif %}
-                ：</strong>
-                
                 {% if fragment.abstract %}
                     {% if keyword %}
                         {{fragment.abstract|linebreaksbr|replace:keyword|safe}}
@@ -39,7 +13,7 @@
                 {% endif %}
             </h3>
             <div>
-                <h5>執行情形</h5> 
+                <h5 class="text-success">執行情形</h5>
                 <blockquote>
                     {% if fragment.execution %}
                         {{fragment.execution}}
@@ -50,7 +24,17 @@
                     {% endif %}
                 </blockquote>
             </div>
-            <a href="{% url 'bills:bill_detail' county=fragment.county bill_id=fragment.uid %}">查看完整議案</a>
+            <div>
+                <h5 class="text-success">提案人</h5>
+                <blockquote>
+                    {{fragment.proposed_by}}
+                </blockquote>
+                <h5 class="text-success">類別</h5>
+                <blockquote>
+                    {{fragment.category}}
+                </blockquote>
+            </div>
+            <a href="{% url 'bills:bill_detail' county=fragment.county bill_id=fragment.uid %}">查看完整內容</a>
         </div>
     </li>
     {% empty %}

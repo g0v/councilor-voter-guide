@@ -16,43 +16,31 @@
 {% endblock title %}
 {% block right %}
 <div class="row-fluid">
-    <div class="span1">
-    </div>
-    <div class="span10">
+    <div id="sidebar-left" class="span3" style="margin: 10px 5px">
+        <h3>
+            <i class="fa fa-pencil"> 主提案</i>
+        </h3>
+        {% include "common/sponsor.html" with list=bill.param.sponsors_groupby_party.sponsor.party_list role="sponsor" %}
         <br>
+        {% if bill.param.sponsors_groupby_party.cosponsor %}
+            <h3>
+                <i class="fa fa-users"> 連署提案</i>
+            </h3>
+            {% include "common/sponsor.html" with list=bill.param.sponsors_groupby_party.cosponsor.party_list role="cosponsor" %}
+            {% endif %}
         <div id="d3" align="left">
         </div>
+    </div>
+    <div id="content" class="span9" style="min-height: 700px; padding-bottom: 150px;">
         {% if bill %}
+        <a href="{{bill.links}}" target="_blank" class="lead pull-right"><i class="fa fa-file-pdf-o"> 官方連結</i></a>
         <div align="center">
             <ul class="inline lead">
                 <li>{{bill.type}}</li>
                 <li>{{bill.category}}</li>
             </ul>
-            <a href="{{bill.links}}" target="_blank"><p class="lead">官方連結</p></a>
         </div>
         <dl class="dl-horizontal">
-            <dt>提案人</dt>
-            <dd>
-                <ul class="inline">
-                {% for councilor in bill.sorted_proposer_set %}
-                    <li><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}" rel="tooltip" title="{{councilor.name}}的所有議案">{% include "common/name_color_by_party.html" %}</a></li>
-                {% empty %}
-                    {{bill.proposed_by}}
-                {% endfor %}
-                </ul>
-            </dd>
-            {% if bill.petitioned_by %}
-                <dt>連署人</dt>
-                <dd>
-                    <ul class="inline">
-                    {% for councilor in bill.sorted_petition_set %}
-                        <li><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}" rel="tooltip" title="{{councilor.name}}的所有議案">{% include "common/name_color_by_party.html" %}</a></li>
-                    {% empty %}
-                        {{bill.proposed_by}}
-                    {% endfor %}
-                    </ul>
-                </dd>
-            {% endif %}
             <dt>案由</dt>
             <dd><p>{{bill.abstract}}</p></dd>
             {% if bill.description %}
@@ -74,10 +62,17 @@
                 <dt>備註</dt>
                 <dd><p>{{bill.remark}}</p></dd>
             {% endif %}
-            {% for motion in bill.motions %}
-                <dt>{{motion.motion}}</dt>
-                <dd><p>{% if motion.date %}{{motion.date|date:"Y-m-d"}}{% endif %}&nbsp;{% if motion.resolution %}{{motion.resolution}}{% endif %}</p></dd>
-            {% endfor %}
+            <dt>審議程序</dt>
+            <dd>
+                <ul>
+                {% for motion in bill.motions %}
+                    <li>
+                        {{motion.motion}}（{{motion.date}}）
+                        {% if motion.resolution %}<p>{{motion.resolution}}</p>{% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+            </dd>
         </dl>
         {% endif %}
         <hr>
