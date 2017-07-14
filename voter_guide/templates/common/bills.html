@@ -1,40 +1,31 @@
 {% load extras %}
 <ul class="media-list">
-    {% for fragment in bills %}
+    {% for bill in bills %}
     <li class="media">
         <div class="media-body well">
-            <h3 class="media-heading">
-                {% if fragment.abstract %}
+            <h4 class="media-heading">
+                <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}"><i class="fa fa-link"></i></a>
+                {% if bill.abstract %}
                     {% if keyword %}
-                        {{fragment.abstract|linebreaksbr|replace:keyword|safe}}
+                        {{bill.abstract|linebreaksbr|replace:keyword|safe}}
                     {% else %}
-                        {{fragment.abstract}}
+                        {{bill.abstract}}
                     {% endif %}
                 {% endif %}
-            </h3>
-            <div>
-                <h5 class="text-success">執行情形</h5>
+            </h4>
+            <h5 class="text-success">提案人</h5>
                 <blockquote>
-                    {% if fragment.execution %}
-                        {{fragment.execution}}
-                    {% elif fragment.last_action %}
-                        {{fragment.last_action}}
+                    {% if bill.param.sponsors_groupby_party.sponsor|length > 1 %}
+                        {{ bill.param.sponsors_groupby_party.priproposer.party_list.0.councilors.0.name }}、
+                        <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}">..... 其他議員</a>
                     {% else %}
-                        尚無資料
+                        {{bill.proposed_by}}
                     {% endif %}
                 </blockquote>
-            </div>
-            <div>
-                <h5 class="text-success">提案人</h5>
-                <blockquote>
-                    {{fragment.proposed_by}}
-                </blockquote>
-                <h5 class="text-success">類別</h5>
-                <blockquote>
-                    {{fragment.category}}
-                </blockquote>
-            </div>
-            <a href="{% url 'bills:bill_detail' county=fragment.county bill_id=fragment.uid %}">查看完整內容</a>
+            <blockquote>
+                <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}"><i class="fa fa-eye"> 誰提案的？進度？</i></a>
+                <a class="pull-right" href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" ><i class="fa fa-tag"> 我要加標籤、投票</i></a>
+            </blockquote>
         </div>
     </li>
     {% empty %}
