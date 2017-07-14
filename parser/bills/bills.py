@@ -33,56 +33,57 @@ def CouncilorsBills(councilor_id, bill_id, priproposer, petition):
         WHERE NOT EXISTS (SELECT 1 FROM bills_councilors_bills WHERE councilor_id = %s AND bill_id = %s)
     ''', (councilor_id, bill_id, priproposer, petition, councilor_id, bill_id))
 
-def bill_party_diversity(parties):
+def bill_party_diversity(bill_id):
     c.execute('''
-        select
-            b.bill_id,
-            count(*) total,
-            %s
-        from councilors_councilorsdetail a, bills_councilors_bills b
-        where a.id = b.councilor_id
-        group by b.bill_id
-    ''' % ', '.join(["sum(case when a.party = '%s' then 1 else 0 end)" % x for x in parties]))
-    for bill in c.fetchall():
-        bill = list(bill)
-        percentage = [x/float(bill[1]) for x in bill[2:]]
-        c.execute('''
-            UPDATE bills_bills
-            SET param = (COALESCE(param, '{}'::jsonb) || %s::jsonb)
-            WHERE uid = %s
-        ''', (json.dumps({'diversity': dict(zip(parties, percentage))}), bill[0]))
+        UPDATE bills_bills
+        SET param = (COALESCE(param, '{}'::jsonb) || (
+            select jsonb_build_object('diversity', (
+                select jsonb_agg(row)
+                    from (
+                    select
+                        c.party,
+                        count(*) / (SUM(COUNT(*)) OVER()) as ratio
+                    from bills_councilors_bills cb
+                    join councilors_councilorsdetail c on c.id = cb.councilor_id
+                    where cb.bill_id = %s
+                    group by c.party
+                    order by ratio desc
+                ) row
+            ))
+        ))
+        WHERE uid = %s
+    ''', [bill_id, bill_id])
 
-def personal_vector(parties, councilor_id):
-    c.execute('''
-        SELECT a.param->'diversity'
-        FROM bills_bills a, bills_councilors_bills b
-        WHERE a.uid = b.bill_id AND b.councilor_id = %s
-    ''', (councilor_id, ))
-    r = c.fetchall()
-    diversity = {}
-    for party in parties:
-        if r:
-            diversity.update({party: sum([x[0][party.decode('utf8')] for x in r if x[0]]) / float(len(r))})
+def personal_vector(councilor_id):
     c.execute('''
         UPDATE councilors_councilorsdetail
-        SET param = (COALESCE(param, '{}'::jsonb) || %s::jsonb)
-        WHERE id = %s
-    ''', (json.dumps({'bills_party_diversity': diversity}), councilor_id))
+        SET param = (COALESCE(param, '{}'::jsonb) || (
+            select jsonb_build_object('bills_party_diversity', (
+                select jsonb_agg(row)
+                from (
+                    select
+                        c.party,
+                        count(*) / (SUM(COUNT(*)) OVER()) as ratio
+                    from bills_councilors_bills cb
+                    join councilors_councilorsdetail c on c.id = cb.councilor_id
+                    where cb.bill_id in (
+                        select bill_id
+                        from bills_councilors_bills
+                        where councilor_id = %s
+                    )
+                    group by c.party
+                    order by ratio desc
+                ) row
+            ))
+        ))
+        where id = %s
+    ''', [councilor_id, councilor_id])
 
 def councilors(election_year, county):
     c.execute('''
         SELECT id
         FROM councilors_councilorsdetail
         WHERE election_year = %s AND county = %s
-    ''', (election_year, county))
-    return c.fetchall()
-
-def distinct_party(election_year, county):
-    c.execute('''
-        SELECT DISTINCT(party)
-        FROM councilors_councilorsdetail
-        WHERE election_year = %s AND county = %s
-        ORDER BY party
     ''', (election_year, county))
     return c.fetchall()
 
@@ -164,14 +165,13 @@ for f in glob.glob('../../data/*/bills-%s.json' % election_year):
                     if id:
                         CouncilorsBills(id, bill['uid'], False, True)
             update_sponsor_param(bill['uid'])
+            bill_party_diversity(bill['uid'])
         except Exception, e:
             print bill
             print e
     # Update bills_party_diversity of People
-    parties = [x[0] for x in distinct_party(election_year, county)]
-    bill_party_diversity(parties)
     for councilor_id in councilors(election_year, county):
-        personal_vector(parties, councilor_id)
+        personal_vector(councilor_id)
 conn.commit()
 print 'bills done'
 

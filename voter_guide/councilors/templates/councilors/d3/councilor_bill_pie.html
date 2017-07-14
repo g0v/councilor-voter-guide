@@ -9,12 +9,12 @@
     .arc path {
         stroke: #fff;
     }
-    
+
     .label-line {
         stroke-width: 1;
         stroke: #393939;
     }
-    
+
     .label-circle {
         fill: #393939;
     }
@@ -23,7 +23,7 @@
 <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/d3.min.js"></script>
 <script>
 
-    var data = {{councilor.param.diversity|as_json}}
+    var data = {{councilor.param.bills_party_diversity|as_json}}
 
     var width = 240,
     height = 240,
@@ -31,8 +31,8 @@
     labelr = radius + 10; // radius for label anchor
 
     var color = d3.scale.ordinal()
-    .range(["#0033FF", "#009900", "#FF6600", "#FFCC00", "brown", "#FF00FF", "#777777"])
-    .domain(['中國國民黨', '民主進步黨', '親民黨', '新黨', '臺灣團結聯盟', '無黨團結聯盟', '無黨籍']);
+    .range(["#69F", "#6C6", "#960", "#C06", "#999", "#33F", "#F63", "#F93", "#0C9", "#FC0", "#930", "#660"])
+    .domain(["中國國民黨", "民主進步黨", "臺灣團結聯盟", "無黨團結聯盟", "無黨籍", "民國黨", "親民黨", "新黨", "綠黨", "勞動黨", "臺灣第一民族黨", "在野問政聯盟"]);
 
     var arc = d3.svg.arc()
     .outerRadius(radius - 10)
@@ -40,7 +40,7 @@
 
     var pie = d3.layout.pie()
     .sort(null)
-    .value(function(d) { return d.value; });
+    .value(function(d) { return d.ratio; });
 
     var svg = d3.select("#d3").append("svg")
     .attr("width", width)
@@ -49,13 +49,13 @@
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
     var g = svg.selectAll(".arc")
-    .data(pie(d3.entries(data)))
+    .data(pie(data))
     .enter().append("g")
     .attr("class", "arc");
 
     g.append("path")
     .attr("d", arc)
-    .style("fill", function(d) { return color(d.data.key); });
+    .style("fill", function(d) { return color(d.data.party); });
 
     g.append("circle").attr({
         x: 0,
@@ -90,7 +90,7 @@
         },
         'class': "label-line"
     });
-    
+
     textLabels = g.append("text")
     .attr({
         x: function (d,i) {
@@ -111,15 +111,15 @@
             centroid = arc.centroid(d);
             midAngle = Math.atan2(centroid[1], centroid[0]);
             x = Math.cos(midAngle) * labelr;
-            return (x > 0) ? "start" : "end"; 
+            return (x > 0) ? "start" : "end";
         },
         'class': 'label-text'
     })
     .text(function(d) {
         return d3.format("%")(d.value);
     })
-    .style("fill", function(d) { return color(d.data.key); });
-     
+    .style("fill", function(d) { return color(d.data.party); });
+
     alpha = 0.5;
     spacing = 15;
 
@@ -138,13 +138,13 @@
                 // don't collide
                 if (da.attr("text-anchor") != db.attr("text-anchor")) return;
                 // Now let's calculate the distance between
-                // these elements. 
+                // these elements.
                 y2 = db.attr("y");
                 deltaY = y1 - y2;
                 // Our spacing is greater than our specified spacing,
                 // so they don't collide.
                 if (Math.abs(deltaY) > spacing) return;
-                // If the labels collide, we'll push each 
+                // If the labels collide, we'll push each
                 // of the two labels up and down a little bit.
                 again = true;
                 sign = deltaY > 0 ? 1 : -1;
@@ -154,7 +154,7 @@
            });
        });
        // Adjust our line leaders here
-       // so that they follow the labels. 
+       // so that they follow the labels.
        if(again) {
            labelElements = textLabels[0];
            textLines.attr("y2",function(d,i) {
@@ -170,19 +170,19 @@
         .attr("width", radius * 2)
         .attr("height", radius * 2)
     .selectAll("g")
-        .data(color.domain().slice())
+        .data(data)
     .enter().append("g")
         .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
     legend.append("rect")
         .attr("width", 18)
         .attr("height", 18)
-        .style("fill", color);
+        .style("fill", function(d) { return color(d.party); });
 
     legend.append("text")
         .attr("x", 24)
         .attr("y", 9)
         .attr("dy", ".35em")
-        .text(function(d) { return d; });
+        .text(function(d) { return d.party; });
 
 </script>
