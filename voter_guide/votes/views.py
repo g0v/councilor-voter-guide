@@ -61,5 +61,4 @@ def vote(request, vote_id):
         standpoints_of_vote = standpoints_of_vote.extra(select={
             'have_voted': "SELECT true FROM standpoints_user_standpoint su WHERE su.standpoint_id = standpoints_standpoints.uid AND su.user_id = %s" % request.user.id,
         },)
-
     return render(request,'votes/vote.html', {'vote': vote, 'standpoints_of_vote': standpoints_of_vote})

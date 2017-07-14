@@ -2,13 +2,15 @@
 import operator
 from re import compile as _Re
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.db.models import Count, Q
+from django.shortcuts import render, get_object_or_404
+from django.db.models import Count, Q, F
+from django.db import IntegrityError, transaction
 
 from councilors.models import CouncilorsDetail
 from search.models import Keyword
 from search.views import keyword_list, keyword_been_searched
 from .models import Bills
+from standpoints.models import Standpoints, User_Standpoint
 from commontag.views import paginate
 
 _unicode_chr_splitter = _Re( '(?s)((?:[\ud800-\udbff][\udc00-\udfff])|.)' ).split
@@ -72,9 +74,24 @@ def bills_category(request, county, index, category):
     return render(request, 'bills/bills.html', {'category':category, 'county': county, 'index': index, 'keyword_hot': keyword_list('bills'), 'keyword': keyword, 'bills': bills, 'district_list': district_list})
 
 def bill_detail(request, county, bill_id):
-    try:
-        bill = Bills.objects.get(county=county, uid=bill_id)
-    except Exception, e:
-        print e
-        return HttpResponseRedirect('/')
-    return render(request, 'bills/bill_detail.html', {'county': county, 'bill': bill})
+    bill = get_object_or_404(Bills, county=county, uid=bill_id)
+    if request.user.is_authenticated():
+        if request.POST:
+            with transaction.atomic():
+                if request.POST.get('keyword', '').strip():
+                    standpoint_id = u'bill-%s-%s' % (bill_id, request.POST['keyword'].strip())
+                    Standpoints.objects.get_or_create(uid=standpoint_id, county=county, title=request.POST['keyword'].strip(), bill_id=bill_id)
+                elif request.POST.get('pro'):
+                    User_Standpoint.objects.create(standpoint_id=request.POST['pro'], user=request.user)
+                    Standpoints.objects.filter(uid=request.POST['pro']).update(pro=F('pro') + 1)
+                elif request.POST.get('against'):
+                    User_Standpoint.objects.get(standpoint_id=request.POST['against'], user=request.user).delete()
+                    Standpoints.objects.filter(uid=request.POST['against']).update(pro=F('pro') - 1)
+
+    standpoints_of_bill = Standpoints.objects.filter(bill_id=bill_id)\
+                                             .order_by('-pro')
+    if request.user.is_authenticated():
+        standpoints_of_bill = standpoints_of_bill.extra(select={
+            'have_voted': "SELECT true FROM standpoints_user_standpoint su WHERE su.standpoint_id = standpoints_standpoints.uid AND su.user_id = %s" % request.user.id,
+        },)
+    return render(request, 'bills/bill_detail.html', {'county': county, 'bill': bill, 'standpoints_of_bill': standpoints_of_bill})

@@ -29,8 +29,9 @@
                         <a href="{% provider_login_url "facebook" %}?next={% url 'votes:vote' vote.uid %}"><i class="fa fa-sign-in"> 登入加標籤</i></a>
                     {% endif %}
                 </fieldset>
+                {% with size=3 %}
                 {% for standpoint in standpoints_of_vote %}
-                    {% if forloop.counter0 == 5 %}
+                    {% if forloop.counter0 == size %}
                         <button type="button" class="btn" data-toggle="collapse" data-target="#ref_more"><font>..... <i class="fa fa-angle-down"></i></font></button>
                         <div id="ref_more" class="collapse">
                     {% endif %}
@@ -47,9 +48,10 @@
                         {% endif %}
                     </h4>
                 {% endfor %}
-                {% if standpoints_of_vote|length > 5 %}
+                {% if standpoints_of_vote|length > size %}
                     </div>
                 {% endif %}
+                {% endwith %}
             </form>
             {% if vote %}
             <div class="hero-unit">
