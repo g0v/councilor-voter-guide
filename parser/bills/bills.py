@@ -142,33 +142,19 @@ for f in glob.glob('../../data/*/bills-%s.json' % election_year):
     print f
     dict_list = json.load(open(f))
     for bill in dict_list:
-        try:
-            bill['county'] = county
-            bill.update({'uid': u'%s-%s' % (bill['county'], bill['id'])})
-            Bill(bill)
-            priproposer = True
-            for name in bill['proposed_by']:
+        bill['county'] = county
+        bill.update({'uid': u'%s-%s' % (bill['county'], bill['id'])})
+        Bill(bill)
+        for key, priproposer, petition in [('proposed_by', 0, False), ('petitioned_by', -1, True)]:
+            for i, name in enumerate(bill.get(key, [])):
                 name = common.normalize_person_name(name)
                 name = re.sub(u'副?議長', '', name)
-                for councilor_id in common.GetCouncilorId(c, name):
-                    id = common.getDetailIdFromUid(c, councilor_id, bill['election_year'], bill['county'])
-                    if id:
-                        CouncilorsBills(id, bill['uid'], priproposer, False)
-                priproposer = False
-            for name in bill.get('petitioned_by', []):
-                name = re.sub(u'\(.*\)', '', name)
-                name = re.sub(u'[˙・•．]', u'‧', name)
-                name = name.strip()
-                name = re.sub(u'副?議長', '', name)
-                for councilor_id in common.GetCouncilorId(c, name):
-                    id = common.getDetailIdFromUid(c, councilor_id, bill['election_year'], bill['county'])
-                    if id:
-                        CouncilorsBills(id, bill['uid'], False, True)
-            update_sponsor_param(bill['uid'])
-            bill_party_diversity(bill['uid'])
-        except Exception, e:
-            print bill
-            print e
+                # councilor in bill might not on this election_year
+                id = common.get_or_create_councilor_uid(c, dict(zip(['name', 'county', 'election_year', 'constituency'], [name, county, bill['election_year'], None])), create=False)
+                if id:
+                    CouncilorsBills(id, bill['uid'], i==priproposer, petition)
+        update_sponsor_param(bill['uid'])
+        bill_party_diversity(bill['uid'])
     # Update bills_party_diversity of People
     for councilor_id in councilors(election_year, county):
         personal_vector(councilor_id)
