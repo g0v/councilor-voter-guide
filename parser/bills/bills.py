@@ -48,13 +48,13 @@ def bill_party_diversity(parties):
         percentage = [x/float(bill[1]) for x in bill[2:]]
         c.execute('''
             UPDATE bills_bills
-            SET param = %s
+            SET param = (COALESCE(param, '{}'::jsonb) || %s::jsonb)
             WHERE uid = %s
-        ''', ({'diversity': dict(zip(parties, percentage))}, bill[0]))
+        ''', (json.dumps({'diversity': dict(zip(parties, percentage))}), bill[0]))
 
 def personal_vector(parties, councilor_id):
     c.execute('''
-        SELECT a.param::json->'diversity'
+        SELECT a.param->'diversity'
         FROM bills_bills a, bills_councilors_bills b
         WHERE a.uid = b.bill_id AND b.councilor_id = %s
     ''', (councilor_id, ))
@@ -62,7 +62,7 @@ def personal_vector(parties, councilor_id):
     diversity = {}
     for party in parties:
         if r:
-            diversity.update({party: sum([x[0][party.decode('utf8')] for x in r]) / float(len(r))})
+            diversity.update({party: sum([x[0][party.decode('utf8')] for x in r if x[0]]) / float(len(r))})
     c.execute('''
         UPDATE councilors_councilorsdetail
         SET param = (COALESCE(param, '{}'::jsonb) || %s::jsonb)
@@ -86,6 +86,44 @@ def distinct_party(election_year, county):
     ''', (election_year, county))
     return c.fetchall()
 
+def update_sponsor_param(uid):
+    c.execute('''
+        update bills_bills
+        set param = (COALESCE(param, '{}'::jsonb) || (
+            select jsonb_build_object('sponsors_groupby_party', jsonb_agg(row))
+            from (
+                select role, json_agg(party_list) as party_list, sum(count)
+                from (
+                    select role, json_build_object('party', party, 'councilors', councilors, 'count', json_array_length(councilors)) as party_list, json_array_length(councilors) as count
+                    from (
+                        select role, party, json_agg(detail) as councilors
+                        from (
+                select role, party, json_build_object('name', name, 'councilor_id', councilor_id) as detail
+                            from (
+                                select
+                                    case
+                                        WHEN priproposer = true AND petition = false THEN 'priproposer'
+                                        WHEN petition = false THEN 'sponsor'
+                                        WHEN petition = true THEN 'cosponsor'
+                                    end as role,
+                                    l.party,
+                                    l.name,
+                                    l.councilor_id
+                                from councilors_councilorsdetail l, bills_bills v , bills_councilors_bills vl
+                                where v.uid = %s and v.uid = vl.bill_id and vl.councilor_id = l.id
+                            ) _
+                            ) __
+                    group by role, party
+                    order by role, party
+                    ) ___
+                ) ____
+            group by role
+            order by sum desc
+            ) row
+        ))
+        where uid = %s
+	''', [uid, uid])
+
 conn = db_settings.con()
 c = conn.cursor()
 election_year = common.election_year('')
@@ -97,34 +135,33 @@ for f in glob.glob('../../data/*/bills-%s.json' % election_year):
     print f
     dict_list = json.load(open(f))
     for bill in dict_list:
-        print bill
-        bill['county'] = county
-        bill.update({'uid': u'%s-%s' % (bill['county'], bill['id'])})
-#       bill['election_year'] = str(bill['election_year'])
-        Bill(bill)
-        priproposer = True
-        for name in bill['proposed_by']:
-            name = common.normalize_person_name(name)
-#           if name == u'笛布斯‧顗賚':
-#               name = u'笛布斯顗賚'
-            name = re.sub(u'副?議長', '', name)
-            for councilor_id in common.GetCouncilorId(c, name):
-                id = common.getDetailIdFromUid(c, councilor_id, bill['election_year'], bill['county'])
-                if id:
-                    CouncilorsBills(id, bill['uid'], priproposer, False)
-            priproposer = False
-        for name in bill.get('petitioned_by', []):
-            name = re.sub(u'\(.*\)', '', name)
-            name = re.sub(u'[˙・•．]', u'‧', name)
-            name = name.strip()
-#           if name == u'笛布斯‧顗賚':
-#               name = u'笛布斯顗賚'
-            name = re.sub(u'副?議長', '', name)
-            for councilor_id in common.GetCouncilorId(c, name):
-                id = common.getDetailIdFromUid(c, councilor_id, bill['election_year'], bill['county'])
-                if id:
-                    CouncilorsBills(id, bill['uid'], False, True)
-    # Update bills_party_diversity of People done
+        try:
+            bill['county'] = county
+            bill.update({'uid': u'%s-%s' % (bill['county'], bill['id'])})
+            Bill(bill)
+            priproposer = True
+            for name in bill['proposed_by']:
+                name = common.normalize_person_name(name)
+                name = re.sub(u'副?議長', '', name)
+                for councilor_id in common.GetCouncilorId(c, name):
+                    id = common.getDetailIdFromUid(c, councilor_id, bill['election_year'], bill['county'])
+                    if id:
+                        CouncilorsBills(id, bill['uid'], priproposer, False)
+                priproposer = False
+            for name in bill.get('petitioned_by', []):
+                name = re.sub(u'\(.*\)', '', name)
+                name = re.sub(u'[˙・•．]', u'‧', name)
+                name = name.strip()
+                name = re.sub(u'副?議長', '', name)
+                for councilor_id in common.GetCouncilorId(c, name):
+                    id = common.getDetailIdFromUid(c, councilor_id, bill['election_year'], bill['county'])
+                    if id:
+                        CouncilorsBills(id, bill['uid'], False, True)
+            update_sponsor_param(bill['uid'])
+        except Exception, e:
+            print bill
+            print e
+    # Update bills_party_diversity of People
     parties = [x[0] for x in distinct_party(election_year, county)]
     bill_party_diversity(parties)
     for councilor_id in councilors(election_year, county):
