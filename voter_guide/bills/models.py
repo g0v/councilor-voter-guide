@@ -23,7 +23,8 @@ class Bills(models.Model):
     execution = models.TextField(blank=True, null=True)
     motions = JSONField(null=True)
     remark = models.TextField(blank=True, null=True)
-    links = models.TextField(blank=True, null=True)
+    link = models.TextField(blank=True, null=True)
+    links = JSONField(null=True)
     param = JSONField(null=True)
     def __unicode__(self):
         return self.uid

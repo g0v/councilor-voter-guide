@@ -87,5 +87,10 @@ class Spider(scrapy.Spider):
             if motion:
                 motions.append(motion)
         item['motions'] = sorted(motions, key=lambda x: x.get('date'), reverse=True)
-        item['links'] = response.url
+        item['links'] = [
+            {
+                'url': response.url,
+                'note': 'original'
+            }
+        ]
         return item

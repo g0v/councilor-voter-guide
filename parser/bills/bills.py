@@ -11,27 +11,26 @@ import common
 
 
 def Bill(bill):
-    complement = {'type': '', 'category': '', 'abstract': '', 'description': '', 'methods': '', 'last_action': '', 'proposed_by': '', 'petitioned_by': '', 'bill_no': '', 'brought_by': '', 'related_units': '', 'committee': '', 'motions': None, 'execution': '', 'remark': '', 'links': ''}
+    complement = {'type': '', 'category': '', 'abstract': '', 'description': '', 'methods': '', 'last_action': '', 'proposed_by': '', 'petitioned_by': '', 'bill_no': '', 'brought_by': '', 'related_units': '', 'committee': '', 'motions': None, 'execution': '', 'remark': '', 'link': '', 'links': None}
     complement.update(bill)
     complement['proposed_by'] = ' '.join(complement['proposed_by'])
     complement['petitioned_by'] = ' '.join(complement['petitioned_by'])
     c.execute('''
-        UPDATE bills_bills
-        SET election_year = %(election_year)s, county = %(county)s, type = %(type)s, category = %(category)s, abstract = %(abstract)s, description = %(description)s, methods = %(methods)s, last_action = %(last_action)s, proposed_by = %(proposed_by)s, petitioned_by = %(petitioned_by)s, brought_by = %(brought_by)s, related_units = %(related_units)s, committee = %(committee)s, motions = %(motions)s, execution = %(execution)s, bill_no = %(bill_no)s, remark = %(remark)s, links = %(links)s
-        WHERE uid = %(uid)s
-    ''', complement)
-    c.execute('''
-        INSERT into bills_bills(uid, election_year, county, type, category, abstract, description, methods, last_action, proposed_by, petitioned_by, brought_by, related_units, committee, bill_no, motions, execution, remark, links)
-        SELECT %(uid)s, %(election_year)s, %(county)s, %(type)s, %(category)s, %(abstract)s, %(description)s, %(methods)s, %(last_action)s, %(proposed_by)s, %(petitioned_by)s, %(brought_by)s, %(related_units)s, %(committee)s, %(bill_no)s, %(motions)s, %(execution)s, %(remark)s, %(links)s
-        WHERE NOT EXISTS (SELECT 1 FROM bills_bills WHERE uid = %(uid)s)
+        INSERT INTO bills_bills(uid, election_year, county, type, category, abstract, description, methods, last_action, proposed_by, petitioned_by, brought_by, related_units, committee, bill_no, motions, execution, remark, link, links)
+        VALUES (%(uid)s, %(election_year)s, %(county)s, %(type)s, %(category)s, %(abstract)s, %(description)s, %(methods)s, %(last_action)s, %(proposed_by)s, %(petitioned_by)s, %(brought_by)s, %(related_units)s, %(committee)s, %(bill_no)s, %(motions)s, %(execution)s, %(remark)s, %(link)s, %(links)s)
+        ON CONFLICT (uid)
+        DO UPDATE
+        SET election_year = %(election_year)s, county = %(county)s, type = %(type)s, category = %(category)s, abstract = %(abstract)s, description = %(description)s, methods = %(methods)s, last_action = %(last_action)s, proposed_by = %(proposed_by)s, petitioned_by = %(petitioned_by)s, brought_by = %(brought_by)s, related_units = %(related_units)s, committee = %(committee)s, motions = %(motions)s, execution = %(execution)s, bill_no = %(bill_no)s, remark = %(remark)s, link = %(link)s, links = %(links)s
     ''', complement)
 
 def CouncilorsBills(councilor_id, bill_id, priproposer, petition):
     c.execute('''
-        INSERT into bills_councilors_bills(councilor_id, bill_id, priproposer, petition)
-        SELECT %s, %s, %s, %s
-        WHERE NOT EXISTS (SELECT 1 FROM bills_councilors_bills WHERE councilor_id = %s AND bill_id = %s)
-    ''', (councilor_id, bill_id, priproposer, petition, councilor_id, bill_id))
+        INSERT INTO bills_councilors_bills(councilor_id, bill_id, priproposer, petition)
+        VALUES (%s, %s, %s, %s)
+        ON CONFLICT (councilor_id, bill_id)
+        DO UPDATE
+        SET priproposer = %s, petition = %s
+    ''', (councilor_id, bill_id, priproposer, petition, priproposer, petition))
 
 def bill_party_diversity(bill_id):
     c.execute('''
@@ -135,7 +134,7 @@ conn = db_settings.con()
 c = conn.cursor()
 election_year = common.election_year('')
 
-for f in glob.glob('../../data/*/bills-%s.json' % election_year):
+for f in glob.glob('../../data/hcc/bills-%s.json' % election_year):
     county_abbr = f.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     county_abbr3 = common.county2abbr3(county)
