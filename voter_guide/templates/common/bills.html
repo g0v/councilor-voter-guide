@@ -6,8 +6,8 @@
             <h4 class="media-heading">
                 <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}"><i class="fa fa-link"></i></a>
                 {% if bill.abstract %}
-                    {% if keyword %}
-                        {{bill.abstract|linebreaksbr|replace:keyword|safe}}
+                    {% if request.GET.keyword %}
+                        {{bill.abstract|linebreaksbr|replace:request.GET.keyword|safe}}
                     {% else %}
                         {{bill.abstract}}
                     {% endif %}
@@ -23,7 +23,7 @@
                     {% endif %}
                 </blockquote>
             <blockquote>
-                <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}"><i class="fa fa-eye"> 誰提案的？進度？</i></a>
+                <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}"><i class="fa fa-eye"> 詳情？進度？誰提案的？</i></a>
                 <a class="pull-right" href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" ><i class="fa fa-tag"> 我要加標籤、投票</i></a>
             </blockquote>
         </div>

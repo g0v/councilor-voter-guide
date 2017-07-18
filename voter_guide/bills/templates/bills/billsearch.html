@@ -1,12 +1,15 @@
 {% extends "common/search_keyword_form.html" %}
 {% load extras %}
 
-{%block extra %}
-
-<select id='district' name='district'>
-    <option value="all">全部選區</option>
-    {% for district in district_list %}
-    <option value="{{district}}">{{district}}</option>
-    {% endfor %}
-</select>
-{%endblock%}
+{% block extra %}
+    <select id='district' name='district'>
+        <option value="all">全部選區</option>
+        {% for district in districts %}
+            {% if district == request.GET.district  %}
+                <option value="{{district}}" selected>{{district}}</option>
+            {% else %}
+                <option value="{{district}}">{{district}}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+{% endblock extra %}

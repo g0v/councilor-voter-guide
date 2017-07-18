@@ -11,13 +11,13 @@
     <div class="span1">
     </div>
     <div class="span10">
-        {% include "bills/billsearch.html" with placeholder_text="例:都市更新 房屋稅" %}
+        {% include "bills/billsearch.html" with placeholder_text="例：都市更新 房屋稅" %}
 
         {% if keyword_hot %}
             <h4>熱門：
                 {% for keyword in keyword_hot %}
                     {% if forloop.counter0 < 5 %}
-                        <a href="{% url 'bills:bills' county=county index=index %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的議案"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
+                        <a href="{% url 'bills:bills' county=county %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的議案"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
                     {% endif %}
                 {% endfor %}
             </h4>
@@ -25,13 +25,11 @@
         {% endif %}
         <div class="well well-small">
             <font class="lead">
-            {% if index == 'normal' %}
-                {% if keyword %}
-                    共{{ bills.paginator.count }} 個與<font style="color: red;">"{{keyword}}"</font>相關的議案
+                {% if request.GET.keyword %}
+                    共 {{ bills.paginator.count }} 個與<font style="color: red;">"{{request.GET.keyword}}"</font>相關的議案
                 {% else %}
-                    共{{ bills.paginator.count }} 個議案
+                    共 {{ bills.paginator.count }} 個議案
                 {% endif %}
-            {% endif %}
             </font>
         </div>
         {% if bills %}
