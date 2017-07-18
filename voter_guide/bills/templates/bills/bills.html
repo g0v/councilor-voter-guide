@@ -11,7 +11,7 @@
     <div class="span1">
     </div>
     <div class="span10">
-        {% include "bills/billsearch.html" with placeholder_text="例:都市更新 土地徵收...空格有交集效果" %}
+        {% include "bills/billsearch.html" with placeholder_text="例:都市更新 房屋稅" %}
 
         {% if keyword_hot %}
             <h4>熱門：
@@ -43,10 +43,6 @@
     <div class="span1">
     </div>
 {% endblock right %}
-
-{% block backtotop %}
-    {{ block.super }}
-{% endblock backtotop %}
 
 {% block script %}
     {% include "common/keyword_auto_complete.html" %}
