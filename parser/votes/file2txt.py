@@ -12,7 +12,7 @@ for file in glob.glob('../../meeting_minutes/*/*/*'):
     output_file = '%s%s.txt' % (output_path, file_name)
     retcode = subprocess.call('mkdir -p %s' % output_path, shell=True)
     if ext == 'pdf':
-        cmd = 'pdftotext -nopgbrk -raw %s %s && sed -i "s/^[0-9．]\{1,6\}$//" %s' % (file, output_file, output_file)
+        cmd = 'pdftotext -nopgbrk -raw "%s" "%s" && sed -i "s/^[0-9．]\{1,6\}$//" "%s"' % (file, output_file, output_file)
     elif ext == 'doc':
         cmd = 'textract %s -o %s' % (file, output_file)
     elif ext == 'docx':
