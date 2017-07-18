@@ -26,6 +26,15 @@
                 <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}"><i class="fa fa-eye"> 詳情？進度？誰提案的？</i></a>
                 <a class="pull-right" href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" ><i class="fa fa-tag"> 我要加標籤、投票</i></a>
             </blockquote>
+            {% if bill.tags %}
+                <h5 class="text-success">標籤</h5>
+                {% for tag in bill.tags %}
+                    <a href="{% url 'bills:bills' county=county %}?tag={{tag.title}}" rel="tooltip" title="有同樣標籤的提案">
+                        <font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{tag.title}}</font>
+                    </a>
+                    （{{tag.pro}}票）&nbsp;&nbsp;
+                {% endfor %}
+            {% endif %}
         </div>
     </li>
     {% empty %}

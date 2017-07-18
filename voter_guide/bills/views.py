@@ -15,8 +15,8 @@ from commontag.views import paginate
 
 _unicode_chr_splitter = _Re( '(?s)((?:[\ud800-\udbff][\udc00-\udfff])|.)' ).split
 
-def split_unicode_chrs( text ):
-  return [ chr for chr in _unicode_chr_splitter( text ) if (chr!=' ' and chr) ]
+def split_unicode_chrs(text):
+    return [chr for chr in _unicode_chr_splitter(text) if (chr!=' ' and chr)]
 
 def select_county(request, index, county):
     regions = [
@@ -41,7 +41,12 @@ def bills(request, county):
         bills = Bills.objects.filter(query)
     if district and district != 'all':
         bills = bills.filter(proposer__in=CouncilorsDetail.objects.filter(county=county).filter(district=district).values_list('id', flat=True))
-    bills = bills.order_by('-election_year', '-uid')
+    bills = bills.extra(
+                     select={
+                         'tags': "SELECT json_agg(row) FROM (SELECT title, pro FROM standpoints_standpoints su WHERE su.bill_id = bills_bills.uid ORDER BY su.pro DESC) row",
+                     },
+                 )\
+                 .order_by('-election_year', '-uid')
     bills = paginate(request, bills)
     districts = CouncilorsDetail.objects.filter(county=county).filter(~Q(district='')).order_by('constituency').values_list('district', flat=True).distinct()
     return render(request, 'bills/bills.html', {'county': county, 'keyword_hot': keyword_list('bills'), 'category': None, 'bills': bills, 'districts': districts})
