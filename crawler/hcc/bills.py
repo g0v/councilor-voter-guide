@@ -1,67 +1,79 @@
 # -*- coding: utf-8 -*-
+import sys
+sys.path.append('../')
+import os
 import re
-import urllib
 from urlparse import urljoin
 from datetime import datetime
 import scrapy
-from scrapy.http import Request, FormRequest
-from scrapy.selector import Selector
-from scrapy import log
-from hcc.items import Bills
 
+import common
 
-def ROC2AD(text):
-    matchTerm = re.search(u'''
-        (?P<year>[\d]+)[\s]*(?:年|[-/.])[\s]*
-        (?P<month>[\d]+)[\s]*(?:月|[-/.])[\s]*
-        (?P<day>[\d]+)
-    ''', text, re.X)
-    if matchTerm:
-        return '%04d-%02d-%02d' % (int(matchTerm.group('year'))+1911, int(matchTerm.group('month')), int(matchTerm.group('day')))
-    else:
-        return None
 
 class Spider(scrapy.Spider):
     name = "bills"
     allowed_domains = ["www.hcc.gov.tw"]
-    start_urls = ["http://www.hcc.gov.tw/06board/03porposal_2.asp",]
-    download_delay = 0.1
-
-    election_year_map = [
-        {
+    start_urls = ["http://www.hcc.gov.tw/",]
+    download_delay = 0.5
+    county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
+    election_year = common.election_year(county_abbr)
+    election_year_map = {
+        "2005": {
             "start": datetime(2006, 3, 1),
-            "end": datetime(2010, 3, 1),
-            "election_year": "2005"
+            "end": datetime(2010, 3, 1)
         },
-        {
+        "2009": {
             "start": datetime(2010, 3, 1),
-            "end": datetime(2014, 12, 25),
-            "election_year": "2009"
-        }
-    ]
+            "end": datetime(2014, 12, 25)
+        },
+        "2014": {
+            "start": datetime(2014, 12, 25),
+            "end": datetime(2018, 12, 25),
+        },
+        "2018": {
+            "start": datetime(2018, 12, 25),
+            "end": datetime(2022, 12, 25),
+        },
+    }
+    term_range = election_year_map[election_year]
 
     def parse(self, response):
-        offset, pages = [int(x) for x in re.findall('\d+', response.xpath('//a[contains(@href, "/06board/03porposal_2")]')[-2].xpath('text()').extract()[0])]
-        for i in range(0 ,offset*(pages+1), offset):
-            yield Request('%s?offset=%d' % (response.url, i), callback=self.parse_page, dont_filter=True)
+        return response.follow(response.xpath(u'//a[@title="議員提案"]/@href').extract_first(), callback=self.parse_page, meta={'type': u'議員提案'})
 
     def parse_page(self, response):
-        items = []
-        for tr in response.xpath('//tr[@class="line"]'):
-            tds = tr.xpath('td[@valign="top"]')
-            item = Bills()
-            item['county'] = u'新竹縣'
-            item['type'] = u'議員提案'
-            item['id'] = tds[0].xpath('a/@href').extract()[0].split('/')[-1]
-            item['links'] = urljoin(response.url, urllib.quote(tds[0].xpath('a/@href').extract()[0].encode('utf8')))
-            abstract = tds[0].xpath('a/text()').extract()
-            item['abstract'] = abstract[0].strip() if abstract else ''
-            item['proposed_by'] = tds[1].xpath('text()').extract()[0].strip().rstrip(u',').split(u',')
-            item['petitioned_by'] = tds[2].xpath('text()').extract()[0].strip().split(u',')
-            date = datetime.strptime(tds[3].xpath('text()').extract()[0], '%Y-%m-%d')
-            for term in self.election_year_map:
-                if date >= term['start'] and date <= term['end']:
-                    item['election_year'] = term['election_year']
-                    break
-            items.append(item)
-        return items
+        bill_type = response.meta['type']
+        for node in response.css('.list--table ul:not(:first-child)'):
+            date = datetime.strptime(node.css('.date-list::text').extract_first(), '%Y-%m-%d')
+            if date < self.term_range['start']:
+                raise scrapy.exceptions.CloseSpider('out of date range')
+            if date > self.term_range['end']: # continue to next page
+                break
+            item = {}
+            item['election_year'] = self.election_year
+            item['type'] = bill_type
+            item['category'] = node.css(u'[data-th*="類別："]::text').extract_first()
+            link = node.css('.more-list a::attr(href)').extract_first()
+            item['id'] = link.split('=')[-1].zfill(6)
+            item['abstract'] = node.css(u'[data-th*="案由："]::text').extract_first()
+            item['proposed_by'] = (node.css(u'[data-th*="提案人："]::text').extract_first() or '').split()
+            item['petitioned_by'] = (node.css(u'[data-th*="聯署人："]::text').extract_first() or '').split()
+            yield response.follow(node.css('.more-list a::attr(href)').extract_first(), callback=self.parse_detail, meta={'item': item})
+        if response.css('a.pager.pager-next[href]').extract():
+            yield response.follow(response.css('a.pager.pager-next[href]::attr(href)').extract_first(), callback=self.parse_page, meta={'type': bill_type})
+
+    def parse_detail(self, response):
+        item = response.meta['item']
+        item['links'] = [
+            {
+                'url': response.url,
+                'note': 'original'
+            }
+        ]
+        for link in response.css('.list--none.actions a::attr(href)').extract():
+            item['links'].append(
+                {
+                    'url': urljoin(response.url, link),
+                    'note': 'attach'
+                }
+            )
+        return item

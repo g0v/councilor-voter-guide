@@ -45,7 +45,7 @@ def bills(request, county, index):
         all_councilor_id_in_district = list(set([i.id for i in CouncilorsDetail.objects.filter(county=county).filter(district__contains=district)]))
         bills = bills.filter(proposer__in=all_councilor_id_in_district)
 
-    bills = bills.order_by('-uid')
+    bills = bills.order_by('-election_year', '-uid')
     bills = paginate(request, bills)
 
     district_list = list(set([i.district for i in CouncilorsDetail.objects.filter(county=county).filter(~Q(district=''))]))

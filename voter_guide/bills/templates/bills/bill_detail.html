@@ -61,22 +61,32 @@
         </h3>
         {% if bill.param.sponsors_groupby_party.sponsor %}
             {% include "common/sponsor.html" with list=bill.param.sponsors_groupby_party.sponsor.party_list role="sponsor" %}
+        {% elif bill.param.sponsors_groupby_party.priproposer %}
+            {% include "common/sponsor.html" with list=bill.param.sponsors_groupby_party.priproposer.party_list role="sponsor" %}
         {% else %}
             {{bill.proposed_by}}
         {% endif %}
         <br>
-        {% if bill.param.sponsors_groupby_party.cosponsor %}
+        {% if bill.petitioned_by %}
             <h3>
                 <i class="fa fa-users"> 連署提案</i>
             </h3>
-            {% include "common/sponsor.html" with list=bill.param.sponsors_groupby_party.cosponsor.party_list role="cosponsor" %}
+            {% if bill.param.sponsors_groupby_party.cosponsor %}
+                {% include "common/sponsor.html" with list=bill.param.sponsors_groupby_party.cosponsor.party_list role="cosponsor" %}
+            {% else %}
+                {{bill.petitioned_by}}
+            {% endif %}
         {% endif %}
         <div id="d3" align="left">
         </div>
     </div>
     <div id="content" class="span8" style="min-height: 700px; padding-bottom: 150px;">
         {% if bill %}
-        <a href="{{bill.link}}" target="_blank" class="lead pull-right"><i class="fa fa-file-pdf-o"> 官方連結</i></a>
+        {% if bill.links.0.url %}
+            <a href="{{bill.links.0.url}}" target="_blank" class="lead pull-right"><i class="fa fa-info-circle"> 官方連結</i></a>
+        {% else %}
+            <a href="{{bill.link}}" target="_blank" class="lead pull-right"><i class="fa fa-info-circle"> 官方連結</i></a>
+        {% endif %}
         <div align="center">
             <ul class="inline lead">
                 <li>{{bill.type}}</li>
@@ -105,18 +115,25 @@
                 <dt>備註</dt>
                 <dd><p>{{bill.remark}}</p></dd>
             {% endif %}
-            <dt>審議程序</dt>
-            <dd>
-                <ul>
-                {% for motion in bill.motions %}
-                    <li>
-                        {{motion.motion}}（{{motion.date}}）
-                        {% if motion.resolution %}<p>{{motion.resolution}}</p>{% endif %}
-                    </li>
-                {% endfor %}
-                </ul>
-            </dd>
+            {% if bill.motions %}
+                <dt>審議進度</dt>
+                <dd>
+                    <ul>
+                    {% for motion in bill.motions %}
+                        <li>
+                            {{motion.motion}}{% if motion.date %}（{{motion.date}}）{% endif %}
+                            {% if motion.resolution %}<p>{{motion.resolution}}</p>{% endif %}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </dd>
+            {% endif %}
         </dl>
+        {% for link in bill.links %}
+            {% if link.note == 'attach' %}
+                <iframe src="https://docs.google.com/gview?url={{link.url}}&embedded=true" style="width:100%; height:50%;" frameborder="0"></iframe>
+            {% endif %}
+        {% endfor %}
         {% endif %}
         <hr>
         <div id="disqus_thread"></div>

@@ -9,7 +9,7 @@ import logging
 
 
 def election_year(county):
-    return '2014'
+    return '2009'
 
 def get_or_create_councilor_uid(c, councilor, create=True):
     '''
@@ -19,8 +19,8 @@ def get_or_create_councilor_uid(c, councilor, create=True):
     councilor['councilor_ids'] = tuple(GetCouncilorId(c, councilor['name']))
     if create and not councilor['councilor_ids']:
         return (uuid.uuid4().hex, False)
-    else:
-        return
+    elif not councilor['councilor_ids']:
+        return (None, False)
     c.execute('''
         SELECT councilor_id
         FROM councilors_councilorsdetail
@@ -37,7 +37,6 @@ def get_or_create_councilor_uid(c, councilor, create=True):
         LIMIT 1
     ''', councilor)
     r = c.fetchone()
-    return (r[0], True) if r else (uuid.uuid4().hex, False)
     if r:
         return (r[0], True)
     elif create:
