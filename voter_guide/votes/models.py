@@ -22,3 +22,5 @@ class Councilors_Votes(models.Model):
     vote = models.ForeignKey(Votes, to_field="uid")
     decision = models.IntegerField(blank=True, null=True)
     conflict = models.NullBooleanField()
+    class Meta:
+        unique_together = ('councilor', 'vote')

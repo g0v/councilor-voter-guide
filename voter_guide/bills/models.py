@@ -42,7 +42,9 @@ class Bills(models.Model):
         return self.proposer.filter(councilors_bills__bill_id=self.uid, councilors_bills__priproposer=True, councilors_bills__petition=False)
 
 class Councilors_Bills(models.Model):
-    councilor = models.ForeignKey('councilors.CouncilorsDetail', blank=True, null=True, db_index=True)
+    councilor = models.ForeignKey('councilors.CouncilorsDetail', blank=True, null=True)
     bill = models.ForeignKey(Bills, to_field='uid')
     priproposer = models.NullBooleanField()
     petition = models.NullBooleanField()
+    class Meta:
+        unique_together = ('councilor', 'bill')
