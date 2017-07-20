@@ -20,7 +20,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 |--------|-----------|----------|------------|------|--------|
 | 基隆市 | kmc       |    O     |     O      |      |   O    |
 | 臺北市 | tcc       |    O     |     O      |  O   |   O    |
-| 新北市 | ntp       |    O     |     O      |      |   O    |
+| 新北市 | ntp       |    O     |     O      |  O   |   O    |
 | 桃園市 | tycc      |    O     |     O      |      |   O    |
 | 新竹市 | hsinchucc |    O     |     O      |      |   X    |
 | 新竹縣 | hcc       |    O     |     O      |  O   |   X    |
@@ -32,7 +32,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 
 | 縣市   | 代號  | 現任議員 | 工程建議款 | 議案 | 議事錄 |
 |--------|-------|----------|------------|------|--------|
-| 臺中市 | tccc  |    O     |     O      |      |        |
+| 臺中市 | tccc  |    O     |     O      |  O   |        |
 | 彰化縣 | chcc  |    O     |     O      |      |        |
 | 南投縣 | ntcc  |    O     |     O      |      |        |
 | 雲林縣 | ylcc  |    O     |     O      |      |        |

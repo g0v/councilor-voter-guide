@@ -1,85 +1,81 @@
 # -*- coding: utf-8 -*-
+import sys
+sys.path.append('../')
+import os
 import re
-import urllib
+from urlparse import urljoin
 import scrapy
-from scrapy.http import Request, FormRequest
-from scrapy.selector import Selector
-from tccc.items import Bills
+
+import common
 
 
 class Spider(scrapy.Spider):
     name = "bills"
-    # allowed_domains = ["163.29.76.77"]
-    base_url = "http://163.29.76.77"
-    start_urls = ["http://163.29.76.77/tccc/jsp/b_0.jsp", ]
+    allowed_domains = ["tccc.gov.tw", ]
+    start_urls = ["http://www.tccc.gov.tw/"]
     download_delay = 0.5
-
-    def start_requests(self):
-        payload = {
-            "time": "",
-            "committee": "0",
-            "source": "0",
-            "billtype": "0",
-            "no": "",
-            "originator": "",
-            "second": "",
-            "subject": "",
-            "Submit1": "查詢",
-        }
-        return [FormRequest(self.start_urls[0], formdata=payload, callback=self.parse)]
+    county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
+    election_year = common.election_year(county_abbr)
+    ads = {'2010': 1, '2014': 2, '2018': 3}
+    ad = ads[election_year]
 
     def parse(self, response):
-        sel = Selector(response)
-        rows = sel.xpath('//*[@id="form1"]/table//tr')
-        for row in rows:
-            onclick = row.xpath('.//input/@onclick').extract()
-            if not onclick:
-                continue
+        return response.follow(response.xpath(u'//a[re:test(., "^議會連結$")]/@href').extract_first(), callback=self.parse_frame)
 
-            onclick = onclick[0]
-            m = re.match(r".*open\('([^']*)',.*\).*", onclick)
-            if not m:
-                continue
+    def parse_frame(self, response):
+        return response.follow(response.xpath(u'//iframe[@name="wb_main"]/@src').extract_first(), callback=self.parse_tab)
 
-            url = self.base_url + m.group(1)
+    def parse_tab(self, response):
+        return response.follow(response.xpath(u'//a[re:test(., "議案查詢$")]/@href').extract_first(), callback=self.parse_meta_refresh, meta={'dont_redirect': True})
 
-            request = Request(url, callback=self.parse_profile)
-            yield request
+    def parse_meta_refresh(self, response):
+        fixed_url = response.xpath('//meta[@http-equiv="refresh"]/@content').re('url=(.*)')[0].replace('\\', '/').lstrip('../')
+        return response.follow(fixed_url, callback=self.parse_login)
+
+    def parse_login(self, response):
+        payload = dict(zip(['account', 'pw'], response.xpath('//text()').re(u'帳號:(\S*)  密碼:(\S*)')))
+        return scrapy.FormRequest.from_response(response, formname='form1', formdata=payload, callback=self.parse_logined)
+
+    def parse_logined(self, response):
+        for link in response.xpath(u'//a[re:test(., "提案查詢$")]/@href'):
+            yield response.follow(link, callback=self.parse_query, meta={'dont_redirect': True})
+
+    def parse_query(self, response):
+        for value in response.xpath(u'//select[@name="SPeriod"]/optgroup[re:test(., "%s屆")]/option/@value' % self.ad).extract():
+            payload = {'SPeriod': value}
+            yield scrapy.FormRequest.from_response(response, formname='form1', formdata=payload, callback=self.parse_list)
+
+    def parse_list(self, response):
+        for node in response.xpath('//*[count(td)=11][position()>1]'):
+            item = {}
+            item['election_year'] = self.election_year
+            item['id'] = node.xpath('td[1]/input/@value').extract_first()
+            item['category'] = node.xpath('td[3]/text()').extract_first().split('-')[-1].strip()
+            item['type'] = re.sub('\s', '', node.xpath('td[4]/text()').extract_first())
+            item['proposed_by'] = node.xpath('td[5]/text()').extract_first().strip().split(u'、')
+            item['petitioned_by'] = node.xpath('td[6]/text()').extract_first().strip().split(u'、') if node.xpath('td[6]/text()').extract_first() else []
+            item['bill_no'] = re.sub('\s', '', node.xpath('td[7]/text()').extract_first())
+            item['abstract'] = node.xpath('td[8]/descendant-or-self::*/text()').extract_first()
+            item['execution'] = re.sub('\s', '', node.xpath('td[10]/text()').extract_first())
+            link = urljoin(response.url, 'html_e_print.php?id=%s' % item['id'])
+            yield response.follow(link, callback=self.parse_profile, meta={'item': item})
+        next_page = response.xpath(u'//a[re:test(., "下一頁")]/@href').extract_first()
+        if next_page:
+            yield response.follow(next_page, callback=self.parse_list)
 
     def parse_profile(self, response):
-        sel = Selector(response)
-        item = Bills()
-        item['election_year'] = u'2010'
-        item['county'] = u'臺中市'
-        item['id'] = '-'.join(re.findall(u'=(\d+)', response.url))
-        item['links'] = response.url
-        trs = sel.xpath('//*[@id="block"]/table//tr')
-        motions = []
-        for tr in trs:
-            tds = tr.xpath('td')
-            for i in range(0, len(tds), 2):
-                if tds[i].xpath('text()').re(u'會次'):
-                    item['resolusion_sitting'] = tds[i+1].xpath('text()').extract()[0].strip()
-                elif tds[i].xpath('text()').re(u'審查會別'):
-                    item['committee'] = tds[i+1].xpath('text()').extract()[0].strip()
-                    item['category'] = tds[i+1].xpath('text()').extract()[1].strip()
-                elif tds[i].xpath('text()').re(u'提案人'):
-                    item['proposed_by'] = tds[i+1].xpath('text()').extract()[0].strip().split(u'、')
-                elif tds[i].xpath('text()').re(u'連署人'):
-                    item['petitioned_by'] = tds[i+1].xpath('text()').extract()[0].strip().split(u'、')
-                elif tds[i].xpath('text()').re(u'案號'):
-                    item['bill_no'] = tds[i+1].xpath('text()').extract()[0].strip()
-                elif tds[i].xpath('text()').re(u'案由'):
-                    item['abstract'] = tds[i+1].xpath('text()').extract()[0].strip()
-                elif tds[i].xpath('text()').re(u'理由'):
-                    item['description'] = '\n'.join([x.strip() for x in tds[i+1].xpath('text() | p/text()').extract()])
-                elif tds[i].xpath('text()').re(u'辦法'):
-                    item['methods'] = '\n'.join([x.strip() for x in tds[i+1].xpath('text() | p/text()').extract()])
-                elif tds[i].xpath('text()').re(u'分組審查意見'):
-                    motions.append(dict(zip(['motion', 'resolution', 'date'], [u'分組審查意見', '\n'.join([x.strip() for x in tds[i+1].xpath('text() | div/font/text() | p/span/text()').extract()]), None])))
-                elif tds[i].xpath('text()').re(u'大會意見'):
-                    motions.append(dict(zip(['motion', 'resolution', 'date'], [u'大會意見', '\n'.join([x.strip() for x in tds[i+1].xpath('text() | p/text()').extract()]), None])))
-                elif tds[i].xpath('text()').re(u'辦理情形'):
-                    item['execution'] = '\n'.join([x.strip() for x in tds[i+1].xpath('text() | p/text()').extract()])
-        item['motions'] = motions
-        return item
+        item = response.meta['item']
+        item['description'] = response.xpath(u'//td[re:test(., "理[\s　]*由")]/following-sibling::td/descendant-or-self::*/text()').extract_first()
+        item['methods'] = response.xpath(u'//td[re:test(., "辦[\s　]*法")]/following-sibling::td/descendant-or-self::*/text()').extract_first()
+        item['motions'] = []
+        for motion in [u'審查意見', u'大會議決']:
+            resolution = response.xpath(u'//td[re:test(., "%s")]/following-sibling::td/descendant-or-self::*/text()' % u'[\s　]*'.join(motion)).extract_first()
+            if resolution:
+                item['motions'].append(dict(zip(['motion', 'resolution', 'date'], [motion, resolution, None])))
+        item['links'] = [
+            {
+                'url': response.url,
+                'note': 'original'
+            },
+        ]
+        yield item
