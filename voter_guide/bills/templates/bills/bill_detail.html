@@ -131,7 +131,7 @@
         </dl>
         {% for link in bill.links %}
             {% if link.note == 'attach' %}
-                <iframe src="https://docs.google.com/gview?url={{link.url}}&embedded=true" style="width:100%; height:50%;" frameborder="0"></iframe>
+                <iframe src="https://docs.google.com/gview?embedded=true&url={{link.url}}" style="width:100%; height:50%;" frameborder="0"></iframe>
             {% endif %}
         {% endfor %}
         {% endif %}
