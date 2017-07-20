@@ -134,13 +134,13 @@ conn = db_settings.con()
 c = conn.cursor()
 election_year = common.election_year('')
 
-for f in glob.glob('../../data/hcc/bills-*.json'):
+for f in sorted(glob.glob('../../data/ntp/bills-*.json')):
     if int(re.search('bills-(\d+).json', f).group(1)) < int(election_year):
         continue
+    print f
     county_abbr = f.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     county_abbr3 = common.county2abbr3(county)
-    print f
     dict_list = json.load(open(f))
     for bill in dict_list:
         bill['county'] = county
@@ -150,11 +150,12 @@ for f in glob.glob('../../data/hcc/bills-*.json'):
             for i, name in enumerate(bill.get(key, [])):
                 name = common.normalize_person_name(name)
                 name = re.sub(u'副?議長', '', name)
-                # councilor in bill might not on this election_year
-                id, created = common.get_or_create_councilor_uid(c, dict(zip(['name', 'county', 'election_year', 'constituency'], [name, county, bill['election_year'], None])), create=False)
-                if id:
-                    detail_id = common.getDetailIdFromUid(c, id, bill['election_year'], county)
-                    CouncilorsBills(detail_id, bill['uid'], i==priproposer, petition)
+                if name:
+                    # councilor in bill might not on this election_year
+                    id, created = common.get_or_create_councilor_uid(c, dict(zip(['name', 'county', 'election_year', 'constituency'], [name, county, bill['election_year'], None])), create=False)
+                    if id:
+                        detail_id = common.getDetailIdFromUid(c, id, bill['election_year'], county)
+                        CouncilorsBills(detail_id, bill['uid'], i==priproposer, petition)
         update_sponsor_param(bill['uid'])
         bill_party_diversity(bill['uid'])
     # Update bills_party_diversity of People
