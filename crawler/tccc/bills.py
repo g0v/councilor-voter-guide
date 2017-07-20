@@ -49,7 +49,7 @@ class Spider(scrapy.Spider):
         for node in response.xpath('//*[count(td)=11][position()>1]'):
             item = {}
             item['election_year'] = self.election_year
-            item['id'] = node.xpath('td[1]/input/@value').extract_first()
+            item['id'] = node.xpath('td[1]/input/@value').extract_first().zfill(6)
             item['category'] = node.xpath('td[3]/text()').extract_first().split('-')[-1].strip()
             item['type'] = re.sub('\s', '', node.xpath('td[4]/text()').extract_first())
             item['proposed_by'] = node.xpath('td[5]/text()').extract_first().strip().split(u'、')
