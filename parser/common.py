@@ -191,6 +191,7 @@ def GetCouncilorId(c, name):
             WHERE identifiers ?| array[%s]
         ''' % ','.join(["'%s'" % x for x in identifiers]))
         return [x[0] for x in c.fetchall()]
+    print name
 
 def getCouncilorIdList(c, text):
     id_list = []

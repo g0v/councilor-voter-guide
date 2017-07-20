@@ -5,6 +5,11 @@ import re
 def election_year(county):
     return '2014'
 
+def headers(county):
+    return {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'
+    }
+
 def meeting_minutes_output_path(county_abbr, election_year):
     return '../../meeting_minutes/%s/%s/' % (county_abbr, election_year)
 
