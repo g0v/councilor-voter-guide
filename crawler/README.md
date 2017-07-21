@@ -14,6 +14,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 
 `X` 表示找不到原始文字可讀取資料
 `O` 表示已做
+`*` 表市議會官網無資料，來源改採[地方議會議事資料管理平台](http://digital.tpa.gov.tw/)
 空白表示還沒開工
 
 | 縣市   | 代號      | 現任議員 | 工程建議款 | 議案 | 議事錄 |
@@ -33,7 +34,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 | 縣市   | 代號  | 現任議員 | 工程建議款 | 議案 | 議事錄 |
 |--------|-------|----------|------------|------|--------|
 | 臺中市 | tccc  |    O     |     O      |  O   |        |
-| 彰化縣 | chcc  |    O     |     O      |      |        |
+| 彰化縣 | chcc  |    O     |     O      |  O   |        |
 | 南投縣 | ntcc  |    O     |     O      |      |        |
 | 雲林縣 | ylcc  |    O     |     O      |      |        |
 | 嘉義縣 | cyscc |    O     |     O      |      |        |

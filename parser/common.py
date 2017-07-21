@@ -9,7 +9,7 @@ import logging
 
 
 def election_year(county):
-    return '2009'
+    return '2005'
 
 def get_or_create_councilor_uid(c, councilor, create=True):
     '''
