@@ -77,7 +77,7 @@ def make_variants_set(string):
 
 def normalize_person_name(name):
     name = re.sub(u'[。˙・･•．.-]', u'‧', name)
-    name = re.sub(u'[　\s()（）’]', '',name)
+    name = re.sub(u'[　\s()（）’\']', '',name)
     name = name.title()
     return name
 
