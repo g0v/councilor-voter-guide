@@ -53,7 +53,7 @@ class Spider(scrapy.Spider):
             if content:
                 item[key] = content.strip()
         item['proposed_by'] = response.xpath(u'(//div[re:test(., "^提案人$")]/following-sibling::div)[1]/text()').extract_first().strip().split(u'、')
-        item['petitioned_by'] = response.xpath(u'(//div[re:test(., "^連署人$")]/following-sibling::div)[1]/text()').extract_first().strip().split(u'、') if response.xpath(u'(//div[re:test(., "^連署人$")]/following-sibling::div)[1]/text()').extract_first() else []
+        item['petitioned_by'] = (response.xpath(u'(//div[re:test(., "^(連署|附議)人$")]/following-sibling::div)[1]/text()').extract_first() or '').strip().split(u'、')
         item['motions'] = []
         for motion in [u'審查意見', u'大會決議']:
             resolution = response.xpath(u'(//div[re:test(., "^%s$")]/following-sibling::div)[1]/text()' % motion).extract_first()

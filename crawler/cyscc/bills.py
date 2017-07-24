@@ -32,6 +32,7 @@ class Spider(scrapy.Spider):
 
     def parse_list(self, response):
         pages = response.css('#ctl00_ContentPlaceHolder1_gvIndex_ctl13_lblPageCount::text').extract_first()
+        print pages
         for node in response.css('.main3_3_04,.main3_3_05'):
             node_ad = int(node.xpath('td[2]/text()').re(u'(\d+)\s*屆')[0])
             if node_ad < self.ad:
@@ -53,7 +54,7 @@ class Spider(scrapy.Spider):
                 if content:
                     item[key] = content.strip()
         item['proposed_by'] = re.sub(u'(副?議長|議員)', '', response.xpath(u'(//td[re:test(., "^提案人$")]/following-sibling::td)[1]/span/text()').extract_first()).strip().split(u'、')
-        item['petitioned_by'] = re.sub(u'(副?議長|議員)', '', response.xpath(u'(//td[re:test(., "^連署人$")]/following-sibling::td)[1]/span/text()').extract_first()).strip().split(u'、') if response.xpath(u'(//td[re:test(., "^連署人$")]/following-sibling::td)[1]/span/text()').extract_first() else []
+        item['petitioned_by'] = re.sub(u'(副?議長|議員)', '', (response.xpath(u'(//td[re:test(., "^連署人$")]/following-sibling::td)[1]/span/text()').extract_first() or '')).strip().split(u'、')
         item['motions'] = []
         for motion in [u'審查意見', u'大會決議']:
             resolution = response.xpath(u'(//td[re:test(., "^%s$")]/following-sibling::td)[1]/span/text()' % motion).extract_first()
