@@ -134,7 +134,7 @@ conn = db_settings.con()
 c = conn.cursor()
 election_year = common.election_year('')
 
-for f in sorted(glob.glob('../../data/cyscc/bills-*.json')):
+for f in sorted(glob.glob('../../data/cycc/bills-*.json')):
     if int(re.search('bills-(\d+).json', f).group(1)) < int(election_year):
         continue
     print f
