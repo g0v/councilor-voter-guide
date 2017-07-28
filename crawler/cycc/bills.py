@@ -35,7 +35,7 @@ class Spider(scrapy.Spider):
             item = {}
             item['election_year'] = self.election_year
             item['id'] = '%s-%02d' % ('-'.join(re.sub('\D', ' ', response.url).split()), i)
-            for key, label in [('category', u'類[\s　]*別'), ('abstract', u'案[\s　]*由'), ('description', u'理[\s　]*由'), ('methods', u'辦[\s　]*法'), ('', u''), ]:
+            for key, label in [('category', u'類[\s　]*別'), ('abstract', u'案[\s　]*由'), ('description', u'理[\s　]*由'), ('methods', u'辦[\s　]*法')]:
                     content = response.xpath(u'(//*[re:test(., "%s")]/following-sibling::td)[1]/span/text()' % label).extract_first()
                     if content:
                         item[key] = content.strip()

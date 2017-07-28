@@ -1,121 +1,72 @@
 # -*- coding: utf-8 -*-
+import sys
+sys.path.append('../')
+import os
 import re
-from urlparse import urljoin, urlparse, parse_qs
+from urlparse import urljoin
 import scrapy
-from scrapy.http import Request, FormRequest
-from scrapy.selector import Selector
-from ilcc.items import Bills
-from crawler_lib import parse
-from crawler_lib import misc
-from scrapy.utils.url import canonicalize_url
+
+import common
 
 
 class Spider(scrapy.Spider):
     name = "bills"
-    start_urls = ["http://www.ilcc.gov.tw/Html/H_08/H_08.aspx?change_img=2", ]
-    election_year = {14: '1998', 15: '2002', 16: '2005', 17: '2009'}
-    download_delay = 0.1
+    allowed_domains = ["ilcc.gov.tw", ]
+    start_urls = ["http://www.ilcc.gov.tw"]
+    download_delay = 0.5
+    county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
+    election_year = common.election_year(county_abbr)
+    ads = {'1998': 14, '2002': 15, '2005': 16, '2009': 17, '2014': 18, '2018': 19}
+    ad = ads[election_year]
 
     def parse(self, response):
-        sel = Selector(response)
-        viewstate = sel.xpath('//input[@name="__VIEWSTATE"]/@value').extract()[0]
+        return response.follow(response.xpath(u'//frame[@name="leftFrame"]/@src').extract_first(), callback=self.parse_tab_frame)
 
-        form_data = dict.fromkeys(
-            ['__EVENTTARGET', '__EVENTARGUMENT', '__VIEWSTATE', 'ddlFmotion_category', 'ddlFmotion_property',
-             'txtKeyword'], ''
-        )
-        form_data['btSearch'] = u' -搜尋-'.encode('Big5')
-        form_data['__VIEWSTATE'] = viewstate
+    def parse_tab_frame(self, response):
+        return response.follow(response.xpath(u'//a[@title="議案資料庫"]/@href').extract_first(), callback=self.parse_frame)
 
-        return [FormRequest(self.start_urls[0], formdata=form_data, callback=self.parse_index)]
+    def parse_frame(self, response):
+        return response.follow(response.xpath(u'//frame[@name="mainFrame"]/@src').extract_first(), callback=self.parse_query)
 
+    def parse_query(self, response):
+        yield scrapy.FormRequest.from_response(response, callback=self.parse_list, dont_filter=True)
 
-    def parse_index(self, response):
-        sel = Selector(response)
-        curr_url = response.url
+    def parse_list(self, response):
+        for node in response.css('table#dg tr')[1:]:
+            item = {}
+            item['id'] = re.search(u'Fmotion_instanceOS=([^&]*)', node.xpath('td[1]/descendant::a/@href').extract_first()).group(1)
+            yield response.follow(node.xpath('td[1]/descendant::a/@href').extract_first(), callback=self.parse_profile, meta={'item': item})
+        next_page = response.xpath(u'//a[re:test(.,"下一頁")]/@href').extract_first()
+        has_next_page = response.xpath(u'//select[@name="page"]/option[@selected]/following-sibling::option').extract()
+        if next_page and has_next_page:
+            payload = {'__EVENTTARGET': re.search("doPostBack\('([^']*)'", next_page).group(1)}
+            yield scrapy.FormRequest.from_response(response, formdata=payload, callback=self.parse_list, dont_filter=True, dont_click=True, headers=common.headers(self.county_abbr))
 
-        table = sel.xpath('//table[@id="AutoNumber4"]')
-        urls = table.xpath('.//a[contains(@id,"Hyperlink")]/@href').extract()
-        for url in urls:
-            url = url.encode('Big5')
-            url = urljoin(curr_url, url)
-            url = canonicalize_url(url)
-            yield Request(url, callback=self.parse_bill)
-
-    def parse_bill(self, response):
-        response = parse.get_decoded_response(response, 'Big5')
-        sel = Selector(response)
-
-        # convert to list of pairs
-        rows = sel.xpath('//tr')
-        pairs = misc.rows_to_pairs(rows)
-
-        item = Bills()
-        item['election_year'] = self.election_year[int(sel.xpath('//span[@id="lbFmotion_expireb"]/text()').re('\d+')[0])]
-        item['county'] = u'宜蘭縣'
-        item['links'] = response.url
-        print response.url
-        get_param = parse_qs(urlparse(response.url).query)
-        item['id'] = get_param['Fmotion_instanceOS'][0].decode('Big5')
-        item['proposed_by'] = re.sub(u'、', ' ', sel.xpath('//*[@id="lbFmotion_People"]/text()').extract()[0]).split()
-        petitioned_by = sel.xpath('//*[@id="lbFmotion_AddTo"]/text()').extract()
-        item['petitioned_by'] = re.sub(u'、', ' ', petitioned_by[0]).split() if petitioned_by else []
+    def parse_profile(self, response):
+        item = response.meta['item']
+        item_ad = response.css(u'#lbFmotion_expireb::text').extract_first()
+        for election_year, ad in self.ads.items():
+            if int(item_ad) == ad:
+                item['election_year'] = election_year
+                break
+        if item['election_year'] != self.election_year:
+            return
+        for key, label in [('bill_id', u'lbFmotion_No'), ('type', u'lbFmotion_Category'), ('category', u'lbFmotion_Class'), ('abstract', u'lbFmotion_From'), ('description', u'lbFmotion_Reason'), ('methods', u'lbFmotion_Way')]:
+            content = response.css(u'#%s::text' % label).extract_first()
+            if content:
+                item[key] = content.strip()
+        item['proposed_by'] = re.split(u'\s|、', re.sub(u'(副?議長|議員)', '', response.css(u'#lbFmotion_People::text').extract_first()).strip())
+        item['petitioned_by'] = re.split(u'\s|、', re.sub(u'(副?議長|議員)', '', (response.css(u'#lbFmotion_AddTo::text').extract_first() or '')).strip())
         item['motions'] = []
-        main_title = parse.get_inner_text(sel.xpath('//font[@color="#800000"]'), remove_white=True)
-        m = re.match(u'宜蘭縣議會(.*)議案資料', main_title)
-        if m:
-            main_sitting = m.group(1)
-
-        k_map = {
-            u'來源別':'type',
-            # u'建檔日期':'',
-            # u'議案程序':'',
-            # u'系統編號':'',
-            u'案號': 'bill_no',
-            u'類別': 'category',
-            # u'小組':'',
-            u'案由': 'abstract',
-            # u'法規名稱':'',
-            u'辦法': 'methods',
-            u'理由': 'description',
-            # u'附件':'',
-            # u'審議日期':'',
-            # u'大會決議':'',
-        }
-
-        curr_motion = None
-        for i, pair in enumerate(pairs):
-            n = len(pair)
-            if n < 2:
-                if n == 1:
-                    td = pair[0]
-                    text = parse.get_inner_text(td, remove_white=True)
-                    if td.xpath(u'.//img[@alt="小圖示"]'):
-                        if text != u'案由、辦法、理由及附件':
-                            if curr_motion: item['motions'].append(curr_motion)
-                            curr_motion = {'motion': text}
-                    elif curr_motion is not None and not curr_motion.get('sitting'):
-                        curr_motion['sitting'] = ' '.join(td.xpath('.//span/text()').extract())
-
-                continue
-
-            k_raw, v_raw = pair
-            k = parse.get_inner_text(k_raw, remove_white=True)
-            v = parse.get_inner_text(v_raw)
-            k_eng = k_map.get(k)
-
-            if k_eng:
-                item[k_eng] = v
-            elif k == u'建檔日期':
-                misc.append_motion(item, u'建檔', None, v, main_sitting)
-
-            if curr_motion is not None:
-                if u'日期' in k:
-                    curr_motion['date'] = v
-                elif 'date' in curr_motion:
-                    curr_motion['resolution'] = v
-
-        if curr_motion:
-            item['motions'].append(curr_motion)
-
+        for motion, label in [(u'大會審議', 'lbFmotion_0'), (u'程序會審定', 'lbFmotion_v'), (u'大會決定', 'lbFmotion_1'), (u'分組審查', 'lbFmotion_g'), (u'大會決議', 'lbFmotion_2')]:
+            date = response.css(u'#%sdate::text' % label).extract_first()
+            resolution = response.css(u'#%sopinion::text' % label).extract_first()
+            if date and resolution:
+                item['motions'].append(dict(zip(['motion', 'resolution', 'date'], [motion, resolution.strip(), common.ROC2AD(date)])))
+        item['links'] = [
+            {
+                'url': response.url,
+                'note': 'original'
+            }
+        ]
         return item
