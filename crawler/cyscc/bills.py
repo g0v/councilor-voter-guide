@@ -49,7 +49,7 @@ class Spider(scrapy.Spider):
         item = {}
         item['election_year'] = self.election_year
         item['id'] = re.search('=([^&]*)', response.url).group(1).zfill(6)
-        for key, label in [('type', u'提案類別'), ('category', u'類別'), ('abstract', u'案由'), ('description', u'說明'), ('methods', u'辦法'), ('', u''), ]:
+        for key, label in [('type', u'提案類別'), ('category', u'類別'), ('abstract', u'案由'), ('description', u'說明'), ('methods', u'辦法')]:
                 content = response.xpath(u'(//td[re:test(., "^%s$")]/following-sibling::td)[1]/span/text()' % label).extract_first()
                 if content:
                     item[key] = content.strip()
