@@ -43,7 +43,7 @@ class Spider(scrapy.Spider):
         item['id'] = re.search('=([^&]*)', response.url).group(1).zfill(6)
         item['bill_id'] = response.xpath(u'(//td[re:test(., "^案[\s　]*號$")]/following-sibling::td)[1]/text()').extract_first()
         item['category'] = re.search(u'.*?類', response.xpath(u'(//td[re:test(., "^案[\s　]*號$")]/following-sibling::td)[1]/text()').extract_first()).group(0)
-        for key, label in [('type', u'議案分類'), ('abstract', u'案由'), ('description', u'說明'), ('methods', u'辦法'), ('', u''), ]:
+        for key, label in [('type', u'議案分類'), ('abstract', u'案由'), ('description', u'說明'), ('methods', u'辦法')]:
                 content = response.xpath(u'(//td[re:test(., "^%s$")]/following-sibling::td)[1]/text()' % label).extract_first()
                 if content:
                     item[key] = content.strip()
