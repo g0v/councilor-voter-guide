@@ -15,8 +15,7 @@ class Spider(scrapy.Spider):
     start_urls = ["http://www.tncc.gov.tw"]
     download_delay = 0.5
     county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
-#   election_year = common.election_year(county_abbr)
-    election_year = '2010'
+    election_year = common.election_year(county_abbr)
     ads = {'2010': 1, '2014': 2, '2018': 3}
     ad = ads[election_year]
 
