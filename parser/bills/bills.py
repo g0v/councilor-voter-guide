@@ -134,11 +134,12 @@ conn = db_settings.con()
 c = conn.cursor()
 election_year = common.election_year('')
 
-for f in sorted(glob.glob('../../data/tncc/bills-*.json')):
+for f in sorted(glob.glob('../../data/*/bills-*.json')):
     if int(re.search('bills-(\d+).json', f).group(1)) < int(election_year):
         continue
     print f
     county_abbr = f.split('/')[-2]
+    f_election_year = re.search('-(\d+)\.json', f).group(1)
     county = common.county_abbr2string(county_abbr)
     county_abbr3 = common.county2abbr3(county)
     dict_list = json.load(open(f))
@@ -159,7 +160,7 @@ for f in sorted(glob.glob('../../data/tncc/bills-*.json')):
         update_sponsor_param(bill['uid'])
         bill_party_diversity(bill['uid'])
     # Update bills_party_diversity of People
-    for councilor_id in councilors(election_year, county):
+    for councilor_id in councilors(f_election_year, county):
         personal_vector(councilor_id)
 conn.commit()
 print 'bills done'

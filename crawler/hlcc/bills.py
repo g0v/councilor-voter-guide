@@ -17,7 +17,6 @@ class Spider(scrapy.Spider):
     download_delay = 0.5
     county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
     election_year = common.election_year(county_abbr)
-    election_year = '2009'
     ads = {'2009': u'花蓮縣.*?第(十七|17)屆', '2014': u'花蓮縣.*?第(十八|18)屆', '2018': u'花蓮縣.*?第(十九|19)屆'}
     ad = ads[election_year]
 
