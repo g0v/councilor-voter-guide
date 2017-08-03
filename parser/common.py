@@ -41,6 +41,8 @@ def get_or_create_councilor_uid(c, councilor, create=True):
         return (r[0], True)
     elif create:
         return (uuid.uuid4().hex, False)
+    print councilor['name']
+    return (None, False)
 
 def get_or_create_candidate_uid(c, candidate):
     '''
