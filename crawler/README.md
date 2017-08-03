@@ -25,7 +25,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 | 桃園市 | tycc      |    O     |     O      |  *   |   O    |
 | 新竹市 | hsinchucc |    O     |     O      |  *   |   X    |
 | 新竹縣 | hcc       |    O     |     O      |  O   |   X    |
-| 苗栗縣 | mcc       |    O     |     O      |      |   X    |
+| 苗栗縣 | mcc       |    O     |     O      |  *   |   X    |
 | 宜蘭縣 | ilcc      |    O     |     O      |  O   |   O    |
 
 
@@ -35,7 +35,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 |--------|-------|----------|------------|------|--------|
 | 臺中市 | tccc  |    O     |     O      |  O   |        |
 | 彰化縣 | chcc  |    O     |     O      |  O   |        |
-| 南投縣 | ntcc  |    O     |     O      |      |        |
+| 南投縣 | ntcc  |    O     |     O      |  X   |        |
 | 雲林縣 | ylcc  |    O     |     O      |      |        |
 | 嘉義縣 | cyscc |    O     |     O      |  O   |        |
 | 嘉義市 | cycc  |    O     |     O      |  O   |        |
