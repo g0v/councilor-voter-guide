@@ -20,7 +20,7 @@ class Spider(scrapy.Spider):
     output_path = common.meeting_minutes_output_path(county_abbr, election_year)
     ads = {
         '2014': u'第十八屆',
-        '2010': u'第十七屆'
+        '2009': u'第十七屆'
     }
     ad = ads[election_year]
 
