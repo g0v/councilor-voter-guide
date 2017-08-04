@@ -2,16 +2,23 @@
 {% load extras %}
 
 {% block title %}
-    {% if councilor %}
-        <title>議員投票指南:{{councilor.name}}的議案</title>
-        <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議案"/>
-        <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議案">
-    {% else %}
-        <title>議員投票指南:議員的議案</title>
-        <meta property="og:title" content="議員投票指南:議員的議案"/>
-        <meta itemprop="name" content="議員投票指南:議員的議案">
-    {% endif %}
+    <title>議員投票指南:{{councilor.name}}的議案</title>
+    <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議案"/>
+    <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議案">
 {% endblock title %}
+
+{% block top-menu %}
+    <div class="row-fluid">
+        <div id="sidebar-leftx" class="span2">
+        </div>
+        <div class="tabnav">
+            <ul>
+                <li><a href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">議案立場</a></li>
+                <li class="active"><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全議案紀錄</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
 
 {% block person_detail %}
 <div class="row-fluid">
@@ -22,7 +29,7 @@
                 <input type="search" name="keyword" id="keyword" class="span10" maxlength="20" placeholder="例:都市更新 土地徵收...空格有交集效果" autofocus>
                 <br>
                 <input type="checkbox" name="primaryonly" id="primaryonly" {% if primaryonly %} checked{% endif %}>只看<b class="text-info">{{councilor.name}}</b>是第一提案人的議案
-                <button type="submit" class="btn">Go!</button>
+                <button type="submit" class="btn">搜尋</button>
             </fieldset>
         </form>
         {% if keyword_hot %}
@@ -62,7 +69,6 @@
     <script>
         $(document).ready( function() {
             $('#url_bill').attr('class', 'active');
-            $('#councilors_biller').removeAttr('href').addClass("btn-info");
             $('#primaryonly').change(function() {
                 $("#form").trigger('submit');
             });

@@ -4,7 +4,7 @@
     <div id="ref_bill_{{role}}_{{element.party}}" class="collapse">
         <ul class="inline">
         {% for councilor in element.councilors %}
-            <li><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=bill.election_year %}">{{councilor.name}}</a></li>
+            <li><a href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=bill.election_year %}">{{councilor.name}}</a></li>
         {% endfor %}
         </ul>
     </div>

@@ -165,6 +165,39 @@ def biller_category(request, councilor_id, election_year, category):
     bills = paginate(request, bills)
     return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), '`county': councilor.county, 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'primaryonly': primaryonly, 'category':category})
 
+def biller_sp(request, councilor_id, election_year):
+    councilor = get_object_or_404(CouncilorsDetail.objects, election_year=election_year, councilor_id=councilor_id)
+    terms_id = tuple(CouncilorsDetail.objects.filter(election_year__lte=election_year, councilor_id=councilor_id).values_list('id', flat=True))
+    c = connections['default'].cursor()
+    c.execute(u'''
+        SELECT json_agg(row)
+        FROM (
+            SELECT
+                CASE
+                    WHEN priproposer = true AND petition = false THEN '主提案'
+                    WHEN petition = false THEN '共同提案'
+                    WHEN petition = true THEN '連署'
+                END as role,
+                s.title,
+                count(*) as times,
+                json_agg((select x from (select v.uid, v.abstract) x)) as bills
+            FROM bills_councilors_bills lv
+            JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
+            JOIN bills_bills v on lv.bill_id = v.uid
+            WHERE lv.councilor_id in %s AND s.pro = (
+                SELECT max(pro)
+                FROM standpoints_standpoints ss
+                WHERE ss.pro > 0 AND s.bill_id = ss.bill_id
+                GROUP BY ss.bill_id
+            )
+            GROUP BY s.title, role
+            ORDER BY role
+        ) row
+    ''', [terms_id])
+    r = c.fetchone()
+    standpoints = r[0] if r else []
+    return render(request, 'councilors/biller_sp.html', {'councilor': councilor, 'standpoints': standpoints})
+
 def voter(request, councilor_id, election_year):
     votes, notvote, query = None, False, Q()
     try:
@@ -230,7 +263,6 @@ def voter_sp(request, councilor_id, election_year):
     r = c.fetchone()
     standpoints = r[0] if r else []
     return render(request, 'councilors/voter_sp.html', {'councilor': councilor, 'standpoints': standpoints})
-
 
 def platformer(request, councilor_id, election_year):
     try:

@@ -1,0 +1,77 @@
+{% extends "common/person_info.html" %}
+{% load extras %}
+
+{% block title %}
+    <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議案立場</title>
+    <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議案立場"/>
+    <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議案立場">
+{% endblock title %}
+
+{% block top-menu %}
+    <div class="row-fluid">
+        <div id="sidebar-leftx" class="span2">
+        </div>
+        <div class="tabnav">
+            <ul>
+                <li class="active"><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">議案立場</a></li>
+                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全議案紀錄</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block person_detail %}
+    <div class="row-fluid">
+        <div class="description">
+            立場由網友自行標註、投票產生，歡迎進入各別議案一起讓資料更好
+        </div>
+    {% regroup standpoints by role as role_list %}
+    {% for role_group in role_list %}
+        <div class="span{% widthratio 12 role_list|length 1 %}">
+            <ul class="media-list">
+                <li>
+                    <h3 align="center">
+                        {% if role_group.grouper == "主提案" %}
+                            <i class="fa fa-pencil"> </i>
+                        {% elif role_group.grouper == "共同提案" %}
+                            <i class="fa fa-group"> </i>
+                        {% else %}
+                            <i class="fa fa-plus-circle"> </i>
+                        {% endif %}
+                        {{ role_group.grouper }}
+                    </h3>
+                    <ul>
+                    {% for standpoint in role_group.list %}
+                    <li class="media">
+                        <div class="media-body well">
+                            <div class="media-heading"><font class="lead">{{standpoint.title}}</font>：{{standpoint.times}}次
+                                <div align="right">
+                                    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#ref_bill_{{standpoint.bills.0.uid}}">議案內容&nbsp;<b class="caret"></b></button><br>
+                                    <div id="ref_bill_{{standpoint.bills.0.uid}}" class="collapse">
+                                        {% for fragment in standpoint.bills %}
+                                        <h4><a href="{% url 'bills:bill_detail' county=councilor.county bill_id=fragment.uid %}" target="_blank">☞ 議案{{forloop.counter}}<small>（覺得議案跟立場不符合嗎？點我來改進）</small></a></h4>
+                                        <blockquote>
+                                            <p>{{fragment.content}}</p>
+                                        </blockquote>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock person_detail %}
+
+{% block script %}
+    <script>
+        $(document).ready( function() {
+            $('#url_bill').attr('class', 'active');
+        });
+    </script>
+{% endblock script %}

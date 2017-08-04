@@ -7,22 +7,35 @@
         <div id="sidebar-left" class="span2">
             <div class="nav-collapse sidebar-nav">
                 <ul class="nav nav-tabs nav-stacked">
-                    <p class="lead">{{ councilor.name }}</p>
-            <font class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{councilor.election_year|election_year_range}}<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    {% for year in councilor.in_office_year %}
-                        <li><a href="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=year %}" >{{year|election_year_range}}</a></li>
-                    {% endfor %}
-                </ul>
-            </font>
-                    <img src="{{councilor.image}}" width="50%">
+                    <p>
+                    <span class="lead">{{ councilor.name }}</span>
+                    {% if not councilor.in_office %}
+                        <small>
+                            {% if councilor.term_end.reason %}
+                                （{{ councilor.term_end.reason }}）
+                            {% else %}
+                                （已去職）
+                            {% endif %}
+                        </small>
+                    {% endif %}
+                    </p>
+                    <font class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{councilor.election_year|election_year_range}}<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            {% for year in councilor.in_office_year %}
+                                <li><a href="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=year %}" >{{year|election_year_range}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </font>
+                    {% if councilor.image %}
+                        <img src="{{councilor.image}}" width="50%">
+                    {% endif %}
                     <li id='url_info'><a href="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-info"> 基本資料</i></a></li>
-                    <li id='url_suggestor'><a href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-building"> 工程建議款</i></a></li>
-                    <li id='url_property'><a href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" target="_blank"><i class="fa fa-bank"> 個人財產申報</i></a></li>
                     <li id='url_vote'><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-balance-scale"> 表決</i></a></li>
+                    <li id='url_bill'><a href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-book"> 議案</i></a></li>
+                    <li id='url_suggestor'><a href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-building"> 工程建議款</i></a></li>
                     <li id='url_polticalcontributions'><a href="{% url 'councilors:personal_political_contributions' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-dollar"> 政治獻金</i></a></li>
-                    <li id='url_bill'><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-book"> 議案</i></a></li>
+                    <li id='url_property'><a href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" target="_blank"><i class="fa fa-bank"> 個人財產申報</i></a></li>
                     <li id='url_politics'><a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-comment"> 競選政見</i></a></li>
                 </ul>
             </div>

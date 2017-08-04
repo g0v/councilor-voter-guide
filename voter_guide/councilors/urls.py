@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^(?P<index>conscience_vote|not_voting|bills|cs_attend)/(?P<county>\S+)/$', views.index, name='index'),
     url(r'^platform/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.platformer, name='platformer'),
     url(r'^biller/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.biller, name='biller'),
+    url(r'^biller_sp/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.biller_sp, name='biller_sp'),
     url(r'^biller/(?P<councilor_id>\S+)/(?P<election_year>\d+)/(?P<category>.+)$', views.biller_category, name='biller_category'),
     url(r'^voter/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.voter, name='voter'),
     url(r'^voter_sp/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.voter_sp, name='voter_sp'),
