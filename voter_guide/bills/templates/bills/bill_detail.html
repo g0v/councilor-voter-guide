@@ -52,17 +52,20 @@
         <h3>
             <i class="fa fa-pencil"> 主提案</i>
         </h3>
-        {% if bill.param.sponsors_groupby_party.sponsor %}
-            {% include "common/sponsor.html" with list=bill.param.sponsors_groupby_party.sponsor.party_list role="sponsor" %}
-        {% elif bill.param.sponsors_groupby_party.priproposer %}
-            {% include "common/sponsor.html" with list=bill.param.sponsors_groupby_party.priproposer.party_list role="sponsor" %}
+        {% if bill.param.sponsors_groupby_party.priproposer %}
+            {% include "common/sponsor.html" with list=bill.param.sponsors_groupby_party.priproposer.party_list role="priproposer" %}
         {% else %}
             {{bill.proposed_by}}
         {% endif %}
-        <br>
+        {% if bill.param.sponsors_groupby_party.sponsor %}
+        <h3>
+            <i class="fa fa-group"> 其他提案人</i>
+        </h3>
+            {% include "common/sponsor.html" with list=bill.param.sponsors_groupby_party.sponsor.party_list role="sponsor" %}
+        {% endif %}
         {% if bill.petitioned_by %}
             <h3>
-                <i class="fa fa-users"> 連署提案</i>
+                <i class="fa fa-plus-circle"> 連署提案</i>
             </h3>
             {% if bill.param.sponsors_groupby_party.cosponsor %}
                 {% include "common/sponsor.html" with list=bill.param.sponsors_groupby_party.cosponsor.party_list role="cosponsor" %}
