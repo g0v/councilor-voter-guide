@@ -15,7 +15,8 @@ class Spider(scrapy.Spider):
     start_urls = ["http://www.chcc.gov.tw"]
     download_delay = 0.5
     county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
-    election_year = common.election_year(county_abbr)
+#   election_year = common.election_year(county_abbr)
+    election_year = '2005'
     ads = {'2005': u'十六', '2009': u'十七', '2014': u'十八', '2018': u'十九'}
     ad = ads[election_year]
 
@@ -49,16 +50,16 @@ class Spider(scrapy.Spider):
         item['id'] = '-'.join(re.sub('\D', ' ', response.url.split('=')[-1]).split())
         item['type'] = response.xpath('//*[@id="council2_title"]/span/text()').extract_first().split()[-1]
         for key, label in [('category', u'類別'), ('abstract', u'案由'), ('description', u'說明'), ('methods', u'辦法'), ('', u''), ]:
-            content = response.xpath(u'(//div[re:test(., "^%s$")]/following-sibling::div)[1]/text()' % label).extract_first()
+            content = response.xpath(u'(//div[re:test(., "^%s$")]/following-sibling::div)[1]/text()' % label).extract()
             if content:
-                item[key] = content.strip()
-        item['proposed_by'] = response.xpath(u'(//div[re:test(., "^提案人$")]/following-sibling::div)[1]/text()').extract_first().strip().split(u'、')
-        item['petitioned_by'] = (response.xpath(u'(//div[re:test(., "^(連署|附議)人$")]/following-sibling::div)[1]/text()').extract_first() or '').strip().split(u'、')
+                item[key] = u'\n'.join([x.strip() for x in content])
+        item['proposed_by'] = u'、'.join([x.strip() for x in response.xpath(u'(//div[re:test(., "^提案人$")]/following-sibling::div)[1]/text()').extract()]).split(u'、')
+        item['petitioned_by'] = u'、'.join([x.strip() for x in (response.xpath(u'(//div[re:test(., "^(連署|附議)人$")]/following-sibling::div)[1]/text()').extract() or [])]).split(u'、')
         item['motions'] = []
         for motion in [u'審查意見', u'大會決議']:
-            resolution = response.xpath(u'(//div[re:test(., "^%s$")]/following-sibling::div)[1]/text()' % motion).extract_first()
+            resolution = response.xpath(u'(//div[re:test(., "^%s$")]/following-sibling::div)[1]/text()' % motion).extract()
             if resolution:
-                item['motions'].append(dict(zip(['motion', 'resolution', 'date'], [motion, resolution.strip(), None])))
+                item['motions'].append(dict(zip(['motion', 'resolution', 'date'], [motion, u'\n'.join([x.strip() for x in resolution]), None])))
         item['links'] = [
             {
                 'url': response.url,
