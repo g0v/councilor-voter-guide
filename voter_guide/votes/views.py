@@ -33,12 +33,12 @@ def votes(request, county, index='normal'):
     if keyword:
         votes = Votes.objects.filter(qs & reduce(operator.and_, (Q(content__icontains=x) for x in keyword.split()))).prefetch_related('standpoints').order_by('-date', 'vote_seq')
         if votes:
-            keyword_been_searched(keyword, 'votes')
+            keyword_been_searched(keyword, 'votes', county)
     else:
         votes = Votes.objects.filter(qs).prefetch_related('standpoints').order_by('-date', 'vote_seq')
     votes = paginate(request, votes)
-    standpoints = Standpoints.objects.filter(county=county).values('title').annotate(pro_sum=Sum('pro')).order_by('-pro_sum').distinct()
-    return render(request,'votes/votes.html', {'county': county, 'votes': votes, 'index':index, 'keyword':keyword, 'result':result, 'hot_keyword': keyword_list('votes')[:5], 'hot_standpoints': standpoints[:5]})
+    standpoints = Standpoints.objects.filter(county=county, vote__isnull=False).values('title').annotate(pro_sum=Sum('pro')).order_by('-pro_sum').distinct()
+    return render(request,'votes/votes.html', {'county': county, 'votes': votes, 'index':index, 'keyword':keyword, 'result':result, 'hot_keyword': keyword_list('votes', county)[:5], 'hot_standpoints': standpoints[:5]})
 
 def vote(request, vote_id):
     vote = get_object_or_404(Votes.objects.select_related('sitting'), uid=vote_id)

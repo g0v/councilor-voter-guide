@@ -81,7 +81,7 @@
         </font>
     </div>
     {% if votes %}
-    {% include "common/pagination.html" with items=votes %}
+    {% include "common/pagination.html" with items=votes page_size=0 %}
     <table class="table table-bordered table-striped">
         <thead>
             <tr style="background-color: #FFFFCC;">
@@ -124,7 +124,7 @@
             {% endfor %}
         </tbody>
     </table>
-    {% include "common/pagination.html" with items=votes %}
+    {% include "common/pagination.html" with items=votes page_size=0 %}
     {% endif %}
 {% endblock person_detail %}
 

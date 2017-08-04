@@ -38,9 +38,9 @@
             </font>
         </div>
         {% if bills %}
-            {% include "common/pagination.html" with items=bills %}
+            {% include "common/pagination.html" with items=bills page_size=0 %}
             {% include "common/bills.html" %}
-            {% include "common/pagination.html" with items=bills %}
+            {% include "common/pagination.html" with items=bills page_size=0 %}
         {% endif %}
     </div>
     <div class="span1">

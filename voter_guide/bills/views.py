@@ -37,7 +37,7 @@ def bills(request, county):
     if keyword:
         bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in split_unicode_chrs(keyword))))
         if bills:
-            keyword_been_searched(keyword, 'bills')
+            keyword_been_searched(keyword, 'bills', county)
     else:
         bills = Bills.objects.filter(query)
     if district and district != 'all':
@@ -50,8 +50,8 @@ def bills(request, county):
                  .order_by('-election_year', '-uid')
     bills = paginate(request, bills)
     districts = CouncilorsDetail.objects.filter(county=county).filter(~Q(district='')).order_by('constituency').values_list('district', flat=True).distinct()
-    standpoints = Standpoints.objects.filter(county=county).exclude(bill__isnull=True).values_list('title', flat=True).order_by('-pro').distinct()
-    return render(request, 'bills/bills.html', {'county': county, 'keyword_hot': keyword_list('bills'), 'category': None, 'bills': bills, 'districts': districts, 'hot_standpoints': standpoints[:5]})
+    standpoints = Standpoints.objects.filter(county=county, bill__isnull=False).exclude(bill__isnull=True).values_list('title', flat=True).order_by('-pro').distinct()
+    return render(request, 'bills/bills.html', {'county': county, 'keyword_hot': keyword_list('bills', county), 'category': None, 'bills': bills, 'districts': districts, 'hot_standpoints': standpoints[:5]})
 
 def bill_detail(request, county, bill_id):
     bill = get_object_or_404(Bills, county=county, uid=bill_id)

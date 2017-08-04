@@ -56,9 +56,9 @@
     </div>
     <div class="span12">
     {% if bills %}
-        {% include "common/pagination.html" with items=bills %}
+        {% include "common/pagination.html" with items=bills page_size=0 %}
         {% include "common/bills.html" %}
-        {% include "common/pagination.html" with items=bills %}
+        {% include "common/pagination.html" with items=bills page_size=0 %}
     {% else %}
         <p class="text-error">完全沒有議案</p>
     {% endif %}

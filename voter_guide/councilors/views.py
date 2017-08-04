@@ -140,11 +140,11 @@ def biller(request, councilor_id, election_year):
     if keyword:
         bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in keyword.split()))).order_by('-uid')
         if bills:
-            keyword_been_searched(keyword, 'bills')
+            keyword_been_searched(keyword, 'bills', councilor.county)
     else:
         bills = Bills.objects.filter(query).order_by('-uid')
     bills = paginate(request, bills)
-    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), 'county': councilor.county, 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'primaryonly': primaryonly, 'category':None, 'index':'councilor'})
+    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills', councilor.county), 'county': councilor.county, 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'primaryonly': primaryonly, 'category':None, 'index':'councilor'})
 
 def biller_category(request, councilor_id, election_year, category):
     try:
@@ -159,11 +159,11 @@ def biller_category(request, councilor_id, election_year, category):
     if keyword:
         bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in keyword.split()))).order_by('-uid')
         if bills:
-            keyword_been_searched(keyword, 'bills')
+            keyword_been_searched(keyword, 'bills', councilor.county)
     else:
         bills = Bills.objects.filter(query).order_by('-uid')
     bills = paginate(request, bills)
-    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills'), '`county': councilor.county, 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'primaryonly': primaryonly, 'category':category})
+    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills', councilor.county), '`county': councilor.county, 'bills': bills, 'councilor': councilor, 'keyword': keyword, 'primaryonly': primaryonly, 'category':category})
 
 def biller_sp(request, councilor_id, election_year):
     councilor = get_object_or_404(CouncilorsDetail.objects, election_year=election_year, councilor_id=councilor_id)
@@ -223,12 +223,12 @@ def voter(request, councilor_id, election_year):
     if keyword:
         votes = Councilors_Votes.objects.select_related().filter(query & reduce(operator.and_, (Q(vote__content__icontains=x) for x in keyword.split()))).order_by('-vote__date')
         if votes:
-            keyword_been_searched(keyword, 'votes')
+            keyword_been_searched(keyword, 'votes', councilor.county)
     else:
         votes = Councilors_Votes.objects.select_related().filter(query).order_by('-vote__date')
     vote_addup = votes.values('decision').annotate(totalNum=Count('vote', distinct=True)).order_by('-decision')
     votes = paginate(request, votes)
-    return render(request,'councilors/voter.html', {'keyword_hot': keyword_list('votes'), 'county': councilor.county, 'councilor': councilor, 'keyword': keyword, 'index': index, 'votes': votes, 'vote_addup': vote_addup, 'notvote': notvote})
+    return render(request,'councilors/voter.html', {'keyword_hot': keyword_list('votes', councilor.county), 'county': councilor.county, 'councilor': councilor, 'keyword': keyword, 'index': index, 'votes': votes, 'vote_addup': vote_addup, 'notvote': notvote})
 
 def voter_sp(request, councilor_id, election_year):
     councilor = get_object_or_404(CouncilorsDetail.objects, election_year=election_year, councilor_id=councilor_id)
