@@ -1,19 +1,30 @@
 {% spaceless %}
 {% if councilor.party == "中國國民黨" %}
-<font color=0033FF>{{ councilor.name|truncatechars:6 }}</font>
+<font color="#69F">
 {% elif councilor.party == "民主進步黨" %}
-<font color=009900>{{ councilor.name|truncatechars:6 }}</font>
-{% elif councilor.party == "親民黨" %}
-<font color=FF6600>{{ councilor.name|truncatechars:6 }}</font>
+<font color="#6C6">
 {% elif councilor.party == "臺灣團結聯盟" %}
-<font color=brown>{{ councilor.name|truncatechars:6 }}</font>
-{% elif councilor.party == "新黨" %}
-<font color=FFCC00>{{ councilor.name|truncatechars:6 }}</font>
+<font color="#960">
 {% elif councilor.party == "無黨團結聯盟" %}
-<font color=FF00FF>{{ councilor.name|truncatechars:6 }}</font>
+<font color="#C06">
 {% elif councilor.party == "無黨籍" %}
-<font color=777777>{{ councilor.name|truncatechars:6 }}</font>
+<font color="#999">
+{% elif councilor.party == "民國黨" %}
+<font color="#33F">
+{% elif councilor.party == "親民黨" %}
+<font color="#F63">
+{% elif councilor.party == "新黨" %}
+<font color="#F93">
+{% elif councilor.party == "綠黨" %}
+<font color="#0C9">
+{% elif councilor.party == "勞動黨" %}
+<font color="#FC0">
+{% elif councilor.party == "臺灣第一民族黨" %}
+<font color="#930">
+{% elif councilor.party == "在野問政聯盟" %}
+<font color="#660">
 {% else %}
-<font>{{ councilor.name|truncatechars:6 }}</font>
+<font>
 {% endif %}
+{{ councilor.name|truncatechars:6 }}</font>
 {% endspaceless %}
