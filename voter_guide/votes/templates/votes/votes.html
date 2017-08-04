@@ -20,16 +20,18 @@
         {% include "common/search_keyword_form.html" %}
         <p>
         {% if hot_standpoints %}
-            熱門標籤：
+            <h4>熱門標籤：
             {% for standpoint in hot_standpoints %}
-                <a href="{% url 'votes:votes' county=county %}?tag={{standpoint.title}}" rel="tooltip" title="包含此標籤的表決"><font style="color: #9F0050;"><b>{{standpoint.title}}</b>&nbsp;</font></a>
+                <a href="{% url 'votes:votes' county=county %}?tag={{standpoint.title}}" rel="tooltip" title="包含此標籤的表決"><font style="color: {% cycle '#9F0050' '#FF0080' %};"><b>{{standpoint.title}}</b>&nbsp;</font></a>
             {% endfor %}
+            </h4>
         {% endif %}
         {% if hot_keyword %}
-            <br>熱門搜尋：
+            <h4>熱門：
             {% for keyword in hot_keyword %}
-                <a href="{% url 'votes:votes' county='臺北市' index=index %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: #9F0050;">{{keyword}}&nbsp;</font></a>
+                <a href="{% url 'votes:votes' county='臺北市' index=index %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
             {% endfor %}
+            </h4>
         {% endif %}
         </p>
         <div class="well well-small">

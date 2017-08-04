@@ -13,10 +13,11 @@
     <div class="span10">
         {% include "bills/billsearch.html" with placeholder_text="例：都市更新 房屋稅" %}
         {% if hot_standpoints %}
-            熱門標籤：
+            <h4>熱門標籤：
             {% for standpoint in hot_standpoints %}
-            <a href="{% url 'bills:bills' county=county %}?tag={{standpoint.title}}" rel="tooltip" title="包含此標籤的議案"><font style="color: #9F0050;"><b>{{standpoint.title}}</b>&nbsp;</font></a>
+            <a href="{% url 'bills:bills' county=county %}?tag={{standpoint.title}}" rel="tooltip" title="包含此標籤的議案"><font style="color: {% cycle '#9F0050' '#FF0080' %};"><b>{{standpoint.title}}</b>&nbsp;&nbsp;</font></a>
             {% endfor %}
+            </h4>
         {% endif %}
         {% if keyword_hot %}
             <h4>熱門：
