@@ -68,7 +68,7 @@
                             <td style="text-align:center; vertical-align:middle;">
                                 {% if councilor_term.param.bills_role_statistics %}
                                     {{councilor_term.param.bills_role_statistics.priproposer}} / {{councilor_term.param.bills_role_statistics.sponsor}}
-                                    <a href="{% url 'councilors:biller' councilor_id=councilor_term.councilor_id election_year=councilor_term.election_year %}"><br>（看完整議案）</a>
+                                    <a href="{% url 'councilors:biller' councilor_id=councilor_term.councilor_id election_year=councilor_term.election_year %}"><br>（看完整提案）</a>
                                 {% else %}
                                     0 / 0
                                 {% endif %}

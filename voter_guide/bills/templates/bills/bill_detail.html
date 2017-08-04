@@ -2,20 +2,13 @@
 {% load socialaccount %}
 
 {% block title %}
-    {% if bill %}
-        {% with councilor=bill.primary_proposer.0 %}
-        {% if councilor %}
-        <title>議員投票指南:{{county}}-{{ councilor.name }}的議案</title>
-            <meta property="og:title" content="議員投票指南:{{county}}-{{ councilor.name }}提的議案"/>
-            <meta itemprop="name" content="議員投票指南:{{county}}-{{ councilor.name }}提的議案">
-        {% else %}
-            <title>議員投票指南:{{county}}-{{ bill.proposed_by }}提的議案</title>
-            <meta property="og:title" content="議員投票指南:{{county}}-{{ bill.proposed_by }}提的議案"/>
-            <meta itemprop="name" content="議員投票指南:{{county}}-{{ bill.proposed_by }}提的議案">
-        {% endif %}
-        {% endwith %}
-    {% endif %}
+    {% with councilor=bill.primary_proposer.0 %}
+        <title>議員投票指南:{{county}}-{{ councilor.name }}的提案</title>
+        <meta property="og:title" content="議員投票指南:{{county}}-{{ councilor.name }}提的提案"/>
+        <meta itemprop="name" content="議員投票指南:{{county}}-{{ councilor.name }}提的提案">
+    {% endwith %}
 {% endblock title %}
+
 {% block right %}
 <div class="row-fluid">
     <div id="sidebar-left" class="span4" style="margin: 10px 5px">

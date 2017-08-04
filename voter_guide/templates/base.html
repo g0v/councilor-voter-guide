@@ -52,7 +52,7 @@
                         {% if county %}
                             <li id="candidates"><a href="{% url 'candidates:districts' election_year='2014' county=county %}" >2014 候選人</a></li>
                             <li id="councilors"><a href="{% url 'councilors:councilors' county=county %}">找議員</a></li>
-                            <li id="bills"><a href="{% url 'bills:bills' county=county %}" >找議案</a></li>
+                            <li id="bills"><a href="{% url 'bills:bills' county=county %}" >找提案</a></li>
                             <li id="votes"><a href="{% url 'votes:votes' county=county index='normal' %}" >找表決</a></li>
                             <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >工程建議款</a></li>
                             <!--
@@ -62,14 +62,14 @@
                                     <li><a href="{% url 'councilors:index' index='cs_attend' county=county %}" ><b>議會開會</b>缺席次數(多&rarr;少)</a></li>
                                     <li><a href="{% url 'councilors:index' index='not_voting' county=county %}" ><b>表決</b>缺席次數(多&rarr;少)</a></li>
                                     <li><a href="{% url 'councilors:index' index='conscience_vote' county=county %}" ><b>脫黨投票</b>次數(多&rarr;少)</a></li>
-                                    <li><a href="{% url 'councilors:index' index='bills' county=county %}" ><b>議案數</b>(多&rarr;少)</a></li>
+                                    <li><a href="{% url 'councilors:index' index='bills' county=county %}" ><b>提案數</b>(多&rarr;少)</a></li>
                                 </ul>
                             </li>
                             -->
                         {% else %}
                             <li id="candidates"><a href="{% url 'select_county' category='candidates' %}">2014 候選人</a></li>
                             <li id="councilors"><a href="{% url 'select_county' category='councilors' %}">找議員</a></li>
-                            <li id="bills"><a href="{% url 'select_county' category='bills' %}">找議案</a></li>
+                            <li id="bills"><a href="{% url 'select_county' category='bills' %}">找提案</a></li>
                             <li id="votes"><a href="{% url 'select_county' category='votes' %}">找表決</a></li>
                             <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >工程建議款</a></li>
                         {% endif %}
