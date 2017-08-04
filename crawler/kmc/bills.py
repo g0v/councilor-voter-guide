@@ -81,11 +81,11 @@ class Spider(scrapy.Spider):
         except:
             print 'no json response:', response.url
             raise scrapy.exceptions.CloseSpider('no json response')
-        item['proposed_by'] = re.sub(u'(副?議長|議員)', '', jr.get('Member') or jr.get('Organ') or jr.get('OrganPetiti') or jr.get('Chairman') or jr.get('Council')).strip().split(u'，')
+        item['proposed_by'] = re.split(u'[，、]', re.sub(u'(副?議長|議員)', '', jr.get('Member') or jr.get('Organ') or jr.get('OrganPetiti') or jr.get('Chairman') or jr.get('Council')).strip())
         if not item['proposed_by'][0]:
             print jr
             raise scrapy.exceptions.CloseSpider('empty proposed_by')
-        item['petitioned_by'] = re.sub(u'(副?議長|議員)', '', (jr.get('MemberRelated') or jr.get('OrganPetiti') or '')).strip().split(u'，')
+        item['petitioned_by'] = re.split(u'[，、]', re.sub(u'(副?議長|議員)', '', (jr.get('MemberRelated') or jr.get('OrganPetiti') or '')).strip())
         item['links'] = [
             {
                 'url': response.url,
