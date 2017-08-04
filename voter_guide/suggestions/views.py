@@ -23,7 +23,7 @@ def county_overview(request):
     qs = Q(content=request.GET['keyword']) if request.GET.get('keyword') else Q()
     suggestions = SearchQuerySet().filter(qs).models(Suggestions).order_by('-suggest_year')
     if qs and suggestions:
-        keyword_been_searched(request.GET['keyword'], 'suggestions', county)
+        keyword_been_searched(request.GET['keyword'], 'suggestions')
     try:
         page_size = int(request.GET.get('page_size', 3))
         page_size = 3 if page_size > 51 else page_size
