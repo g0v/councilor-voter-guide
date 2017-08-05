@@ -27,7 +27,7 @@ class Spider(scrapy.Spider):
         payload = {
             'ctl00$ContentPlaceHolder1$uscPeriodSessionMeeting$ddlSession': response.xpath(u'//select[@name="ctl00$ContentPlaceHolder1$uscPeriodSessionMeeting$ddlSession"]/option[re:test(., "%s屆")]/@value' % self.ad).extract_first(),
             'ctl00$ContentPlaceHolder1$uscPeriodSessionMeeting$ddlMeeting': '',
-            '__EVENTTARGET': re.search('_PostBackOptions\("([^"]*)', response.css('#ContentPlaceHolder1_LinkButton1::attr(href)').extract_first()).group(1)
+            '__EVENTTARGET': re.search("__doPostBack\('([^']*)", response.css('#ContentPlaceHolder1_LinkButton1::attr(href)').extract_first()).group(1)
         }
         yield scrapy.FormRequest.from_response(response, formdata=payload, callback=self.parse_type, dont_filter=True, dont_click=True, headers=common.headers(self.county_abbr))
 
@@ -61,8 +61,8 @@ class Spider(scrapy.Spider):
             content = response.xpath(u'string((//td[re:test(., "%s")]/following-sibling::td)[1])' % label).extract_first()
             if content:
                 item[key] = content.strip()
-        item['proposed_by'] = re.split(u'\s|、', re.sub(u'(副?議長|議員)', '', response.xpath(u'(//td[re:test(., "提案(人|單位)")]/following-sibling::td)[1]/text()').extract_first()).strip())
-        item['petitioned_by'] = re.split(u'\s|、', re.sub(u'(副?議長|議員)', '', (response.xpath(u'(//td[re:test(., "連署人")]/following-sibling::td)[1]/text()').extract_first() or '')).strip())
+        item['proposed_by'] = re.split(u'\s|、', re.sub(u'(副?議長|議員)', '', u'、'.join([x.strip() for x in response.xpath(u'(//td[re:test(., "提案(人|單位)")]/following-sibling::td)[1]/text()').extract()])))
+        item['petitioned_by'] = re.split(u'\s|、', re.sub(u'(副?議長|議員)', '', u'、'.join([x.strip() for x in (response.xpath(u'(//td[re:test(., "連署人")]/following-sibling::td)[1]/text()').extract() or [])])))
         item['motions'] = []
         for motion in [u'一讀', u'委員會審查意見', u'二讀決議', u'三讀決議', ]:
             date = common.ROC2AD(''.join(response.xpath(u'(//td[re:test(., "%s")]/following-sibling::td)[1]/span/text()' % motion).extract()))
