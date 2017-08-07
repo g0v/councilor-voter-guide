@@ -31,24 +31,16 @@
         <table class="table table-bordered table-condensed table-striped sortable" >
             <thead>
                 <tr style="font-weight:bold;background-color: #E1D0D0;">
-                    <th rowspan="2">當選註記</th>
-                    <th rowspan="2">得票數</th>
-                    <th rowspan="2">候選人</th>
-                    <th rowspan="2">黨籍</th>
-                    <th rowspan="2">表決立場</th>
-                    <th rowspan="2">提案立場</th>
-                    <th rowspan="2">最近任期</th>
-                    <th rowspan="2">主提案數 / 參與提案數</th>
-                    <th rowspan="2">投票缺席率（%）</th>
-                    <th rowspan="2">議會缺席率（%）</th>
-                    <th colspan="3">上次競選政治獻金</th>
-                    <th rowspan="2">財產申報</th>
-                </tr>
-                <tr style="background-color: #CCFFCC;">
-                    <th>收入</th>
-                    <th>支出</th>
-                    <th>餘額</th>
-                    </tr>
+                    <th>當選註記</th>
+                    <th>得票數</th>
+                    <th>候選人</th>
+                    <th>黨籍</th>
+                    <th>表決立場</th>
+                    <th>提案立場</th>
+                    <th>最近任期</th>
+                    <th>數字統計</th>
+                    <th>上次競選政治獻金</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -78,7 +70,8 @@
                                     {{standpoint.title}}：{{standpoint.times}}次{{standpoint.decision}}
                                     <br>
                                 {% endfor %}
-                                <a href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}" >其他...</a>
+                                <a href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">其他...</a>
+                            {% else %}
                             {% endif %}
                         </td>
                         <td style="vertical-align:middle;">
@@ -95,54 +88,53 @@
                                     <br>
                                 {% endfor %}
                                 <a href="{% url 'councilors:biller_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}" >其他...</a>
+                            {% else %}
                             {% endif %}
                         </td>
                         {% endwith %}
                         {% for councilor_term in candidate.councilor_terms %}
                             {% if forloop.counter0 == 0 %}
-                            <td style="text-align:center; vertical-align:middle;">
+                            <td style="vertical-align:middle;">
                                  {{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}
                                 <a href="{% url 'councilors:platformer' councilor_id=councilor_term.councilor_id election_year=councilor_term.election_year %}"><br>（{{councilor_term.election_year}} 競選政見）</a>
                             </td>
-                            <td style="text-align:center; vertical-align:middle;">
+                            <td style="vertical-align:middle;">
+                                <ul>
                                 {% if councilor_term.param.bills_role_statistics %}
-                                    {{councilor_term.param.bills_role_statistics.priproposer}} / {{councilor_term.param.bills_role_statistics.sponsor}}
-                                    <a href="{% url 'councilors:biller' councilor_id=councilor_term.councilor_id election_year=councilor_term.election_year %}"><br>（看完整提案）</a>
+                                    <li>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</li>
+                                    <li>{{councilor_term.param.bills_role_statistics.sponsor}} 次共同提案</li>
                                 {% else %}
-                                    0 / 0
+                                    <li>無提案</li>
                                 {% endif %}
-                            </td>
-                            <td style="text-align:center; vertical-align:middle;">
                                 {% if councilor_term.param.votes_decision_statistics %}
-                                    {{councilor_term.param.votes_decision_statistics.not_voting}} / {{councilor_term.param.votes_decision_statistics.total}}（{{councilor_term.param.votes_decision_statistics.not_voting|percentage:councilor_term.param.votes_decision_statistics.total}} %）
-                                    <a href="{% url 'councilors:voter' councilor_id=councilor_term.councilor_id election_year=councilor_term.election_year %}"><br>（看完整表決）</a>
+                                    <li>投票缺席率：{{councilor_term.param.votes_decision_statistics.not_voting|percentage:councilor_term.param.votes_decision_statistics.total}} %（{{councilor_term.param.votes_decision_statistics.not_voting}} / {{councilor_term.param.votes_decision_statistics.total}}）</li>
                                 {% endif %}
-                            </td>
-                            <td style="text-align:center; vertical-align:middle;">
                                 {% if councilor_term.param.attendance_statistics %}
-                                    {{councilor_term.param.attendance_statistics.absent}} / {{councilor_term.param.attendance_statistics.total}} （{{councilor_term.param.attendance_statistics.absent|percentage:councilor_term.param.attendance_statistics.total}} %）
+                                    <li>議會缺席率：{{councilor_term.param.attendance_statistics.absent|percentage:councilor_term.param.attendance_statistics.total}} % （{{councilor_term.param.attendance_statistics.absent}} / {{councilor_term.param.attendance_statistics.total}}）</li>
                                 {% endif %}
+                                </ul>
                             </td>
                             {% endif %}
                         {% empty %}
-                            <td colspan="4"/>
+                            <td colspan="2"/>
                         {% endfor %}
                         {% for term in candidate.politicalcontributions %}
-                            <td style="text-align:center; vertical-align:middle;">
-                                    <a href="{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}#d3_in"><font class="price">{{term.pc.in_total}}</font></a>
-                            </td>
-                            <td style="text-align:center; vertical-align:middle;">
-                                    <a href="{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}#d3_out"><font class="price">{{term.pc.out_total}}</font></a>
-                            </td>
-                            <td style="text-align:center; vertical-align:middle;">
-                                    <font class="price">{{term.pc.balance}}</font>
-                            </td>
+                            <td style="vertical-align:middle;" nowrap>
+                                    <i class="fa fa-plus-square-o text-success fa-fw"> </i>
+                                    <a href="{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}#d3_in">收：<font class="price">{{term.pc.in_total}}</font></a>
+                                    <br>
+                                    <i class="fa fa-minus-square-o text-error fa-fw"> </i>
+                                    <a href="{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}#d3_out">支：<font class="price">{{term.pc.out_total}}</font></a>
+                                    <br>
+                                    <i class="fa fa-balance-scale text-danger fa-fw"> </i>
+                                    餘：<font class="price">{{term.pc.balance}}</font>
                         {% empty %}
-                            <td colspan="3"></td>
+                            <td/>
                         {% endfor %}
+                        </td>
                         <td style="text-align:center; vertical-align:middle;">
                         {% if candidate.councilor_terms %}
-                            <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank">{{candidate.name}}</a>
+                            <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank">財產申報</a>
                         {% endif %}
                         </td>
                     </tr>
