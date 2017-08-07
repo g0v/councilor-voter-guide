@@ -27,7 +27,6 @@
         </div>
         {% endif %}
         {% endwith %}
-        <a href="http://web.cec.gov.tw/files/11-1000-5373.php"><h4>2014各縣市選舉公報</h4></a>
         {% if candidates %}
         <table class="table table-bordered table-condensed table-striped sortable" >
             <thead>
@@ -67,7 +66,17 @@
                         <td style="vertical-align:middle;">
                             {% if sp.votes %}
                                 {% for standpoint in sp.votes %}
-                                    {{standpoint.title}}：{{standpoint.times}}次{{standpoint.decision}}<br>
+                                    {% if standpoint.decision == "反對" %}
+                                        <i class="fa fa-times-circle fa-fw"></i>
+                                    {% elif standpoint.decision == "贊成" %}
+                                        <i class="fa fa-check-circle fa-fw"></i>
+                                    {% elif standpoint.decision == "棄權" %}
+                                        <i class="fa fa-question-circle fa-fw"></i>
+                                    {% elif standpoint.decision == "沒投票" %}
+                                        <i class="fa fa-bed fa-fw"></i>
+                                    {% endif %}
+                                    {{standpoint.title}}：{{standpoint.times}}次{{standpoint.decision}}
+                                    <br>
                                 {% endfor %}
                                 <a href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}" >其他...</a>
                             {% endif %}
@@ -75,7 +84,15 @@
                         <td style="vertical-align:middle;">
                             {% if sp.bills %}
                                 {% for standpoint in sp.bills %}
-                                    {{standpoint.title}}：{{standpoint.times}}次{{standpoint.decision}}<br>
+                                    {% if standpoint.role == "主提案" %}
+                                        <i class="fa fa-pencil fa-fw"> </i>
+                                    {% elif standpoint.role == "共同提案" %}
+                                        <i class="fa fa-group fa-fw"> </i>
+                                    {% else %}
+                                        <i class="fa fa-plus-circle fa-fw"> </i>
+                                    {% endif %}
+                                    {{standpoint.title}}：{{standpoint.times}}次{{standpoint.role}}
+                                    <br>
                                 {% endfor %}
                                 <a href="{% url 'councilors:biller_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}" >其他...</a>
                             {% endif %}
@@ -84,7 +101,7 @@
                         {% for councilor_term in candidate.councilor_terms %}
                             {% if forloop.counter0 == 0 %}
                             <td style="text-align:center; vertical-align:middle;">
-                                 {{councilor_term.term_start_year}} / {{councilor_term.term_end_year}}
+                                 {{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}
                                 <a href="{% url 'councilors:platformer' councilor_id=councilor_term.councilor_id election_year=councilor_term.election_year %}"><br>（{{councilor_term.election_year}} 競選政見）</a>
                             </td>
                             <td style="text-align:center; vertical-align:middle;">
