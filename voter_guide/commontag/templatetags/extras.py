@@ -186,7 +186,7 @@ def county_urls(value):
     maps = {
         u'基隆市': 'http://www.kmc.gov.tw/',
         u'新北市': 'http://www.ntp.gov.tw/',
-        u'台北市': 'http://www.tcc.gov.tw/',
+        u'臺北市': 'http://www.tcc.gov.tw/',
         u'桃園市': 'http://www.tycc.gov.tw/',
         u'新竹市': 'http://www.hsinchu-cc.gov.tw/',
         u'新竹縣': 'http://www.hcc.gov.tw/',
@@ -197,7 +197,7 @@ def county_urls(value):
         u'南投縣': 'http://www.ntcc.gov.tw/',
         u'嘉義市': 'http://www.cycc.gov.tw/',
         u'嘉義縣': 'http://www.cyscc.gov.tw/',
-        u'台南市': 'http://www.tncc.gov.tw/',
+        u'臺南市': 'http://www.tncc.gov.tw/',
         u'高雄市': 'http://www.kcc.gov.tw/',
         u'屏東縣': 'http://www.ptcc.gov.tw/',
         u'宜蘭縣': 'http://www.ilcc.gov.tw/',

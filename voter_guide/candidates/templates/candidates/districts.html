@@ -11,9 +11,7 @@
     <div class="hero-unit row" style="margin-left: 0px;">
         <img class="pull-right" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img>
         <h2>{{election_year}} {{county}} - 議員選區</h2>
-        {% with county_url=county|county_urls %}
-        <a href="{{county_url}}" class="btn btn-primary btn-large" target="_blank">{{county}}議會網站</a>
-        {% endwith %}
+        <a href="{{county|county_urls}}" class="btn btn-primary btn-large" target="_blank">{{county}}議會網站</a>
     </div>
     <div class="four column doubling ui grid row">
             {% for district in districts %}
