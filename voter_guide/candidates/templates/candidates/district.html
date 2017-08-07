@@ -6,6 +6,7 @@
     <title>議員投票指南: {{election_year}}{{county}} - {{district}}候選人</title>
     <meta property="og:title" content="議員投票指南: {{election_year}}{{county}} - {{district}}候選人"/>
     <meta itemprop="name" content="議員投票指南: {{election_year}}{{county}} - {{district}}候選人">
+    <link href="{% static "css/stacktable.min.css" %}" rel="stylesheet">
 {% endblock title %}
 
 {% block right %}
@@ -138,8 +139,10 @@
 {% endblock right %}
 
 {% block script %}
+    <script src="{% static "js/stacktable.min.js" %}" type="text/javascript"></script>
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     <script>
+        $('table').cardtable();
         $('.price').each(function(index,ele){
             var number = $(ele).text()
             zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
