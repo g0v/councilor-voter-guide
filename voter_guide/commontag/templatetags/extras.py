@@ -135,6 +135,10 @@ def election_year_range(value):
         if election_years[i] == value:
             return '%s~%s' % (value, election_years[i+1])
 
+@register.filter(name='json_lookup')
+def json_lookup(value, arg):
+    return value.get(arg) if value else None
+
 @register.filter(name='mod')
 def mod(value, arg):
     return value % arg
@@ -144,7 +148,7 @@ def subtract(value, arg):
     return value - arg
 
 @register.filter(name='multiply')
-def subtract(value, arg):
+def multiply(value, arg):
     return value * arg
 
 @register.filter(name='percentage')

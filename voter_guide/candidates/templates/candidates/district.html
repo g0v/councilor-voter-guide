@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% load extras %}
 
 {% block title %}
-<title>議員投票指南: {{election_year}}{{county}} - {{district}}候選人</title>
+    <title>議員投票指南: {{election_year}}{{county}} - {{district}}候選人</title>
     <meta property="og:title" content="議員投票指南: {{election_year}}{{county}} - {{district}}候選人"/>
     <meta itemprop="name" content="議員投票指南: {{election_year}}{{county}} - {{district}}候選人">
 {% endblock title %}
@@ -34,6 +35,8 @@
                     <th rowspan="2">得票數</th>
                     <th rowspan="2">候選人</th>
                     <th rowspan="2">黨籍</th>
+                    <th rowspan="2">表決立場</th>
+                    <th rowspan="2">提案立場</th>
                     <th rowspan="2">最近任期</th>
                     <th rowspan="2">主提案數 / 參與提案數</th>
                     <th rowspan="2">投票缺席率（%）</th>
@@ -59,6 +62,24 @@
                         <td style="text-align:center; vertical-align:middle;">{{candidate.votes}}</td>
                         <td style="text-align:center; vertical-align:middle;" nowrap>{{candidate.name}}</td>
                         <td style="text-align:center; vertical-align:middle;">{{candidate.party}}</td>
+                        {% with sp=standpoints|json_lookup:candidate.id %}
+                        <td style="vertical-align:middle;">
+                            {% if sp.votes %}
+                                {% for standpoint in sp.votes %}
+                                    {{standpoint.title}}：{{standpoint.times}}次{{standpoint.decision}}<br>
+                                {% endfor %}
+                                <a href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}" >其他...</a>
+                            {% endif %}
+                        </td>
+                        <td style="vertical-align:middle;">
+                            {% if sp.bills %}
+                                {% for standpoint in sp.bills %}
+                                    {{standpoint.title}}：{{standpoint.times}}次{{standpoint.decision}}<br>
+                                {% endfor %}
+                                <a href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}" >其他...</a>
+                            {% endif %}
+                        </td>
+                        {% endwith %}
                         {% for councilor_term in candidate.councilor_terms %}
                             {% if forloop.counter0 == 0 %}
                             <td style="text-align:center; vertical-align:middle;">

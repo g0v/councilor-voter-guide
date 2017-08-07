@@ -18,9 +18,9 @@ def councilor_terms(candidate):
     '''
 
     c.execute('''
-        SELECT councilor_id, election_year, param, to_char(EXTRACT(YEAR FROM term_start), '9999') as term_start_year, substring(term_end->>'date' from '(\d+)-') as term_end_year
+        SELECT id as term_id, councilor_id, election_year, param, to_char(EXTRACT(YEAR FROM term_start), '9999') as term_start_year, substring(term_end->>'date' from '(\d+)-') as term_end_year
         FROM councilors_councilorsdetail
-        WHERE councilor_id = %(councilor_uid)s AND election_year < %(election_year)s
+        WHERE councilor_id = %(councilor_uid)s AND election_year <= %(election_year)s
         ORDER BY election_year DESC
     ''', candidate)
     key = [desc[0] for desc in c.description]
