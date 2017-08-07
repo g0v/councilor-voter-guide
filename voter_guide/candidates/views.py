@@ -57,7 +57,7 @@ def district(request, election_year, county, constituency):
                                 count(*) as times
                             FROM votes_councilors_votes lv
                             JOIN standpoints_standpoints s on s.vote_id = lv.vote_id
-                            WHERE lv.councilor_id in (2841, 134) AND s.pro = (
+                            WHERE lv.councilor_id in %s AND s.pro = (
                                 SELECT max(pro)
                                 FROM standpoints_standpoints ss
                                 WHERE ss.pro > 0 AND s.vote_id = ss.vote_id
@@ -82,18 +82,19 @@ def district(request, election_year, county, constituency):
                             FROM bills_councilors_bills lv
                             JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
                             JOIN bills_bills v on lv.bill_id = v.uid
-                            WHERE lv.councilor_id in (2841, 134) AND s.pro = (
+                            WHERE lv.councilor_id in %s AND s.pro = (
                                 SELECT max(pro)
                                 FROM standpoints_standpoints ss
                                 WHERE ss.pro > 0 AND s.bill_id = ss.bill_id
                                 GROUP BY ss.bill_id
                             )
                             GROUP BY s.title, role
-                            ORDER BY role
+                            ORDER BY times DESC
+                            LIMIT 3
                         ) row
                     ) r
                 '''
-                c.execute(qs, [terms_id])
+                c.execute(qs, [terms_id, terms_id])
                 r = c.fetchone()
                 standpoints.update({candidate.id: r[0] if r else []})
     return render(request, 'candidates/district.html', {'election_year': election_year, 'county': county, 'district': candidates[0].district, 'candidates': candidates, 'standpoints': standpoints})

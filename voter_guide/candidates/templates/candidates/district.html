@@ -77,7 +77,7 @@
                                 {% for standpoint in sp.bills %}
                                     {{standpoint.title}}：{{standpoint.times}}次{{standpoint.decision}}<br>
                                 {% endfor %}
-                                <a href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}" >其他...</a>
+                                <a href="{% url 'councilors:biller_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}" >其他...</a>
                             {% endif %}
                         </td>
                         {% endwith %}
