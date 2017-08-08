@@ -15,20 +15,14 @@
 {% endblock %}
 
 {% block title %}
-    {% if councilor %}
-        {% if index == 'conscience' %}
-            <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的脫黨表決紀錄</title>
-            <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的脫黨表決紀錄"/>
-            <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的脫黨表決紀錄">
-        {% else %}
-            <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的投票表決紀錄</title>
-            <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的投票表決紀錄"/>
-            <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的投票表決紀錄">
-        {% endif %}
+    {% if index == 'conscience' %}
+        <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的脫黨表決紀錄</title>
+        <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的脫黨表決紀錄"/>
+        <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的脫黨表決紀錄">
     {% else %}
-        <title>議員投票指南:議員的投票表決紀錄</title>
-        <meta property="og:title" content="議員投票指南:議員的投票表決紀錄"/>
-        <meta itemprop="name" content="議員投票指南:議員的投票表決紀錄">
+        <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的投票表決紀錄</title>
+        <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的投票表決紀錄"/>
+        <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的投票表決紀錄">
     {% endif %}
 {% endblock title %}
 

@@ -32,13 +32,13 @@
                 <li>
                     <h3 align="center">
                         {% if role_group.grouper == "主提案" %}
-                            <i class="fa fa-pencil text-error fa-fw"> </i>
+                            <i class="fa fa-pencil text-error">
                         {% elif role_group.grouper == "共同提案" %}
-                            <i class="fa fa-group text-success fa-fw"> </i>
+                            <i class="fa fa-group text-success">
                         {% else %}
-                            <i class="fa fa-plus-circle text-warning fa-fw"> </i>
+                            <i class="fa fa-plus-circle text-warning">
                         {% endif %}
-                        {{ role_group.grouper }}
+                        {{ role_group.grouper }} </i>
                     </h3>
                     <ul>
                     {% for standpoint in role_group.list %}

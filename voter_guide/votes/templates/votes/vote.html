@@ -67,17 +67,15 @@
                 <div class="span6">
                     <h3>
                         {% if fragment.decision == "反對" %}
-                        <i class="fa fa-times-circle"> </i>
+                            <i class="fa fa-times-circle text-error">
                         {% elif fragment.decision == "贊成" %}
-                        <i class="fa fa-check-circle"> </i>
+                            <i class="fa fa-check-circle text-success">
+                        {% elif fragment.decision == "沒投票" %}
+                            <i class="fa fa-bed muted">
                         {% else %}
-                            {% if fragment.decision == "棄權" %}
-                            <i class="fa fa-question-circle"> </i>
-                            {% elif fragment.decision == "沒投票" %}
-                            <i class="fa fa-bed"> </i>
-                            {% endif %}
+                            <i class="fa fa-question-circle text-warning">
                         {% endif %}
-                        {{ fragment.decision }}
+                        {{ fragment.decision }} </i>
                     </h3>
                     <ul>
                     {% for element in fragment.party_list %}

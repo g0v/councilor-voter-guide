@@ -32,15 +32,15 @@
                 <li>
                     <h3 align="center">
                         {% if decision_group.grouper == "反對" %}
-                            <i class="fa fa-times-circle text-error"> </i>
+                            <i class="fa fa-times-circle text-error">
                         {% elif decision_group.grouper == "贊成" %}
-                            <i class="fa fa-check-circle text-success"> </i>
+                            <i class="fa fa-check-circle text-success">
                         {% elif decision_group.grouper == "沒投票" %}
-                            <i class="fa fa-bed muted"> </i>
+                        <i class="fa fa-bed muted">
                         {% else %}
-                            <i class="fa fa-question-circle text-warning"> </i>
+                            <i class="fa fa-question-circle text-warning">
                         {% endif %}
-                        {{ decision_group.grouper }}
+                        {{ decision_group.grouper }} </i>
                     </h3>
                     <ul>
                     {% for standpoint in decision_group.list %}
