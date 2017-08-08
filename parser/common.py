@@ -71,10 +71,11 @@ def get_or_create_candidate_uid(c, candidate):
     return (r[0], True) if r else (uuid.uuid4().hex, False)
 
 def make_variants_set(string):
-    variants = set()
-    for variant in [(u'勳', u'勲'), (u'溫', u'温'), (u'黃', u'黄'), (u'寶', u'寳'), (u'真', u'眞'), (u'福', u'褔'), (u'鎮', u'鎭'), (u'妍', u'姸'), (u'市', u'巿'), (u'衛', u'衞'), (u'館', u'舘'), (u'峰', u'峯'), (u'群', u'羣'), (u'啟', u'啓'), (u'鳳', u'鳯'), (u'冗', u'宂'), (u'穀', u'榖'), (u'曾', u'曽'), (u'賴', u'頼'), (u'蒓', u'莼'), ]:
-        variants.add(re.sub(variant[0], variant[1], string))
-        variants.add(re.sub(variant[1], variant[0], string))
+    variants = set([string])
+    for variant in [(u'麗', u'麗'), (u'林', u'林'), (u'李', u'李'), (u'玲', u'玲'), (u'勳', u'勲'), (u'溫', u'温'), (u'黃', u'黄'), (u'寶', u'寳'), (u'真', u'眞'), (u'福', u'褔'), (u'鎮', u'鎭'), (u'妍', u'姸'), (u'市', u'巿'), (u'衛', u'衞'), (u'館', u'舘'), (u'峰', u'峯'), (u'群', u'羣'), (u'啟', u'啓'), (u'鳳', u'鳯'), (u'冗', u'宂'), (u'穀', u'榖'), (u'曾', u'曽'), (u'賴', u'頼'), (u'蒓', u'莼'), ]:
+        for item in variants.copy():
+            variants.add(re.sub(variant[0], variant[1], item))
+            variants.add(re.sub(variant[1], variant[0], item))
     return variants
 
 def normalize_person_name(name):

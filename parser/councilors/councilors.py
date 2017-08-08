@@ -125,7 +125,6 @@ conn.commit()
 
 # upsert from json
 for council in ['../../data/phcouncil/councilors.json', '../../data/kmcc/councilors.json', '../../data/mtcc/councilors.json', '../../data/ptcc/councilors.json', '../../data/kcc/councilors.json', '../../data/tncc/councilors.json', '../../data/taitungcc/councilors.json', '../../data/hlcc/councilors.json', '../../data/cycc/councilors.json', '../../data/cyscc/councilors.json', '../../data/ylcc/councilors.json', '../../data/ntcc/councilors.json', '../../data/chcc/councilors.json', '../../data/tccc/councilors.json', '../../data/ilcc/councilors.json', '../../data/mcc/councilors.json', '../../data/hcc/councilors.json', '../../data/kmc/councilors.json', '../../data/tycc/councilors.json', '../../data/hsinchucc/councilors.json', '../../data/ntp/councilors.json', '../../data/tcc/councilors.json']:
-    break
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
@@ -147,7 +146,6 @@ c.execute('''
 ''', [election_year])
 key = [desc[0] for desc in c.description]
 for row in c.fetchall():
-    break
     person = dict(zip(key, row))
     person['name'] = person['name'].decode('utf-8')
     person = normalize_councilor(person)
@@ -175,8 +173,7 @@ for row in c.fetchall():
                 for i in r:
                     selected = ' selected' if i[0] == person['uid'] else ''
                     print ', '.join([x for x in i]) + selected
-                print 'If they are same person, need to check which should be delete!!\n'
-                raise
+                raise Exception('If they are same person, need to check which should be delete!!\n')
         c.execute('''
             INSERT INTO councilors_councilorsdetail(councilor_id, election_year, name, gender, party, constituency, county, district, in_office, contact_details, education, experience, remark, image, links, platform)
             VALUES (%(uid)s, %(election_year)s, %(name)s, %(gender)s, %(party)s, %(constituency)s, %(county)s, %(district)s, %(in_office)s, %(contact_details)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s)
