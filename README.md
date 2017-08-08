@@ -29,7 +29,7 @@ councilor-voter-guide
     > votes/: 出缺席、表決資料，各縣市、各屆分開處理  
 
 -   voter\_guide  
-    Web application using Django, [Enviroment Setup](https://github.com/g0v/councilor-voter-guide#for-website-pythondjango)
+    Web application using Django, [Environment Setup](https://github.com/g0v/councilor-voter-guide#for-website-pythondjango)
       
 In Ubuntu 12.04 LTS
 =================
