@@ -27,20 +27,18 @@
         </div>
     {% regroup standpoints by decision as decision_list %}
     {% for decision_group in decision_list %}
-        <div class="span{% widthratio 12 decision_list|length 1 %}">
+        <div class="span{% widthratio 12 decision_list|length 1 %}" style="margin-left: 0px;">
             <ul class="media-list">
                 <li>
                     <h3 align="center">
                         {% if decision_group.grouper == "反對" %}
-                        <i class="fa fa-times-circle"> </i>
+                            <i class="fa fa-times-circle text-error"> </i>
                         {% elif decision_group.grouper == "贊成" %}
-                        <i class="fa fa-check-circle"> </i>
+                            <i class="fa fa-check-circle text-success"> </i>
+                        {% elif decision_group.grouper == "沒投票" %}
+                            <i class="fa fa-bed muted"> </i>
                         {% else %}
-                            {% if decision_group.grouper == "棄權" %}
-                            <i class="fa fa-question-circle"> </i>
-                            {% elif decision_group.grouper == "沒投票" %}
-                            <i class="fa fa-bed"> </i>
-                            {% endif %}
+                            <i class="fa fa-question-circle text-warning"> </i>
                         {% endif %}
                         {{ decision_group.grouper }}
                     </h3>

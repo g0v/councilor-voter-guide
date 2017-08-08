@@ -27,16 +27,16 @@
         </div>
     {% regroup standpoints by role as role_list %}
     {% for role_group in role_list %}
-        <div class="span{% widthratio 12 role_list|length 1 %}">
+        <div class="span{% widthratio 12 role_list|length 1 %}" style="margin-left: 0px;">
             <ul class="media-list">
                 <li>
                     <h3 align="center">
                         {% if role_group.grouper == "主提案" %}
-                            <i class="fa fa-pencil"> </i>
+                            <i class="fa fa-pencil text-error fa-fw"> </i>
                         {% elif role_group.grouper == "共同提案" %}
-                            <i class="fa fa-group"> </i>
+                            <i class="fa fa-group text-success fa-fw"> </i>
                         {% else %}
-                            <i class="fa fa-plus-circle"> </i>
+                            <i class="fa fa-plus-circle text-warning fa-fw"> </i>
                         {% endif %}
                         {{ role_group.grouper }}
                     </h3>

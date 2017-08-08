@@ -48,7 +48,7 @@
                     <tr>
                         <td style="text-align:center; vertical-align:middle;">
                             {% if candidate.elected %}
-                                <span class="badge badge-warning">◎</span>
+                                <i class="fa fa-flag text-success fa-lg"></i>
                             {% endif %}
                         </td>
                         <td style="text-align:center; vertical-align:middle;">{{candidate.votes}}</td>
@@ -59,13 +59,13 @@
                             {% if sp.votes %}
                                 {% for standpoint in sp.votes %}
                                     {% if standpoint.decision == "反對" %}
-                                        <i class="fa fa-times-circle fa-fw"></i>
+                                        <i class="fa fa-times-circle text-error fa-fw"></i>
                                     {% elif standpoint.decision == "贊成" %}
-                                        <i class="fa fa-check-circle fa-fw"></i>
-                                    {% elif standpoint.decision == "棄權" %}
-                                        <i class="fa fa-question-circle fa-fw"></i>
+                                        <i class="fa fa-check-circle text-success fa-fw"></i>
                                     {% elif standpoint.decision == "沒投票" %}
-                                        <i class="fa fa-bed fa-fw"></i>
+                                        <i class="fa fa-bed muted fa-fw"></i>
+                                    {% elif standpoint.decision == "棄權" %}
+                                        <i class="fa fa-question-circle text-warning fa-fw"></i>
                                     {% endif %}
                                     {{standpoint.title}}：{{standpoint.times}}次{{standpoint.decision}}
                                     <br>
@@ -78,11 +78,11 @@
                             {% if sp.bills %}
                                 {% for standpoint in sp.bills %}
                                     {% if standpoint.role == "主提案" %}
-                                        <i class="fa fa-pencil fa-fw"> </i>
+                                        <i class="fa fa-pencil text-error fa-fw"> </i>
                                     {% elif standpoint.role == "共同提案" %}
-                                        <i class="fa fa-group fa-fw"> </i>
+                                        <i class="fa fa-group text-success fa-fw"> </i>
                                     {% else %}
-                                        <i class="fa fa-plus-circle fa-fw"> </i>
+                                        <i class="fa fa-plus-circle text-warning fa-fw"> </i>
                                     {% endif %}
                                     {{standpoint.title}}：{{standpoint.times}}次{{standpoint.role}}
                                     <br>
