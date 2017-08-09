@@ -24,10 +24,10 @@
 
     var data = {{data|as_json}}
 
-    var width = 720,
-    height = 360,
-    radius = Math.min(width, height) / 3,
-    labelr = radius + 10; // radius for label anchor
+    var width = 500,
+    height = 240,
+    radius = Math.min(width, height) / 4,
+    labelr = radius; // radius for label anchor
 
     var color = d3.scale.ordinal()
     .range(["#FF66CC", "#6699FF", "#66CC66", "#FFCC33", "#999999", "#FFCC66"])

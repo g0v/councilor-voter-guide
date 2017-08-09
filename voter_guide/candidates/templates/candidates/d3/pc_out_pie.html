@@ -24,17 +24,17 @@
 
     var data = {{data|as_json}}
 
-    var width = 720,
-    height = 360,
-    radius = Math.min(width, height) / 3,
-    labelr = radius + 10; // radius for label anchor
+    var width = 500,
+    height = 240,
+    radius = Math.min(width, height) / 4,
+    labelr = radius; // radius for label anchor
 
     var color = d3.scale.ordinal()
     .range(["#996699","#FF66CC",  "#66CC66", "#FF9933", "#6699FF", "#999999", "#FF9966", "#CCCC66", "#CC99FF", "#666699"])
     .domain(["out_personnel", "out_propagate", "out_campaign_vehicle", "out_campaign_office", "out_rally", "out_travel", "out_miscellaneous", "out_return", "out_exchequer", "out_public_relation"]);
 
     var legend = d3.scale.ordinal()
-    .range(["人事費用", "宣傳", "租用宣傳車輛", "租用競選辦事處", "集會", "交通旅運", "雜支", "返還捐贈", "繳庫", "公共關係費用"])
+    .range(["人事費用", "宣傳", "租用宣傳車輛", "租用競選辦事處", "集會", "交通旅運", "雜支", "返還捐贈", "繳庫", "公共關係費"])
     .domain(["out_personnel", "out_propagate", "out_campaign_vehicle", "out_campaign_office", "out_rally", "out_travel", "out_miscellaneous", "out_return", "out_exchequer", "out_public_relation"]);
 
     var arc = d3.svg.arc()

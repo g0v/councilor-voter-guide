@@ -119,12 +119,12 @@
                         {% for term in candidate.politicalcontributions %}
                             <td style="vertical-align:middle;" nowrap>
                                     <i class="fa fa-plus-square-o text-success fa-fw"> </i>
-                                    <a href="{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}#d3_in">收：<font class="price">{{term.pc.in_total}}</font></a>
+                                    <a href="{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}">收：<font class="price">{{term.pc.in_total}}</font></a>
                                     <br>
                                     <i class="fa fa-minus-square-o text-error fa-fw"> </i>
-                                    <a href="{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}#d3_out">支：<font class="price">{{term.pc.out_total}}</font></a>
+                                    <a href="{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}">支：<font class="price">{{term.pc.out_total}}</font></a>
                                     <br>
-                                    <i class="fa fa-balance-scale text-danger fa-fw"> </i>
+                                    <i class="fa fa-balance-scale text-warning fa-fw"> </i>
                                     餘：<font class="price">{{term.pc.balance}}</font>
                         {% empty %}
                             <td/>

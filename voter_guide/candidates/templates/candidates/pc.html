@@ -12,24 +12,29 @@
 {% block right %}
     <div align="center">
         <div class="text-center">
-            <h2>{{candidate.name}} - 選議員的政治獻金</h2>
+            <h2>{{candidate.name}} - 政治獻金</h2>
         </div>
         {% for term in candidate.politicalcontributions %}
-            <div class="span1" style="margin-left: 0px;">
-                <h4>{{term.election_year}}年</h4>
+            <div class="page-header" style="margin-left: 0px;">
+                <h4>
+                    {{term.election_year}}年競選&nbsp;&nbsp;<i class="fa fa-balance-scale text-warning">餘：<font class="price">{{term.pc.balance}}</font></i>
+                </h4>
             </div>
-            <div class="span11">
+            <div class="span6" style="margin-left: 0px;">
                 <div class="hero-unit">
-                    <p class="lead">收入：共<span class="price text-right">{{term.pc.in_total}}</span>元</p>
+
+                    <i class="fa fa-plus-square-o text-success fa-lg"> 收：<span class="price text-right">{{term.pc.in_total}}</span></i>
                     <div id="d3_in" style="padding-top: 60px; margin-top: -60px;" align="center"></div>
                 </div>
-                    <br>
+            </div>
+            <div class="span6">
                 <div class="hero-unit">
-                    <p class="lead">支出：共<span class="price text-right">{{term.pc.out_total}}</span>元</p>
+                    <i class="fa fa-minus-square-o text-error fa-lg"> 支：<span class="price text-right">{{term.pc.out_total}}</span></i>
                     <div id="d3_out" style="padding-top: 60px; margin-top: -60px;" align="center"></div>
                 </div>
             </div>
         {% empty %}
+            無紀錄
         {% endfor %}
     </div>
 {% endblock right %}
@@ -45,7 +50,7 @@
         $(document).ready( function() {
             $('.price').each(function(index,ele){
                 var number = $(ele).text()
-                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 2});
+                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
                 $(ele).replaceWith(zh_number)
             });
             relax_in();
