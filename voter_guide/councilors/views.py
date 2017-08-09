@@ -270,17 +270,3 @@ def platformer(request, councilor_id, election_year):
     except Exception, e:
         return HttpResponseRedirect('/')
     return render(request, 'councilors/platformer.html', {'county': councilor.county, 'councilor': councilor})
-
-def personal_political_contributions(request, councilor_id, election_year):
-    data_income, data_expenses, data_total = None, None, None
-    try:
-        councilor = CouncilorsDetail.objects.get(election_year=election_year, councilor_id=councilor_id)
-    except Exception, e:
-        return HttpResponseRedirect('/')
-    try:
-        data_income = dict(PoliticalContributions.objects.values("in_individual", "in_profit", "in_party", "in_civil", "in_anonymous", "in_others").get(councilor_id=councilor.id))
-        data_expenses = dict(PoliticalContributions.objects.values("out_personnel", "out_propagate", "out_campaign_vehicle", "out_campaign_office", "out_rally", "out_travel", "out_miscellaneous", "out_return", "out_exchequer", "out_public_relation").get(councilor_id=councilor.id))
-        data_total = PoliticalContributions.objects.values("in_total", "out_total").get(councilor_id=councilor.id)
-    except Exception, e:
-        print e
-    return render(request,'councilors/personal_politicalcontributions.html', {'councilor': councilor, 'data_total': data_total, 'data_income': data_income, 'data_expenses': data_expenses})

@@ -11,7 +11,6 @@ urlpatterns = [
     url(r'^voter/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.voter, name='voter'),
     url(r'^voter_sp/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.voter_sp, name='voter_sp'),
     url(r'^suggestor/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.suggestor, name='suggestor'),
-    url(r'^personal_political_contributions/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.personal_political_contributions, name='personal_political_contributions'),
     url(r'^info/(?P<councilor_id>\S+)/(?P<election_year>\d+)/$', views.info, name='info'),
     url(r'^(?P<county>\S+)/$', views.districts, name='councilors'),
 ]

@@ -57,11 +57,11 @@ def upsertCandidates(candidate):
         SET name = %(name)s, birth = %(birth)s, identifiers = %(identifiers)s
     ''', complement)
     c.execute('''
-        INSERT INTO candidates_terms(uid, candidate_id, councilor_terms, election_year, number, name, gender, party, constituency, county, district, contact_details, education, experience, remark, image, links, platform)
-        VALUES (%(candidate_term_uid)s, %(candidate_uid)s, %(councilor_terms)s, %(election_year)s, %(number)s, %(name)s, %(gender)s, %(party)s, %(constituency)s, %(county)s, %(district)s, %(contact_details)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s)
+        INSERT INTO candidates_terms(uid, candidate_id, elected_councilor_id, councilor_terms, election_year, number, name, gender, party, constituency, county, district, contact_details, education, experience, remark, image, links, platform)
+        VALUES (%(candidate_term_uid)s, %(candidate_uid)s, %(councilor_term_id)s, %(councilor_terms)s, %(election_year)s, %(number)s, %(name)s, %(gender)s, %(party)s, %(constituency)s, %(county)s, %(district)s, %(contact_details)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s)
         ON CONFLICT (election_year, candidate_id)
         DO UPDATE
-        SET councilor_terms = %(councilor_terms)s, number = %(number)s, name = %(name)s, gender = %(gender)s, party = %(party)s, constituency = %(constituency)s, county = %(county)s, district = %(district)s, contact_details = %(contact_details)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s
+        SET elected_councilor_id = %(councilor_term_id)s, councilor_terms = %(councilor_terms)s, number = %(number)s, name = %(name)s, gender = %(gender)s, party = %(party)s, constituency = %(constituency)s, county = %(county)s, district = %(district)s, contact_details = %(contact_details)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s
     ''', complement)
 
 conn = db_settings.con()
@@ -87,6 +87,8 @@ for f in files:
         candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
         candidate['candidate_term_uid'] = '%s-%s' % (candidate['candidate_uid'], election_year)
         candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate)
+        candidate['councilor_term_id'] = common.getDetailIdFromUid(c, candidate['councilor_uid'], election_year, candidate['county'])
+
         candidate['councilor_terms'] = councilor_terms(candidate) if created else None
         upsertCandidates(candidate)
 conn.commit()
