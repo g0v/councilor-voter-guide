@@ -8,7 +8,7 @@ from datetime import datetime
 import logging
 
 
-logging.basicConfig(filename='common.log', level=logging.ERROR)
+logging.basicConfig(filename='common.log', level=logging.INFO)
 
 def election_year(county):
     return '2014'

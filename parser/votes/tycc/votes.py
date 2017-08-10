@@ -9,11 +9,29 @@ import unicodedata
 import json
 import glob
 import psycopg2
+import logging
 
 import db_settings
 import common
 import vote_common
 
+
+logging.basicConfig(filename='votes.log', level=logging.INFO)
+
+def in_office_ids(date, exclude):
+    if exclude:
+        c.execute('''
+            select id
+            from councilors_councilorsdetail
+            where election_year = %s and county = %s and term_start <= %s and cast(term_end::json->>'date' as date) > %s and id not in %s
+        ''', (election_year, county, date, date, tuple(exclude)))
+    else:
+        c.execute('''
+            select id
+            from councilors_councilorsdetail
+            where election_year = %s and county = %s and term_start <= %s and cast(term_end::json->>'date' as date) > %s
+        ''', (election_year, county, date, date))
+    return c.fetchall()
 
 def UpsertVote(data):
     c.execute('''
@@ -135,11 +153,20 @@ for i in range(0, len(sittings)):
         one_sitting_text = total_text[sittings[i]['start']:sittings[i+1]['start']]
     else:
         one_sitting_text = total_text[sittings[i]['start']:]
+    logging.info(sittings[i]['uid'])
     common.InsertSitting(c, sittings[i])
     common.FileLog(c, sittings[i]['name'])
     present_match = Present_Token.search(one_sitting_text)
+    exclude = []
     if present_match:
-        common.Attendance(c, sittings[i], present_match.group('names'), 'CS', 'present')
+        exclude.extend(common.Attendance(c, sittings[i], present_match.group('names'), 'CS', 'present'))
+    # no councilor's name to record
+    if exclude == []:
+        continue
+    # absent
+    for councilor_id in in_office_ids(sittings[i]['date'], exclude):
+        common.AddAttendanceRecord(c, councilor_id, sittings[i]['uid'], 'CS', 'absent')
+    # <--
     # <--
     # --> votes
 #   IterVote(one_sitting_text, sittings[i])

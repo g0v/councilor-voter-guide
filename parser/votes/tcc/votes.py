@@ -148,7 +148,7 @@ for i in range(0, len(sittings)):
         one_sitting_text = total_text[sittings[i]['start']:sittings[i+1]['start']]
     else:
         one_sitting_text = total_text[sittings[i]['start']:]
-    logging.error(sittings[i]['uid'])
+    logging.info(sittings[i]['uid'])
     common.InsertSitting(c, sittings[i])
     common.FileLog(c, sittings[i]['name'])
     present_match = Present_Token.search(one_sitting_text)
