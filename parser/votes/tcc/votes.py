@@ -9,11 +9,14 @@ import unicodedata
 import json
 import glob
 import psycopg2
+import logging
 
 import db_settings
 import common
 import vote_common
 
+
+logging.basicConfig(filename='votes.log', level=logging.INFO)
 
 def UpsertVote(data):
     c.execute('''
@@ -86,7 +89,7 @@ county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
 county = common.county_abbr2string(county_abbr)
 election_year = common.election_year(county)
 county_abbr3 = common.county2abbr3(county)
-total_text = unicodedata.normalize('NFC', codecs.open(u"../../../data/tcc/meeting_minutes-%s.txt" % election_year, "r", "utf-8").read())
+total_text = codecs.open(u"../../../data/tcc/meeting_minutes-%s.txt" % election_year, "r", "utf-8").read()
 
 Session_Token = re.compile(u'''
     \s*
@@ -145,6 +148,7 @@ for i in range(0, len(sittings)):
         one_sitting_text = total_text[sittings[i]['start']:sittings[i+1]['start']]
     else:
         one_sitting_text = total_text[sittings[i]['start']:]
+    logging.error(sittings[i]['uid'])
     common.InsertSitting(c, sittings[i])
     common.FileLog(c, sittings[i]['name'])
     present_match = Present_Token.search(one_sitting_text)

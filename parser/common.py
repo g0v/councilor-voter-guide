@@ -8,8 +8,10 @@ from datetime import datetime
 import logging
 
 
+logging.basicConfig(filename='common.log', level=logging.ERROR)
+
 def election_year(county):
-    return '1998'
+    return '2014'
 
 def get_or_create_councilor_uid(c, councilor, create=True):
     '''
@@ -199,19 +201,23 @@ def GetCouncilorId(c, name):
 def getCouncilorIdList(c, text):
     id_list = []
     text = text.strip(u'[　\s]')
-    text = re.sub(u'([^　\w])　([^　\w])　', u'\g<1>\g<2>　', text) # e.g. 楊　曜=>楊曜, 包含句首
-    text = re.sub(u'　([^　\w])　([^　\w])', u'　\g<1>\g<2>', text) # e.g. 楊　曜=>楊曜, 包含句尾
-    text = re.sub(u'(\w+)[ 　](\w+)　', u'\g<1>\g<2>　', text) # e.g. Kolas Yotaka=>KolasYotaka, 包含句首
-    text = re.sub(u'　(\w+)[ 　](\w+)', u'　\g<1>\g<2>', text) # e.g. Kolas Yotaka=>KolasYotaka, 包含句尾
-    text = re.sub(u'^([^　\w])　([^　\w])$', u'\g<1>\g<2>', text) # e.g. 楊　曜=>楊曜, 單獨一人
-    text = re.sub(u'^(\w+)[ 　](\w+)$', u'\g<1>\g<2>', text) # e.g. Kolas Yotaka=>KolasYotaka, 單獨一人
+    text = re.sub(u'[　\n]', u' ', text)
+    text = re.sub(u'[ ]+(\d+)[ ]+', u'\g<1>', text)
+    text = re.sub(u' ([^ \w]) ([^ \w]) ', u' \g<1>\g<2> ', text) # e.g. 楊　曜=>楊曜, 包含句首
+    text = re.sub(u'^([^ \w]) ([^ \w]) ', u'\g<1>\g<2> ', text) # e.g. 楊　曜=>楊曜, 包含句首
+    text = re.sub(u' ([^ \w]) ([^ \w])$', u' \g<1>\g<2>', text) # e.g. 楊　曜=>楊曜, 包含句尾
+    text = re.sub(u' (\w+) (\w+) ', u' \g<1>\g<2> ', text) # e.g. Kolas Yotaka=>KolasYotaka, 包含句首
+    text = re.sub(u'^(\w+) (\w+) ', u'\g<1>\g<2> ', text) # e.g. Kolas Yotaka=>KolasYotaka, 包含句首
+    text = re.sub(u'　(\w+) (\w+)$', u' \g<1>\g<2>', text) # e.g. Kolas Yotaka=>KolasYotaka, 包含句尾
+    text = re.sub(u'^([^ \w]) ([^ \w])$', u'\g<1>\g<2>', text) # e.g. 楊　曜=>楊曜, 單獨一人
+    text = re.sub(u'^(\w+) (\w+)$', u'\g<1>\g<2>', text) # e.g. Kolas Yotaka=>KolasYotaka, 單獨一人
     for name in text.split():
         name = re.sub(u'(.*)[）)。】」]$', '\g<1>', name) # 名字後有標點符號
         councilor_ids = GetCouncilorId(c, name)
         if councilor_ids:
             id_list.extend(councilor_ids)
         else:
-            logging.info(u'%s not an councilor?' % name)
+            logging.error(u'%s not an councilor?' % name)
     return id_list
 
 def AddAttendanceRecord(c, councilor_id, sitting_id, category, status):
