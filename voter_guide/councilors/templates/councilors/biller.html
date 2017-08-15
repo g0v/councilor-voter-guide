@@ -21,47 +21,48 @@
 {% endblock %}
 
 {% block person_detail %}
-<div class="row-fluid">
-    <div class="span6">
-        <br>
-        <form action="" method="get" class="form-search" id="form">
-            <fieldset>
-                <input type="search" name="keyword" id="keyword" class="span10" maxlength="20" placeholder="例:都市更新 土地徵收...空格有交集效果" autofocus>
-                <br>
-                <input type="checkbox" name="primaryonly" id="primaryonly" {% if primaryonly %} checked{% endif %}>只看<b class="text-info">{{councilor.name}}</b>是第一提案人的提案
-                <button type="submit" class="btn">搜尋</button>
-            </fieldset>
-        </form>
-        {% if keyword_hot %}
-            <h4>熱門：
-                {% for keyword in keyword_hot %}
-                    {% if forloop.counter0 < 5 %}
-                <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的提案"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
-                    {% endif %}
-                {% endfor %}
-            </h4>
-        {% endif %}
-        <div class="well well-small">
-            <font class="lead">
-            {{councilor.name}}({{councilor.election_year|election_year_range}})：{{ bills.paginator.count }}個
-            {% if keyword %}
-            包含<font style="color: red;">"{{keyword}}"</font>的
-            {% endif %}有參與的提案
-            </font>
+    <div class="row-fluid">
+        <div class="span6">
+            <br>
+            <form action="" method="get" class="form-search" id="form">
+                <fieldset>
+                    <input type="search" name="keyword" id="keyword" class="span10" maxlength="20" placeholder="例:都市更新 土地徵收...空格有交集效果" autofocus>
+                    <br>
+                    <input type="checkbox" name="primaryonly" id="primaryonly" {% if primaryonly %} checked{% endif %}>只看<b class="text-info">{{councilor.name}}</b>是第一提案人的提案
+                    <button type="submit" class="btn">搜尋</button>
+                </fieldset>
+            </form>
+            {% if keyword_hot %}
+                <h4>熱門：
+                    {% for keyword in keyword_hot %}
+                        {% if forloop.counter0 < 5 %}
+                    <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的提案"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
+                        {% endif %}
+                    {% endfor %}
+                </h4>
+            {% endif %}
+            <div class="well well-small">
+                <font class="lead">
+                {{councilor.name}}({{councilor.election_year|election_year_range}})：{{ bills.paginator.count }}個
+                {% if keyword %}
+                包含<font style="color: red;">"{{keyword}}"</font>的
+                {% endif %}有參與的提案
+                </font>
+            </div>
         </div>
-    </div>
-    <div class="span6">
-        <div id="d3" align="center"></div>
-        <p class="lead text-info text-center">和<b>{{councilor.name}}</b>一起提案/連署的議員中，政黨的分布</p>
-    </div>
-    <div class="span12">
-    {% if bills %}
-        {% include "common/pagination.html" with items=bills page_size=0 %}
-        {% include "common/bills.html" %}
-        {% include "common/pagination.html" with items=bills page_size=0 %}
-    {% else %}
-        <p class="text-error">完全沒有提案</p>
-    {% endif %}
+        <div class="span6">
+            <div id="d3" align="center"></div>
+            <p class="lead text-info text-center">和<b>{{councilor.name}}</b>一起提案/連署的議員中，政黨的分布</p>
+        </div>
+        <div class="span12">
+        {% if bills %}
+            {% include "common/pagination.html" with items=bills page_size=0 %}
+            {% include "common/bills.html" %}
+            {% include "common/pagination.html" with items=bills page_size=0 %}
+        {% else %}
+            <p class="text-error">完全沒有提案</p>
+        {% endif %}
+        </div>
     </div>
 {% endblock person_detail %}
 
