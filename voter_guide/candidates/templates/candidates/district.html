@@ -28,7 +28,7 @@
         {% endif %}
         {% endwith %}
         {% if candidates %}
-        <table class="table table-bordered table-condensed table-striped sortable" >
+        <table class="table table-bordered table-condensed table-striped" >
             <thead>
                 <tr style="font-weight:bold;background-color: #E1D0D0;">
                     <th>候選人</th>
@@ -75,6 +75,13 @@
                         <td style="vertical-align:middle;">
                             {% if sp.bills %}
                                 {% for standpoint in sp.bills %}
+                                    {% if standpoint.role == "主提案" %}
+                                        <i class="fa fa-pencil text-error fa-fw"> </i>
+                                    {% elif standpoint.role == "共同提案" %}
+                                        <i class="fa fa-group text-success fa-fw"> </i>
+                                    {% else %}
+                                        <i class="fa fa-plus-circle text-warning fa-fw"> </i>
+                                    {% endif %}
                                     {{standpoint.title}}：{{standpoint.times}}次{{standpoint.role}}
                                     <br>
                                 {% endfor %}
