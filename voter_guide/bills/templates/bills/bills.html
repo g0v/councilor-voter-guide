@@ -30,13 +30,14 @@
 
         {% endif %}
         <div class="well well-small">
-            <font class="lead">
-                {% if request.GET.keyword %}
-                    共 {{ bills.paginator.count }} 個與<font style="color: red;">"{{request.GET.keyword}}"</font>相關的提案
-                {% else %}
-                    共 {{ bills.paginator.count }} 個提案
-                {% endif %}
-            </font>
+            {{county}} {{ bills.paginator.count }} 個
+            {% if request.GET.keyword %}
+                與<font style="color: red;"><b>{{request.GET.keyword}}</b></font>相關的提案
+            {% elif request.GET.tag %}
+                與<font style="color: red;"><b>{{request.GET.tag}}</b></font>相關的提案
+            {% else %}
+                提案
+            {% endif %}
         </div>
         {% if bills %}
             {% include "common/pagination.html" with items=bills page_size=0 %}

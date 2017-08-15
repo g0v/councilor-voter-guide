@@ -52,12 +52,17 @@
     </div>
     {% endif %}
     <div class="well well-small">
-        <font class="lead">{{councilor.name}}{{councilor.election_year|election_year_range}}的{% if index == 'conscience' %}<b>脫黨</b>{% endif %}表決紀錄：
-        {% if keyword %}
-        包含<font style="color: red;">"{{keyword}}"</font>的表決&nbsp;
+        {% if index == 'conscience' %}
+            <b>脫黨</b>
+        {% endif %}
+        表決紀錄：
+        {% if request.GET.keyword %}
+            包含<font style="color: red;">"{{request.GET.keyword}}"</font>的表決&nbsp;
+        {% elif request.GET.tag %}
+            包含<font style="color: red;">"{{request.GET.tag}}"</font>的表決&nbsp;
         {% endif %}
         {% for decision in vote_addup %}
-            {{decision.totalNum}}次
+            {{decision.totalNum}} 次
             {% if decision.decision == 1 %}<a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=agree"><font color="#66CC66">贊成</font></a>&nbsp;,&nbsp;
             {% elif decision.decision == 0 %}<a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=abstain"><font color="#999999">棄權</font></a>&nbsp;,&nbsp;
             {% elif decision.decision == -1 %}<a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=disagree"><font color="#FF66CC">反對</font></a>&nbsp;,&nbsp;
@@ -69,10 +74,9 @@
                 {% else %}<p class="text-error">沒有表決紀錄</p>
                 {% endif %}
             {% else %}
-                <p class="lead text-error">尚無資料，敬請期待</p>
+                <p class="lead text-error">尚無資料</p>
             {% endif %}
         {% endfor %}
-        </font>
     </div>
     {% if votes %}
     {% include "common/pagination.html" with items=votes page_size=0 %}

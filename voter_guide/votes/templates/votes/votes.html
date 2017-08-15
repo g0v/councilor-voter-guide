@@ -2,15 +2,9 @@
 {% load extras %}
 
 {% block title %}
-    {% if index == 'conscience' %}
-        <title>議員投票指南:脫黨表決檢索</title>
-        <meta property="og:title" content="議員投票指南:脫黨表決檢索"/>
-        <meta itemprop="name" content="議員投票指南:脫黨表決檢索">
-    {% else %}
-        <title>議員投票指南:全表決檢索</title>
-        <meta property="og:title" content="議員投票指南:全表決檢索"/>
-        <meta itemprop="name" content="議員投票指南:全表決檢索">
-    {% endif %}
+    <title>議員投票指南:全表決檢索</title>
+    <meta property="og:title" content="議員投票指南:全表決檢索"/>
+    <meta itemprop="name" content="議員投票指南:全表決檢索">
 {% endblock %}
 
 {% block right %}
@@ -29,21 +23,19 @@
         {% if hot_keyword %}
             <h4>熱門：
             {% for keyword in hot_keyword %}
-                <a href="{% url 'votes:votes' county='臺北市' index=index %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
+                <a href="{% url 'votes:votes' county='臺北市' %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
             {% endfor %}
             </h4>
         {% endif %}
         </p>
         <div class="well well-small">
-            <font class="lead">{{county}} {{ votes.paginator.count }} 個
-            {% if keyword %}包含<font style="color: red;">"{{keyword}}"</font>的
-            {% endif %}
-            {% if index == 'conscience' %}<b>脫黨</b>
-            {% endif %}
-            {% if result %}<b>{{result|vote_result:'cht'}}</b>的
+            {{county}} {{ votes.paginator.count }} 個
+            {% if request.GET.keyword %}
+                與<font style="color: red;"><b>{{request.GET.keyword}}</b></font>相關的
+            {% elif request.GET.tag %}
+                與<font style="color: red;"><b>{{request.GET.tag}}</b></font>相關的
             {% endif %}
             表決
-            </font>
         </div>
         {% if votes %}
         {% include "common/pagination.html" with items=votes page_size=0 %}
