@@ -145,6 +145,7 @@
     <script src="{% static "js/stacktable.min.js" %}" type="text/javascript"></script>
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     <script>
+        $('#candidates').addClass('active');
         $('table').cardtable();
         $('.price').each(function(index,ele){
             var number = $(ele).text()
@@ -152,5 +153,4 @@
             $(ele).replaceWith(zh_number)
         })
     </script>
-    {{ block.super }}
 {% endblock script %}
