@@ -1,7 +1,7 @@
 {% extends "common/search_keyword_form.html" %}
 
 {% block extra %}
-    <select id='district' name='district'>
+    <select id='district' name='district' style="border-radius: 0px;">
         <option value="all">全部選區</option>
         {% for district in districts %}
             {% if district == request.GET.district  %}
