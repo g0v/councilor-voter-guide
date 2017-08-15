@@ -15,7 +15,7 @@
         {% if hot_standpoints %}
             <h4>熱門標籤：
             {% for standpoint in hot_standpoints %}
-            <a href="{% url 'bills:bills' county=county %}?tag={{standpoint.title}}" rel="tooltip" title="包含此標籤的提案"><font style="color: {% cycle '#9F0050' '#FF0080' %};"><b>{{standpoint.title}}</b>&nbsp;&nbsp;</font></a>
+            <a href="{% url 'bills:bills' county=county %}?tag={{standpoint.title}}" rel="tooltip" title="包含此標籤的提案"><font style="color: #9F0050;"><b>{{standpoint.title}}</b>&nbsp;&nbsp;</font></a>
             {% endfor %}
             </h4>
         {% endif %}
@@ -23,7 +23,7 @@
             <h4>熱門：
                 {% for keyword in keyword_hot %}
                     {% if forloop.counter0 < 5 %}
-                        <a href="{% url 'bills:bills' county=county %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的提案"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
+                        <a href="{% url 'bills:bills' county=county %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的提案"><font style="color: #9F0050;">{{keyword}}&nbsp;&nbsp;</font></a>
                     {% endif %}
                 {% endfor %}
             </h4>

@@ -29,27 +29,27 @@
 {% block person_detail %}
     {% include "common/search_keyword_form.html" with placeholder_text="例:預算 世運...空格有交集效果" %}
     {% if keyword_hot %}
-    <h4>熱門：
-        {% for keyword in keyword_hot %}
-        {% if forloop.counter0 < 5 %}
-        <a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{keyword}}&nbsp;</font></a>
-        {% endif %}
-        {% endfor %}
-    </h4>
+        <h4>熱門：
+            {% for keyword in keyword_hot %}
+                {% if forloop.counter0 < 5 %}
+                    <a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: #9F0050;">{{keyword}}&nbsp;&nbsp;</font></a>
+                {% endif %}
+            {% endfor %}
+        </h4>
     {% endif %}
     {% if not keyword %}
-    <div class="btn-group">
-        <button type="button" class="btn dropdown-toggle btn-info" data-toggle="dropdown">
-            <span>以贊成、反對等分類</span> <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-            <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全部</a></li>
-            <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=agree"><font color="#66CC66">贊成</font></a></li>
-            <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=abstain"><font color="#999999">棄權</font></a></li>
-            <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=disagree"><font color="#FF66CC">反對</font></a></li>
-            <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=notvote"><font color="#996600">沒有投票</font></a></li>
-        </ul>
-    </div>
+        <div class="btn-group">
+            <button type="button" class="btn dropdown-toggle btn-info" data-toggle="dropdown">
+                <span>以贊成、反對等分類</span> <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全部</a></li>
+                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=agree"><font color="#66CC66">贊成</font></a></li>
+                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=abstain"><font color="#999999">棄權</font></a></li>
+                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=disagree"><font color="#FF66CC">反對</font></a></li>
+                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=notvote"><font color="#996600">沒有投票</font></a></li>
+            </ul>
+        </div>
     {% endif %}
     <div class="well well-small">
         {% if index == 'conscience' %}
@@ -79,50 +79,50 @@
         {% endfor %}
     </div>
     {% if votes %}
-    {% include "common/pagination.html" with items=votes page_size=0 %}
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr style="background-color: #FFFFCC;">
-                <th style="width: 10%">個人投票</th>
-                <th style="width: 10%">表決結果</th>
-                <th style="width: 15%">日期</th>
-                <th style="width: 65%">表決內容</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for vote in votes %}
-            <tr>
-                {% with decision=vote.decision %}
-                {% if decision == -1 %}
-                <td style="text-align:center; vertical-align:middle; background-color: #FF66CC;">反對
-                {% elif decision == 1 %}
-                <td style="text-align:center; vertical-align:middle; background-color: #CCFF66;">贊成
-                {% elif decision == 0 %}
-                <td style="text-align:center; vertical-align:middle; background-color: #CCCCCC;">棄權
-                {% else %}
-                <td style="text-align:center; vertical-align:middle; background-color: #996600;">沒有投票
-                    {% endif %}
-                    {% endwith %}
-                </td>
-                {% with vote=vote.vote %}
-                <td style="text-align:center; vertical-align:middle; background-color: #{{vote.result|vote_result:'td_bgcolor'}}">{{vote.result|vote_result:'cht'}}</td>
-                <td style="text-align:center; vertical-align:middle;">{{ vote.date|date:"Y-m-d" }}</td>
-                <td>
-                    <a href="{% url 'votes:vote' vote.uid %}" rel="tooltip" title="查看各議員投什麼票">查看投票名單和完整內容</a><br>
-                    {% if keyword %}
-                        {{vote.content|linebreaksbr|replace:keyword|safe}}
-                    {% elif vote.summary %}
-                        <span class="badge badge-warning">精簡版</span>&nbsp;{{ vote.summary }}
+        {% include "common/pagination.html" with items=votes page_size=0 %}
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr style="background-color: #FFFFCC;">
+                    <th style="width: 10%">個人投票</th>
+                    <th style="width: 10%">表決結果</th>
+                    <th style="width: 15%">日期</th>
+                    <th style="width: 65%">表決內容</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vote in votes %}
+                <tr>
+                    {% with decision=vote.decision %}
+                    {% if decision == -1 %}
+                    <td style="text-align:center; vertical-align:middle; background-color: #FF66CC;">反對
+                    {% elif decision == 1 %}
+                    <td style="text-align:center; vertical-align:middle; background-color: #CCFF66;">贊成
+                    {% elif decision == 0 %}
+                    <td style="text-align:center; vertical-align:middle; background-color: #CCCCCC;">棄權
                     {% else %}
-                        {{vote.content|linebreaksbr|truncatechars:120}}
-                    {% endif %}
-                </td>
-                {% endwith %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% include "common/pagination.html" with items=votes page_size=0 %}
+                    <td style="text-align:center; vertical-align:middle; background-color: #996600;">沒有投票
+                        {% endif %}
+                        {% endwith %}
+                    </td>
+                    {% with vote=vote.vote %}
+                    <td style="text-align:center; vertical-align:middle; background-color: #{{vote.result|vote_result:'td_bgcolor'}}">{{vote.result|vote_result:'cht'}}</td>
+                    <td style="text-align:center; vertical-align:middle;">{{ vote.date|date:"Y-m-d" }}</td>
+                    <td>
+                        <a href="{% url 'votes:vote' vote.uid %}" rel="tooltip" title="查看各議員投什麼票">查看投票名單和完整內容</a><br>
+                        {% if keyword %}
+                            {{vote.content|linebreaksbr|replace:keyword|safe}}
+                        {% elif vote.summary %}
+                            <span class="badge badge-warning">精簡版</span>&nbsp;{{ vote.summary }}
+                        {% else %}
+                            {{vote.content|linebreaksbr|truncatechars:120}}
+                        {% endif %}
+                    </td>
+                    {% endwith %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% include "common/pagination.html" with items=votes page_size=0 %}
     {% endif %}
 {% endblock person_detail %}
 
