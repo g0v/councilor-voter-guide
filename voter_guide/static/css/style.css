@@ -485,6 +485,7 @@ ul.messages li .message {
 .btn-moonc {
     background: #9F0050;
     color: #eeeeee;
+    text-shadow: none;
 }
      
 .btn-moonc:hover, .btn-moonc:focus, .btn-moonc:active, .btn-moonc.active, .open > .dropdown-toggle.btn-moonc {

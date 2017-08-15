@@ -22,14 +22,13 @@
 
 {% block person_detail %}
     <div class="row-fluid">
-        <div class="span6">
+        <div class="span12">
             <br>
             <form action="" method="get" class="form-search" id="form">
                 <fieldset>
-                    <input type="search" name="keyword" id="keyword" class="span10" maxlength="20" placeholder="例:都市更新 土地徵收...空格有交集效果" autofocus>
-                    <br>
-                    <input type="checkbox" name="primaryonly" id="primaryonly" {% if primaryonly %} checked{% endif %}>只看<b class="text-info">{{councilor.name}}</b>是第一提案人的提案
-                    <button type="submit" class="btn">搜尋</button>
+                    <input type="search" name="keyword" id="keyword" class="span5" maxlength="20" placeholder="例:都市更新 土地徵收...空格有交集效果" autofocus>
+                    <button type="submit" class="btn btn-moonc">搜尋</button>
+                    <input type="checkbox" name="primaryonly" id="primaryonly" {% if primaryonly %} checked{% endif %}>只看<b class="text-info">{{councilor.name}}</b>主筆的提案
                 </fieldset>
             </form>
             {% if keyword_hot %}
@@ -50,10 +49,6 @@
                 {% endif %}
                 提案
             </div>
-        </div>
-        <div class="span6">
-            <div id="d3" align="center"></div>
-            <p class="lead text-info text-center">和<b>{{councilor.name}}</b>一起提案/連署的議員中，政黨的分布</p>
         </div>
         <div class="span12">
         {% if bills %}
@@ -77,6 +72,4 @@
             relax();
         });
     </script>
-    {{ block.super }}
-    {% include "councilors/d3/councilor_bill_pie.html" %}
 {% endblock script %}
