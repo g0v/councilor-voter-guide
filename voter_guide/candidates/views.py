@@ -39,7 +39,6 @@ def district(request, election_year, county, constituency):
         for candidate in term:
             if candidate.councilor_terms:
                 terms_id = tuple([x['term_id'] for x in candidate.councilor_terms])
-                print terms_id
                 c = connections['default'].cursor()
                 qs = u'''
                     SELECT jsonb_object_agg(k, v)

@@ -31,9 +31,8 @@
         <table class="table table-bordered table-condensed table-striped sortable" >
             <thead>
                 <tr style="font-weight:bold;background-color: #E1D0D0;">
-                    <th>當選註記</th>
-                    <th>得票數</th>
                     <th>候選人</th>
+                    <th>當選／得票</th>
                     <th>黨籍</th>
                     <th>表決立場</th>
                     <th>提案立場</th>
@@ -46,13 +45,13 @@
             <tbody>
                 {% for candidate in candidates %}
                     <tr>
+                        <td style="text-align:center; vertical-align:middle;" nowrap><h4>{{candidate.name}}</h4></td>
                         <td style="text-align:center; vertical-align:middle;">
                             {% if candidate.elected %}
                                 <i class="fa fa-flag text-success fa-lg"></i>
                             {% endif %}
+                            {{candidate.votes}}
                         </td>
-                        <td style="text-align:center; vertical-align:middle;">{{candidate.votes}}</td>
-                        <td style="text-align:center; vertical-align:middle;" nowrap>{{candidate.name}}</td>
                         <td style="text-align:center; vertical-align:middle;">{{candidate.party}}</td>
                         {% with sp=standpoints|json_lookup:candidate.id %}
                         <td style="vertical-align:middle;">
@@ -76,13 +75,6 @@
                         <td style="vertical-align:middle;">
                             {% if sp.bills %}
                                 {% for standpoint in sp.bills %}
-                                    {% if standpoint.role == "主提案" %}
-                                        <i class="fa fa-pencil text-error fa-fw"> </i>
-                                    {% elif standpoint.role == "共同提案" %}
-                                        <i class="fa fa-group text-success fa-fw"> </i>
-                                    {% else %}
-                                        <i class="fa fa-plus-circle text-warning fa-fw"> </i>
-                                    {% endif %}
                                     {{standpoint.title}}：{{standpoint.times}}次{{standpoint.role}}
                                     <br>
                                 {% endfor %}
@@ -118,13 +110,10 @@
                         {% endfor %}
                         {% for term in candidate.politicalcontributions %}
                             <td style="vertical-align:middle;" nowrap>
-                                    <i class="fa fa-plus-square-o text-success fa-fw"> </i>
                                     <a href="{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}">收：<font class="price">{{term.pc.in_total}}</font></a>
                                     <br>
-                                    <i class="fa fa-minus-square-o text-error fa-fw"> </i>
                                     <a href="{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}">支：<font class="price">{{term.pc.out_total}}</font></a>
                                     <br>
-                                    <i class="fa fa-balance-scale text-warning fa-fw"> </i>
                                     餘：<font class="price">{{term.pc.balance}}</font>
                         {% empty %}
                             <td/>
