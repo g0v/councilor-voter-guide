@@ -28,7 +28,6 @@ def select_county(request, index, county):
     ]
     return render(request, 'bills/select_county.html', {'index': index, 'regions': regions})
 
-
 def bills(request, county):
     query = Q(county=county)
     query = query & Q(uid__in=Standpoints.objects.filter(title=request.GET['tag']).exclude(bill__isnull=True).values_list('bill_id', flat=True).distinct()) if request.GET.get('tag') else query

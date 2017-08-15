@@ -17,19 +17,19 @@
         {% for term in candidate.politicalcontributions %}
             <div class="page-header" style="margin-left: 0px;">
                 <h4>
-                    {{term.election_year}}年競選&nbsp;&nbsp;<i class="fa fa-balance-scale text-warning">餘：<font class="price">{{term.pc.balance}}</font></i>
+                    {{term.election_year}}年競選&nbsp;&nbsp;餘額：<font class="price">{{term.pc.balance}}</font>
                 </h4>
             </div>
             <div class="span6" style="margin-left: 0px;">
                 <div class="hero-unit">
 
-                    <i class="fa fa-plus-square-o text-success fa-lg"> 收：<span class="price text-right">{{term.pc.in_total}}</span></i>
+                     收入：<span class="price text-right">{{term.pc.in_total}}</span>
                     <div id="d3_in" style="padding-top: 60px; margin-top: -60px;" align="center"></div>
                 </div>
             </div>
             <div class="span6">
                 <div class="hero-unit">
-                    <i class="fa fa-minus-square-o text-error fa-lg"> 支：<span class="price text-right">{{term.pc.out_total}}</span></i>
+                     支出：<span class="price text-right">{{term.pc.out_total}}</span>
                     <div id="d3_out" style="padding-top: 60px; margin-top: -60px;" align="center"></div>
                 </div>
             </div>
