@@ -1,6 +1,6 @@
 .navbar .nav > li > a {
-    text-shadow: 0 -1px 0 rgba(0, 0, 0);
-    color:  #3C3C3C;
+    text-shadow: none;
+    color:  #fff;
 }
 .navbar .nav > li > a:hover {
     color:  #272727;
