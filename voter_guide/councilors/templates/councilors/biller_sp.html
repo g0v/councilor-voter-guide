@@ -44,17 +44,18 @@
                     {% for standpoint in role_group.list %}
                     <li class="media">
                         <div class="media-body well">
-                            <div class="media-heading"><font class="lead">{{standpoint.title}}</font>：{{standpoint.times}}次
+                            <div class="media-heading">
+                                <font class="lead">{{standpoint.title}}</font><br>{{standpoint.times}}次
                                 <div align="right">
-                                    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#ref_bill_{{standpoint.bills.0.uid}}">提案內容&nbsp;<b class="caret"></b></button><br>
-                                    <div id="ref_bill_{{standpoint.bills.0.uid}}" class="collapse">
-                                        {% for fragment in standpoint.bills %}
-                                        <h4><a href="{% url 'bills:bill_detail' county=councilor.county bill_id=fragment.uid %}" target="_blank">☞ 提案{{forloop.counter}}<small>（覺得提案跟立場不符合嗎？點我來改進）</small></a></h4>
-                                        <blockquote>
-                                            <p>{{fragment.content}}</p>
-                                        </blockquote>
-                                        {% endfor %}
-                                    </div>
+                                    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#ref_bill_{{standpoint.bills.0.uid}}">原提案內容&nbsp;<i class="fa fa-caret-square-o-down"></i></button><br>
+                                </div>
+                                <div id="ref_bill_{{standpoint.bills.0.uid}}" class="collapse">
+                                    {% for fragment in standpoint.bills %}
+                                    <h4><a href="{% url 'bills:bill_detail' county=councilor.county bill_id=fragment.uid %}" target="_blank" class="btn">☞ 提案 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></a></h4>
+                                    <blockquote>
+                                        <p><small>{{fragment.abstract|truncatechars:100}}</small></p>
+                                    </blockquote>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
