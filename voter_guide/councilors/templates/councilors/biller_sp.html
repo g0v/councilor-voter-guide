@@ -22,11 +22,11 @@
 
 {% block person_detail %}
     <div class="row-fluid">
-        <div class="description">
+        <div class="description" style="margin-left: 25px; margin-right: 25px;">
             立場由網友自行標註、投票產生，歡迎進入各別提案一起讓資料更好
         </div>
-    {% regroup standpoints by role as role_list %}
-    {% for role_group in role_list %}
+        {% regroup standpoints by role as role_list %}
+        {% for role_group in role_list %}
         <div class="span{% widthratio 12 role_list|length 1 %}" style="margin-left: 0px;">
             <ul class="media-list">
                 <li>
@@ -65,7 +65,7 @@
                 </li>
             </ul>
         </div>
-    {% endfor %}
+        {% endfor %}
     </div>
 {% endblock person_detail %}
 

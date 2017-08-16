@@ -22,11 +22,11 @@
 
 {% block person_detail %}
     <div class="row-fluid">
-        <div class="description">
-            立場由網友自行標註、投票產生，歡迎進入各別表決一起讓資料更好
+        <div class="description" style="margin-left: 25px; margin-right: 25px;">
+            立場由使用者標註、投票產生，歡迎進入各別表決讓資料更好
         </div>
-    {% regroup standpoints by decision as decision_list %}
-    {% for decision_group in decision_list %}
+        {% regroup standpoints by decision as decision_list %}
+        {% for decision_group in decision_list %}
         <div class="span{% widthratio 12 decision_list|length 1 %}" style="margin-left: 0px;">
             <ul class="media-list">
                 <li>
@@ -67,7 +67,7 @@
                 </li>
             </ul>
         </div>
-    {% endfor %}
+        {% endfor %}
     </div>
 {% endblock person_detail %}
 
