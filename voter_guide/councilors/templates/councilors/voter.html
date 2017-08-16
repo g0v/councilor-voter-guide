@@ -27,29 +27,15 @@
 {% endblock title %}
 
 {% block person_detail %}
-    {% include "common/search_keyword_form.html" with placeholder_text="例:預算 世運...空格有交集效果" %}
+    {% include "councilors/voter_search.html" %}
     {% if keyword_hot %}
         <h4>熱門：
             {% for keyword in keyword_hot %}
                 {% if forloop.counter0 < 5 %}
-                    <a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: #9F0050;">{{keyword}}&nbsp;&nbsp;</font></a>
+                    <a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: #9F0050;">{{keyword}}</font></a>&nbsp;&nbsp;
                 {% endif %}
             {% endfor %}
         </h4>
-    {% endif %}
-    {% if not keyword %}
-        <div class="btn-group">
-            <button type="button" class="btn dropdown-toggle btn-info" data-toggle="dropdown">
-                <span>以贊成、反對等分類</span> <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全部</a></li>
-                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=agree"><font color="#66CC66">贊成</font></a></li>
-                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=abstain"><font color="#999999">棄權</font></a></li>
-                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=disagree"><font color="#FF66CC">反對</font></a></li>
-                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=notvote"><font color="#996600">沒有投票</font></a></li>
-            </ul>
-        </div>
     {% endif %}
     <div class="well well-small">
         {% if index == 'conscience' %}
@@ -63,10 +49,17 @@
         {% endif %}
         {% for decision in vote_addup %}
             {{decision.totalNum}} 次
-            {% if decision.decision == 1 %}<a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=agree"><font color="#66CC66">贊成</font></a>&nbsp;,&nbsp;
-            {% elif decision.decision == 0 %}<a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=abstain"><font color="#999999">棄權</font></a>&nbsp;,&nbsp;
-            {% elif decision.decision == -1 %}<a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=disagree"><font color="#FF66CC">反對</font></a>&nbsp;,&nbsp;
-            {% else %}<a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=notvote"><font color="#996600">沒有投票</font></a>&nbsp;,&nbsp;
+            {% if decision.decision == 1 %}
+                <a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=agree">贊成</a>
+            {% elif decision.decision == 0 %}
+                <a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=abstain">棄權</a>
+            {% elif decision.decision == -1 %}
+                <a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=disagree">反對</a>
+            {% else %}
+                <a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=notvote">沒投票</a>
+            {% endif %}
+            {% if forloop.counter < vote_addup|length %}
+                、
             {% endif %}
         {% empty %}
             {% if councilor.election_year == '2010' %}
@@ -92,27 +85,26 @@
             <tbody>
                 {% for vote in votes %}
                 <tr>
+                    <td style="text-align:center; vertical-align:middle;">
                     {% with decision=vote.decision %}
                     {% if decision == -1 %}
-                    <td style="text-align:center; vertical-align:middle; background-color: #FF66CC;">反對
+                        <i class="fa fa-circle text-error"></i> 反對
                     {% elif decision == 1 %}
-                    <td style="text-align:center; vertical-align:middle; background-color: #CCFF66;">贊成
+                        <i class="fa fa-circle text-success"></i> 贊成
                     {% elif decision == 0 %}
-                    <td style="text-align:center; vertical-align:middle; background-color: #CCCCCC;">棄權
+                        <i class="fa fa-circle text-warning"></i> 棄權
                     {% else %}
-                    <td style="text-align:center; vertical-align:middle; background-color: #996600;">沒有投票
-                        {% endif %}
-                        {% endwith %}
+                        <i class="fa fa-circle muted"></i> 沒投票
+                    {% endif %}
+                    {% endwith %}
                     </td>
                     {% with vote=vote.vote %}
-                    <td style="text-align:center; vertical-align:middle; background-color: #{{vote.result|vote_result:'td_bgcolor'}}">{{vote.result|vote_result:'cht'}}</td>
+                    <td style="text-align:center; vertical-align:middle;">{{vote.result|vote_result:'cht'}}</td>
                     <td style="text-align:center; vertical-align:middle;">{{ vote.date|date:"Y-m-d" }}</td>
                     <td>
                         <a href="{% url 'votes:vote' vote.uid %}" rel="tooltip" title="查看各議員投什麼票">查看投票名單和完整內容</a><br>
                         {% if keyword %}
                             {{vote.content|linebreaksbr|replace:keyword|safe}}
-                        {% elif vote.summary %}
-                            <span class="badge badge-warning">精簡版</span>&nbsp;{{ vote.summary }}
                         {% else %}
                             {{vote.content|linebreaksbr|truncatechars:120}}
                         {% endif %}
@@ -130,6 +122,7 @@
     <script>
         $(document).ready( function() {
             $('#url_vote').attr('class', 'active');
+            $("[rel='tooltip']").tooltip();
         });
     </script>
 {% endblock script %}

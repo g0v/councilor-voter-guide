@@ -8,9 +8,8 @@
 {% endblock %}
 
 {% block right %}
-    <div class="span1">
-    </div>
-    <div class="span10">
+    <div class="container-fluid">
+        <br>
         {% include "common/search_keyword_form.html" %}
         <p>
         {% if hot_standpoints %}
@@ -46,9 +45,6 @@
         </ul>
         {% include "common/pagination.html" with items=votes page_size=0 %}
         {% endif %}
-        <hr>
-    </div>
-    <div class="span1">
     </div>
 {% endblock right %}
 

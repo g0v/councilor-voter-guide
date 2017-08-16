@@ -113,11 +113,9 @@ def distinct_district(value, arg):
 def vote_result(value, arg):
     attribute = {
         'Passed': {
-            'td_bgcolor': u'CCFF99',
             'cht': u'通過'
         },
         'Not Passed': {
-            'td_bgcolor': u'FF99CC',
             'cht': u'不通過'
         }
     }

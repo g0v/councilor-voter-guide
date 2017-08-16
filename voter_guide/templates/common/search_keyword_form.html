@@ -1,11 +1,14 @@
 <form action="" method="get" class="form-inline" id="form">
-    <br>
     <fieldset>
         <div class="input-append">
             <input type="search" name="keyword" id="keyword" class="span10" maxlength="20" placeholder="{{placeholder_text}}" value="{{keyword}}">
             {% block extra %}
             {% endblock extra %}
             <button type="submit" class="btn btn-moonc">搜尋</button>
+            {% block extra_after_submit %}
+            {% endblock extra_after_submit %}
         </div>
+        {% block extra_after_search %}
+        {% endblock extra_after_search %}
     </fieldset>
 </form>

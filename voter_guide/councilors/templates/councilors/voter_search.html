@@ -1,0 +1,18 @@
+{% extends "common/search_keyword_form.html" %}
+
+{% block extra_after_submit %}
+    {% if not keyword %}
+        <div class="btn-group">
+            <button type="button" class="btn btn-moonc dropdown-toggle" data-toggle="dropdown">
+                <span>以贊成、反對分類</span> <i class="fa fa-caret-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全部</a></li>
+                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=agree"><i class="fa fa-check-circle text-success fa-fw"></i> 贊成</a></li>
+                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=disagree"><i class="fa fa-times-circle text-error fa-fw"></i> 反對</a></li>
+                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=abstain"><i class="fa fa-question-circle text-warning fa-fw"></i> 棄權</a></li>
+                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?decision=notvote"><i class="fa fa-bed muted fa-fw"></i> 沒投票</a></li>
+            </ul>
+        </div>
+    {% endif %}
+{% endblock extra_after_submit %}

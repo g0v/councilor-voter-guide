@@ -8,9 +8,8 @@
 {% endblock title %}
 
 {% block right %}
-    <div class="span1">
-    </div>
-    <div class="span10">
+    <div class="container-fluid">
+        <br>
         {% include "bills/billsearch.html" with placeholder_text="例：都市更新 房屋稅" %}
         {% if hot_standpoints %}
             <h4>熱門標籤：
@@ -44,8 +43,6 @@
             {% include "common/bills.html" %}
             {% include "common/pagination.html" with items=bills page_size=0 %}
         {% endif %}
-    </div>
-    <div class="span1">
     </div>
 {% endblock right %}
 

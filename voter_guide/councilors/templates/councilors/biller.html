@@ -23,19 +23,12 @@
 {% block person_detail %}
     <div class="row-fluid">
         <div class="span12">
-            <br>
-            <form action="" method="get" class="form-search" id="form">
-                <fieldset>
-                    <input type="search" name="keyword" id="keyword" class="span5" maxlength="20" placeholder="例:都市更新 土地徵收...空格有交集效果" autofocus>
-                    <button type="submit" class="btn btn-moonc">搜尋</button>
-                    <input type="checkbox" name="primaryonly" id="primaryonly" {% if primaryonly %} checked{% endif %}>只看<b class="text-info">{{councilor.name}}</b>主筆的提案
-                </fieldset>
-            </form>
+            {% include "councilors/biller_search.html" %}
             {% if keyword_hot %}
                 <h4>熱門：
                     {% for keyword in keyword_hot %}
                         {% if forloop.counter0 < 5 %}
-                            <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的提案"><font style="color: #9F0050;">{{keyword}}&nbsp;&nbsp;</font></a>
+                            <a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的提案"><font style="color: #9F0050;">{{keyword}}</font></a>&nbsp;&nbsp;
                         {% endif %}
                     {% endfor %}
                 </h4>
@@ -66,10 +59,10 @@
     <script>
         $(document).ready( function() {
             $('#url_bill').attr('class', 'active');
+            $("[rel='tooltip']").tooltip();
             $('#primaryonly').change(function() {
                 $("#form").trigger('submit');
             });
-            relax();
         });
     </script>
 {% endblock script %}
