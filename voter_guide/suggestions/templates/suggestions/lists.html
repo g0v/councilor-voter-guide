@@ -3,16 +3,16 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南:{{county}}-工程建議款總覽</title>
-    <meta property="og:title" content="議員投票指南:{{county}}-工程建議款總覽"/>
-    <meta itemprop="name" content="議員投票指南:{{county}}-工程建議款總覽">
+    <title>議員投票指南:{{county}}-議員配合款總覽</title>
+    <meta property="og:title" content="議員投票指南:{{county}}-議員配合款總覽"/>
+    <meta itemprop="name" content="議員投票指南:{{county}}-議員配合款總覽">
     <link href="{% static "css/stacktable.min.css" %}" rel="stylesheet">
 {% endblock title %}
 
 {% block right %}
     <div class="hero-unit row" style="margin-left: 0px;">
         <img class="pull-right" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img>
-        <h2>{{county}} - 議員工程建議款</h2>
+        <h2>{{county}} - 議員配合款</h2>
     </div>
     <div class="text-center">
         {% include "common/search_keyword_form.html" with placeholder_text="例:按摩椅 協會 國小" %}

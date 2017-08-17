@@ -2,15 +2,15 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南:{{county}}-工程建議款-熱門工程地點</title>
-    <meta property="og:title" content="議員投票指南:{{county}}-工程建議款-熱門工程地點"/>
-    <meta itemprop="name" content="議員投票指南:{{county}}-工程建議款-熱門工程地點">
+    <title>議員投票指南:{{county}}-議員配合款-熱門工程地點</title>
+    <meta property="og:title" content="議員投票指南:{{county}}-議員配合款-熱門工程地點"/>
+    <meta itemprop="name" content="議員投票指南:{{county}}-議員配合款-熱門工程地點">
 {% endblock %}
 
 {% block right %}
     <div class="hero-unit row" style="margin-left: 0px;">
         <img class="pull-right" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img>
-        <h2>{{county}} - 議員工程建議款</h2>
+        <h2>{{county}} - 議員配合款</h2>
         <ul class="inline">
         {% if order_by == 'sum' %}
         <p>工程地點依金額排序，每年度前十</p>

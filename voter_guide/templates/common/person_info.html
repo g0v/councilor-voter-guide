@@ -33,7 +33,7 @@
                     <li id='url_info'><a href="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-info"> 基本資料</i></a></li>
                     <li id='url_vote'><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-balance-scale"> 表決</i></a></li>
                     <li id='url_bill'><a href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-book"> 提案</i></a></li>
-                    <li id='url_suggestor'><a href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-building"> 工程建議款</i></a></li>
+                    <li id='url_suggestor'><a href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-building"> 議員配合款</i></a></li>
                     {% if councilor.elected_candidate %}
                     <li id='url_polticalcontributions'><a href="{% url 'candidates:pc' candidate_id=councilor.elected_candidate.candidate_id election_year=councilor.election_year %}"><i class="fa fa-dollar"> 政治獻金</i></a></li>
                     {% endif %}

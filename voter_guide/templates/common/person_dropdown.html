@@ -10,7 +10,7 @@
             <li><a id='councilors_biller' href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">提案</a></li>
             <li><a id='councilors_platformer' href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">競選政見</a></li>
             <li><a id='councilors_personal_political_contributions' href="{% url 'candidates:pc' candidate_id=councilor.elected_candidate.candidate_id election_year=councilor.election_year %}">政治獻金</a></li>
-            <li><a id='councilors_suggestor' href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">工程建議款</a></li>
+            <li><a id='councilors_suggestor' href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">議員配合款</a></li>
         </ul>
     </div>
 </td>

@@ -3,18 +3,18 @@
 
 {% block title %}
     {% if councilor %}
-        <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的工程建議款</title>
-        <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的工程建議款"/>
-        <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的工程建議款">
+        <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議員配合款</title>
+        <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議員配合款"/>
+        <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議員配合款">
     {% else %}
-        <title>議員投票指南:議員的工程建議款</title>
-        <meta property="og:title" content="議員投票指南:議員的工程建議款"/>
-        <meta itemprop="name" content="議員投票指南:議員的工程建議款">
+        <title>議員投票指南:議員的議員配合款</title>
+        <meta property="og:title" content="議員投票指南:議員的議員配合款"/>
+        <meta itemprop="name" content="議員投票指南:議員的議員配合款">
     {% endif %}
 {% endblock title %}
 
 {% block person_detail %}
-    <p class="lead">{{councilor.election_year|election_year_range}}的工程款提案共通過：<font class="price">{{total_expense.sum}}</font></p>
+    <p class="lead">{{councilor.election_year|election_year_range}}的配合款提案共通過：<font class="price">{{total_expense.sum}}</font></p>
     <div class="row-fluid">
     {% if index != 'rawdata' %}
         <div class="span6">
@@ -83,7 +83,7 @@
         {% if suggestions %}
             {% include "common/suggestions.html" with include_councilors=False %}
         {% else %}
-            <p class="text-error">完全沒有工程建議款</p>
+            <p class="text-error">完全沒有議員配合款</p>
         {% endif %}
         </div>
     {% endif %}

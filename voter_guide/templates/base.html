@@ -54,7 +54,7 @@
                             <li id="councilors"><a href="{% url 'councilors:councilors' county=county %}">找議員</a></li>
                             <li id="bills"><a href="{% url 'bills:bills' county=county %}" >找提案</a></li>
                             <li id="votes"><a href="{% url 'votes:votes' county=county %}" >找表決</a></li>
-                            <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >工程建議款</a></li>
+                            <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >議員配合款</a></li>
                             <!--
                             <li id="reports" class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">相關圖表<b class="caret"></b></a>
@@ -71,7 +71,7 @@
                             <li id="councilors"><a href="{% url 'select_county' category='councilors' %}">找議員</a></li>
                             <li id="bills"><a href="{% url 'select_county' category='bills' %}">找提案</a></li>
                             <li id="votes"><a href="{% url 'select_county' category='votes' %}">找表決</a></li>
-                            <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >工程建議款</a></li>
+                            <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >議員配合款</a></li>
                         {% endif %}
                         </ul>
                         <ul class="nav pull-right">
