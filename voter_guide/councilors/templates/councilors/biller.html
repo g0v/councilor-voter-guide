@@ -8,21 +8,15 @@
 {% endblock title %}
 
 {% block top-menu %}
-    <div class="row-fluid">
-        <div id="sidebar-leftx" class="span2">
-        </div>
-        <div class="tabnav">
-            <ul>
-                <li><a href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">提案立場</a></li>
-                <li class="active"><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全提案紀錄</a></li>
-            </ul>
-        </div>
-    </div>
+    <ul class="nav nav-tabs">
+        <li><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">提案立場</a></li>
+        <li class="active"><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全提案紀錄</a></li>
+    </ul>
 {% endblock %}
 
 {% block person_detail %}
-    <div class="row-fluid">
-        <div class="span12">
+    <div class="row">
+        <div class="col-sm-12">
             {% include "councilors/biller_search.html" %}
             {% if keyword_hot %}
                 <h4>熱門：
@@ -33,7 +27,7 @@
                     {% endfor %}
                 </h4>
             {% endif %}
-            <div class="well well-small">
+            <div class="well well-sm">
                 {{ bills.paginator.count }} 個
                 {% if request.GET.keyword %}
                     包含<font style="color: red;">"{{request.GET.keyword}}"</font>的
@@ -43,13 +37,13 @@
                 提案
             </div>
         </div>
-        <div class="span12">
+        <div class="col-sm-12">
         {% if bills %}
             {% include "common/pagination.html" with items=bills page_size=0 %}
             {% include "common/bills.html" %}
             {% include "common/pagination.html" with items=bills page_size=0 %}
         {% else %}
-            <p class="text-error">完全沒有提案</p>
+            <p class="text-danger">完全沒有提案</p>
         {% endif %}
         </div>
     </div>

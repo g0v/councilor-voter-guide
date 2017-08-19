@@ -25,8 +25,8 @@
     <div class="page-header text-center">
         <h2><i class="fa fa-flag-checkered"> 可能參選人</i></h2>
         <h4><small>對當議員有想法？不想繳 20 萬保證金，但是想告訴大家你的想法？</small></h4>
-        <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-large"><i class="fa fa-pencil-square-o"> 我也來發表</i></a>
-        <ul class="pull-left unstyled">
+        <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 我也來發表</i></a>
+        <ul class="pull-left list-unstyled">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sort-desc"> 排序</i></a>
                 <ul class="dropdown-menu">
@@ -37,12 +37,12 @@
         </ul>
     </div>
     {% for intent in intents %}
-    <div class="row-fluid">
-        <div class="span2">
+    <div class="row">
+        <div class="col-sm-2">
             <h2><a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">{{intent.name}}</a> <small><a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}"><i class="fa fa-thumbs-up"> {{intent.likes}}</i></a></small></h2>
             <a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}"><p>...更多關於{{intent.name}}</p></a>
         </div>
-        <div class="span4">
+        <div class="col-sm-4">
             <div class="property-header">黨籍</div>
             <div class="property-body">{{intent.party}}</div>
             <div class="property-header">縣市</div>
@@ -52,10 +52,10 @@
             <hr>
             <div class="fb-comments" data-href="{{site_domain}}{% url 'candidates:intent_detail' intent_id=intent.uid %}" data-width="300" data-numposts="2"></div>
         </div>
-        <div class="span6">
+        <div class="col-sm-6">
             <div class="property-header">為什麼要選：</div>
             <textarea style="display: none">{{intent.motivation}}</textarea>
-            <div class="property-body hero-unit"></div>
+            <div class="property-body jumbotron"></div>
         </div>
     </div>
     <hr>

@@ -17,8 +17,7 @@
         <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/facebook-og-image.png"/>
         <meta itemprop="description" content="減少盲目投票，讓民主社會的台灣更進步"/>
         <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/facebook-og-image.png"/>
-        <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-        <link href="{% static "css/bootstrap-responsive.min.css" %}" rel="stylesheet">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="{% static "css/g0v.css" %}" rel="stylesheet">
         <link rel="shortcut icon" href="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/favicon.ico.png">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -40,52 +39,44 @@
         </script>
     </head>
     <body id="top">
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <i class="fa fa-angle-down"></i>
-                    </a>
-                    <a class="brand" href="/"><i class="fa fa-compass"> 議員投票指南</i></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                        {% if county %}
-                            <li id="candidates"><a href="{% url 'candidates:districts' election_year='2014' county=county %}" >2014 候選人</a></li>
-                            <li id="councilors"><a href="{% url 'councilors:councilors' county=county %}">找議員</a></li>
-                            <li id="bills"><a href="{% url 'bills:bills' county=county %}" >找提案</a></li>
-                            <li id="votes"><a href="{% url 'votes:votes' county=county %}" >找表決</a></li>
-                            <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >議員配合款</a></li>
-                            <!--
-                            <li id="reports" class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">相關圖表<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{% url 'councilors:index' index='cs_attend' county=county %}" ><b>議會開會</b>缺席次數(多&rarr;少)</a></li>
-                                    <li><a href="{% url 'councilors:index' index='not_voting' county=county %}" ><b>表決</b>缺席次數(多&rarr;少)</a></li>
-                                    <li><a href="{% url 'councilors:index' index='conscience_vote' county=county %}" ><b>脫黨投票</b>次數(多&rarr;少)</a></li>
-                                    <li><a href="{% url 'councilors:index' index='bills' county=county %}" ><b>提案數</b>(多&rarr;少)</a></li>
-                                </ul>
-                            </li>
-                            -->
-                        {% else %}
-                            <li id="candidates"><a href="{% url 'select_county' category='candidates' %}">2014 候選人</a></li>
-                            <li id="councilors"><a href="{% url 'select_county' category='councilors' %}">找議員</a></li>
-                            <li id="bills"><a href="{% url 'select_county' category='bills' %}">找提案</a></li>
-                            <li id="votes"><a href="{% url 'select_county' category='votes' %}">找表決</a></li>
-                            <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >議員配合款</a></li>
-                        {% endif %}
-                        </ul>
-                        <ul class="nav pull-right">
-                        {% if request.user.is_authenticated %}
-                            <li><a href="{% url 'account_logout' %}"><i class="fa fa-sign-out"> 登出</i></a></li>
-                        {% endif %}
-                        </ul>
-                    </div>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-top" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><i class="fa fa-compass"> 議員投票指南</i></a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-collapse-top">
+                    <ul class="nav navbar-nav">
+                    {% if county %}
+                        <li id="candidates"><a href="{% url 'candidates:districts' election_year='2014' county=county %}" >2014 候選人</a></li>
+                        <li id="councilors"><a href="{% url 'councilors:councilors' county=county %}">找議員</a></li>
+                        <li id="bills"><a href="{% url 'bills:bills' county=county %}" >找提案</a></li>
+                        <li id="votes"><a href="{% url 'votes:votes' county=county %}" >找表決</a></li>
+                        <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >議員配合款</a></li>
+                    {% else %}
+                        <li id="candidates"><a href="{% url 'select_county' category='candidates' %}">2014 候選人</a></li>
+                        <li id="councilors"><a href="{% url 'select_county' category='councilors' %}">找議員</a></li>
+                        <li id="bills"><a href="{% url 'select_county' category='bills' %}">找提案</a></li>
+                        <li id="votes"><a href="{% url 'select_county' category='votes' %}">找表決</a></li>
+                        <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >議員配合款</a></li>
+                    {% endif %}
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'account_logout' %}"><i class="fa fa-sign-out"> 登出</i></a></li>
+                    {% endif %}
+                    </ul>
                 </div>
             </div>
-        </div>
+        </nav>
 
         <div class="container-fluid">
-            <div class="row-fluid">
+            <div class="row">
                 {% block right %}
                 {% endblock %}
             </div>
@@ -98,7 +89,7 @@
             </div>
         </footer>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
-        <script src="{% static "js/bootstrap.min.js" %}" type="text/javascript"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
         <script type="text/javascript">
             var disqus_shortname = 'councils';
             var disqus_url = '{{current_url}}';

@@ -8,10 +8,10 @@
 {% endblock %}
 
 {% block right %}
-    <div class="hero-unit row" style="margin-left: 0px;">
+    <div class="jumbotron row" style="margin-left: 0px;">
         <img class="pull-right" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img>
         <h2>{{county}} - 議員配合款</h2>
-        <ul class="inline">
+        <ul class="list-inline">
         {% if order_by == 'sum' %}
         <p>工程地點依金額排序，每年度前十</p>
         <li><a href="{% url 'suggestions:positions' county=county order_by='count' option=option %}" rel="tooltip" title="改依提案次數排序"><i class="fa fa-sort-numeric-desc"> 改依提案次數排序</i></a></li>
@@ -26,10 +26,10 @@
         {% endif %}
         </ul>
     </div>
-    <div class="row-fluid">
+    <div class="row">
         {% regroup positions by suggest_year as year_list %}
             {% for year in year_list %}
-                <div id="year_bar_{{year.grouper}}" class="span4" style="margin-left: 0px;" align="center"></div>
+                <div id="year_bar_{{year.grouper}}" class="col-sm-4" style="margin-left: 0px;" align="center"></div>
         {% empty %}
         {% if option == 'no_district' %}
         <p class="alert alert-error">{{county}}濾掉鄉鎮市區後無結果</p>

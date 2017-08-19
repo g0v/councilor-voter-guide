@@ -10,15 +10,15 @@
 {% endblock title %}
 
 {% block right %}
-    <div class="hero-unit span12" style="margin-left: 0px;">
+    <div class="jumbotron col-sm-12" style="margin-left: 0px;">
         <img class="pull-right" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img>
-        <h2 class="span8">{{election_year}} {{county}} - {{district}} 議員候選人</h2>
-        <font class="span8">☞ 點選下表中任一藍字連結，可再進一步看該議員的<b>財產申報</b>、<b>政治獻金</b>、<b>議員配合款</b>等資訊。沒有連結表示不是現任議員，還只是候選人，所以沒有議會資料。</font>
+        <h2 class="col-sm-8">{{election_year}} {{county}} - {{district}} 議員候選人</h2>
+        <font class="col-sm-8">☞ 點選下表中任一藍字連結，可再進一步看該議員的<b>財產申報</b>、<b>政治獻金</b>、<b>議員配合款</b>等資訊。沒有連結表示不是現任議員，還只是候選人，所以沒有議會資料。</font>
     </div>
-    <div class="row-fluid">
+    <div class="row">
         {% with remark=county|each_county_remark %}
         {% if remark %}
-        <div class="span12">
+        <div class="col-sm-12">
             <div class="alert">
                 {% autoescape off %}
                     <font>{{remark}}</font>
@@ -30,7 +30,7 @@
         {% if candidates %}
         <table class="table table-bordered table-condensed table-striped" >
             <thead>
-                <tr style="font-weight:bold;background-color: #E1D0D0;">
+                <tr style="background-color: #E1D0D0;">
                     <th>候選人</th>
                     <th>當選／得票</th>
                     <th>黨籍</th>
@@ -58,11 +58,11 @@
                             {% if sp.votes %}
                                 {% for standpoint in sp.votes %}
                                     {% if standpoint.decision == "反對" %}
-                                        <i class="fa fa-times-circle text-error fa-fw"></i>
+                                        <i class="fa fa-times-circle text-danger fa-fw"></i>
                                     {% elif standpoint.decision == "贊成" %}
                                         <i class="fa fa-check-circle text-success fa-fw"></i>
                                     {% elif standpoint.decision == "沒投票" %}
-                                        <i class="fa fa-bed muted fa-fw"></i>
+                                        <i class="fa fa-bed text-muted fa-fw"></i>
                                     {% elif standpoint.decision == "棄權" %}
                                         <i class="fa fa-question-circle text-warning fa-fw"></i>
                                     {% endif %}
@@ -76,7 +76,7 @@
                             {% if sp.bills %}
                                 {% for standpoint in sp.bills %}
                                     {% if standpoint.role == "主提案" %}
-                                        <i class="fa fa-pencil text-error fa-fw"> </i>
+                                        <i class="fa fa-pencil text-danger fa-fw"> </i>
                                     {% elif standpoint.role == "共同提案" %}
                                         <i class="fa fa-group text-success fa-fw"> </i>
                                     {% else %}
@@ -96,7 +96,7 @@
                                 <a href="{% url 'councilors:platformer' councilor_id=councilor_term.councilor_id election_year=councilor_term.election_year %}"><br>（{{councilor_term.election_year}} 競選政見）</a>
                             </td>
                             <td style="vertical-align:middle;">
-                                <ul>
+                                <ul style="padding-left: 20px;">
                                 {% if councilor_term.param.bills_role_statistics %}
                                     <li>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</li>
                                     <li>{{councilor_term.param.bills_role_statistics.sponsor}} 次共同提案</li>

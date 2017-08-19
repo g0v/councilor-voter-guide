@@ -15,13 +15,13 @@
 
 {% block person_detail %}
     <p class="lead">{{councilor.election_year|election_year_range}}的配合款提案共通過：<font class="price">{{total_expense.sum}}</font></p>
-    <div class="row-fluid">
+    <div class="row">
     {% if index != 'rawdata' %}
-        <div class="span6">
+        <div class="col-sm-6">
             <div id="d3" align="center"></div>
             <p class="lead text-center">{{councilor.name}}的提案中<font class="text-success ">各個廠商得標的預算</font></p>
         </div>
-        <div class="span6">
+        <div class="col-sm-6">
             <a class="lead" href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}?index=rawdata">細目展開</a>
             <div class="pull-right">
                 資料來源
@@ -31,7 +31,7 @@
             </div>
             <table class="table table-bordered table-condensed sortable table-striped tablesorter" >
                 <thead>
-                    <tr style="font-weight:bold;background-color: #CCFF99;">
+                    <tr style="background-color: #CCFF99;">
                         <th style="width: 40%">得標廠商</th>
                         <th style="width: 10%">得標次數</th>
                         <th style="width: 30%">通過預算</th>
@@ -73,7 +73,7 @@
             </table>
         </div>
     {% else %}
-        <div class="span12">
+        <div class="col-sm-12">
             <div class="pull-right">
                 資料來源
                 <a href="{{councilor.county|suggestions_offical_link}}" target="_blank">{{councilor.county}}主計處</a></li><br>
@@ -83,7 +83,7 @@
         {% if suggestions %}
             {% include "common/suggestions.html" with include_councilors=False %}
         {% else %}
-            <p class="text-error">完全沒有議員配合款</p>
+            <p class="text-danger">完全沒有議員配合款</p>
         {% endif %}
         </div>
     {% endif %}
@@ -104,7 +104,7 @@
         $(document).ready( function() {
             $('#url_suggestor').attr('class', 'active');
             $('#datatable').dataTable({
-                "sDom": "<'row'<'span6'f><'span6'i>r>t",
+                "sDom": "<'row'<'col-sm-6'f><'col-sm-6'i>r>t",
                 "sPaginationType": "bootstrap",
                 "sScrollY": "400px",
                 "bPaginate": false,

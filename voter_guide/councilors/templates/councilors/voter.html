@@ -2,17 +2,11 @@
 {% load extras %}
 
 {% block top-menu %}
-    <div class="row-fluid">
-        <div id="sidebar-leftx" class="span2">
-        </div>
-        <div class="tabnav">
-            <ul>
-                <li><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">表決立場</a></li>
-                <li class="active"><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a></li>
-            </ul>
-        </div>
-    </div>
-{% endblock %}
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">表決立場</a></li>
+        <li><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a></li>
+    </ul>
+{% endblock top-menu %}
 
 {% block title %}
     {% if index == 'conscience' %}
@@ -37,7 +31,7 @@
             {% endfor %}
         </h4>
     {% endif %}
-    <div class="well well-small">
+    <div class="well well-sm">
         {% if index == 'conscience' %}
             <b>脫黨</b>
         {% endif %}
@@ -63,11 +57,11 @@
             {% endif %}
         {% empty %}
             {% if councilor.election_year == '2010' %}
-                {% if index == 'conscience' %}<p class="lead text-error">沒有任何脫黨投票紀錄</p>
-                {% else %}<p class="text-error">沒有表決紀錄</p>
+                {% if index == 'conscience' %}<p class="lead text-danger">沒有任何脫黨投票紀錄</p>
+                {% else %}<p class="text-danger">沒有表決紀錄</p>
                 {% endif %}
             {% else %}
-                <p class="lead text-error">尚無資料</p>
+                <p class="lead text-danger">尚無資料</p>
             {% endif %}
         {% endfor %}
     </div>
@@ -88,13 +82,13 @@
                     <td style="text-align:center; vertical-align:middle;">
                     {% with decision=vote.decision %}
                     {% if decision == -1 %}
-                        <i class="fa fa-circle text-error"></i> 反對
+                        <i class="fa fa-circle text-danger"></i> 反對
                     {% elif decision == 1 %}
                         <i class="fa fa-circle text-success"></i> 贊成
                     {% elif decision == 0 %}
                         <i class="fa fa-circle text-warning"></i> 棄權
                     {% else %}
-                        <i class="fa fa-circle muted"></i> 沒投票
+                        <i class="fa fa-circle text-muted"></i> 沒投票
                     {% endif %}
                     {% endwith %}
                     </td>

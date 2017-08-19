@@ -22,12 +22,12 @@
         <h2>如果我是候選人</h2>
     </div>
     <form class="form-horizontal" action="" method="post">{% csrf_token %}
-        <div class="row-fluid">
-            <div class="span1">
-                <button id="submit" class="btn btn-info btn-large" style="margin-bottom: 40px;margin-top: 20px;" type="submit" disabled>儲存</button>
+        <div class="row">
+            <div class="col-sm-1">
+                <button id="submit" class="btn btn-info btn-lg" style="margin-bottom: 40px;margin-top: 20px;" type="submit" disabled>儲存</button>
                 <input id="checked" type="checkbox"> 我已閱讀<a href="{% url 'candidates:intent_home' %}" target="_blank">注意事項</a></input>
             </div>
-            <div class="span4">
+            <div class="col-sm-4">
                 <div class="control-group">
                     {{ form.name.errors }}
                     <label class="control-label" for="{{ form.name.id_for_label }}">{{ form.name.label }}：</label>
@@ -62,7 +62,7 @@
                 {{ form.district }}
                 </div>
             </div>
-            <div class="span7">
+            <div class="col-sm-7">
                 <div class="control-group">
                     {{ form.motivation.errors }}
                     <label class="control-label" for="{{ form.motivation.id_for_label }}">{{ form.motivation.label }}：</label>

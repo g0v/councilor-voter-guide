@@ -25,7 +25,7 @@
                 </td>
                 {% if include_councilors %}
                 <td style="text-align:center; vertical-align:middle;">
-                    <ul class="unstyled">
+                    <ul class="list-unstyled">
                     {% for councilor in obj.councilors %}
                     <li><a id='councilors_suggestor' href="{% url 'councilors:suggestor' councilor_id=councilor.0 election_year=obj.election_year %}">{{councilor.1}}</a></li>
                     {% empty %}
@@ -65,7 +65,7 @@
                     {{obj.bid_type}}
                 </td>
                 <td style="vertical-align:middle;">
-                    <ul class="unstyled">
+                    <ul class="list-unstyled">
                     {% for company in obj.bid_by %}
                         {% if company == '辦理中' or company == '-' or company == '尚未發包' or company == '尚未決標' or company == '專案保留' or company == '無' %}
                             {{company}}

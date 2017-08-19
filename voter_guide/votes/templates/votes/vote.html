@@ -15,36 +15,40 @@
 {% endblock title %}
 
 {% block right %}
-    <div class="row-fluid">
-        <div class="span6">
+    <div class="row">
+        <div class="col-sm-6">
             <form action="" method="post" class="form-inline">
                 {% csrf_token %}
                 <br>
                 <fieldset>
                     <label>請輸入您覺得最能代表這個表決的標籤：</label>
                     {% if user.is_authenticated %}
-                        <input type="search" name="keyword" id="keyword" class="span4" maxlength="20" placeholder="建議動詞+名詞的命題">
-                        <button type="submit" class="btn">確定</button>
+                        <div class="input-group">
+                            <input type="search" name="keyword" id="keyword" class="form-control" maxlength="20" placeholder="建議動詞+名詞的命題">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default">確定</button>
+                            </span>
+                        </div>
                     {% else %}
-                        <a href="{% provider_login_url "facebook" %}?next={% url 'votes:vote' vote.uid %}"><i class="fa fa-sign-in"> 登入加標籤</i></a>
+                        <a href="{% provider_login_url "facebook" %}?next={% url 'votes:vote' vote.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入加標籤</i></a>
                     {% endif %}
                 </fieldset>
                 {% with size=3 %}
                 {% for standpoint in standpoints_of_vote %}
                     {% if forloop.counter0 == size %}
-                        <button type="button" class="btn" data-toggle="collapse" data-target="#ref_more"><font>..... <i class="fa fa-angle-down"></i></font></button>
+                        <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#ref_more"><font>..... <i class="fa fa-angle-down"></i></font></button>
                         <div id="ref_more" class="collapse">
                     {% endif %}
                     <h4>{{standpoint.pro}}人認為是
-                        <font style="color: {% cycle '#9999FF' '#99CCCC' '#99CC99' '#999966' '#99CC33' %};"> {{standpoint}}</font>
+                        <font style="color: #9F0050;"> {{standpoint}}</font>
                         {% if user.is_authenticated %}
                             {% if standpoint.have_voted %}
-                                <button name="against" class="btn" value="{{standpoint.uid}}">取消 +1</button>
+                                <button name="against" class="btn btn-default" value="{{standpoint.uid}}">取消 +1</button>
                             {% else %}
-                                <button name="pro" class="btn" value="{{standpoint.uid}}">+1</button>
+                                <button name="pro" class="btn btn-default" value="{{standpoint.uid}}">+1</button>
                             {% endif %}
                         {% else %}
-                            <a href="{% provider_login_url "facebook" %}?next={% url 'votes:vote' vote.uid %}" class="btn"> 登入投票</a>
+                            <a href="{% provider_login_url "facebook" %}?next={% url 'votes:vote' vote.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入投票</i></a>
                         {% endif %}
                     </h4>
                 {% endfor %}
@@ -54,24 +58,24 @@
                 {% endwith %}
             </form>
             {% if vote %}
-            <div class="hero-unit">
-                <span class="badge badge-important pull-right"><font class="lead">{{vote.result|vote_result:'cht'}}</font></span>
-                <p><a href="{{vote.sitting.links.url}}" target="_blank"><i class="fa fa-file-pdf-o"> 官方會議記錄</i></a></p>
-                <p class="text-success">表決日期：{{ vote.sitting.date|date:"Y-m-d" }}</p>
-                <p>{{ vote.content|linebreaksbr }}</p>
+            <div class="jumbotron">
+                <span class="label label-default pull-right"><font class="lead">{{vote.result|vote_result:'cht'}}</font></span>
+                <h4><a href="{{vote.sitting.links.url}}" target="_blank"><i class="fa fa-file-pdf-o"> 官方會議記錄</i></a></h4>
+                <h4 class="text-success">表決日期：{{ vote.sitting.date|date:"Y-m-d" }}</h4>
+                <h4>{{ vote.content|linebreaksbr }}</h4>
             </div>
-        </div><!--end: span6 -->
-        <div class="span6">
-            <div class="row-fluid">
+        </div><!--end: col-sm-6 -->
+        <div class="col-sm-6">
+            <div class="row">
             {% for fragment in vote.results %}
-                <div class="span6">
+                <div class="col-sm-6">
                     <h3>
                         {% if fragment.decision == "反對" %}
-                            <i class="fa fa-times-circle text-error">
+                            <i class="fa fa-times-circle text-danger">
                         {% elif fragment.decision == "贊成" %}
                             <i class="fa fa-check-circle text-success">
                         {% elif fragment.decision == "沒投票" %}
-                            <i class="fa fa-bed muted">
+                            <i class="fa fa-bed text-muted">
                         {% else %}
                             <i class="fa fa-question-circle text-warning">
                         {% endif %}
@@ -81,7 +85,7 @@
                     {% for element in fragment.party_list %}
                         <li data-toggle="collapse" data-target="#ref_vote_{{fragment.decision}}_{{element.party}}"><span>{{element.party}}：{{element.councilors|length}}人 <i class="fa fa-caret-square-o-down"></i></span></li>
                         <div id="ref_vote_{{fragment.decision}}_{{element.party}}" class="collapse">
-                            <ul class="inline">
+                            <ul class="list-inline">
                             {% for councilor in element.councilors %}
                                 <li><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=vote.sitting.election_year %}" rel="tooltip" title="這位立委的表決紀錄">{{councilor.name}}</a></li>
                             {% endfor %}
@@ -92,12 +96,12 @@
                     </ul>
                 </div><!--end: span -->
             {% endfor %}
-            </div><!--end: row-fluid -->
+            </div><!--end: row -->
             {% endif %}
             <hr>
             <div id="disqus_thread"></div>
-        </div><!--end: span6 -->
-    </div><!--end: row-fluid -->
+        </div><!--end: col-sm-6 -->
+    </div><!--end: row -->
 {% endblock right %}
 
 {% block script %}

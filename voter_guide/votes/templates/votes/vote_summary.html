@@ -3,7 +3,7 @@
 
 <li class="media">
     <div class="media-body well">
-        <div class="muted media-heading">
+        <div class="text-muted media-heading">
             （{{ fragment.date|date:"Y-m-d" }}）第{{ fragment.vote_seq }}個表決
         </div>
         <h5 class="text-success">表決內容</h5>
@@ -22,9 +22,11 @@
             {% endfor %}
         {% endif %}
         <h5 class="text-success">表決結果</h5>
-            <span class="label label-inverse"><font class="lead">{{fragment.result|vote_result:'cht'}}</font></span>
+        <h3>
+            <span class="label label-default">{{fragment.result|vote_result:'cht'}}</span>
             {% if fragment.conflict %}
-                <small class="text-error"><font class="lead text-error">有議員脫黨投票</font></small>
+                <small class="text-danger">有議員脫黨投票</small>
             {% endif %}
+        </h3>
     </div>
 </li>

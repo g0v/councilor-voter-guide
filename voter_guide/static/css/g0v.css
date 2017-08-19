@@ -92,15 +92,19 @@ h7 {
 }
 
 .direct-sub{
-  position: absolute;
-  bottom:10px;
-  font-size: 18px;
-  color:inherit;
-  text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .2);
+    position: absolute;
+    bottom:10px;
+    font-size: 18px;
+    color:inherit;
+    text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .2);
 }
 
 .direct-sub.right{
 	right: 5%;
+}
+
+.direct-sub.right h4{
+    font-weight: bold;
 }
 
 @media screen and (max-width: 400px){

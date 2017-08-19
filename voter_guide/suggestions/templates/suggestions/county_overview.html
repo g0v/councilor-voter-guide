@@ -26,12 +26,12 @@
     <div class="text-center">
         {% include "common/search_keyword_form.html" with placeholder_text="例:按摩椅 協會 國小" %}
     </div>
-    <div class="well well-small">
+    <div class="well well-sm">
         {{ suggestions.paginator.count }}個搜尋結果，這是第{{ suggestions.number }}頁（共{{ suggestions.paginator.num_pages }}頁）
     </div>
     {% include "common/suggestions.html" with include_councilors=True %}
     {% include "common/pagination.html" with items=suggestions %}
-    <div class="row-fluid">
+    <div class="row">
         <hr>
         <div class="text-center">
             {% include "common/counties_button.html" with namespace='suggestions:county_overview' id=True %}
@@ -39,10 +39,10 @@
         {% regroup counties by county as county_list %}
         {% for county in county_list %}
             {% with county=county.grouper %}
-            <div class="span12">
+            <div class="col-sm-12">
                 <a id="{{county}}" href="#{{county}}"><i class="fa fa-link"></i></a>
             </div>
-            <div id="years_bar_{{county}}" class="span6" style="margin-left: 0px;" align="center"></div>
+            <div id="years_bar_{{county}}" class="col-sm-6" style="margin-left: 0px;" align="center"></div>
             <div class="pull-right">
                 資料來源
                 <a href="{{county|suggestions_offical_link}}" target="_blank">{{county}}主計處</a></li><br>
@@ -50,10 +50,10 @@
                 </ul>
             </div>
             {% endwith %}
-            <div class="span6">
+            <div class="col-sm-6">
                 <table class="table table-bordered table-condensed table-striped sortable" >
                     <thead>
-                        <tr style="font-weight:bold;background-color: #E1D0D0";>
+                        <tr style="background-color: #E1D0D0";>
                             <th>縣市</th>
                             <th>年度</th>
                             <th>案數</th>

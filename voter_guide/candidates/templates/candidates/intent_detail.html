@@ -38,12 +38,12 @@
                 <a href="{% provider_login_url "facebook" %}?next={% url 'candidates:intent_detail' intent_id=intent.uid %}" class="btn btn-success"><i class="fa fa-sign-in"> 登入按讚</i></a>
             {% endif %}
     </div>
-    <div class="row-fluid">
-        <div class="span2">
+    <div class="row">
+        <div class="col-sm-2">
             {% if request.user.is_authenticated and request.user.id == intent.user_id %}
-                <a href="{% url 'candidates:intent_upsert' %}" class="btn btn-info btn-large">編輯</a>
+                <a href="{% url 'candidates:intent_upsert' %}" class="btn btn-info btn-lg">編輯</a>
             {% else %}
-                <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-large">我也來發表</a>
+                <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg">我也來發表</a>
             {% endif %}
             <hr>
             <h5>修訂紀錄</h5>
@@ -71,19 +71,19 @@
                         <div class="property-body district">{{revision.constituency}}</div>
                         <div class="property-header">為什麼要選：</div>
                         <textarea style="display: none">{{revision.motivation}}</textarea>
-                        <div class="property-body hero-unit"></div>
+                        <div class="property-body jumbotron"></div>
                         <div class="property-header">政見：</div>
                         <textarea style="display: none">{{revision.platform}}</textarea>
-                        <div class="property-body hero-unit"></div>
+                        <div class="property-body jumbotron"></div>
                         <div class="property-header">經歷：</div>
                         <textarea style="display: none">{{revision.experience}}</textarea>
-                        <div class="property-body hero-unit"></div>
+                        <div class="property-body jumbotron"></div>
                         <div class="property-header">學歷：</div>
                         <textarea style="display: none">{{revision.education}}</textarea>
-                        <div class="property-body hero-unit"></div>
+                        <div class="property-body jumbotron"></div>
                         <div class="property-header">備註：</div>
                         <textarea style="display: none">{{revision.remark}}</textarea>
-                        <div class="property-body hero-unit"></div>
+                        <div class="property-body jumbotron"></div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">關閉</button>
@@ -94,7 +94,7 @@
                 </div>
             {% endif %}
         </div>
-        <div class="span4">
+        <div class="col-sm-4">
             {% with user_id=intent.user.socialaccount_set.first.uid %}
             <div class="text-center">
                 <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?width=200">
@@ -113,22 +113,22 @@
             <div class="fb-comments" data-href="{{current_url}}" data-width="300" data-numposts="5"></div>
             {% endwith %}
         </div>
-        <div class="span6">
+        <div class="col-sm-6">
             <div class="property-header">為什麼要選：</div>
             <textarea style="display: none">{{intent.motivation}}</textarea>
-            <div class="property-body hero-unit"></div>
+            <div class="property-body jumbotron"></div>
             <div class="property-header">政見：</div>
             <textarea style="display: none">{{intent.platform}}</textarea>
-            <div class="property-body hero-unit"></div>
+            <div class="property-body jumbotron"></div>
             <div class="property-header">經歷：</div>
             <textarea style="display: none">{{intent.experience}}</textarea>
-            <div class="property-body hero-unit"></div>
+            <div class="property-body jumbotron"></div>
             <div class="property-header">學歷：</div>
             <textarea style="display: none">{{intent.education}}</textarea>
-            <div class="property-body hero-unit"></div>
+            <div class="property-body jumbotron"></div>
             <div class="property-header">備註：</div>
             <textarea style="display: none">{{intent.remark}}</textarea>
-            <div class="property-body hero-unit"></div>
+            <div class="property-body jumbotron"></div>
         </div>
     </div>
 {% endblock right %}

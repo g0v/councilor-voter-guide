@@ -2,9 +2,9 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南</title>
-    <meta property="og:title" content="議員投票指南"/>
-    <meta itemprop="name" content="議員投票指南">
+    <title>議員投票指南:{{county}}({{election_year|election_year_range}})議員</title>
+    <meta property="og:title" content="議員投票指南:{{county}}({{election_year|election_year_range}})議員"/>
+    <meta itemprop="name" content="議員投票指南:{{county}}({{election_year|election_year_range}})議員">
 {% endblock title %}
 
 {% block right %}
@@ -18,13 +18,15 @@
 
     {% if out_office %}
         <hr>
-        <table class="table table-bordered table-condensed">
-            <tr style="font-weight:bold; background-color: #FFFFCC;">
-                <td style="text-align:center; vertical-align:middle; width: 15%">離職議員</td>
-                <td style="text-align:center; vertical-align:middle; width: 55%">離職原因</td>
-            </tr>
+        <table class="table table-bordered table-condensed table-striped">
+            <thead>
+                <tr style="background-color: #FFFFCC;">
+                    <th style="width: 15%">離職議員</td>
+                    <th style="width: 55%">離職原因</td>
+                </tr>
+            </thead>
             {% for councilor in out_office %}
-            <tr style="background-color: {% cycle 'EEEEEE' 'white' %};">
+            <tr>
                 {% include "common/person_dropdown.html" with color=True %}
                 <td>{{councilor.term_end.reason}}</td>
             </tr>

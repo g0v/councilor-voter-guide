@@ -10,28 +10,32 @@
 {% endblock title %}
 
 {% block right %}
-<div class="row-fluid">
-    <div id="sidebar-left" class="span4" style="margin: 10px 5px">
+<div class="row">
+    <div class="col-sm-4">
         <form action="" method="post" class="form-inline">
             {% csrf_token %}
             <br>
             <fieldset>
                 <label>請輸入最能代表這個提案的標籤：</label>
                 {% if user.is_authenticated %}
-                    <input type="search" name="keyword" id="keyword" class="span9" maxlength="20" placeholder="建議動詞+名詞的命題">
-                    <button type="submit" class="btn">確定</button>
+                    <div class="input-group">
+                        <input type="search" name="keyword" id="keyword" class="form-control" maxlength="20" placeholder="建議動詞+名詞的命題">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default">確定</button>
+                        </span>
+                    </div>
                 {% else %}
-                    <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}"><i class="fa fa-sign-in"> 登入加標籤</i></a>
+                    <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入加標籤</i></a>
                 {% endif %}
             </fieldset>
             {% with size=3 %}
             {% for standpoint in standpoints_of_bill %}
                 {% if forloop.counter0 == size %}
-                    <button type="button" class="btn" data-toggle="collapse" data-target="#ref_more"><font>..... 其他標籤 <i class="fa fa-angle-down"></i></font></button>
+                    <button type="button" class="btn " data-toggle="collapse" data-target="#ref_more"><font>..... 其他標籤 <i class="fa fa-angle-down"></i></font></button>
                     <div id="ref_more" class="collapse">
                 {% endif %}
                 <h4>{{standpoint.pro}}人認為是
-                    <font style="color: {% cycle '#9999FF' '#99CCCC' '#99CC99' '#999966' '#99CC33' %};"> {{standpoint}}</font>
+                    <font style="color: #9F0050;"> {{standpoint}}</font>
                     {% if user.is_authenticated %}
                         {% if standpoint.have_voted %}
                             <button name="against" class="btn" value="{{standpoint.uid}}">取消 +1</button>
@@ -39,7 +43,7 @@
                             <button name="pro" class="btn" value="{{standpoint.uid}}">+1</button>
                         {% endif %}
                     {% else %}
-                    <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" class="btn"> 登入投票</a>
+                    <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入投票</i></a>
                     {% endif %}
                 </h4>
             {% endfor %}
@@ -50,7 +54,7 @@
         </form>
         <hr>
         <h3>
-            <i class="fa fa-pencil text-error"> 主提案</i>
+            <i class="fa fa-pencil text-danger"> 主提案</i>
         </h3>
         {% if bill.param.sponsors_groupby_party.priproposer %}
             {% include "common/sponsor.html" with list=bill.param.sponsors_groupby_party.priproposer.party_list role="priproposer" %}
@@ -76,7 +80,8 @@
         <div id="d3" align="left">
         </div>
     </div>
-    <div id="content" class="span8" style="min-height: 700px; padding-bottom: 150px;">
+    <div class="col-sm-8" style="background-color: #fff;">
+        <br>
         {% if bill %}
         {% if bill.links.0.url %}
             <a href="{{bill.links.0.url}}" target="_blank" class="lead pull-right"><i class="fa fa-info-circle"> 官方連結</i></a>
@@ -84,7 +89,7 @@
             <a href="{{bill.link}}" target="_blank" class="lead pull-right"><i class="fa fa-info-circle"> 官方連結</i></a>
         {% endif %}
         <div align="center">
-            <ul class="inline lead">
+            <ul class="list-inline lead">
                 <li>{{bill.type}}</li>
                 <li>{{bill.category}}</li>
             </ul>
@@ -134,9 +139,7 @@
         <hr>
         <div id="disqus_thread"></div>
     </div>
-    <div class="span1">
-    </div>
-</div><!--end: row-fluid -->
+</div><!--end: row -->
 <hr>
 {% endblock right %}
 

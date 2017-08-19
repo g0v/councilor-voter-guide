@@ -8,35 +8,29 @@
 {% endblock title %}
 
 {% block top-menu %}
-    <div class="row-fluid">
-        <div id="sidebar-leftx" class="span2">
-        </div>
-        <div class="tabnav">
-            <ul>
-                <li class="active"><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">表決立場</a></li>
-                <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a></li>
-            </ul>
-        </div>
-    </div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">表決立場</a></li>
+        <li><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a></li>
+    </ul>
 {% endblock %}
 
 {% block person_detail %}
-    <div class="row-fluid">
-        <div class="description" style="margin-left: 25px; margin-right: 25px;">
+    <div class="row">
+        <div class="description" style="margin-left: 55px; margin-right: 15px;">
             立場由使用者標註、投票產生，歡迎進入各別表決讓資料更好
         </div>
         {% regroup standpoints by decision as decision_list %}
         {% for decision_group in decision_list %}
-        <div class="span{% widthratio 12 decision_list|length 1 %}" style="margin-left: 0px;">
+        <div class="col-sm-{% widthratio 12 decision_list|length 1 %}">
             <ul class="media-list">
                 <li>
                     <h3 align="center">
                         {% if decision_group.grouper == "反對" %}
-                            <i class="fa fa-times-circle text-error">
+                            <i class="fa fa-times-circle text-danger">
                         {% elif decision_group.grouper == "贊成" %}
                             <i class="fa fa-check-circle text-success">
                         {% elif decision_group.grouper == "沒投票" %}
-                            <i class="fa fa-bed muted">
+                            <i class="fa fa-bed text-muted">
                         {% else %}
                             <i class="fa fa-question-circle text-warning">
                         {% endif %}
@@ -45,7 +39,7 @@
                     <ul>
                     {% for standpoint in decision_group.list %}
                     <li class="media">
-                        <div class="media-body well">
+                        <div class="media-body well"style="background-color: #fff;">
                             <div class="media-heading">
                                 <font class="lead">{{standpoint.title}}</font><br>{{standpoint.times}}次
                                 <div align="right">
@@ -53,7 +47,7 @@
                                 </div>
                                 <div id="ref_vote_{{standpoint.votes.0.uid}}" class="collapse">
                                     {% for fragment in standpoint.votes %}
-                                    <h4><a href="{% url 'votes:vote' fragment.uid %}" target="_blank" class="btn">☞ 表決 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></a></h4>
+                                    <h4><a href="{% url 'votes:vote' fragment.uid %}" target="_blank" class="btn btn-default">☞ 表決 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></a></h4>
                                     <blockquote>
                                         <p><small>{{fragment.content|truncatechars:100}}</small></p>
                                     </blockquote>

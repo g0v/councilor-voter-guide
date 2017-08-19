@@ -1,5 +1,6 @@
 {% extends "councilors/index/index.html" %}
 {% load extras %}
+
 {% block table %}
     {% if param.remark %}
         {% with remark=county|each_county_remark %}
@@ -13,7 +14,7 @@
         {% endwith %}
     {% endif %}
     {% if not councilors and not no_count_list %}
-        <h3 class="text-center text-error">
+        <h3 class="text-center text-danger">
         {% if index == 'not_voting' or index == 'conscience_vote' %}
             {{county}}沒有表決紀錄
         {% elif index == 'cs_attend' %}
@@ -33,14 +34,14 @@
         {% endif %}
     {% endif %}
     </h3>
-    <table class="table table-bordered table-condensed">
+    <table class="table table-bordered table-condensed table-striped">
         {% with col=15 %}
         {% for councilor in councilors %}
             {% if forloop.counter0|divisibleby:col %}
                 {% if forloop.counter0 != 0 %}
                     </tr>
                 {% endif %}
-                <tr style="background-color: {% cycle 'EEEEEE' 'white' %};">
+                <tr>
                     <td></td>
             {% endif %}
             <td class="name {{councilor.district}} {{councilor.gender}}">
