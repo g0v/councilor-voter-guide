@@ -21,7 +21,7 @@
         </div>
         {% regroup standpoints by role as role_list %}
         {% for role_group in role_list %}
-        <div class="span{% widthratio 12 role_list|length 1 %}" style="margin-left: 0px;">
+        <div class="col-sm-{% widthratio 12 role_list|length 1 %}">
             <ul class="media-list">
                 <li>
                     <h3 align="center">
