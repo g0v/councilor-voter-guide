@@ -10,14 +10,14 @@
 {% block top-menu %}
     <ul class="nav nav-tabs">
         <li class="active"><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">表決立場</a></li>
-        <li><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a></li>
+        <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a></li>
     </ul>
 {% endblock %}
 
 {% block person_detail %}
     <div class="row">
         <div class="description" style="margin-left: 55px; margin-right: 15px;">
-            立場由使用者標註、投票產生，歡迎進入<a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a>讓資料更好
+            立場由使用者標註、投票產生，歡迎進入<a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a>讓資料更好
         </div>
         {% regroup standpoints by decision as decision_list %}
         {% for decision_group in decision_list %}

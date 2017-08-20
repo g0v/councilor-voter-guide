@@ -9,7 +9,7 @@
 
 {% block top-menu %}
     <ul class="nav nav-tabs">
-        <li><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">提案立場</a></li>
+        <li><a href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">提案立場</a></li>
         <li class="active"><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全提案紀錄</a></li>
     </ul>
 {% endblock %}
