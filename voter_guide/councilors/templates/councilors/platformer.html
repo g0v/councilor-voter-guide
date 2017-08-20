@@ -1,24 +1,18 @@
 {% extends "common/person_info.html" %}
 {% load extras %}
+
 {% block title %}
-    {% if councilor %}
-        <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的競選政見</title>
-        <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的競選政見"/>
-        <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的競選政見">
-    {% else %}
-        <title>議員投票指南:立委的競選政見</title>
-        <meta property="og:title" content="議員投票指南:議員的競選政見"/>
-        <meta itemprop="name" content="議員投票指南:議員的競選政見">
-    {% endif %}
+    <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的競選政見</title>
+    <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的競選政見"/>
+    <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的競選政見">
 {% endblock %}
+
 {% block person_detail %}
-    {% if councilor %}
-    <div>
-        <font class="lead">{{councilor.name}}{{councilor.election_year|election_year_range}}的政見：</font><br>
+    <div class="col-sm-10 col-sm-offset-2">
         {{ councilor.platform|linebreaksbr }}
     </div>
-    {% endif %}
 {% endblock person_detail %}
+
 {% block script %}
     <script>
         $(document).ready( function() {
