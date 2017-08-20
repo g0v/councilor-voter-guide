@@ -34,8 +34,8 @@
                     <th>候選人</th>
                     <th>當選／得票</th>
                     <th>黨籍</th>
-                    <th>表決立場</th>
-                    <th>提案立場</th>
+                    <th>表決立場 <a rel="tooltip" title="立場由網友自行標註、投票產生，歡迎一起讓資料更好" data-placement="right"><i class="fa fa-question-circle"></i></a></th>
+                    <th>提案立場 <a rel="tooltip" title="立場由網友自行標註、投票產生，歡迎一起讓資料更好" data-placement="right"><i class="fa fa-question-circle"></i></a></th>
                     <th>最近任期</th>
                     <th>數字統計</th>
                     <th>上次競選政治獻金</th>
@@ -146,6 +146,7 @@
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     <script>
         $('#candidates').addClass('active');
+        $("[rel='tooltip']").tooltip();
         $('table').cardtable();
         $('.price').each(function(index,ele){
             var number = $(ele).text()
