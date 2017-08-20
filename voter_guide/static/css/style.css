@@ -50,6 +50,10 @@ a.navbar-brand i {
     font-weight: bold;
 }
 
+.nav.nav-tabs {
+    margin-bottom: 12px;
+}
+
 /* dropdown-submenu
 =================================================================== */
 .dropdown-submenu {

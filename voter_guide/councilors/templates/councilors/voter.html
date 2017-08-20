@@ -1,13 +1,6 @@
 {% extends "common/person_info.html" %}
 {% load extras %}
 
-{% block top-menu %}
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">表決立場</a></li>
-        <li><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a></li>
-    </ul>
-{% endblock top-menu %}
-
 {% block title %}
     {% if index == 'conscience' %}
         <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的脫黨表決紀錄</title>
@@ -19,6 +12,13 @@
         <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的投票表決紀錄">
     {% endif %}
 {% endblock title %}
+
+{% block top-menu %}
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">表決立場</a></li>
+        <li><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a></li>
+    </ul>
+{% endblock top-menu %}
 
 {% block person_detail %}
     {% include "councilors/voter_search.html" %}

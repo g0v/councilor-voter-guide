@@ -115,16 +115,11 @@ def suggestor(request, councilor_id, election_year):
     except Exception, e:
         return HttpResponseRedirect('/')
     q = dict(zip(['election_year', 'councilors__councilor_id'], [election_year, councilor.id]))
-    index = request.GET.get('index')
     suggestions_base = Suggestions.objects.filter(**q)
     total_expense = suggestions_base.aggregate(sum=Sum('approved_expense_avg'))
-    if not index:
-        suggestions = suggestions_base.values('bid_by')\
-                                        .annotate(sum=Sum('approved_expense'), count=Count('uid'))\
-                                        .order_by('-sum')
-    elif index == u'rawdata':
-        suggestions = suggestions_base.order_by('-uid')
-        return render(request, 'councilors/suggestor.html', {'county': councilor.county, 'index': index, 'suggestions': list(suggestions), 'councilor': councilor, 'total_expense': total_expense})
+    suggestions = suggestions_base.values('bid_by')\
+                                    .annotate(sum=Sum('approved_expense'), count=Count('uid'))\
+                                    .order_by('-sum')
     return render(request, 'councilors/suggestor.html', {'county': councilor.county, 'suggestions': list(suggestions), 'councilor': councilor, 'total_expense': total_expense})
 
 def biller(request, councilor_id, election_year):
