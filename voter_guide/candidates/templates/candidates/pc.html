@@ -15,22 +15,22 @@
             <h2>{{candidate.name}} - 政治獻金</h2>
         </div>
         {% for term in candidate.politicalcontributions %}
-            <div class="page-header" style="margin-left: 0px;">
+            <div class="page-header">
                 <h4>
                     {{term.election_year}}年競選&nbsp;&nbsp;餘額：<font class="price">{{term.pc.balance}}</font>
                 </h4>
             </div>
-            <div class="col-sm-6" style="margin-left: 0px;">
+            <div class="col-sm-6">
                 <div class="jumbotron">
 
                      收入：<span class="price text-right">{{term.pc.in_total}}</span>
-                    <div id="d3_in" style="padding-top: 60px; margin-top: -60px;" align="center"></div>
+                    <div id="d3_in" align="center"></div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="jumbotron">
                      支出：<span class="price text-right">{{term.pc.out_total}}</span>
-                    <div id="d3_out" style="padding-top: 60px; margin-top: -60px;" align="center"></div>
+                    <div id="d3_out" align="center"></div>
                 </div>
             </div>
         {% empty %}
