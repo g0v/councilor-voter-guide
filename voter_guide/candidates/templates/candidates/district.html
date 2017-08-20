@@ -13,7 +13,7 @@
     <div class="jumbotron col-sm-12" style="margin-left: 0px;">
         <img class="pull-right" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img>
         <h2 class="col-sm-8">{{election_year}} {{county}} - {{district}} 議員候選人</h2>
-        <font class="col-sm-8">☞ 點選下表中任一藍字連結，可再進一步看該議員的<b>財產申報</b>、<b>政治獻金</b>、<b>議員配合款</b>等資訊。沒有連結表示不是現任議員，還只是候選人，所以沒有議會資料。</font>
+        <font class="col-sm-8">☞ 點選下表中任一藍字連結，可再進一步看該議員的<b>財產申報</b>、<b>政治獻金</b>、<b>議員配合款</b>等資訊。</font>
     </div>
     <div class="row">
         {% with remark=county|each_county_remark %}
@@ -53,6 +53,7 @@
                             {{candidate.votes}}
                         </td>
                         <td style="text-align:center; vertical-align:middle;">{{candidate.party}}</td>
+                        {% if candidate.councilor_terms %}
                         {% with sp=standpoints|json_lookup:candidate.id %}
                         <td style="vertical-align:middle;">
                             {% if sp.votes %}
@@ -131,6 +132,9 @@
                             <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank">財產申報</a>
                         {% endif %}
                         </td>
+                        {% else %}
+                        <td colspan=6 style="text-align:center; vertical-align:middle;">未擔任過議員，所以沒有紀錄</td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </tbody>
