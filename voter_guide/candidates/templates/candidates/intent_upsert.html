@@ -28,33 +28,33 @@
                 <input id="checked" type="checkbox"> 我已閱讀<a href="{% url 'candidates:intent_home' %}" target="_blank">注意事項</a></input>
             </div>
             <div class="col-sm-4">
-                <div class="control-group">
+                <div class="form-group">
                     {{ form.name.errors }}
-                    <label class="control-label" for="{{ form.name.id_for_label }}">{{ form.name.label }}：</label>
-                    <div class="controls">
+                    <label class="col-sm-3 control-label" for="{{ form.name.id_for_label }}">{{ form.name.label }}：</label>
+                    <div class="col-sm-9">
                     {{ form.name }}
                     <a rel="tooltip" class="pull-right" title="自動由您的 Facebook 帶入，姓名可自行修改"><i class="fa fa-question-circle"></i></a>
-                    <a href="https://www.facebook.com/app_scoped_user_id/{{intent.user.socialaccount_set.first.uid}}/" target="_blank"><i class="fa fa-facebook-square"> Facebook 個人頁面</i></a>
+                    <a href="https://www.facebook.com/app_scoped_user_id/{{request.user.socialaccount_set.first.uid}}/" target="_blank"><i class="fa fa-facebook-square"> Facebook 個人頁面</i></a>
                     </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                     {{ form.county.errors }}
-                    <label class="control-label" for="{{ form.county.id_for_label }}">{{ form.county.label }}：</label>
-                    <div class="controls">
+                    <label class="col-sm-3 control-label" for="{{ form.county.id_for_label }}">{{ form.county.label }}：</label>
+                    <div class="col-sm-9">
                     {{ form.county }}
                     </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                     {{ form.constituency.errors }}
-                    <label class="control-label" for="{{ form.constituency.id_for_label }}">{{ form.constituency.label }}：</label>
-                    <div class="controls">
+                    <label class="col-sm-3 control-label" for="{{ form.constituency.id_for_label }}">{{ form.constituency.label }}：</label>
+                    <div class="col-sm-9">
                     {{ form.constituency }}
                     </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                     {{ form.party.errors }}
-                    <label class="control-label" for="{{ form.party.id_for_label }}">{{ form.party.label }}：</label>
-                    <div class="controls">
+                    <label class="col-sm-3 control-label" for="{{ form.party.id_for_label }}">{{ form.party.label }}：</label>
+                    <div class="col-sm-9">
                     {{ form.party }}
                     </div>
                 </div>
@@ -63,38 +63,38 @@
                 </div>
             </div>
             <div class="col-sm-7">
-                <div class="control-group">
+                <div class="form-group">
                     {{ form.motivation.errors }}
-                    <label class="control-label" for="{{ form.motivation.id_for_label }}">{{ form.motivation.label }}：</label>
-                    <div class="controls">
+                    <label class="col-sm-3 control-label" for="{{ form.motivation.id_for_label }}">{{ form.motivation.label }}：</label>
+                    <div class="col-sm-9">
                         {{ form.motivation }}
                     </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                     {{ form.platform.errors }}
-                    <label class="control-label" for="{{ form.platform.id_for_label }}">{{ form.platform.label }}：</label>
-                    <div class="controls">
+                    <label class="col-sm-3 control-label" for="{{ form.platform.id_for_label }}">{{ form.platform.label }}：</label>
+                    <div class="col-sm-9">
                         {{ form.platform }}
                     </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                     {{ form.experience.errors }}
-                    <label class="control-label" for="{{ form.experience.id_for_label }}">{{ form.experience.label }}：</label>
-                    <div class="controls">
+                    <label class="col-sm-3 control-label" for="{{ form.experience.id_for_label }}">{{ form.experience.label }}：</label>
+                    <div class="col-sm-9">
                         {{ form.experience }}
                     </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                         {{ form.education.errors }}
-                    <label class="control-label" for="{{ form.education.id_for_label }}">{{ form.education.label }}：</label>
-                    <div class="controls">
+                    <label class="col-sm-3 control-label" for="{{ form.education.id_for_label }}">{{ form.education.label }}：</label>
+                    <div class="col-sm-9">
                         {{ form.education }}
                     </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                     {{ form.remark.errors }}
-                    <label class="control-label" for="{{ form.remark.id_for_label }}">{{ form.remark.label }}：</label>
-                    <div class="controls">
+                    <label class="col-sm-3 control-label" for="{{ form.remark.id_for_label }}">{{ form.remark.label }}：</label>
+                    <div class="col-sm-9">
                         {{ form.remark }}
                     </div>
                 </div>

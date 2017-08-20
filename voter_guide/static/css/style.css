@@ -174,24 +174,3 @@ hr.candidates-separator {
 .tooltip-inner {
     font-size: 18px;
 }
-
-
-input[type="text"] {
-    width: 98%;
-    box-sizing: border-box;
-    height: 30px;
-}
-
-.form-horizontal .control-label {
-    float: left;
-    width: 120px;
-    text-align: right;
-    font-size: 20px;
-}
-
-.form-horizontal .controls {
-    *display: inline-block;
-    *padding-left: 0px;
-    margin-left: 130px;
-    *margin-left: 0;
-}
