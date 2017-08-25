@@ -14,6 +14,7 @@
 {% endblock person_detail %}
 
 {% block script %}
+    {{block.super}}
     <script>
         $(document).ready( function() {
             $('#url_politics').attr('class', 'active');

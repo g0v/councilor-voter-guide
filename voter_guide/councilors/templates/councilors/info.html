@@ -56,6 +56,7 @@
 {% endblock person_detail %}
 
 {% block script %}
+    {{block.super}}
     <script>
         $(document).ready( function() {
             $('#url_info').attr('class', 'active');

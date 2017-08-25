@@ -50,10 +50,10 @@
 {% endblock person_detail %}
 
 {% block script %}
+    {{block.super}}
     <script>
         $(document).ready( function() {
             $('#url_bill').attr('class', 'active');
-            $("[rel='tooltip']").tooltip();
             $('#primaryonly').change(function() {
                 $("#form").trigger('submit');
             });

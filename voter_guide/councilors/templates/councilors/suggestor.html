@@ -63,6 +63,7 @@
 {% endblock person_detail %}
 
 {% block script %}
+    {{block.super}}
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     {% include "common/sorttable.html" %}
     <script>
