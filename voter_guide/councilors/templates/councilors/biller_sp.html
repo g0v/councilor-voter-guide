@@ -38,6 +38,15 @@
                     {% for standpoint in role_group.list %}
                     <li class="media">
                         <div class="media-body well">
+                            <span class="pull-right">
+                                {% if role_group.grouper == "主提案" %}
+                                <i class="fa fa-pencil fa-lg text-danger"></i>
+                                {% elif role_group.grouper == "共同提案" %}
+                                    <i class="fa fa-group fa-lg text-success"></i>
+                                {% else %}
+                                    <i class="fa fa-plus-circle fa-lg text-warning"></i>
+                                {% endif %}
+                            </span>
                             <div class="media-heading">
                                 <font class="lead">{{standpoint.title}}</font><br>{{standpoint.times}}次
                                 <div align="right">

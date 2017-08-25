@@ -40,6 +40,17 @@
                     {% for standpoint in decision_group.list %}
                     <li class="media">
                         <div class="media-body well"style="background-color: #fff;">
+                            <span class="pull-right">
+                                {% if decision_group.grouper == "反對" %}
+                                    <i class="fa fa-times-circle fa-lg text-danger"></i>
+                                {% elif decision_group.grouper == "贊成" %}
+                                    <i class="fa fa-check-circle fa-lg text-success"></i>
+                                {% elif decision_group.grouper == "沒投票" %}
+                                    <i class="fa fa-bed fa-lg text-muted"></i>
+                                {% else %}
+                                    <i class="fa fa-question-circle fa-lg text-warning"></i>
+                                {% endif %}
+                            </span>
                             <div class="media-heading">
                                 <font class="lead">{{standpoint.title}}</font><br>{{standpoint.times}}次
                                 <div align="right">
