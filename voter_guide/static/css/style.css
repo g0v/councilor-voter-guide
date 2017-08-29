@@ -127,6 +127,8 @@ a.navbar-brand i {
 =================================================================== */
 
 footer {
+    position: fixed;
+    z-index: 51;
     bottom: 0 !important;
     width: 100%;
     padding: 10px 0px;
