@@ -13,6 +13,17 @@
         <h2>{{election_year}} {{county}} - 議員選區</h2>
         <a href="{{county|county_urls}}" class="btn btn-primary btn-lg" target="_blank">{{county}}議會官網</a>
     </div>
+    <div align="center">
+    {% if intents_count %}
+        <h3>{{coming_election_year}} {{county}}有 {{intents_count}} 位可能參選人</h3>
+        <a type="button" class="btn btn-moonc btn-lg" href="{% url 'candidates:intents' election_year=coming_election_year %}?county={{county}}">看政見、給意見</a>
+    {% else %}
+        <h3>{{coming_election_year}} 本選區還沒有人發表</h3>
+        <h4>如果是候選人，你會怎麼做？</h4>
+        <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 來發表</i></a>
+    {% endif %}
+    </div>
+    <hr>
     <div class="four column doubling ui grid row">
             {% for district in districts %}
             <div class="column direct-container">

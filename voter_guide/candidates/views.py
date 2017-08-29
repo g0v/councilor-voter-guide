@@ -12,7 +12,7 @@ from django.utils import timezone
 from .models import Candidates, Terms, Intent, Intent_Likes
 from .forms import IntentForm
 from councilors.models import CouncilorsDetail
-from commontag.views import paginate
+from commontag.views import paginate, coming_election_year
 
 
 def intents(request, election_year):
@@ -21,18 +21,25 @@ def intents(request, election_year):
         'likes': 'likes'
     }
     order_by = ref.get(request.GET.get('order_by'), 'likes')
-    intents = Intent.objects.filter(election_year=election_year).order_by('-%s' % order_by)
+    qs = Q(election_year=election_year)
+    qs = qs & Q(county=request.GET.get('county')) if request.GET.get('county') else qs
+    qs = qs & Q(constituency=request.GET.get('constituency')) if request.GET.get('constituency') else qs
+    intents = Intent.objects.filter(qs).order_by('-%s' % order_by)
     intents = paginate(request, intents)
     return render(request, 'candidates/intents.html', {'intents': intents, 'election_year': election_year})
 
 def districts(request, election_year, county):
+    coming_ele_year = coming_election_year(county)
+    intents_count = Intent.objects.filter(election_year=coming_ele_year, county=county).count()
     districts = Terms.objects.filter(election_year=election_year, county=county)\
                              .values('constituency', 'district')\
                              .annotate(candidates=Count('id'))\
                              .order_by('constituency')
-    return render(request, 'candidates/districts.html', {'election_year': election_year, 'county': county, 'districts': districts})
+    return render(request, 'candidates/districts.html', {'coming_election_year': coming_ele_year, 'intents_count': intents_count, 'election_year': election_year, 'county': county, 'districts': districts})
 
 def district(request, election_year, county, constituency):
+    coming_ele_year = coming_election_year(county)
+    intents_count = Intent.objects.filter(election_year=coming_ele_year, county=county, constituency=constituency).count()
     candidates = Terms.objects.filter(election_year=election_year, county=county, constituency=constituency).order_by('-votes')
     standpoints = {}
     for term in [candidates]:
@@ -96,7 +103,7 @@ def district(request, election_year, county, constituency):
                 c.execute(qs, [terms_id, terms_id])
                 r = c.fetchone()
                 standpoints.update({candidate.id: r[0] if r else []})
-    return render(request, 'candidates/district.html', {'election_year': election_year, 'county': county, 'district': candidates[0].district, 'candidates': candidates, 'standpoints': standpoints})
+    return render(request, 'candidates/district.html', {'coming_election_year': coming_ele_year, 'intents_count': intents_count, 'election_year': election_year, 'county': county, 'constituency': constituency, 'district': candidates[0].district, 'candidates': candidates, 'standpoints': standpoints})
 
 def intent_home(request):
     return render(request, 'candidates/intent_home.html', )

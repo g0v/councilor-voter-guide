@@ -23,7 +23,17 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
     <div class="page-header text-center">
-        <h2><i class="fa fa-flag-checkered"> 可能參選人</i></h2>
+        <h2>
+            <i class="fa fa-flag-checkered">
+                {% if request.GET.county %}
+                    {{request.GET.county}}
+                {% endif %}
+                {% if request.GET.constituency %}
+                    第{{request.GET.constituency}}選區
+                {% endif %}
+                可能參選人
+            </i>
+        </h2>
         <h4><small>對當議員有想法？不想繳 20 萬保證金，但是想告訴大家你的想法？</small></h4>
         <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 我也來發表</i></a>
         <ul class="pull-left list-unstyled">

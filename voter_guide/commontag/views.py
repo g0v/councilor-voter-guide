@@ -11,3 +11,6 @@ def paginate(request, items, page_size=10):
     except EmptyPage:
         items = paginator.page(paginator.num_pages)
     return items
+
+def coming_election_year(county):
+    return 2018
