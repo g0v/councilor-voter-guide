@@ -1,0 +1,11 @@
+/* Higher than 1200 (desktop devices)
+====================================================================== */
+@media (min-width: 1024px) {
+
+    .container-fluid {
+        padding-right: 20px;
+        padding-left: 20px;
+        *zoom: 1;
+        margin: 0 50px 0 50px;
+    }
+}
