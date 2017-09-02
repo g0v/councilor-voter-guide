@@ -66,11 +66,6 @@ class Spider(scrapy.Spider):
                 'refer': 'serial'
             }
         except:
-            print response.headers
-            print response.body
-            print response.status
-            print response.url
-            print 'profile:', response.urljoin(response.headers['Location'])
             raise scrapy.exceptions.CloseSpider('no redirect location')
         yield scrapy.FormRequest(response.urljoin(response.headers['Location']), formdata=payload, callback=self.parse_post, meta={'item': response.meta['item']})
 
