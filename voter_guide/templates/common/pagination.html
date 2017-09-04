@@ -28,7 +28,7 @@
         </span>
 
         {% if items.has_next %}
-            {% if keyword %}
+            {% if get_params %}
             <a href="?{{get_params}}&page={{ items.next_page_number }}">下一頁</a>
             {% else %}
             <a href="?page={{ items.next_page_number }}">下一頁</a>
