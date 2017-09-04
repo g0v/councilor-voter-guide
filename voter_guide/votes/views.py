@@ -37,7 +37,8 @@ def votes(request, county):
         votes = Votes.objects.filter(qs).prefetch_related('standpoints').order_by('-date', 'vote_seq')
     votes = paginate(request, votes)
     standpoints = Standpoints.objects.filter(county=county, vote__isnull=False).values('title').annotate(pro_sum=Sum('pro')).order_by('-pro_sum').distinct()
-    return render(request,'votes/votes.html', {'county': county, 'votes': votes, 'hot_keyword': keyword_list('votes', county)[:5], 'hot_standpoints': standpoints[:5]})
+    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword'] if request.GET.get(x)])
+    return render(request,'votes/votes.html', {'county': county, 'votes': votes, 'hot_keyword': keyword_list('votes', county)[:5], 'hot_standpoints': standpoints[:5], 'get_params': get_params})
 
 def vote(request, vote_id):
     vote = get_object_or_404(Votes.objects.select_related('sitting'), uid=vote_id)

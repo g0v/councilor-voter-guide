@@ -139,7 +139,8 @@ def biller(request, councilor_id, election_year):
     else:
         bills = Bills.objects.filter(query).order_by('-uid')
     bills = paginate(request, bills)
-    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills', councilor.county), 'county': councilor.county, 'bills': bills, 'councilor': councilor, 'primaryonly': primaryonly, 'category':None, 'index':'councilor'})
+    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'primaryonly'] if request.GET.get(x)])
+    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills', councilor.county), 'county': councilor.county, 'bills': bills, 'councilor': councilor, 'primaryonly': primaryonly, 'category':None, 'index':'councilor', 'get_params': get_params})
 
 def biller_sp(request, councilor_id, election_year):
     councilor = get_object_or_404(CouncilorsDetail.objects, election_year=election_year, councilor_id=councilor_id)
@@ -204,7 +205,8 @@ def voter(request, councilor_id, election_year):
         votes = Councilors_Votes.objects.select_related().filter(query).order_by('-vote__date')
     vote_addup = votes.values('decision').annotate(totalNum=Count('vote', distinct=True)).order_by('-decision')
     votes = paginate(request, votes)
-    return render(request,'councilors/voter.html', {'keyword_hot': keyword_list('votes', councilor.county), 'county': councilor.county, 'councilor': councilor, 'index': index, 'votes': votes, 'vote_addup': vote_addup, 'notvote': notvote})
+    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'decision'] if request.GET.get(x)])
+    return render(request,'councilors/voter.html', {'keyword_hot': keyword_list('votes', councilor.county), 'county': councilor.county, 'councilor': councilor, 'index': index, 'votes': votes, 'vote_addup': vote_addup, 'notvote': notvote, 'get_params': get_params})
 
 def voter_sp(request, councilor_id, election_year):
     councilor = get_object_or_404(CouncilorsDetail.objects, election_year=election_year, councilor_id=councilor_id)
