@@ -10,7 +10,7 @@
 {% block right %}
     <div class="container-fluid">
         <br>
-        {% include "bills/billsearch.html" with placeholder_text="例：都市更新 房屋稅" %}
+        {% include "common/constituency_search.html" with placeholder_text="例：都市更新 房屋稅" %}
         {% if hot_standpoints %}
             <h4>熱門標籤：
             {% for standpoint in hot_standpoints %}
@@ -47,6 +47,7 @@
 {% endblock right %}
 
 {% block script %}
+    {% include "common/county_district_js.html" %}
     {% include "common/keyword_auto_complete.html" %}
     <script>
         $(document).ready( function() {

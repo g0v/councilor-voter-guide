@@ -15,7 +15,7 @@
         <h2>{{county}} - 議員配合款</h2>
     </div>
     <div class="text-center">
-        {% include "common/search_keyword_form.html" with placeholder_text="例:按摩椅 協會 國小" %}
+        {% include "common/constituency_search.html" %}
     </div>
     <div class="well well-sm">
         {{ suggestions.paginator.count }}個搜尋結果，這是第{{ suggestions.number }}頁（共{{ suggestions.paginator.num_pages }}頁）
@@ -27,6 +27,7 @@
 {% endblock %}
 
 {% block script %}
+    {% include "common/county_district_js.html" %}
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     <script src="{% static "js/stacktable.min.js" %}" type="text/javascript"></script>
     <script>

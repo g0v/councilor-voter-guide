@@ -1,0 +1,36 @@
+<script type="text/javascript">
+var src = [];
+var county = '{{county}}';
+(function (app) {
+  window.app = new function () {
+      var _this = this;
+      $.ajax({
+        url: '/static/json/county_district.json',
+        async: false
+      })
+      .done(function (data) {
+        src = data;
+      });
+      this.drawOptions = function (key, srcObj) {
+        var ctrl = $('select[name='+key+']');
+        var filtered = [];
+        jQuery.each(srcObj, function (index, value) {
+          if (filtered.indexOf(value[key]) == -1 && value['county'] == county)
+            filtered.push(value);
+        });
+        if (filtered.length) {
+          jQuery.each(filtered, function (index, value) {
+            ctrl.append($('<option value="{val}"{attr}>{label}</option>'.replace('{val}', String(value['constituency'])).replace('{label}', '（第' + ("00" + value['constituency']).substr(-2,2) + '選區）' + value['district']).replace('{attr}', (value['county'] == county && typeof '{{ request.GET.constituency }}' != "" && value['constituency'] == '{{ request.GET.constituency }}') ? ' selected' : '')));
+          });
+        }
+      };
+      this.initSelect = function () {
+        var ary = ['constituency'];
+        jQuery.each(ary, function (index, value) {
+          _this.drawOptions(value, src);
+        });
+      };
+  };
+  window.app.initSelect();
+})(window.app || (window.app = {}));
+</script>
