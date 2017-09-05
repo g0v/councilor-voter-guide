@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.db import connections
 from django.db.models import Count, Sum, F, Q, Case, When, Value, IntegerField
+from django.db.models.functions import Coalesce
 
 from .models import CouncilorsDetail, Attendance, PoliticalContributions
 from votes.models import Votes, Councilors_Votes
@@ -117,23 +118,33 @@ def suggestor(request, councilor_id, election_year):
     q = dict(zip(['election_year', 'councilors__councilor_id'], [election_year, councilor.id]))
     suggestions_base = Suggestions.objects.filter(**q)
     total_expense = suggestions_base.aggregate(sum=Sum('approved_expense_avg'))
-    bid_bys = suggestions_base.values('bid_by')\
-                              .annotate(sum=Sum('approved_expense'), count=Count('uid'))\
-                              .order_by('-sum')
+    piles = []
+    for pile, re_token in [(u'協會', u'協會'), (u'宗親會', u'宗親會'), (u'辦公室', u'辦公(室|處)'), (u'廟', u'(廟|宮)'), (u'警察局', u'(警察局|分局)'), (u'消防局', u'(消防局|消防隊|分隊|中隊)'), (u'國中、國小', u'(國中|國小)')]:
+        piles.append(
+            {
+                'label': pile,
+                'data': suggestions_base.filter(Q(suggestion__iregex=re_token) | Q(position__iregex=re_token) | Q(brought_by__iregex=re_token) )\
+                                        .aggregate(
+                                            sum=Coalesce(Sum('approved_expense_avg'), Value(0)),
+                                            count=Coalesce(Count('uid'), Value(0))
+                                        )
+            }
+        )
+    piles = sorted(piles, key=lambda x: x['data']['sum'], reverse=True)
     years = suggestions_base.values('suggest_year')\
                             .annotate(
-                                sum=Sum('approved_expense'),
+                                sum=Sum('approved_expense_avg'),
                                 count=Count('uid'),
                                 small_purchase=Sum(
                                     Case(
-                                        When(approved_expense__lte=100000, then=1),
+                                        When(approved_expense__lte=10**5, then=1),
                                         output_field=IntegerField(),
                                         default=Value(0)
                                     )
                                 ),
                             )\
                             .order_by('suggest_year')
-    return render(request, 'councilors/suggestor.html', {'county': councilor.county, 'bid_bys': bid_bys, 'years': years, 'councilor': councilor, 'total_expense': total_expense})
+    return render(request, 'councilors/suggestor.html', {'county': councilor.county, 'years': years, 'piles': piles, 'councilor': councilor, 'total_expense': total_expense})
 
 def biller(request, councilor_id, election_year):
     try:

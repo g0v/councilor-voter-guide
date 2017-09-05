@@ -8,83 +8,57 @@
 {% endblock title %}
 
 {% block person_detail %}
-    <p>提案共通過：<font class="price">{{total_expense.sum}}</font>
+    <p>本任期共通過：<font class="price">{{total_expense.sum}}</font>
+        <a class="btn btn-default btn-lg" href="{% url 'suggestions:lists' county=county %}?keyword={{councilor.name}}"><i class="fa fa-list"> 一筆一筆看</i></a>
         <span class="pull-right">
             資料來源<a href="{{councilor.county|suggestions_offical_link}}" target="_blank"> {{councilor.county}}主計處</a>
         </span>
-        <a class="btn btn-default btn-lg" href="{% url 'suggestions:lists' county=county %}?keyword={{councilor.name}}"><i class="fa fa-list"> 一筆一筆看</i></a>
     </p>
-    <div>
     <div class="row">
         <div class="col-sm-6">
-        <table class="table table-bordered table-condensed table-striped sortable" >
-            <thead>
-                <tr style="background-color: #E1D0D0";>
-                    <th>年度</th>
-                    <th>小額採購<a rel="tooltip" title="十萬以下之政府採購，可逕洽廠商無須公開招標，詳可見「中央機關未達公告金額採購招標辦法」第五條"><i class="fa fa-question-circle"></i></a>案數</th>
-                    <th>案數</th>
-                    <th>通過預算</th>
-                    <th>每筆平均</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for obj in years %}
-                <tr>
-                    <td style="text-align:center; vertical-align:middle;">{{obj.suggest_year}}</td>
-                    <td style="text-align:right; vertical-align:middle;">{{obj.small_purchase}}</td>
-                    <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
-                    <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
-                    <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum|divide:obj.count}}</p></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+            <table class="table table-bordered table-condensed table-striped sortable" >
+                <thead>
+                    <tr style="background-color: #E1D0D0";>
+                        <th>年度</th>
+                        <th>小額採購<a rel="tooltip" title="十萬以下之政府採購，可逕洽廠商無須公開招標，詳可見「中央機關未達公告金額採購招標辦法」第五條"><i class="fa fa-question-circle"></i></a>案數</th>
+                        <th>案數</th>
+                        <th>通過預算</th>
+                        <th>每筆平均</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in years %}
+                    <tr>
+                        <td style="text-align:center; vertical-align:middle;">{{obj.suggest_year}}</td>
+                        <td style="text-align:right; vertical-align:middle;">{{obj.small_purchase}}</td>
+                        <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
+                        <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
+                        <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum|divide:obj.count}}</p></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
         <div class="col-sm-6">
-        <table class="table table-bordered table-condensed table-striped sortable" >
-            <thead>
-                <tr style="background-color: #CCFF99;">
-                    <th style="width: 40%">得標廠商</th>
-                    <th style="width: 10%">得標次數</th>
-                    <th style="width: 30%">通過預算</th>
-                    <th style="width: 20%">每筆平均預算</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for obj in bid_bys %}
-                    <tr>
-                        <td style="vertical-align:middle;">
-                            {% for company in obj.bid_by %}
-                                {% if company %}
-                                <p>
-                                    <a href="{% url 'suggestions:bid_by' bid_by=company|urlencode %}">{{company}}</a>
-                                </p>
-                                {% endif %}
-                            {% empty %}
-                                【來源檔案無資料】
-                            {% endfor %}
-                        </td>
-                        <td style="text-align:right; vertical-align:middle;">
-                            {{obj.count}}
-                        </td>
-                        <td style="text-align:right; vertical-align:middle;">
-                            {% if obj.sum == None %}
-                                【來源檔案無資料】
-                            {% else %}
-                                <p class="price">{{obj.sum}}</p>
-                            {% endif %}
-                        </td>
-                        <td style="text-align:right; vertical-align:middle;">
-                            {% if obj.sum != None %}
-                                <p class="price">{{obj.sum|divide:obj.count}}</p>
-                            {% endif %}
-                        </td>
+            <table class="table table-bordered table-condensed table-striped sortable" >
+                <thead>
+                    <tr style="background-color: #E1D0D0";>
+                        <th>地方</th>
+                        <th>筆數</th>
+                        <th>通過預算</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for obj in piles %}
+                    <tr>
+                        <td style="text-align:center; vertical-align:middle;">{{obj.label}}</td>
+                        <td style="text-align:right; vertical-align:middle;">{{obj.data.count}}</td>
+                        <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.data.sum}}</p></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-    </div>
     </div>
 {% endblock person_detail %}
 
