@@ -1,0 +1,7 @@
+{% extends "common/search_keyword_form.html" %}
+
+{% block extra_after_submit %}
+        <div class="btn-group input-group-btn">
+            {% include "common/counties_button.html" with namespace='suggestions:county_overview' id=True %}
+        </div>
+{% endblock extra_after_submit %}
