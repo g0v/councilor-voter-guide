@@ -2,72 +2,50 @@ councilor-voter-guide
 ================
 
 [議員投票指南](http://councils.g0v.tw/)        
-[Hackpad 開發討論區](https://g0v.hackpad.com/KjfdRZ08FZ3)       
-[Hackpad 意見回饋](https://g0v.hackpad.com/--5PNuk4XGGrj)
+[文件](http://beta.hackfoldr.org/voter_guide_tw)       
 
-## Project Layout Introduce
+## Project Layout
 
 -   crawler  
-    各縣市議會的crawler，各crawler名稱與功用如下：  
-    > councilors: 現任議員資料  
-    > councilors_terms: 歷屆議員資料（不一定包含現任的資料）  
-    > bills: 議案資料  
-    > meeting_minutes: 議事錄資料（開會出缺席、表決）
+    各縣市議會的crawler：[doc](https://github.com/g0v/councilor-voter-guide/tree/master/crawler)
     
 -   data  
     由上述crawler產出的各縣市原始JSON
-    > util/prettyjson.py: 產出indent好讀版的JSON, [README](https://github.com/g0v/councilor-voter-guide/tree/master/utils)  
-    > pretty_format: 放置上述產出的各縣市好讀版JSON  
     > hashlist_meeting_minutes-v141001.json: links map, 存放由meeting_minutes cralwer抓下的binaries [detail](https://github.com/g0v/councilor-voter-guide/tree/master/utils/bin-hash)  
     > candidates_2014.xlsx: 中選會公告的議員候選人  
+    > cand-moi-direct-control-2018.json: [直轄市議員](http://cand.moi.gov.tw)  
+    > cand-moi-county-control-2018.json: [縣市議員](http://cand.moi.gov.tw)  
+    > T1.csv: [2014中選會釋出資料](https://github.com/ronnywang/vote2014/blob/master/webdata/data/T1.csv)  
+    > [議員選後消失去哪了](https://docs.google.com/spreadsheets/d/1ohhFgdHrxFZPcM7J-RqUskgZX2zqpYoxufNnX8VL4Os)  
 
 -   parser  
-    將上述data下的JSON標準化後放入database（如果你只是需要完整的database，可直接跳至[Restore DB](https://github.com/g0v/councilor-voter-guide#restore-data-into-database)） 
-    > councilors/councilors.py: 處理現任和歷屆議員資料  
-    > councilors/candidates.py: 處理候選人資料  
-    > bills/bills.py: 處理議案資料   
-    > votes/: 出缺席、表決資料，各縣市、各屆分開處理  
+    將上述data下的JSON標準化後放入database：[doc](https://github.com/g0v/councilor-voter-guide/tree/master/parser)
 
 -   voter\_guide  
     Web application using Django, [Environment Setup](https://github.com/g0v/councilor-voter-guide#for-website-pythondjango)
       
-In Ubuntu 12.04 LTS
+In Ubuntu 14.04 LTS
 =================
-## For Crawler (Scrapy 0.24.4)
+## Website (Python/Django)
 
-[Scrapy offcial install doc](http://doc.scrapy.org/en/latest/intro/install.html)
-```
-sudo apt-get install libxml2-dev libxslt1-dev python-dev libffi-dev python-pip
-sudo pip install lxml
-sudo pip install Scrapy
-sudo pip install requests
-```
-After install scrapy, you can run commands to test, below using tcc(臺北市議會) for example:
-```
-cd crawler/tcc
-scrapy crawl bills
-scrapy crawl councilors
-scrapy crawl councilors_terms
-scrapy crawl meeting
-```
-If you want to output json file:
-```
-cd crawler/tcc
-scrapy crawl bills -o bills.json -t json
-scrapy crawl councilors -o bills.json -t json
-scrapy crawl councilors_terms -o bills.json -t json
-scrapy crawl meeting -o bills.json -t json
-```
-
-## For Website (Python/Django)
-
-install basic tools
+0.1 install basic tools
 ```
 sudo apt-get update
 sudo apt-get upgrade
 sudo reboot
 sudo apt-get install git python-pip python-dev python-setuptools postgresql libpq-dev
 sudo easy_install virtualenv
+```
+
+0.2 set a password in your database(If you already have one, just skip this step)
+
+
+```
+sudo -u <username> psql -c "ALTER USER <username> with encrypted PASSWORD 'put_your_password_here';"
+```
+e.g.
+```
+sudo -u postgres psql -c "ALTER USER postgres with encrypted PASSWORD 'my_password';"
 ```
 
 ## Clone source code from GitHub to local
@@ -82,32 +60,17 @@ cd councilor-voter-guide/voter_guide/
 (if you don' mind packages installed into your local environment, just `pip install -r requirements.txt`)
 ```
 virtualenv --no-site-packages venv      
-source venv/bin/activate        
+. venv/bin/activate        
 pip install -r requirements.txt     
 ```
 
-## Load Data to your database
+## Create db & restore data
 
-We use SQLite as the default database, if you want to use another database, please set your database engine in local_settings.py.
-
-## Create Table & restore data
-
-Create Table
-
-``` 
-python manage.py syncdb --noinput 
+We use Postgres 9.5, please set your database config in voter\_guide/local\_settings.py.        
+Please create a database(e.g. voter\_guide), below will use voter\_guide for example
 ```
-
-This step may take some time, be patient.
-
-```
-python manage.py loaddata db.json
-```
-
-## Dumpdata 
-
-```
-python manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
+createdb -h localhost -U <username> voter_guide
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U <username> -d voter_guide local_db.dump
 ```
 
 ## runserver
@@ -116,6 +79,11 @@ python manage.py runserver
 ```
 Now you should able to see the web page at http://localhost:8000        
 
+## Dumpdata(optional) 
+
+```
+python manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
+```
 
 ## Mac Related Instructions
 
@@ -126,8 +94,6 @@ There are some python package written in C or C++ such as lxml. so a compiler is
 ```bash
 xcode-select --install
 ```
-
-
 
 ### Prepare PostgreSQL
 
@@ -221,9 +187,6 @@ in a running docker instance which linked with g0v (Scarpy Server), you can use 
 ```
 cd /tmp/g0v-cvg/crawler/bin && python crawl_tcc_bills.py
 ```
-
-
-
 
 CC0 1.0 Universal
 =================

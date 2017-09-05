@@ -1,4 +1,6 @@
 About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPath_1.html)       
+[Scrapy offcial install doc](http://doc.scrapy.org/en/latest/intro/install.html)
+`pip install -r requirements.txt`     
 
 ## crawler名稱和功能
 
@@ -6,6 +8,7 @@ About xpath, recommend this [xpath tutorial](http://www.zvon.org/comp/r/tut-XPat
 -	councilors\_terms: 歷屆議員資料（不一定包含現任的資料）
 -	bills: 議案資料
 -	meeting\_minutes: 議事錄資料（開會出缺席、表決）
+-   suggestions: 議員配合款
 
 ## 各縣市
 以下缺漏，可能也是暫時找不到資料來源        

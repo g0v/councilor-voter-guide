@@ -9,8 +9,9 @@ parser
 |             | political\_contribution.py | 議員的政治獻金                                   |
 |             | candidates.py              | 候選人，如當過議員會作連結，所以需先有議員資料   |
 | bills       | bills.py                   | 議案，如為議員提出的會作連結，所以需先有議員資料 |
-| suggestions | suggestions.py             | 工程建議款，會與議員作連結，所以需先有議員資料   |
-| votes       | votes.py                   | 出缺席和表決，會與議員作連結，所以需先有議員資料 |
+| suggestions | suggestions.py             | 議員配合款，會與議員作連結，所以需先有議員資料   |
+| votes       | \*/votes.py                | 出缺席和表決，會與議員作連結，所以需先有議員資料 |
+|             | file2txt.py                | 會議記錄轉為純文字                               |
 
 ## Restore data into database       
 Please new a database(eg. voter\_guide), below will use voter\_guide for example
