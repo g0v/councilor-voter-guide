@@ -56,28 +56,30 @@
                         <tr style="background-color: #E1D0D0";>
                             <th>縣市</th>
                             <th>年度</th>
-                            <th>案數</th>
                             <th>小額採購<a rel="tooltip" title="十萬以下之政府採購，可逕洽廠商無須公開招標，詳可見「中央機關未達公告金額採購招標辦法」第五條"><i class="fa fa-question-circle"></i></a>案數</th>
+                            <th>案數</th>
                             <th>通過預算</th>
                             <th>每筆平均</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for obj in county.list %}
-                        <tr style="background-color: {% cycle 'gainsboro' 'white' %};">
+                        <tr>
                             <td style="text-align:center; vertical-align:middle;">{{obj.county}}</td>
                             <td style="text-align:center; vertical-align:middle;">{{obj.suggest_year}}</td>
-                            <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
                             <td style="text-align:right; vertical-align:middle;">{{obj.small_purchase}}</td>
+                            <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
                             <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
                             <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum|divide:obj.count}}</p></td>
                         </tr>
-                    {% endfor %}
+                        {% endfor %}
                     </tbody>
                 </table>
-                <p><a href="{% url 'suggestions:each_year' county=county.grouper %}" rel="tooltip" title="錢是怎麼分配給每位議員的"><i class="fa fa-handshake-o"> 錢是怎麼分配給每位議員的？</i></a></p>
-                <p><a href="{% url 'suggestions:positions' county=county.grouper order_by='sum' option='all' %}" rel="tooltip" title="錢是怎麼分配在各地的"><i class="fa fa-map-signs"> 錢是怎麼分配在各地的？</i></a></p>
-                <p><a href="{% url 'suggestions:lists' county=county.grouper %}" rel="tooltip" title="一筆一筆看"><i class="fa fa-list"> 一筆一筆看</i></a></p>
+                <div class="list-group">
+                    <a class="list-group-item" href="{% url 'suggestions:each_year' county=county.grouper %}"><i class="fa fa-handshake-o fa-fw"></i> 錢是怎麼分配給每位議員的？</a>
+                    <a class="list-group-item" href="{% url 'suggestions:positions' county=county.grouper order_by='sum' option='all' %}"><i class="fa fa-map-signs fa-fw"></i> 錢是怎麼分配在各地的？</a>
+                    <a class="list-group-item" href="{% url 'suggestions:lists' county=county.grouper %}"><i class="fa fa-list fa-fw"></i> 一筆一筆看</a>
+                </div>
             </div>
         {% endfor %}
     </div>
