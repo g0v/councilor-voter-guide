@@ -3,7 +3,7 @@ import operator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.db import connections
-from django.db.models import Count, Sum, Q, Max
+from django.db.models import Count, Sum, F, Q, Case, When, Value, IntegerField
 
 from .models import CouncilorsDetail, Attendance, PoliticalContributions
 from votes.models import Votes, Councilors_Votes
@@ -117,10 +117,23 @@ def suggestor(request, councilor_id, election_year):
     q = dict(zip(['election_year', 'councilors__councilor_id'], [election_year, councilor.id]))
     suggestions_base = Suggestions.objects.filter(**q)
     total_expense = suggestions_base.aggregate(sum=Sum('approved_expense_avg'))
-    suggestions = suggestions_base.values('bid_by')\
-                                    .annotate(sum=Sum('approved_expense'), count=Count('uid'))\
-                                    .order_by('-sum')
-    return render(request, 'councilors/suggestor.html', {'county': councilor.county, 'suggestions': list(suggestions), 'councilor': councilor, 'total_expense': total_expense})
+    bid_bys = suggestions_base.values('bid_by')\
+                              .annotate(sum=Sum('approved_expense'), count=Count('uid'))\
+                              .order_by('-sum')
+    years = suggestions_base.values('suggest_year')\
+                            .annotate(
+                                sum=Sum('approved_expense'),
+                                count=Count('uid'),
+                                small_purchase=Sum(
+                                    Case(
+                                        When(approved_expense__lte=100000, then=1),
+                                        output_field=IntegerField(),
+                                        default=Value(0)
+                                    )
+                                ),
+                            )\
+                            .order_by('suggest_year')
+    return render(request, 'councilors/suggestor.html', {'county': councilor.county, 'bid_bys': bid_bys, 'years': years, 'councilor': councilor, 'total_expense': total_expense})
 
 def biller(request, councilor_id, election_year):
     try:
