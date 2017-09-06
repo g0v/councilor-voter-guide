@@ -54,14 +54,14 @@ def lists(request, county):
     if constituency and constituency != 'all':
         suggestion_ids = Councilors_Suggestions.objects.filter(councilor_id__in=CouncilorsDetail.objects.filter(county=county).filter(constituency=constituency).values_list('id', flat=True)).values_list('suggestion_id', flat=True).distinct()
         qs = qs & Q(uid__in=suggestion_ids)
-    suggestions = SearchQuerySet().filter(qs).models(Suggestions).order_by('-suggest_year')
+    suggestions = SearchQuerySet().filter(qs).models(Suggestions).order_by('-approved_expense')
     try:
         page_size = int(request.GET.get('page_size', 10))
         page_size = 10 if page_size > 51 else page_size
     except:
         page_size = 10
     suggestions = paginate(request, suggestions, page_size)
-    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'constituency'] if request.GET.get(x)])
+    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'or', 'constituency'] if request.GET.get(x)])
     return render(request,'suggestions/lists.html', {'suggestions': suggestions, 'county': county, 'keyword': request.GET.get('keyword', ''), 'get_params': get_params})
 
 def detail(request, uid):
