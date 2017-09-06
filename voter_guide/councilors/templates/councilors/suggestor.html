@@ -51,7 +51,9 @@
                 <tbody>
                     {% for obj in piles %}
                     <tr>
-                        <td style="text-align:center; vertical-align:middle;">{{obj.label}}</td>
+                        <td style="text-align:center; vertical-align:middle;">
+                            <a href="{% url "suggestions:lists" county=county %}?keyword={{councilor.name}}&or={{obj.tokens}}">{{obj.label}}</a>
+                        </td>
                         <td style="text-align:right; vertical-align:middle;">{{obj.data.count}}</td>
                         <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.data.sum}}</p></td>
                     </tr>
