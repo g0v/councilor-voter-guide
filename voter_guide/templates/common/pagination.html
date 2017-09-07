@@ -17,10 +17,14 @@
     <span class="step-links">
         {% if items.has_previous %}
             {% if get_params %}
-            <a href="?{{get_params}}&page={{ items.previous_page_number }}">上一頁</a>
+            <a href="?{{get_params}}&page={{ items.previous_page_number }}
             {% else %}
-            <a href="?page={{ items.previous_page_number }}">上一頁</a>
+            <a href="?page={{ items.previous_page_number }}
             {% endif %}
+            {% if request.GET.page_size %}
+            &page_size={{request.GET.page_size}}
+            {% endif %}
+            ">上一頁</a>
         {% endif %}
 
         <span class="current">
@@ -29,10 +33,14 @@
 
         {% if items.has_next %}
             {% if get_params %}
-            <a href="?{{get_params}}&page={{ items.next_page_number }}">下一頁</a>
+            <a href="?{{get_params}}&page={{ items.next_page_number }}
             {% else %}
-            <a href="?page={{ items.next_page_number }}">下一頁</a>
+            <a href="?page={{ items.next_page_number }}
             {% endif %}
+            {% if request.GET.page_size %}
+            &page_size={{request.GET.page_size}}
+            {% endif %}
+            ">下一頁</a>
         {% endif %}
     </span>
 </div>

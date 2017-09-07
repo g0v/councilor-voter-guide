@@ -75,7 +75,7 @@ def lists(request, county):
     except:
         page_size = 10
     suggestions = paginate(request, suggestions, page_size)
-    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'or', 'constituency', 'page_size'] if request.GET.get(x)])
+    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'or', 'constituency'] if request.GET.get(x)])
     return render(request,'suggestions/lists.html', {'suggestions': suggestions, 'county': county, 'keyword': request.GET.get('keyword', ''), 'get_params': get_params})
 
 def detail(request, uid):
