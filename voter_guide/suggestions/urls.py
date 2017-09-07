@@ -4,6 +4,7 @@ from suggestions import views
 
 urlpatterns = [
     url(r'^$', views.county_overview, name='county_overview'),
+    url(r'^associations/$', views.associations, name='associations'),
     url(r'^positions/(?P<county>\S+)/(?P<order_by>(sum|count))/(?P<option>\w+)/$', views.positions, name='positions'),
     url(r'^lists/(?P<county>\S+)/$', views.lists, name='lists'),
     url(r'^detail/(?P<uid>\S+)/$', views.detail, name='detail'),

@@ -32,12 +32,12 @@
     {% include "common/suggestions.html" with include_councilors=True %}
     {% include "common/pagination.html" with items=suggestions %}
     <div class="row">
-        <hr>
         {% regroup counties by county as county_list %}
         {% for county in county_list %}
             {% with county=county.grouper %}
             <div class="col-sm-12">
-                <a id="{{county}}" href="#{{county}}"><i class="fa fa-link"></i></a>
+                <hr>
+                <a id="{{county}}" href="#{{county}}" class="anchor"><i class="fa fa-link"></i></a>
             </div>
             <div id="years_bar_{{county}}" class="col-sm-6" style="margin-left: 0px;" align="center"></div>
             <div class="pull-right">
@@ -100,6 +100,13 @@
                 var number = $(ele).text()
                 zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 1});
                 $(ele).replaceWith(zh_number)
+            });
+            $('.panel:nth-of-type(1) ~ .panel').hide();
+            $('.association_btn').on('click', function(){
+                $('.association_btn i').removeClass('fa-envelope-open-o').addClass('fa-envelope-o');
+                $(this).children('i').removeClass('fa-envelope-o').addClass('fa-envelope-open-o');
+                $('.panel').hide();
+                $('#'+$(this).attr('id')+'_detail').show();
             });
         });
     </script>

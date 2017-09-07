@@ -119,7 +119,7 @@ def suggestor(request, councilor_id, election_year):
     suggestions_base = Suggestions.objects.filter(**q)
     total_expense = suggestions_base.aggregate(sum=Sum('approved_expense_avg'))
     piles = []
-    for pile, tokens in [(u'協會', [u'協會', u'協進會', u'促進會', u'研習會', u'婦聯會', u'婦女會', u'體育會', u'同心會', u'農會', u'早起會', u'健身會', u'宗親會', u'功德會', u'商業會', u'長青會', u'民眾服務社', u'聯盟']), (u'辦公室', [u'辦公室', u'辦公處']), (u'廟', [u'廟', u'宮']), (u'警察局', [u'警察局', u'分局']), (u'消防局', [u'消防局', u'消防隊', u'分隊', u'中隊']), (u'國中、國小', [u'國中', u'國小'])]:
+    for pile, tokens in [(u'協會', [u'協會', u'學會', u'商會', u'公會', u'協進會', u'促進會', u'研習會', u'婦聯會', u'婦女會', u'體育會', u'同心會', u'農會', u'早起會', u'健身會', u'宗親會', u'功德會', u'商業會', u'長青會', u'民眾服務社', u'聯盟']), (u'辦公室', [u'辦公室', u'辦公處']), (u'廟', [u'廟', u'宮']), (u'警察局', [u'警察局', u'分局']), (u'消防局', [u'消防局', u'消防隊', u'分隊', u'中隊']), (u'國中、國小', [u'國中', u'國小'])]:
         re_token = u'(%s)' % u'|'.join(tokens)
         piles.append(
             {

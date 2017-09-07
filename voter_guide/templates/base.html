@@ -59,14 +59,20 @@
                         <li id="councilors"><a href="{% url 'councilors:councilors' county=county %}">找議員</a></li>
                         <li id="bills"><a href="{% url 'bills:bills' county=county %}" >找提案</a></li>
                         <li id="votes"><a href="{% url 'votes:votes' county=county %}" >找表決</a></li>
-                        <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >議員配合款</a></li>
+                        <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}#{{county}}">議員配合款</a></li>
                     {% else %}
                         <li id="intents"><a href="{% url 'candidates:intents' election_year='2018' %}" >2018 候選人</a></li>
                         <li id="candidates"><a href="{% url 'select_county' category='candidates' %}">2014 候選人</a></li>
                         <li id="councilors"><a href="{% url 'select_county' category='councilors' %}">找議員</a></li>
                         <li id="bills"><a href="{% url 'select_county' category='bills' %}">找提案</a></li>
                         <li id="votes"><a href="{% url 'select_county' category='votes' %}">找表決</a></li>
-                        <li id="suggestions"><a href="{% url 'suggestions:county_overview' %}" >議員配合款</a></li>
+                        <li id="suggestions" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">議員配合款 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'suggestions:county_overview' %}">各縣市總覽</a></li>
+                                <li><a href="{% url 'suggestions:associations' %}">議員和協會的關係</a></li>
+                            </ul>
+                        </li>
                     {% endif %}
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

@@ -4,6 +4,7 @@ import urllib
 import operator
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
+from django.db import connections
 from django.db.models import Count, Sum, F, Q, Case, When, Value, IntegerField
 from django.db.models.functions import Coalesce
 from django.conf import settings
@@ -19,6 +20,27 @@ from councilors.models import CouncilorsDetail
 from search.views import keyword_list, keyword_been_searched
 from commontag.views import paginate
 
+
+def one_association_json(token):
+    c = connections['default'].cursor()
+    c.execute('''
+        SELECT json_build_object('label', %s, 'sum', SUM(_.sum), 'count', SUM(_.count), 'detail', json_agg(_))
+        FROM (
+            SELECT county, COALESCE(SUM(approved_expense), 0) as sum, COALESCE(COUNT(*), 0) as count
+            FROM suggestions_suggestions
+            WHERE suggestion ~* %s OR position ~* %s OR brought_by ~* %s
+            GROUP BY county
+            ORDER BY sum DESC
+        ) _
+    ''', [token, token, token, token])
+    return c.fetchone()[0]
+
+def associations(request):
+    associations = []
+    for token in [u'社區發展協會', u'學會', u'商會', u'公會', u'協進會', u'促進會', u'研習會', u'婦聯會', u'婦女會', u'體育會', u'同心會', u'農會', u'早起會', u'健身會', u'宗親會', u'功德會', u'商業會', u'長青會', u'民眾服務社', u'聯盟']:
+        associations.append(one_association_json(token))
+    associations = sorted(associations, key=lambda x: x['sum'], reverse=True)
+    return render(request,'suggestions/associations.html', {'associations': associations})
 
 def county_overview(request):
     qs = Q(content=request.GET['keyword']) if request.GET.get('keyword') else Q()
@@ -45,21 +67,8 @@ def county_overview(request):
                             ),
                         )\
                         .order_by('county', 'suggest_year')
-    piles = []
-    for token in [u'社區發展協會', u'協進會', u'促進會', u'研習會', u'婦聯會', u'婦女會', u'體育會', u'同心會', u'農會', u'早起會', u'健身會', u'宗親會', u'功德會', u'商業會', u'長青會', u'民眾服務社', u'聯盟']:
-        piles.append(
-            {
-                'label': token,
-                'data': Suggestions.objects.filter(Q(suggestion__icontains=token) | Q(position__icontains=token) | Q(brought_by__icontains=token) )\
-                                           .aggregate(
-                                               sum=Coalesce(Sum('approved_expense_avg'), Value(0)),
-                                               count=Coalesce(Count('uid'), Value(0))
-                                           )
-            }
-        )
-    piles = sorted(piles, key=lambda x: x['data']['sum'], reverse=True)
     get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword'] if request.GET.get(x)])
-    return render(request,'suggestions/county_overview.html', {'suggestions': suggestions, 'counties': counties, 'piles': piles, 'keyword': request.GET.get('keyword', ''), 'get_params': get_params})
+    return render(request,'suggestions/county_overview.html', {'suggestions': suggestions, 'counties': counties, 'keyword': request.GET.get('keyword', ''), 'get_params': get_params})
 
 def lists(request, county):
     qs = Q(county=county, content=request.GET['keyword']) if request.GET.get('keyword') else Q(county=county)
