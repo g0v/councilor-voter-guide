@@ -3,7 +3,7 @@ import operator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.db import connections
-from django.db.models import Count, Sum, F, Q, Case, When, Value, IntegerField
+from django.db.models import Count, Sum, Max, F, Q, Case, When, Value, IntegerField
 from django.db.models.functions import Coalesce
 
 from .models import CouncilorsDetail, Attendance, PoliticalContributions
