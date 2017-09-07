@@ -101,13 +101,6 @@
                 zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 1});
                 $(ele).replaceWith(zh_number)
             });
-            $('.panel:nth-of-type(1) ~ .panel').hide();
-            $('.association_btn').on('click', function(){
-                $('.association_btn i').removeClass('fa-envelope-open-o').addClass('fa-envelope-o');
-                $(this).children('i').removeClass('fa-envelope-o').addClass('fa-envelope-open-o');
-                $('.panel').hide();
-                $('#'+$(this).attr('id')+'_detail').show();
-            });
         });
     </script>
 {% endblock script %}
