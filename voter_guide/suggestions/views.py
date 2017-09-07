@@ -5,6 +5,7 @@ import operator
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Count, Sum, F, Q, Case, When, Value, IntegerField
+from django.db.models.functions import Coalesce
 from django.conf import settings
 
 from haystack.query import SearchQuerySet
@@ -44,8 +45,21 @@ def county_overview(request):
                             ),
                         )\
                         .order_by('county', 'suggest_year')
+    piles = []
+    for token in [u'社區發展協會', u'協進會', u'促進會', u'研習會', u'婦聯會', u'婦女會', u'體育會', u'同心會', u'農會', u'早起會', u'健身會', u'宗親會', u'功德會', u'商業會', u'長青會', u'民眾服務社', u'聯盟']:
+        piles.append(
+            {
+                'label': token,
+                'data': Suggestions.objects.filter(Q(suggestion__icontains=token) | Q(position__icontains=token) | Q(brought_by__icontains=token) )\
+                                           .aggregate(
+                                               sum=Coalesce(Sum('approved_expense_avg'), Value(0)),
+                                               count=Coalesce(Count('uid'), Value(0))
+                                           )
+            }
+        )
+    piles = sorted(piles, key=lambda x: x['data']['sum'], reverse=True)
     get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword'] if request.GET.get(x)])
-    return render(request,'suggestions/county_overview.html', {'suggestions': suggestions, 'counties': counties, 'keyword': request.GET.get('keyword', ''), 'get_params': get_params})
+    return render(request,'suggestions/county_overview.html', {'suggestions': suggestions, 'counties': counties, 'piles': piles, 'keyword': request.GET.get('keyword', ''), 'get_params': get_params})
 
 def lists(request, county):
     qs = Q(county=county, content=request.GET['keyword']) if request.GET.get('keyword') else Q(county=county)
@@ -61,7 +75,7 @@ def lists(request, county):
     except:
         page_size = 10
     suggestions = paginate(request, suggestions, page_size)
-    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'or', 'constituency'] if request.GET.get(x)])
+    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'or', 'constituency', 'page_size'] if request.GET.get(x)])
     return render(request,'suggestions/lists.html', {'suggestions': suggestions, 'county': county, 'keyword': request.GET.get('keyword', ''), 'get_params': get_params})
 
 def detail(request, uid):
