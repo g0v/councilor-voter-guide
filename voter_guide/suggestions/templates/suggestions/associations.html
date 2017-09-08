@@ -3,25 +3,34 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南:議員配合款-總覽</title>
-    <meta property="og:title" content="議員投票指南:議員配合款-總覽"/>
-    <meta itemprop="name" content="議員投票指南:議員配合款-總覽"/>
-    <link href="{% static "css/stacktable.min.css" %}" rel="stylesheet">
+    <title>議員投票指南:議員配合款-議員和協會的關係</title>
+    <meta property="og:title" content="議員投票指南:議員配合款-議員和協會的關係"/>
+    <meta itemprop="name" content="議員投票指南:議員配合款-議員和協會的關係"/>
 {% endblock title %}
 
 {% block right %}
     <div>
         <div class="text-center">
-            <h2>議員配合款</h2>
-            <p>是什麼？
-                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ref_description"><font>詳細說明 <i class="fa fa-angle-down"></i></font></button>
-            </p>
+            <h2>議員配合款和協會的關係</h2>
+            <span>
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ref_description"><font>配合款是什麼？</font></button>
+            </span>
+            <span>
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ref_associations"><font>協會是什麼？</font></button>
+            </span>
         </div>
         <div id="ref_description" class="collapse">
             <div class="description">
-                <b>說明</b>：議員配合款是由地方政府制定，分配一定款項。如果地方有需求的話，可以找議員來陳情，「建議」政府撥款。<u>由議員提案，縣市政府核定預算，議員雖無決定權，但同時身兼建議預算、審查預算的角色。</u>「議員建議款」、「基層建設配合款」、「議員所提地方建設建議事項」指的都是議員配合款，各縣市處理狀況不一。<br>
+                議員配合款是由地方政府制定，分配一定款項。如果地方有需求的話，可以找議員來陳情，「建議」政府撥款。<u>由議員提案，縣市政府核定預算，議員雖無決定權，但同時身兼建議預算、審查預算的角色。</u>「議員建議款」、「基層建設配合款」、「議員所提地方建設建議事項」指的都是議員配合款，各縣市處理狀況不一。
             </div>
         </div>
+        <div id="ref_associations" class="collapse">
+            <div class="description">
+                協會本為促進在地民眾參與社區發展，但也常淪為選舉動員的工具。<br>
+其中又以「社區發展協會」最廣泛，至2016年，全台共有6881個社區發展協會，平均每一鄉鎮市區就有18.7個。
+            </div>
+        </div>
+        <br>
     </div>
     <div class="row">
         <div class="col-sm-6">
@@ -73,7 +82,7 @@
                         {% for obj in association.detail %}
                         <tr>
                             <td style="text-align:center; vertical-align:middle;">
-                                <a href="{% url "suggestions:county_overview" %}">{{obj.county}}</a>
+                                <a href="{% url "suggestions:lists" county=obj.county %}?keyword={{association.label}}">{{obj.county}}</a>
                             </td>
                             <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
                             <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
@@ -90,7 +99,6 @@
 
 {% block script %}
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
-    <script src="{% static "js/stacktable.min.js" %}" type="text/javascript"></script>
     <script>
         $(document).ready( function() {
             $("[rel='tooltip']").tooltip();
