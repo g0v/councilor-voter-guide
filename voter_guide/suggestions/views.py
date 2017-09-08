@@ -72,7 +72,7 @@ def county_overview(request):
 
 def lists(request, county):
     qs = Q(county=county, content=request.GET['keyword']) if request.GET.get('keyword') else Q(county=county)
-    qs = qs & reduce(operator.or_, (Q(content=x) for x in request.GET.get('or').split(','))) if request.GET.get('or') else qs
+    qs = qs & reduce(operator.or_, (Q(content=x) for x in request.GET.get('or').split('|'))) if request.GET.get('or') else qs
     constituency = request.GET.get('constituency')
     if constituency and constituency != 'all':
         suggestion_ids = Councilors_Suggestions.objects.filter(councilor_id__in=CouncilorsDetail.objects.filter(county=county).filter(constituency=constituency).values_list('id', flat=True)).values_list('suggestion_id', flat=True).distinct()
