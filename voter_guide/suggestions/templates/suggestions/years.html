@@ -16,6 +16,7 @@
     <div class="row">
         {% regroup years by suggestion__suggest_year as year_list %}
             {% for year in year_list %}
+                <a class="anchor" id="{{year.grouper}}"></a>
                 <div id="year_bar_{{year.grouper}}" class="col-sm-4" style="margin-left: 0px;" align="center"></div>
         {% empty %}
         <p class="alert alert-error">{{county}}沒有公布議員姓名</p>

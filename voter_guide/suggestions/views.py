@@ -75,7 +75,7 @@ def lists(request, county):
     qs = qs & reduce(operator.or_, (Q(content=x) for x in request.GET.get('or').split('|'))) if request.GET.get('or') else qs
     constituency = request.GET.get('constituency')
     if constituency and constituency != 'all':
-        suggestion_ids = Councilors_Suggestions.objects.filter(councilor_id__in=CouncilorsDetail.objects.filter(county=county).filter(constituency=constituency).values_list('id', flat=True)).values_list('suggestion_id', flat=True).distinct()
+        suggestion_ids = Councilors_Suggestions.objects.filter(councilor_id__in=CouncilorsDetail.objects.filter(county=county, constituency=constituency).values_list('id', flat=True)).values_list('suggestion_id', flat=True).distinct()
         qs = qs & Q(uid__in=suggestion_ids)
     suggestions = SearchQuerySet().filter(qs).models(Suggestions).order_by('-approved_expense')
     try:

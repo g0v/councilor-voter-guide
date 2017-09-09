@@ -131,7 +131,7 @@
     .attr("width", x.rangeBand())
     .attr("y", function(d) { return y(d.sum); })
     .attr("height", function(d) { return height - y(d.sum); })
-    .on('click', function(d) { return window.location.href = link[d.county] + '#year_bar_' + d.suggest_year; })
+    .on('click', function(d) { return window.location.href = link[d.county] + '#' + d.suggest_year; })
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide);
 
