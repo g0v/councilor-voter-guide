@@ -76,7 +76,7 @@
                         {% for obj in councilor.param.suggestions_associations %}
                         <tr>
                             <td style="text-align:center; vertical-align:middle;">
-                                <a href="{% url "suggestions:lists" county=county %}?keyword={{obj.label}}">{{obj.label}}</a>
+                                <a href="{% url "suggestions:lists" county=county %}?keyword={{councilor.name}}%20{{obj.label}}">{{obj.label}}</a>
                             </td>
                             <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
                             <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
