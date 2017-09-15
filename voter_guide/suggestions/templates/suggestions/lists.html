@@ -12,7 +12,17 @@
 {% block right %}
     <div class="jumbotron row" style="margin-left: 0px;">
         <img class="pull-right" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img>
-        <h2>{{county}} - 議員配合款</h2>
+        <h2>
+            {{county}} - 議員配合款
+            <small>
+                資料來源<a href="{{county|suggestions_offical_link}}" target="_blank"> {{county}}主計處</a>
+            </small>
+        </h2>
+        {% if county == '宜蘭縣' or county == '彰化縣' %}
+        <h3>
+            <i class="fa fa-warning text-danger"> {{county}}政府不提供議員姓名</i>
+        </h3>
+        {% endif %}
     </div>
     <div class="text-center">
         {% include "common/constituency_search.html" with placeholder_text="例:按摩椅 協會 國小" %}
