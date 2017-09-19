@@ -33,6 +33,7 @@
                 {% endif %}
                 可能參選人
             </i>
+            <small><a rel="tooltip" title="中選會尚未開放報名、提前亮相中，簡單來說每個人都是可能候選人" data-placement="right"><i class="fa fa-info-circle"></i></a></small>
         </h2>
         <h4><small>對當議員有想法？不想繳 20 萬保證金，但是想告訴大家你的想法？</small></h4>
         <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 我也來發表</i></a>
@@ -81,6 +82,7 @@
     <script>
         $(document).ready( function() {
             $('#intents').addClass('active');
+            $("[rel='tooltip']").tooltip();
             $("textarea").each( function() {
                 var simplemde = new SimpleMDE({ element: $(this)[0], toolbar: false , status: false});
                 var renderedHTML = simplemde.options.previewRender(simplemde.value());
