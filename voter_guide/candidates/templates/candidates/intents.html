@@ -54,7 +54,7 @@
             <a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}"><p>...更多關於{{intent.name}}</p></a>
         </div>
         <div class="col-sm-4">
-            <div class="property-header">黨籍</div>
+            <div class="property-header">個人黨籍<small>（中選會尚未公告政黨推薦名單）</small></div>
             <div class="property-body">{{intent.party}}</div>
             <div class="property-header">縣市</div>
             <div class="property-body county">{{intent.county}}</div>
