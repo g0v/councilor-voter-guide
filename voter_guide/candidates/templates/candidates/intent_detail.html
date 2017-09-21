@@ -55,38 +55,42 @@
                 <!-- Button to trigger modal -->
                 <a href="#modal-idx-{{forloop.counter}}" role="button" data-toggle="modal">{{ revision.modify_at|str2datetime|timesince }} ago</a><br>
                 <!-- Modal -->
-                <div id="modal-idx-{{forloop.counter}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">✖</button>
-                        <h3 id="myModalLabel">版本 {{forloop.counter}}<small>（{{ revision.modify_at|str2datetime|timesince }} ago）</small></h3>
-                    </div>
-                    <div class="modal-body">
-                        <div class="property-header">名字</div>
-                        <div class="property-body">{{revision.name}}</div>
-                        <div class="property-header">個人黨籍<small>（中選會尚未公告政黨推薦名單）</small></div>
-                        <div class="property-body">{{revision.party}}</div>
-                        <div class="property-header">縣市</div>
-                        <div class="property-body">{{revision.county}}</div>
-                        <div class="property-header">選區</div>
-                        <div class="property-body district">{{revision.constituency}}</div>
-                        <div class="property-header">為什麼要選：</div>
-                        <textarea style="display: none">{{revision.motivation}}</textarea>
-                        <div class="property-body jumbotron"></div>
-                        <div class="property-header">政見：</div>
-                        <textarea style="display: none">{{revision.platform}}</textarea>
-                        <div class="property-body jumbotron"></div>
-                        <div class="property-header">經歷：</div>
-                        <textarea style="display: none">{{revision.experience}}</textarea>
-                        <div class="property-body jumbotron"></div>
-                        <div class="property-header">學歷：</div>
-                        <textarea style="display: none">{{revision.education}}</textarea>
-                        <div class="property-body jumbotron"></div>
-                        <div class="property-header">備註：</div>
-                        <textarea style="display: none">{{revision.remark}}</textarea>
-                        <div class="property-body jumbotron"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">關閉</button>
+                <div id="modal-idx-{{forloop.counter}}" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">✖</button>
+                                <h3 id="myModalLabel">版本 {{forloop.counter}}<small>（{{ revision.modify_at|str2datetime|timesince }} ago）</small></h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="property-header">名字</div>
+                                <div class="property-body">{{revision.name}}</div>
+                                <div class="property-header">個人黨籍<small>（中選會尚未公告政黨推薦名單）</small></div>
+                                <div class="property-body">{{revision.party}}</div>
+                                <div class="property-header">縣市</div>
+                                <div class="property-body">{{revision.county}}</div>
+                                <div class="property-header">選區</div>
+                                <div class="property-body district">{{revision.constituency}}</div>
+                                <div class="property-header">為什麼要選：</div>
+                                <textarea style="display: none">{{revision.motivation}}</textarea>
+                                <div class="property-body jumbotron"></div>
+                                <div class="property-header">政見：</div>
+                                <textarea style="display: none">{{revision.platform}}</textarea>
+                                <div class="property-body jumbotron"></div>
+                                <div class="property-header">經歷：</div>
+                                <textarea style="display: none">{{revision.experience}}</textarea>
+                                <div class="property-body jumbotron"></div>
+                                <div class="property-header">學歷：</div>
+                                <textarea style="display: none">{{revision.education}}</textarea>
+                                <div class="property-body jumbotron"></div>
+                                <div class="property-header">備註：</div>
+                                <textarea style="display: none">{{revision.remark}}</textarea>
+                                <div class="property-body jumbotron"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">關閉</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
