@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load socialaccount %}
 
 {% block title %}
     <title>議員投票指南:提個政見</title>
@@ -20,7 +19,7 @@
 {% block right %}
     <div class="page-header text-center">
         <h2>提個政見</h2>
-        <h4>鄉民（{{request.user.last_name}}{{request.user.first_name}}）的政見</h4>
+        <h4>民眾（{{request.user.last_name}}{{request.user.first_name}}）的政見</h4>
     </div>
     <form class="form-horizontal" action="" method="post" novalidate>{% csrf_token %}
         <div class="row">

@@ -2,9 +2,9 @@
 {% load socialaccount %}
 
 {% block title %}
-    <title>議員投票指南:鄉民（{{platform.user.last_name}}{{platform.user.first_name}}）的政見</title>
-    <meta property="og:title" content="議員投票指南:鄉民（{{platform.user.last_name}}{{platform.user.first_name}}）的政見"/>
-    <meta itemprop="name" content="議員投票指南:鄉民（{{platform.user.last_name}}{{platform.user.first_name}}）的政見">
+    <title>議員投票指南:民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的政見</title>
+    <meta property="og:title" content="議員投票指南:民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的政見"/>
+    <meta itemprop="name" content="議員投票指南:民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的政見">
     <link href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" rel="stylesheet">
     <style>
         .CodeMirror, .CodeMirror-scroll {
@@ -15,7 +15,7 @@
 
 {% block right %}
     <div class="page-header text-center">
-        <h2>鄉民（{{platform.user.last_name}}{{platform.user.first_name}}）的政見 <small><i class="fa fa-thumbs-up"> {{platform.likes}}</i></small></h2>
+        <h2>民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的政見 <small><i class="fa fa-thumbs-up"> {{platform.likes}}</i></small></h2>
         {% if request.user.is_authenticated %}
             <form class="form" action="" method="post">{% csrf_token %}
             {% if user_liked %}

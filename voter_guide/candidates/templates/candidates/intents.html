@@ -88,7 +88,7 @@
                         {% if request.GET.county %}
                             {{request.GET.county}}
                         {% endif %}
-                        鄉民的政見
+                        民眾的政見
                     </i>
                 </h2>
                 <h3><small>我只想提個政見！歡迎候選人揀去做！</small></h3>
@@ -97,7 +97,7 @@
             {% for platform in platforms %}
                 <div class="panel panel-default">
                     <div class="text-center">
-                        <h4><a href="{% url 'platforms:detail' platform_id=platform.uid %}">鄉民（{{platform.user.last_name}}{{platform.user.first_name}}）的政見 </a><small><i class="fa fa-thumbs-up"> {{platform.likes}}</i></small></h4>
+                        <h4><a href="{% url 'platforms:detail' platform_id=platform.uid %}">民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的政見 </a><small><i class="fa fa-thumbs-up"> {{platform.likes}}</i></small></h4>
                     </div>
                     <div class="panel-body">
                         <div class="property-header">縣市</div>
@@ -109,7 +109,7 @@
                 </div>
             {% endfor %}
             <div class="text-center">
-                <a href="{% url 'platforms:lists' %}"><p>...其他鄉民的政見</p></a>
+                <a href="{% url 'platforms:lists' %}"><p>...其他民眾的政見</p></a>
             </div>
         </div>
     </div>

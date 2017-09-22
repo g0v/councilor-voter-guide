@@ -111,7 +111,7 @@ def intent_home(request):
     return render(request, 'candidates/intent_home.html', )
 
 def intent_upsert(request):
-    election_year = '2018'
+    election_year = coming_election_year(None)
     if not request.user.is_authenticated:
         return redirect(reverse('candidates:intent_home'))
     try:
@@ -121,6 +121,7 @@ def intent_upsert(request):
     if request.method == 'GET':
         form = IntentForm(instance=instance)
         form.fields['name'].initial = request.user.last_name + request.user.first_name
+        platforms = Platforms.objects.all().select_related('user').order_by('-likes')[:5]
     if request.method == 'POST':
         form = IntentForm(request.POST, instance=instance)
         if form.has_changed() and form.is_valid():
@@ -138,7 +139,7 @@ def intent_upsert(request):
                 WHERE user_id = %s AND election_year = %s
             ''', [json.dumps([history]), request.user.id, election_year])
         return redirect(reverse('candidates:intent_detail', kwargs={'intent_id': instance.uid if instance else intent.uid}))
-    return render(request, 'candidates/intent_upsert.html', {'form': form})
+    return render(request, 'candidates/intent_upsert.html', {'form': form, 'platforms': platforms})
 
 def intent_detail(request, intent_id):
     intent = get_object_or_404(Intent.objects.select_related('user'), uid=intent_id)

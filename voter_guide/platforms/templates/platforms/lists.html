@@ -3,9 +3,9 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南:鄉民的政見</title>
-    <meta property="og:title" content="議員投票指南:鄉民的政見"/>
-    <meta itemprop="name" content="議員投票指南:鄉民的政見">
+    <title>議員投票指南:民眾的政見</title>
+    <meta property="og:title" content="議員投票指南:民眾的政見"/>
+    <meta itemprop="name" content="議員投票指南:民眾的政見">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <style>
         .CodeMirror, .CodeMirror-scroll {
@@ -21,7 +21,7 @@
                 {% if request.GET.county %}
                     {{request.GET.county}}
                 {% endif %}
-                鄉民的政見
+                民眾的政見
             </i>
             <small><a rel="tooltip" title="中選會尚未開放報名、提前亮相中，簡單來說每個人都是可能候選人" data-placement="right"><i class="fa fa-info-circle"></i></a></small>
         </h2>
@@ -42,7 +42,7 @@
         <div class="col-sm-4">
             <div class="panel panel-default">
                 <div class="text-center">
-                    <h4><a href="{% url 'platforms:detail' platform_id=platform.uid %}">鄉民（{{platform.user.last_name}}{{platform.user.first_name}}）的政見 </a><small><i class="fa fa-thumbs-up"> {{platform.likes}}</i></small></h4>
+                    <h4><a href="{% url 'platforms:detail' platform_id=platform.uid %}">民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的政見 </a><small><i class="fa fa-thumbs-up"> {{platform.likes}}</i></small></h4>
                 </div>
                 <div class="panel-body">
                     <div class="property-header">縣市</div>
@@ -75,25 +75,6 @@
                 var property_body = $(this).nextAll('div.property-body:first');
                 property_body.html(renderedHTML);
                 property_body.children('table').addClass('table table-bordered table-condensed');
-            });
-            var src = [];
-            $.ajax({
-                url: '/static/json/county_district.json',
-                async: false
-            })
-            .done(function (data) {
-                src = data;
-            });
-            $(".county").each( function() {
-                var county = $(this).text();
-                var district_ctl = $(this).nextAll('div.district:first');
-                var constituency = district_ctl.text();
-                jQuery.each(src, function (index, value) {
-                    if (county == value['county'] && constituency == value['constituency']) {
-                        district_ctl.text('（第' + ("00" + value['constituency']).substr(-2,2) + '選區）' + value['district']);
-                        return false;
-                    }
-                });
             });
         });
     </script>
