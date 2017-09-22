@@ -35,7 +35,7 @@ TIME_ZONE = 'UTC'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-Hant'
 
 SITE_ID = 1
 
@@ -119,6 +119,7 @@ INSTALLED_APPS = (
     'suggestions',
     'search',
     'standpoints',
+    'platforms',
     'commontag',
     'rest_framework',
     'django_filters',

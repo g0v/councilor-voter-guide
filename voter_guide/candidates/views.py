@@ -12,6 +12,7 @@ from django.utils import timezone
 from .models import Candidates, Terms, Intent, Intent_Likes
 from .forms import IntentForm
 from councilors.models import CouncilorsDetail
+from platforms.models import Platforms
 from commontag.views import paginate, coming_election_year
 
 
@@ -21,12 +22,13 @@ def intents(request, election_year):
         'likes': 'likes'
     }
     order_by = ref.get(request.GET.get('order_by'), 'likes')
-    qs = Q(election_year=election_year)
-    qs = qs & Q(county=request.GET.get('county')) if request.GET.get('county') else qs
+    qs = Q(county=request.GET.get('county')) if request.GET.get('county') else Q()
+    platforms = Platforms.objects.filter(qs).select_related('user').order_by('-%s' % order_by)[:5]
+    qs = qs & Q(election_year=election_year)
     qs = qs & Q(constituency=request.GET.get('constituency')) if request.GET.get('constituency') else qs
     intents = Intent.objects.filter(qs).order_by('-%s' % order_by)
     intents = paginate(request, intents)
-    return render(request, 'candidates/intents.html', {'intents': intents, 'election_year': election_year})
+    return render(request, 'candidates/intents.html', {'intents': intents, 'platforms': platforms, 'election_year': election_year})
 
 def districts(request, election_year, county):
     coming_ele_year = coming_election_year(county)

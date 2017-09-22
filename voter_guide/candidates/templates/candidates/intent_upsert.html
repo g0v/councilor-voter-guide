@@ -20,6 +20,8 @@
 {% block right %}
     <div class="page-header text-center">
         <h2>如果我是候選人</h2>
+        <h3><small>太複雜了！我只想提個政見！歡迎候選人揀去做！</small></h3>
+        <a href="{% url 'platforms:propose' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 提個政見</i></a>
     </div>
     <form class="form-horizontal" action="" method="post">{% csrf_token %}
         <div class="row">

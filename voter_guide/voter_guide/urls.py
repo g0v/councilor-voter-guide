@@ -26,6 +26,7 @@ router.register(r'councilors_suggestions', views.Councilors_SuggestionsViewSet)
 urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^candidates/', include('candidates.urls', namespace="candidates")),
+    url(r'^platforms/', include('platforms.urls', namespace="platforms")),
     url(r'^councilors/', include('councilors.urls', namespace="councilors")),
     url(r'^suggestions/', include('suggestions.urls', namespace="suggestions")),
     url(r'^bills/', include('bills.urls', namespace="bills")),
