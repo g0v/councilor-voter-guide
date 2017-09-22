@@ -54,10 +54,12 @@
             </div>
         </div>
     {% endfor %}
-    {% if platforms %}
-        {% include "common/pagination.html" with items=platforms page_size=0 %}
-    {% endif %}
     </div>
+    {% if platforms %}
+        <div class="text-center">
+            {% include "common/pagination.html" with items=platforms page_size=0 %}
+        </div>
+    {% endif %}
     <div id="disqus_thread"></div>
 {% endblock right %}
 
