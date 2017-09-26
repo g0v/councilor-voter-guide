@@ -310,12 +310,6 @@ def one_association_json(token):
     ''', data)
     return c.fetchone()[0]
 
-def associations():
-    associations = []
-    for token in [u'社區發展協會', u'學會', u'商會', u'公會', u'協進會', u'促進會', u'研習會', u'婦聯會', u'婦女會', u'體育會', u'同心會', u'農會', u'早起會', u'健身會', u'宗親會', u'功德會', u'商業會', u'長青會', u'民眾服務社', u'聯盟']:
-        associations.append(one_association_json(token))
-    associations = sorted(associations, key=lambda x: x['sum'], reverse=True)
-
 c.execute('''
     SELECT councilor_id
     FROM suggestions_councilors_suggestions

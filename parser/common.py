@@ -74,7 +74,7 @@ def get_or_create_candidate_uid(c, candidate):
 
 def make_variants_set(string):
     variants = set([string])
-    for variant in [(u'麗', u'麗'), (u'林', u'林'), (u'李', u'李'), (u'玲', u'玲'), (u'勳', u'勲'), (u'溫', u'温'), (u'黃', u'黄'), (u'寶', u'寳'), (u'真', u'眞'), (u'福', u'褔'), (u'鎮', u'鎭'), (u'妍', u'姸'), (u'市', u'巿'), (u'衛', u'衞'), (u'館', u'舘'), (u'峰', u'峯'), (u'群', u'羣'), (u'啟', u'啓'), (u'鳳', u'鳯'), (u'冗', u'宂'), (u'穀', u'榖'), (u'曾', u'曽'), (u'賴', u'頼'), (u'蒓', u'莼'), ]:
+    for variant in [(u'麗', u'麗'), (u'林', u'林'), (u'李', u'李'), (u'玲', u'玲'), (u'勳', u'勲'), (u'溫', u'温'), (u'黃', u'黄'), (u'寶', u'寳'), (u'真', u'眞'), (u'福', u'褔'), (u'鎮', u'鎭'), (u'妍', u'姸'), (u'市', u'巿'), (u'衛', u'衞'), (u'館', u'舘'), (u'峰', u'峯'), (u'群', u'羣'), (u'啟', u'啓'), (u'鳳', u'鳯'), (u'冗', u'宂'), (u'穀', u'榖'), (u'曾', u'曽'), (u'賴', u'頼'), (u'蒓', u'莼'), (u'靜', u'静'), ]:
         for item in variants.copy():
             variants.add(re.sub(variant[0], variant[1], item))
             variants.add(re.sub(variant[1], variant[0], item))
@@ -178,7 +178,7 @@ def getIdList(c, name_list, sitting_dict):
     return []
 
 def GetPossibleCandidateIds(c, name):
-    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’]', '', name), re.sub(u'\W', '', name).lower(), } - {''}
+    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’\']', '', name), re.sub(u'\W', '', name).lower(), } - {''}
     if identifiers:
         c.execute('''
             SELECT uid
@@ -188,15 +188,19 @@ def GetPossibleCandidateIds(c, name):
         return [x[0] for x in c.fetchall()]
 
 def GetCouncilorId(c, name):
-    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’]', '', name), re.sub(u'\W', '', name).lower(), } - {''}
+    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’〃\']', '', name), re.sub(u'\W', '', name).lower(), } - {''}
     if identifiers:
         c.execute('''
             SELECT uid
             FROM councilors_councilors
             WHERE identifiers ?| array[%s]
         ''' % ','.join(["'%s'" % x for x in identifiers]))
-        return [x[0] for x in c.fetchall()]
-    print name
+        r = c.fetchall()
+        if r:
+            return [x[0] for x in r]
+        else:
+            logging.error(u'%s not an councilor?' % name)
+    return []
 
 def getCouncilorIdList(c, text):
     id_list = []
@@ -231,6 +235,10 @@ def Attendance(c, sitting_dict, text, category, status):
     ids = []
     for councilor_id in getCouncilorIdList(c, text):
         id = getDetailIdFromUid(c, councilor_id, sitting_dict['election_year'], sitting_dict['county'])
+        if not id:
+            print text
+            print councilor_id
+            print getCouncilorIdList(c, text)
         AddAttendanceRecord(c, id, sitting_dict['uid'], category, status)
         ids.append(id)
     return ids
