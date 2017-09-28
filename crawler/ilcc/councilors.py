@@ -41,7 +41,7 @@ class Spider(scrapy.Spider):
         item['term_end'] = {'date': '2018-12-25'}
         item['term_start'] = '%s-12-25' % item['election_year']
         item['in_office'] = True
-        item['county'] =  u'宜蘭縣'
+        item['county'] = u'宜蘭縣'
         item['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
         img_url = response.xpath('.//div[@id="Layer2"]/img/@src').extract_first()
         item['image'] = urljoin(response.url, img_url)

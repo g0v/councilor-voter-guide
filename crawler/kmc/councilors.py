@@ -1,60 +1,54 @@
 # -*- coding: utf-8 -*-
+import sys
+sys.path.append('../')
+import os
 import re
 import urllib
 from urlparse import urljoin
 import scrapy
-import requests
 import json
 
-## 用開放資料比對議員性別
-r = requests.get("http://cand.moi.gov.tw/of/ap/cand_json.jsp?electkind=0200000")
-namejson = json.loads(r.content.strip(' \s\n\r'))
-def GetGender(json,name):
-    for i in json:
-        s = re.sub(u'[\s　]', '', i['idname'])
-        if(s==name):
-            return i['sex']
+import common
 
-## 轉換年月日格式
-def GetDate(text):
-    matchTerm = re.search(u'''
-        (?P<year>[\d]+)[\s]*年[\s]*
-        (?P<month>[\d]+)[\s]*月[\s]*
-        (?P<day>[\d]+)
-    ''', text, re.X)
-    if matchTerm:
-        return '%04d-%02d-%02d' % (int(matchTerm.group('year'))+1911, int(matchTerm.group('month')), int(matchTerm.group('day')))
-    else:
-        return None
 
 class Spider(scrapy.Spider):
     name = "councilors"
     allowed_domains = ["www.kmc.gov.tw"]
-    start_urls = ["http://www.kmc.gov.tw/index.php/kmc-info/%E8%AD%B0%E5%93%A1%E8%B3%87%E8%A8%8A",]
+    start_urls = ["http://www.kmc.gov.tw/",]
     download_delay = 0.5
+    county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
+    election_year = common.election_year(county_abbr)
+    county = common.county_abbr2string(county_abbr)
+
+    def __init__(self):
+        with open(os.path.join(os.path.dirname(__file__), 'constituency.json'), 'r') as infile:
+            self.constituency = json.loads(infile.read())
+        with open(os.path.join(os.path.dirname(__file__), '../../data/cand-moi-county-control-2018.json'), 'r') as infile:
+            self.ref = {re.sub(u'[\s　]', '', person['idname']): person for person in json.loads(infile.read()) if person['cityname'] == u'基隆市'}
 
     def parse(self, response):
-        nodes = response.xpath(u'//a[re:test(@title, "議(員|長)$")]')
-        for node in nodes:
-            item = {}
-            item['election_year'] = '2014'
-            item['in_office'] = True
-            item['term_start'] = '%s-12-25' % item['election_year']
-            item['term_end'] = {'date': '2018-12-24'}
-            item['name'], item['title'] = node.xpath('@title').extract_first().split()
-            item['gender'] = GetGender(namejson, item['name'])
-            item['county'] = u'基隆市'
-            item['district'] = node.xpath('normalize-space(string(ancestor::tr/td[1]))').extract_first()
-            yield scrapy.Request(urljoin(response.url, node.xpath('@href').extract_first()), callback=self.parse_profile, meta={'item': item})
+        return response.follow(response.xpath(u'//a[re:test(., "^議員資訊$")]/@href').extract_first(), callback=self.parse_list)
+
+    def parse_list(self, response):
+        for link in response.css('#speaker a::attr(href)'):
+            yield response.follow(link, callback=self.parse_profile)
 
     def parse_profile(self, response):
-        global namejson
-        item = response.meta['item']
-        item['image'] = response.xpath('//img[contains(@src, "/member/")]/@src').extract_first()
-        item['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
+        item = {}
+        item['election_year'] = self.election_year
+        item['county'] = self.county
+        item['in_office'] = True
+        item['term_start'] = '%s-12-25' % item['election_year']
+        item['term_end'] = {'date': '2018-12-24'}
+        print response.xpath(u'//p/span[re:test(., "\s+副?議(員|長)")]/text()').extract_first()
+        item['name'], item['title'] = response.xpath(u'//p/span[re:test(., "\s+副?議(員|長)")]/text()').extract_first().split()
+        item['gender'] = self.ref[item['name']]['sex']
         item['constituency'] = response.xpath('//td/text()').re(u'選區：\s*(.+)')[0].strip()
+        item['district'] = self.constituency[item['constituency']]
+        item['image'] = urljoin(response.url, response.xpath(u'//p/img/@src').extract_first())
+        item['links'] = [{'url': response.url, 'note': u'議會個人官網'}]
         item['party'] = response.xpath('//td/text()').re(u'政黨：\s*(.+)')[0].strip()
-        item['birth'] = GetDate(response.xpath('//td/text()').re(u'出生日期：\s*(.+)')[0]).strip()
+        item['birth'] = common.ROC2AD(response.xpath('//td/text()').re(u'出生日期：\s*(.+)')[0])
         website = response.xpath('//td/text()').re(u'網站連結：\s*(.+)')
         if website:
             item['links'].append({'url': website[0].strip(), 'note': u'個人網站'})
