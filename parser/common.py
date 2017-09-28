@@ -235,12 +235,11 @@ def Attendance(c, sitting_dict, text, category, status):
     ids = []
     for councilor_id in getCouncilorIdList(c, text):
         id = getDetailIdFromUid(c, councilor_id, sitting_dict['election_year'], sitting_dict['county'])
-        if not id:
-            print text
-            print councilor_id
-            print getCouncilorIdList(c, text)
-        AddAttendanceRecord(c, id, sitting_dict['uid'], category, status)
-        ids.append(id)
+        if id:
+            AddAttendanceRecord(c, id, sitting_dict['uid'], category, status)
+            ids.append(id)
+        else:
+            logging.error(u'uid:%s not exist terms of %s, %s' % (councilor_id, sitting_dict['election_year'], sitting_dict['county']))
     return ids
 
 def InsertSitting(c, sitting_dict):

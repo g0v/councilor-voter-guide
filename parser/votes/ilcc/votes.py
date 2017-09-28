@@ -31,7 +31,6 @@ def in_office_ids(date, exclude):
 
 conn = db_settings.con()
 c = conn.cursor()
-election_years = {1: '2010', 2: '2014', 3: '2018'}
 county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
 county = common.county_abbr2string(county_abbr)
 election_year = common.election_year(county)
@@ -70,7 +69,6 @@ for meeting in meetings:
     exclude = []
     if present_match:
         names = re.sub(u'(副?議長|議員)', '', present_match.group('names'))
-        print names
         if names:
             exclude.extend(common.Attendance(c, sitting, names, 'CS', 'present'))
         else:
