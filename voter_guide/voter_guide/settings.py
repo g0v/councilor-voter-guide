@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     'standpoints',
     'platforms',
     'commontag',
+    'api',
     'rest_framework',
     'django_filters',
     'debug_toolbar',

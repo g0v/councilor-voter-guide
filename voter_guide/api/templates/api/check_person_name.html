@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>議員投票指南:看議員姓名有沒有錯字</title>
+    <meta property="og:title" content="議員投票指南:看議員姓名有沒有錯字"/>
+    <meta itemprop="name" content="議員投票指南:看議員姓名有沒有錯字">
+{% endblock title %}
+
+{% block right %}
+    <div class="page-header text-center">
+        <h2>看議員姓名有沒有錯字</h2>
+    </div>
+    <form class="form-horizontal" action="" method="post">{% csrf_token %}
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="{{ form.content.id_for_label }}">{{ form.content.label }}：</label>
+                    {{ form.content }}
+                </div>
+                <div class="form-group">
+                    <button id="submit" class="btn btn-info btn-lg" type="submit">送出</button>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                {% if errors %}
+                    <p>查無此議員姓名：</p>
+                {% endif %}
+                {% for error in errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+    </form>
+{% endblock right %}
+
+{% block script %}
+    {% include "candidates/county_district_js.html" %}
+{% endblock script %}

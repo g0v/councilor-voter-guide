@@ -1,9 +1,15 @@
-#from django.contrib.auth.models import User, Group
+# -*- coding: utf-8 -*-
+import re
+
+from django.shortcuts import render
+from django.db import connections
+
 from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework import generics
 from .serializers import *
 
+from .forms import NameForm
 from councilors.models import Councilors, CouncilorsDetail, Attendance
 from votes.models import Votes, Councilors_Votes
 from bills.models import Bills, Councilors_Bills
@@ -11,6 +17,46 @@ from candidates.models import Candidates
 from sittings.models import Sittings
 from suggestions.models import Suggestions, Councilors_Suggestions
 
+
+def GetCouncilorId(name):
+    c = connections['default'].cursor()
+    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’〃\']', '', name), re.sub(u'\W', '', name).lower(), } - {''}
+    if identifiers:
+        c.execute('''
+            SELECT uid
+            FROM councilors_councilors
+            WHERE identifiers ?| array[%s]
+        ''' % ','.join(["'%s'" % x for x in identifiers]))
+        r = c.fetchall()
+        if r:
+            return [x[0] for x in r]
+    return []
+
+def check_person_name(request):
+    if request.method == 'POST':
+        form = NameForm(request.POST)
+        if form.is_valid():
+            errors = []
+            text = request.POST['content']
+            text = text.strip(u'[　\s]')
+            text = re.sub(u'[　\n、]', u' ', text)
+            text = re.sub(u'[ ]+(\d+)[ ]+', u'\g<1>', text)
+            text = re.sub(u' ([^ \w]) ([^ \w]) ', u' \g<1>\g<2> ', text) # e.g. 楊　曜=>楊曜, 包含句首
+            text = re.sub(u'^([^ \w]) ([^ \w]) ', u'\g<1>\g<2> ', text) # e.g. 楊　曜=>楊曜, 包含句首
+            text = re.sub(u' ([^ \w]) ([^ \w])$', u' \g<1>\g<2>', text) # e.g. 楊　曜=>楊曜, 包含句尾
+            text = re.sub(u' (\w+) (\w+) ', u' \g<1>\g<2> ', text) # e.g. Kolas Yotaka=>KolasYotaka, 包含句首
+            text = re.sub(u'^(\w+) (\w+) ', u'\g<1>\g<2> ', text) # e.g. Kolas Yotaka=>KolasYotaka, 包含句首
+            text = re.sub(u'　(\w+) (\w+)$', u' \g<1>\g<2>', text) # e.g. Kolas Yotaka=>KolasYotaka, 包含句尾
+            text = re.sub(u'^([^ \w]) ([^ \w])$', u'\g<1>\g<2>', text) # e.g. 楊　曜=>楊曜, 單獨一人
+            text = re.sub(u'^(\w+) (\w+)$', u'\g<1>\g<2>', text) # e.g. Kolas Yotaka=>KolasYotaka, 單獨一人
+            for name in text.split():
+                name = re.sub(u'(.*)[）)。】」]$', '\g<1>', name) # 名字後有標點符號
+                if not GetCouncilorId(name):
+                    errors.append(name)
+            return render(request, 'api/check_person_name.html', {'form': form, 'errors': errors})
+    else:
+        form = NameForm()
+    return render(request, 'api/check_person_name.html', {'form': form})
 
 class CouncilorsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Councilors.objects.all().prefetch_related('each_terms')
