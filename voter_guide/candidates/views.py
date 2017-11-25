@@ -97,7 +97,7 @@ def district(request, election_year, county, constituency):
                                 GROUP BY ss.bill_id
                             )
                             GROUP BY s.title, role
-                            ORDER BY times DESC
+                            ORDER BY role, times DESC
                             LIMIT 3
                         ) row
                     ) r
