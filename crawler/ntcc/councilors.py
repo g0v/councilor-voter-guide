@@ -62,6 +62,6 @@ class Spider(scrapy.Spider):
                     'type': 'voice',
                     'value': self.ref[item['name']]['officetelphone']
                 })
-            item['education'] = [x.strip() for x in response.xpath(u'descendant::th[re:test(., "^學歷：")]/following-sibling::td[1]/text()').extract() if x.strip()]
-            item['experience'] = [x.strip() for x in response.xpath(u'descendant::th[re:test(., "^經歷：")]/following-sibling::td[1]/text()').extract() if x.strip()]
+            item['education'] = [x.strip() for x in node.xpath(u'descendant::th[re:test(., "^學歷：")]/following-sibling::td[1]/text()').extract() if x.strip()]
+            item['experience'] = [x.strip() for x in node.xpath(u'descendant::th[re:test(., "^經歷：")]/following-sibling::td[1]/text()').extract() if x.strip()]
             yield item
