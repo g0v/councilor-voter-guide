@@ -4,6 +4,7 @@ from django.db import models
 
 
 class Standpoints(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='created_standpoints', null=True)
     uid = models.CharField(max_length=100, unique=True)
     county = models.CharField(max_length=100)
     title = models.CharField(max_length=32, db_index=True)
@@ -18,6 +19,7 @@ class Standpoints(models.Model):
 class User_Standpoint(models.Model):
     standpoint = models.ForeignKey(Standpoints, to_field='uid')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='standpoints')
+    create_at = models.DateTimeField(db_index=True, auto_now_add=True, null=True)
     class Meta:
-        unique_together = ('standpoint', 'user')
+        unique_together = ('user', 'standpoint')
         index_together = ['user', 'standpoint']

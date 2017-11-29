@@ -59,7 +59,7 @@ def bill_detail(request, county, bill_id):
             with transaction.atomic():
                 if request.POST.get('keyword', '').strip():
                     standpoint_id = u'bill-%s-%s' % (bill_id, request.POST['keyword'].strip())
-                    Standpoints.objects.get_or_create(uid=standpoint_id, county=county, title=request.POST['keyword'].strip(), bill_id=bill_id)
+                    Standpoints.objects.get_or_create(uid=standpoint_id, county=county, title=request.POST['keyword'].strip(), bill_id=bill_id, user=request.user)
                 elif request.POST.get('pro'):
                     User_Standpoint.objects.create(standpoint_id=request.POST['pro'], user=request.user)
                     Standpoints.objects.filter(uid=request.POST['pro']).update(pro=F('pro') + 1)

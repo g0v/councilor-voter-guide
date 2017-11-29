@@ -47,7 +47,7 @@ def vote(request, vote_id):
             with transaction.atomic():
                 if request.POST.get('keyword', '').strip():
                     standpoint_id = u'vote-%s-%s' % (vote_id, request.POST['keyword'].strip())
-                    Standpoints.objects.get_or_create(uid=standpoint_id, county=vote.sitting.county, title=request.POST['keyword'].strip(), vote_id=vote_id)
+                    Standpoints.objects.get_or_create(uid=standpoint_id, county=vote.sitting.county, title=request.POST['keyword'].strip(), vote_id=vote_id, user=request.user)
                 elif request.POST.get('pro'):
                     User_Standpoint.objects.create(standpoint_id=request.POST['pro'], user=request.user)
                     Standpoints.objects.filter(uid=request.POST['pro']).update(pro=F('pro') + 1)
