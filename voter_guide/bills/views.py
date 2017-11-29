@@ -9,7 +9,7 @@ from django.db import IntegrityError, transaction
 from councilors.models import CouncilorsDetail
 from search.models import Keyword
 from search.views import keyword_list, keyword_been_searched
-from .models import Bills
+from .models import Bills, Councilors_Bills
 from standpoints.models import Standpoints, User_Standpoint
 from commontag.views import paginate
 
@@ -40,7 +40,7 @@ def bills(request, county):
     else:
         bills = Bills.objects.filter(query)
     if constituency and constituency != 'all':
-        bills = bills.filter(proposer__in=CouncilorsDetail.objects.filter(county=county).filter(constituency=constituency).values_list('id', flat=True))
+        bills = bills.filter(uid__in=Councilors_Bills.objects.filter(petition=False, councilor__in=CouncilorsDetail.objects.filter(county=county, constituency=constituency).values_list('id', flat=True)).values_list('bill_id', flat=True))
     bills = bills.extra(
                      select={
                          'tags': "SELECT json_agg(row) FROM (SELECT title, pro FROM standpoints_standpoints su WHERE su.bill_id = bills_bills.uid ORDER BY su.pro DESC) row",
