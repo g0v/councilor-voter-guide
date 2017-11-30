@@ -1,0 +1,2986 @@
+[
+    {
+        "id": "59cfc6c2-3aa4-48fe-9489-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6c2-3aa4-48fe-9489-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 桃園市 > 第13選區[平地]",
+        "quota": "3",
+        "quota_woman": "0",
+        "population": "2054260",
+        "population_electors": "1575900",
+        "areas": [
+            {
+                "id": "59cfc6c2-d6a0-4522-b43b-1a2bacb5b862",
+                "name": "桃園市",
+                "ivid": "TAO",
+                "code": "10003",
+                "population": "2054260",
+                "population_electors": "1575900",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6c2-d6a0-4522-b43b-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6c2-b08c-4ae4-90b6-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6c2-b08c-4ae4-90b6-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 桃園市 > 第14選區[山地]",
+        "quota": "2",
+        "quota_woman": "0",
+        "population": "2054260",
+        "population_electors": "1575900",
+        "areas": [
+            {
+                "id": "59cfc6c2-d6a0-4522-b43b-1a2bacb5b862",
+                "name": "桃園市",
+                "ivid": "TAO",
+                "code": "10003",
+                "population": "2054260",
+                "population_electors": "1575900",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6c2-d6a0-4522-b43b-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6c2-e698-441a-b632-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6c2-e698-441a-b632-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 桃園市 > 第01選區[區域]",
+        "quota": "11",
+        "quota_woman": "2",
+        "population": "416403",
+        "population_electors": "315308",
+        "areas": [
+            {
+                "id": "59cfc6c2-c654-477e-97bb-1a2bacb5b862",
+                "name": "桃園區",
+                "ivid": "TAO-010",
+                "code": "10003010",
+                "population": "416403",
+                "population_electors": "315308",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6c2-c654-477e-97bb-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6c9-0f70-4a90-81ec-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6c9-0f70-4a90-81ec-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 桃園市 > 第07選區[區域]",
+        "quota": "10",
+        "quota_woman": "2",
+        "population": "380829",
+        "population_electors": "293834",
+        "areas": [
+            {
+                "id": "59cfc6c9-61a0-42d3-a573-1a2bacb5b862",
+                "name": "中壢區",
+                "ivid": "TAO-020",
+                "code": "10003020",
+                "population": "380829",
+                "population_electors": "293834",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6c9-61a0-42d3-a573-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6d0-a144-44d2-aa48-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6d0-a144-44d2-aa48-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 桃園市 > 第06選區[區域]",
+        "quota": "3",
+        "quota_woman": "0",
+        "population": "102736",
+        "population_electors": "79781",
+        "areas": [
+            {
+                "id": "59cfc6d0-2ed4-498f-b7e4-1a2bacb5b862",
+                "name": "大溪區",
+                "ivid": "TAO-030",
+                "code": "10003030",
+                "population": "91846",
+                "population_electors": "71377",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6d0-2ed4-498f-b7e4-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc6ec-4010-42ed-811a-1a2bacb5b862",
+                "name": "復興區",
+                "ivid": "TAO-130",
+                "code": "10003130",
+                "population": "10890",
+                "population_electors": "8404",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6ec-4010-42ed-811a-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6d2-3258-44ec-b62a-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6d2-3258-44ec-b62a-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 桃園市 > 第09選區[區域]",
+        "quota": "4",
+        "quota_woman": "1",
+        "population": "156818",
+        "population_electors": "119307",
+        "areas": [
+            {
+                "id": "59cfc6d2-603c-433c-be6e-1a2bacb5b862",
+                "name": "楊梅區",
+                "ivid": "TAO-040",
+                "code": "10003040",
+                "population": "156818",
+                "population_electors": "119307",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6d2-603c-433c-be6e-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6d6-d660-42b5-bf7b-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6d6-d660-42b5-bf7b-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 桃園市 > 第04選區[區域]",
+        "quota": "4",
+        "quota_woman": "1",
+        "population": "150969",
+        "population_electors": "110800",
+        "areas": [
+            {
+                "id": "59cfc6d5-9ac4-4e91-a66d-1a2bacb5b862",
+                "name": "蘆竹區",
+                "ivid": "TAO-050",
+                "code": "10003050",
+                "population": "150969",
+                "population_electors": "110800",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6d5-9ac4-4e91-a66d-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6d9-efa0-48d3-aad9-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6d9-efa0-48d3-aad9-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 桃園市 > 第05選區[區域]",
+        "quota": "2",
+        "quota_woman": "0",
+        "population": "84191",
+        "population_electors": "64537",
+        "areas": [
+            {
+                "id": "59cfc6d9-acfc-4c35-8dbf-1a2bacb5b862",
+                "name": "大園區",
+                "ivid": "TAO-060",
+                "code": "10003060",
+                "population": "84191",
+                "population_electors": "64537",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6d9-acfc-4c35-8dbf-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6da-5dc0-446b-a028-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6da-5dc0-446b-a028-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 桃園市 > 第02選區[區域]",
+        "quota": "4",
+        "quota_woman": "1",
+        "population": "141565",
+        "population_electors": "110567",
+        "areas": [
+            {
+                "id": "59cfc6da-e7b8-4b68-8296-1a2bacb5b862",
+                "name": "龜山區",
+                "ivid": "TAO-070",
+                "code": "10003070",
+                "population": "141565",
+                "population_electors": "110567",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6da-e7b8-4b68-8296-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6dd-2438-43a7-a55b-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6dd-2438-43a7-a55b-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 桃園市 > 第03選區[區域]",
+        "quota": "5",
+        "quota_woman": "1",
+        "population": "180999",
+        "population_electors": "141963",
+        "areas": [
+            {
+                "id": "59cfc6dd-eb7c-4dc4-af00-1a2bacb5b862",
+                "name": "八德區",
+                "ivid": "TAO-080",
+                "code": "10003080",
+                "population": "180999",
+                "population_electors": "141963",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6dd-eb7c-4dc4-af00-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6e1-c198-4c2d-b22c-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6e1-c198-4c2d-b22c-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 桃園市 > 第10選區[區域]",
+        "quota": "3",
+        "quota_woman": "0",
+        "population": "116150",
+        "population_electors": "90285",
+        "areas": [
+            {
+                "id": "59cfc6e1-262c-4e21-853a-1a2bacb5b862",
+                "name": "龍潭區",
+                "ivid": "TAO-090",
+                "code": "10003090",
+                "population": "116150",
+                "population_electors": "90285",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6e1-262c-4e21-853a-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6e4-d240-4e4f-80b6-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6e4-d240-4e4f-80b6-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 桃園市 > 第08選區[區域]",
+        "quota": "6",
+        "quota_woman": "1",
+        "population": "212073",
+        "population_electors": "162610",
+        "areas": [
+            {
+                "id": "59cfc6e4-3864-4e10-b83c-1a2bacb5b862",
+                "name": "平鎮區",
+                "ivid": "TAO-100",
+                "code": "10003100",
+                "population": "212073",
+                "population_electors": "162610",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6e4-3864-4e10-b83c-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6e8-7e9c-4a2b-8454-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6e8-7e9c-4a2b-8454-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 桃園市 > 第11選區[區域]",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "48036",
+        "population_electors": "38245",
+        "areas": [
+            {
+                "id": "59cfc6e8-a7f4-412d-b032-1a2bacb5b862",
+                "name": "新屋區",
+                "ivid": "TAO-110",
+                "code": "10003110",
+                "population": "48036",
+                "population_electors": "38245",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6e8-a7f4-412d-b032-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc6ea-4070-4bd7-b409-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc6ea-4070-4bd7-b409-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 桃園市 > 第12選區[區域]",
+        "quota": "2",
+        "quota_woman": "0",
+        "population": "63491",
+        "population_electors": "48663",
+        "areas": [
+            {
+                "id": "59cfc6ea-691c-41d4-b51b-1a2bacb5b862",
+                "name": "觀音區",
+                "ivid": "TAO-120",
+                "code": "10003120",
+                "population": "63491",
+                "population_electors": "48663",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc6ea-691c-41d4-b51b-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8ac-5dec-4cd5-85fe-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8ac-5dec-4cd5-85fe-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺北市 > 第08選區[山地]",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "2695649",
+        "population_electors": "2162080",
+        "areas": [
+            {
+                "id": "59cfc8ac-e0dc-4f7e-8352-1a2bacb5b862",
+                "name": "臺北市",
+                "ivid": "TPE",
+                "code": "63000",
+                "population": "2695649",
+                "population_electors": "2162080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8ac-e0dc-4f7e-8352-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8ac-ac78-4096-9621-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8ac-ac78-4096-9621-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺北市 > 第07選區[平地]",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "2695649",
+        "population_electors": "2162080",
+        "areas": [
+            {
+                "id": "59cfc8ac-e0dc-4f7e-8352-1a2bacb5b862",
+                "name": "臺北市",
+                "ivid": "TPE",
+                "code": "63000",
+                "population": "2695649",
+                "population_electors": "2162080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8ac-e0dc-4f7e-8352-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8ad-f774-440a-bb20-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8ad-f774-440a-bb20-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺北市 > 第03選區[區域]",
+        "quota": "10",
+        "quota_woman": "2",
+        "population": "439221",
+        "population_electors": "353671",
+        "areas": [
+            {
+                "id": "59cfc8ad-2ec4-4c23-94d5-1a2bacb5b862",
+                "name": "松山區",
+                "ivid": "TPE-010",
+                "code": "63000010",
+                "population": "210150",
+                "population_electors": "166046",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8ad-2ec4-4c23-94d5-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc8b0-bfd0-4d10-a8ae-1a2bacb5b862",
+                "name": "信義區",
+                "ivid": "TPE-020",
+                "code": "63000020",
+                "population": "229071",
+                "population_electors": "187625",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8b0-bfd0-4d10-a8ae-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8b5-256c-4ed1-81b7-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8b5-256c-4ed1-81b7-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺北市 > 第06選區[區域]",
+        "quota": "13",
+        "quota_woman": "3",
+        "population": "586158",
+        "population_electors": "463337",
+        "areas": [
+            {
+                "id": "59cfc8b5-3478-48c8-99aa-1a2bacb5b862",
+                "name": "大安區",
+                "ivid": "TPE-030",
+                "code": "63000030",
+                "population": "313062",
+                "population_electors": "247738",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8b5-3478-48c8-99aa-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc8ca-43c4-43af-9676-1a2bacb5b862",
+                "name": "文山區",
+                "ivid": "TPE-080",
+                "code": "63000080",
+                "population": "273096",
+                "population_electors": "215599",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8ca-43c4-43af-9676-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8bb-2c94-48c2-bc29-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8bb-2c94-48c2-bc29-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺北市 > 第04選區[區域]",
+        "quota": "8",
+        "quota_woman": "2",
+        "population": "360499",
+        "population_electors": "294667",
+        "areas": [
+            {
+                "id": "59cfc8bb-c8b4-464d-a583-1a2bacb5b862",
+                "name": "中山區",
+                "ivid": "TPE-040",
+                "code": "63000040",
+                "population": "229812",
+                "population_electors": "188972",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8bb-c8b4-464d-a583-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc8c3-6f3c-442f-bb30-1a2bacb5b862",
+                "name": "大同區",
+                "ivid": "TPE-060",
+                "code": "63000060",
+                "population": "130687",
+                "population_electors": "105695",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8c3-6f3c-442f-bb30-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8bf-b56c-45a2-a10f-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8bf-b56c-45a2-a10f-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺北市 > 第05選區[區域]",
+        "quota": "8",
+        "quota_woman": "2",
+        "population": "357449",
+        "population_electors": "288709",
+        "areas": [
+            {
+                "id": "59cfc8bf-ab38-4de8-82c8-1a2bacb5b862",
+                "name": "中正區",
+                "ivid": "TPE-050",
+                "code": "63000050",
+                "population": "163220",
+                "population_electors": "126832",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8bf-ab38-4de8-82c8-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc8c6-ad0c-4ff8-9117-1a2bacb5b862",
+                "name": "萬華區",
+                "ivid": "TPE-070",
+                "code": "63000070",
+                "population": "194229",
+                "population_electors": "161877",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8c6-ad0c-4ff8-9117-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8cf-e758-4947-b7cb-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8cf-e758-4947-b7cb-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺北市 > 第02選區[區域]",
+        "quota": "9",
+        "quota_woman": "2",
+        "population": "405511",
+        "population_electors": "321003",
+        "areas": [
+            {
+                "id": "59cfc8cf-e880-4652-ad6f-1a2bacb5b862",
+                "name": "南港區",
+                "ivid": "TPE-090",
+                "code": "63000090",
+                "population": "120744",
+                "population_electors": "97180",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8cf-e880-4652-ad6f-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc8d1-9138-4e06-95f0-1a2bacb5b862",
+                "name": "內湖區",
+                "ivid": "TPE-100",
+                "code": "63000100",
+                "population": "284767",
+                "population_electors": "223823",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8d1-9138-4e06-95f0-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8d6-b8fc-4d29-8d8b-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8d6-b8fc-4d29-8d8b-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺北市 > 第01選區[區域]",
+        "quota": "13",
+        "quota_woman": "3",
+        "population": "546811",
+        "population_electors": "440693",
+        "areas": [
+            {
+                "id": "59cfc8d6-6b98-47df-9ccd-1a2bacb5b862",
+                "name": "士林區",
+                "ivid": "TPE-110",
+                "code": "63000110",
+                "population": "290048",
+                "population_electors": "235049",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8d6-6b98-47df-9ccd-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc8dc-6824-4302-8772-1a2bacb5b862",
+                "name": "北投區",
+                "ivid": "TPE-120",
+                "code": "63000120",
+                "population": "256763",
+                "population_electors": "205644",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8dc-6824-4302-8772-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8e2-0f30-4cae-aa2d-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8e2-0f30-4cae-aa2d-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第12選區[平地]",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "2776752",
+        "population_electors": "2235929",
+        "areas": [
+            {
+                "id": "59cfc8e1-32e0-47d9-9719-1a2bacb5b862",
+                "name": "高雄市",
+                "ivid": "KHH",
+                "code": "64000",
+                "population": "2776752",
+                "population_electors": "2235929",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8e1-32e0-47d9-9719-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8e2-2324-4c0b-9f3b-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8e2-2324-4c0b-9f3b-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第06選區[區域]",
+        "quota": "4",
+        "quota_woman": "1",
+        "population": "189963",
+        "population_electors": "153172",
+        "areas": [
+            {
+                "id": "59cfc8e2-3cac-453c-98fb-1a2bacb5b862",
+                "name": "鹽埕區",
+                "ivid": "KHH-010",
+                "code": "64000010",
+                "population": "25479",
+                "population_electors": "21736",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8e2-3cac-453c-98fb-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc8e5-4be0-4d91-9c93-1a2bacb5b862",
+                "name": "鼓山區",
+                "ivid": "KHH-020",
+                "code": "64000020",
+                "population": "135524",
+                "population_electors": "107621",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8e5-4be0-4d91-9c93-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc916-f0a8-441f-aa65-1a2bacb5b862",
+                "name": "旗津區",
+                "ivid": "KHH-100",
+                "code": "64000100",
+                "population": "28960",
+                "population_electors": "23815",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc916-f0a8-441f-aa65-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8e2-77f8-4a65-92e4-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8e2-77f8-4a65-92e4-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第14選區[山地]",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "503353",
+        "population_electors": "410250",
+        "areas": [
+            {
+                "id": "59cfc8e2-3cac-453c-98fb-1a2bacb5b862",
+                "name": "鹽埕區",
+                "ivid": "KHH-010",
+                "code": "64000010",
+                "population": "25479",
+                "population_electors": "21736",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8e2-3cac-453c-98fb-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc8e5-4be0-4d91-9c93-1a2bacb5b862",
+                "name": "鼓山區",
+                "ivid": "KHH-020",
+                "code": "64000020",
+                "population": "135524",
+                "population_electors": "107621",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8e5-4be0-4d91-9c93-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc8ff-05d8-40eb-bdfe-1a2bacb5b862",
+                "name": "新興區",
+                "ivid": "KHH-060",
+                "code": "64000060",
+                "population": "52624",
+                "population_electors": "44179",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8ff-05d8-40eb-bdfe-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc903-d774-4866-91df-1a2bacb5b862",
+                "name": "前金區",
+                "ivid": "KHH-070",
+                "code": "64000070",
+                "population": "27869",
+                "population_electors": "24024",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc903-d774-4866-91df-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc939-a89c-44e0-b6a8-1a2bacb5b862",
+                "name": "岡山區",
+                "ivid": "KHH-190",
+                "code": "64000190",
+                "population": "97662",
+                "population_electors": "76895",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc939-a89c-44e0-b6a8-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc93d-79ec-43dc-8251-1a2bacb5b862",
+                "name": "橋頭區",
+                "ivid": "KHH-200",
+                "code": "64000200",
+                "population": "37135",
+                "population_electors": "30509",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc93d-79ec-43dc-8251-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc940-8e24-40f4-9cd8-1a2bacb5b862",
+                "name": "燕巢區",
+                "ivid": "KHH-210",
+                "code": "64000210",
+                "population": "30443",
+                "population_electors": "25042",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc940-8e24-40f4-9cd8-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc941-51cc-458b-a885-1a2bacb5b862",
+                "name": "田寮區",
+                "ivid": "KHH-220",
+                "code": "64000220",
+                "population": "7701",
+                "population_electors": "6876",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc941-51cc-458b-a885-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc943-6eb8-4705-a0bc-1a2bacb5b862",
+                "name": "阿蓮區",
+                "ivid": "KHH-230",
+                "code": "64000230",
+                "population": "29560",
+                "population_electors": "23622",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc943-6eb8-4705-a0bc-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc953-aedc-42c8-8d4f-1a2bacb5b862",
+                "name": "美濃區",
+                "ivid": "KHH-310",
+                "code": "64000310",
+                "population": "41333",
+                "population_electors": "34998",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc953-aedc-42c8-8d4f-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc956-71a8-4c0a-b438-1a2bacb5b862",
+                "name": "六龜區",
+                "ivid": "KHH-320",
+                "code": "64000320",
+                "population": "13734",
+                "population_electors": "11510",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc956-71a8-4c0a-b438-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc95c-ad60-4bb7-9e44-1a2bacb5b862",
+                "name": "桃源區",
+                "ivid": "KHH-370",
+                "code": "64000370",
+                "population": "4289",
+                "population_electors": "3238",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc95c-ad60-4bb7-9e44-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8e9-8d7c-47fd-81cb-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8e9-8d7c-47fd-81cb-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第04選區[區域]",
+        "quota": "8",
+        "quota_woman": "2",
+        "population": "373909",
+        "population_electors": "288897",
+        "areas": [
+            {
+                "id": "59cfc8e9-8d60-4afb-8334-1a2bacb5b862",
+                "name": "左營區",
+                "ivid": "KHH-030",
+                "code": "64000030",
+                "population": "195589",
+                "population_electors": "149633",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8e9-8d60-4afb-8334-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc8ee-e12c-42ee-9429-1a2bacb5b862",
+                "name": "楠梓區",
+                "ivid": "KHH-040",
+                "code": "64000040",
+                "population": "178320",
+                "population_electors": "139264",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8ee-e12c-42ee-9429-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8ea-3848-4336-899f-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8ea-3848-4336-899f-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第13選區[山地]",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "978107",
+        "population_electors": "779164",
+        "areas": [
+            {
+                "id": "59cfc8e9-8d60-4afb-8334-1a2bacb5b862",
+                "name": "左營區",
+                "ivid": "KHH-030",
+                "code": "64000030",
+                "population": "195589",
+                "population_electors": "149633",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8e9-8d60-4afb-8334-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc8ee-e12c-42ee-9429-1a2bacb5b862",
+                "name": "楠梓區",
+                "ivid": "KHH-040",
+                "code": "64000040",
+                "population": "178320",
+                "population_electors": "139264",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8ee-e12c-42ee-9429-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc8f4-6c58-456a-8dde-1a2bacb5b862",
+                "name": "三民區",
+                "ivid": "KHH-050",
+                "code": "64000050",
+                "population": "347451",
+                "population_electors": "280095",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8f4-6c58-456a-8dde-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc944-185c-41ec-b97b-1a2bacb5b862",
+                "name": "路竹區",
+                "ivid": "KHH-240",
+                "code": "64000240",
+                "population": "52989",
+                "population_electors": "41812",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc944-185c-41ec-b97b-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc948-de34-41bf-ae3e-1a2bacb5b862",
+                "name": "湖內區",
+                "ivid": "KHH-250",
+                "code": "64000250",
+                "population": "29378",
+                "population_electors": "24170",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc948-de34-41bf-ae3e-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc94a-ab68-4df8-948d-1a2bacb5b862",
+                "name": "茄萣區",
+                "ivid": "KHH-260",
+                "code": "64000260",
+                "population": "30681",
+                "population_electors": "25371",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc94a-ab68-4df8-948d-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc94c-0fa4-429b-9f26-1a2bacb5b862",
+                "name": "永安區",
+                "ivid": "KHH-270",
+                "code": "64000270",
+                "population": "14149",
+                "population_electors": "11468",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc94c-0fa4-429b-9f26-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc94d-94b8-4788-91c7-1a2bacb5b862",
+                "name": "彌陀區",
+                "ivid": "KHH-280",
+                "code": "64000280",
+                "population": "19917",
+                "population_electors": "15998",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc94d-94b8-4788-91c7-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc94e-ed0c-4fb8-832a-1a2bacb5b862",
+                "name": "梓官區",
+                "ivid": "KHH-290",
+                "code": "64000290",
+                "population": "36368",
+                "population_electors": "29958",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc94e-ed0c-4fb8-832a-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc951-fbdc-4e42-a0ce-1a2bacb5b862",
+                "name": "旗山區",
+                "ivid": "KHH-300",
+                "code": "64000300",
+                "population": "38183",
+                "population_electors": "31713",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc951-fbdc-4e42-a0ce-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc957-9380-4eb7-a7af-1a2bacb5b862",
+                "name": "甲仙區",
+                "ivid": "KHH-330",
+                "code": "64000330",
+                "population": "6426",
+                "population_electors": "5447",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc957-9380-4eb7-a7af-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc958-4b80-4aa8-bbf5-1a2bacb5b862",
+                "name": "杉林區",
+                "ivid": "KHH-340",
+                "code": "64000340",
+                "population": "10231",
+                "population_electors": "8935",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc958-4b80-4aa8-bbf5-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc959-ed80-40a9-a7ce-1a2bacb5b862",
+                "name": "內門區",
+                "ivid": "KHH-350",
+                "code": "64000350",
+                "population": "15215",
+                "population_electors": "12977",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc959-ed80-40a9-a7ce-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc95e-57fc-47ae-b5c3-1a2bacb5b862",
+                "name": "那瑪夏區",
+                "ivid": "KHH-380",
+                "code": "64000380",
+                "population": "3210",
+                "population_electors": "2323",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc95e-57fc-47ae-b5c3-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8f4-ba50-4ff6-b28b-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8f4-ba50-4ff6-b28b-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第07選區[區域]",
+        "quota": "8",
+        "quota_woman": "2",
+        "population": "347451",
+        "population_electors": "280095",
+        "areas": [
+            {
+                "id": "59cfc8f4-6c58-456a-8dde-1a2bacb5b862",
+                "name": "三民區",
+                "ivid": "KHH-050",
+                "code": "64000050",
+                "population": "347451",
+                "population_electors": "280095",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8f4-6c58-456a-8dde-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc8ff-1a70-4413-bf96-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc8ff-1a70-4413-bf96-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第08選區[區域]",
+        "quota": "6",
+        "quota_woman": "1",
+        "population": "256526",
+        "population_electors": "214333",
+        "areas": [
+            {
+                "id": "59cfc8ff-05d8-40eb-bdfe-1a2bacb5b862",
+                "name": "新興區",
+                "ivid": "KHH-060",
+                "code": "64000060",
+                "population": "52624",
+                "population_electors": "44179",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc8ff-05d8-40eb-bdfe-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc903-d774-4866-91df-1a2bacb5b862",
+                "name": "前金區",
+                "ivid": "KHH-070",
+                "code": "64000070",
+                "population": "27869",
+                "population_electors": "24024",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc903-d774-4866-91df-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc906-9634-4d51-a4a5-1a2bacb5b862",
+                "name": "苓雅區",
+                "ivid": "KHH-080",
+                "code": "64000080",
+                "population": "176033",
+                "population_electors": "146130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc906-9634-4d51-a4a5-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc906-6764-4384-8b25-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc906-6764-4384-8b25-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第15選區[山地]",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "1295292",
+        "population_electors": "1046515",
+        "areas": [
+            {
+                "id": "59cfc906-9634-4d51-a4a5-1a2bacb5b862",
+                "name": "苓雅區",
+                "ivid": "KHH-080",
+                "code": "64000080",
+                "population": "176033",
+                "population_electors": "146130",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc906-9634-4d51-a4a5-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc90f-1c2c-4319-ae26-1a2bacb5b862",
+                "name": "前鎮區",
+                "ivid": "KHH-090",
+                "code": "64000090",
+                "population": "194080",
+                "population_electors": "157918",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc90f-1c2c-4319-ae26-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc916-f0a8-441f-aa65-1a2bacb5b862",
+                "name": "旗津區",
+                "ivid": "KHH-100",
+                "code": "64000100",
+                "population": "28960",
+                "population_electors": "23815",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc916-f0a8-441f-aa65-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc917-b3fc-46f1-ba88-1a2bacb5b862",
+                "name": "小港區",
+                "ivid": "KHH-110",
+                "code": "64000110",
+                "population": "155893",
+                "population_electors": "123827",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc917-b3fc-46f1-ba88-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc91c-4260-45f7-b79c-1a2bacb5b862",
+                "name": "鳳山區",
+                "ivid": "KHH-120",
+                "code": "64000120",
+                "population": "355097",
+                "population_electors": "281964",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc91c-4260-45f7-b79c-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc929-2ca0-444d-b3af-1a2bacb5b862",
+                "name": "林園區",
+                "ivid": "KHH-130",
+                "code": "64000130",
+                "population": "70455",
+                "population_electors": "55892",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc929-2ca0-444d-b3af-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc92d-b84c-4271-9c8d-1a2bacb5b862",
+                "name": "大寮區",
+                "ivid": "KHH-140",
+                "code": "64000140",
+                "population": "111054",
+                "population_electors": "91054",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc92d-b84c-4271-9c8d-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc931-6e08-4df4-84f2-1a2bacb5b862",
+                "name": "大樹區",
+                "ivid": "KHH-150",
+                "code": "64000150",
+                "population": "43224",
+                "population_electors": "35271",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc931-6e08-4df4-84f2-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc934-dd0c-4946-af91-1a2bacb5b862",
+                "name": "大社區",
+                "ivid": "KHH-160",
+                "code": "64000160",
+                "population": "34333",
+                "population_electors": "28141",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc934-dd0c-4946-af91-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc935-d0d0-412b-874e-1a2bacb5b862",
+                "name": "仁武區",
+                "ivid": "KHH-170",
+                "code": "64000170",
+                "population": "80610",
+                "population_electors": "64446",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc935-d0d0-412b-874e-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc937-a9fc-400f-8947-1a2bacb5b862",
+                "name": "鳥松區",
+                "ivid": "KHH-180",
+                "code": "64000180",
+                "population": "43647",
+                "population_electors": "36603",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc937-a9fc-400f-8947-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc95c-322c-40d9-b8d2-1a2bacb5b862",
+                "name": "茂林區",
+                "ivid": "KHH-360",
+                "code": "64000360",
+                "population": "1906",
+                "population_electors": "1454",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc95c-322c-40d9-b8d2-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc90f-8180-4e46-ad7a-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc90f-8180-4e46-ad7a-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第10選區[區域]",
+        "quota": "8",
+        "quota_woman": "2",
+        "population": "349973",
+        "population_electors": "281745",
+        "areas": [
+            {
+                "id": "59cfc90f-1c2c-4319-ae26-1a2bacb5b862",
+                "name": "前鎮區",
+                "ivid": "KHH-090",
+                "code": "64000090",
+                "population": "194080",
+                "population_electors": "157918",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc90f-1c2c-4319-ae26-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc917-b3fc-46f1-ba88-1a2bacb5b862",
+                "name": "小港區",
+                "ivid": "KHH-110",
+                "code": "64000110",
+                "population": "155893",
+                "population_electors": "123827",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc917-b3fc-46f1-ba88-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc91c-d890-444e-9200-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc91c-d890-444e-9200-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第09選區[區域]",
+        "quota": "8",
+        "quota_woman": "2",
+        "population": "355097",
+        "population_electors": "281964",
+        "areas": [
+            {
+                "id": "59cfc91c-4260-45f7-b79c-1a2bacb5b862",
+                "name": "鳳山區",
+                "ivid": "KHH-120",
+                "code": "64000120",
+                "population": "355097",
+                "population_electors": "281964",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc91c-4260-45f7-b79c-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc929-c148-4361-931b-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc929-c148-4361-931b-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第11選區[區域]",
+        "quota": "4",
+        "quota_woman": "1",
+        "population": "181509",
+        "population_electors": "146946",
+        "areas": [
+            {
+                "id": "59cfc929-2ca0-444d-b3af-1a2bacb5b862",
+                "name": "林園區",
+                "ivid": "KHH-130",
+                "code": "64000130",
+                "population": "70455",
+                "population_electors": "55892",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc929-2ca0-444d-b3af-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc92d-b84c-4271-9c8d-1a2bacb5b862",
+                "name": "大寮區",
+                "ivid": "KHH-140",
+                "code": "64000140",
+                "population": "111054",
+                "population_electors": "91054",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc92d-b84c-4271-9c8d-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc931-f508-426d-bc5f-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc931-f508-426d-bc5f-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第05選區[區域]",
+        "quota": "5",
+        "quota_woman": "1",
+        "population": "201814",
+        "population_electors": "164461",
+        "areas": [
+            {
+                "id": "59cfc931-6e08-4df4-84f2-1a2bacb5b862",
+                "name": "大樹區",
+                "ivid": "KHH-150",
+                "code": "64000150",
+                "population": "43224",
+                "population_electors": "35271",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc931-6e08-4df4-84f2-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc934-dd0c-4946-af91-1a2bacb5b862",
+                "name": "大社區",
+                "ivid": "KHH-160",
+                "code": "64000160",
+                "population": "34333",
+                "population_electors": "28141",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc934-dd0c-4946-af91-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc935-d0d0-412b-874e-1a2bacb5b862",
+                "name": "仁武區",
+                "ivid": "KHH-170",
+                "code": "64000170",
+                "population": "80610",
+                "population_electors": "64446",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc935-d0d0-412b-874e-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc937-a9fc-400f-8947-1a2bacb5b862",
+                "name": "鳥松區",
+                "ivid": "KHH-180",
+                "code": "64000180",
+                "population": "43647",
+                "population_electors": "36603",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc937-a9fc-400f-8947-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc939-0800-4617-9691-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc939-0800-4617-9691-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第03選區[區域]",
+        "quota": "5",
+        "quota_woman": "1",
+        "population": "235674",
+        "population_electors": "189870",
+        "areas": [
+            {
+                "id": "59cfc939-a89c-44e0-b6a8-1a2bacb5b862",
+                "name": "岡山區",
+                "ivid": "KHH-190",
+                "code": "64000190",
+                "population": "97662",
+                "population_electors": "76895",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc939-a89c-44e0-b6a8-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc93d-79ec-43dc-8251-1a2bacb5b862",
+                "name": "橋頭區",
+                "ivid": "KHH-200",
+                "code": "64000200",
+                "population": "37135",
+                "population_electors": "30509",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc93d-79ec-43dc-8251-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc940-8e24-40f4-9cd8-1a2bacb5b862",
+                "name": "燕巢區",
+                "ivid": "KHH-210",
+                "code": "64000210",
+                "population": "30443",
+                "population_electors": "25042",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc940-8e24-40f4-9cd8-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc94c-0fa4-429b-9f26-1a2bacb5b862",
+                "name": "永安區",
+                "ivid": "KHH-270",
+                "code": "64000270",
+                "population": "14149",
+                "population_electors": "11468",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc94c-0fa4-429b-9f26-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc94d-94b8-4788-91c7-1a2bacb5b862",
+                "name": "彌陀區",
+                "ivid": "KHH-280",
+                "code": "64000280",
+                "population": "19917",
+                "population_electors": "15998",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc94d-94b8-4788-91c7-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc94e-ed0c-4fb8-832a-1a2bacb5b862",
+                "name": "梓官區",
+                "ivid": "KHH-290",
+                "code": "64000290",
+                "population": "36368",
+                "population_electors": "29958",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc94e-ed0c-4fb8-832a-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc942-a180-4238-a31b-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc942-a180-4238-a31b-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第02選區[區域]",
+        "quota": "3",
+        "quota_woman": "0",
+        "population": "150309",
+        "population_electors": "121851",
+        "areas": [
+            {
+                "id": "59cfc941-51cc-458b-a885-1a2bacb5b862",
+                "name": "田寮區",
+                "ivid": "KHH-220",
+                "code": "64000220",
+                "population": "7701",
+                "population_electors": "6876",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc941-51cc-458b-a885-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc943-6eb8-4705-a0bc-1a2bacb5b862",
+                "name": "阿蓮區",
+                "ivid": "KHH-230",
+                "code": "64000230",
+                "population": "29560",
+                "population_electors": "23622",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc943-6eb8-4705-a0bc-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc944-185c-41ec-b97b-1a2bacb5b862",
+                "name": "路竹區",
+                "ivid": "KHH-240",
+                "code": "64000240",
+                "population": "52989",
+                "population_electors": "41812",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc944-185c-41ec-b97b-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc948-de34-41bf-ae3e-1a2bacb5b862",
+                "name": "湖內區",
+                "ivid": "KHH-250",
+                "code": "64000250",
+                "population": "29378",
+                "population_electors": "24170",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc948-de34-41bf-ae3e-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc94a-ab68-4df8-948d-1a2bacb5b862",
+                "name": "茄萣區",
+                "ivid": "KHH-260",
+                "code": "64000260",
+                "population": "30681",
+                "population_electors": "25371",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc94a-ab68-4df8-948d-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc951-5668-4c09-96d7-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc951-5668-4c09-96d7-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 高雄市 > 第01選區[區域]",
+        "quota": "3",
+        "quota_woman": "0",
+        "population": "134527",
+        "population_electors": "112595",
+        "areas": [
+            {
+                "id": "59cfc951-fbdc-4e42-a0ce-1a2bacb5b862",
+                "name": "旗山區",
+                "ivid": "KHH-300",
+                "code": "64000300",
+                "population": "38183",
+                "population_electors": "31713",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc951-fbdc-4e42-a0ce-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc953-aedc-42c8-8d4f-1a2bacb5b862",
+                "name": "美濃區",
+                "ivid": "KHH-310",
+                "code": "64000310",
+                "population": "41333",
+                "population_electors": "34998",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc953-aedc-42c8-8d4f-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc956-71a8-4c0a-b438-1a2bacb5b862",
+                "name": "六龜區",
+                "ivid": "KHH-320",
+                "code": "64000320",
+                "population": "13734",
+                "population_electors": "11510",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc956-71a8-4c0a-b438-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc957-9380-4eb7-a7af-1a2bacb5b862",
+                "name": "甲仙區",
+                "ivid": "KHH-330",
+                "code": "64000330",
+                "population": "6426",
+                "population_electors": "5447",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc957-9380-4eb7-a7af-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc958-4b80-4aa8-bbf5-1a2bacb5b862",
+                "name": "杉林區",
+                "ivid": "KHH-340",
+                "code": "64000340",
+                "population": "10231",
+                "population_electors": "8935",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc958-4b80-4aa8-bbf5-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc959-ed80-40a9-a7ce-1a2bacb5b862",
+                "name": "內門區",
+                "ivid": "KHH-350",
+                "code": "64000350",
+                "population": "15215",
+                "population_electors": "12977",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc959-ed80-40a9-a7ce-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc95c-322c-40d9-b8d2-1a2bacb5b862",
+                "name": "茂林區",
+                "ivid": "KHH-360",
+                "code": "64000360",
+                "population": "1906",
+                "population_electors": "1454",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc95c-322c-40d9-b8d2-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc95c-ad60-4bb7-9e44-1a2bacb5b862",
+                "name": "桃源區",
+                "ivid": "KHH-370",
+                "code": "64000370",
+                "population": "4289",
+                "population_electors": "3238",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc95c-ad60-4bb7-9e44-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc95e-57fc-47ae-b5c3-1a2bacb5b862",
+                "name": "那瑪夏區",
+                "ivid": "KHH-380",
+                "code": "64000380",
+                "population": "3210",
+                "population_electors": "2323",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc95e-57fc-47ae-b5c3-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc95f-9dc0-4705-847b-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc95f-9dc0-4705-847b-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 新北市 > 第12選區[山地]",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "3961374",
+        "population_electors": "3173136",
+        "areas": [
+            {
+                "id": "59cfc95f-085c-4eb5-972f-1a2bacb5b862",
+                "name": "新北市",
+                "ivid": "TPQ",
+                "code": "65000",
+                "population": "3961374",
+                "population_electors": "3173136",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc95f-085c-4eb5-972f-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc95f-c58c-4131-a99f-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc95f-c58c-4131-a99f-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 新北市 > 第11選區[平地]",
+        "quota": "3",
+        "quota_woman": "0",
+        "population": "3961374",
+        "population_electors": "3173136",
+        "areas": [
+            {
+                "id": "59cfc95f-085c-4eb5-972f-1a2bacb5b862",
+                "name": "新北市",
+                "ivid": "TPQ",
+                "code": "65000",
+                "population": "3961374",
+                "population_electors": "3173136",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc95f-085c-4eb5-972f-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc95f-d7e4-4d44-b6a3-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc95f-d7e4-4d44-b6a3-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 新北市 > 第04選區[區域]",
+        "quota": "9",
+        "quota_woman": "2",
+        "population": "555735",
+        "population_electors": "443503",
+        "areas": [
+            {
+                "id": "59cfc95f-0198-4e96-ae3a-1a2bacb5b862",
+                "name": "板橋區",
+                "ivid": "TPQ-010",
+                "code": "65000010",
+                "population": "555735",
+                "population_electors": "443503",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc95f-0198-4e96-ae3a-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc972-0dbc-4dcf-8683-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc972-0dbc-4dcf-8683-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 新北市 > 第03選區[區域]",
+        "quota": "9",
+        "quota_woman": "2",
+        "population": "588640",
+        "population_electors": "470925",
+        "areas": [
+            {
+                "id": "59cfc972-b5e8-45f6-b85d-1a2bacb5b862",
+                "name": "三重區",
+                "ivid": "TPQ-020",
+                "code": "65000020",
+                "population": "389180",
+                "population_electors": "315936",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc972-b5e8-45f6-b85d-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9d2-1a34-4162-8ee0-1a2bacb5b862",
+                "name": "蘆洲區",
+                "ivid": "TPQ-140",
+                "code": "65000140",
+                "population": "199460",
+                "population_electors": "154989",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9d2-1a34-4162-8ee0-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc981-6590-494a-8655-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc981-6590-494a-8655-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 新北市 > 第05選區[區域]",
+        "quota": "6",
+        "quota_woman": "1",
+        "population": "415073",
+        "population_electors": "343334",
+        "areas": [
+            {
+                "id": "59cfc981-5238-4e42-b860-1a2bacb5b862",
+                "name": "中和區",
+                "ivid": "TPQ-030",
+                "code": "65000030",
+                "population": "415073",
+                "population_electors": "343334",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc981-5238-4e42-b860-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc98b-6558-4496-ad25-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc98b-6558-4496-ad25-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 新北市 > 第06選區[區域]",
+        "quota": "4",
+        "quota_woman": "1",
+        "population": "227629",
+        "population_electors": "183675",
+        "areas": [
+            {
+                "id": "59cfc98b-1db4-4ccb-9620-1a2bacb5b862",
+                "name": "永和區",
+                "ivid": "TPQ-040",
+                "code": "65000040",
+                "population": "227629",
+                "population_electors": "183675",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc98b-1db4-4ccb-9620-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc993-a46c-4549-9799-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc993-a46c-4549-9799-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 新北市 > 第02選區[區域]",
+        "quota": "10",
+        "quota_woman": "2",
+        "population": "667941",
+        "population_electors": "517150",
+        "areas": [
+            {
+                "id": "59cfc993-11a8-44c8-9855-1a2bacb5b862",
+                "name": "新莊區",
+                "ivid": "TPQ-050",
+                "code": "65000050",
+                "population": "410905",
+                "population_electors": "320455",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc993-11a8-44c8-9855-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9d7-2190-4128-bc83-1a2bacb5b862",
+                "name": "五股區",
+                "ivid": "TPQ-150",
+                "code": "65000150",
+                "population": "82147",
+                "population_electors": "64348",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9d7-2190-4128-bc83-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9d9-c56c-4078-af19-1a2bacb5b862",
+                "name": "泰山區",
+                "ivid": "TPQ-160",
+                "code": "65000160",
+                "population": "78231",
+                "population_electors": "60285",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9d9-c56c-4078-af19-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9dc-17e0-40fb-8d84-1a2bacb5b862",
+                "name": "林口區",
+                "ivid": "TPQ-170",
+                "code": "65000170",
+                "population": "96658",
+                "population_electors": "72062",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9dc-17e0-40fb-8d84-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc99e-32b4-48dd-a03b-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc99e-32b4-48dd-a03b-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 新北市 > 第08選區[區域]",
+        "quota": "5",
+        "quota_woman": "1",
+        "population": "343333",
+        "population_electors": "285102",
+        "areas": [
+            {
+                "id": "59cfc99e-b554-4899-b83b-1a2bacb5b862",
+                "name": "新店區",
+                "ivid": "TPQ-060",
+                "code": "65000060",
+                "population": "299327",
+                "population_electors": "249019",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc99e-b554-4899-b83b-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9de-b220-44e1-927f-1a2bacb5b862",
+                "name": "深坑區",
+                "ivid": "TPQ-180",
+                "code": "65000180",
+                "population": "23590",
+                "population_electors": "19243",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9de-b220-44e1-927f-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9df-e284-4738-9d33-1a2bacb5b862",
+                "name": "石碇區",
+                "ivid": "TPQ-190",
+                "code": "65000190",
+                "population": "7885",
+                "population_electors": "6571",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9df-e284-4738-9d33-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9e1-3f48-4c8e-9bbb-1a2bacb5b862",
+                "name": "坪林區",
+                "ivid": "TPQ-200",
+                "code": "65000200",
+                "population": "6405",
+                "population_electors": "5498",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9e1-3f48-4c8e-9bbb-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9ef-3bac-4940-b400-1a2bacb5b862",
+                "name": "烏來區",
+                "ivid": "TPQ-290",
+                "code": "65000290",
+                "population": "6126",
+                "population_electors": "4771",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9ef-3bac-4940-b400-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc9a9-1bfc-4542-a7a6-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc9a9-1bfc-4542-a7a6-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 新北市 > 第07選區[區域]",
+        "quota": "10",
+        "quota_woman": "2",
+        "population": "622872",
+        "population_electors": "486520",
+        "areas": [
+            {
+                "id": "59cfc9a9-bb54-4b74-b9ff-1a2bacb5b862",
+                "name": "樹林區",
+                "ivid": "TPQ-070",
+                "code": "65000070",
+                "population": "183767",
+                "population_electors": "142929",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9a9-bb54-4b74-b9ff-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9af-5298-4b84-89ea-1a2bacb5b862",
+                "name": "鶯歌區",
+                "ivid": "TPQ-080",
+                "code": "65000080",
+                "population": "88886",
+                "population_electors": "68684",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9af-5298-4b84-89ea-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9b2-9e28-4d20-8dc3-1a2bacb5b862",
+                "name": "三峽區",
+                "ivid": "TPQ-090",
+                "code": "65000090",
+                "population": "111163",
+                "population_electors": "84844",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9b2-9e28-4d20-8dc3-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9cb-1b38-45b0-8c1d-1a2bacb5b862",
+                "name": "土城區",
+                "ivid": "TPQ-130",
+                "code": "65000130",
+                "population": "239056",
+                "population_electors": "190063",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9cb-1b38-45b0-8c1d-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc9b6-1240-44f0-a08c-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc9b6-1240-44f0-a08c-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 新北市 > 第01選區[區域]",
+        "quota": "4",
+        "quota_woman": "1",
+        "population": "231343",
+        "population_electors": "187543",
+        "areas": [
+            {
+                "id": "59cfc9b6-a63c-44de-bebc-1a2bacb5b862",
+                "name": "淡水區",
+                "ivid": "TPQ-100",
+                "code": "65000100",
+                "population": "158223",
+                "population_electors": "128716",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9b6-a63c-44de-bebc-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9e2-7b80-43c6-8608-1a2bacb5b862",
+                "name": "三芝區",
+                "ivid": "TPQ-210",
+                "code": "65000210",
+                "population": "23444",
+                "population_electors": "19088",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9e2-7b80-43c6-8608-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9e4-8b80-4658-b744-1a2bacb5b862",
+                "name": "石門區",
+                "ivid": "TPQ-220",
+                "code": "65000220",
+                "population": "12679",
+                "population_electors": "10202",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9e4-8b80-4658-b744-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9e5-13ac-45dd-9aef-1a2bacb5b862",
+                "name": "八里區",
+                "ivid": "TPQ-230",
+                "code": "65000230",
+                "population": "36997",
+                "population_electors": "29537",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9e5-13ac-45dd-9aef-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc9bb-cbf0-4d8d-8830-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc9bb-cbf0-4d8d-8830-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 新北市 > 第10選區[區域]",
+        "quota": "4",
+        "quota_woman": "1",
+        "population": "239885",
+        "population_electors": "196924",
+        "areas": [
+            {
+                "id": "59cfc9bb-a9b8-465f-8cba-1a2bacb5b862",
+                "name": "汐止區",
+                "ivid": "TPQ-110",
+                "code": "65000110",
+                "population": "194879",
+                "population_electors": "160224",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9bb-a9b8-465f-8cba-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9eb-b358-432c-bb3b-1a2bacb5b862",
+                "name": "金山區",
+                "ivid": "TPQ-270",
+                "code": "65000270",
+                "population": "22361",
+                "population_electors": "18080",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9eb-b358-432c-bb3b-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9ed-27ec-4be7-a695-1a2bacb5b862",
+                "name": "萬里區",
+                "ivid": "TPQ-280",
+                "code": "65000280",
+                "population": "22645",
+                "population_electors": "18620",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9ed-27ec-4be7-a695-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc9c4-da44-4d52-aac2-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc9c4-da44-4d52-aac2-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 新北市 > 第09選區[區域]",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "68923",
+        "population_electors": "58460",
+        "areas": [
+            {
+                "id": "59cfc9c4-1a28-451b-9127-1a2bacb5b862",
+                "name": "瑞芳區",
+                "ivid": "TPQ-120",
+                "code": "65000120",
+                "population": "41372",
+                "population_electors": "34507",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9c4-1a28-451b-9127-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9e6-fff4-4b0c-adb3-1a2bacb5b862",
+                "name": "平溪區",
+                "ivid": "TPQ-240",
+                "code": "65000240",
+                "population": "4986",
+                "population_electors": "4498",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9e6-fff4-4b0c-adb3-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9e8-0508-4049-a373-1a2bacb5b862",
+                "name": "雙溪區",
+                "ivid": "TPQ-250",
+                "code": "65000250",
+                "population": "9423",
+                "population_electors": "8128",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9e8-0508-4049-a373-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9e9-87f8-40f3-918f-1a2bacb5b862",
+                "name": "貢寮區",
+                "ivid": "TPQ-260",
+                "code": "65000260",
+                "population": "13142",
+                "population_electors": "11327",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9e9-87f8-40f3-918f-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc9f1-bfd8-415c-91f5-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc9f1-bfd8-415c-91f5-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第10選區[區域]",
+        "quota": "3",
+        "quota_woman": "0",
+        "population": "135091",
+        "population_electors": "104760",
+        "areas": [
+            {
+                "id": "59cfc9f1-d60c-417a-9da6-1a2bacb5b862",
+                "name": "中區",
+                "ivid": "TXG-010",
+                "code": "66000010",
+                "population": "19407",
+                "population_electors": "14517",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9f1-d60c-417a-9da6-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9f8-ae68-456e-abb1-1a2bacb5b862",
+                "name": "西區",
+                "ivid": "TXG-040",
+                "code": "66000040",
+                "population": "115684",
+                "population_electors": "90243",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9f8-ae68-456e-abb1-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc9f1-c690-4d2d-b08d-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc9f1-c690-4d2d-b08d-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第15選區[平地]",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "2712948",
+        "population_electors": "2099294",
+        "areas": [
+            {
+                "id": "59cfc9f0-ac3c-4078-9d0e-1a2bacb5b862",
+                "name": "臺中市",
+                "ivid": "TXG",
+                "code": "66000",
+                "population": "2712948",
+                "population_electors": "2099294",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9f0-ac3c-4078-9d0e-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc9f1-f148-4a3c-92dc-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc9f1-f148-4a3c-92dc-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第16選區[山地]",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "2712948",
+        "population_electors": "2099294",
+        "areas": [
+            {
+                "id": "59cfca10-abb0-4c20-811c-1a2bacb5b862",
+                "name": "豐原區",
+                "ivid": "TXG-090",
+                "code": "66000090",
+                "population": "166354",
+                "population_electors": "128296",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca10-abb0-4c20-811c-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca15-2430-4298-847d-1a2bacb5b862",
+                "name": "東勢區",
+                "ivid": "TXG-100",
+                "code": "66000100",
+                "population": "51585",
+                "population_electors": "41986",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca15-2430-4298-847d-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca19-81e4-4c2c-93cc-1a2bacb5b862",
+                "name": "大甲區",
+                "ivid": "TXG-110",
+                "code": "66000110",
+                "population": "77582",
+                "population_electors": "59571",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca19-81e4-4c2c-93cc-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca1d-d314-432c-89da-1a2bacb5b862",
+                "name": "清水區",
+                "ivid": "TXG-120",
+                "code": "66000120",
+                "population": "85908",
+                "population_electors": "67017",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca1d-d314-432c-89da-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca26-2134-4599-a910-1a2bacb5b862",
+                "name": "后里區",
+                "ivid": "TXG-150",
+                "code": "66000150",
+                "population": "54035",
+                "population_electors": "41920",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca26-2134-4599-a910-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca28-bd08-4d53-b7f9-1a2bacb5b862",
+                "name": "神岡區",
+                "ivid": "TXG-160",
+                "code": "66000160",
+                "population": "64870",
+                "population_electors": "50760",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca28-bd08-4d53-b7f9-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca2a-bdd8-435b-9c38-1a2bacb5b862",
+                "name": "潭子區",
+                "ivid": "TXG-170",
+                "code": "66000170",
+                "population": "104834",
+                "population_electors": "80932",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca2a-bdd8-435b-9c38-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca2c-8d64-4240-a119-1a2bacb5b862",
+                "name": "大雅區",
+                "ivid": "TXG-180",
+                "code": "66000180",
+                "population": "92369",
+                "population_electors": "69658",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca2c-8d64-4240-a119-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca2e-66b8-4e7a-8551-1a2bacb5b862",
+                "name": "新社區",
+                "ivid": "TXG-190",
+                "code": "66000190",
+                "population": "25247",
+                "population_electors": "20146",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca2e-66b8-4e7a-8551-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca30-87fc-4004-8770-1a2bacb5b862",
+                "name": "石岡區",
+                "ivid": "TXG-200",
+                "code": "66000200",
+                "population": "15443",
+                "population_electors": "12429",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca30-87fc-4004-8770-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca31-40c8-471c-97ff-1a2bacb5b862",
+                "name": "外埔區",
+                "ivid": "TXG-210",
+                "code": "66000210",
+                "population": "31758",
+                "population_electors": "25255",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca31-40c8-471c-97ff-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca33-e38c-432b-9caf-1a2bacb5b862",
+                "name": "大安區",
+                "ivid": "TXG-220",
+                "code": "66000220",
+                "population": "19640",
+                "population_electors": "15871",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca33-e38c-432b-9caf-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca4c-fef0-4753-8ed1-1a2bacb5b862",
+                "name": "和平區",
+                "ivid": "TXG-290",
+                "code": "66000290",
+                "population": "10810",
+                "population_electors": "8867",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca4c-fef0-4753-8ed1-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc9f2-a880-4acc-a9fd-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc9f2-a880-4acc-a9fd-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第11選區[區域]",
+        "quota": "4",
+        "quota_woman": "1",
+        "population": "194403",
+        "population_electors": "153308",
+        "areas": [
+            {
+                "id": "59cfc9f2-5fb0-4788-9faf-1a2bacb5b862",
+                "name": "東區",
+                "ivid": "TXG-020",
+                "code": "66000020",
+                "population": "74745",
+                "population_electors": "60318",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9f2-5fb0-4788-9faf-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9f5-6dc0-4819-a37e-1a2bacb5b862",
+                "name": "南區",
+                "ivid": "TXG-030",
+                "code": "66000030",
+                "population": "119658",
+                "population_electors": "92990",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9f5-6dc0-4819-a37e-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfc9fc-bd38-415e-bf40-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfc9fc-bd38-415e-bf40-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第09選區[區域]",
+        "quota": "3",
+        "quota_woman": "0",
+        "population": "147321",
+        "population_electors": "118298",
+        "areas": [
+            {
+                "id": "59cfc9fb-6850-4100-9ec6-1a2bacb5b862",
+                "name": "北區",
+                "ivid": "TXG-050",
+                "code": "66000050",
+                "population": "147321",
+                "population_electors": "118298",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9fb-6850-4100-9ec6-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca02-78f0-495c-8360-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca02-78f0-495c-8360-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第06選區[區域]",
+        "quota": "5",
+        "quota_woman": "1",
+        "population": "217673",
+        "population_electors": "164387",
+        "areas": [
+            {
+                "id": "59cfca02-2804-412e-89d3-1a2bacb5b862",
+                "name": "西屯區",
+                "ivid": "TXG-060",
+                "code": "66000060",
+                "population": "217673",
+                "population_electors": "164387",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca02-2804-412e-89d3-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca07-0530-4e7e-aaa7-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca07-0530-4e7e-aaa7-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第07選區[區域]",
+        "quota": "4",
+        "quota_woman": "1",
+        "population": "161472",
+        "population_electors": "119001",
+        "areas": [
+            {
+                "id": "59cfca07-4150-4689-a5f9-1a2bacb5b862",
+                "name": "南屯區",
+                "ivid": "TXG-070",
+                "code": "66000070",
+                "population": "161472",
+                "population_electors": "119001",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca07-4150-4689-a5f9-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca0a-f80c-45af-ac29-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca0a-f80c-45af-ac29-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第08選區[區域]",
+        "quota": "6",
+        "quota_woman": "1",
+        "population": "258701",
+        "population_electors": "200209",
+        "areas": [
+            {
+                "id": "59cfca0a-380c-47b3-b1e6-1a2bacb5b862",
+                "name": "北屯區",
+                "ivid": "TXG-080",
+                "code": "66000080",
+                "population": "258701",
+                "population_electors": "200209",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca0a-380c-47b3-b1e6-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca10-cd84-441c-b571-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca10-cd84-441c-b571-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第04選區[區域]",
+        "quota": "5",
+        "quota_woman": "1",
+        "population": "220389",
+        "population_electors": "170216",
+        "areas": [
+            {
+                "id": "59cfca10-abb0-4c20-811c-1a2bacb5b862",
+                "name": "豐原區",
+                "ivid": "TXG-090",
+                "code": "66000090",
+                "population": "166354",
+                "population_electors": "128296",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca10-abb0-4c20-811c-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca26-2134-4599-a910-1a2bacb5b862",
+                "name": "后里區",
+                "ivid": "TXG-150",
+                "code": "66000150",
+                "population": "54035",
+                "population_electors": "41920",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca26-2134-4599-a910-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca15-6678-49d5-ac58-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca15-6678-49d5-ac58-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第14選區[區域]",
+        "quota": "2",
+        "quota_woman": "0",
+        "population": "103085",
+        "population_electors": "83428",
+        "areas": [
+            {
+                "id": "59cfca15-2430-4298-847d-1a2bacb5b862",
+                "name": "東勢區",
+                "ivid": "TXG-100",
+                "code": "66000100",
+                "population": "51585",
+                "population_electors": "41986",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca15-2430-4298-847d-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca2e-66b8-4e7a-8551-1a2bacb5b862",
+                "name": "新社區",
+                "ivid": "TXG-190",
+                "code": "66000190",
+                "population": "25247",
+                "population_electors": "20146",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca2e-66b8-4e7a-8551-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca30-87fc-4004-8770-1a2bacb5b862",
+                "name": "石岡區",
+                "ivid": "TXG-200",
+                "code": "66000200",
+                "population": "15443",
+                "population_electors": "12429",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca30-87fc-4004-8770-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca4c-fef0-4753-8ed1-1a2bacb5b862",
+                "name": "和平區",
+                "ivid": "TXG-290",
+                "code": "66000290",
+                "population": "10810",
+                "population_electors": "8867",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca4c-fef0-4753-8ed1-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca19-96bc-49af-9bb6-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca19-96bc-49af-9bb6-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第01選區[區域]",
+        "quota": "3",
+        "quota_woman": "0",
+        "population": "128980",
+        "population_electors": "100697",
+        "areas": [
+            {
+                "id": "59cfca19-81e4-4c2c-93cc-1a2bacb5b862",
+                "name": "大甲區",
+                "ivid": "TXG-110",
+                "code": "66000110",
+                "population": "77582",
+                "population_electors": "59571",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca19-81e4-4c2c-93cc-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca31-40c8-471c-97ff-1a2bacb5b862",
+                "name": "外埔區",
+                "ivid": "TXG-210",
+                "code": "66000210",
+                "population": "31758",
+                "population_electors": "25255",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca31-40c8-471c-97ff-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca33-e38c-432b-9caf-1a2bacb5b862",
+                "name": "大安區",
+                "ivid": "TXG-220",
+                "code": "66000220",
+                "population": "19640",
+                "population_electors": "15871",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca33-e38c-432b-9caf-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca1d-ae78-4a67-b1dc-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca1d-ae78-4a67-b1dc-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第02選區[區域]",
+        "quota": "5",
+        "quota_woman": "1",
+        "population": "229709",
+        "population_electors": "176111",
+        "areas": [
+            {
+                "id": "59cfca1d-d314-432c-89da-1a2bacb5b862",
+                "name": "清水區",
+                "ivid": "TXG-120",
+                "code": "66000120",
+                "population": "85908",
+                "population_electors": "67017",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca1d-d314-432c-89da-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca21-8630-42c1-a888-1a2bacb5b862",
+                "name": "沙鹿區",
+                "ivid": "TXG-130",
+                "code": "66000130",
+                "population": "87352",
+                "population_electors": "66036",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca21-8630-42c1-a888-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca24-1c50-480e-b481-1a2bacb5b862",
+                "name": "梧棲區",
+                "ivid": "TXG-140",
+                "code": "66000140",
+                "population": "56449",
+                "population_electors": "43058",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca24-1c50-480e-b481-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca28-35cc-433c-8ad1-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca28-35cc-433c-8ad1-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第05選區[區域]",
+        "quota": "6",
+        "quota_woman": "1",
+        "population": "262073",
+        "population_electors": "201350",
+        "areas": [
+            {
+                "id": "59cfca28-bd08-4d53-b7f9-1a2bacb5b862",
+                "name": "神岡區",
+                "ivid": "TXG-160",
+                "code": "66000160",
+                "population": "64870",
+                "population_electors": "50760",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca28-bd08-4d53-b7f9-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca2a-bdd8-435b-9c38-1a2bacb5b862",
+                "name": "潭子區",
+                "ivid": "TXG-170",
+                "code": "66000170",
+                "population": "104834",
+                "population_electors": "80932",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca2a-bdd8-435b-9c38-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca2c-8d64-4240-a119-1a2bacb5b862",
+                "name": "大雅區",
+                "ivid": "TXG-180",
+                "code": "66000180",
+                "population": "92369",
+                "population_electors": "69658",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca2c-8d64-4240-a119-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca35-cac0-4cea-8f1d-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca35-cac0-4cea-8f1d-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第03選區[區域]",
+        "quota": "5",
+        "quota_woman": "1",
+        "population": "203284",
+        "population_electors": "157514",
+        "areas": [
+            {
+                "id": "59cfca34-850c-4149-a808-1a2bacb5b862",
+                "name": "烏日區",
+                "ivid": "TXG-230",
+                "code": "66000230",
+                "population": "71197",
+                "population_electors": "55292",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca34-850c-4149-a808-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca37-21d8-4163-826d-1a2bacb5b862",
+                "name": "大肚區",
+                "ivid": "TXG-240",
+                "code": "66000240",
+                "population": "56246",
+                "population_electors": "44000",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca37-21d8-4163-826d-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca39-5ac4-4499-9b64-1a2bacb5b862",
+                "name": "龍井區",
+                "ivid": "TXG-250",
+                "code": "66000250",
+                "population": "75841",
+                "population_electors": "58222",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca39-5ac4-4499-9b64-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca3c-22dc-4ff8-ae7b-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca3c-22dc-4ff8-ae7b-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第13選區[區域]",
+        "quota": "6",
+        "quota_woman": "1",
+        "population": "270055",
+        "population_electors": "208384",
+        "areas": [
+            {
+                "id": "59cfca3c-8b1c-4ccd-92bb-1a2bacb5b862",
+                "name": "霧峰區",
+                "ivid": "TXG-260",
+                "code": "66000260",
+                "population": "64443",
+                "population_electors": "51638",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca3c-8b1c-4ccd-92bb-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca48-ed2c-4cb8-b4b6-1a2bacb5b862",
+                "name": "大里區",
+                "ivid": "TXG-280",
+                "code": "66000280",
+                "population": "205612",
+                "population_electors": "156746",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca48-ed2c-4cb8-b4b6-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca41-31f8-4b7c-bf74-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca41-31f8-4b7c-bf74-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第12選區[區域]",
+        "quota": "4",
+        "quota_woman": "1",
+        "population": "180712",
+        "population_electors": "141631",
+        "areas": [
+            {
+                "id": "59cfca41-59f8-45ec-948f-1a2bacb5b862",
+                "name": "太平區",
+                "ivid": "TXG-270",
+                "code": "66000270",
+                "population": "180712",
+                "population_electors": "141631",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca41-59f8-45ec-948f-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca4e-295c-436f-92bb-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca4e-295c-436f-92bb-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺南市 > 第12選區[平地]",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "1883493",
+        "population_electors": "1516489",
+        "areas": [
+            {
+                "id": "59cfca4e-9f18-4f36-9b43-1a2bacb5b862",
+                "name": "臺南市",
+                "ivid": "TNN",
+                "code": "67000",
+                "population": "1883493",
+                "population_electors": "1516489",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca4e-9f18-4f36-9b43-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca4e-54a0-40e3-bf75-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca4e-54a0-40e3-bf75-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺南市 > 第02選區[區域]",
+        "quota": "4",
+        "quota_woman": "1",
+        "population": "126476",
+        "population_electors": "102153",
+        "areas": [
+            {
+                "id": "59cfca6c-32dc-47a2-b21c-1a2bacb5b862",
+                "name": "佳里區",
+                "ivid": "TNN-120",
+                "code": "67000120",
+                "population": "59522",
+                "population_electors": "48234",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca6c-32dc-47a2-b21c-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca6f-af88-4ce2-996a-1a2bacb5b862",
+                "name": "學甲區",
+                "ivid": "TNN-130",
+                "code": "67000130",
+                "population": "26951",
+                "population_electors": "22456",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca6f-af88-4ce2-996a-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca70-c74c-41e9-9a15-1a2bacb5b862",
+                "name": "西港區",
+                "ivid": "TNN-140",
+                "code": "67000140",
+                "population": "24913",
+                "population_electors": "20535",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca70-c74c-41e9-9a15-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca72-0930-436c-8c1a-1a2bacb5b862",
+                "name": "七股區",
+                "ivid": "TNN-150",
+                "code": "67000150",
+                "population": "23632",
+                "population_electors": "19789",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca72-0930-436c-8c1a-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca76-88bc-4f42-9f49-1a2bacb5b862",
+                "name": "將軍區",
+                "ivid": "TNN-160",
+                "code": "67000160",
+                "population": "20597",
+                "population_electors": "17838",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca76-88bc-4f42-9f49-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca79-c9f0-4c76-b1a0-1a2bacb5b862",
+                "name": "北門區",
+                "ivid": "TNN-170",
+                "code": "67000170",
+                "population": "11721",
+                "population_electors": "10079",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca79-c9f0-4c76-b1a0-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca4e-e184-49da-866f-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca4e-e184-49da-866f-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺南市 > 第13選區[山地]",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "1883493",
+        "population_electors": "1516489",
+        "areas": [
+            {
+                "id": "59cfca4e-9f18-4f36-9b43-1a2bacb5b862",
+                "name": "臺南市",
+                "ivid": "TNN",
+                "code": "67000",
+                "population": "1883493",
+                "population_electors": "1516489",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca4e-9f18-4f36-9b43-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca56-cfb8-41ef-b354-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca56-cfb8-41ef-b354-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺南市 > 第01選區[區域]",
+        "quota": "2",
+        "quota_woman": "0",
+        "population": "76454",
+        "population_electors": "64732",
+        "areas": [
+            {
+                "id": "59cfca4e-0bb0-4c9e-8864-1a2bacb5b862",
+                "name": "新營區",
+                "ivid": "TNN-010",
+                "code": "67000010",
+                "population": "78267",
+                "population_electors": "61964",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca4e-0bb0-4c9e-8864-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca52-a9b8-4f87-8192-1a2bacb5b862",
+                "name": "鹽水區",
+                "ivid": "TNN-020",
+                "code": "67000020",
+                "population": "26348",
+                "population_electors": "21797",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca52-a9b8-4f87-8192-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca56-d904-4cfe-beba-1a2bacb5b862",
+                "name": "白河區",
+                "ivid": "TNN-030",
+                "code": "67000030",
+                "population": "29858",
+                "population_electors": "25155",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca56-d904-4cfe-beba-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca59-55d0-44a4-b018-1a2bacb5b862",
+                "name": "柳營區",
+                "ivid": "TNN-040",
+                "code": "67000040",
+                "population": "21861",
+                "population_electors": "18392",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca59-55d0-44a4-b018-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca5b-8d1c-4dd8-a88e-1a2bacb5b862",
+                "name": "後壁區",
+                "ivid": "TNN-050",
+                "code": "67000050",
+                "population": "24633",
+                "population_electors": "20998",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca5b-8d1c-4dd8-a88e-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca5e-886c-4c75-a187-1a2bacb5b862",
+                "name": "東山區",
+                "ivid": "TNN-060",
+                "code": "67000060",
+                "population": "21963",
+                "population_electors": "18579",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca5e-886c-4c75-a187-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca61-7928-480e-bd6e-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca61-7928-480e-bd6e-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺南市 > 第04選區[區域]",
+        "quota": "3",
+        "quota_woman": "0",
+        "population": "114888",
+        "population_electors": "94461",
+        "areas": [
+            {
+                "id": "59cfca89-c600-4c03-8bf9-1a2bacb5b862",
+                "name": "玉井區",
+                "ivid": "TNN-230",
+                "code": "67000230",
+                "population": "14636",
+                "population_electors": "12305",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca89-c600-4c03-8bf9-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca8a-e02c-4264-b95a-1a2bacb5b862",
+                "name": "楠西區",
+                "ivid": "TNN-240",
+                "code": "67000240",
+                "population": "10123",
+                "population_electors": "8582",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca8a-e02c-4264-b95a-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca8b-bbe0-4290-9b21-1a2bacb5b862",
+                "name": "南化區",
+                "ivid": "TNN-250",
+                "code": "67000250",
+                "population": "8908",
+                "population_electors": "7582",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca8b-bbe0-4290-9b21-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca8d-26a4-449a-ba05-1a2bacb5b862",
+                "name": "左鎮區",
+                "ivid": "TNN-260",
+                "code": "67000260",
+                "population": "5199",
+                "population_electors": "4611",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca8d-26a4-449a-ba05-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca6b-50b8-4d8b-893f-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca6b-50b8-4d8b-893f-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺南市 > 第07選區[區域]",
+        "quota": "2",
+        "quota_woman": "0",
+        "population": "61584",
+        "population_electors": "50628",
+        "areas": [
+            {
+                "id": "59cfca98-d670-45ae-a4ae-1a2bacb5b862",
+                "name": "永康區",
+                "ivid": "TNN-310",
+                "code": "67000310",
+                "population": "228264",
+                "population_electors": "179032",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca98-d670-45ae-a4ae-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca6c-10e8-4ff2-a948-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca6c-10e8-4ff2-a948-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺南市 > 第05選區[區域]",
+        "quota": "3",
+        "quota_woman": "0",
+        "population": "108067",
+        "population_electors": "88558",
+        "areas": [
+            {
+                "id": "59cfca7b-a5bc-4e11-a093-1a2bacb5b862",
+                "name": "新化區",
+                "ivid": "TNN-180",
+                "code": "67000180",
+                "population": "43806",
+                "population_electors": "35541",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca7b-a5bc-4e11-a093-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca7e-aa18-4867-a91a-1a2bacb5b862",
+                "name": "善化區",
+                "ivid": "TNN-190",
+                "code": "67000190",
+                "population": "45893",
+                "population_electors": "36249",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca7e-aa18-4867-a91a-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca81-0d10-4528-b113-1a2bacb5b862",
+                "name": "新市區",
+                "ivid": "TNN-200",
+                "code": "67000200",
+                "population": "35463",
+                "population_electors": "27939",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca81-0d10-4528-b113-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca84-d134-496e-a1c6-1a2bacb5b862",
+                "name": "安定區",
+                "ivid": "TNN-210",
+                "code": "67000210",
+                "population": "30281",
+                "population_electors": "24602",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca84-d134-496e-a1c6-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca87-7120-48fd-b98e-1a2bacb5b862",
+                "name": "山上區",
+                "ivid": "TNN-220",
+                "code": "67000220",
+                "population": "7515",
+                "population_electors": "6368",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca87-7120-48fd-b98e-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca6f-4048-4c0c-9cc7-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca6f-4048-4c0c-9cc7-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺南市 > 第03選區[區域]",
+        "quota": "2",
+        "quota_woman": "0",
+        "population": "59269",
+        "population_electors": "50373",
+        "areas": [
+            {
+                "id": "59cfca61-f0cc-4ee5-9098-1a2bacb5b862",
+                "name": "麻豆區",
+                "ivid": "TNN-070",
+                "code": "67000070",
+                "population": "45072",
+                "population_electors": "36697",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca61-f0cc-4ee5-9098-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca65-d3dc-4f4b-a02c-1a2bacb5b862",
+                "name": "下營區",
+                "ivid": "TNN-080",
+                "code": "67000080",
+                "population": "25167",
+                "population_electors": "21024",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca65-d3dc-4f4b-a02c-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca67-d9cc-4f75-88f1-1a2bacb5b862",
+                "name": "六甲區",
+                "ivid": "TNN-090",
+                "code": "67000090",
+                "population": "22895",
+                "population_electors": "18636",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca67-d9cc-4f75-88f1-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca69-2608-4c4c-a3e2-1a2bacb5b862",
+                "name": "官田區",
+                "ivid": "TNN-100",
+                "code": "67000100",
+                "population": "21754",
+                "population_electors": "18104",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca69-2608-4c4c-a3e2-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca6a-d384-466b-b034-1a2bacb5b862",
+                "name": "大內區",
+                "ivid": "TNN-110",
+                "code": "67000110",
+                "population": "10263",
+                "population_electors": "8719",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca6a-d384-466b-b034-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca7e-9e94-4cc0-aa2d-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca7e-9e94-4cc0-aa2d-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺南市 > 第06選區[區域]",
+        "quota": "2",
+        "quota_woman": "0",
+        "population": "76174",
+        "population_electors": "60851",
+        "areas": [
+            {
+                "id": "59cfcab0-ee94-408d-9b45-1a2bacb5b862",
+                "name": "安南區",
+                "ivid": "TNN-350",
+                "code": "67000350",
+                "population": "187160",
+                "population_electors": "147063",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfcab0-ee94-408d-9b45-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca81-1aac-4332-9948-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca81-1aac-4332-9948-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺南市 > 第09選區[區域]",
+        "quota": "8",
+        "quota_woman": "2",
+        "population": "263727",
+        "population_electors": "206971",
+        "areas": [
+            {
+                "id": "59cfcaa3-91e0-4177-b358-1a2bacb5b862",
+                "name": "南區",
+                "ivid": "TNN-330",
+                "code": "67000330",
+                "population": "125650",
+                "population_electors": "104781",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfcaa3-91e0-4177-b358-1a2bacb5b862"
+            },
+            {
+                "id": "59cfcab8-de14-43cd-bd72-1a2bacb5b862",
+                "name": "安平區",
+                "ivid": "TNN-360",
+                "code": "67000360",
+                "population": "64745",
+                "population_electors": "50036",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfcab8-de14-43cd-bd72-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfca89-da30-4b9b-969a-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfca89-da30-4b9b-969a-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺南市 > 第08選區[區域]",
+        "quota": "1",
+        "quota_woman": "0",
+        "population": "38866",
+        "population_electors": "33080",
+        "areas": [
+            {
+                "id": "59cfcaa9-d20c-47be-812f-1a2bacb5b862",
+                "name": "北區",
+                "ivid": "TNN-340",
+                "code": "67000340",
+                "population": "132459",
+                "population_electors": "106145",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfcaa9-d20c-47be-812f-1a2bacb5b862"
+            },
+            {
+                "id": "59cfcabb-d034-417f-8572-1a2bacb5b862",
+                "name": "中西區",
+                "ivid": "TNN-370",
+                "code": "67000370",
+                "population": "78064",
+                "population_electors": "63621",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfcabb-d034-417f-8572-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfcaa9-fe2c-403f-a9e3-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfcaa9-fe2c-403f-a9e3-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺南市 > 第11選區[區域]",
+        "quota": "4",
+        "quota_woman": "1",
+        "population": "132459",
+        "population_electors": "106145",
+        "areas": [
+            {
+                "id": "59cfca8e-c968-4c2c-8c3f-1a2bacb5b862",
+                "name": "仁德區",
+                "ivid": "TNN-270",
+                "code": "67000270",
+                "population": "72956",
+                "population_electors": "59869",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca8e-c968-4c2c-8c3f-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca91-5e14-450c-8c86-1a2bacb5b862",
+                "name": "歸仁區",
+                "ivid": "TNN-280",
+                "code": "67000280",
+                "population": "67399",
+                "population_electors": "53503",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca91-5e14-450c-8c86-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca94-4320-4ee7-8d6c-1a2bacb5b862",
+                "name": "關廟區",
+                "ivid": "TNN-290",
+                "code": "67000290",
+                "population": "34898",
+                "population_electors": "28880",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca94-4320-4ee7-8d6c-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca96-0270-4e1d-9875-1a2bacb5b862",
+                "name": "龍崎區",
+                "ivid": "TNN-300",
+                "code": "67000300",
+                "population": "4297",
+                "population_electors": "3818",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca96-0270-4e1d-9875-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfcab0-513c-4afa-bc83-1a2bacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfcab0-513c-4afa-bc83-1a2bacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺南市 > 第10選區[區域]",
+        "quota": "5",
+        "quota_woman": "1",
+        "population": "187160",
+        "population_electors": "147063",
+        "areas": [
+            {
+                "id": "59cfca9d-27a4-4340-b0f6-1a2bacb5b862",
+                "name": "東區",
+                "ivid": "TNN-320",
+                "code": "67000320",
+                "population": "190360",
+                "population_electors": "146966",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca9d-27a4-4340-b0f6-1a2bacb5b862"
+            }
+        ]
+    },
+    {
+        "id": "59cfcee3-04f4-422f-bf34-1e8eacb5b862",
+        "url": "http:\/\/k.olc.tw\/elections\/candidates\/index\/59cfcee3-04f4-422f-bf34-1e8eacb5b862",
+        "election": "2018-11 > 直轄市議員 > 臺中市 > 第17選區[山地]",
+        "quota": "0",
+        "quota_woman": "0",
+        "population": "0",
+        "population_electors": "0",
+        "areas": [
+            {
+                "id": "59cfc9f1-d60c-417a-9da6-1a2bacb5b862",
+                "name": "中區",
+                "ivid": "TXG-010",
+                "code": "66000010",
+                "population": "19407",
+                "population_electors": "14517",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9f1-d60c-417a-9da6-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9f2-5fb0-4788-9faf-1a2bacb5b862",
+                "name": "東區",
+                "ivid": "TXG-020",
+                "code": "66000020",
+                "population": "74745",
+                "population_electors": "60318",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9f2-5fb0-4788-9faf-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9f5-6dc0-4819-a37e-1a2bacb5b862",
+                "name": "南區",
+                "ivid": "TXG-030",
+                "code": "66000030",
+                "population": "119658",
+                "population_electors": "92990",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9f5-6dc0-4819-a37e-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9f8-ae68-456e-abb1-1a2bacb5b862",
+                "name": "西區",
+                "ivid": "TXG-040",
+                "code": "66000040",
+                "population": "115684",
+                "population_electors": "90243",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9f8-ae68-456e-abb1-1a2bacb5b862"
+            },
+            {
+                "id": "59cfc9fb-6850-4100-9ec6-1a2bacb5b862",
+                "name": "北區",
+                "ivid": "TXG-050",
+                "code": "66000050",
+                "population": "147321",
+                "population_electors": "118298",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfc9fb-6850-4100-9ec6-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca02-2804-412e-89d3-1a2bacb5b862",
+                "name": "西屯區",
+                "ivid": "TXG-060",
+                "code": "66000060",
+                "population": "217673",
+                "population_electors": "164387",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca02-2804-412e-89d3-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca07-4150-4689-a5f9-1a2bacb5b862",
+                "name": "南屯區",
+                "ivid": "TXG-070",
+                "code": "66000070",
+                "population": "161472",
+                "population_electors": "119001",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca07-4150-4689-a5f9-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca0a-380c-47b3-b1e6-1a2bacb5b862",
+                "name": "北屯區",
+                "ivid": "TXG-080",
+                "code": "66000080",
+                "population": "258701",
+                "population_electors": "200209",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca0a-380c-47b3-b1e6-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca21-8630-42c1-a888-1a2bacb5b862",
+                "name": "沙鹿區",
+                "ivid": "TXG-130",
+                "code": "66000130",
+                "population": "87352",
+                "population_electors": "66036",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca21-8630-42c1-a888-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca24-1c50-480e-b481-1a2bacb5b862",
+                "name": "梧棲區",
+                "ivid": "TXG-140",
+                "code": "66000140",
+                "population": "56449",
+                "population_electors": "43058",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca24-1c50-480e-b481-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca34-850c-4149-a808-1a2bacb5b862",
+                "name": "烏日區",
+                "ivid": "TXG-230",
+                "code": "66000230",
+                "population": "71197",
+                "population_electors": "55292",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca34-850c-4149-a808-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca37-21d8-4163-826d-1a2bacb5b862",
+                "name": "大肚區",
+                "ivid": "TXG-240",
+                "code": "66000240",
+                "population": "56246",
+                "population_electors": "44000",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca37-21d8-4163-826d-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca39-5ac4-4499-9b64-1a2bacb5b862",
+                "name": "龍井區",
+                "ivid": "TXG-250",
+                "code": "66000250",
+                "population": "75841",
+                "population_electors": "58222",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca39-5ac4-4499-9b64-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca3c-8b1c-4ccd-92bb-1a2bacb5b862",
+                "name": "霧峰區",
+                "ivid": "TXG-260",
+                "code": "66000260",
+                "population": "64443",
+                "population_electors": "51638",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca3c-8b1c-4ccd-92bb-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca41-59f8-45ec-948f-1a2bacb5b862",
+                "name": "太平區",
+                "ivid": "TXG-270",
+                "code": "66000270",
+                "population": "180712",
+                "population_electors": "141631",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca41-59f8-45ec-948f-1a2bacb5b862"
+            },
+            {
+                "id": "59cfca48-ed2c-4cb8-b4b6-1a2bacb5b862",
+                "name": "大里區",
+                "ivid": "TXG-280",
+                "code": "66000280",
+                "population": "205612",
+                "population_electors": "156746",
+                "url": "http:\/\/k.olc.tw\/elections\/areas\/index\/59cfca48-ed2c-4cb8-b4b6-1a2bacb5b862"
+            }
+        ]
+    }
+]
