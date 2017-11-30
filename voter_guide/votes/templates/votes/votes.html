@@ -38,7 +38,7 @@
         </div>
         {% if votes %}
         {% include "common/pagination.html" with items=votes page_size=0 %}
-        <ul class="media-list">
+        <ul class="media-list row">
             {% for fragment in votes %}
                 {% include "votes/vote_summary.html" %}
             {% endfor %}

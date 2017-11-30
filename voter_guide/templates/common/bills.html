@@ -1,8 +1,16 @@
 {% load extras %}
-<ul class="media-list">
+<ul class="media-list row">
     {% for bill in bills %}
-    <li class="media">
+    <li class="media col-sm-6">
         <div class="media-body well">
+            <h3 class="media-heading">
+            {% if bill.param.sponsors_groupby_party.sponsor|length > 1 %}
+                {{ bill.param.sponsors_groupby_party.priproposer.party_list.0.councilors.0.name }}、
+                <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}"><small>..... 其他議員：</small></a>
+            {% else %}
+                {{bill.proposed_by}}：
+            {% endif %}
+            </h3>
             <h4 class="media-heading">
                 <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}"><i class="fa fa-link"></i></a>
                 {% if bill.abstract %}
@@ -13,26 +21,16 @@
                     {% endif %}
                 {% endif %}
             </h4>
-            <h5 class="text-success">提案人</h5>
-                <blockquote>
-                    {% if bill.param.sponsors_groupby_party.sponsor|length > 1 %}
-                        {{ bill.param.sponsors_groupby_party.priproposer.party_list.0.councilors.0.name }}、
-                        <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}">..... 其他議員</a>
-                    {% else %}
-                        {{bill.proposed_by}}
-                    {% endif %}
-                </blockquote>
             <blockquote>
-                <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}"><i class="fa fa-eye"> 詳情？進度？誰提案的？</i></a>
-                <a class="pull-right" href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" ><i class="fa fa-tag"> 我要加標籤、投票</i></a>
+                <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" ><i class="fa fa-tag"> 我要加標籤、投票</i></a>
             </blockquote>
             {% if bill.tags %}
-                <h5 class="text-success">標籤</h5>
+                <h5 class="text-success">網友標籤</h5>
                 {% for tag in bill.tags %}
-                    <a href="{% url 'bills:bills' county=county %}?tag={{tag.title}}" rel="tooltip" title="有同樣標籤的提案">
-                        <font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{tag.title}}</font>
+                    <a href="{% url 'bills:bills' county=county %}?tag={{tag.title}}" class="btn btn-success" type="button" rel="tooltip" title="有同樣標籤的提案">
+                        {{tag.title}}
+                    <span class="badge">{{tag.pro}}</span>
                     </a>
-                    （{{tag.pro}}票）&nbsp;&nbsp;
                 {% endfor %}
             {% endif %}
         </div>

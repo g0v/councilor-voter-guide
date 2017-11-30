@@ -1,7 +1,7 @@
 {% load extras %}
 {% load highlight %}
 
-<li class="media">
+<li class="media col-sm-6">
     <div class="media-body well">
         <div class="text-muted media-heading">
             （{{ fragment.date|date:"Y-m-d" }}）第{{ fragment.vote_seq }}個表決
@@ -12,13 +12,13 @@
             <a href="{% url 'votes:vote' fragment.uid %}" rel="tooltip" title="看誰贊成誰反對"><i class="fa fa-pie-chart"> 看誰贊成誰反對</i></a>
             <a class="pull-right" href="{% url 'votes:vote' fragment.uid %}" ><i class="fa fa-tag"> 我要加標籤、投票</i></a>
         </blockquote>
-        {% if fragment.standpoints.all %}
+        {% if fragment.tags %}
             <h5 class="text-success">標籤</h5>
-            {% for standpoint in fragment.standpoints.all %}
-                <a href="{% url 'votes:votes' county=county %}?tag={{standpoint.title}}" rel="tooltip" title="有同樣標籤的表決">
-                    <font style="color: {% cycle '#FF0099' '#FF33CC' '#FF6699' '#FF9966' '#FFCC00' %};">{{standpoint.title}}</font>
+            {% for tag in fragment.tags %}
+                <a href="{% url 'votes:votes' county=county %}?tag={{tag.title}}" class="btn btn-success" type="button" rel="tooltip" title="有同樣標籤的表決">
+                    {{tag.title}}
+                <span class="badge">{{tag.pro}}</span>
                 </a>
-                &nbsp;&nbsp;
             {% endfor %}
         {% endif %}
         <h5 class="text-success">表決結果</h5>

@@ -30,11 +30,17 @@ def votes(request, county):
         qs = qs & Q(uid__in=vote_ids)
     keyword = request.GET.get('keyword', '')
     if keyword:
-        votes = Votes.objects.filter(qs & reduce(operator.and_, (Q(content__icontains=x) for x in keyword.split()))).prefetch_related('standpoints').order_by('-date', 'vote_seq')
+        votes = Votes.objects.filter(qs & reduce(operator.and_, (Q(content__icontains=x) for x in keyword.split())))
         if votes:
             keyword_been_searched(keyword, 'votes', county)
     else:
-        votes = Votes.objects.filter(qs).prefetch_related('standpoints').order_by('-date', 'vote_seq')
+        votes = Votes.objects.filter(qs)
+    votes = votes.extra(
+                     select={
+                         'tags': "SELECT json_agg(row) FROM (SELECT title, pro FROM standpoints_standpoints su WHERE su.vote_id = votes_votes.uid ORDER BY su.pro DESC) row",
+                     },
+                 )\
+                 .order_by('-date', 'vote_seq')
     votes = paginate(request, votes)
     standpoints = Standpoints.objects.filter(county=county, vote__isnull=False).values('title').annotate(pro_sum=Sum('pro')).order_by('-pro_sum').distinct()
     get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword'] if request.GET.get(x)])
