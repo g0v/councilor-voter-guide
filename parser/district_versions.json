@@ -1,4 +1,138 @@
 {
+    "2018":  {
+        "臺中市":  [
+            {
+                "constituency":  "15",
+                "district":  "臺中市之平地原住民"
+            },
+            {
+                "constituency":  "16",
+                "district":  "豐原區、東勢區、大甲區、清水區、后里區、神岡區、潭子區、大雅區、新社區、石岡區、外埔區、大安區、和平區之山地原住民"
+            },
+            {
+                "action":  "create",
+                "constituency":  "17",
+                "district":  "中區、東區、南區、西區、北區、西屯區、南屯區、北屯區、沙鹿區、梧棲區、烏日區、大肚區、龍井區、霧峰區、太平區、大里區之山地原住民"
+            }
+        ],
+        "臺南市":  [
+            {
+                "constituency":  "1",
+                "district":  "後壁、白河、東山、鹽水、新營、柳營區"
+            },
+            {
+                "constituency":  "2",
+                "district":  "北門、學甲、將軍、七股、佳里、西港區"
+            },
+            {
+                "constituency":  "3",
+                "district":  "下營、六甲、麻豆、官田、大內區"
+            },
+            {
+                "constituency":  "4",
+                "district":  "楠西、南化、玉井、左鎮區"
+            },
+            {
+                "constituency":  "5",
+                "district":  "善化、安定、新市、山上、新化區"
+            },
+            {
+                "constituency":  "6",
+                "district":  "安南區"
+            },
+            {
+                "constituency":  "7",
+                "district":  "永康區"
+            },
+            {
+                "constituency":  "8",
+                "district":  "北區、中西區"
+            },
+            {
+                "constituency":  "9",
+                "district":  "安平區、南區"
+            },
+            {
+                "constituency":  "10",
+                "district":  "東區"
+            },
+            {
+                "constituency":  "11",
+                "district":  "仁德、歸仁、關廟、龍崎區"
+            },
+            {
+                "constituency":  "12",
+                "district":  "臺南市之平地原住民"
+            },
+            {
+                "constituency":  "13",
+                "district":  "臺南市之山地原住民"
+            },
+            {
+                "action":  "delete",
+                "constituency":  "14"
+            },
+            {
+                "action":  "delete",
+                "constituency":  "15"
+            },
+            {
+                "action":  "delete",
+                "constituency":  "16"
+            },
+            {
+                "action":  "delete",
+                "constituency":  "17"
+            },
+            {
+                "action":  "delete",
+                "constituency":  "18"
+            }
+        ],
+        "臺東縣":  [
+            {
+                "constituency":  "7",
+                "district":  "臺東市之平地原住民"
+            },
+            {
+                "constituency":  "8",
+                "district":  "卑南鄉、蘭嶼鄉之平地原住民"
+            },
+            {
+                "constituency":  "9",
+                "district":  "太麻里鄉、金峰鄉、達仁鄉、大武鄉之平地原住民"
+            },
+            {
+                "constituency":  "10",
+                "district":  "鹿野鄉、延平鄉、關山鎮、海端鄉、池上鄉之平地原住民"
+            },
+            {
+                "constituency":  "11",
+                "district":  "東河鄉、綠島鄉、成功鎮、長濱鄉之平地原住民"
+            },
+            {
+                "constituency":  "12",
+                "district":  "延平鄉、卑南鄉、東河鄉、成功鎮、長濱鄉之山地原住民"
+            },
+            {
+                "constituency":  "13",
+                "district":  "海端鄉、鹿野鄉、關山鎮、池上鄉之山地原住民"
+            },
+            {
+                "constituency":  "14",
+                "district":  "金峰鄉、太麻里鄉、臺東市、綠島鄉之山地原住民"
+            },
+            {
+                "constituency":  "15",
+                "district":  "達仁鄉、大武鄉之山地原住民"
+            },
+            {
+                "action":  "create",
+                "constituency":  "16",
+                "district":  "蘭嶼鄉之山地原住民"
+            }
+        ]
+    },
     "2014":  {
         "南投縣":  [
             {
