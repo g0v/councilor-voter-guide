@@ -126,6 +126,8 @@ def intent_upsert(request):
         form = IntentForm(request.POST, instance=instance)
         if form.has_changed() and form.is_valid():
             intent = form.save(commit=False)
+            if intent.user_id and request.user.id != intent.user_id:
+                return redirect(reverse('candidates:intent_home'))
             intent.user = request.user
             intent.status = 'intent_apply'
             intent.save()

@@ -13,4 +13,4 @@ def paginate(request, items, page_size=10):
     return items
 
 def coming_election_year(county):
-    return 2018
+    return '2018'
