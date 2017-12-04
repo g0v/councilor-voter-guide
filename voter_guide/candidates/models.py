@@ -71,7 +71,7 @@ class Intent(models.Model):
     education = models.TextField(blank=True, null=True, verbose_name=u'學歷')
     experience = models.TextField(blank=True, null=True, verbose_name=u'經歷')
     remark = models.TextField(blank=True, null=True, verbose_name=u'備註')
-    links = JSONField(null=True)
+    links = JSONField(blank=True, null=True, verbose_name=u'網站')
     motivation = models.TextField(blank=True, null=True, verbose_name=u'為什麼報名')
     platform = models.TextField(blank=True, null=True, verbose_name=u'政見')
     politicalcontributions = JSONField(null=True)

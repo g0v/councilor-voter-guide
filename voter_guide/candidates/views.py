@@ -121,7 +121,7 @@ def intent_upsert(request):
     if request.method == 'GET':
         form = IntentForm(instance=instance)
         form.fields['name'].initial = request.user.last_name + request.user.first_name
-        platforms = Platforms.objects.all().select_related('user').order_by('-likes')[:5]
+        form.fields['links'].initial = [{'note': u'Facebook 個人頁面', 'url': request.user.socialaccount_set.first().get_profile_url()}, None, None]
     if request.method == 'POST':
         form = IntentForm(request.POST, instance=instance)
         if form.has_changed() and form.is_valid():
@@ -134,6 +134,7 @@ def intent_upsert(request):
             c = connections['default'].cursor()
             history = request.POST.copy()
             history.pop('csrfmiddlewaretoken', None)
+            history['links'] = intent.links
             history['modify_at'] = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
             c.execute('''
                 UPDATE candidates_intent
@@ -141,7 +142,7 @@ def intent_upsert(request):
                 WHERE user_id = %s AND election_year = %s
             ''', [json.dumps([history]), request.user.id, election_year])
         return redirect(reverse('candidates:intent_detail', kwargs={'intent_id': instance.uid if instance else intent.uid}))
-    return render(request, 'candidates/intent_upsert.html', {'form': form, 'platforms': platforms})
+    return render(request, 'candidates/intent_upsert.html', {'form': form})
 
 def intent_detail(request, intent_id):
     intent = get_object_or_404(Intent.objects.select_related('user'), uid=intent_id)

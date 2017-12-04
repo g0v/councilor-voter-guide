@@ -71,6 +71,18 @@
                                 <div class="property-body">{{revision.county}}</div>
                                 <div class="property-header">選區</div>
                                 <div class="property-body district">{{revision.constituency}}</div>
+                                <div class="property-header">網站</div>
+                                <div class="property-body">
+                                    <ul>
+                                    {% for link in revision.links %}
+                                        {% if link.url %}
+                                        <li>
+                                            <a href="{{link.url}}" target="_blank"> {{link.note}}</a>
+                                        </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </ul>
+                                </div>
                                 <div class="property-header">為什麼要選：</div>
                                 <textarea style="display: none">{{revision.motivation}}</textarea>
                                 <div class="property-body jumbotron"></div>
@@ -111,7 +123,15 @@
             <div class="property-body district">{{intent.constituency}}</div>
             <div class="property-header">網站</div>
             <div class="property-body">
-                <a href="https://www.facebook.com/app_scoped_user_id/{{user_id}}/" target="_blank"><i class="fa fa-facebook-square"> Facebook 個人頁面</i></a>
+                <ul>
+                {% for link in intent.links %}
+                    {% if link.url %}
+                    <li>
+                        <a href="{{link.url}}" target="_blank"> {{link.note}}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
             </div>
             <hr>
             <div class="fb-comments" data-href="{{current_url}}" data-width="300" data-numposts="5"></div>

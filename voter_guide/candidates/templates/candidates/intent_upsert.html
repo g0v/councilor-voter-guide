@@ -14,6 +14,9 @@
         .editor-toolbar.fullscreen {
             z-index: 1031;
         }
+        input[name^="links"]:nth-child(odd){
+            margin-bottom: 10px;
+        }
     </style>
 {% endblock title %}
 
@@ -26,8 +29,8 @@
     <form class="form-horizontal" action="" method="post">{% csrf_token %}
         <div class="row">
             <div class="col-sm-1">
-                <button id="submit" class="btn btn-info btn-lg" style="margin-bottom: 40px;margin-top: 20px;" type="submit" disabled>儲存</button>
-                <input id="checked" type="checkbox"> 我已閱讀<a href="{% url 'candidates:intent_home' %}" target="_blank">注意事項</a></input>
+                <button id="submit" class="btn btn-info btn-lg" style="margin-bottom: 10px; margin-top: 10px;" type="submit" disabled>儲存</button>
+                <input id="checked" type="checkbox"> 已閱讀<a href="{% url 'candidates:intent_home' %}" target="_blank">注意事項</a></input>
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
@@ -35,8 +38,7 @@
                     <label class="col-sm-3 control-label" for="{{ form.name.id_for_label }}">{{ form.name.label }}：</label>
                     <div class="col-sm-9">
                     {{ form.name }}
-                    <a rel="tooltip" class="pull-right" title="自動由您的 Facebook 帶入，姓名可自行修改"><i class="fa fa-question-circle"></i></a>
-                    <a href="https://www.facebook.com/app_scoped_user_id/{{request.user.socialaccount_set.first.uid}}/" target="_blank"><i class="fa fa-facebook-square"> Facebook 個人頁面</i></a>
+                    <a rel="tooltip" class="pull-right" title="自動由您的 Facebook 帶入，可自行修改"><i class="fa fa-question-circle"></i></a>
                     </div>
                 </div>
                 <div class="form-group">
@@ -62,6 +64,14 @@
                 </div>
                 <div style="display: none;">
                 {{ form.district }}
+                </div>
+                <div class="form-group">
+                    {{ form.links.errors }}
+                    <label class="col-sm-3 control-label" for="{{ form.links.id_for_label }}">{{ form.links.label }}：</label>
+                    <div class="col-sm-9">
+                        <a rel="tooltip" class="pull-right" title="自動帶入 Facebook 個人頁面，可自行修改"><i class="fa fa-question-circle"></i></a>
+                        {{ form.links }}
+                    </div>
                 </div>
             </div>
             <div class="col-sm-7">
