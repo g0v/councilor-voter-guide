@@ -7,3 +7,7 @@
         </select>
     </span>
 {% endblock extra %}
+
+{% block extra_after_search %}
+    <input type="checkbox" style="margin-left: 10px;" name="has_tag" id="has_tag" {% if has_tag %} checked{% endif %}> 有網友標籤的提案
+{% endblock extra_after_search %}
