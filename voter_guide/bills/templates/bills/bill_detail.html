@@ -11,48 +11,7 @@
 
 {% block right %}
 <div class="row">
-    <div class="col-sm-4">
-        <form action="" method="post" class="form-inline">
-            {% csrf_token %}
-            <br>
-            <fieldset>
-                <label>請輸入最能代表這個提案的標籤：</label>
-                {% if user.is_authenticated %}
-                    <div class="input-group">
-                        <input type="search" name="keyword" id="keyword" class="form-control" maxlength="20" placeholder="建議動詞+名詞的命題">
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-default">確定</button>
-                        </span>
-                    </div>
-                {% else %}
-                    <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入加標籤</i></a>
-                {% endif %}
-            </fieldset>
-            {% with size=3 %}
-            {% for standpoint in standpoints_of_bill %}
-                {% if forloop.counter0 == size %}
-                    <button type="button" class="btn " data-toggle="collapse" data-target="#ref_more"><font>..... 其他標籤 <i class="fa fa-angle-down"></i></font></button>
-                    <div id="ref_more" class="collapse">
-                {% endif %}
-                <h4>{{standpoint.pro}}人認為是
-                    <font style="color: #9F0050;"> {{standpoint}}</font>
-                    {% if user.is_authenticated %}
-                        {% if standpoint.have_voted %}
-                            <button name="against" class="btn" value="{{standpoint.uid}}">取消 +1</button>
-                        {% else %}
-                            <button name="pro" class="btn" value="{{standpoint.uid}}">+1</button>
-                        {% endif %}
-                    {% else %}
-                    <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入投票</i></a>
-                    {% endif %}
-                </h4>
-            {% endfor %}
-            {% if standpoints_of_bill|length > size %}
-                </div>
-            {% endif %}
-            {% endwith %}
-        </form>
-        <hr>
+    <div class="col-sm-3">
         <h3>
             <i class="fa fa-pencil text-danger"> 主提案</i>
         </h3>
@@ -80,7 +39,7 @@
         <div id="d3" align="left">
         </div>
     </div>
-    <div class="col-sm-8" style="background-color: #fff;">
+    <div class="col-sm-5" style="background-color: #fff;">
         <br>
         {% if bill %}
         {% if bill.links.0.url %}
@@ -136,11 +95,52 @@
             {% endif %}
         {% endfor %}
         {% endif %}
-        <hr>
-        <div id="disqus_thread"></div>
+    </div>
+    <div class="col-sm-4" style="background-color: #ffff001a">
+        <form action="" method="post" class="form-inline">
+            {% csrf_token %}
+            <br>
+            <fieldset>
+                <label>請輸入最能代表這個提案的標籤：</label>
+                {% if user.is_authenticated %}
+                    <div class="input-group">
+                        <input type="search" name="keyword" id="keyword" class="form-control input-lg" maxlength="20" placeholder="建議:動+名詞，如降屯房稅">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default input-lg">確定</button>
+                        </span>
+                    </div>
+                {% else %}
+                    <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入加標籤</i></a>
+                {% endif %}
+            </fieldset>
+            {% with size=3 %}
+            {% for standpoint in standpoints_of_bill %}
+                {% if forloop.counter0 == size %}
+                    <button type="button" class="btn " data-toggle="collapse" data-target="#ref_more"><font>..... 其他標籤 <i class="fa fa-angle-down"></i></font></button>
+                    <div id="ref_more" class="collapse">
+                {% endif %}
+                <h4>{{standpoint.pro}}人認為是
+                    <font style="color: #9F0050;"> {{standpoint}}</font>
+                    {% if user.is_authenticated %}
+                        {% if standpoint.have_voted %}
+                            <button name="against" class="btn" value="{{standpoint.uid}}">取消 +1</button>
+                        {% else %}
+                            <button name="pro" class="btn" value="{{standpoint.uid}}">+1</button>
+                        {% endif %}
+                    {% else %}
+                    <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入投票</i></a>
+                    {% endif %}
+                </h4>
+            {% endfor %}
+            {% if standpoints_of_bill|length > size %}
+                </div>
+            {% endif %}
+            {% endwith %}
+        </form>
     </div>
 </div><!--end: row -->
 <hr>
+<div id="disqus_thread"></div>
 {% endblock right %}
 
 {% block script %}
@@ -150,7 +150,7 @@
             $("[rel='tooltip']").tooltip();
         });
     </script>
-    {% if bill.sorted_proposer_set %}
+    {% if bill.param.diversity %}
     {% include "bills/d3/bill_pie.html" %}
     {% endif %}
 {% endblock script %}
