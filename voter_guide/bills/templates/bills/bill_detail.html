@@ -120,7 +120,7 @@
                     <div id="ref_more" class="collapse">
                 {% endif %}
                 <h4>{{standpoint.pro}}人認為是
-                    <font style="color: #9F0050;"> {{standpoint}}</font>
+                    <span class="label label-success">{{standpoint}}</span>
                     {% if user.is_authenticated %}
                         {% if standpoint.have_voted %}
                             <button name="against" class="btn" value="{{standpoint.uid}}">取消 +1</button>

@@ -29,7 +29,7 @@
                 {% for tag in bill.tags %}
                     <a href="{% url 'bills:bills' county=county %}?tag={{tag.title}}" class="btn btn-success" type="button" rel="tooltip" title="有同樣標籤的提案">
                         {{tag.title}}
-                    <span class="badge">{{tag.pro}}</span>
+                        <span class="badge">{{tag.pro}}</span>
                     </a>
                 {% endfor %}
             {% endif %}
