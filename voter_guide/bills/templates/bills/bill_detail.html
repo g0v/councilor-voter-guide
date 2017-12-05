@@ -146,19 +146,29 @@
                     <h4 class="modal-title">網友來協作，讓議員的提案更容易懂</h4>
                 </div>
                 <div class="modal-body">
-                    <p>
-                        目前暫由得票最高的標籤：<span class="label label-success">{{standpoints_of_bill.0}}</span> 代表了這個表決
-                    </p>
-                    <p>
-                        參與此提案的議員都會被標註曾參與 <span class="label label-success">{{standpoints_of_bill.0}}</span>，例如：
-                    </p>
-                    <ul>
-                    {% for element in bill.param.sponsors_groupby_party.priproposer.party_list %}
-                        {% for councilor in element.councilors %}
-                            <li>主提案人：<a href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=bill.election_year %}" target="_blank">{{councilor.name}}</a></li>
+                    {% if standpoints_of_bill.0.pro > 0 %}
+                        <p>
+                            目前暫由得票最高的標籤：<span class="label label-success">{{standpoints_of_bill.0}}</span> 代表了這個表決
+                        </p>
+                        <p>
+                            參與此提案的議員都會被標註曾參與 <span class="label label-success">{{standpoints_of_bill.0}}</span>，例如：
+                        </p>
+                        <ul>
+                        {% for element in bill.param.sponsors_groupby_party.priproposer.party_list %}
+                            {% for councilor in element.councilors %}
+                                <li>主提案人：<a href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=bill.election_year %}" target="_blank">{{councilor.name}}</a></li>
+                            {% endfor %}
                         {% endfor %}
-                    {% endfor %}
-                    </ul>
+                        </ul>
+                    {% elif standpoints_of_bill %}
+                        <p class="text-danger">
+                            這個提案的標籤還沒有網友投票
+                        </p>
+                    {% else %}
+                        <p class="text-danger">
+                            這個提案還沒有被標籤
+                        </p>
+                    {% endif %}
                     <p>
                         歡迎在黃色標籤區寫下、投下您的看法，謝謝您的參與讓資料更好！
                     </p>
