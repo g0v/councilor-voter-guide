@@ -64,7 +64,7 @@
                             <div class="property-header">選區</div>
                             <div class="property-body district">{{intent.constituency}}</div>
                             <hr>
-                            <div class="fb-comments" data-href="{{site_domain}}{% url 'candidates:intent_detail' intent_id=intent.uid %}" data-width="200" data-numposts="2"></div>
+                            <div class="fb-comments" data-href="{{site_domain}}{% url 'candidates:intent_detail' intent_id=intent.uid %}" data-width="200" data-numposts="2" data-order_by="reverse_time"></div>
                         </div>
                         <div class="col-sm-7">
                             <div class="property-header">為什麼報名：</div>
