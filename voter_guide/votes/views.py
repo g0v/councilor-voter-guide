@@ -24,6 +24,10 @@ def select_county(request, county):
 
 def votes(request, county):
     qs = Q(sitting__county=county)
+    if request.GET.get('has_tag') == 'yes':
+        qs = qs & Q(uid__in=Standpoints.objects.exclude(vote__isnull=True).values_list('vote_id', flat=True).distinct())
+    elif request.GET.get('has_tag') == 'no':
+        qs = qs & ~Q(uid__in=Standpoints.objects.exclude(vote__isnull=True).values_list('vote_id', flat=True).distinct())
     qs = qs & Q(conflict=True) if request.GET.get('conscience') else qs
     if request.GET.get('tag'):
         vote_ids = Standpoints.objects.filter(county=county, title=request.GET['tag']).values_list('vote', flat=True)
@@ -44,7 +48,7 @@ def votes(request, county):
     votes = paginate(request, votes)
     standpoints = Standpoints.objects.filter(county=county, vote__isnull=False).values('title').annotate(pro_sum=Sum('pro')).order_by('-pro_sum').distinct()
     get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword'] if request.GET.get(x)])
-    return render(request,'votes/votes.html', {'county': county, 'votes': votes, 'hot_keyword': keyword_list('votes', county)[:5], 'hot_standpoints': standpoints[:5], 'get_params': get_params})
+    return render(request,'votes/votes.html', {'county': county, 'votes': votes, 'hot_keyword': keyword_list('votes', county)[:5], 'hot_standpoints': standpoints[:5], 'get_params': get_params, 'has_tag': request.GET.get('has_tag')})
 
 def vote(request, vote_id):
     vote = get_object_or_404(Votes.objects.select_related('sitting'), uid=vote_id)

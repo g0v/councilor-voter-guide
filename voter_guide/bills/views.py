@@ -30,7 +30,10 @@ def select_county(request, index, county):
 
 def bills(request, county):
     query = Q(county=county)
-    query = query & Q(uid__in=Standpoints.objects.exclude(bill__isnull=True).values_list('bill_id', flat=True).distinct()) if request.GET.get('has_tag') else query
+    if request.GET.get('has_tag') == 'yes':
+        query = query & Q(uid__in=Standpoints.objects.exclude(bill__isnull=True).values_list('bill_id', flat=True).distinct())
+    elif request.GET.get('has_tag') == 'no':
+        query = query & ~Q(uid__in=Standpoints.objects.exclude(bill__isnull=True).values_list('bill_id', flat=True).distinct())
     query = query & Q(uid__in=Standpoints.objects.filter(title=request.GET['tag']).exclude(bill__isnull=True).values_list('bill_id', flat=True).distinct()) if request.GET.get('tag') else query
     keyword = request.GET.get('keyword', '')
     constituency = request.GET.get('constituency')
