@@ -16,14 +16,6 @@
 {% endblock title %}
 
 {% block right %}
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.9&appId=1959392647623072";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
     <div class="page-header text-center">
         <h2>可能參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small></h2>
             {% if request.user.is_authenticated %}

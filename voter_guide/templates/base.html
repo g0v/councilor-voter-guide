@@ -41,6 +41,14 @@
         </script>
     </head>
     <body id="top">
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -99,6 +107,7 @@
         </div>
         <footer class="footer">
             <div align="center" class="container">
+                <span class="fb-like" style="display: inline" data-href="https://www.facebook.com/TW.Voter.Guide/" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></span>
                 <a id="about" href="{% url 'about' %}">關於本站</a>
                 <a id="reference" href="{% url 'reference' %}">資料來源</a>
                 <a id="power_by" href="https://grants.g0v.tw/power" target="_blank"><img src="https://grants.g0v.tw/images/power/poweredby-square.png" style="height: 28px"></a>
