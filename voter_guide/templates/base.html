@@ -14,10 +14,12 @@
         <meta property="og:type" content="website"/>
         <meta property="og:site_name" content="議員投票指南"/>
         <meta property="og:url" content="{{current_url}}"/>
+        {% block social_meta %}
         <meta property="og:description" content="減少盲目投票，讓民主社會的台灣更進步"/>
         <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/facebook-og-image.png"/>
         <meta itemprop="description" content="減少盲目投票，讓民主社會的台灣更進步"/>
         <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/facebook-og-image.png"/>
+        {% endblock social_meta %}
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="{% static "css/g0v.css" %}" rel="stylesheet">
         <link rel="shortcut icon" href="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/favicon.ico.png">

@@ -2,12 +2,19 @@
 {% load socialaccount %}
 
 {% block title %}
-    {% with councilor=bill.primary_proposer.0 %}
-        <title>議員投票指南:{{county}}-{{ councilor.name }}的提案</title>
-        <meta property="og:title" content="議員投票指南:{{county}}-{{ councilor.name }}提的提案"/>
-        <meta itemprop="name" content="議員投票指南:{{county}}-{{ councilor.name }}提的提案">
+    {% with councilor=bill.param.sponsors_groupby_party.priproposer.party_list.0.councilors.0 %}
+        <title>議員投票指南:{{county}}-{{bill.category}}類-{{councilor.name}}的提案</title>
+        <meta property="og:title" content="議員投票指南:{{county}}-{{bill.category}}類-{{councilor.name}}的提案"/>
+        <meta itemprop="name" content="議員投票指南:{{county}}-{{bill.category}}類-{{councilor.name}}的提案">
     {% endwith %}
 {% endblock title %}
+
+{% block social_meta %}
+    <meta property="og:description" content="{{bill.abstract}}"/>
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
+    <meta itemprop="description" content="{{bill.abstract}}"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
+{% endblock social_meta %}
 
 {% block right %}
 <div class="row">
