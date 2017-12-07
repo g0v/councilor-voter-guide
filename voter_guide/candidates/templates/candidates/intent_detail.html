@@ -18,9 +18,9 @@
 {% block social_meta %}
     {% with user_id=intent.user.socialaccount_set.first.uid %}
     <meta property="og:description" content="{{intent.motivation|truncatewords:2}}"/>
-    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{intent.county}}.png"/>
     <meta itemprop="description" content="{{intent.motivation|truncatewords:2}}"/>
-    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{intent.county}}.png"/>
     {% endwith %}
 {% endblock social_meta %}
 
