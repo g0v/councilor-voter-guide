@@ -10,9 +10,9 @@
 {% endblock title %}
 
 {% block social_meta %}
-    <meta property="og:description" content="{{bill.abstract}}"/>
+    <meta property="og:description" content="{{bill.abstract|truncatechars:100}}"/>
     <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
-    <meta itemprop="description" content="{{bill.abstract}}"/>
+    <meta itemprop="description" content="{{bill.abstract|truncatechars:100}}"/>
     <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
 {% endblock social_meta %}
 
@@ -103,7 +103,8 @@
         {% endfor %}
         {% endif %}
     </div>
-    <div class="col-sm-4" style="background-color: #ffff001a">
+    <div class="col-sm-4">
+        <div style="background-color: #ffff001a">
         <form action="" method="post" class="form-inline">
             {% csrf_token %}
             <br>
@@ -144,6 +145,8 @@
             {% endif %}
             {% endwith %}
         </form>
+        </div>
+        <div class="fb-share-button" data-size="large" data-href="{{current_url}}" data-layout="button_count"></div>
     </div>
     <div class="modal fade " tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
