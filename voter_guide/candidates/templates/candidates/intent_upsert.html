@@ -131,9 +131,10 @@
                 });
             });
             $('#checked').on('click', function() {
-                if ($(this).is(":checked"))
+                if ($(this).is(":checked")) {
+                    $('input[name=district]').val($('select[name=constituency] option[value=' + $('select[name=constituency]').val() + ']').text().split('）')[1]);
                     $('#submit').prop('disabled', false);
-                else
+                } else
                     $('#submit').prop('disabled', true);
             });
             $("[rel='tooltip']").tooltip();
