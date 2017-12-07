@@ -4,9 +4,9 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南:可能參選人：{{intent.county}} - 第{{intent.constituency}}選區 - {{intent.name}}</title>
-    <meta property="og:title" content="議員投票指南:可能參選人：{{intent.county}} - 第{{intent.constituency}}選區 - {{intent.name}}"/>
-    <meta itemprop="name" content="議員投票指南:可能參選人：{{intent.county}} - 第{{intent.constituency}}選區 - {{intent.name}}">
+    <title>{{intent.county}}可能參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}</title>
+    <meta property="og:title" content="{{intent.county}}可能參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}"/>
+    <meta itemprop="name" content="{{intent.county}}可能參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <style>
         .CodeMirror, .CodeMirror-scroll {
@@ -14,6 +14,15 @@
         }
     </style>
 {% endblock title %}
+
+{% block social_meta %}
+    {% with user_id=intent.user.socialaccount_set.first.uid %}
+    <meta property="og:description" content="{{intent.motivation|truncatewords:2}}"/>
+    <meta property="og:image" content="https://graph.facebook.com/v2.9/{{user_id}}/picture?width=200"/>
+    <meta itemprop="description" content="{{intent.motivation|truncatewords:2}}"/>
+    <meta itemprop="image" content="https://graph.facebook.com/v2.9/{{user_id}}/picture?width=200"/>
+    {% endwith %}
+{% endblock social_meta %}
 
 {% block right %}
     <div class="page-header text-center">
