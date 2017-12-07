@@ -30,7 +30,7 @@
         <div align="center">
         {% if intents_count %}
             <h3>{{coming_election_year}} 本選區有 {{intents_count}} 位可能參選人</h3>
-            <a type="button" class="btn btn-moonc btn-lg" href="{% url 'candidates:intents' election_year=coming_election_year %}?county={{county}}&constituency={{constituency}}">看政見、給意見</a>
+            <a type="button" class="btn btn-moonc btn-lg" href="{% url 'candidates:intents' election_year=coming_election_year %}?county={{county}}&constituency={{transform_to_constiencies}}">看政見、給意見</a>
         {% else %}
             <h3>{{coming_election_year}} 本選區還沒有人發表</h3>
             <h4>如果是候選人，你會怎麼做？</h4>
