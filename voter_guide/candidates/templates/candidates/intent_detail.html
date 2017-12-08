@@ -17,16 +17,23 @@
 
 {% block social_meta %}
     {% with user_id=intent.user.socialaccount_set.first.uid %}
-    <meta property="og:description" content="{{intent.motivation|truncatewords:2}}"/>
-    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{intent.county}}.png"/>
-    <meta itemprop="description" content="{{intent.motivation|truncatewords:2}}"/>
-    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{intent.county}}.png"/>
+        <meta property="og:description" content="{{intent.motivation|truncatewords:2}}"/>
+        <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{intent.county}}.png"/>
+        <meta itemprop="description" content="{{intent.motivation|truncatewords:2}}"/>
+        <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{intent.county}}.png"/>
     {% endwith %}
 {% endblock social_meta %}
 
 {% block right %}
-    <div class="page-header text-center">
-        <h2>可能參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small></h2>
+    <br>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-1 col-xs-4">
+        {% with user_id=intent.user.socialaccount_set.first.uid %}
+            <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?width=120">
+        {% endwith %}
+        </div>
+        <div class="col-sm-9 col-xs-8">
+            <h2 style="margin-top: 20px;">{{intent.county}}可能參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small></h2>
             {% if request.user.is_authenticated %}
                 <form class="form" action="" method="post">{% csrf_token %}
                 {% if user_liked %}
@@ -38,9 +45,12 @@
             {% else %}
                 <a href="{% provider_login_url "facebook" %}?next={% url 'candidates:intent_detail' intent_id=intent.uid %}" class="btn btn-success"><i class="fa fa-sign-in"> 登入按讚</i></a>
             {% endif %}
+        </div>
+        <div class="fb-share-button pull-right" data-size="large" data-href="{{current_url}}" data-layout="button_count"></div>
     </div>
+    <hr>
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-2 hidden-xs">
             {% if request.user.is_authenticated and request.user.id == intent.user_id %}
                 <a href="{% url 'candidates:intent_upsert' %}" class="btn btn-info btn-lg">編輯</a>
             {% else %}
@@ -66,12 +76,12 @@
                             <div class="modal-body">
                                 <div class="property-header">名字</div>
                                 <div class="property-body">{{revision.name}}</div>
-                                <div class="property-header">個人黨籍<small>（中選會尚未公告政黨推薦名單）</small></div>
-                                <div class="property-body">{{revision.party}}</div>
                                 <div class="property-header">縣市</div>
                                 <div class="property-body">{{revision.county}}</div>
                                 <div class="property-header">選區</div>
                                 <div class="property-body district">{{revision.constituency}}</div>
+                                <div class="property-header">個人黨籍<small>（中選會尚未公告政黨推薦名單）</small></div>
+                                <div class="property-body">{{revision.party}}</div>
                                 <div class="property-header">網站</div>
                                 <div class="property-body">
                                     <ul>
@@ -112,16 +122,13 @@
             {% endif %}
         </div>
         <div class="col-sm-4">
-            {% with user_id=intent.user.socialaccount_set.first.uid %}
-            <div class="text-center">
-                <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?width=200">
-            </div>
-            <div class="property-header">個人黨籍<small>（中選會尚未公告政黨推薦名單）</small></div>
-            <div class="property-body">{{intent.party}}</div>
             <div class="property-header">縣市</div>
             <div class="property-body">{{intent.county}}</div>
             <div class="property-header">選區</div>
             <div class="property-body district">{{intent.constituency}}</div>
+            <div class="property-header">個人黨籍<small>（中選會尚未公告政黨推薦名單）</small></div>
+            <div class="property-body">{{intent.party}}</div>
+            {% if intent.links.0.url %}
             <div class="property-header">網站</div>
             <div class="property-body">
                 <ul>
@@ -134,9 +141,9 @@
                 {% endfor %}
                 </ul>
             </div>
+            {% endif %}
             <hr>
             <div class="fb-comments" data-href="{{current_url}}" data-width="300" data-numposts="5" data-order_by="reverse_time"></div>
-            {% endwith %}
         </div>
         <div class="col-sm-6">
             <div class="property-header">為什麼要選：</div>
@@ -162,7 +169,7 @@
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script>
         $(document).ready( function() {
-            $('#intents').addClass('active');
+            $('#candidates').addClass('active');
             $("textarea").each( function() {
                 var simplemde = new SimpleMDE({ element: $(this)[0], toolbar: false , status: false});
                 var renderedHTML = simplemde.options.previewRender(simplemde.value());
