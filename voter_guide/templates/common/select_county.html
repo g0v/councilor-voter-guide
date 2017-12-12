@@ -8,13 +8,28 @@
 {% endblock title %}
 
 {% block right %}
-    <div class="jumbotron">
-        <div class="page-header text-center">
-            <h2>政治是每一個人的事</h2>
-            <h4>如果是候選人，你會怎麼做？</h4>
-            <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 來發表</i></a>
+    <div class="row">
+    <div class="col-sm-3">
+        <div class="panel panel-success">
+            <div class="panel-heading">{{election_year}} 縣市議員選舉</div>
+            <div class="panel-body">
+                <h4>讓候選人、政見提早現身！</h4>
+                <div class="btn-group" role="group">
+                    <a href="{% url 'candidates:intents' election_year=election_year %}" class="btn btn-info"><i class="fa fa-flag-checkered"> 候選人</i></a>
+                    <a href="{% url 'platforms:lists' %}" class="btn btn-success"><i class="fa fa-pencil-square-o"> 來許願</i></a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading">來幫忙</div>
+            <div class="panel-body">
+                <h4>議員的立場由網友們標註、投票產生，是本站近六成使用者在看的資料。</h4>
+                <h4>大家一人一點，幫助別人更容易看懂議員幹了什麼好事！</h4>
+                <a href="{% url 'dispatch' %}" class="btn btn-danger" target="_blank"><i class="fa fa-pencil-square-o"> 隨機分配一個給我！</i></a>
+            </div>
         </div>
     </div>
+    <div class="col-sm-9">
     <div class="five column doubling ui grid">
         {% for region in regions %}
             {% for county in region.counties %}
@@ -32,6 +47,9 @@
             {% endfor %}
             <hr>
         {% endfor %}
+    </div>
+    </div>
+    </div>
     </div>
     <div id="disqus_thread"></div>
 {% endblock right %}

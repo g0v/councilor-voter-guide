@@ -15,95 +15,64 @@
 {% endblock title %}
 
 {% block right %}
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="page-header text-center">
-                <h2>
-                    <i class="fa fa-flag-checkered">
-                        {% if request.GET.county %}
-                            {{request.GET.county}}
-                        {% endif %}
-                        {% if request.GET.constituency %}
-                            第{{request.GET.constituency}}選區
-                        {% endif %}
-                        可能參選人
-                    </i>
-                    <small><a rel="tooltip" title="中選會尚未開放報名、提前亮相中，簡單來說每個人都是可能候選人" data-placement="right"><i class="fa fa-info-circle"></i></a></small>
-                </h2>
-                <h3><small>對當議員有想法？不想繳 20 萬保證金，但是想告訴大家你的想法？</small></h3>
-                <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 我也來發表</i></a>
-                <ul class="pull-left list-unstyled">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sort-desc"> 排序</i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="?order_by=create_at" rel="tooltip" title="改依發表時間排序"><i class="fa fa-sort-numeric-desc"> 依發表時間</i></a></li>
-                            <li><a href="?order_by=likes" rel="tooltip" title="改依按讚數排序"><i class="fa fa-sort-amount-desc"> 依按讚數</i></a></li>
-                        </ul>
-                    </li>
+    <div class="page-header text-center">
+        <h2>
+            <i class="fa fa-flag-checkered">
+                {% if request.GET.county %}
+                    {{request.GET.county}}
+                {% endif %}
+                {% if request.GET.constituency %}
+                    第{{request.GET.constituency}}選區
+                {% endif %}
+                可能參選人
+            </i>
+            <small><a rel="tooltip" title="中選會尚未開放報名、提前亮相中，簡單來說每個人都是可能候選人" data-placement="right"><i class="fa fa-info-circle"></i></a></small>
+        </h2>
+        <h3><small>對當議員有想法？不想繳 20 萬保證金，但是想告訴大家你的想法？</small></h3>
+        <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 我也來發表</i></a>
+        <ul class="pull-left list-unstyled">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sort-desc"> 排序</i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="?order_by=create_at" rel="tooltip" title="改依發表時間排序"><i class="fa fa-sort-numeric-desc"> 依發表時間</i></a></li>
+                    <li><a href="?order_by=likes" rel="tooltip" title="改依按讚數排序"><i class="fa fa-sort-amount-desc"> 依按讚數</i></a></li>
                 </ul>
-            </div>
-            {% for intent in intents %}
-                <div class="panel panel-default">
-                    <div class="text-center">
-                        <h2><a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">{{intent.name}}</a> <small><a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}"><i class="fa fa-thumbs-up"> {{intent.likes}}</i></a></small></h2>
-                    </div>
-                    <div class="panel-body">
-                        <div class="col-sm-5">
-                            <div class="property-header">個人黨籍<small>（尚未公告政黨推薦名單）</small></div>
-                            <div class="property-body">{{intent.party}}</div>
-                            <div class="property-header">縣市</div>
-                            <div class="property-body county">{{intent.county}}</div>
-                            <div class="property-header">選區</div>
-                            <div class="property-body district">{{intent.constituency}}</div>
-                            <hr>
-                            <div class="fb-comments" data-href="{{site_domain}}{% url 'candidates:intent_detail' intent_id=intent.uid %}" data-width="200" data-numposts="2" data-order_by="reverse_time"></div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="property-header">為什麼報名：</div>
-                            <textarea style="display: none">{{intent.motivation}}</textarea>
-                            <div class="property-body jumbotron"></div>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}"><p>...更多關於{{intent.name}}</p></a>
-                    </div>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        {% for intent in intents %}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="text-center">
+                    <h2><a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">{{intent.name}}</a> <small><a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}"><i class="fa fa-thumbs-up"> {{intent.likes}}</i></a></small></h2>
                 </div>
-            {% endfor %}
-            {% if intents %}
-                {% include "common/pagination.html" with items=intents page_size=0 %}
-            {% endif %}
-        </div>
-        <div class="col-sm-4">
-            <div class="page-header text-center">
-                <h2>
-                    <i class="fa fa-comments-o">
-                        {% if request.GET.county %}
-                            {{request.GET.county}}
-                        {% endif %}
-                        民眾的政見
-                    </i>
-                </h2>
-                <h3><small>我只想提個政見！歡迎候選人揀去做！</small></h3>
-                <a href="{% provider_login_url "facebook" %}?next={% url 'platforms:propose' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 提個政見</i></a>
-            </div>
-            {% for platform in platforms %}
-                <div class="panel panel-default">
-                    <div class="text-center">
-                        <h4><a href="{% url 'platforms:detail' platform_id=platform.uid %}">民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的政見 </a><small><i class="fa fa-thumbs-up"> {{platform.likes}}</i></small></h4>
-                    </div>
-                    <div class="panel-body">
+                <div class="panel-body">
+                    <div class="col-sm-5">
+                        <div class="property-header">個人黨籍<small>（尚未公告政黨推薦名單）</small></div>
+                        <div class="property-body">{{intent.party}}</div>
                         <div class="property-header">縣市</div>
-                        <div class="property-body">{{platform.county}}</div>
-                        <div class="property-header">政見：</div>
-                        <textarea style="display: none">{{platform.content}}</textarea>
-                        <div class="property-body"></div>
+                        <div class="property-body county">{{intent.county}}</div>
+                        <div class="property-header">選區</div>
+                        <div class="property-body district">{{intent.constituency}}</div>
+                        <hr>
+                        <div class="fb-comments" data-href="{{site_domain}}{% url 'candidates:intent_detail' intent_id=intent.uid %}" data-width="200" data-numposts="2" data-order_by="reverse_time"></div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="property-header">為什麼報名：</div>
+                        <textarea style="display: none">{{intent.motivation}}</textarea>
+                        <div class="property-body jumbotron"></div>
                     </div>
                 </div>
-            {% endfor %}
-            <div class="text-center">
-                <a href="{% url 'platforms:lists' %}"><p>...其他民眾的政見</p></a>
+                <div class="text-center">
+                    <a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}"><p>...更多關於{{intent.name}}</p></a>
+                </div>
             </div>
         </div>
+        {% endfor %}
+        {% if intents %}
+            {% include "common/pagination.html" with items=intents page_size=0 %}
+        {% endif %}
     </div>
     <div id="disqus_thread"></div>
 {% endblock right %}

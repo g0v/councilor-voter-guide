@@ -52,7 +52,7 @@ h7 {
   display: inline-block;
   position: relative;
   padding: 5%;
-  width:100%;
+  width: 100%;
   height: auto;
   vertical-align: top;
   background-color: rgb(0, 204, 204);
@@ -123,7 +123,7 @@ h7 {
 
 @media screen and (min-width: 767px){
   .direct-item{
-    height: 180px;
+    height: 140px;
   }
 }
 
@@ -234,11 +234,11 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
   margin-top: -3px!important;
 }
 
-.hero-unit{
+.jumbotron {
   position: relative;
 }
 
-.hero-unit img{
+.jumbotron img {
   position: absolute;
   right: 5%;
   top: 10%;
@@ -247,7 +247,7 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
 }
 
 @media (max-width: 979px) {
-  .hero-unit img{
-    display:none;
+  .jumbotron img{
+    display: none;
   }
 }

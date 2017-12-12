@@ -1,5 +1,11 @@
 #-*- coding: UTF-8 -*-
-from django.shortcuts import render
+from random import randint
+
+from django.shortcuts import render, redirect
+from django.urls import reverse
+
+from bills.models import Bills
+from commontag.views import coming_election_year
 
 
 def select_county(request, category):
@@ -13,10 +19,17 @@ def select_county(request, category):
     titles = {
         "candidates": "找候選人",
         "councilors": "找議員",
-        "bills": "找議案",
+        "bills": "找提案",
         "votes": "找表決"
     }
-    return render(request, 'common/select_county.html', {'title': titles.get(category, ''), 'category': category, 'regions': regions})
+    election_year = coming_election_year(None)
+    return render(request, 'common/select_county.html', {'title': titles.get(category, ''), 'category': category, 'regions': regions, 'election_year': election_year})
+
+def dispatch(request):
+    count = Bills.objects.all().count()
+    random_index = randint(0, count - 1)
+    instance = Bills.objects.all()[random_index]
+    return redirect(reverse('bills:bill_detail', kwargs={'county': instance.county, 'bill_id': instance.uid}))
 
 def about(request):
     return render(request,'about.html', {})
