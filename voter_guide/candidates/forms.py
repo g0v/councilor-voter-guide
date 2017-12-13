@@ -52,3 +52,9 @@ class IntentForm(forms.ModelForm):
             'party': forms.widgets.Select(choices=parties, attrs={'class': 'form-control'}),
             'links': LinksWidget(attrs={'class': 'form-control'}),
         }
+
+class SponsorForm(forms.Form):
+    name = forms.CharField(label=u'姓名', max_length=100, required=False, help_text=u'選填')
+    email = forms.EmailField(label=u'E-mail', max_length=254, required=False, help_text=u'選填')
+    phone = forms.CharField(label=u'連絡電話', max_length=20, required=False, help_text=u'選填')
+    votable = forms.NullBooleanField(label=u'可在此選區投票', required=False)

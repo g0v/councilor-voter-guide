@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load socialaccount %}
+{% load humanize %}
+{% load extras %}
+
+{% block title %}
+    <title>您的支持者名單</title>
+    <meta property="og:title" content="您的支持者名單"/>
+    <meta itemprop="name" content="您的支持者名單">
+{% endblock title %}
+
+{% block right %}
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">您的支持者名單</div>
+                <div class="panel-body">
+                    以下資訊除按讚日期外，皆由使用者自行選填，故有可能皆為空白，本站也不保證其正確性。
+                </div>
+                <table class="table table-bordered table-condensed table-striped">
+                    <thead>
+                        <tr style="background-color: #E1D0D0;">
+                            <th>姓名</th>
+                            <th>E-mail</th>
+                            <th>連絡電話</th>
+                            <th>可在此選區投票</th>
+                            <th>按讚日期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for sponsor in sponsors %}
+                        <tr>
+                            <td>{{sponsor.data.contact_details.name}}</td>
+                            <td>{{sponsor.data.contact_details.email}}</td>
+                            <td>{{sponsor.data.contact_details.phone}}</td>
+                            <td>{{sponsor.data.contact_details.votable}}</td>
+                            <td>{{sponsor.create_at|date:"Y-m-d"}}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% if sponsors %}
+                {% include "common/pagination.html" with items=sponsors page_size=0 %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock right %}
+
+{% block script %}
+    <script>
+        $(document).ready( function() {
+            $('#candidates').addClass('active');
+        });
+    </script>
+{% endblock script %}

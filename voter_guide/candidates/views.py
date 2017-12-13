@@ -2,7 +2,7 @@
 import json
 
 from django.shortcuts import render, get_object_or_404, redirect
-from django.db import connections
+from django.db import connections, transaction
 from django.db.models import Count, Sum, Q, F
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
 from .models import Candidates, Terms, Intent, Intent_Likes
-from .forms import IntentForm
+from .forms import IntentForm, SponsorForm
 from councilors.models import CouncilorsDetail
 from platforms.models import Platforms
 from elections.models import Elections
@@ -155,20 +155,40 @@ def intent_upsert(request):
 
 def intent_detail(request, intent_id):
     intent = get_object_or_404(Intent.objects.select_related('user'), uid=intent_id)
+    user_liked, form = False, None
     if request.user.is_authenticated:
-        user_liked = Intent_Likes.objects.filter(intent_id=intent_id, user=request.user).exists()
+        user_liked = Intent_Likes.objects.filter(intent_id=intent_id, user=request.user)
         if request.method == 'POST':
             if request.POST.get('decision') == 'upvote' and not user_liked:
-                Intent_Likes.objects.create(intent_id=intent_id, user=request.user)
-                intent.likes += + 1
-                intent.save(update_fields=["likes"])
-                user_liked = True
+                form = SponsorForm(request.POST)
+                post = request.POST.dict()
+                post.pop('csrfmiddlewaretoken', None)
+                post['votable'] = {'1': u'未知', '2': u'是', '3': u'否', }.get(post['votable'])
+                with transaction.atomic():
+                    Intent_Likes.objects.create(intent_id=intent_id, user=request.user, data={'contact_details': post})
+                    intent.likes += 1
+                    intent.save(update_fields=['likes'])
+                    user_liked = True
             elif request.POST.get('decision') == 'downvote' and user_liked:
-                Intent_Likes.objects.filter(intent_id=intent_id, user=request.user).delete()
-                intent.likes -= 1
-                intent.save(update_fields=["likes"])
-                user_liked = False
-    return render(request, 'candidates/intent_detail.html', {'intent': intent, 'user_liked': request.user.is_authenticated and user_liked})
+                with transaction.atomic():
+                    Intent_Likes.objects.filter(intent_id=intent_id, user=request.user).delete()
+                    intent.likes -= 1
+                    intent.save(update_fields=["likes"])
+                    user_liked = False
+        if not user_liked:
+            form = SponsorForm()
+            form.fields['name'].initial = request.user.last_name + request.user.first_name
+            form.fields['email'].initial = request.user.email
+    return render(request, 'candidates/intent_detail.html', {'form': form, 'intent': intent, 'user_liked': user_liked, 'is_this_intent': intent.user == request.user})
+
+
+def intent_sponsor(request, intent_id):
+    if not request.user.is_authenticated:
+        return redirect(reverse('candidates:intent_detail', kwargs={'intent_id': intent_id}))
+    intent = get_object_or_404(Intent.objects.select_related('user'), uid=intent_id, user=request.user)
+    sponsors = Intent_Likes.objects.filter(intent_id=intent_id).order_by('-create_at')
+    sponsors = paginate(request, sponsors)
+    return render(request, 'candidates/intent_sponsor.html', {'sponsors': sponsors})
 
 def pc(request, candidate_id, election_year):
     candidate = get_object_or_404(Terms.objects, election_year=election_year, candidate_id=candidate_id)

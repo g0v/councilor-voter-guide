@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^intent_home/$', views.intent_home, name='intent_home'),
     url(r'^intent_upsert/$', views.intent_upsert, name='intent_upsert'),
     url(r'^intent_detail/(?P<intent_id>\S+)/$', views.intent_detail, name='intent_detail'),
+    url(r'^intent_sponsor/(?P<intent_id>\S+)/$', views.intent_sponsor, name='intent_sponsor'),
     url(r'^pc/(?P<candidate_id>\S+)/(?P<election_year>\d+)/$', views.pc, name='pc'),
     url(r'^\d+/$', voter_guide_views.select_county, {'category': 'candidates'}, name='select_county'),
     url(r'^(?P<county>\S+)/$', views.districts, {"election_year": '2014'}, name='candidates'),

@@ -89,6 +89,8 @@ class Intent(models.Model):
 class Intent_Likes(models.Model):
     intent = models.ForeignKey(Intent, to_field='uid')
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    create_at = models.DateTimeField(db_index=True, auto_now_add=True, null=True)
+    data = JSONField(null=True)
     class Meta:
         unique_together = ('intent', 'user')
         index_together = ['intent', 'user']

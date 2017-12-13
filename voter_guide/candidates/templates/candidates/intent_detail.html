@@ -25,21 +25,46 @@
 {% endblock social_meta %}
 
 {% block right %}
-    <br>
     <div class="row">
-        <div class="col-sm-2 col-sm-offset-1 col-xs-4">
+        <div class="col-sm-2 col-sm-offset-1 col-xs-5">
         {% with user_id=intent.user.socialaccount_set.first.uid %}
             <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?width=120">
         {% endwith %}
         </div>
-        <div class="col-sm-9 col-xs-8">
-            <h2 style="margin-top: 20px;">{{intent.county}}可能參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small></h2>
+        <div class="col-sm-9 col-xs-7">
+            <h2 style="margin-top: 10px;">
+                {{intent.county}}可能參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small>
+                {% if is_this_intent %}
+                    <a href="{% url 'candidates:intent_sponsor' intent_id=intent.uid %}" class="btn btn-info btn-lg">看支持者名單</a>
+
+                {% endif %}
+            </h2>
             {% if request.user.is_authenticated %}
                 <form class="form" action="" method="post">{% csrf_token %}
                 {% if user_liked %}
                     <button class="btn btn-success" type="submit" name="decision" value="downvote"><i class="fa fa-thumbs-up"> 收回讚</i></button>
                 {% else %}
-                    <button class="btn btn-success" type="submit" name="decision" value="upvote"><i class="fa fa-thumbs-up"> 讚</i></button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                        <i class="fa fa-thumbs-up"> 讚</i>
+                    </button>
+
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">我願意提供給此候選人的資料（可都不提供只按讚）</h4>
+                                </div>
+                                <div class="modal-body">
+                                    {{form.as_p}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <button type="submit" class="btn btn-primary" name="decision" value="upvote">送出讚</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 {% endif %}
                 </form>
             {% else %}
