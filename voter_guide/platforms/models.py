@@ -10,7 +10,7 @@ class Platforms(models.Model):
     uid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     county = models.CharField(blank=True, null=True, db_index=True, max_length=100, verbose_name=u'縣市')
-    content = models.TextField(verbose_name=u'政見')
+    content = models.TextField(verbose_name=u'願望')
     likes = models.IntegerField(db_index=True, default=0)
     references = JSONField(null=True)
     status = JSONField(null=True)

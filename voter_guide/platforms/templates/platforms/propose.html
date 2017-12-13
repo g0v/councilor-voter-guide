@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block title %}
-    <title>議員投票指南:提個政見</title>
-    <meta property="og:title" content="議員投票指南:提個政見"/>
-    <meta itemprop="name" content="議員投票指南:提個政見">
+    <title>許個願</title>
+    <meta property="og:title" content="許個願"/>
+    <meta itemprop="name" content="許個願">
     <link href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" rel="stylesheet">
     <style>
         .CodeMirror, .CodeMirror-scroll {
@@ -18,8 +18,8 @@
 
 {% block right %}
     <div class="page-header text-center">
-        <h2>提個政見</h2>
-        <h4>民眾（{{request.user.last_name}}{{request.user.first_name}}）的政見</h4>
+        <h2>許個願</h2>
+        <h4>民眾（{{request.user.last_name}}{{request.user.first_name}}）的願望</h4>
     </div>
     <form class="form-horizontal" action="" method="post" novalidate>{% csrf_token %}
         <div class="row">

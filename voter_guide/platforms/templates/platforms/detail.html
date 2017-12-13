@@ -2,9 +2,9 @@
 {% load socialaccount %}
 
 {% block title %}
-    <title>議員投票指南:民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的政見</title>
-    <meta property="og:title" content="議員投票指南:民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的政見"/>
-    <meta itemprop="name" content="議員投票指南:民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的政見">
+    <title>議員投票指南:民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的願望</title>
+    <meta property="og:title" content="議員投票指南:民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的願望"/>
+    <meta itemprop="name" content="議員投票指南:民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的願望">
     <link href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" rel="stylesheet">
     <style>
         .CodeMirror, .CodeMirror-scroll {
@@ -15,7 +15,7 @@
 
 {% block right %}
     <div class="page-header text-center">
-        <h2>民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的政見 <small><i class="fa fa-thumbs-up"> {{platform.likes}}</i></small></h2>
+        <h2>民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的願望 <small><i class="fa fa-thumbs-up"> {{platform.likes}}</i></small></h2>
         {% if request.user.is_authenticated %}
             <form class="form" action="" method="post">{% csrf_token %}
             {% if user_liked %}
@@ -32,7 +32,7 @@
         <div class="col-sm-offset-3 col-sm-6">
             <div class="property-header">縣市</div>
             <div class="property-body county">{{platform.county}}</div>
-            <div class="property-header">政見：</div>
+            <div class="property-header">願望：</div>
             <textarea style="display: none">{{platform.content}}</textarea>
             <div class="property-body"></div>
         </div>

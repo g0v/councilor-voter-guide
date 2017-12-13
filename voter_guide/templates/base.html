@@ -70,6 +70,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{% url 'candidates:intents' election_year='2018' %}" >2018 候選人</a></li>
                                 <li><a href="{% url 'candidates:districts' election_year='2014' county=county %}" >2014 候選人</a></li>
+                                <li><a href="{% url 'platforms:lists' %}?county={{county}}" >民眾的許願池</a></li>
                             </ul>
                         </li>
                         <li id="councilors"><a href="{% url 'councilors:councilors' county=county %}">找議員</a></li>
@@ -88,6 +89,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{% url 'candidates:intents' election_year='2018' %}" >2018 候選人</a></li>
                                 <li><a href="{% url 'select_county' category='candidates' %}">2014 候選人</a></li>
+                                <li><a href="{% url 'platforms:lists' %}" >民眾的許願池</a></li>
                             </ul>
                         </li>
                         <li id="councilors"><a href="{% url 'select_county' category='councilors' %}">找議員</a></li>
