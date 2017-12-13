@@ -49,24 +49,125 @@
                 </div>
                 <div class="panel-body">
                     <div class="col-sm-5">
-                        <div class="property-header">個人黨籍<small>（尚未公告政黨推薦名單）</small></div>
+                        <div class="property-header">縣市選區</div>
+                        <div class="property-body">
+                            {{intent.county}}（第{{intent.constituency}}選區）
+                            <p>{{intent.district}}</p>
+                        </div>
+                        <div class="property-header">個人黨籍</div>
                         <div class="property-body">{{intent.party}}</div>
-                        <div class="property-header">縣市</div>
-                        <div class="property-body county">{{intent.county}}</div>
-                        <div class="property-header">選區</div>
-                        <div class="property-body district">{{intent.constituency}}</div>
-                        <hr>
-                        <div class="fb-comments" data-href="{{site_domain}}{% url 'candidates:intent_detail' intent_id=intent.uid %}" data-width="200" data-numposts="2" data-order_by="reverse_time"></div>
+                        {% if intent.links.0.url %}
+                            <div class="property-header">網站</div>
+                            <div>
+                                <ul>
+                                {% for link in intent.links %}
+                                    {% if link.url %}
+                                    <li>
+                                        <a href="{{link.url}}" target="_blank"> {{link.note}}</a>
+                                    </li>
+                                    {% endif %}
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
                     </div>
                     <div class="col-sm-7">
-                        <div class="property-header">為什麼報名：</div>
-                        <textarea style="display: none">{{intent.motivation}}</textarea>
-                        <div class="property-body jumbotron"></div>
+
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            {% if intent.motivation %}
+                            <div class="panel panel-info">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{intent.uid}}_motivation" aria-expanded="true" aria-controls="collapseOne">
+                                        為什麼報名？
+                                    </a>
+                                    </h4>
+                                </div>
+                                <div id="{{intent.uid}}_motivation" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <textarea style="display: none">{{intent.motivation}}</textarea>
+                                        <div class="intent-property-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if intent.platform %}
+                            <div class="panel panel-success">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{intent.uid}}_platform" aria-expanded="false" aria-controls="collapseTwo">
+                                        政見？
+                                    </a>
+                                    </h4>
+                                </div>
+                                <div id="{{intent.uid}}_platform" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        <textarea style="display: none">{{intent.platform}}</textarea>
+                                        <div class="intent-property-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if intent.experience %}
+                            <div class="panel panel-warning">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{intent.uid}}_experience" aria-expanded="false" aria-controls="collapseThree">
+                                        經歷？
+                                    </a>
+                                    </h4>
+                                </div>
+                                <div id="{{intent.uid}}_experience" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="panel-body">
+                                        <textarea style="display: none">{{intent.experience}}</textarea>
+                                        <div class="intent-property-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if intent.education %}
+                            <div class="panel panel-danger">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{intent.uid}}_education" aria-expanded="false" aria-controls="collapseThree">
+                                        學歷？
+                                    </a>
+                                    </h4>
+                                </div>
+                                <div id="{{intent.uid}}_education" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="panel-body">
+                                        <textarea style="display: none">{{intent.education}}</textarea>
+                                        <div class="intent-property-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if intent.remark %}
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{intent.uid}}_remark" aria-expanded="false" aria-controls="collapseThree">
+                                        備註？
+                                    </a>
+                                    </h4>
+                                </div>
+                                <div id="{{intent.uid}}_remark" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="panel-body">
+                                        <textarea style="display: none">{{intent.remark}}</textarea>
+                                        <div class="intent-property-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+
                     </div>
                 </div>
                 <div class="text-center">
                     <a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}"><p>...更多關於{{intent.name}}</p></a>
                 </div>
+                <hr>
+                <div class="fb-comments" data-href="{{site_domain}}{% url 'candidates:intent_detail' intent_id=intent.uid %}" data-width="200" data-numposts="2" data-order_by="reverse_time"></div>
             </div>
         </div>
         {% endfor %}
@@ -86,28 +187,9 @@
             $("textarea").each( function() {
                 var simplemde = new SimpleMDE({ element: $(this)[0], toolbar: false , status: false});
                 var renderedHTML = simplemde.options.previewRender(simplemde.value());
-                var property_body = $(this).nextAll('div.property-body:first');
+                var property_body = $(this).nextAll('div.intent-property-body:first');
                 property_body.html(renderedHTML);
                 property_body.children('table').addClass('table table-bordered table-condensed');
-            });
-            var src = [];
-            $.ajax({
-                url: '/static/json/county_district.json',
-                async: false
-            })
-            .done(function (data) {
-                src = data;
-            });
-            $(".county").each( function() {
-                var county = $(this).text();
-                var district_ctl = $(this).nextAll('div.district:first');
-                var constituency = district_ctl.text();
-                jQuery.each(src, function (index, value) {
-                    if (county == value['county'] && constituency == value['constituency']) {
-                        district_ctl.text('（第' + ("00" + value['constituency']).substr(-2,2) + '選區）' + value['district']);
-                        return false;
-                    }
-                });
             });
         });
     </script>
