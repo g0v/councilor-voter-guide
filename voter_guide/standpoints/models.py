@@ -13,6 +13,7 @@ class Standpoints(models.Model):
     suggestion = models.ForeignKey('suggestions.Suggestions', to_field='uid', related_name='standpoints', null=True)
     intent = models.ForeignKey('candidates.Intent', to_field='uid', related_name='standpoints', null=True)
     pro = models.IntegerField(default=0)
+    create_at = models.DateTimeField(auto_now_add=True, null=True)
     def __unicode__(self):
         return self.title
 
