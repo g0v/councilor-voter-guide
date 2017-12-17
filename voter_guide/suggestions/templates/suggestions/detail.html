@@ -3,9 +3,9 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南:{{county}}-議員配合款總覽</title>
-    <meta property="og:title" content="議員投票指南:{{county}}-議員配合款總覽"/>
-    <meta itemprop="name" content="議員投票指南:{{county}}-議員配合款總覽">
+    <title>議員配合款-{{suggestion.county}}-{{suggestion.suggestion}}</title>
+    <meta property="og:title" content="議員配合款-{{suggestion.county}}-{{suggestion.suggestion}}"/>
+    <meta itemprop="name" content="議員配合款-{{suggestion.county}}-{{suggestion.suggestion}}">
     <link href="{% static "css/stacktable.min.css" %}" rel="stylesheet">
     <style>
       #map, #pano {
@@ -15,6 +15,13 @@
       }
     </style>
 {% endblock title %}
+
+{% block social_meta %}
+    <meta property="og:description" content="花費：{{suggestion.approved_expense}}元；地點：{{suggestion.position}}"/>
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{suggestion.county}}.png"/>
+    <meta itemprop="description" content="花費：{{suggestion.approved_expense}}元；地點：{{suggestion.position}}"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{suggestion.county}}.png"/>
+{% endblock social_meta %}
 
 {% block right %}
     <br>

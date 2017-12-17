@@ -3,11 +3,16 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南:議員配合款-各縣市總覽</title>
-    <meta property="og:title" content="議員投票指南:議員配合款-各縣市總覽"/>
-    <meta itemprop="name" content="議員投票指南:議員配合款-各縣市總覽"/>
+    <title>議員配合款-各縣市總覽</title>
+    <meta property="og:title" content="議員配合款-各縣市總覽"/>
+    <meta itemprop="name" content="議員配合款-各縣市總覽"/>
     <link href="{% static "css/stacktable.min.css" %}" rel="stylesheet">
 {% endblock title %}
+
+{% block social_meta %}
+    <meta property="og:description" content="議員配合款為縣市政府預算，議員可「建議」政府撥款。議員雖無決定權，但同時身兼建議預算、審查預算的角色，縣市政府通常來者不拒。「議員建議款」、「基層建設配合款」、「議員所提地方建設建議事項」指的都是議員配合款。"/>
+    <meta itemprop="description" content="議員配合款為縣市政府預算，議員可「建議」政府撥款。議員雖無決定權，但同時身兼建議預算、審查預算的角色，縣市政府通常來者不拒。「議員建議款」、「基層建設配合款」、「議員所提地方建設建議事項」指的都是議員配合款。"/>
+{% endblock social_meta %}
 
 {% block right %}
     <div>
@@ -19,7 +24,7 @@
         </div>
         <div id="ref_description" class="collapse">
             <div class="description">
-                議員配合款是由地方政府制定，分配一定款項。如果地方有需求的話，可以找議員來陳情，「建議」政府撥款進行建設。<u>由議員提案地方工程內容，縣市政府核定預算金額，議員雖無決定權，但同時身兼建議預算、審查預算的角色。</u>「議員建議款」、「基層建設配合款」、「議員所提地方建設建議事項」指的都是議員配合款，各縣市處理狀況不一。
+                議員配合款為縣市政府預算，議員可「建議」政府撥款。議員雖無決定權，但同時身兼建議預算、審查預算的角色，縣市政府通常來者不拒。「議員建議款」、「基層建設配合款」、「議員所提地方建設建議事項」指的都是議員配合款，各縣市處理狀況不一。
             </div>
         </div>
         <br>
