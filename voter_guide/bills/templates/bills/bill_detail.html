@@ -3,9 +3,15 @@
 
 {% block title %}
     {% with councilor=bill.param.sponsors_groupby_party.priproposer.party_list.0.councilors.0 %}
-        <title>議員投票指南:{{county}}-{{bill.category}}類-{{councilor.name}}的提案</title>
-        <meta property="og:title" content="議員投票指南:{{county}}-{{bill.category}}類-{{councilor.name}}的提案"/>
-        <meta itemprop="name" content="議員投票指南:{{county}}-{{bill.category}}類-{{councilor.name}}的提案">
+    {% if councilor %}
+        <title>{{county}}議會-{{bill.category}}類-{{councilor.name}}的提案</title>
+        <meta property="og:title" content="{{county}}議會-{{bill.category}}類-{{councilor.name}}的提案"/>
+        <meta itemprop="name" content="{{county}}議會-{{bill.category}}類-{{councilor.name}}的提案">
+    {% else %}
+        <title>{{county}}議會-{{bill.category}}類-{{bill.proposed_by}}的提案</title>
+        <meta property="og:title" content="{{county}}議會-{{bill.category}}類-{{bill.proposed_by}}的提案"/>
+        <meta itemprop="name" content="{{county}}議會-{{bill.category}}類-{{bill.proposed_by}}的提案">
+    {% endif %}
     {% endwith %}
 {% endblock title %}
 

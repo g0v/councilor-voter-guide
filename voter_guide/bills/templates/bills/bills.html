@@ -2,10 +2,15 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南:{{county}}-提案檢索</title>
-    <meta property="og:title" content="議員投票指南:{{county}}-提案檢索"/>
-    <meta itemprop="name" content="議員投票指南:{{county}}-提案檢索">
+    <title>{{county}}議會-提案檢索</title>
+    <meta property="og:title" content="{{county}}議會-提案檢索"/>
+    <meta itemprop="name" content="{{county}}議會-提案檢索">
 {% endblock title %}
+
+{% block social_meta %}
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
+{% endblock social_meta %}
 
 {% block right %}
     <div class="container-fluid">

@@ -2,10 +2,15 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南:全表決檢索</title>
-    <meta property="og:title" content="議員投票指南:全表決檢索"/>
-    <meta itemprop="name" content="議員投票指南:全表決檢索">
+    <title>{{county}}議會-表決檢索</title>
+    <meta property="og:title" content="{{county}}議會-表決檢索"/>
+    <meta itemprop="name" content="{{county}}議會-表決檢索">
 {% endblock %}
+
+{% block social_meta %}
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
+{% endblock social_meta %}
 
 {% block right %}
     <div class="container-fluid">
@@ -22,7 +27,7 @@
         {% if hot_keyword %}
             <h4>熱門：
             {% for keyword in hot_keyword %}
-                <a href="{% url 'votes:votes' county='臺北市' %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: #9F0050;">{{keyword}}&nbsp;&nbsp;</font></a>
+                <a href="{% url 'votes:votes' county=county %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: #9F0050;">{{keyword}}&nbsp;&nbsp;</font></a>
             {% endfor %}
             </h4>
         {% endif %}

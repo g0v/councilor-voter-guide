@@ -3,16 +3,17 @@
 {% load extras %}
 
 {% block title %}
-    {% if vote %}
-        <title>議員投票指南:{{ vote.sitting.name }}({{ vote.date|date:"Y-m-d" }})第{{vote.vote_seq}}個表決</title>
-        <meta property="og:title" content="議員投票指南:{{ vote.sitting.name }}({{ vote.date|date:"Y-m-d" }})第{{vote.vote_seq}}個表決"/>
-        <meta itemprop="name" content="議員投票指南:{{ vote.sitting.name }}({{ vote.date|date:"Y-m-d" }})第{{vote.vote_seq}}個表決">
-    {% else %}
-        <title>議員投票指南:單一表決名單</title>
-        <meta property="og:title" content="議員投票指南:單一表決名單"/>
-        <meta itemprop="name" content="議員投票指南:單一表決名單">
-    {% endif %}
+    <title>{{ vote.sitting.name }}({{ vote.date|date:"Y-m-d" }})第{{vote.vote_seq}}個表決</title>
+    <meta property="og:title" content="{{ vote.sitting.name }}({{ vote.date|date:"Y-m-d" }})第{{vote.vote_seq}}個表決"/>
+    <meta itemprop="name" content="{{ vote.sitting.name }}({{ vote.date|date:"Y-m-d" }})第{{vote.vote_seq}}個表決">
 {% endblock title %}
+
+{% block social_meta %}
+    <meta property="og:description" content="{{vote.content|truncatechars:100}}"/>
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{vote.sitting.county}}.png"/>
+    <meta itemprop="description" content="{{bill.content|truncatechars:100}}"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{vote.sitting.county}}.png"/>
+{% endblock social_meta %}
 
 {% block right %}
     <div class="row">
@@ -88,7 +89,7 @@
                                 <button name="pro" class="btn" value="{{standpoint.uid}}">+1</button>
                             {% endif %}
                         {% else %}
-                        <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入投票</i></a>
+                        <a href="{% provider_login_url "facebook" %}?next={% url 'votes:vote' vote.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入投票</i></a>
                         {% endif %}
                     </h4>
                 {% endfor %}
