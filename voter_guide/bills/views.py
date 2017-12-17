@@ -11,7 +11,6 @@ from search.models import Keyword
 from search.views import keyword_list, keyword_been_searched
 from .models import Bills, Councilors_Bills
 from standpoints.models import Standpoints, User_Standpoint
-from users.models import Achievements
 from commontag.views import paginate
 
 _unicode_chr_splitter = _Re( '(?s)((?:[\ud800-\udbff][\udc00-\udfff])|.)' ).split
