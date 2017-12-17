@@ -181,7 +181,6 @@ def intent_detail(request, intent_id):
             form.fields['email'].initial = request.user.email
     return render(request, 'candidates/intent_detail.html', {'form': form, 'intent': intent, 'user_liked': user_liked, 'is_this_intent': intent.user == request.user})
 
-
 def intent_sponsor(request, intent_id):
     if not request.user.is_authenticated:
         return redirect(reverse('candidates:intent_detail', kwargs={'intent_id': intent_id}))

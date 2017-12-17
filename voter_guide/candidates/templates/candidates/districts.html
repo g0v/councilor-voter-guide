@@ -2,10 +2,15 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南: {{election_year}}{{county}}候選人</title>
-    <meta property="og:title" content="議員投票指南: {{election_year}}{{county}}候選人"/>
-    <meta itemprop="name" content="議員投票指南: {{election_year}}{{county}}候選人">
+    <title>{{election_year}} {{county}}候選人</title>
+    <meta property="og:title" content="{{election_year}} {{county}}候選人"/>
+    <meta itemprop="name" content="{{election_year}} {{county}}候選人">
 {% endblock title %}
+
+{% block social_meta %}
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
+{% endblock social_meta %}
 
 {% block right %}
     <div class="jumbotron row" style="margin-left: 0px;">

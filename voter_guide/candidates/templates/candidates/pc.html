@@ -3,11 +3,18 @@
 
 {% block title %}
     {% if candidate %}
-        <title>議員投票指南:{{candidate.name}}選議員的政治獻金</title>
-        <meta property="og:title" content="議員投票指南:{{candidate.name}}選議員的政治獻金"/>
-        <meta itemprop="name" content="議員投票指南:{{candidate.name}}選議員的政治獻金">
+        <title>{{candidate.county}}議員候選人:{{candidate.name}}的政治獻金</title>
+        <meta property="og:title" content="{{candidate.county}}議員候選人:{{candidate.name}}的政治獻金"/>
+        <meta itemprop="name" content="{{candidate.county}}議員候選人:{{candidate.name}}的政治獻金">
     {% endif %}
 {% endblock title %}
+
+{% block social_meta %}
+    <meta property="og:description" content="收入：營利事業捐贈、政黨捐贈、個人捐贈... 支出：宣傳、宣傳車輛、人事、集會..."/>
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{candidate.county}}.png"/>
+    <meta itemprop="description" content="收入：營利事業捐贈、政黨捐贈、個人捐贈... 支出：宣傳、宣傳車輛、人事、集會..."/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{candidate.county}}.png"/>
+{% endblock social_meta %}
 
 {% block right %}
     <div align="center">

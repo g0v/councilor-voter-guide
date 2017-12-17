@@ -3,9 +3,9 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南:可能參選人</title>
-    <meta property="og:title" content="議員投票指南:可能參選人"/>
-    <meta itemprop="name" content="議員投票指南:可能參選人">
+    <title>{{request.GET.county}} {{election_year}} 可能參選人</title>
+    <meta property="og:title" content="{{request.GET.county}} {{election_year}} 可能參選人"/>
+    <meta itemprop="name" content="{{request.GET.county}} {{election_year}} 可能參選人">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <style>
         .CodeMirror, .CodeMirror-scroll {
@@ -13,6 +13,16 @@
         }
     </style>
 {% endblock title %}
+
+{% block social_meta %}
+    <meta property="og:description" content="動機、政見、學經歷、個人黨籍等資訊"/>
+    <meta itemprop="description" content="動機、政見、學經歷、個人黨籍等資訊"/>
+    {% if request.GET.county %}
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{request.GET.county}}.png"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{request.GET.county}}.png"/>
+    {% endif %}
+{% endblock social_meta %}
+
 
 {% block right %}
     <div class="page-header text-center">
