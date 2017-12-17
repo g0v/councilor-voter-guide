@@ -29,7 +29,7 @@ def dispatch(request):
     count = Bills.objects.all().count()
     random_index = randint(0, count - 1)
     instance = Bills.objects.all()[random_index]
-    return redirect(reverse('bills:bill_detail', kwargs={'county': instance.county, 'bill_id': instance.uid}))
+    return redirect(reverse('bills:bill', kwargs={'bill_id': instance.uid}))
 
 def about(request):
     return render(request,'about.html', {})

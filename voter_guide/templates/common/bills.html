@@ -6,13 +6,13 @@
             <h3 class="media-heading">
             {% if bill.param.sponsors_groupby_party.sponsor|length > 1 %}
                 {{ bill.param.sponsors_groupby_party.priproposer.party_list.0.councilors.0.name }}、
-                <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}"><small>..... 其他議員：</small></a>
+                <a href="{% url 'bills:bill' bill_id=bill.uid %}"><small>..... 其他議員：</small></a>
             {% else %}
                 {{bill.proposed_by}}：
             {% endif %}
             </h3>
             <h4 class="media-heading">
-                <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}"><i class="fa fa-link"></i></a>
+                <a href="{% url 'bills:bill' bill_id=bill.uid %}"><i class="fa fa-link"></i></a>
                 {% if bill.abstract %}
                     {% if request.GET.keyword %}
                         {{bill.abstract|linebreaksbr|replace:request.GET.keyword|safe}}
@@ -22,7 +22,7 @@
                 {% endif %}
             </h4>
             <blockquote>
-                <a href="{% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" ><i class="fa fa-tag"> 我要加標籤、投票</i></a>
+                <a href="{% url 'bills:bill' bill_id=bill.uid %}" ><i class="fa fa-tag"> 我要加標籤、投票</i></a>
             </blockquote>
             {% if bill.tags %}
                 <h5 class="text-success">網友標籤</h5>

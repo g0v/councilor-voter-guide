@@ -61,7 +61,7 @@
                                 </div>
                                 <div id="ref_bill_{{standpoint.bills.0.uid}}" class="collapse">
                                     {% for fragment in standpoint.bills %}
-                                    <h4><a href="{% url 'bills:bill_detail' county=councilor.county bill_id=fragment.uid %}" target="_blank" class="btn">☞ 提案 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></a></h4>
+                                    <h4><a href="{% url 'bills:bill' bill_id=fragment.uid %}" target="_blank" class="btn">☞ 提案 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></a></h4>
                                     <blockquote>
                                         <p><small>{{fragment.abstract|truncatechars:100}}</small></p>
                                     </blockquote>

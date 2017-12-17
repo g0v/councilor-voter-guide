@@ -4,13 +4,14 @@ from re import compile as _Re
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Count, Q, F
-from django.db import IntegrityError, transaction
+from django.db import connections, IntegrityError, transaction
 
 from councilors.models import CouncilorsDetail
 from search.models import Keyword
 from search.views import keyword_list, keyword_been_searched
 from .models import Bills, Councilors_Bills
 from standpoints.models import Standpoints, User_Standpoint
+from users.models import Achievements
 from commontag.views import paginate
 
 _unicode_chr_splitter = _Re( '(?s)((?:[\ud800-\udbff][\udc00-\udfff])|.)' ).split
@@ -56,14 +57,14 @@ def bills(request, county):
     get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'constituency'] if request.GET.get(x)])
     return render(request, 'bills/bills.html', {'county': county, 'keyword_hot': keyword_list('bills', county), 'category': None, 'bills': bills, 'hot_standpoints': standpoints[:5], 'get_params': get_params, 'has_tag': request.GET.get('has_tag')})
 
-def bill_detail(request, county, bill_id):
-    bill = get_object_or_404(Bills, county=county, uid=bill_id)
+def bill(request, bill_id):
+    bill = get_object_or_404(Bills, uid=bill_id)
     if request.user.is_authenticated():
         if request.POST:
             with transaction.atomic():
                 if request.POST.get('keyword', '').strip():
                     standpoint_id = u'bill-%s-%s' % (bill_id, request.POST['keyword'].strip())
-                    Standpoints.objects.get_or_create(uid=standpoint_id, county=county, title=request.POST['keyword'].strip(), bill_id=bill_id, user=request.user)
+                    Standpoints.objects.get_or_create(uid=standpoint_id, county=bill.county, title=request.POST['keyword'].strip(), bill_id=bill_id, user=request.user)
                 elif request.POST.get('pro'):
                     User_Standpoint.objects.create(standpoint_id=request.POST['pro'], user=request.user)
                     Standpoints.objects.filter(uid=request.POST['pro']).update(pro=F('pro') + 1)
@@ -77,4 +78,4 @@ def bill_detail(request, county, bill_id):
         standpoints_of_bill = standpoints_of_bill.extra(select={
             'have_voted': "SELECT true FROM standpoints_user_standpoint su WHERE su.standpoint_id = standpoints_standpoints.uid AND su.user_id = %s" % request.user.id,
         },)
-    return render(request, 'bills/bill_detail.html', {'county': county, 'bill': bill, 'standpoints_of_bill': standpoints_of_bill})
+    return render(request, 'bills/bill.html', {'county': bill.county, 'bill': bill, 'standpoints_of_bill': standpoints_of_bill})

@@ -124,7 +124,7 @@
                         </span>
                     </div>
                 {% else %}
-                    <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入加標籤</i></a>
+                    <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill' bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入加標籤</i></a>
                 {% endif %}
             </fieldset>
             {% with size=3 %}
@@ -142,7 +142,7 @@
                             <button name="pro" class="btn" value="{{standpoint.uid}}">+1</button>
                         {% endif %}
                     {% else %}
-                    <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill_detail' county=bill.county bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入投票</i></a>
+                    <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill' bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入投票</i></a>
                     {% endif %}
                 </h4>
             {% endfor %}
