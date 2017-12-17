@@ -2,12 +2,17 @@
 {% load extras %}
 
 {% block title %}
-    {% if councilor %}
-        <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的基本資料</title>
-        <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的基本資料"/>
-        <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的基本資料">
-    {% endif %}
+    <title>{{councilor.county}}議員:{{councilor.name}} {{councilor.election_year|election_year_range}} 的基本資料</title>
+    <meta property="og:title" content="{{councilor.county}}議員:{{councilor.name}} {{councilor.election_year|election_year_range}} 的基本資料"/>
+    <meta itemprop="name" content="{{councilor.county}}議員:{{councilor.name}} {{councilor.election_year|election_year_range}} 的基本資料">
 {% endblock %}
+
+{% block social_meta %}
+    <meta property="og:description" content="黨籍、到職日、學經歷、聯絡方式、網站...等等"/>
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{councilor.county}}.png"/>
+    <meta itemprop="description" content="黨籍、到職日、學經歷、聯絡方式、網站...等等"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{councilor.county}}.png"/>
+{% endblock social_meta %}
 
 {% block person_detail %}
     <dl class="dl-horizontal">

@@ -2,10 +2,17 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的表決立場</title>
-    <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的表決立場"/>
-    <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的表決立場">
+    <title>{{councilor.county}}議員:{{councilor.name}} {{councilor.election_year|election_year_range}} 的表決立場</title>
+    <meta property="og:title" content="{{councilor.county}}議員:{{councilor.name}} {{councilor.election_year|election_year_range}} 的表決立場"/>
+    <meta itemprop="name" content="{{councilor.county}}議員:{{councilor.name}} {{councilor.election_year|election_year_range}} 的表決立場">
 {% endblock title %}
+
+{% block social_meta %}
+    <meta property="og:description" content="{% for x in standpoints %}{% if forloop.counter0 < 3 %}{{x.decision}}:{{x.title}}、{% endif %}{% endfor %}...等等"/>
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{councilor.county}}.png"/>
+    <meta itemprop="description" content="{% for x in standpoints %}{% if forloop.counter0 < 3 %}{{x.decision}}:{{x.title}}、{% endif %}{% endfor %}...等等"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{councilor.county}}.png"/>
+{% endblock social_meta %}
 
 {% block top-menu %}
     <ul class="nav nav-tabs">

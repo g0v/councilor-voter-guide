@@ -2,10 +2,17 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議員配合款</title>
-    <meta property="og:title" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議員配合款"/>
-    <meta itemprop="name" content="議員投票指南:{{councilor.name}}{{councilor.election_year|election_year_range}}的議員配合款">
+    <title>{{councilor.county}}議員:{{councilor.name}} {{councilor.election_year|election_year_range}} 的議員配合款</title>
+    <meta property="og:title" content="{{councilor.county}}議員:{{councilor.name}} {{councilor.election_year|election_year_range}} 的議員配合款"/>
+    <meta itemprop="name" content="{{councilor.county}}議員:{{councilor.name}} {{councilor.election_year|election_year_range}} 的議員配合款">
 {% endblock title %}
+
+{% block social_meta %}
+    <meta property="og:description" content="本任期總花費：{{councilor.param.suggestions_years.sum}} 元"/>
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{councilor.county}}.png"/>
+    <meta itemprop="description" content="本任期總花費：{{councilor.param.suggestions_years.sum}} 元"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{councilor.county}}.png"/>
+{% endblock social_meta %}
 
 {% block person_detail %}
     {% if councilor.county == '宜蘭縣' or councilor.county == '彰化縣' %}
@@ -17,7 +24,7 @@
     </h3>
     <hr>
     {% else %}
-    <p>本任期共通過：<font class="price">{{councilor.param.suggestions_years.sum}}</font>
+    <p>本任期總花費：<font class="price">{{councilor.param.suggestions_years.sum}}</font>
         <a class="btn btn-default btn-lg" href="{% url 'suggestions:lists' county=county %}?keyword={{councilor.name}}"><i class="fa fa-list"> 一筆一筆看</i></a>
         <span class="pull-right">
             資料來源<a href="{{councilor.county|suggestions_offical_link}}" target="_blank"> {{councilor.county}}主計處</a>
