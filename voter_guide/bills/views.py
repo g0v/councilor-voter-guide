@@ -11,7 +11,9 @@ from search.models import Keyword
 from search.views import keyword_list, keyword_been_searched
 from .models import Bills, Councilors_Bills
 from standpoints.models import Standpoints, User_Standpoint
+from users.models import Achievements
 from commontag.views import paginate
+from .tasks import tag_create_achievement, tag_pro_achievement
 
 _unicode_chr_splitter = _Re( '(?s)((?:[\ud800-\udbff][\udc00-\udfff])|.)' ).split
 
@@ -64,9 +66,11 @@ def bill(request, bill_id):
                 if request.POST.get('keyword', '').strip():
                     standpoint_id = u'bill-%s-%s' % (bill_id, request.POST['keyword'].strip())
                     Standpoints.objects.get_or_create(uid=standpoint_id, county=bill.county, title=request.POST['keyword'].strip(), bill_id=bill_id, user=request.user)
+                    tag_create_achievement(request.user)
                 elif request.POST.get('pro'):
                     User_Standpoint.objects.create(standpoint_id=request.POST['pro'], user=request.user)
                     Standpoints.objects.filter(uid=request.POST['pro']).update(pro=F('pro') + 1)
+                    tag_pro_achievement(request.POST['pro'])
                 elif request.POST.get('against'):
                     User_Standpoint.objects.get(standpoint_id=request.POST['against'], user=request.user).delete()
                     Standpoints.objects.filter(uid=request.POST['against']).update(pro=F('pro') - 1)

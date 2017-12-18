@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load socialaccount %}
+{% load humanize %}
+{% load extras %}
+
+{% block title %}
+    <title>您的成就</title>
+    <meta property="og:title" content="您的成就"/>
+    <meta itemprop="name" content="您的成就">
+{% endblock title %}
+
+{% block right %}
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <h3 class="page-header text-center">您的成就</h3>
+            <div class="row">
+                {% for medal in medals %}
+                    {% if medal.got %}
+                        <a tabindex="0" class="btn btn-warning btn-lg col-sm-4 col-xs-12" role="button" title="說明" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="{{medal.description}}">
+                        {% if not medal.checked %}
+                            <i class="fa fa-star fa-spin fa-fw text-success"></i>
+                        {% endif %}
+                        <i class="fa fa-check-square-o "></i>
+                    {% else %}
+                        <a tabindex="0" class="btn btn-default btn-lg col-sm-4 col-xs-12" role="button" title="提示" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="{{medal.category}}">
+                            <i class="fa fa-square-o "></i>
+                    {% endif %}
+                    {{medal.label}}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock right %}
+
+{% block script %}
+    <script>
+        $(document).ready( function() {
+            $('#candidates').addClass('active');
+            $('a.btn').popover()
+        });
+    </script>
+{% endblock script %}

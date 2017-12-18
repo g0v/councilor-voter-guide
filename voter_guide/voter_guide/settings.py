@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     'standpoints',
     'platforms',
     'elections',
+    'users',
     'commontag',
     'api',
     'rest_framework',

@@ -15,6 +15,7 @@ from councilors.models import CouncilorsDetail
 from platforms.models import Platforms
 from elections.models import Elections
 from commontag.views import paginate, coming_election_year
+from .tasks import intent_register_achievement, intent_like_achievement
 
 
 def intents(request, election_year):
@@ -150,6 +151,7 @@ def intent_upsert(request):
                 SET history = (%s::jsonb || COALESCE(history, '[]'::jsonb))
                 WHERE user_id = %s AND election_year = %s
             ''', [json.dumps([history]), request.user.id, election_year])
+            intent_register_achievement(request.user)
         return redirect(reverse('candidates:intent_detail', kwargs={'intent_id': instance.uid if instance else intent.uid}))
     return render(request, 'candidates/intent_upsert.html', {'form': form})
 
@@ -169,6 +171,7 @@ def intent_detail(request, intent_id):
                     intent.likes += 1
                     intent.save(update_fields=['likes'])
                     user_liked = True
+                intent_like_achievement(request.user, intent.likes > 99)
             elif request.POST.get('decision') == 'downvote' and user_liked:
                 with transaction.atomic():
                     Intent_Likes.objects.filter(intent_id=intent_id, user=request.user).delete()

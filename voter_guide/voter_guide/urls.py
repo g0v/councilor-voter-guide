@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^suggestions/', include('suggestions.urls', namespace="suggestions")),
     url(r'^bills/', include('bills.urls', namespace="bills")),
     url(r'^votes/', include('votes.urls', namespace="votes")),
+    url(r'^users/', include('users.urls', namespace="users")),
     url(r'^dispatch/$', voter_guide_views.dispatch, name='dispatch'),
     url(r'^about/$', voter_guide_views.about, name='about'),
     url(r'^select_county/(?P<category>candidates|councilors|bills|votes)/$', voter_guide_views.select_county, name='select_county'),

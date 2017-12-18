@@ -10,10 +10,15 @@ from django.utils.dateparse import parse_datetime
 
 from councilors.models import CouncilorsDetail
 from bills.models import Bills
+from users.models import Achievements
 
 
 register = template.Library()
 
+
+@register.filter(name='new_achievement')
+def new_achievement(value):
+    return Achievements.objects.filter(user=value.user, checked=False).count()
 
 @register.filter(name='str2datetime')
 def str2datetime(value):
