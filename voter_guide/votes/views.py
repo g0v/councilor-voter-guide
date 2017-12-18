@@ -10,6 +10,7 @@ from councilors.models import CouncilorsDetail
 from search.views import keyword_list, keyword_been_searched
 from standpoints.models import Standpoints, User_Standpoint
 from commontag.views import paginate
+from bills.tasks import tag_create_achievement, tag_pro_achievement
 
 
 def select_county(request, county):
@@ -57,10 +58,16 @@ def vote(request, vote_id):
             with transaction.atomic():
                 if request.POST.get('keyword', '').strip():
                     standpoint_id = u'vote-%s-%s' % (vote_id, request.POST['keyword'].strip())
-                    Standpoints.objects.get_or_create(uid=standpoint_id, county=vote.sitting.county, title=request.POST['keyword'].strip(), vote_id=vote_id, user=request.user)
+                    standpoint, created = Standpoints.objects.get_or_create(uid=standpoint_id, county=vote.sitting.county, title=request.POST['keyword'].strip(), vote_id=vote_id, user=request.user)
+                    if created:
+                        User_Standpoint.objects.create(standpoint_id=standpoint_id, user=request.user)
+                        Standpoints.objects.filter(uid=standpoint_id).update(pro=F('pro') + 1)
+                        tag_create_achievement(request.user)
+                        tag_pro_achievement(standpoint_id)
                 elif request.POST.get('pro'):
                     User_Standpoint.objects.create(standpoint_id=request.POST['pro'], user=request.user)
                     Standpoints.objects.filter(uid=request.POST['pro']).update(pro=F('pro') + 1)
+                    tag_pro_achievement(request.POST['pro'])
                 elif request.POST.get('against'):
                     User_Standpoint.objects.get(standpoint_id=request.POST['against'], user=request.user).delete()
                     Standpoints.objects.filter(uid=request.POST['against']).update(pro=F('pro') - 1)
