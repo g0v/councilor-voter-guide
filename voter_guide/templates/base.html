@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load socialaccount %}
 {% load extras %}
 <html>
     <head>
@@ -106,20 +107,22 @@
                     {% endif %}
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                    {% if request.user.is_authenticated %}
-                        <li id="accounts" class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                {% if request|new_achievement %}
-                                    <i class="fa fa-star fa-spin fa-fw" style="color: yellow;"></i>
-                                {% endif %}
-                                帳戶 <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{% url 'users:achievements' %}"><i class="fa fa-star"> 成就列表{% if request|new_achievement %} <span class="badge">{{request|new_achievement}}</span>{% endif %}</i></a></li>
-                                <li><a href="{% url 'account_logout' %}"><i class="fa fa-sign-out"> 登出</i></a></li>
-                            </ul>
-                        </li>
-                    {% endif %}
+                        {% if request.user.is_authenticated %}
+                            <li id="accounts" class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    {% if request|new_achievement %}
+                                        <i class="fa fa-star fa-spin fa-fw" style="color: yellow;"></i>
+                                    {% endif %}
+                                    帳戶 <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'users:achievements' %}"><i class="fa fa-star"> 成就列表{% if request|new_achievement %} <span class="badge">{{request|new_achievement}}</span>{% endif %}</i></a></li>
+                                    <li><a href="{% url 'account_logout' %}"><i class="fa fa-sign-out"> 登出</i></a></li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li id="accounts"><a href="{% provider_login_url "facebook" %}?next=/"><i class="fa fa-sign-out"> 登入</i></a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
