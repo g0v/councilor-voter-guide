@@ -15,6 +15,9 @@ def select_county(request, category):
         {"region": "南部", "counties": ["臺南市", "高雄市", "屏東縣", "嘉義縣", "嘉義市"]},
         {"region": "東部", "counties": ["花蓮縣", "臺東縣"]},
         {"region": "離島", "counties": ["澎湖縣", "金門縣", "連江縣"]}
+    ] if category != 'votes' else [
+        {"region": "北部", "counties": ["臺北市"]},
+        {"region": "南部", "counties": ["高雄市"]},
     ]
     titles = {
         "candidates": "找候選人",

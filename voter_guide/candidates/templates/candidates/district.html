@@ -19,7 +19,7 @@
 {% block right %}
     <div class="row">
         <div class="col-sm-3">
-            <div class="panel panel-info">
+            <div class="panel panel-success">
                 <div class="panel-heading">{{coming_election_year}} {{county}}議員選舉</div>
                 <div class="panel-body">
                     {% if intents_count %}
@@ -47,7 +47,9 @@
                             <th>候選人</th>
                             <th>當選／得票</th>
                             <th>黨籍</th>
-                            <th>表決立場 <a rel="tooltip" title="立場由網友自行標註、投票產生，歡迎一起讓資料更好" data-placement="right"><i class="fa fa-question-circle"></i></a></th>
+                            {% if county|county_config:'votes' %}
+                                <th>表決立場 <a rel="tooltip" title="立場由網友自行標註、投票產生，歡迎一起讓資料更好" data-placement="right"><i class="fa fa-question-circle"></i></a></th>
+                            {% endif %}
                             <th>提案立場 <a rel="tooltip" title="立場由網友自行標註、投票產生，歡迎一起讓資料更好" data-placement="right"><i class="fa fa-question-circle"></i></a></th>
                             <th>最近任期</th>
                             <th>數字統計</th>
@@ -68,24 +70,26 @@
                                 <td style="text-align:center; vertical-align:middle;">{{candidate.party}}</td>
                                 {% if candidate.councilor_terms %}
                                 {% with sp=standpoints|json_lookup:candidate.id %}
-                                <td style="vertical-align:middle;">
-                                    {% if sp.votes %}
-                                        {% for standpoint in sp.votes %}
-                                            {% if standpoint.decision == "反對" %}
-                                                <i class="fa fa-times-circle text-danger fa-fw"></i>
-                                            {% elif standpoint.decision == "贊成" %}
-                                                <i class="fa fa-check-circle text-success fa-fw"></i>
-                                            {% elif standpoint.decision == "沒投票" %}
-                                                <i class="fa fa-bed text-muted fa-fw"></i>
-                                            {% elif standpoint.decision == "棄權" %}
-                                                <i class="fa fa-question-circle text-warning fa-fw"></i>
-                                            {% endif %}
-                                            {{standpoint.title}}：{{standpoint.times}}次{{standpoint.decision}}
-                                            <br>
-                                        {% endfor %}
-                                        <a href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">其他...</a>
-                                    {% endif %}
-                                </td>
+                                {% if county|county_config:'votes' %}
+                                    <td style="vertical-align:middle;">
+                                        {% if sp.votes %}
+                                            {% for standpoint in sp.votes %}
+                                                {% if standpoint.decision == "反對" %}
+                                                    <i class="fa fa-times-circle text-danger fa-fw"></i>
+                                                {% elif standpoint.decision == "贊成" %}
+                                                    <i class="fa fa-check-circle text-success fa-fw"></i>
+                                                {% elif standpoint.decision == "沒投票" %}
+                                                    <i class="fa fa-bed text-muted fa-fw"></i>
+                                                {% elif standpoint.decision == "棄權" %}
+                                                    <i class="fa fa-question-circle text-warning fa-fw"></i>
+                                                {% endif %}
+                                                {{standpoint.title}}：{{standpoint.times}}次{{standpoint.decision}}
+                                                <br>
+                                            {% endfor %}
+                                            <a href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">其他...</a>
+                                        {% endif %}
+                                    </td>
+                                {% endif %}
                                 <td style="vertical-align:middle;">
                                     {% if sp.bills %}
                                         {% for standpoint in sp.bills %}
@@ -100,6 +104,8 @@
                                             <br>
                                         {% endfor %}
                                         <a href="{% url 'councilors:biller_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}" >其他...</a>
+                                    {% else %}
+                                        還沒有人下標<a class="btn btn-danger" href="{% url 'councilors:biller' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}" >來幫大家了解議員幹了什麼好事</a>
                                     {% endif %}
                                 </td>
                                 {% endwith %}

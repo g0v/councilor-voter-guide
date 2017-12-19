@@ -188,30 +188,30 @@ def replace(value, arg):
     else:
         return value
 
-@register.filter(name='county_urls')
-def county_urls(value):
+@register.filter(name='county_config')
+def county_config(value, arg):
     maps = {
-        u'基隆市': 'http://www.kmc.gov.tw/',
-        u'新北市': 'http://www.ntp.gov.tw/',
-        u'臺北市': 'http://www.tcc.gov.tw/',
-        u'桃園市': 'http://www.tycc.gov.tw/',
-        u'新竹市': 'http://www.hsinchu-cc.gov.tw/',
-        u'新竹縣': 'http://www.hcc.gov.tw/',
-        u'苗栗縣': 'http://www.mcc.gov.tw/',
-        u'臺中市': 'http://www.tccc.gov.tw/',
-        u'彰化縣': 'http://www.chcc.gov.tw/',
-        u'雲林縣': 'http://www.ylcc.gov.tw/',
-        u'南投縣': 'http://www.ntcc.gov.tw/',
-        u'嘉義市': 'http://www.cycc.gov.tw/',
-        u'嘉義縣': 'http://www.cyscc.gov.tw/',
-        u'臺南市': 'http://www.tncc.gov.tw/',
-        u'高雄市': 'http://www.kcc.gov.tw/',
-        u'屏東縣': 'http://www.ptcc.gov.tw/',
-        u'宜蘭縣': 'http://www.ilcc.gov.tw/',
-        u'花蓮縣': 'http://www.hlcc.gov.tw/',
-        u'臺東縣': 'http://www.taitungcc.gov.tw/',
-        u'澎湖縣': 'http://www.phcouncil.gov.tw/',
-        u'連江縣': 'http://www.mtcc.gov.tw/',
-        u'金門縣': 'http://www.kmcc.gov.tw/',
+        u'基隆市': {'votes': False, },
+        u'新北市': {'votes': False, },
+        u'臺北市': {'votes': True, },
+        u'桃園市': {'votes': False, },
+        u'新竹市': {'votes': False, },
+        u'新竹縣': {'votes': False, },
+        u'苗栗縣': {'votes': False, },
+        u'臺中市': {'votes': False, },
+        u'彰化縣': {'votes': False, },
+        u'雲林縣': {'votes': False, },
+        u'南投縣': {'votes': False, },
+        u'嘉義市': {'votes': False, },
+        u'嘉義縣': {'votes': False, },
+        u'臺南市': {'votes': False, },
+        u'高雄市': {'votes': True, },
+        u'屏東縣': {'votes': False, },
+        u'宜蘭縣': {'votes': False, },
+        u'花蓮縣': {'votes': False, },
+        u'臺東縣': {'votes': False, },
+        u'澎湖縣': {'votes': False, },
+        u'連江縣': {'votes': False, },
+        u'金門縣': {'votes': False, },
     }
-    return maps.get(value, '')
+    return maps.get(value, {}).get(arg, None)
