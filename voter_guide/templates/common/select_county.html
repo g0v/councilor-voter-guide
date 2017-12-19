@@ -9,46 +9,45 @@
 
 {% block right %}
     <div class="row">
-    <div class="col-sm-3">
-        <div class="panel panel-success">
-            <div class="panel-heading">{{election_year}} 縣市議員選舉</div>
-            <div class="panel-body">
-                <h4>讓候選人、政見提早現身！</h4>
-                <div class="btn-group" role="group">
-                    <a href="{% url 'candidates:intents' election_year=election_year %}" class="btn btn-info"><i class="fa fa-flag-checkered"> 候選人</i></a>
-                    <a href="{% url 'platforms:lists' %}" class="btn btn-success"><i class="fa fa-pencil-square-o"> 來許願</i></a>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-warning">
-            <div class="panel-heading">來幫忙</div>
-            <div class="panel-body">
-                <h4>幫助別人了解議員幹了什麼好事！標籤由你來下</h4>
-                <a href="{% url 'dispatch' %}" class="btn btn-danger" target="_blank"><i class="fa fa-pencil-square-o"> 隨機分配一個給我！</i></a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-9">
-    <div class="five column doubling ui grid">
-        {% for region in regions %}
-            {% for county in region.counties %}
-                <div class="column direct-container">
-                    <a href="{{category|select_county_reverse_url:county}}" class="direct-item council-light {% cycle 'council-lightyellow' 'council-yellow' %}">
-                    <img class="" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png">
-                    <div></div>
-                    <br>
-                    <br>
-                    <div class="direct-sub right">
-                        <h4>{{county}}</h4>
+        <div class="col-sm-3">
+            <div class="panel panel-success">
+                <div class="panel-heading">{{election_year}} 縣市議員選舉</div>
+                <div class="panel-body">
+                    <h4>讓候選人、政見提早現身！</h4>
+                    <div class="btn-group" role="group">
+                        <a href="{% url 'candidates:intents' election_year=election_year %}" class="btn btn-info"><i class="fa fa-flag-checkered"> 候選人</i></a>
+                        <a href="{% url 'platforms:lists' %}" class="btn btn-success"><i class="fa fa-pencil-square-o"> 來許願</i></a>
                     </div>
-                </a>
                 </div>
-            {% endfor %}
-            <hr>
-        {% endfor %}
-    </div>
-    </div>
-    </div>
+            </div>
+            <div class="panel panel-warning">
+                <div class="panel-heading">來幫忙</div>
+                <div class="panel-body">
+                    <h4>幫助別人了解議員幹了什麼好事！標籤由你來下</h4>
+                    <a href="{% url 'dispatch' %}" class="btn btn-danger" target="_blank"><i class="fa fa-pencil-square-o"> 隨機分配一個給我！</i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="five column doubling ui grid">
+                {% for region in regions %}
+                    {% for county in region.counties %}
+                        <div class="column direct-container">
+                            <a href="{{category|select_county_reverse_url:county}}" class="direct-item council-light {% cycle 'council-lightyellow' 'council-yellow' %}">
+                                <img class="" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png">
+                                <div></div>
+                                <br>
+                                <br>
+                                <div class="direct-sub right">
+                                    <h4>{{county}}</h4>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
     </div>
     <div id="disqus_thread"></div>
 {% endblock right %}

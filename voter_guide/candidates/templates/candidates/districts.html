@@ -13,38 +13,41 @@
 {% endblock social_meta %}
 
 {% block right %}
-    <div class="jumbotron row" style="margin-left: 0px;">
-        <img class="pull-right" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img>
-        <h2>{{election_year}} {{county}} - 議員選區</h2>
-        <a href="{{county|county_urls}}" class="btn btn-primary btn-lg" target="_blank">{{county}}議會官網</a>
-    </div>
-    <div align="center">
-    {% if intents_count %}
-        <h3>{{coming_election_year}} {{county}}有 {{intents_count}} 位可能參選人</h3>
-        <a type="button" class="btn btn-moonc btn-lg" href="{% url 'candidates:intents' election_year=coming_election_year %}?county={{county}}">看政見、給意見</a>
-    {% else %}
-        <h3>{{coming_election_year}} 本選區還沒有人發表</h3>
-        <h4>如果是候選人，你會怎麼做？</h4>
-        <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 來發表</i></a>
-    {% endif %}
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">{{coming_election_year}} {{county}}議員選舉</div>
+                <div class="panel-body">
+                    {% if intents_count %}
+                        <h4 class="text-danger">已有 {{intents_count}} 位候選人提前現身！</h4>
+                        <h3><small>想要的候選人，等你去發現！</small></h3>
+                        <a type="button" class="btn btn-moonc btn-lg col-xs-12" href="{% url 'candidates:intents' election_year=coming_election_year %}?county={{county}}">看政見、給意見</a>
+                    {% else %}
+                        <h4>{{coming_election_year}} {{county}}還沒有人發表</h4>
+                        <h3><small>如果是候選人，你會怎麼做？</small></h3>
+                        <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg col-xs-12"><i class="fa fa-pencil-square-o"> 來發表</i></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="three column doubling ui grid row">
+                {% for district in districts %}
+                    <div class="column direct-container">
+                        <a href="{% url 'candidates:district' county=county election_year=election_year constituency=district.constituency %}" class="direct-item {% cycle 'council-bluegreen' 'council-darkbluegreen' %}">
+                            <h4>{{district.constituency|stringformat:"02d"}}. {{district.district}}</h4>
+                            <div>&nbsp;</div>
+                            <div class="direct-sub">
+                                <p class="county-candidate">{{district.candidates}}</p>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
     <hr>
-    <div class="four column doubling ui grid row">
-            {% for district in districts %}
-            <div class="column direct-container">
-            <a href="{% url 'candidates:district' county=county election_year=election_year constituency=district.constituency %}" class="direct-item {% cycle 'council-bluegreen' 'council-darkbluegreen' %}">
-                <h4>{{district.constituency|stringformat:"02d"}}. {{district.district}}</h4>
-                <div>&nbsp;</div>
-                <div class="direct-sub">
-                    <p class="county-candidate">{{district.candidates}}</p>
-                </div>
-            </a>
-            </div>
-            {% endfor %}
-        </div>
-        <hr>
-        <div id="disqus_thread"></div>
-    </div>
+    <div id="disqus_thread"></div>
 {% endblock right %}
 
 {% block script %}
