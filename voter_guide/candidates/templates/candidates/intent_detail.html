@@ -40,7 +40,7 @@
                 {% endif %}
             </h2>
             {% if request.user.is_authenticated %}
-                <form class="form" action="" method="post">{% csrf_token %}
+                <form class="form" action="" method="post" id="sponsor">{% csrf_token %}
                 {% if user_liked %}
                     <button class="btn btn-success" type="submit" name="decision" value="downvote"><i class="fa fa-thumbs-up"> 收回讚</i></button>
                 {% else %}
@@ -53,13 +53,14 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">我願意提供給此候選人的資料（可都不提供只按讚）</h4>
+                                    <h4 class="modal-title" id="myModalLabel">您願意提供給此候選人的聯絡資料（可都不提供只按讚）</h4>
                                 </div>
                                 <div class="modal-body">
                                     {{form.as_p}}
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-danger" id="clear_contact">清空資料</button>
                                     <button type="submit" class="btn btn-primary" name="decision" value="upvote">送出讚</button>
                                 </div>
                             </div>
@@ -266,6 +267,9 @@
                 var property_body = $(this).nextAll('div.intent-property-body:first');
                 property_body.html(renderedHTML);
                 property_body.children('table').addClass('table table-bordered table-condensed');
+            });
+            $("#clear_contact").on('click', function() {
+                $('#sponsor input:visible').val('');
             });
         });
     </script>
