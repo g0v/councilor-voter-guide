@@ -23,7 +23,6 @@
     {% endif %}
 {% endblock social_meta %}
 
-
 {% block right %}
     <div class="page-header text-center">
         <h2>
@@ -83,17 +82,17 @@
                     </div>
                     <div class="col-sm-7">
 
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel-group" id="{{intent.uid}}_accordion" role="tablist" aria-multiselectable="true">
                             {% if intent.motivation %}
                             <div class="panel panel-info">
-                                <div class="panel-heading" role="tab" id="headingOne">
+                                <div class="panel-heading" role="tab" id="{{intent.uid}}_motivation_heading">
                                     <h4 class="panel-title">
-                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{intent.uid}}_motivation" aria-expanded="true" aria-controls="collapseOne">
+                                        <a role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" href="#{{intent.uid}}_motivation" aria-expanded="true" aria-controls="{{intent.uid}}_motivation">
                                         為什麼報名？
                                     </a>
                                     </h4>
                                 </div>
-                                <div id="{{intent.uid}}_motivation" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div id="{{intent.uid}}_motivation" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="{{intent.uid}}_motivation_heading">
                                     <div class="panel-body">
                                         <textarea style="display: none">{{intent.motivation}}</textarea>
                                         <div class="intent-property-body"></div>
@@ -103,14 +102,14 @@
                             {% endif %}
                             {% if intent.platform %}
                             <div class="panel panel-success">
-                                <div class="panel-heading" role="tab" id="headingTwo">
+                                <div class="panel-heading" role="tab" id="{{intent.uid}}_platform_heading">
                                     <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{intent.uid}}_platform" aria-expanded="false" aria-controls="collapseTwo">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" href="#{{intent.uid}}_platform" aria-expanded="false" aria-controls="{{intent.uid}}_platform">
                                         政見？
                                     </a>
                                     </h4>
                                 </div>
-                                <div id="{{intent.uid}}_platform" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div id="{{intent.uid}}_platform" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{intent.uid}}_platform_heading">
                                     <div class="panel-body">
                                         <textarea style="display: none">{{intent.platform}}</textarea>
                                         <div class="intent-property-body"></div>
@@ -120,14 +119,14 @@
                             {% endif %}
                             {% if intent.experience %}
                             <div class="panel panel-warning">
-                                <div class="panel-heading" role="tab" id="headingThree">
+                                <div class="panel-heading" role="tab" id="{{intent.uid}}_experience_heading">
                                     <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{intent.uid}}_experience" aria-expanded="false" aria-controls="collapseThree">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" href="#{{intent.uid}}_experience" aria-expanded="false" aria-controls="{{intent.uid}}_experience">
                                         經歷？
                                     </a>
                                     </h4>
                                 </div>
-                                <div id="{{intent.uid}}_experience" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div id="{{intent.uid}}_experience" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{intent.uid}}_experience_heading">
                                     <div class="panel-body">
                                         <textarea style="display: none">{{intent.experience}}</textarea>
                                         <div class="intent-property-body"></div>
@@ -137,14 +136,14 @@
                             {% endif %}
                             {% if intent.education %}
                             <div class="panel panel-danger">
-                                <div class="panel-heading" role="tab" id="headingThree">
+                                <div class="panel-heading" role="tab" id="{{intent.uid}}_education_heading">
                                     <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{intent.uid}}_education" aria-expanded="false" aria-controls="collapseThree">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" href="#{{intent.uid}}_education" aria-expanded="false" aria-controls="{{intent.uid}}_education">
                                         學歷？
                                     </a>
                                     </h4>
                                 </div>
-                                <div id="{{intent.uid}}_education" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div id="{{intent.uid}}_education" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{intent.uid}}_education_heading">
                                     <div class="panel-body">
                                         <textarea style="display: none">{{intent.education}}</textarea>
                                         <div class="intent-property-body"></div>
@@ -154,14 +153,14 @@
                             {% endif %}
                             {% if intent.remark %}
                             <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingThree">
+                                <div class="panel-heading" role="tab" id="{{intent.uid}}_remark_heading">
                                     <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{intent.uid}}_remark" aria-expanded="false" aria-controls="collapseThree">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" href="#{{intent.uid}}_remark" aria-expanded="false" aria-controls="{{intent.uid}}_remark">
                                         備註？
                                     </a>
                                     </h4>
                                 </div>
-                                <div id="{{intent.uid}}_remark" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div id="{{intent.uid}}_remark" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{intent.uid}}_remark_heading">
                                     <div class="panel-body">
                                         <textarea style="display: none">{{intent.remark}}</textarea>
                                         <div class="intent-property-body"></div>
