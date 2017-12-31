@@ -10,7 +10,7 @@
 {% endblock title %}
 
 {% block social_meta %}
-<meta property="og:description" content="{{candidates|length}}位候選人的基本資訊；議員任內的施政立場、出缺席、財產申報、政治獻金、議員配合款等資訊"/>
+    <meta property="og:description" content="{{candidates|length}}位候選人的基本資訊；議員任內的施政立場、出缺席、財產申報、政治獻金、議員配合款等資訊"/>
     <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
     <meta itemprop="description" content="{{candidates|length}}位候選人的基本資訊；議員任內的施政立場、出缺席、財產申報、政治獻金、議員配合款等資訊"/>
     <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
@@ -73,37 +73,32 @@
                                 {% if county|county_config:'votes' %}
                                     <td style="vertical-align:middle;">
                                         {% if sp.votes %}
+                                            <ul class="list-group">
                                             {% for standpoint in sp.votes %}
                                                 {% if standpoint.decision == "反對" %}
-                                                    <i class="fa fa-times-circle text-danger fa-fw"></i>
+                                                    <a class="list-group-item list-group-item-danger" href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">
                                                 {% elif standpoint.decision == "贊成" %}
-                                                    <i class="fa fa-check-circle text-success fa-fw"></i>
+                                                    <a class="list-group-item list-group-item-success" href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">
                                                 {% elif standpoint.decision == "沒投票" %}
-                                                    <i class="fa fa-bed text-muted fa-fw"></i>
+                                                    <a class="list-group-item" href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">
                                                 {% elif standpoint.decision == "棄權" %}
-                                                    <i class="fa fa-question-circle text-warning fa-fw"></i>
+                                                    <a class="list-group-item list-group-item-warning" href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">
                                                 {% endif %}
-                                                {{standpoint.title}}：{{standpoint.times}}次{{standpoint.decision}}
-                                                <br>
+                                                {{standpoint.decision}} {{standpoint.title}}</a>
                                             {% endfor %}
-                                            <a href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">其他...</a>
+                                                <a class="list-group-item" href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">其他...</a>
+                                            </ul>
                                         {% endif %}
                                     </td>
                                 {% endif %}
                                 <td style="vertical-align:middle;">
                                     {% if sp.bills %}
+                                        <ul class="list-group">
                                         {% for standpoint in sp.bills %}
-                                            {% if standpoint.role == "主提案" %}
-                                                <i class="fa fa-pencil text-danger fa-fw"> </i>
-                                            {% elif standpoint.role == "共同提案" %}
-                                                <i class="fa fa-group text-success fa-fw"> </i>
-                                            {% else %}
-                                                <i class="fa fa-plus-circle text-warning fa-fw"> </i>
-                                            {% endif %}
-                                            {{standpoint.title}}：{{standpoint.times}}次{{standpoint.role}}
-                                            <br>
+                                            <a class="list-group-item list-group-item-success" href="{% url 'councilors:biller_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">{{standpoint.title}}</a>
                                         {% endfor %}
-                                        <a href="{% url 'councilors:biller_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}" >其他...</a>
+                                            <a class="list-group-item" href="{% url 'councilors:biller_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}" >其他...</a>
+                                        </ul>
                                     {% else %}
                                         還沒有人下標<a class="btn btn-danger" href="{% url 'councilors:biller' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}" >來幫大家了解議員幹了什麼好事</a>
                                     {% endif %}
