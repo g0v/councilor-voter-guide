@@ -23,56 +23,52 @@
                 歡迎進入<a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全提案紀錄</a>，一起幫助大家了解議員幹了什麼好事！
             </div>
         </div>
+
         {% regroup standpoints by role as role_list %}
         {% for role_group in role_list %}
-        <div class="col-sm-{% widthratio 12 role_list|length 1 %}">
-            <ul class="media-list">
-                <li>
-                    <h3 align="center">
-                        {% if role_group.grouper == "主提案" %}
-                            <i class="fa fa-pencil text-danger">
-                        {% elif role_group.grouper == "共同提案" %}
-                            <i class="fa fa-group text-success">
-                        {% else %}
-                            <i class="fa fa-plus-circle text-warning">
-                        {% endif %}
-                        {{ role_group.grouper }} </i>
-                    </h3>
-                    <ul>
-                    {% for standpoint in role_group.list %}
-                    <li class="media">
-                        <div class="media-body well">
-                            <span class="pull-right">
+            <div class="col-sm-{% widthratio 12 role_list|length 1 %}">
+                <div class="panel-group" id="accordion_{{role_group.grouper}}" role="tablist" aria-multiselectable="true">
+                {% for standpoint in role_group.list %}
+                {% if role_group.grouper == "主提案" %}
+                    <div class="panel panel-info">
+                {% elif role_group.grouper == "共同提案" %}
+                    <div class="panel panel-success">
+                {% else %}
+                    <div class="panel panel-warning">
+                {% endif %}
+                        <div class="panel-heading" role="tab" id="heading_{{role_group.grouper}}_{{standpoint.title}}">
+                            <h3>
+                                <div role="button" data-toggle="collapse" data-parent="#accordion_{{role_group.grouper}}" data-target="#{{role_group.grouper}}_{{standpoint.title}}" aria-expanded="true" aria-controls="collapseOne">
+                                <b>{{standpoint.title}}</b>
                                 {% if role_group.grouper == "主提案" %}
-                                <i class="fa fa-pencil fa-lg text-danger"></i>
+                                    <span class="label label-info pull-right">
                                 {% elif role_group.grouper == "共同提案" %}
-                                    <i class="fa fa-group fa-lg text-success"></i>
+                                    <span class="label label-success pull-right">
                                 {% else %}
-                                    <i class="fa fa-plus-circle fa-lg text-warning"></i>
+                                    <span class="label label-warning pull-right">
                                 {% endif %}
-                            </span>
-                            <div class="media-heading">
-                                <font class="lead">{{standpoint.title}}</font><br>{{standpoint.times}}次
-                                <div align="right">
-                                    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#ref_bill_{{standpoint.bills.0.uid}}">原提案內容&nbsp;<i class="fa fa-caret-square-o-down"></i></button><br>
+                                {{role_group.grouper}} {{standpoint.times}}次</span>
                                 </div>
-                                <div id="ref_bill_{{standpoint.bills.0.uid}}" class="collapse">
-                                    {% for fragment in standpoint.bills %}
-                                    <h4><a href="{% url 'bills:bill' bill_id=fragment.uid %}" target="_blank" class="btn">☞ 提案 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></a></h4>
+                            </h3>
+                        </div>
+                        <div id="{{role_group.grouper}}_{{standpoint.title}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{{role_group.grouper}}_{{standpoint.title}}">
+                            <ul class="list-group">
+                                {% for fragment in standpoint.bills %}
+                                <a class="list-group-item" href="{% url 'bills:bill' bill_id=fragment.uid %}" target="_blank">
+                                    <h4>☞ 提案 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></h4>
                                     <blockquote>
                                         <p><small>{{fragment.abstract|truncatechars:100}}</small></p>
                                     </blockquote>
-                                    {% endfor %}
-                                </div>
-                            </div>
+                                </a>
+                                {% endfor %}
+                            </ul>
                         </div>
-                    </li>
-                    {% endfor %}
-                    </ul>
-                </li>
-            </ul>
-        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
         {% endfor %}
+
     </div>
 {% endblock person_detail %}
 
