@@ -14,71 +14,65 @@
     <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{councilor.county}}.png"/>
 {% endblock social_meta %}
 
-{% block top-menu %}
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">表決立場</a></li>
-        <li><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a></li>
-    </ul>
-{% endblock %}
-
 {% block person_detail %}
     <div class="row">
-        <div class="description" style="margin-left: 55px; margin-right: 15px;">
-            立場由使用者標註、投票產生，歡迎進入<a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a>讓資料更好
+        <div class="text-center">
+            <h4 data-toggle="collapse" data-target="#ref_qa"><span class="text-warning">以下資料怎麼產生的？ <i class="fa fa-caret-square-o-down"></i></span></h4>
+            <div id="ref_qa" class="collapse">
+                內容由網友共同標註、投票產生，覺得內容太少？下標不正確？<br>
+                歡迎進入<a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a>，一起幫助大家了解議員幹了什麼好事！
+            </div>
         </div>
+
         {% regroup standpoints by decision as decision_list %}
         {% for decision_group in decision_list %}
-        <div class="col-sm-{% widthratio 12 decision_list|length 1 %}">
-            <ul class="media-list">
-                <li>
-                    <h3 align="center">
-                        {% if decision_group.grouper == "反對" %}
-                            <i class="fa fa-times-circle text-danger">
-                        {% elif decision_group.grouper == "贊成" %}
-                            <i class="fa fa-check-circle text-success">
-                        {% elif decision_group.grouper == "沒投票" %}
-                            <i class="fa fa-bed text-muted">
-                        {% else %}
-                            <i class="fa fa-question-circle text-warning">
-                        {% endif %}
-                        {{ decision_group.grouper }} </i>
-                    </h3>
-                    <ul>
-                    {% for standpoint in decision_group.list %}
-                    <li class="media">
-                        <div class="media-body well"style="background-color: #fff;">
-                            <span class="pull-right">
+
+            <div class="col-sm-{% widthratio 12 decision_list|length 1 %}">
+                <div class="panel-group" id="accordion_{{decision_group.grouper}}" role="tablist" aria-multiselectable="true">
+                {% for standpoint in decision_group.list %}
+                {% if decision_group.grouper == "反對" %}
+                    <div class="panel panel-danger">
+                {% elif decision_group.grouper == "贊成" %}
+                    <div class="panel panel-success">
+                {% elif decision_group.grouper == "沒投票" %}
+                    <div class="panel panel-default">
+                {% else %}
+                    <div class="panel panel-warning">
+                {% endif %}
+                        <div class="panel-heading" role="tab" id="heading_{{decision_group.grouper}}_{{standpoint.title}}">
+                            <h4>
+                                <div role="button" data-toggle="collapse" data-parent="#accordion_{{decision_group.grouper}}" data-target="#{{decision_group.grouper}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{decision_group.grouper}}_{{standpoint.title}}">
+                                <b>{{standpoint.title}}</b>
                                 {% if decision_group.grouper == "反對" %}
-                                    <i class="fa fa-times-circle fa-lg text-danger"></i>
+                                    <span class="label label-danger pull-right">
                                 {% elif decision_group.grouper == "贊成" %}
-                                    <i class="fa fa-check-circle fa-lg text-success"></i>
+                                    <span class="label label-success pull-right">
                                 {% elif decision_group.grouper == "沒投票" %}
-                                    <i class="fa fa-bed fa-lg text-muted"></i>
+                                    <span class="label label-default pull-right">
                                 {% else %}
-                                    <i class="fa fa-question-circle fa-lg text-warning"></i>
+                                    <span class="label label-warning pull-right">
                                 {% endif %}
-                            </span>
-                            <div class="media-heading">
-                                <font class="lead">{{standpoint.title}}</font><br>{{standpoint.times}}次
-                                <div align="right">
-                                    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#ref_vote_{{standpoint.votes.0.uid}}">原表決內容&nbsp;<i class="fa fa-caret-square-o-down"></i></button><br>
+                                {{decision_group.grouper}} {{standpoint.times}}次</span>
                                 </div>
-                                <div id="ref_vote_{{standpoint.votes.0.uid}}" class="collapse">
-                                    {% for fragment in standpoint.votes %}
-                                    <h4><a href="{% url 'votes:vote' fragment.uid %}" target="_blank" class="btn btn-default">☞ 表決 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></a></h4>
+                            </h4>
+                        </div>
+                        <div id="{{decision_group.grouper}}_{{standpoint.title}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{{decision_group.grouper}}_{{standpoint.title}}">
+                            <ul class="list-group">
+                                {% for fragment in standpoint.votes %}
+                                <a class="list-group-item" href="{% url 'votes:vote' fragment.uid %}" target="_blank">
+                                    <h4>☞ 表決 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></h4>
                                     <blockquote>
                                         <p><small>{{fragment.content|truncatechars:100}}</small></p>
                                     </blockquote>
-                                    {% endfor %}
-                                </div>
-                            </div>
+                                </a>
+                                {% endfor %}
+                            </ul>
                         </div>
-                    </li>
-                    {% endfor %}
-                    </ul>
-                </li>
-            </ul>
-        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+
         {% endfor %}
     </div>
 {% endblock person_detail %}

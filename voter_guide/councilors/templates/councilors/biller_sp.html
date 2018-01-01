@@ -37,8 +37,8 @@
                     <div class="panel panel-warning">
                 {% endif %}
                         <div class="panel-heading" role="tab" id="heading_{{role_group.grouper}}_{{standpoint.title}}">
-                            <h3>
-                                <div role="button" data-toggle="collapse" data-parent="#accordion_{{role_group.grouper}}" data-target="#{{role_group.grouper}}_{{standpoint.title}}" aria-expanded="true" aria-controls="collapseOne">
+                            <h4>
+                                <div role="button" data-toggle="collapse" data-parent="#accordion_{{role_group.grouper}}" data-target="#{{role_group.grouper}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{role_group.grouper}}_{{standpoint.title}}">
                                 <b>{{standpoint.title}}</b>
                                 {% if role_group.grouper == "主提案" %}
                                     <span class="label label-info pull-right">
@@ -49,7 +49,7 @@
                                 {% endif %}
                                 {{role_group.grouper}} {{standpoint.times}}次</span>
                                 </div>
-                            </h3>
+                            </h4>
                         </div>
                         <div id="{{role_group.grouper}}_{{standpoint.title}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{{role_group.grouper}}_{{standpoint.title}}">
                             <ul class="list-group">
