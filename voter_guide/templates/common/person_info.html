@@ -2,53 +2,54 @@
 {% load extras %}
 
 {% block right %}
-    <br>
-    <div class="row">
-        <div class="col-sm-1 col-sm-offset-1 col-xs-2">
-            {% if councilor.image %}
-                <img src="{{councilor.image}}" style="width: 70px;">
-            {% endif %}
-        </div>
-        <div class="col-sm-10 col-xs-10">
-            <h3 style="margin-top: 0px;">
-                <span>{{ councilor.name }}</span>
-                {% if not councilor.in_office %}
-                    <small>
-                        {% if councilor.term_end.reason %}
-                            （{{ councilor.term_end.reason }}）
-                        {% else %}
-                            （已去職）
-                        {% endif %}
-                    </small>
+    <div class="person_header">
+        <div class="row">
+            <div class="col-sm-1 col-sm-offset-1 col-xs-2">
+                {% if councilor.image %}
+                    <img src="{{councilor.image}}" style="width: 70px;">
                 {% endif %}
-            </h3>
-            <h4>
-                <select onchange="location = this.value;">
-                    {% for year in councilor.in_office_year %}
-                    <option value="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=year %}"{% if councilor.election_year == year %} selected{% endif %}>{{year|election_year_range}}</option>
-                    {% endfor %}
-                </select>
-            </h4>
-            <ul class="nav nav-pills">
-                <li id='url_info'><a href="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-info"> 基本資料</i></a></li>
-                {% if councilor.county|county_config:'votes' %}
-                    <li id='url_vote'><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-balance-scale"> 表決</i></a></li>
-                {% endif %}
-                <li id='url_bill'><a href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-book"> 提案</i></a></li>
-                <li id='url_suggestor'><a href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-building"> 議員配合款</i></a></li>
-                {% if councilor.elected_candidate %}
-                <li id='url_polticalcontributions'><a href="{% url 'candidates:pc' candidate_id=councilor.elected_candidate.candidate_id election_year=councilor.election_year %}"><i class="fa fa-dollar"> 政治獻金</i></a></li>
-                {% endif %}
-                <li id='url_property'><a href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" target="_blank"><i class="fa fa-bank"> 個人財產申報</i></a></li>
-                <li id='url_politics'><a href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-comment"> 競選政見</i></a></li>
-            </ul>
+            </div>
+            <div class="col-sm-10 col-xs-10">
+                <h3 style="margin-top: 0px;">
+                    <span>{{ councilor.name }}</span>
+                    {% if not councilor.in_office %}
+                        <small>
+                            {% if councilor.term_end.reason %}
+                                （{{ councilor.term_end.reason }}）
+                            {% else %}
+                                （已去職）
+                            {% endif %}
+                        </small>
+                    {% endif %}
+                </h3>
+                <h4>
+                    <select onchange="location = this.value;">
+                        {% for year in councilor.in_office_year %}
+                        <option value="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=year %}"{% if councilor.election_year == year %} selected{% endif %}>{{year|election_year_range}}</option>
+                        {% endfor %}
+                    </select>
+                </h4>
+                <div class="btn-group" role="group">
+                    <a class="btn btn-default" role="button" id='url_info' href="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-info"> 基本資料</i></a>
+                    {% if councilor.county|county_config:'votes' %}
+                        <a class="btn btn-default" role="button" id='url_vote' href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-balance-scale"> 表決</i></a>
+                    {% endif %}
+                    <a class="btn btn-default" role="button" id='url_bill' href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-book"> 提案</i></a>
+                    <a class="btn btn-default" role="button" id='url_suggestor' href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-building"> 議員配合款</i></a>
+                    {% if councilor.elected_candidate %}
+                    <a class="btn btn-default" role="button" id='url_polticalcontributions' href="{% url 'candidates:pc' candidate_id=councilor.elected_candidate.candidate_id election_year=councilor.election_year %}"><i class="fa fa-dollar"> 政治獻金</i></a>
+                    {% endif %}
+                    <a class="btn btn-default" role="button" id='url_property' href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" target="_blank"><i class="fa fa-bank"> 個人財產申報</i></a>
+                    <a class="btn btn-default" role="button" id='url_politics' href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-comment"> 競選政見</i></a>
+                </div>
+            </div>
         </div>
     </div>
-    <hr>
+
     <div class="col-sm-11 col-sm-offset-1 col-xs-12">
         {% block top-menu %}
         {% endblock top-menu %}
-        <div class="col-xs-12 col-sm-11">
+        <div class="col-xs-12 col-sm-11 person_detail">
             {% block person_detail %}
             {% endblock person_detail %}
         </div>
@@ -58,10 +59,18 @@
 {% endblock right %}
 
 {% block script %}
-<script>
-    $(document).ready( function() {
-        $('#councilors').addClass('active');
-        $("[rel='tooltip']").tooltip();
-    });
-</script>
+    <script>
+        $(document).ready( function() {
+            $('#councilors').addClass('active');
+            $("nav").removeClass('navbar-fixed-top');
+            $('.person_header').affix({
+                offset: {
+                    /* Affix the navbar after scroll below header */
+                    top: function () {
+                        return $("nav").outerHeight(true)
+                    }
+                }
+            });
+        });
+    </script>
 {% endblock script %}

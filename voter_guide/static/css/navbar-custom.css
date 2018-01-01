@@ -6,7 +6,7 @@
     color:  #272727;
 }
 
-.navbar + * {
+.navbar.navbar-fixed-top + * {
     padding-top: 60px;
     padding-bottom: 40px;
 }

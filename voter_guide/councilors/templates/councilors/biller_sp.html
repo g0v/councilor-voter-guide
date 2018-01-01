@@ -14,13 +14,6 @@
     <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{councilor.county}}.png"/>
 {% endblock social_meta %}
 
-{% block top-menu %}
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">提案立場</a></li>
-        <li><a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全提案紀錄</a></li>
-    </ul>
-{% endblock top-menu %}
-
 {% block person_detail %}
     <div class="row">
         <div class="description" style="margin-left: 55px; margin-right: 15px;">
@@ -83,7 +76,7 @@
     {{block.super}}
     <script>
         $(document).ready( function() {
-            $('#url_bill').attr('class', 'active');
+            $('#url_bill').addClass('btn-primary');
         });
     </script>
 {% endblock script %}

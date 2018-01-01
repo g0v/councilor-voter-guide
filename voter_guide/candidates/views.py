@@ -89,14 +89,8 @@ def district(request, election_year, county, constituency):
                         SELECT 'bills' as k, json_agg(row) as v
                         FROM (
                             SELECT
-                                CASE
-                                    WHEN priproposer = true AND petition = false THEN '主提案'
-                                    WHEN petition = false THEN '共同提案'
-                                    WHEN petition = true THEN '連署'
-                                END as role,
                                 s.title,
-                                count(*) as times,
-                                json_agg((select x from (select v.uid, v.abstract) x)) as bills
+                                count(*) as times
                             FROM bills_councilors_bills lv
                             JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
                             JOIN bills_bills v on lv.bill_id = v.uid
@@ -106,8 +100,8 @@ def district(request, election_year, county, constituency):
                                 WHERE ss.pro > 0 AND s.bill_id = ss.bill_id
                                 GROUP BY ss.bill_id
                             )
-                            GROUP BY s.title, role
-                            ORDER BY role, times DESC
+                            GROUP BY s.title
+                            ORDER BY times DESC
                             LIMIT 3
                         ) row
                     ) r

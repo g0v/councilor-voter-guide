@@ -112,7 +112,7 @@
     {% include "common/sorttable.html" %}
     <script>
         $(document).ready( function() {
-            $('#url_suggestor').attr('class', 'active');
+            $('#url_suggestor').addClass('btn-primary');
             $('.price').each(function(index,ele){
                 var number = $(ele).text()
                 zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});

@@ -21,6 +21,10 @@ body {
     visibility: hidden;
 }
 
+.tooltip-inner {
+    font-size: 18px;
+}
+
 /* Table
 =================================================================== */
 .table>thead>tr>th {
@@ -180,6 +184,25 @@ hr.candidates-separator {
     max-width: 200px;
 }
 
-.tooltip-inner {
-    font-size: 18px;
+/* person
+=================================================================== */
+
+.person_header {
+    z-index: 50;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(136,136,136,.4);
+    background-color: rgba(255,255,255,.85);
+}
+
+.person_detail {
+    padding: 20px 0;
+}
+
+.affix {
+    top: 0;
+    width: 100%;
+}
+
+.affix + div {
+    padding-top: 140px;
 }
