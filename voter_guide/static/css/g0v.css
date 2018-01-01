@@ -21,25 +21,8 @@
           border-radius: 6px;
 }
 
-h7 {
-  margin: 10px 0;
-  font-family: inherit;
-  font-weight: bold;
-  line-height: 1px;
-  color: inherit;
-  text-rendering: optimizelegibility;
-}
-
-h7 {
-  font-size: 22.5px;
-}
-
-.person-btn-margin a{
-  margin: 5px;
-}
-
 .five .direct-container{
-	padding: 0 2%!important;
+  padding: 0 2%!important;
 }
 
 .four .direct-container{
@@ -47,7 +30,6 @@ h7 {
 }
 
 .direct-item{
-  font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", "標楷體", DFKai-SB, sans-serif;
   text-decoration:none;
   display: inline-block;
   position: relative;
@@ -177,46 +159,6 @@ h7 {
 
 .sortable thead{
   cursor: pointer;
-}
-
-.gsc-search-button
-{
-    background-color: #1a4195;
-    border-radius: 5px;
-
-}
-
-input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:focus {
-    background-color: inherit !important;
-    height: 16px !important;
-    border-color: none !important;
-    filter: none;
-}
-
-.gsc-control-cse{
-  border-color: #151515;
-  background-color: #151515;
-}
-
-.gsc-input-box{
-  background: none!important;
-  border: none!important;
-  /*height: 60px;*/
-}
-
-#___gcse_0{
-  height: inherit;
-  display: table-caption;
-  width: 300px;
-  text-align: -webkit-match-parent;
-  border-color: #151515;
-  background-color: #151515;
-}
-
-#___gcse_1{
-  display: none;
-  border-color: #151515;
-  background-color: #151515;
 }
 
 @media (max-width: 979px) {
