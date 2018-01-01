@@ -86,10 +86,8 @@
                             {% if intent.motivation %}
                             <div class="panel panel-info">
                                 <div class="panel-heading" role="tab" id="{{intent.uid}}_motivation_heading">
-                                    <h4 class="panel-title">
-                                        <a role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" href="#{{intent.uid}}_motivation" aria-expanded="true" aria-controls="{{intent.uid}}_motivation">
+                                    <h4 role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" data-target="#{{intent.uid}}_motivation" aria-expanded="true" aria-controls="{{intent.uid}}_motivation">
                                         為什麼報名？
-                                    </a>
                                     </h4>
                                 </div>
                                 <div id="{{intent.uid}}_motivation" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="{{intent.uid}}_motivation_heading">
@@ -103,10 +101,8 @@
                             {% if intent.platform %}
                             <div class="panel panel-success">
                                 <div class="panel-heading" role="tab" id="{{intent.uid}}_platform_heading">
-                                    <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" href="#{{intent.uid}}_platform" aria-expanded="false" aria-controls="{{intent.uid}}_platform">
+                                    <h4 class="collapsed" role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" data-target="#{{intent.uid}}_platform" aria-expanded="false" aria-controls="{{intent.uid}}_platform">
                                         政見？
-                                    </a>
                                     </h4>
                                 </div>
                                 <div id="{{intent.uid}}_platform" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{intent.uid}}_platform_heading">
@@ -120,10 +116,8 @@
                             {% if intent.experience %}
                             <div class="panel panel-warning">
                                 <div class="panel-heading" role="tab" id="{{intent.uid}}_experience_heading">
-                                    <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" href="#{{intent.uid}}_experience" aria-expanded="false" aria-controls="{{intent.uid}}_experience">
+                                    <h4 class="collapsed" role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" data-target="#{{intent.uid}}_experience" aria-expanded="false" aria-controls="{{intent.uid}}_experience">
                                         經歷？
-                                    </a>
                                     </h4>
                                 </div>
                                 <div id="{{intent.uid}}_experience" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{intent.uid}}_experience_heading">
@@ -137,10 +131,8 @@
                             {% if intent.education %}
                             <div class="panel panel-danger">
                                 <div class="panel-heading" role="tab" id="{{intent.uid}}_education_heading">
-                                    <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" href="#{{intent.uid}}_education" aria-expanded="false" aria-controls="{{intent.uid}}_education">
+                                    <h4 class="collapsed" role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" data-target="#{{intent.uid}}_education" aria-expanded="false" aria-controls="{{intent.uid}}_education">
                                         學歷？
-                                    </a>
                                     </h4>
                                 </div>
                                 <div id="{{intent.uid}}_education" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{intent.uid}}_education_heading">
@@ -154,10 +146,8 @@
                             {% if intent.remark %}
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="{{intent.uid}}_remark_heading">
-                                    <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" href="#{{intent.uid}}_remark" aria-expanded="false" aria-controls="{{intent.uid}}_remark">
+                                    <h4 class="collapsed" role="button" data-toggle="collapse" data-parent="#{{intent.uid}}_accordion" data-target="#{{intent.uid}}_remark" aria-expanded="false" aria-controls="{{intent.uid}}_remark">
                                         備註？
-                                    </a>
                                     </h4>
                                 </div>
                                 <div id="{{intent.uid}}_remark" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{intent.uid}}_remark_heading">
