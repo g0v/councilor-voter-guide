@@ -4,12 +4,12 @@
 {% block right %}
     <div class="person_header">
         <div class="row">
-            <div class="col-sm-1 col-sm-offset-1 col-xs-2">
+            <div class="col-sm-1 col-sm-offset-2 col-xs-3">
                 {% if councilor.image %}
                     <img src="{{councilor.image}}" style="width: 70px;">
                 {% endif %}
             </div>
-            <div class="col-sm-10 col-xs-10">
+            <div class="col-sm-9 col-xs-9">
                 <h3 style="margin-top: 0px;">
                     <span>{{ councilor.name }}</span>
                     {% if not councilor.in_office %}
@@ -49,7 +49,7 @@
     <div class="col-sm-11 col-sm-offset-1 col-xs-12">
         {% block top-menu %}
         {% endblock top-menu %}
-        <div class="col-xs-12 col-sm-11 person_detail">
+        <div class="col-sm-11 col-xs-12 person_detail">
             {% block person_detail %}
             {% endblock person_detail %}
         </div>

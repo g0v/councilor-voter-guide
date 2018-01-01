@@ -16,8 +16,12 @@
 
 {% block person_detail %}
     <div class="row">
-        <div class="description" style="margin-left: 55px; margin-right: 15px;">
-            立場由網友自行標註、投票產生，歡迎進入<a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全提案紀錄</a>一起讓資料更好
+        <div class="text-center">
+            <h4 data-toggle="collapse" data-target="#ref_qa"><span class="text-warning">以下資料怎麼產生的？ <i class="fa fa-caret-square-o-down"></i></span></h4>
+            <div id="ref_qa" class="collapse">
+                內容由網友共同標註、投票產生，覺得內容太少？下標不正確？<br>
+                歡迎進入<a href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全提案紀錄</a>，一起幫助大家了解議員幹了什麼好事！
+            </div>
         </div>
         {% regroup standpoints by role as role_list %}
         {% for role_group in role_list %}
