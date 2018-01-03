@@ -3,8 +3,10 @@ from random import randint
 
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.db.models import Q
 
 from bills.models import Bills
+from votes.models import Votes
 from commontag.views import coming_election_year
 
 
@@ -28,11 +30,19 @@ def select_county(request, category):
     election_year = coming_election_year(None)
     return render(request, 'common/select_county.html', {'title': titles.get(category, ''), 'category': category, 'regions': regions, 'election_year': election_year})
 
-def dispatch(request):
-    count = Bills.objects.all().count()
+def dispatch_bill(request, county=None):
+    qs = Q(county=county) if county else Q()
+    count = Bills.objects.filter(qs).count()
     random_index = randint(0, count - 1)
-    instance = Bills.objects.all()[random_index]
+    instance = Bills.objects.filter(qs)[random_index]
     return redirect(reverse('bills:bill', kwargs={'bill_id': instance.uid}))
+
+def dispatch_vote(request, county=None):
+    qs = Q(sitting__county=county) if county else Q()
+    count = Votes.objects.filter(qs).count()
+    random_index = randint(0, count - 1)
+    instance = Votes.objects.filter(qs)[random_index]
+    return redirect(reverse('votes:vote', kwargs={'vote_id': instance.uid}))
 
 def about(request):
     return render(request,'about.html', {})
