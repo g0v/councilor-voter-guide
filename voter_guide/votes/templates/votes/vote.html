@@ -109,10 +109,6 @@
         <div class="modal fade " tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
-                        <h4 class="modal-title">網友來協作，讓議員的提案更容易懂</h4>
-                    </div>
                     <div class="modal-body">
                         {% if standpoints_of_vote.0.pro > 0 %}
                             <p>
@@ -147,19 +143,17 @@
                             </ul>
                         {% elif standpoints_of_vote %}
                             <p class="text-danger">
-                                這個表決的標籤還沒有網友投票
+                                此案的標籤還沒有人投票
                             </p>
                         {% else %}
                             <p class="text-danger">
-                                這個表決還沒有被標籤
+                                此案還沒有人下標籤
                             </p>
                         {% endif %}
-                        <p>
-                            歡迎在黃色標籤區寫下、投下您的看法，謝謝您的參與讓資料更好！
-                        </p>
+                        <p>在<span style="background-color: #ffff001a;">黃色標籤區</span>寫下、投下您的看法，謝謝您的參與！</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">這個案，我可以！</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
