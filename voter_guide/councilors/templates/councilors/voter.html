@@ -18,13 +18,6 @@
     <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{councilor.county}}.png"/>
 {% endblock social_meta %}
 
-{% block top-menu %}
-    <ul class="nav nav-tabs">
-        <li><a href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">表決立場</a></li>
-        <li class="active"><a href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a></li>
-    </ul>
-{% endblock top-menu %}
-
 {% block person_detail %}
     {% include "councilors/voter_search.html" %}
     {% if keyword_hot %}

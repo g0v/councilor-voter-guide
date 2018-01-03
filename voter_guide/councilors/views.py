@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import operator
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 from django.db import connections
 from django.db.models import Count, Sum, Max, F, Q, Case, When, Value, IntegerField
 from django.db.models.functions import Coalesce
@@ -168,7 +169,10 @@ def biller_sp(request, councilor_id, election_year):
     ''', [terms_id])
     r = c.fetchone()
     standpoints = r[0] if r else []
-    return render(request, 'councilors/biller_sp.html', {'councilor': councilor, 'standpoints': standpoints})
+    if standpoints:
+        return render(request, 'councilors/biller_sp.html', {'councilor': councilor, 'standpoints': standpoints})
+    else:
+        return redirect(reverse('councilors:biller', kwargs={'councilor_id': councilor_id, 'election_year': election_year}))
 
 def voter(request, councilor_id, election_year):
     votes, notvote, query = None, False, Q()
@@ -235,7 +239,10 @@ def voter_sp(request, councilor_id, election_year):
     ''', [terms_id])
     r = c.fetchone()
     standpoints = r[0] if r else []
-    return render(request, 'councilors/voter_sp.html', {'councilor': councilor, 'standpoints': standpoints})
+    if standpoints:
+        return render(request, 'councilors/voter_sp.html', {'councilor': councilor, 'standpoints': standpoints})
+    else:
+        return redirect(reverse('councilors:voter', kwargs={'councilor_id': councilor_id, 'election_year': election_year}))
 
 def platformer(request, councilor_id, election_year):
     try:
