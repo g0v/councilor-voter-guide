@@ -25,12 +25,12 @@ def intents(request, election_year):
     }
     order_by = ref.get(request.GET.get('order_by'), 'likes')
     qs = Q(county=request.GET.get('county')) if request.GET.get('county') else Q()
-    platforms = Platforms.objects.filter(qs).select_related('user').order_by('-%s' % order_by)[:5]
     qs = qs & Q(election_year=election_year)
     qs = qs & Q(constituency__in=request.GET.get('constituency').split(',')) if request.GET.get('constituency') else qs
     intents = Intent.objects.filter(qs).order_by('-%s' % order_by)
     intents = paginate(request, intents)
-    return render(request, 'candidates/intents.html', {'intents': intents, 'platforms': platforms, 'election_year': election_year})
+    intent_counties = Intent.objects.filter(qs).values('county').annotate(count=Count('county'))
+    return render(request, 'candidates/intents.html', {'intents': intents, 'intent_counties': intent_counties, 'election_year': election_year})
 
 def districts(request, election_year, county):
     coming_ele_year = coming_election_year(county)

@@ -35,9 +35,18 @@
             {% endif %}
             擬參選人
         </h2>
-        <h3><small>對當議員有想法？不想繳 20 萬選舉保證金，但想說說你的想法？</small></h3>
-        <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 來發表</i></a>
-        <ul class="pull-left list-unstyled">
+        <h3><small>對當議員有想法？不想繳 20 萬選舉保證金，但想說說你的想法？</small>
+        <a href="{% url 'candidates:intent_home' %}" class="btn btn-info"><i class="fa fa-pencil-square-o"> 來發表</i></a>
+</h3>
+    </div>
+    <hr>
+    <div style="margin: 10px 0;">
+        <div class="btn-group" role="group" aria-label="選擇縣市" style="margin-right: 10px;">
+            {% for county in intent_counties %}
+            <a type="button" class="btn btn-default" href="{% url 'candidates:intents' election_year %}?county={{county.county}}">{{county.county}} <span class="badge">{{county.count}}</span></a>
+            {% endfor %}
+        </div>
+        <ul class="list-unstyled" style="display: inline-block;">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sort-desc"> 排序</i></a>
                 <ul class="dropdown-menu">
@@ -47,7 +56,6 @@
             </li>
         </ul>
     </div>
-    <hr>
     <div class="row">
         {% for intent in intents %}
         <div class="col-sm-6">
