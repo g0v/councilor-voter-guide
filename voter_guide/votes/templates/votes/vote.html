@@ -109,10 +109,21 @@
                     <div class="modal-body">
                         {% if standpoints_of_vote.0.pro > 0 %}
                             <p>
-                                目前暫由得票最高的標籤：<span class="label label-success">{{standpoints_of_vote.0}}</span> 代表了這個表決
+                                目前最高票的標籤：
+                                {% for sp in standpoints_of_vote %}
+                                    {% if sp.pro == standpoints_of_vote.0.pro %}
+                                        <span class="label label-success">{{sp.title}}</span>
+                                    {% endif %}
+                                {% endfor %}
                             </p>
                             <p>
-                                議員會被標註曾參與 <span class="label label-success">{{standpoints_of_vote.0}}</span>，例如：
+                                議員會被標註
+                                {% for sp in standpoints_of_vote %}
+                                    {% if sp.pro == standpoints_of_vote.0.pro %}
+                                        <span class="label label-success">{{sp.title}}</span>
+                                    {% endif %}
+                                {% endfor %}
+                                ，例如：
                             </p>
                             <ul>
                             {% for fragment in vote.results %}

@@ -160,11 +160,22 @@
                 <div class="modal-body">
                     {% if standpoints_of_bill.0.pro > 0 %}
                         <p>
-                            目前最高票的標籤：<span class="label label-success">{{standpoints_of_bill.0}}</span>
+                            目前最高票的標籤：
+                            {% for sp in standpoints_of_bill %}
+                                {% if sp.pro == standpoints_of_bill.0.pro %}
+                                    <span class="label label-success">{{sp.title}}</span>
+                                {% endif %}
+                            {% endfor %}
                         </p>
                         {% if bill.param.sponsors_groupby_party.priproposer.party_list %}
                             <p>
-                                此案的議員都會被標註 <span class="label label-success">{{standpoints_of_bill.0}}</span>，例如：
+                                此案的議員都會被標註
+                                {% for sp in standpoints_of_bill %}
+                                    {% if sp.pro == standpoints_of_bill.0.pro %}
+                                        <span class="label label-success">{{sp.title}}</span>
+                                    {% endif %}
+                                {% endfor %}
+                                ，例如：
                             </p>
                             <ul>
                             {% for element in bill.param.sponsors_groupby_party.priproposer.party_list %}
