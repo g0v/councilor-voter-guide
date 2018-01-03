@@ -4,9 +4,9 @@
 {% load extras %}
 
 {% block title %}
-    <title>{{intent.county}}可能參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}</title>
-    <meta property="og:title" content="{{intent.county}}可能參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}"/>
-    <meta itemprop="name" content="{{intent.county}}可能參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}">
+    <title>{{intent.election_year}} {{intent.county}}擬參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}</title>
+    <meta property="og:title" content="{{{intent.election_year}} {intent.county}}擬參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}"/>
+    <meta itemprop="name" content="{{intent.election_year}} {{intent.county}}擬參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <style>
         .CodeMirror, .CodeMirror-scroll {
@@ -33,7 +33,7 @@
         </div>
         <div class="col-sm-9 col-xs-7">
             <h2 style="margin-top: 10px;">
-                {{intent.county}}可能參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small>
+                {{intent.election_year}} {{intent.county}}擬參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small>
                 {% if is_this_intent %}
                     <a href="{% url 'candidates:intent_sponsor' intent_id=intent.uid %}" class="btn btn-info btn-lg">看支持者名單</a>
 
