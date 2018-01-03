@@ -26,20 +26,17 @@
 {% block right %}
     <div class="text-center">
         <h2>
-            <i class="fa fa-flag-checkered">
-                {{election_year}}
-                {% if request.GET.county %}
-                    {{request.GET.county}}
-                {% endif %}
-                {% if request.GET.constituency %}
-                    第{{request.GET.constituency}}選區
-                {% endif %}
-                擬參選人
-            </i>
-            <small><a rel="tooltip" title="中選會尚未開放報名、提前亮相中，簡單來說每個人都是可能候選人" data-placement="right"><i class="fa fa-info-circle"></i></a></small>
+            {{election_year}}
+            {% if request.GET.county %}
+                {{request.GET.county}}
+            {% endif %}
+            {% if request.GET.constituency %}
+                第{{request.GET.constituency}}選區
+            {% endif %}
+            擬參選人
         </h2>
-        <h3><small>對當議員有想法？不想繳 20 萬保證金，但是想說說你的想法？</small></h3>
-        <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 我也來發表</i></a>
+        <h3><small>對當議員有想法？不想繳 20 萬選舉保證金，但想說說你的想法？</small></h3>
+        <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 來發表</i></a>
         <ul class="pull-left list-unstyled">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sort-desc"> 排序</i></a>
