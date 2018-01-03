@@ -52,8 +52,10 @@
         <div class="col-sm-5">
             <div class="jumbotron">
                 <span class="label label-default pull-right"><font class="lead">{{vote.result|vote_result:'cht'}}</font></span>
-                <h4><a href="{{vote.sitting.links.url}}" target="_blank"><i class="fa fa-file-pdf-o"> 官方會議記錄</i></a></h4>
+                <h4>{{vote.sitting.county}}議會</h4>
+                <a href="{{vote.sitting.links.url}}" target="_blank" class="pull-right"><i class="fa fa-file-pdf-o"> 官方會議記錄</i></a>
                 <h4 class="text-success">表決日期：{{ vote.sitting.date|date:"Y-m-d" }}</h4>
+                <hr>
                 <h4>{{ vote.content|linebreaksbr }}</h4>
             </div>
         </div><!--end: col-sm-5 -->
