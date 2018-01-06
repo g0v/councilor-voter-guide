@@ -87,9 +87,9 @@
                             <span class="label label-success">{{standpoint}}</span>
                             {% if user.is_authenticated %}
                                 {% if standpoint.have_voted %}
-                                    <button name="against" class="btn" value="{{standpoint.uid}}">取消 +1</button>
+                                    <button name="against" class="btn btn-danger" value="{{standpoint.uid}}">收回 +1</button>
                                 {% else %}
-                                    <button name="pro" class="btn" value="{{standpoint.uid}}">+1</button>
+                                    <button name="pro" class="btn btn-info" value="{{standpoint.uid}}">+1</button>
                                 {% endif %}
                             {% else %}
                             <a href="{% provider_login_url "facebook" %}?next={% url 'votes:vote' vote.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入投票</i></a>
