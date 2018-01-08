@@ -24,7 +24,6 @@ class Spider(scrapy.Spider):
 
     def parse_list(self, response):
         pages = response.css('#BodyContent_PageHelpWuc1_lbTotalInFo::text').extract_first()
-        print pages
         for node in response.css('table.list3 tbody tr'):
             node_ad = int(node.xpath('td[1]/text()').re(u'(\d+)\s*屆')[0])
             if node_ad < self.ad:

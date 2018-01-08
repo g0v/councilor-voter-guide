@@ -33,7 +33,6 @@ class Spider(scrapy.Spider):
         return scrapy.FormRequest.from_response(response, formname='Form1', formdata=payload, callback=self.parse_list)
 
     def parse_list(self, response):
-        print response.css('.MultiPageButtonFont span::text').extract_first()
         for node in response.xpath('//table[@id="dg_List"]/tr[position()>1 and position()<last()]'):
             yield response.follow(node.xpath('td[1]/input/@onclick').re(u"open\('(.*?=\d+)")[0], callback=self.parse_profile)
         if response.css('.MultiPageButtonFont span::text').re('1$'):

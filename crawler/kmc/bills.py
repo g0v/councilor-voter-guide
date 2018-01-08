@@ -39,7 +39,6 @@ class Spider(scrapy.Spider):
 
     def parse_query(self, response):
         pages = re.sub('\D', '', response.css('.result_select').xpath('string()').extract_first())
-        print pages
         for node in response.css('.result_content'):
             link_node = node.css('.acc_link a')
             if link_node.xpath('text()').re(self.ad):

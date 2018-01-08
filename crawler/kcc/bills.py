@@ -27,7 +27,7 @@ class Spider(scrapy.Spider):
         payload = {
             'ctl00$ContentPlaceHolder1$uscPeriodSessionMeeting$ddlSession': response.xpath(u'//select[@name="ctl00$ContentPlaceHolder1$uscPeriodSessionMeeting$ddlSession"]/option[re:test(., "%s屆")]/@value' % self.ad).extract_first(),
             'ctl00$ContentPlaceHolder1$uscPeriodSessionMeeting$ddlMeeting': '',
-            '__EVENTTARGET': re.search("__doPostBack\('([^']*)", response.css('#ContentPlaceHolder1_LinkButton1::attr(href)').extract_first()).group(1)
+            '__EVENTTARGET': re.search('_PostBackOptions\("([^"]*)', response.css('#ContentPlaceHolder1_LinkButton1::attr(href)').extract_first()).group(1)
         }
         yield scrapy.FormRequest.from_response(response, formdata=payload, callback=self.parse_type, dont_filter=True, dont_click=True, headers=common.headers(self.county_abbr))
 
