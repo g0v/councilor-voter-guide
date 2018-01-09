@@ -38,6 +38,8 @@ c = conn.cursor()
 for f in glob.glob('../../data/political_contribution/*.json'):
     dict_list = json.load(open(f))
     for candidate in dict_list:
+        if not candidate['name']:
+            continue
         for wrong, right in [(u'涂淑媚', u'凃淑媚')]:
             candidate['name'] = re.sub(wrong, right, candidate['name'])
         income = {key: candidate[key] for key in ["in_individual", "in_profit", "in_party", "in_civil", "in_anonymous", "in_others"]}
