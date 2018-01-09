@@ -17,27 +17,32 @@
 {% endblock social_meta %}
 
 {% block right %}
-    <div align="center">
-        <div class="text-center">
-            <h2>{{candidate.name}} - 政治獻金</h2>
-        </div>
+    <div class="text-center">
+        <h2>{{candidate.name}} - 政治獻金</h2>
         {% for term in candidate.politicalcontributions %}
-            <div class="page-header">
-                <h4>
-                    {{term.election_year}}年競選&nbsp;&nbsp;餘額：<font class="price">{{term.pc.balance}}</font>
-                </h4>
-            </div>
-            <div class="col-sm-6">
-                <div class="jumbotron">
-
-                     收入：<span class="price text-right">{{term.pc.in_total}}</span>
-                    <div id="d3_in" align="center"></div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="jumbotron">
-                     支出：<span class="price text-right">{{term.pc.out_total}}</span>
-                    <div id="d3_out" align="center"></div>
+            <div class="col-sm-{% widthratio 12 candidate.politicalcontributions|length 1 %}">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4>
+                            {{term.election_year}}年&nbsp;餘額：<font class="price">{{term.pc.balance}}</font>
+                        </h4>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            {{term.election_year}}總收入：<span class="price">{{term.pc.in_total}}</span>
+                        </li>
+                        <li class="list-group-item">
+                            {{term.election_year}}總支出：<span class="price">{{term.pc.out_total}}</span>
+                        </li>
+                        <li class="list-group-item">
+                            <div id="d3_in_{{term.election_year}}"></div>
+                            {{term.election_year}}總收入：<span class="price">{{term.pc.in_total}}</span>
+                        </li>
+                        <li class="list-group-item">
+                            <div id="d3_out_{{term.election_year}}"></div>
+                            {{term.election_year}}總支出：<span class="price">{{term.pc.out_total}}</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         {% empty %}
@@ -50,8 +55,8 @@
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/d3.min.js"></script>
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     {% for term in candidate.politicalcontributions %}
-        {% include "candidates/d3/pc_in_pie.html" with data=term.pc.in %}
-        {% include "candidates/d3/pc_out_pie.html" with data=term.pc.out %}
+        {% include "candidates/d3/pc_in_pie.html" with data=term %}
+        {% include "candidates/d3/pc_out_pie.html" with data=term %}
     {% endfor %}
     <script>
         $(document).ready( function() {
