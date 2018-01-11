@@ -72,7 +72,8 @@ def district(request, election_year, county, constituency):
                                     WHEN lv.decision isnull THEN '沒投票'
                                 END as decision,
                                 s.title,
-                                count(*) as times
+                                count(*) as times,
+                                sum(pro) as pro
                             FROM votes_councilors_votes lv
                             JOIN standpoints_standpoints s on s.vote_id = lv.vote_id
                             WHERE lv.councilor_id in %s AND s.pro = (
@@ -82,7 +83,7 @@ def district(request, election_year, county, constituency):
                                 GROUP BY ss.vote_id
                             )
                             GROUP BY s.title, lv.decision
-                            ORDER BY times DESC
+                            ORDER BY pro DESC, times DESC
                             LIMIT 3
                         ) row
                         UNION ALL
@@ -90,7 +91,8 @@ def district(request, election_year, county, constituency):
                         FROM (
                             SELECT
                                 s.title,
-                                count(*) as times
+                                count(*) as times,
+                                sum(pro) as pro
                             FROM bills_councilors_bills lv
                             JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
                             JOIN bills_bills v on lv.bill_id = v.uid
@@ -101,7 +103,7 @@ def district(request, election_year, county, constituency):
                                 GROUP BY ss.bill_id
                             )
                             GROUP BY s.title
-                            ORDER BY times DESC
+                            ORDER BY pro DESC, times DESC
                             LIMIT 3
                         ) row
                     ) r

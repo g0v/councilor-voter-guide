@@ -153,6 +153,7 @@ def biller_sp(request, councilor_id, election_year):
                 END as role,
                 s.title,
                 count(*) as times,
+                sum(pro) as pro,
                 json_agg((select x from (select v.uid, v.abstract) x)) as bills
             FROM bills_councilors_bills lv
             JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
@@ -164,7 +165,7 @@ def biller_sp(request, councilor_id, election_year):
                 GROUP BY ss.bill_id
             )
             GROUP BY s.title, role
-            ORDER BY role
+            ORDER BY role, pro DESC
         ) row
     ''', [terms_id])
     r = c.fetchone()
@@ -223,6 +224,7 @@ def voter_sp(request, councilor_id, election_year):
                 END as decision,
                 s.title,
                 count(*) as times,
+                sum(pro) as pro,
                 json_agg((select x from (select v.uid, v.content) x)) as votes
             FROM votes_councilors_votes lv
             JOIN standpoints_standpoints s on s.vote_id = lv.vote_id
@@ -234,7 +236,7 @@ def voter_sp(request, councilor_id, election_year):
                 GROUP BY ss.vote_id
             )
             GROUP BY s.title, lv.decision
-            ORDER BY lv.decision
+            ORDER BY lv.decision, pro DESC
         ) row
     ''', [terms_id])
     r = c.fetchone()
