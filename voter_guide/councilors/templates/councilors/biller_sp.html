@@ -36,20 +36,17 @@
                 {% else %}
                     <div class="panel panel-warning">
                 {% endif %}
-                        <div class="panel-heading" role="tab" id="heading_{{role_group.grouper}}_{{standpoint.title}}">
-                            <h4>
-                                <div role="button" data-toggle="collapse" data-parent="#accordion_{{role_group.grouper}}" data-target="#{{role_group.grouper}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{role_group.grouper}}_{{standpoint.title}}">
-                                <b>{{standpoint.title}}</b>
-                                {% if role_group.grouper == "主提案" %}
-                                    <span class="label label-info pull-right">
-                                {% elif role_group.grouper == "共同提案" %}
-                                    <span class="label label-success pull-right">
-                                {% else %}
-                                    <span class="label label-warning pull-right">
-                                {% endif %}
-                                {{role_group.grouper}} {{standpoint.times}}次</span>
-                                </div>
-                            </h4>
+                        <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion_{{role_group.grouper}}" data-target="#{{role_group.grouper}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{role_group.grouper}}_{{standpoint.title}}">
+                            <b>{{standpoint.title}}</b>
+                            <i class="fa fa-angle-down fa-lg pull-right"></i>
+                            {% if role_group.grouper == "主提案" %}
+                                <span class="label label-info pull-right">
+                            {% elif role_group.grouper == "共同提案" %}
+                                <span class="label label-success pull-right">
+                            {% else %}
+                                <span class="label label-warning pull-right">
+                            {% endif %}
+                            {{role_group.grouper}} {{standpoint.times}}次</span>
                         </div>
                         <div id="{{role_group.grouper}}_{{standpoint.title}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{{role_group.grouper}}_{{standpoint.title}}">
                             <ul class="list-group">
@@ -77,6 +74,9 @@
     <script>
         $(document).ready( function() {
             $('#url_bill').addClass('btn-primary');
+            $('[data-toggle="collapse"]').on('click', function() {
+                $(this).find('.fa-caret-square-o-down').toggleClass('up-side-down');
+            });
         });
     </script>
 {% endblock script %}

@@ -80,7 +80,8 @@
         $(document).ready( function() {
             $('#{{category}}').addClass('active');
             $('.panel-heading').on('click', function() {
-                $(this).find('.fa-angle-down').toggleClass('up-side-down');
+                $('.panel-heading .fa-angle-down').removeClass('up-side-down');
+                $(this).find('.fa-angle-down').addClass('up-side-down');
             });
         });
     </script>

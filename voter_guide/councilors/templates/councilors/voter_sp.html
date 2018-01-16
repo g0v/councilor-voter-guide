@@ -39,22 +39,18 @@
                 {% else %}
                     <div class="panel panel-warning">
                 {% endif %}
-                        <div class="panel-heading" role="tab" id="heading_{{decision_group.grouper}}_{{standpoint.title}}">
-                            <h4>
-                                <div role="button" data-toggle="collapse" data-parent="#accordion_{{decision_group.grouper}}" data-target="#{{decision_group.grouper}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{decision_group.grouper}}_{{standpoint.title}}">
-                                <b>{{standpoint.title}}</b>
-                                {% if decision_group.grouper == "反對" %}
-                                    <span class="label label-danger pull-right">
-                                {% elif decision_group.grouper == "贊成" %}
-                                    <span class="label label-success pull-right">
-                                {% elif decision_group.grouper == "沒投票" %}
-                                    <span class="label label-default pull-right">
-                                {% else %}
-                                    <span class="label label-warning pull-right">
-                                {% endif %}
-                                {{decision_group.grouper}} {{standpoint.times}}次</span>
-                                </div>
-                            </h4>
+                        <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion_{{decision_group.grouper}}" data-target="#{{decision_group.grouper}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{decision_group.grouper}}_{{standpoint.title}}">
+                            <b>{{standpoint.title}}</b>
+                            {% if decision_group.grouper == "反對" %}
+                                <span class="label label-danger pull-right">
+                            {% elif decision_group.grouper == "贊成" %}
+                                <span class="label label-success pull-right">
+                            {% elif decision_group.grouper == "沒投票" %}
+                                <span class="label label-default pull-right">
+                            {% else %}
+                                <span class="label label-warning pull-right">
+                            {% endif %}
+                            {{decision_group.grouper}} {{standpoint.times}}次</span>
                         </div>
                         <div id="{{decision_group.grouper}}_{{standpoint.title}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{{decision_group.grouper}}_{{standpoint.title}}">
                             <ul class="list-group">
@@ -82,6 +78,9 @@
     <script>
         $(document).ready( function() {
             $('#url_vote').addClass('btn-primary');
+            $('[data-toggle="collapse"]').on('click', function() {
+                $(this).find('.fa-caret-square-o-down').toggleClass('up-side-down');
+            });
         });
     </script>
 {% endblock script %}
