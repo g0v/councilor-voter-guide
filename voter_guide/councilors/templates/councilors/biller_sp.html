@@ -74,9 +74,14 @@
     <script>
         $(document).ready( function() {
             $('#url_bill').addClass('btn-primary');
-            $('[data-toggle="collapse"]').on('click', function() {
+            $('h4[data-toggle="collapse"]').on('click', function() {
                 $(this).find('.fa-caret-square-o-down').toggleClass('up-side-down');
             });
+            $('[data-toggle="collapse"]').on('click', function() {
+                $(this).closest('.panel-group').find('[data-toggle="collapse"]').not(this).find('.fa-angle-down').removeClass('up-side-down');
+                $(this).find('.fa-angle-down').toggleClass('up-side-down');
+            });
+            $('.panel-group .panel:nth-child(1) [data-toggle="collapse"]').trigger('click');
         });
     </script>
 {% endblock script %}

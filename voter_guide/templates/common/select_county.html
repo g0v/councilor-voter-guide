@@ -51,11 +51,9 @@
                 <div class="panel-group" id="regions" role="tablist" aria-multiselectable="true">
                 {% for region in regions %}
                     <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="{{region.region}}_heading">
-                            <h4 role="button" data-toggle="collapse" data-parent="#regions" data-target="#{{region.region}}" aria-expanded="false" aria-controls="{{region.region}}">
-                                {{region.region}}
-                                <i class="fa fa-angle-down fa-lg pull-right"></i>
-                            </h4>
+                        <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#regions" data-target="#{{region.region}}" aria-expanded="false" aria-controls="{{region.region}}">
+                            {{region.region}}
+                            <i class="fa fa-angle-down fa-lg pull-right"></i>
                         </div>
                         <div id="{{region.region}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{region.region}}">
                             <ul class="list-group">
@@ -79,9 +77,9 @@
     <script>
         $(document).ready( function() {
             $('#{{category}}').addClass('active');
-            $('.panel-heading').on('click', function() {
-                $('.panel-heading .fa-angle-down').removeClass('up-side-down');
-                $(this).find('.fa-angle-down').addClass('up-side-down');
+            $('[data-toggle="collapse"]').on('click', function() {
+                $('[data-toggle="collapse"]').not(this).find('.fa-angle-down').removeClass('up-side-down');
+                $(this).find('.fa-angle-down').toggleClass('up-side-down');
             });
         });
     </script>

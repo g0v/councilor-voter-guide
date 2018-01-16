@@ -41,6 +41,7 @@
                 {% endif %}
                         <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion_{{decision_group.grouper}}" data-target="#{{decision_group.grouper}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{decision_group.grouper}}_{{standpoint.title}}">
                             <b>{{standpoint.title}}</b>
+                            <i class="fa fa-angle-down fa-lg pull-right"></i>
                             {% if decision_group.grouper == "反對" %}
                                 <span class="label label-danger pull-right">
                             {% elif decision_group.grouper == "贊成" %}
@@ -78,9 +79,14 @@
     <script>
         $(document).ready( function() {
             $('#url_vote').addClass('btn-primary');
-            $('[data-toggle="collapse"]').on('click', function() {
+            $('h4[data-toggle="collapse"]').on('click', function() {
                 $(this).find('.fa-caret-square-o-down').toggleClass('up-side-down');
             });
+            $('[data-toggle="collapse"]').on('click', function() {
+                $(this).closest('.panel-group').find('[data-toggle="collapse"]').not(this).find('.fa-angle-down').removeClass('up-side-down');
+                $(this).find('.fa-angle-down').toggleClass('up-side-down');
+            });
+            $('.panel-group .panel:nth-child(1) [data-toggle="collapse"]').trigger('click');
         });
     </script>
 {% endblock script %}

@@ -182,10 +182,11 @@
 
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-info">
-                    <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_motivation" aria-expanded="true" aria-controls="{{intent.uid}}_motivation">
+                    <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_motivation" aria-expanded="false" aria-controls="{{intent.uid}}_motivation">
                         為什麼報名？
+                        <i class="fa fa-angle-down fa-lg pull-right"></i>
                     </div>
-                    <div id="{{intent.uid}}_motivation" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div id="{{intent.uid}}_motivation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
                             <textarea style="display: none">{{intent.motivation}}</textarea>
                             <div class="intent-property-body"></div>
@@ -195,6 +196,7 @@
                 <div class="panel panel-success">
                     <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_platform" aria-expanded="false" aria-controls="{{intent.uid}}_platform">
                         政見？
+                        <i class="fa fa-angle-down fa-lg pull-right"></i>
                     </div>
                     <div id="{{intent.uid}}_platform" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
@@ -206,6 +208,7 @@
                 <div class="panel panel-warning">
                     <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_experience" aria-expanded="false" aria-controls="{{intent.uid}}_experience">
                         經歷？
+                        <i class="fa fa-angle-down fa-lg pull-right"></i>
                     </div>
                     <div id="{{intent.uid}}_experience" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                         <div class="panel-body">
@@ -217,6 +220,7 @@
                 <div class="panel panel-danger">
                     <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_education" aria-expanded="false" aria-controls="{{intent.uid}}_education">
                         學歷？
+                        <i class="fa fa-angle-down fa-lg pull-right"></i>
                     </div>
                     <div id="{{intent.uid}}_education" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                         <div class="panel-body">
@@ -228,6 +232,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_remark" aria-expanded="false" aria-controls="{{intent.uid}}_remark">
                         備註？
+                        <i class="fa fa-angle-down fa-lg pull-right"></i>
                     </div>
                     <div id="{{intent.uid}}_remark" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                         <div class="panel-body">
@@ -257,6 +262,11 @@
             $("#clear_contact").on('click', function() {
                 $('#sponsor input:visible').val('');
             });
+            $('[data-toggle="collapse"]').on('click', function() {
+                $(this).closest('.panel-group').find('[data-toggle="collapse"]').not(this).find('.fa-angle-down').removeClass('up-side-down');
+                $(this).find('.fa-angle-down').toggleClass('up-side-down');
+            });
+            $('.panel-group .panel:nth-child(1) [data-toggle="collapse"]').trigger('click');
         });
     </script>
 {% endblock script %}
