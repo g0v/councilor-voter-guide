@@ -64,11 +64,12 @@ def upsertCandidates(candidate):
         DO UPDATE
         SET elected_councilor_id = %(councilor_term_id)s, councilor_terms = %(councilor_terms)s, number = %(number)s, name = %(name)s, gender = %(gender)s, party = %(party)s, constituency = %(constituency)s, county = %(county)s, district = %(district)s, contact_details = %(contact_details)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s
     ''', complement)
-    c.execute('''
-        UPDATE candidates_terms
-        SET param = (COALESCE(param, '{}'::jsonb) || %s::jsonb)
-        WHERE election_year = %s AND candidate_id = %s
-    ''', (json.dumps({'constituency_change': complement['constituency_change']}), complement['election_year'], complement['candidate_id']))
+    if complement.get('constituency_change'):
+        c.execute('''
+            UPDATE candidates_terms
+            SET data = (COALESCE(data, '{}'::jsonb) || %s::jsonb)
+            WHERE election_year = %s AND candidate_id = %s
+        ''', (json.dumps({'constituency_change': complement['constituency_change']}), complement['election_year'], complement['candidate_uid']))
 
 conn = db_settings.con()
 c = conn.cursor()
