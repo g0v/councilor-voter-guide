@@ -25,6 +25,13 @@ body {
     font-size: 18px;
 }
 
+.rotate {
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
 /* Table
 =================================================================== */
 .table>thead>tr>th {
@@ -205,4 +212,11 @@ hr.candidates-separator {
 
 .affix + div {
     padding-top: 140px;
+}
+
+/* panel
+=================================================================== */
+ 
+.panel-collapse .list-group-item {
+    padding-left: 36px;
 }

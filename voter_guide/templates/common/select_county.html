@@ -23,13 +23,13 @@
             <div class="panel panel-warning">
                 <div class="panel-heading">來幫忙</div>
                 <div class="panel-body">
-                    <h4>幫助別人了解議員幹了什麼好事！標籤由你來下</h4>
+                    <h4>議員幹了什麼好事？<br>標籤由你來下！</h4>
                     <a href="{% url 'dispatch_bill' %}" class="btn btn-danger" target="_blank"><i class="fa fa-pencil-square-o"> 隨機分配一個給我！</i></a>
                 </div>
             </div>
         </div>
         <div class="col-sm-9">
-            <div class="five column doubling ui grid">
+            <div class="five column doubling ui grid hidden-xs">
                 {% for region in regions %}
                     {% for county in region.counties %}
                         <div class="column direct-container">
@@ -47,6 +47,29 @@
                     <hr>
                 {% endfor %}
             </div>
+            <div class="visible-xs">
+                <div class="panel-group" id="regions" role="tablist" aria-multiselectable="true">
+                {% for region in regions %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="{{region.region}}_heading">
+                            <h4 role="button" data-toggle="collapse" data-parent="#regions" data-target="#{{region.region}}" aria-expanded="false" aria-controls="{{region.region}}">
+                                {{region.region}}
+                                <i class="fa fa-angle-down pull-right"></i>
+                            </h4>
+                        </div>
+                        <div id="{{region.region}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{region.region}}">
+                            <ul class="list-group">
+                            {% for county in region.counties %}
+                                <a class="list-group-item" href="{{category|select_county_reverse_url:county}}">
+                                    <h4>{{county}}</h4>
+                                </a>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
     <div id="disqus_thread"></div>
@@ -55,7 +78,10 @@
 {% block script %}
     <script>
         $(document).ready( function() {
-                $('#{{category}}').addClass('active');
+            $('#{{category}}').addClass('active');
+            $('.panel-heading').on('click', function() {
+                $('.fa.fa-angle-down').toggleClass('rotate');
+            });
         });
     </script>
 {% endblock script %}
