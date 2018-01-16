@@ -17,13 +17,12 @@
 {% block right %}
     <div class="page-header text-center">
         <h2>
-            <i class="fa fa-flag-checkered">
+            <i class="fa fa-birthday-cake">
                 {% if request.GET.county %}
                     {{request.GET.county}}
                 {% endif %}
                 民眾的許願池
             </i>
-            <small><a rel="tooltip" title="中選會尚未開放報名、提前亮相中，簡單來說每個人都是可能候選人" data-placement="right"><i class="fa fa-info-circle"></i></a></small>
         </h2>
         <h4><small>我只想許個願！歡迎候選人揀去做！</small></h4>
         <a href="{% provider_login_url "facebook" %}?next={% url 'platforms:propose' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 來許個願</i></a>
