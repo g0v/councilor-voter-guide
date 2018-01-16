@@ -101,6 +101,9 @@
         $(document).ready( function() {
             $('table').cardtable();
             $("[rel='tooltip']").tooltip();
+            $('[data-toggle="collapse"]').on('click', function() {
+                $(this).find('.fa-angle-down').toggleClass('up-side-down');
+            });
             $('#suggestions').addClass('active');
             $('.price').each(function(index,ele){
                 var number = $(ele).text()

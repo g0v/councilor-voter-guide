@@ -168,6 +168,9 @@
         $(document).ready( function() {
             $('#votes').addClass('active');
             $("[rel='tooltip']").tooltip();
+            $('[data-toggle="collapse"]').on('click', function() {
+                $(this).find('.fa-angle-down').toggleClass('up-side-down');
+            });
             if ($(window).width() > 568)
                 $('.modal').modal('show');
         });
