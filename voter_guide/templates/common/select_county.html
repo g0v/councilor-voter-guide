@@ -54,7 +54,7 @@
                         <div class="panel-heading" role="tab" id="{{region.region}}_heading">
                             <h4 role="button" data-toggle="collapse" data-parent="#regions" data-target="#{{region.region}}" aria-expanded="false" aria-controls="{{region.region}}">
                                 {{region.region}}
-                                <i class="fa fa-angle-down pull-right"></i>
+                                <i class="fa fa-angle-down fa-lg pull-right"></i>
                             </h4>
                         </div>
                         <div id="{{region.region}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{region.region}}">
@@ -80,7 +80,7 @@
         $(document).ready( function() {
             $('#{{category}}').addClass('active');
             $('.panel-heading').on('click', function() {
-                $('.fa.fa-angle-down').toggleClass('rotate');
+                $(this).find('.fa-angle-down').toggleClass('up-side-down');
             });
         });
     </script>

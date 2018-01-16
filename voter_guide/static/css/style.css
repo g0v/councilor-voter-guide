@@ -25,7 +25,7 @@ body {
     font-size: 18px;
 }
 
-.rotate {
+.up-side-down {
     -ms-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
