@@ -132,10 +132,12 @@
             });
             $('#checked').on('click', function() {
                 if ($(this).is(":checked")) {
-                    $('input[name=district]').val($('select[name=constituency] option[value=' + $('select[name=constituency]').val() + ']').text().split('）')[1]);
                     $('#submit').prop('disabled', false);
                 } else
                     $('#submit').prop('disabled', true);
+            });
+            $('form').on('submit', function() {
+                $('input[name=district]').val($('select[name=constituency] option[value=' + $('select[name=constituency]').val() + ']').text().split('）')[1]);
             });
             $("[rel='tooltip']").tooltip();
         });
