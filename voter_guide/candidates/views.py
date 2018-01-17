@@ -153,6 +153,31 @@ def intent_upsert(request):
 
 def intent_detail(request, intent_id):
     intent = get_object_or_404(Intent.objects.select_related('user'), uid=intent_id)
+    c = connections['default'].cursor()
+    c.execute(u'''
+        SELECT json_agg(row)
+        FROM (
+            SELECT
+                cis.pro as decision,
+                s.title,
+                count(*) as times,
+                sum(s.pro) as pro,
+                json_agg((select x from (select v.uid, v.abstract) x)) as bills
+            FROM candidates_intent_standpoints cis
+            JOIN standpoints_standpoints s on s.bill_id = cis.bill_id
+            JOIN bills_bills v on cis.bill_id = v.uid
+            WHERE cis.intent_id = %s AND v.county = %s AND s.pro = (
+                SELECT max(pro)
+                FROM standpoints_standpoints ss
+                WHERE ss.pro > 0 AND s.bill_id = ss.bill_id
+                GROUP BY ss.bill_id
+            )
+            GROUP BY cis.pro, s.title
+            ORDER BY decision, pro DESC
+        ) row
+    ''', [intent_id, intent.county])
+    r = c.fetchone()
+    standpoints = r[0] if r else []
     user_liked, form = False, None
     if request.user.is_authenticated:
         user_liked = Intent_Likes.objects.filter(intent_id=intent_id, user=request.user)
@@ -178,7 +203,7 @@ def intent_detail(request, intent_id):
             form = SponsorForm()
             form.fields['name'].initial = request.user.last_name + request.user.first_name
             form.fields['email'].initial = request.user.email
-    return render(request, 'candidates/intent_detail.html', {'form': form, 'intent': intent, 'user_liked': user_liked, 'is_this_intent': intent.user == request.user})
+    return render(request, 'candidates/intent_detail.html', {'form': form, 'intent': intent, 'standpoints': standpoints, 'user_liked': user_liked, 'is_this_intent': intent.user == request.user})
 
 def intent_sponsor(request, intent_id):
     if not request.user.is_authenticated:

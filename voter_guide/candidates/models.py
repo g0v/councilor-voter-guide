@@ -94,3 +94,16 @@ class Intent_Likes(models.Model):
     class Meta:
         unique_together = ('intent', 'user')
         index_together = ['intent', 'user']
+
+class Intent_Standpoints(models.Model):
+    intent = models.ForeignKey(Intent, to_field='uid')
+    pro = models.BooleanField(db_index=True, verbose_name=u'贊成')
+    comment = models.TextField(blank=True, null=True, verbose_name=u'意見')
+    vote = models.ForeignKey('votes.Votes', to_field='uid', related_name='intent_standpoints', null=True)
+    bill = models.ForeignKey('bills.Bills', to_field='uid', related_name='intent_standpoints', null=True)
+    suggestion = models.ForeignKey('suggestions.Suggestions', to_field='uid', related_name='intent_standpoints', null=True)
+    create_at = models.DateTimeField(auto_now_add=True)
+    data = JSONField(null=True)
+    def __unicode__(self):
+        return self.intent
+

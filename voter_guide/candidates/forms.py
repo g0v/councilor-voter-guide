@@ -3,7 +3,7 @@ import json
 from django import forms
 from django.utils.datastructures import MultiValueDict
 
-from .models import Intent
+from .models import Intent, Intent_Standpoints
 
 counties = ((x, x) for x in ["", "臺北市", "新北市", "桃園市", "基隆市", "宜蘭縣", "新竹縣", "新竹市", "苗栗縣", "臺中市", "彰化縣", "雲林縣", "南投縣", "嘉義縣", "嘉義市", "臺南市", "高雄市", "屏東縣", "花蓮縣", "臺東縣", "澎湖縣", "金門縣", "連江縣"])
 
@@ -58,3 +58,15 @@ class SponsorForm(forms.Form):
     email = forms.EmailField(label=u'E-mail', max_length=254, required=False, help_text=u'選填')
     phone = forms.CharField(label=u'連絡電話', max_length=20, required=False, help_text=u'選填')
     votable = forms.NullBooleanField(label=u'可在此選區投票', required=False)
+
+class Intent_StandpointsForm(forms.ModelForm):
+    pro = forms.TypedChoiceField(
+        choices=((True, u'贊成'), (False, u'反對')),
+    )
+    class Meta:
+        model = Intent_Standpoints
+        fields = ['pro', 'comment', ]
+        widgets = {
+            'pro': forms.widgets.Select(attrs={'class': 'form-control'}),
+            'comment': forms.widgets.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+        }

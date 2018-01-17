@@ -111,10 +111,10 @@
         {% endif %}
     </div>
     <div class="col-sm-4">
-        <div style="background-color: #ffff001a; padding: 0 10px 10px 10px">
+
+        <div style="background-color: #ffff001a; padding: 16px;">
             <form action="" method="post" class="form-inline">
                 {% csrf_token %}
-                <br>
                 <fieldset>
                     <label>請輸入最能代表這個提案的標籤：</label>
                     {% if user.is_authenticated %}
@@ -153,9 +153,39 @@
                 {% endwith %}
             </form>
         </div>
+
         <hr>
         <div class="fb-share-button" data-size="large" data-href="{{current_url}}" data-layout="button_count"></div>
         <a href="{% url 'dispatch_bill' county=county %}" class="btn btn-danger pull-right"><i class="fa fa-angle-right"> 下一案</i></a>
+        <hr>
+
+        {% if user.is_authenticated and intent %}
+        <div style="background-color: #00a1ff1a; padding: 16px;">
+            <form action="" method="post" class="form-horizontal">
+                {% csrf_token %}
+                <fieldset>
+                    <input type="hidden" name="intent" value=""/>
+                    <label>候選人{{intent}}，您贊成這個提案嗎？</label>
+                    <div class="form-group">
+                        {{ form.pro.errors }}
+                        <label class="col-sm-3 control-label" for="{{ form.pro.id_for_label }}">贊成？</label>
+                        <div class="col-sm-9">
+                            {{form.pro}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form.comment.errors }}
+                        <label class="col-sm-3 control-label" for="{{ form.comment.id_for_label }}">意見</label>
+                        <div class="col-sm-9">
+                            {{form.comment}}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success pull-right">確定</button>
+                </fieldset>
+            </form>
+        </div>
+        {% endif %}
+
     </div>
     <div class="modal fade " tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
