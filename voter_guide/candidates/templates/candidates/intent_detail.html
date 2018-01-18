@@ -225,13 +225,22 @@
                                 </div>
                                 <div id="{{decision_group.grouper}}_{{standpoint.title}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{{decision_group.grouper}}_{{standpoint.title}}">
                                     <ul class="list-group">
-                                        {% for fragment in standpoint.bills %}
-                                        <a class="list-group-item" href="{% url 'bills:bill' bill_id=fragment.uid %}" target="_blank">
-                                            <h4>☞ 提案 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></h4>
-                                            <blockquote>
-                                                <p><small>{{fragment.abstract|truncatechars:100}}</small></p>
-                                            </blockquote>
-                                        </a>
+                                        {% for fragment in standpoint.detail %}
+                                        {% if fragment.abstract %}
+                                            <a class="list-group-item" href="{% url 'bills:bill' bill_id=fragment.uid %}" target="_blank">
+                                                <h4>☞ 提案 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></h4>
+                                                <blockquote>
+                                                    <p><small>{{fragment.abstract|truncatechars:100}}</small></p>
+                                                </blockquote>
+                                            </a>
+                                        {% elif fragment.content %}
+                                            <a class="list-group-item" href="{% url 'votes:vote' vote_id=fragment.uid %}" target="_blank">
+                                                <h4>☞ 表決 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></h4>
+                                                <blockquote>
+                                                    <p><small>{{fragment.content|truncatechars:100}}</small></p>
+                                                </blockquote>
+                                            </a>
+                                        {% endif %}
                                         {% endfor %}
                                     </ul>
                                 </div>
@@ -240,9 +249,16 @@
                         </div>
                     </div>
                 {% empty %}
-                    候選人尚未對各提案標註他的立場
+                    候選人尚未對各提案{% if intent.county|county_config:'votes' %}、表決{% endif %}標註他的立場
                     {% if is_this_intent %}
-                        <a href="{% url 'dispatch_bill' county=intent.county %}" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的立場</i></a>
+                        {% if intent.county|county_config:'votes' %}
+                            <div class="btn-group-vertical" role="group" aria-label="...">
+                                <a href="{% url 'dispatch_bill' county=intent.county %}" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的提案立場</i></a>
+                                <a href="{% url 'dispatch_vote' county=intent.county %}" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的表決立場</i></a>
+                            </div>
+                        {% else %}
+                            <a href="{% url 'dispatch_bill' county=intent.county %}" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的立場</i></a>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
                 </div>

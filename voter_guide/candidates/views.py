@@ -155,29 +155,56 @@ def intent_detail(request, intent_id):
     intent = get_object_or_404(Intent.objects.select_related('user'), uid=intent_id)
     c = connections['default'].cursor()
     c.execute(u'''
-        SELECT json_agg(row)
+        SELECT json_agg(r)
         FROM (
-            SELECT
-                cis.pro as decision,
-                s.title,
-                count(*) as times,
-                sum(s.pro) as pro,
-                json_agg((select x from (select v.uid, v.abstract) x)) as bills
-            FROM candidates_intent_standpoints cis
-            JOIN standpoints_standpoints s on s.bill_id = cis.bill_id
-            JOIN bills_bills v on cis.bill_id = v.uid
-            WHERE cis.intent_id = %s AND v.county = %s AND s.pro = (
-                SELECT max(pro)
-                FROM standpoints_standpoints ss
-                WHERE ss.pro > 0 AND s.bill_id = ss.bill_id
-                GROUP BY ss.bill_id
-            )
-            GROUP BY cis.pro, s.title
-            ORDER BY decision, pro DESC
-        ) row
-    ''', [intent_id, intent.county])
+            SELECT *
+            FROM (
+                SELECT *
+                FROM (
+                    SELECT
+                        cis.pro as decision,
+                        s.title,
+                        count(*) as times,
+                        sum(s.pro) as pro,
+                        json_agg((select x from (select b.uid, b.abstract) x)) as detail
+                    FROM candidates_intent_standpoints cis
+                    JOIN standpoints_standpoints s on s.bill_id = cis.bill_id
+                    JOIN bills_bills b on cis.bill_id = b.uid
+                    WHERE cis.intent_id = %s AND s.county = %s AND s.pro = (
+                        SELECT max(pro)
+                        FROM standpoints_standpoints ss
+                        WHERE ss.pro > 0 AND s.bill_id = ss.bill_id
+                        GROUP BY ss.bill_id
+                    )
+                    GROUP BY cis.pro, s.title
+                ) row
+                UNION ALL
+                SELECT *
+                FROM (
+                    SELECT
+                        cis.pro as decision,
+                        s.title,
+                        count(*) as times,
+                        sum(s.pro) as pro,
+                        json_agg((select x from (select v.uid, v.content) x)) as detail
+                    FROM candidates_intent_standpoints cis
+                    JOIN standpoints_standpoints s on s.vote_id = cis.vote_id
+                    JOIN votes_votes v on cis.vote_id = v.uid
+                    WHERE cis.intent_id = %s AND s.county = %s AND s.pro = (
+                        SELECT max(pro)
+                        FROM standpoints_standpoints ss
+                        WHERE ss.pro > 0 AND s.vote_id = ss.vote_id
+                        GROUP BY ss.vote_id
+                    )
+                    GROUP BY cis.pro, s.title
+                ) row
+                ORDER BY decision, pro DESC
+            ) rr
+        ) r
+    ''', [intent_id, intent.county, intent_id, intent.county])
     r = c.fetchone()
     standpoints = r[0] if r else []
+    print standpoints
     user_liked, form = False, None
     if request.user.is_authenticated:
         user_liked = Intent_Likes.objects.filter(intent_id=intent_id, user=request.user)
