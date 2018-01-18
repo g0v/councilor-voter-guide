@@ -158,7 +158,7 @@
                             </p>
                             <ul>
                             {% for fragment in vote.results %}
-                                <li>{{fragment.decision}} <span class="label label-success">{{standpoints_of_vote.0}}</span>：</li>
+                                <li>{{fragment.decision}}：</li>
                                 <ul class="list-inline">
                                     {% for element in fragment.party_list %}
                                         {% with councilor=element.councilors.0 %}
