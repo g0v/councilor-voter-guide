@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.conf import settings
 from django.contrib.postgres.fields import JSONField
 
 
@@ -32,3 +33,14 @@ class Councilors_Suggestions(models.Model):
 
     class Meta:
         unique_together = ("councilor", "suggestion")
+
+class User_Suggestions(models.Model):
+    suggestion = models.ForeignKey(Suggestions, to_field='uid')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    pro = models.BooleanField(db_index=True, verbose_name=u'贊成')
+    grade = models.IntegerField(default=0)
+    comment = models.TextField(blank=True, null=True)
+    create_at = models.DateTimeField(db_index=True, auto_now_add=True, null=True)
+    class Meta:
+        unique_together = ('user', 'suggestion')
+        index_together = ['user', 'suggestion']

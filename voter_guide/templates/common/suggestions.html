@@ -1,4 +1,6 @@
 {% load extras %}
+{% load socialaccount %}
+
 <table id="datatable" class="table table-bordered table-condensed table-striped" >
     <thead>
         <tr style="background-color: #FFEEFF;">
@@ -15,6 +17,7 @@
             <th style="width: 10%">主辦機關</th>
             <th style="width: 10%">招標方式</th>
             <th style="width: 15%">得標廠商</th>
+            <th style="width: 10%">網友點評</th>
         </tr>
     </thead>
     <tbody>
@@ -76,6 +79,22 @@
                         【來源檔案無資料】
                     {% endfor %}
                     </ul>
+                </td>
+                <td style="vertical-align:middle;">
+                    <form id="form_{{obj.uid}}" name="form_{{obj.uid}}" action="" method="post" class="form-inline" style="margin-bottom: 0;">
+                        {% csrf_token %}
+                        <fieldset>
+                            {% if user.is_authenticated %}
+                                <input type="hidden" name="suggestion_id" value="{{obj.uid}}"/>
+                                <div class="btn-group-vertical" role="group" aria-label="網友點評">
+                                    <button type="submit" name="rating" value="pro" class="btn btn-info"><i class="fa fa-thumbs-up"></i> 讚 {% for x in obj.rating %}{% if x.0 %}{{x.1}}{% endif %}{% endfor %}</button>
+                                    <button type="submit" name="rating" value="against" class="btn btn-danger"><i class="fa fa-thumbs-down"></i> 爛 {% for x in obj.rating %}{% if not x.0 %}{{x.1}}{% endif %}{% endfor %}</button>
+                                </div>
+                            {% else %}
+                                <a href="{% provider_login_url "facebook" %}?next=./" class="btn btn-default"><i class="fa fa-sign-in"> 登入點評</i></a>
+                            {% endif %}
+                        </fieldset>
+                    </form>
                 </td>
             </tr>
         {% endfor %}

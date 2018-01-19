@@ -9,13 +9,14 @@ from django.db.models import Count, Sum, F, Q, Case, When, Value, IntegerField
 from django.db.models.functions import Coalesce
 from django.conf import settings
 
+from haystack import connections as es_connections
 from haystack.query import SearchQuerySet
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
-from .models import Suggestions, Councilors_Suggestions
+from .models import Suggestions, Councilors_Suggestions, User_Suggestions
 from councilors.models import CouncilorsDetail
 from search.views import keyword_list, keyword_been_searched
 from commontag.views import paginate
@@ -43,8 +44,16 @@ def associations(request):
     return render(request,'suggestions/associations.html', {'associations': associations})
 
 def county_overview(request):
+    if request.user.is_authenticated():
+        if request.POST:
+            if request.POST.get('suggestion_id'):
+                if request.POST.get('rating') == 'pro':
+                    User_Suggestions.objects.update_or_create(suggestion_id=request.POST['suggestion_id'], user=request.user, defaults={'pro': True})
+                elif request.POST.get('rating') == 'against':
+                    User_Suggestions.objects.update_or_create(suggestion_id=request.POST['suggestion_id'], user=request.user, defaults={'pro': False})
+                es_connections['default'].get_unified_index().get_index(Suggestions).update_object(Suggestions.objects.get(uid=request.POST['suggestion_id']))
     qs = Q(content=request.GET['keyword']) if request.GET.get('keyword') else Q()
-    suggestions = SearchQuerySet().filter(qs).models(Suggestions).order_by('-suggest_year')
+    suggestions = SearchQuerySet().filter(qs).models(Suggestions).order_by('-suggest_year', 'id')
     if qs and suggestions:
         keyword_been_searched(request.GET['keyword'], 'suggestions')
     try:
@@ -71,6 +80,14 @@ def county_overview(request):
     return render(request,'suggestions/county_overview.html', {'suggestions': suggestions, 'counties': counties, 'keyword': request.GET.get('keyword', ''), 'get_params': get_params})
 
 def lists(request, county):
+    if request.user.is_authenticated():
+        if request.POST:
+            if request.POST.get('suggestion_id'):
+                if request.POST.get('rating') == 'pro':
+                    User_Suggestions.objects.update_or_create(suggestion_id=request.POST['suggestion_id'], user=request.user, defaults={'pro': True})
+                elif request.POST.get('rating') == 'against':
+                    User_Suggestions.objects.update_or_create(suggestion_id=request.POST['suggestion_id'], user=request.user, defaults={'pro': False})
+                es_connections['default'].get_unified_index().get_index(Suggestions).update_object(Suggestions.objects.get(uid=request.POST['suggestion_id']))
     qs = Q(county=county, content=request.GET['keyword']) if request.GET.get('keyword') else Q(county=county)
     qs = qs & reduce(operator.or_, (Q(content=x) for x in request.GET.get('or').split('|'))) if request.GET.get('or') else qs
     constituency = request.GET.get('constituency')
@@ -88,6 +105,14 @@ def lists(request, county):
     return render(request,'suggestions/lists.html', {'suggestions': suggestions, 'county': county, 'keyword': request.GET.get('keyword', ''), 'get_params': get_params})
 
 def detail(request, uid):
+    if request.user.is_authenticated():
+        if request.POST:
+            if request.POST.get('suggestion_id'):
+                if request.POST.get('rating') == 'pro':
+                    User_Suggestions.objects.update_or_create(suggestion_id=request.POST['suggestion_id'], user=request.user, defaults={'pro': True})
+                elif request.POST.get('rating') == 'against':
+                    User_Suggestions.objects.update_or_create(suggestion_id=request.POST['suggestion_id'], user=request.user, defaults={'pro': False})
+                es_connections['default'].get_unified_index().get_index(Suggestions).update_object(Suggestions.objects.get(uid=request.POST['suggestion_id']))
     try:
         suggestion = SearchQuerySet().filter(uid=uid).models(Suggestions)[0]
     except:

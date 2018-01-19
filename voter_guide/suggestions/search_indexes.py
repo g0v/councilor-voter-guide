@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+from django.db.models import Count, Sum
+
 from haystack import indexes
 
-from .models import Suggestions
-
+from .models import Suggestions, User_Suggestions
 
 class SuggestionsIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
@@ -23,6 +24,7 @@ class SuggestionsIndex(indexes.SearchIndex, indexes.Indexable):
     bid_type = indexes.CharField(default=None, model_attr='bid_type')
     bid_by = indexes.MultiValueField(model_attr='bid_by')
     councilors = indexes.MultiValueField()
+    rating = indexes.MultiValueField()
 
     def get_model(self):
         return Suggestions
@@ -33,3 +35,6 @@ class SuggestionsIndex(indexes.SearchIndex, indexes.Indexable):
             for x in
             self.get_model().objects.get(uid=obj).councilors.all()
         ]
+
+    def prepare_rating(self, obj):
+        return [(x['pro'], x['pro__count']) for x in User_Suggestions.objects.filter(suggestion_id=obj).values('pro').annotate(Count('pro'))]

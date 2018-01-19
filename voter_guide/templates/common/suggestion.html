@@ -1,5 +1,28 @@
 {% load extras %}
+{% load socialaccount %}
+
 <table id="datatable" class="table table-bordered table-condensed table-striped" >
+    <tr>
+        <td style="vertical-align:middle;">
+            網友點評
+        </td>
+        <td style="vertical-align:middle;">
+            <form id="form_{{obj.uid}}" name="form_{{obj.uid}}" action="" method="post" class="form-inline" style="margin-bottom: 0;">
+                {% csrf_token %}
+                <fieldset>
+                    {% if user.is_authenticated %}
+                        <input type="hidden" name="suggestion_id" value="{{obj.uid}}"/>
+                        <div class="btn-group" role="group" aria-label="網友點評">
+                            <button type="submit" name="rating" value="pro" class="btn btn-info"><i class="fa fa-thumbs-up"></i> 讚 {% for x in obj.rating %}{% if x.0 %}{{x.1}}{% endif %}{% endfor %}</button>
+                            <button type="submit" name="rating" value="against" class="btn btn-danger"><i class="fa fa-thumbs-down"></i> 爛 {% for x in obj.rating %}{% if not x.0 %}{{x.1}}{% endif %}{% endfor %}</button>
+                        </div>
+                    {% else %}
+                        <a href="{% provider_login_url "facebook" %}?next=./" class="btn btn-default"><i class="fa fa-sign-in"> 登入點評</i></a>
+                    {% endif %}
+                </fieldset>
+            </form>
+        </td>
+    </tr>
     {% if include_councilors %}
     <tr>
         <td width="40%" style="vertical-align:middle;">
