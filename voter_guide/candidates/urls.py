@@ -4,7 +4,7 @@ from candidates import views
 from voter_guide import views as voter_guide_views
 
 urlpatterns = [
-    url(r'^intents/(?P<election_year>\d+)$', views.intents, name='intents'),
+    url(r'^intents/(?P<election_year>\d+)/$', views.intents, name='intents'),
     url(r'^(?P<election_year>\d+)/(?P<county>\S+)/(?P<constituency>\d+)/$', views.district, name='district'),
     url(r'^(?P<election_year>\d+)/(?P<county>\S+)/$', views.districts, name='districts'),
     url(r'^intent_home/$', views.intent_home, name='intent_home'),
