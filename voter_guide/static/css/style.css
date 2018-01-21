@@ -144,7 +144,7 @@ a.navbar-brand i {
 /* Footer
 =================================================================== */
 
-footer {
+.footer {
     position: fixed;
     z-index: 51;
     bottom: 0 !important;
@@ -157,7 +157,7 @@ footer {
     border-radius: 0px;
 }
 
-footer > .container > a {
+.footer > .container > a {
     color: #fff;
     padding-left: 20px;
 }

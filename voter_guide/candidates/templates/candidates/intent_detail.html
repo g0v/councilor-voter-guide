@@ -213,7 +213,7 @@
                         {% else %}
                             <div class="panel panel-warning">
                         {% endif %}
-                                <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion_{{decision_group.grouper}}" data-target="#{{decision_group.grouper}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{decision_group.grouper}}_{{standpoint.title}}">
+                                <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion_{{decision_group.grouper}}" data-target="#{{decision_group.grouper}}_{{forloop.counter}}" aria-expanded="false" aria-controls="{{decision_group.grouper}}_{{forloop.counter}}">
                                     <b>{{standpoint.title}}</b>
                                     <i class="fa fa-angle-down fa-lg pull-right"></i>
                                     {% if decision_group.grouper %}
@@ -223,15 +223,30 @@
                                     {% endif %}
                                     {{standpoint.times}}次</span>
                                 </div>
-                                <div id="{{decision_group.grouper}}_{{standpoint.title}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{{decision_group.grouper}}_{{standpoint.title}}">
+                                <div id="{{decision_group.grouper}}_{{forloop.counter}}" class="panel-collapse collapse" role="tabpanel">
                                     <ul class="list-group">
                                         {% for fragment in standpoint.detail %}
                                         {% if fragment.abstract %}
                                             <a class="list-group-item" href="{% url 'bills:bill' bill_id=fragment.uid %}" target="_blank">
-                                                <h4>☞ 提案 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></h4>
+                                                <h4>☞
+                                                    {% if fragment.param.sponsors_groupby_party.sponsor|length > 1 %}
+                                                        {{ fragment.param.sponsors_groupby_party.priproposer.party_list.0.councilors.0.name }}
+                                                    {% else %}
+                                                        {{fragment.proposed_by}}
+                                                    {% endif %}
+                                                    提案<small>（這標怎麼下的？點我來改進）</small>
+                                                </h4>
                                                 <blockquote>
                                                     <p><small>{{fragment.abstract|truncatechars:100}}</small></p>
                                                 </blockquote>
+                                                {% if fragment.comment %}
+                                                    <h4 class="text-danger">☞
+                                                        {{intent.name}} 對此案的意見
+                                                    </h4>
+                                                    <blockquote>
+                                                        <p>{{fragment.comment}}</p>
+                                                    </blockquote>
+                                                {% endif %}
                                             </a>
                                         {% elif fragment.content %}
                                             <a class="list-group-item" href="{% url 'votes:vote' vote_id=fragment.uid %}" target="_blank">
@@ -239,6 +254,14 @@
                                                 <blockquote>
                                                     <p><small>{{fragment.content|truncatechars:100}}</small></p>
                                                 </blockquote>
+                                                {% if fragment.comment %}
+                                                    <h4 class="text-danger">☞
+                                                        {{intent.name}} 對此案的意見
+                                                    </h4>
+                                                    <blockquote>
+                                                        <p>{{fragment.comment}}</p>
+                                                    </blockquote>
+                                                {% endif %}
                                             </a>
                                         {% endif %}
                                         {% endfor %}

@@ -166,7 +166,7 @@ def intent_detail(request, intent_id):
                         s.title,
                         count(*) as times,
                         sum(s.pro) as pro,
-                        json_agg((select x from (select b.uid, b.abstract) x)) as detail
+                        json_agg((select x from (select b.uid, b.abstract, b.proposed_by, b.param, cis.comment) x)) as detail
                     FROM candidates_intent_standpoints cis
                     JOIN standpoints_standpoints s on s.bill_id = cis.bill_id
                     JOIN bills_bills b on cis.bill_id = b.uid
@@ -186,7 +186,7 @@ def intent_detail(request, intent_id):
                         s.title,
                         count(*) as times,
                         sum(s.pro) as pro,
-                        json_agg((select x from (select v.uid, v.content) x)) as detail
+                        json_agg((select x from (select v.uid, v.content, cis.comment) x)) as detail
                     FROM candidates_intent_standpoints cis
                     JOIN standpoints_standpoints s on s.vote_id = cis.vote_id
                     JOIN votes_votes v on cis.vote_id = v.uid
