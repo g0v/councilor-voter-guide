@@ -18,8 +18,11 @@
     <meta property="og:description" content="動機、政見、學經歷、個人黨籍等資訊"/>
     <meta itemprop="description" content="動機、政見、學經歷、個人黨籍等資訊"/>
     {% if request.GET.county %}
-    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{request.GET.county}}.png"/>
-    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{request.GET.county}}.png"/>
+        <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{request.GET.county}}.png"/>
+        <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{request.GET.county}}.png"/>
+    {% else %}
+        <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/facebook-og-image.png"/>
+        <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/facebook-og-image.png"/>
     {% endif %}
 {% endblock social_meta %}
 
