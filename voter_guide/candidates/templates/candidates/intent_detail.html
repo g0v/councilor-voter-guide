@@ -5,7 +5,7 @@
 
 {% block title %}
     <title>{{intent.election_year}} {{intent.county}}擬參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}</title>
-    <meta property="og:title" content="{{intent.election_year}} {intent.county}}擬參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}"/>
+    <meta property="og:title" content="{{intent.election_year}} {{intent.county}}擬參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}"/>
     <meta itemprop="name" content="{{intent.election_year}} {{intent.county}}擬參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <style>
