@@ -211,8 +211,8 @@
                 $(this).find('.fa-angle-down').toggleClass('up-side-down');
             });
             $('#disable_popup').on('click', function() {
-                Cookies.remove('popup', { path: ''});
-                Cookies.set('popup', 'hide', { path: '', expires: 1});
+                Cookies.remove('popup', { path: '/votes/'});
+                Cookies.set('popup', 'hide', { path: '/votes/', expires: 1});
             });
             if ($(window).width() > 568 && Cookies.get('popup') != 'hide')
                 $('.modal').modal('show');
