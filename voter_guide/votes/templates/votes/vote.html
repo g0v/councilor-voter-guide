@@ -190,7 +190,8 @@
                         <p>在<span style="background-color: #ffff001a;">黃色標籤區</span>寫下、投下您的看法，謝謝您的參與！</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">這個案，我可以！</button>
+                        <button id="disable_popup" type="button" class="btn btn-default" data-dismiss="modal">夠了哦，暫時勿跳出對話框！</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">好！</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -201,6 +202,7 @@
 {% endblock right %}
 
 {% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script>
         $(document).ready( function() {
             $('#votes').addClass('active');
@@ -208,7 +210,11 @@
             $('[data-toggle="collapse"]').on('click', function() {
                 $(this).find('.fa-angle-down').toggleClass('up-side-down');
             });
-            if ($(window).width() > 568)
+            $('#disable_popup').on('click', function() {
+                Cookies.remove('popup', { path: ''});
+                Cookies.set('popup', 'hide', { path: '', expires: 1});
+            });
+            if ($(window).width() > 568 && Cookies.get('popup') != 'hide')
                 $('.modal').modal('show');
         });
     </script>
