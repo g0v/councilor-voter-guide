@@ -163,6 +163,12 @@
         <div style="background-color: #00a1ff1a; padding: 16px;">
             <form action="" method="post" class="form-horizontal">
                 {% csrf_token %}
+                {% if not standpoints_of_bill and form.pro.value != None %}
+                    <p class="text-danger">
+                        此案還沒有人下標籤，有人下標後才會顯示在您的<a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">個人頁面</a>哦！
+                        也歡迎您先行下標。
+                    </p>
+                {% endif %}
                 <fieldset>
                     <input type="hidden" name="intent" value=""/>
                     <label>候選人{{intent}}，您贊成這個提案嗎？</label>
@@ -171,6 +177,9 @@
                         <label class="col-sm-3 control-label" for="{{ form.pro.id_for_label }}">贊成？</label>
                         <div class="col-sm-9">
                             {{form.pro}}
+                            {% if form.pro.value != None %}
+                                （已填答）
+                            {% endif %}
                         </div>
                     </div>
                     <div class="form-group">

@@ -204,7 +204,6 @@ def intent_detail(request, intent_id):
     ''', [intent_id, intent.county, intent_id, intent.county])
     r = c.fetchone()
     standpoints = r[0] if r else []
-    print standpoints
     user_liked, form = False, None
     if request.user.is_authenticated:
         user_liked = Intent_Likes.objects.filter(intent_id=intent_id, user=request.user)
