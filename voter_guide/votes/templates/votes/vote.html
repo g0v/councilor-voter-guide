@@ -216,6 +216,10 @@
             });
             if ($(window).width() > 568 && Cookies.get('popup') != 'hide')
                 $('.modal').modal('show');
+            $('[data-toggle="collapse"]').on('click', function() {
+                $(this).find('[data-toggle="collapse"]').not(this).find('.fa').removeClass('up-side-down');
+                $(this).find('.fa').toggleClass('up-side-down');
+            });
         });
     </script>
 {% endblock script %}

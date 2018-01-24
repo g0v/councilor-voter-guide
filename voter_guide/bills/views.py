@@ -101,10 +101,49 @@ def bill(request, bill_id):
                         User_Standpoint.objects.get(standpoint_id=request.POST['against'], user=request.user).delete()
                         Standpoints.objects.filter(uid=request.POST['against']).update(pro=F('pro') - 1)
 
+    c = connections['default'].cursor()
+    c.execute(u'''
+        select json_agg(row)
+        from (
+            select pro, json_agg(party_list) as party_list, sum(count)
+            from (
+                select pro, json_build_object('party', party, 'intents', intents, 'count', json_array_length(intents)) as party_list, json_array_length(intents) as count
+                from (
+                    select pro, party, json_agg(detail) as intents
+                    from (
+                        select pro, party, json_build_object('name', name, 'county', county, 'intent_id', intent_id, 'comment', comment) as detail
+                        from (
+                            select
+                                cis.pro,
+                                ci.party,
+                                ci.name,
+                                ci.county,
+                                cis.intent_id,
+                                cis.comment,
+                                cis.create_at
+                            FROM candidates_intent_standpoints cis
+                            JOIN candidates_intent ci on ci.uid = cis.intent_id
+                            WHERE cis.bill_id = %s
+                            order by case
+                                when ci.county = %s then 1
+                                else 2
+                            end, create_at
+                        ) _
+                    ) __
+                    group by pro, party
+                    order by pro, party
+                ) ___
+            ) ____
+        group by pro
+        order by sum desc
+        ) row
+    ''', [bill.uid, bill.county])
+    r = c.fetchone()
+    intent_sp_of_bill = r[0] if r else []
     standpoints_of_bill = Standpoints.objects.filter(bill_id=bill_id)\
                                              .order_by('-pro')
     if request.user.is_authenticated():
         standpoints_of_bill = standpoints_of_bill.extra(select={
             'have_voted': "SELECT true FROM standpoints_user_standpoint su WHERE su.standpoint_id = standpoints_standpoints.uid AND su.user_id = %s" % request.user.id,
         },)
-    return render(request, 'bills/bill.html', {'county': bill.county, 'bill': bill, 'standpoints_of_bill': standpoints_of_bill, 'intent': intent, 'form': intent and form})
+    return render(request, 'bills/bill.html', {'county': bill.county, 'bill': bill, 'standpoints_of_bill': standpoints_of_bill, 'intent_sp_of_bill': intent_sp_of_bill, 'intent': intent, 'form': intent and form})

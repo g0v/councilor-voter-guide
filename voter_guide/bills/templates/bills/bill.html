@@ -112,46 +112,50 @@
     </div>
     <div class="col-sm-4">
 
-        <div style="background-color: #ffff001a; padding: 16px;">
-            <form action="" method="post" class="form-inline">
-                {% csrf_token %}
-                <fieldset>
-                    <label>請輸入最能代表這個提案的標籤：</label>
-                    {% if user.is_authenticated %}
-                        <div class="input-group">
-                            <input type="search" name="keyword" id="keyword" class="form-control input-lg" maxlength="20" placeholder="建議:動+名詞，如降屯房稅">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-default input-lg">確定</button>
-                            </span>
-                        </div>
-                    {% else %}
-                        <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill' bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入加標籤</i></a>
-                    {% endif %}
-                </fieldset>
-                {% with size=3 %}
-                {% for standpoint in standpoints_of_bill %}
-                    {% if forloop.counter0 == size %}
-                        <button type="button" class="btn " data-toggle="collapse" data-target="#ref_more"><font>..... 其他標籤 <i class="fa fa-angle-down"></i></font></button>
-                        <div id="ref_more" class="collapse">
-                    {% endif %}
-                    <h4>{{standpoint.pro}}人認為是
-                        <span class="label label-success">{{standpoint}}</span>
-                        {% if user.is_authenticated %}
-                            {% if standpoint.have_voted %}
-                                <button name="against" class="btn btn-danger" value="{{standpoint.uid}}">收回 +1</button>
+        <div class="panel panel-warning">
+            <div class="panel-body">
+                <div style="background-color: #ffff001a; padding: 16px;">
+                    <form action="" method="post" class="form-inline">
+                        {% csrf_token %}
+                        <fieldset>
+                            <label>一句話總結這個提案：</label>
+                            {% if user.is_authenticated %}
+                                <div class="input-group">
+                                    <input type="search" name="keyword" id="keyword" class="form-control input-lg" maxlength="20" placeholder="建議:動+名詞，如降屯房稅">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default input-lg">確定</button>
+                                    </span>
+                                </div>
                             {% else %}
-                                <button name="pro" class="btn btn-info" value="{{standpoint.uid}}">+1</button>
+                                <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill' bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入加標籤</i></a>
                             {% endif %}
-                        {% else %}
-                        <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill' bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入投票</i></a>
+                        </fieldset>
+                        {% with size=3 %}
+                        {% for standpoint in standpoints_of_bill %}
+                            {% if forloop.counter0 == size %}
+                                <button type="button" class="btn " data-toggle="collapse" data-target="#ref_more"><font>..... 其他標籤 <i class="fa fa-angle-down"></i></font></button>
+                                <div id="ref_more" class="collapse">
+                            {% endif %}
+                            <h4>{{standpoint.pro}}人認為是
+                                <span class="label label-success">{{standpoint}}</span>
+                                {% if user.is_authenticated %}
+                                    {% if standpoint.have_voted %}
+                                        <button name="against" class="btn btn-danger" value="{{standpoint.uid}}">收回 +1</button>
+                                    {% else %}
+                                        <button name="pro" class="btn btn-info" value="{{standpoint.uid}}">+1</button>
+                                    {% endif %}
+                                {% else %}
+                                <a href="{% provider_login_url "facebook" %}?next={% url 'bills:bill' bill_id=bill.uid %}" class="btn btn-default"><i class="fa fa-sign-in"> 登入投票</i></a>
+                                {% endif %}
+                            </h4>
+                        {% endfor %}
+                        {% if standpoints_of_bill|length > size %}
+                            </div>
                         {% endif %}
-                    </h4>
-                {% endfor %}
-                {% if standpoints_of_bill|length > size %}
-                    </div>
-                {% endif %}
-                {% endwith %}
-            </form>
+                        {% endwith %}
+                    </form>
+                </div>
+            </div>
         </div>
 
         <hr>
@@ -160,94 +164,132 @@
         <hr>
 
         {% if user.is_authenticated and intent %}
-        <div style="background-color: #00a1ff1a; padding: 16px;">
-            <form action="" method="post" class="form-horizontal">
-                {% csrf_token %}
-                {% if not standpoints_of_bill and form.pro.value != None %}
-                    <p class="text-danger">
-                        此案還沒有人下標籤，有人下標後才會顯示在您的<a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">個人頁面</a>哦！
-                        也歡迎您先行下標。
-                    </p>
-                {% endif %}
-                <fieldset>
-                    <input type="hidden" name="intent" value=""/>
-                    <label>候選人{{intent}}，您贊成這個提案嗎？</label>
-                    <div class="form-group">
-                        {{ form.pro.errors }}
-                        <label class="col-sm-3 control-label" for="{{ form.pro.id_for_label }}">贊成？</label>
-                        <div class="col-sm-9">
-                            {{form.pro}}
-                            {% if form.pro.value != None %}
-                                （已填答）
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{ form.comment.errors }}
-                        <label class="col-sm-3 control-label" for="{{ form.comment.id_for_label }}">意見</label>
-                        <div class="col-sm-9">
-                            {{form.comment}}
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-success pull-right">確定</button>
-                </fieldset>
-            </form>
+        <div class="panel panel-info">
+            <div class="panel-heading">候選人{{intent}}，您贊成這個提案嗎？</div>
+            <div class="panel-body">
+                <div style="background-color: #00a1ff1a; padding: 16px;">
+                    <form action="" method="post" class="form-horizontal">
+                        {% csrf_token %}
+                        {% if not standpoints_of_bill and form.pro.value != None %}
+                            <p class="text-danger">
+                                此案還沒有人下標籤，有人下標後才會顯示在您的<a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">個人頁面</a>哦！
+                                也歡迎您先行下標。
+                            </p>
+                        {% endif %}
+                        <fieldset>
+                            <input type="hidden" name="intent" value=""/>
+                            <div class="form-group">
+                                {{ form.pro.errors }}
+                                <label class="col-sm-3 control-label" for="{{ form.pro.id_for_label }}">贊成？</label>
+                                <div class="col-sm-9">
+                                    {{form.pro}}
+                                    {% if form.pro.value != None %}
+                                        （已填答）
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {{ form.comment.errors }}
+                                <label class="col-sm-3 control-label" for="{{ form.comment.id_for_label }}">意見</label>
+                                <div class="col-sm-9">
+                                    {{form.comment}}
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success pull-right">確定</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
         </div>
         {% endif %}
 
-    </div>
-    <div class="modal fade " tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    {% if standpoints_of_bill.0.pro > 0 %}
-                        <p>
-                            目前最高票的標籤：
-                            {% for sp in standpoints_of_bill %}
-                                {% if sp.pro == standpoints_of_bill.0.pro %}
-                                    <span class="label label-success">{{sp.title}}</span>
-                                {% endif %}
-                            {% endfor %}
-                        </p>
-                        {% if bill.param.sponsors_groupby_party.priproposer.party_list %}
+        {% if intent_sp_of_bill %}
+        <div class="panel panel-success">
+            <div class="panel-heading">候選人對此案的看法</div>
+            <div class="panel-body">
+            {% for fragment in intent_sp_of_bill %}
+                <div class="popover popover-static popover-danger right">
+                    <div class="arrow"></div>
+                    <h3 class="popover-title">
+                        {% if fragment.pro == False %}
+                            <i class="fa fa-times-circle text-danger"> 反對</i>
+                        {% elif fragment.pro == True %}
+                            <i class="fa fa-check-circle text-success"> 贊成</i>
+                        {% endif %}
+                    </h3>
+                    <div class="popover-content">
+                        <ul>
+                        {% for element in fragment.party_list %}
+                            <li data-toggle="collapse" data-target="#ref_{{fragment.pro}}_{{element.party}}"><span>{{element.party}}（{{element.intents|length}}人回覆） <i class="fa fa-caret-square-o-up"></i></span></li>
+                            <div id="ref_{{fragment.pro}}_{{element.party}}" class="collapse in">
+                                <ul class="list-unstyled">
+                                {% for intent in element.intents %}
+                                    <li><a href="{% url 'candidates:intent_detail' intent_id=intent.intent_id %}" >{{intent.county}}候選人 {{intent.name}}</a>：{{intent.comment}}</li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        {% if standpoints_of_bill.0.pro > 0 %}
                             <p>
-                                此案的議員都會被標註
+                                目前最高票的標籤：
                                 {% for sp in standpoints_of_bill %}
                                     {% if sp.pro == standpoints_of_bill.0.pro %}
                                         <span class="label label-success">{{sp.title}}</span>
                                     {% endif %}
                                 {% endfor %}
-                                ，例如：
                             </p>
-                            <ul>
-                            {% for element in bill.param.sponsors_groupby_party.priproposer.party_list %}
-                                {% for councilor in element.councilors %}
-                                    <li>主提案人：<a href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=bill.election_year %}" target="_blank">{{councilor.name}}</a></li>
+                            {% if bill.param.sponsors_groupby_party.priproposer.party_list %}
+                                <p>
+                                    此案的議員都會被標註
+                                    {% for sp in standpoints_of_bill %}
+                                        {% if sp.pro == standpoints_of_bill.0.pro %}
+                                            <span class="label label-success">{{sp.title}}</span>
+                                        {% endif %}
+                                    {% endfor %}
+                                    ，例如：
+                                </p>
+                                <ul>
+                                {% for element in bill.param.sponsors_groupby_party.priproposer.party_list %}
+                                    {% for councilor in element.councilors %}
+                                        <li>主提案人：<a href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=bill.election_year %}" target="_blank">{{councilor.name}}</a></li>
+                                    {% endfor %}
                                 {% endfor %}
-                            {% endfor %}
-                            </ul>
+                                </ul>
+                            {% endif %}
+                        {% elif standpoints_of_bill %}
+                            <p class="text-danger">
+                                此案的標籤還沒有人投票
+                            </p>
+                        {% else %}
+                            <p class="text-danger">
+                                此案還沒有人下標籤
+                            </p>
                         {% endif %}
-                    {% elif standpoints_of_bill %}
-                        <p class="text-danger">
-                            此案的標籤還沒有人投票
-                        </p>
-                    {% else %}
-                        <p class="text-danger">
-                            此案還沒有人下標籤
-                        </p>
-                    {% endif %}
-                    <p>在<span style="background-color: #ffff001a;">黃色標籤區</span>寫下、投下您的看法，謝謝您的參與！</p>
-                </div>
-                <div class="modal-footer">
-                    <button id="disable_popup" type="button" class="btn btn-default" data-dismiss="modal">夠了哦，暫時勿跳出對話框！</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">好！</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-</div><!--end: row -->
-<hr>
-<div id="disqus_thread"></div>
+                        <p>在<span style="background-color: #ffff001a;">黃色標籤區</span>寫下、投下您的看法，謝謝您的參與！</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="disable_popup" type="button" class="btn btn-default" data-dismiss="modal">夠了哦，暫時勿跳出對話框！</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">好！</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div><!--end: row -->
+    </div><!--end: row -->
+    <hr>
+    <div id="disqus_thread"></div>
 {% endblock right %}
 
 {% block script %}
@@ -265,6 +307,10 @@
             });
             if ($(window).width() > 568 && Cookies.get('popup') != 'hide')
                 $('.modal').modal('show');
+            $('[data-toggle="collapse"]').on('click', function() {
+                $(this).find('[data-toggle="collapse"]').not(this).find('.fa').removeClass('up-side-down');
+                $(this).find('.fa').toggleClass('up-side-down');
+            });
         });
     </script>
     {% if bill.param.diversity %}

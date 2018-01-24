@@ -224,3 +224,12 @@ hr.candidates-separator {
 .panel-heading span {
     font-size: 16px;
 }
+
+/* popover
+=================================================================== */
+
+.popover-static.popover {
+    position: relative;
+    display: block;
+    margin: 20px;
+}

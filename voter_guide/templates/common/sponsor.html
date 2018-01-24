@@ -1,9 +1,11 @@
 <ul>
 {% for element in list %}
-    <li data-toggle="collapse" data-target="#ref_bill_{{role}}_{{element.party}}"><span>{{element.party}}：{{element.councilors|length}}人 <i class="fa fa-caret-square-o-down"></i></span></li>
+    <li data-toggle="collapse" data-target="#ref_bill_{{role}}_{{element.party}}"><span>{{element.party}}：{{element.councilors|length}}人
     {% if element.councilors|length == 1 %}
+        <i class="fa fa-caret-square-o-up"></i></span></li>
         <div id="ref_bill_{{role}}_{{element.party}}" class="collapse in">
     {% else %}
+        <i class="fa fa-caret-square-o-down"></i></span></li>
         <div id="ref_bill_{{role}}_{{element.party}}" class="collapse">
     {% endif %}
         <ul class="list-inline">
