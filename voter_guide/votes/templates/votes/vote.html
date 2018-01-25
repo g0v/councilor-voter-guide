@@ -59,12 +59,13 @@
                 <h4>{{ vote.content|linebreaksbr }}</h4>
             </div>
         </div><!--end: col-sm-5 -->
+
         <div class="col-sm-4">
             <div style="background-color: #ffff001a; padding: 16px">
                 <form action="" method="post" class="form-inline">
                     {% csrf_token %}
                     <fieldset>
-                        <label>請輸入最能代表這個表決的標籤：</label>
+                        <label>一句話總結這個表決：</label>
                         {% if user.is_authenticated %}
                             <div class="input-group">
                                 <input type="search" name="keyword" id="keyword" class="form-control input-lg" maxlength="20" placeholder="建議:動+名詞，如降屯房稅">
@@ -104,45 +105,84 @@
             <hr>
             <div class="fb-share-button" data-size="large" data-href="{{current_url}}" data-layout="button_count"></div>
             <a href="{% url 'dispatch_vote' county=vote.sitting.county %}" class="btn btn-danger pull-right"><i class="fa fa-angle-right"> 下一案</i></a>
-        <hr>
+            <hr>
 
-        {% if user.is_authenticated and intent %}
-        <div style="background-color: #00a1ff1a; padding: 16px;">
-            <form action="" method="post" class="form-horizontal">
-                {% csrf_token %}
-                {% if not standpoints_of_vote and form.pro.value != None %}
-                    <p class="text-danger">
-                        此案還沒有人下標籤，有人下標後才會顯示在您的<a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">個人頁面</a>哦！
-                        也歡迎您先行下標。
-                    </p>
-                {% endif %}
-                <fieldset>
-                    <input type="hidden" name="intent" value=""/>
-                    <label>候選人{{intent}}，您贊成這個表決嗎？</label>
-                    <div class="form-group">
-                        {{ form.pro.errors }}
-                        <label class="col-sm-3 control-label" for="{{ form.pro.id_for_label }}">贊成？</label>
-                        <div class="col-sm-9">
-                            {{form.pro}}
-                            {% if form.pro.value != None %}
-                                （已填答）
+            {% if user.is_authenticated and intent %}
+            <div class="panel panel-info">
+                <div class="panel-heading">候選人{{intent}}，您贊成這個提案嗎？</div>
+                <div class="panel-body">
+                    <div style="background-color: #00a1ff1a; padding: 16px;">
+                        <form action="" method="post" class="form-horizontal">
+                            {% csrf_token %}
+                            {% if not standpoints_of_vote and form.pro.value != None %}
+                                <p class="text-danger">
+                                    此案還沒有人下標籤，有人下標後才會顯示在您的<a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">個人頁面</a>哦！
+                                    也歡迎您先行下標。
+                                </p>
                             {% endif %}
+                            <fieldset>
+                                <input type="hidden" name="intent" value=""/>
+                                <div class="form-group">
+                                    {{ form.pro.errors }}
+                                    <label class="col-sm-3 control-label" for="{{ form.pro.id_for_label }}">贊成？</label>
+                                    <div class="col-sm-9">
+                                        {{form.pro}}
+                                        {% if form.pro.value != None %}
+                                            （已填答）
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.comment.errors }}
+                                    <label class="col-sm-3 control-label" for="{{ form.comment.id_for_label }}">意見</label>
+                                    <div class="col-sm-9">
+                                        {{form.comment}}
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-success pull-right">確定</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if intent_sp_of_vote %}
+            <div class="panel panel-success">
+                <div class="panel-heading">候選人對此案的看法</div>
+                <div class="panel-body">
+                {% for fragment in intent_sp_of_vote %}
+                    <div class="popover popover-static popover-danger right">
+                        <div class="arrow"></div>
+                        <h3 class="popover-title">
+                            {% if fragment.pro == False %}
+                                <i class="fa fa-times-circle text-danger"> 反對</i>
+                            {% elif fragment.pro == True %}
+                                <i class="fa fa-check-circle text-success"> 贊成</i>
+                            {% endif %}
+                        </h3>
+                        <div class="popover-content">
+                            <ul>
+                            {% for element in fragment.party_list %}
+                                <li data-toggle="collapse" data-target="#ref_{{fragment.pro}}_{{element.party}}"><span>{{element.party}}（{{element.intents|length}}人回覆） <i class="fa fa-caret-square-o-up"></i></span></li>
+                                <div id="ref_{{fragment.pro}}_{{element.party}}" class="collapse in">
+                                    <ul class="list-unstyled">
+                                    {% for intent in element.intents %}
+                                        <li><a href="{% url 'candidates:intent_detail' intent_id=intent.intent_id %}" >{{intent.county}}候選人 {{intent.name}}</a>：{{intent.comment}}</li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endfor %}
+                            </ul>
                         </div>
                     </div>
-                    <div class="form-group">
-                        {{ form.comment.errors }}
-                        <label class="col-sm-3 control-label" for="{{ form.comment.id_for_label }}">意見</label>
-                        <div class="col-sm-9">
-                            {{form.comment}}
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-success pull-right">確定</button>
-                </fieldset>
-            </form>
-        </div>
-        {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+            {% endif %}
 
         </div>
+
         <div class="modal fade " tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
