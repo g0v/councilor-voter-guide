@@ -115,8 +115,6 @@
                                             {% if councilor_term.param.bills_role_statistics %}
                                                 <li>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</li>
                                                 <li>{{councilor_term.param.bills_role_statistics.sponsor}} 次共同提案</li>
-                                            {% else %}
-                                                <li>無提案</li>
                                             {% endif %}
                                             {% if councilor_term.param.votes_decision_statistics %}
                                                 <li>投票缺席率：{{councilor_term.param.votes_decision_statistics.not_voting|percentage:councilor_term.param.votes_decision_statistics.total}} %（{{councilor_term.param.votes_decision_statistics.not_voting}} / {{councilor_term.param.votes_decision_statistics.total}}）</li>
