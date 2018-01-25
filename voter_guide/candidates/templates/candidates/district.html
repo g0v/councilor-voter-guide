@@ -112,7 +112,9 @@
                                             <a href="{% url 'councilors:platformer' councilor_id=councilor_term.councilor_id election_year=councilor_term.election_year %}"><br>（{{councilor_term.election_year}} 競選政見）</a>
                                         </td>
                                         <td style="vertical-align:middle;">
+                                            {% if councilor_term.param.suggestions_years %}
                                             任期內總花費：<a href="{% url 'suggestions:lists' county=county %}?keyword={{candidate.name}}"> <font class="price">{{councilor_term.param.suggestions_years.sum}}</font></a>
+                                            {% endif %}
                                         </td>
                                         <td style="vertical-align:middle;">
                                             <ul style="padding-left: 20px;">
@@ -130,7 +132,7 @@
                                         </td>
                                         {% endif %}
                                     {% empty %}
-                                        <td colspan="2"/>
+                                        <td colspan="3"/>
                                     {% endfor %}
                                     <td style="vertical-align:middle;" nowrap>
                                     <div class="row">
@@ -153,9 +155,9 @@
                                     </td>
                                 {% else %}
                                     {% if county|county_config:'votes' %}
-                                        <td colspan=4 style="text-align:center; vertical-align:middle;">未擔任過議員，所以沒有紀錄</td>
+                                        <td colspan=5 style="text-align:center; vertical-align:middle;">未擔任過議員，所以沒有紀錄</td>
                                     {% else %}
-                                        <td colspan=3 style="text-align:center; vertical-align:middle;">未擔任過議員，所以沒有紀錄</td>
+                                        <td colspan=4 style="text-align:center; vertical-align:middle;">未擔任過議員，所以沒有紀錄</td>
                                     {% endif %}
                                     <td style="vertical-align:middle;" nowrap>
                                     <div class="row">
