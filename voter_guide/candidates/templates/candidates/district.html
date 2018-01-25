@@ -52,6 +52,7 @@
                             {% endif %}
                             <th>提案立場 <a rel="tooltip" title="立場由網友自行標註、投票產生，歡迎一起讓資料更好" data-placement="right"><i class="fa fa-question-circle"></i></a></th>
                             <th>最近任期</th>
+                            <th>議員配合款</th>
                             <th>數字統計</th>
                             <th>上次競選政治獻金</th>
                             <th></th>
@@ -109,6 +110,9 @@
                                         <td style="vertical-align:middle;">
                                             {{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}
                                             <a href="{% url 'councilors:platformer' councilor_id=councilor_term.councilor_id election_year=councilor_term.election_year %}"><br>（{{councilor_term.election_year}} 競選政見）</a>
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            任期內總花費：<a href="{% url 'suggestions:lists' county=county %}?keyword={{candidate.name}}"> <font class="price">{{councilor_term.param.suggestions_years.sum}}</font></a>
                                         </td>
                                         <td style="vertical-align:middle;">
                                             <ul style="padding-left: 20px;">
