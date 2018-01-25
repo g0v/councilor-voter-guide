@@ -201,7 +201,7 @@
             </dl>
 
             <div class="panel panel-default">
-                <div class="panel-heading">候選人{{intent.name}}的立場</div>
+                <div class="panel-heading">候選人 {{intent.name}} 對現行議會提案{% if intent.county|county_config:'votes' %}、表決{% endif %}的立場</div>
                 <div class="panel-body">
                 {% regroup standpoints by decision as decision_list %}
                 {% for decision_group in decision_list %}
@@ -240,12 +240,15 @@
                                                     <p><small>{{fragment.abstract|truncatechars:100}}</small></p>
                                                 </blockquote>
                                                 {% if fragment.comment %}
-                                                    <h4 class="text-danger">☞
-                                                        {{intent.name}} 對此案的意見
-                                                    </h4>
-                                                    <blockquote>
-                                                        <p>{{fragment.comment}}</p>
-                                                    </blockquote>
+                                                    <div class="popover popover-static popover-danger bottom">
+                                                        <div class="arrow"></div>
+                                                        <h3 class="popover-title">
+                                                            {{intent.name}} 對此案的意見
+                                                        </h3>
+                                                        <div class="popover-content text-danger">
+                                                            <b>{{fragment.comment}}</b>
+                                                        </div>
+                                                    </div>
                                                 {% endif %}
                                             </a>
                                         {% elif fragment.content %}
