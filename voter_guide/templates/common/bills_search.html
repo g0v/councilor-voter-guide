@@ -11,13 +11,13 @@
 {% block extra_after_search %}
     <div class="radio">
         <label>
-            <input type="radio" name="has_tag" id="has_tag" value="yes" {% if has_tag == 'yes' %}checked{% endif %}>
+            <input type="radio" name="has_tag" id="has_tag" value="yes" {% if request.GET.has_tag == 'yes' %}checked{% endif %}>
             有網友標籤的提案
         </label>
     </div>
     <div class="radio">
         <label>
-            <input type="radio" name="has_tag" id="has_tag" value="no" {% if has_tag == 'no' %}checked{% endif %}>
+            <input type="radio" name="has_tag" id="has_tag" value="no" {% if request.GET.has_tag == 'no' %}checked{% endif %}>
             還沒被網友標籤的提案
         </label>
     </div>
