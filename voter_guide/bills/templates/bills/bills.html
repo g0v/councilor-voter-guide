@@ -15,7 +15,7 @@
 {% block right %}
     <div class="container-fluid">
         <br>
-        {% include "common/constituency_search.html" with placeholder_text="例：都市更新 房屋稅" %}
+        {% include "common/bills_search.html" with placeholder_text="例：都市更新 房屋稅" %}
         {% if hot_standpoints %}
             <h4>熱門標籤：
             {% for standpoint in hot_standpoints %}
