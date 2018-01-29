@@ -4,6 +4,20 @@ councilor-voter-guide
 [議員投票指南](http://councils.g0v.tw/)        
 [文件](http://beta.hackfoldr.org/voter_guide_tw)       
 
+## 原則 Principle
+
+- 預設皆開源  
+  Open source by default.
+  
+- 不做家長式的媒體，不做議題上的價值高下判斷、排名  
+  No paternalism.
+  
+- 如要引入非政府公開資訊，必需是全民可參與編輯協作的或是候選人、民代、政黨自行編輯的  
+  There is a necessary requirement to include nonofficial data:
+  - All citizen could cooperate these data.
+  - These data are publish by candidates, councilors themself.
+
+
 ## Project Layout
 
 -   crawler  
