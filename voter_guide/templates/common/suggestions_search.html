@@ -11,14 +11,14 @@
 {% block extra_after_search %}
     <div class="radio">
         <label>
-            <input type="radio" name="has_tag" id="has_tag" value="yes" {% if has_tag == 'yes' %}checked{% endif %}>
-            有網友標籤的提案
+            <input type="radio" name="pro" id="pro" value="yes" {% if request.GET.pro == 'yes' %}checked{% endif %}>
+            有網友按讚的配合款
         </label>
     </div>
     <div class="radio">
         <label>
-            <input type="radio" name="has_tag" id="has_tag" value="no" {% if has_tag == 'no' %}checked{% endif %}>
-            還沒被網友標籤的提案
+            <input type="radio" name="pro" id="pro" value="no" {% if request.GET.pro == 'no' %}checked{% endif %}>
+            有網友按爛的配合款
         </label>
     </div>
 {% endblock extra_after_search %}

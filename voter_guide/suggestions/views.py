@@ -89,6 +89,8 @@ def lists(request, county):
                     User_Suggestions.objects.update_or_create(suggestion_id=request.POST['suggestion_id'], user=request.user, defaults={'pro': False})
                 es_connections['default'].get_unified_index().get_index(Suggestions).update_object(Suggestions.objects.get(uid=request.POST['suggestion_id']))
     qs = Q(county=county, content=request.GET['keyword']) if request.GET.get('keyword') else Q(county=county)
+    qs = qs & Q(pro_count__gt=0) if request.GET.get('pro', '') == 'yes'else qs
+    qs = qs & Q(against_count__gt=0) if request.GET.get('pro', '') == 'no' else qs
     qs = qs & reduce(operator.or_, (Q(content=x) for x in request.GET.get('or').split('|'))) if request.GET.get('or') else qs
     constituency = request.GET.get('constituency')
     if constituency and constituency != 'all':

@@ -24,7 +24,8 @@ class SuggestionsIndex(indexes.SearchIndex, indexes.Indexable):
     bid_type = indexes.CharField(default=None, model_attr='bid_type')
     bid_by = indexes.MultiValueField(model_attr='bid_by')
     councilors = indexes.MultiValueField()
-    rating = indexes.MultiValueField()
+    pro_count = indexes.IntegerField(default=0)
+    against_count = indexes.IntegerField(default=0)
 
     def get_model(self):
         return Suggestions
@@ -36,5 +37,8 @@ class SuggestionsIndex(indexes.SearchIndex, indexes.Indexable):
             self.get_model().objects.get(uid=obj).councilors.all()
         ]
 
-    def prepare_rating(self, obj):
-        return [(x['pro'], x['pro__count']) for x in User_Suggestions.objects.filter(suggestion_id=obj).values('pro').annotate(Count('pro'))]
+    def prepare_pro_count(self, obj):
+        return User_Suggestions.objects.filter(suggestion_id=obj, pro=True).count()
+
+    def prepare_against_count(self, obj):
+        return User_Suggestions.objects.filter(suggestion_id=obj, pro=False).count()
