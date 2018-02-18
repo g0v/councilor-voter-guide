@@ -38,7 +38,7 @@ for f in files:
     df = pd.read_excel(f, sheetname=0, names=col_indexs, usecols=range(0, len(col_indexs)))
     df = df[df['name'].notnull()]
     df['area'] = df['area'].fillna(method='ffill') # deal with merged cell
-    df['elected'] = map(lambda x: True if re.search(u'[*]', x) else False, df['elected'])
+    df['elected'] = map(lambda x: True if re.search(u'[*!]', x) else False, df['elected'])
     candidates = json.loads(df.to_json(orient='records'))
     for candidate in candidates:
         candidate['election_year'] = election_year
