@@ -20,6 +20,7 @@ class Candidates(models.Model):
         default=None,
     )
     identifiers = JSONField(null=True)
+    data = JSONField(null=True)
     def __unicode__(self):
         return self.name
 

@@ -23,6 +23,7 @@ class Councilors(models.Model):
     birth = models.DateField(blank=True, null=True)
     former_names = models.CharField(max_length=100, blank=True, null=True)
     identifiers = JSONField(null=True)
+    data = JSONField(null=True)
     def __unicode__(self):
         return self.name
 
