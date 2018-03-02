@@ -1,21 +1,15 @@
 # -*- coding: utf-8 -*-
-import os
 import re
-import json
 import urllib
 from urlparse import urljoin
 import scrapy
 
 
 class Spider(scrapy.Spider):
-    name = "councilors_constituencies"
+    name = "legislators_constituencies"
     allowed_domains = ["db.cec.gov.tw"]
     start_urls = ["http://db.cec.gov.tw/",]
     download_delay = 1
-
-    def __init__(self):
-        with open(os.path.join(os.path.dirname(__file__), '../../data/cec/regional_constituencies_from_wikidata.json'), 'r') as infile:
-            self.ref = json.loads(infile.read())
 
     def parse(self, response):
         for level in response.xpath(u'//a[re:test(., "^2014.+議員選舉$")]/@href').extract():
@@ -32,28 +26,26 @@ class Spider(scrapy.Spider):
             yield response.follow(region.xpath('@href').extract_first(), callback=self.parse_region, meta={'meta': ref[region.xpath('text()').extract_first().strip()]})
 
     def parse_region(self, response):
+        m = response.meta['meta']
         for constituency in response.css(u'table.ctks tr.data td[rowspan] a'):
-            yield response.follow(constituency.xpath('@href').extract_first(), callback=self.parse_constituency, meta={'meta': response.meta['meta']})
+            constituency_label = constituency.xpath('text()').extract_first()
+            m['constituency_label'] = constituency_label
+            yield response.follow(constituency, callback=self.parse_constituency, meta={'meta': m})
 
     def parse_constituency(self, response):
-        constituency_label = re.search(u'.+?選區', response.css(u'table.ctks tr.data td[rowspan] a').xpath('text()').extract_first()).group()
+        d = response.meta['meta']
+        constituency_label = response.meta['meta']['constituency_label']
         print(constituency_label)
         county = re.sub(u'第\d+.+', '', constituency_label)
         constituency_number = int(re.sub('\D', '', constituency_label))
         print(county, constituency_number)
-        d = {
-            'constituency_type_title': response.meta['meta']['constituency_type_title'],
-            'constituency_type': response.meta['meta']['constituency_type'],
+        d.update({
             'constituency_label_wiki': u'%s議員第%d選舉區' % (county, constituency_number),
             'constituency_label': constituency_label,
             'county': county,
             'constituency_number': constituency_number,
             'districts': [],
-        }
-        for r in self.ref:
-            if r['itemLabel'] == d['constituency_label_wiki']:
-                d['wikidata_item'] = r['item']
-                break
+        })
         for town in response.css(u'table.ctks tr.data td[rowspan] a'):
             print(town.xpath('text()').extract_first())
             town_label = re.sub(u'.+?選區', '', town.xpath('text()').extract_first())
