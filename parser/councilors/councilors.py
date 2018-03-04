@@ -242,6 +242,12 @@ for wks in worksheets:
                 DO UPDATE
                 SET gender = %(gender)s, party = %(party)s, in_office = %(in_office)s, term_start = %(term_start)s
             ''', replacement)
+            if replacement['birth']:
+                c.execute('''
+                    update councilors_councilors
+                    SET birth = %(birth)s
+                    where uid = %(uid)s
+                ''', replacement)
         row['in_office'] = False
         row['uid'], created = common.get_or_create_councilor_uid(c, row)
         if not created:
