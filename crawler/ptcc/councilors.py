@@ -40,6 +40,7 @@ class Spider(scrapy.Spider):
         item['party'] = response.xpath(u'//td[re:test(., "^政[\s　]*黨")]')[-1].xpath('following-sibling::td[1]/text()').extract_first().strip()
         item['constituency'] = re.sub(u'[(（].*', '', response.xpath(u'//td[re:test(., "^選[\s　]*區")]')[-1].xpath('following-sibling::td[1]/text()').extract_first()).strip()
         item['district'] = self.constituency[item['constituency']]
+        item['title'] = self.ref.get(item['name'], {}).get('posiname', '')
         item['gender'] = response.xpath(u'//td[re:test(., "^性[\s　]*別")]')[-1].xpath('following-sibling::td[1]/text()').extract_first().strip().strip(u'性')
         item['contact_details'] = []
         contact_mappings = {
