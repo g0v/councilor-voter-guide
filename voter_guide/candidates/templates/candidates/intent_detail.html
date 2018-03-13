@@ -172,7 +172,9 @@
         </div>
 
         <div class="col-sm-5">
-            <div id="video_frame_{{intent.uid}}"></div>
+            <div align="center" style="margin-bottom: 20px">
+                <div id="video_frame_{{intent.uid}}"></div>
+            </div>
             <dl class="dl-horizontal">
                 <div class="visible-xs">
                 <dt>縣市選區</dt>
@@ -398,7 +400,7 @@
             {% if intent.video_link %}
                 var video_id = get_youtube_id('{{intent.video_link}}');
                 if (video_id != 'error') {
-                    var iframe_div = '<div id="video_frame_' + '{{intent.uid}}' + '"><iframe width="100%" src="//www.youtube.com/embed/' + video_id + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>';
+                    var iframe_div = '<div id="video_frame_' + '{{intent.uid}}' + '"><iframe height="30%" src="//www.youtube.com/embed/' + video_id + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>';
                     $('#video_frame_'+'{{intent.uid}}').html(iframe_div);
                 }
             {% endif %}
