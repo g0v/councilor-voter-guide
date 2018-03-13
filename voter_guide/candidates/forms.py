@@ -44,13 +44,17 @@ class LinksWidget(forms.widgets.MultiWidget):
 class IntentForm(forms.ModelForm):
     class Meta:
         model = Intent
-        fields = ['name', 'county', 'constituency', 'district', 'party', 'motivation', 'platform', 'experience', 'education', 'remark', 'links']
+        fields = ['name', 'county', 'constituency', 'district', 'party', 'motivation', 'platform', 'experience', 'education', 'remark', 'links', 'video_link']
         widgets = {
             'name': forms.widgets.TextInput(attrs={'class': 'form-control'}),
             'county': forms.widgets.Select(choices=counties, attrs={'class': 'form-control'}),
             'constituency': forms.widgets.Select(attrs={'class': 'form-control'}),
             'party': forms.widgets.Select(choices=parties, attrs={'class': 'form-control'}),
             'links': LinksWidget(attrs={'class': 'form-control'}),
+            'video_link': forms.widgets.URLInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Youtube 影片連結'
+            }),
         }
 
 class SponsorForm(forms.Form):

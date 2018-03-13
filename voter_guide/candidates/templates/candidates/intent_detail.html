@@ -172,6 +172,7 @@
         </div>
 
         <div class="col-sm-5">
+            <div id="video_frame_{{intent.uid}}"></div>
             <dl class="dl-horizontal">
                 <div class="visible-xs">
                 <dt>縣市選區</dt>
@@ -385,6 +386,22 @@
                     }
                 }
             });
+            function get_youtube_id(url) {
+                var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                var match = url.match(regExp);
+                if (match && match[2].length == 11) {
+                    return match[2];
+                } else {
+                    return 'error';
+                }
+            }
+            {% if intent.video_link %}
+                var video_id = get_youtube_id('{{intent.video_link}}');
+                if (video_id != 'error') {
+                    var iframe_div = '<div id="video_frame_' + '{{intent.uid}}' + '"><iframe width="100%" src="//www.youtube.com/embed/' + video_id + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>';
+                    $('#video_frame_'+'{{intent.uid}}').html(iframe_div);
+                }
+            {% endif %}
             $("textarea").each( function() {
                 var simplemde = new SimpleMDE({ element: $(this)[0], toolbar: false , status: false});
                 var renderedHTML = simplemde.options.previewRender(simplemde.value());

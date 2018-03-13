@@ -66,6 +66,16 @@
                 {{ form.district }}
                 </div>
                 <div class="form-group">
+                    <label class="col-sm-3 control-label" for="{{ form.video_link.id_for_label }}">{{ form.video_link.label }}：</label>
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-youtube-square text-danger fa-lg"></i></span>
+                            {{ form.video_link }}
+                        </div>
+                        <div id="video_frame"></div>
+                    </div>
+                </div>
+                <div class="form-group">
                     {{ form.links.errors }}
                     <label class="col-sm-3 control-label" for="{{ form.links.id_for_label }}">{{ form.links.label }}：</label>
                     <div class="col-sm-9">
@@ -130,8 +140,24 @@
                     {% include "candidates/simplemde_toolbar.html" %}
                 });
             });
+            function get_youtube_id(url) {
+                var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                var match = url.match(regExp);
+                if (match && match[2].length == 11) {
+                    return match[2];
+                } else {
+                    return 'error';
+                }
+            }
             $('#checked').on('click', function() {
                 if ($(this).is(":checked")) {
+                    var video_id = get_youtube_id($('#id_video_link').val());
+                    if (video_id == 'error') {
+                        $('#id_video_link').val('');
+                    } else {
+                        var iframe_div = '<div id="video_frame"><iframe width="100%" src="//www.youtube.com/embed/' + video_id + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>';
+                        $('#video_frame').html(iframe_div);
+                    }
                     $('#submit').prop('disabled', false);
                 } else
                     $('#submit').prop('disabled', true);
