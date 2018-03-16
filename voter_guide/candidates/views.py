@@ -25,7 +25,7 @@ def intents(request, election_year):
     }
     order_by = ref.get(request.GET.get('order_by'), 'likes')
     qs = Q(county=request.GET.get('county')) if request.GET.get('county') else Q()
-    qs = qs & Q(election_year=election_year)
+    qs = qs & Q(election_year=election_year) & ~Q(status='draft')
     qs = qs & Q(constituency__in=request.GET.get('constituency').split(',')) if request.GET.get('constituency') else qs
     intents = Intent.objects.filter(qs).order_by('-%s' % order_by)
     intents = paginate(request, intents)
@@ -135,7 +135,8 @@ def intent_upsert(request):
             if intent.user_id and request.user.id != intent.user_id:
                 return redirect(reverse('candidates:intent_home'))
             intent.user = request.user
-            intent.status = 'intent_apply'
+            if instance and instance.status == 'intent_apply':
+                intent.status = 'intent_apply'
             intent.save()
             c = connections['default'].cursor()
             history = request.POST.copy()
@@ -153,6 +154,8 @@ def intent_upsert(request):
 
 def intent_detail(request, intent_id):
     intent = get_object_or_404(Intent.objects.select_related('user'), uid=intent_id)
+    if intent.status == 'draft' and request.user.id != intent.user_id:
+        return redirect(reverse('candidates:intent_home'))
     c = connections['default'].cursor()
     c.execute(u'''
         SELECT json_agg(r)
