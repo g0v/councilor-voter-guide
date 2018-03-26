@@ -31,7 +31,7 @@
             <div class="col-sm-1">
                 <div class="btn-group-vertical" role="group" style="margin-bottom: 10px">
                     <button type="submit" name="status" value="intent_apply" class="btn btn-info" disabled>發佈</button>
-                    {% if intent.status == '' or intent.status == 'draft' %}
+                    {% if form.status.value == '' or form.status.value == 'draft' %}
                         <button type="submit" name="status" value="draft" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="儲存 暫不發佈" disabled>暫存</button>
                     {% endif %}
                 </div>
