@@ -31,7 +31,9 @@
             <div class="col-sm-1">
                 <div class="btn-group-vertical" role="group" style="margin-bottom: 10px">
                     <button type="submit" name="status" value="intent_apply" class="btn btn-info" disabled>發佈</button>
-                    <button type="submit" name="status" value="draft" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="儲存 暫不發佈" disabled>暫存</button>
+                    {% if intent.status == '' or intent.status == 'draft' %}
+                        <button type="submit" name="status" value="draft" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="儲存 暫不發佈" disabled>暫存</button>
+                    {% endif %}
                 </div>
                 <input id="checked" type="checkbox"> 已閱讀<a href="{% url 'candidates:intent_home' %}" target="_blank">注意事項</a></input>
             </div>
