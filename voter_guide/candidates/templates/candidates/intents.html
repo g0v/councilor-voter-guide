@@ -171,8 +171,6 @@
                 <div class="text-center">
                     <a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}"><p>...更多關於{{intent.name}}</p></a>
                 </div>
-                <hr>
-                <div class="fb-comments" data-href="{{site_domain}}{% url 'candidates:intent_detail' intent_id=intent.uid %}" data-width="200" data-numposts="2" data-order_by="reverse_time"></div>
             </div>
         </div>
         {% endfor %}

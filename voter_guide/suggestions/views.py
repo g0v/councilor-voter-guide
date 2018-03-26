@@ -96,13 +96,7 @@ def lists(request, county):
     if constituency and constituency != 'all':
         suggestion_ids = Councilors_Suggestions.objects.filter(councilor_id__in=CouncilorsDetail.objects.filter(county=county, constituency=constituency).values_list('id', flat=True)).values_list('suggestion_id', flat=True).distinct()
         qs = qs & Q(uid__in=suggestion_ids)
-    suggestions = SearchQuerySet().filter(qs).models(Suggestions)
-    if request.GET.get('pro', '') == 'yes':
-        suggestions = suggestions.order_by('-pro_count')
-    elif request.GET.get('pro', '') == 'no':
-        suggestions = suggestions.order_by('-against_count')
-    else:
-        suggestions = suggestions.order_by('-approved_expense')
+    suggestions = SearchQuerySet().filter(qs).models(Suggestions).order_by('-approved_expense')
     try:
         page_size = int(request.GET.get('page_size', 10))
         page_size = 10 if page_size > 51 else page_size
