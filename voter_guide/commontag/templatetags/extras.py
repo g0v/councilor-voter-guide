@@ -83,7 +83,7 @@ def each_county_remark(value):
 @register.filter(name='suggestions_offical_link')
 def suggestions_offical_link(value, arg=None):
     maps = {
-        u'臺北市': 'http://www.dbas.taipei.gov.tw/ct.asp?xItem=69201832&ctNode=31636&mp=120001',
+        u'臺北市': 'https://dbas.gov.taipei/News.aspx?n=8E97A6269D27DF2A&sms=C3AFEDED00698E73',
         u'新竹市': 'http://dep-auditing.hccg.gov.tw/auditing/ch/home.jsp?id=46&parentpath=0,3',
         u'新北市': 'http://www.bas.ntpc.gov.tw/content/?parent_id=10067',
         u'桃園市': 'http://dbas.tycg.gov.tw/home.jsp?id=10199&parentpath=0,125,10197","http://dbas.tycg.gov.tw/home.jsp?id=10199&parentpath=0,125,10197',
@@ -91,7 +91,7 @@ def suggestions_offical_link(value, arg=None):
         u'新竹縣': 'http://w3.hsinchu.gov.tw/infr_events/default.html#',
         u'苗栗縣': 'https://www.miaoli.gov.tw/cht/service_12.php',
         u'宜蘭縣': 'http://bgacst.e-land.gov.tw/News.aspx?n=70CDE68772BADADF&sms=6846E7E9DD40C190',
-        u'臺中市': 'http://www.taichung.gov.tw/lp.asp?CtNode=25800&CtUnit=1064&BaseDSD=7&mp=1001D',
+        u'臺中市': 'https://www.taichung.gov.tw/%E5%85%B6%E4%BB%96%E5%B0%88%E5%8D%80/14679/14682/14694/Lpsimplelist',
         u'彰化縣': 'http://accounting.chcg.gov.tw/07other/other01_con.asp?topsn=3367&data_id=14766',
         u'南投縣': 'http://www.nantou.gov.tw/big5/download.asp?dptid=376480000AU250000&cid=1724',
         u'雲林縣': 'http://www.yunlin.gov.tw/from/index-1.asp?m=2&m1=5&m2=142&id=111',
@@ -100,11 +100,11 @@ def suggestions_offical_link(value, arg=None):
         u'花蓮縣': 'http://www1.hl.gov.tw/ousv/parliament/index.asp',
         u'臺東縣': 'http://www.taitung.gov.tw/News.aspx?n=E316EA4999034915&sms=A9DCC80FC8CC7601',
         u'臺南市': 'http://www.tainan.gov.tw/tainan/Grants.asp?nsub=A6C400',
-        u'高雄市': 'https://dbaskmg.kcg.gov.tw/business3.php?type=128',
+        u'高雄市': 'https://bas.kcg.gov.tw/News.aspx?n=FFBA69B8D9791D2D&sms=E59AFA2E97D9DB64',
         u'屏東縣': 'http://www.pthg.gov.tw/Cus_PublicInfo_List.aspx?n=0D6573E9ED3D2B78&pptype=7&ppsubtype=%E5%B0%8D%E8%AD%B0%E5%93%A1%E5%BB%BA%E8%AD%B0%E4%BA%8B%E9%A0%85%E8%BE%A6%E7%90%86%E6%83%85%E5%BD%A2%E8%A1%A8',
-        u'連江縣': 'http://w3.matsu.gov.tw/2008web/statistical_data/statistical.php?cat=14',
-        u'金門縣': 'http://web.kinmen.gov.tw/Layout/sub_F/News_NewsList.aspx?path=13448&DepID=10&LanguageType=1&CategoryID=885&DepartmentID=10',
-        u'澎湖縣': 'https://www.penghu.gov.tw/ch/home.jsp?serno=201111070049&mserno=201111070038&contlink=ap/bulletin01.jsp&level3=Y&serno3=201111070053'
+        u'連江縣': 'https://www.matsu.gov.tw/chhtml/downloadclass/371030000A/618',
+        u'金門縣': 'http://kmasd.kinmen.gov.tw/News.aspx?n=0E8825590D1756AF&sms=A2C62D68901B977C',
+        u'澎湖縣': 'https://www.penghu.gov.tw/accounting/home.jsp?id=41'
     }
     if arg == 'all':
         return maps.items()
