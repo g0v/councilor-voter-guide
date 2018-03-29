@@ -70,7 +70,8 @@ def sheet2df(target_sheet=0):
     df = pd.read_excel(f, sheetname=target_sheet, header=None, encoding='utf-8')
     no_person_name = False
     if not re.search(u'(姓名|名稱)', df.iloc[3:5, 0].to_string(na_rep='', index=False)):
-        if len(df.columns) > 8 and df.iloc[3:5, 8].to_string(na_rep='', index=False).strip() == '':
+        header_label = df.iloc[3:5, 8].to_string(na_rep='', index=False).strip()
+        if len(df.columns) > 8 and (header_label == '' or header_label == u'單位'):
             should_drop_column = 8
         else:
             should_drop_column = 0
@@ -118,12 +119,12 @@ def sheet2df(target_sheet=0):
     df['suggest_expense_avg'] = df['suggest_expense'] / df['councilor_num']
     return df
 
+year = 2017
 conn = db_settings.con()
 c = conn.cursor()
 county_config = json.load(open('county_config.json'))
 df_concat = DataFrame()
-for meta_file in glob.glob('../../data/ylcc/suggestions.json'):
-    break
+for meta_file in glob.glob('../../data/*/suggestions.json'):
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
@@ -132,6 +133,8 @@ for meta_file in glob.glob('../../data/ylcc/suggestions.json'):
         for meta in metas:
             exclude_ods_metas.append({x: meta[x] for x in ["month_to", "year", "month_from"] if meta['file_ext'] != 'ods'})
         for meta in metas:
+            if meta['file_ext'] == 'pdf' or meta['year'] != year:
+                continue
             meta['county'] = county
             file_name = '{year}_{month_from}-{month_to}.{file_ext}'.format(**meta)
             logging.info('%s %s' % (county, file_name))
@@ -147,6 +150,7 @@ for meta_file in glob.glob('../../data/ylcc/suggestions.json'):
                         logging.info('redirect to %s %s' % (county, file_name))
                         break
             if not re.search('xls', meta['file_ext']):
+                # if this file are ods only
                 if meta['file_ext'] == 'ods' and {x: meta[x] for x in ["month_to", "year", "month_from"]} not in exclude_ods_metas:
                     cmd = 'unoconv -d spreadsheet --format=xls %s' % f
                     subprocess.call(cmd, shell=True)

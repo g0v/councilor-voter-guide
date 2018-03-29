@@ -11,6 +11,7 @@
     },
     "tcc": {
         "duplicated_reports": [
+            {"month_to": "06", "year": 2017, "month_from": "01"},
             {"month_to": "06", "year": 2016, "month_from": "01"},
             {"month_to": "06", "year": 2015, "month_from": "01"},
             {"month_to": "06", "year": 2014, "month_from": "01"},
@@ -27,7 +28,13 @@
     },
     "tycc": {
         "duplicated_reports": [
+            {"month_to": "06", "year": 2017, "month_from": "01"},
             {"month_to": "06", "year": 2016, "month_from": "01"}
+        ],
+    },
+    "ilcc": {
+        "duplicated_reports": [
+            {"month_to": "06", "year": 2017, "month_from": "01"}
         ],
     },
     "mtcc": {
