@@ -13,18 +13,18 @@ class Spider(scrapy.Spider):
     start_urls = ["http://www.yunlin.gov.tw"]
 
     def parse(self, response):
-        yield scrapy.Request(urljoin(response.url, response.xpath(u'//a[text()="政府公開資訊"]/@href').extract_first()), callback=self.parse_opengov)
+        yield response.follow(response.xpath(u'//a[text()="政府公開資訊"]/@href').extract_first(), callback=self.parse_opengov)
 
     def parse_opengov(self, response):
         url = response.xpath(u'//a[contains(text(), "議員建議")]/@href').extract_first()
         if url:
-            yield scrapy.Request(urljoin(response.url, url), callback=self.parse_file)
+            yield response.follow(url, callback=self.parse_file)
         else:
             next_page = response.xpath(u'//a[contains(text(), "下一頁")]/@href').extract_first()
-            yield scrapy.Request(urljoin(response.url, next_page), dont_filter=True, callback=self.parse_opengov)
+            yield response.follow(next_page, dont_filter=True, callback=self.parse_opengov)
 
     def parse_file(self, response):
-        for node in response.xpath(u'//a[contains(@title, "議員所提")]'):
+        for node in response.xpath(u'//a[contains(@title, "議員")]'):
             item = {}
             m = re.search(u'(?P<year>\d+)年度?', node.xpath('@title').extract_first())
             item['year'] = int(m.group('year')) + 1911

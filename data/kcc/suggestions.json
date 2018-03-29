@@ -1,8 +1,9 @@
 [
-{"url": "http://dbaskmg.kcg.gov.tw/nfile/PSDATA_2008_128_2132.ods", "month_to": "12", "year": 2016, "file_ext": "ods", "month_from": "01"},
-{"url": "http://dbaskmg.kcg.gov.tw/nfile/PSDATA_2008__1920.ods", "month_to": "12", "year": 2015, "file_ext": "ods", "month_from": "01"},
-{"url": "http://dbaskmg.kcg.gov.tw/nfile/PSDATA_2008_128_1762.ods", "month_to": "12", "year": 2014, "file_ext": "ods", "month_from": "01"},
-{"url": "http://dbaskmg.kcg.gov.tw/nfile/PSDATA_2008_128_1585.xlsx", "month_to": "12", "year": 2013, "file_ext": "xlsx", "month_from": "01"},
-{"url": "http://dbaskmg.kcg.gov.tw/nfile/PSDATA_2008_128_1325.ods", "month_to": "12", "year": 2012, "file_ext": "ods", "month_from": "01"},
-{"url": "http://dbaskmg.kcg.gov.tw/nfile/PSDATA_2008_128_1773.ods", "month_to": "12", "year": 2011, "file_ext": "ods", "month_from": "01"}
+{"url": "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/261/relfile/15648/118725/1a33128e-b77f-49e4-a862-6e606d7b1b68.ods", "month_to": "12", "year": 2017, "file_ext": "ods", "month_from": "01"},
+{"url": "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/261/relfile/15648/118595/a09ebc21-4356-4d4b-bd13-272179cc0882.ods", "month_to": "12", "year": 2016, "file_ext": "ods", "month_from": "01"},
+{"url": "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/261/relfile/15648/118593/8ec60e0d-74ff-4737-b106-d5865d85354e.ods", "month_to": "12", "year": 2015, "file_ext": "ods", "month_from": "01"},
+{"url": "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/261/relfile/15648/118591/8fae3b21-545c-420b-8904-71d09e154e42.ods", "month_to": "12", "year": 2014, "file_ext": "ods", "month_from": "01"},
+{"url": "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/261/relfile/15648/118589/823668f3-bfec-47ea-85fb-f1c1e0b5a852.ods", "month_to": "12", "year": 2013, "file_ext": "ods", "month_from": "01"},
+{"url": "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/261/relfile/15648/118587/fa2dde38-b371-427b-ab19-42d9f1280ac4.ods", "month_to": "12", "year": 2012, "file_ext": "ods", "month_from": "01"},
+{"url": "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/261/relfile/15648/118585/1dc9d7b6-e73f-4114-bf7a-d07b675604a1.ods", "month_to": "12", "year": 2011, "file_ext": "ods", "month_from": "01"}
 ]

@@ -13,18 +13,19 @@ class Spider(scrapy.Spider):
     start_urls = ["http://www.nantou.gov.tw/big5/index.asp"]
 
     def parse(self, response):
-        yield scrapy.Request(urljoin(response.url, response.xpath(u'//a[contains(@title, "議員所提")]/@href').extract_first()), callback=self.parse_list)
+        yield response.follow(response.xpath(u'//a[contains(@title, "議員所提")]/@href').extract_first(), callback=self.parse_list)
 
     def parse_list(self, response):
         for url in response.xpath(u'//a[@alt="檔案詳細內容"]/@href').extract():
-            yield scrapy.Request(urljoin(response.url, url), callback=self.parse_file)
+            yield response.follow(url, callback=self.parse_file)
 
     def parse_file(self, response):
-        for node in response.xpath(u'//a[contains(@title, "下載檔案")]'):
+        for node in response.css('.content2 a'):
             item = {}
-            if re.search(u'年06月止', node.xpath('string()').extract_first()):
+            label = node.xpath('following-sibling::font[1]/text()').extract_first()
+            if re.search(u'年06月止', label):
                 continue
-            m = re.search(u'至(?P<year>\d+)年', node.xpath('string()').extract_first())
+            m = re.search(u'至(?P<year>\d+)年', label)
             item['year'] = int(m.group('year')) + 1911
             item['month_to'] = '12'
             item['month_from'] = '01'

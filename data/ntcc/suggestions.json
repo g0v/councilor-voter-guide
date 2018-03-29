@@ -1,7 +1,8 @@
 [
-{"url": "http://www.nantou.gov.tw/upload/73308_1.pdf", "month_to": "12", "year": 2012, "file_ext": "pdf", "month_from": "01"},
-{"url": "http://www.nantou.gov.tw/upload/81127_1.pdf", "month_to": "12", "year": 2013, "file_ext": "pdf", "month_from": "01"},
-{"url": "http://www.nantou.gov.tw/upload/89437_1.xls", "month_to": "12", "year": 2014, "file_ext": "xls", "month_from": "01"},
-{"url": "http://www.nantou.gov.tw/upload/96060_1.xls", "month_to": "12", "year": 2015, "file_ext": "xls", "month_from": "01"},
-{"url": "http://www.nantou.gov.tw/upload/102909_f1.xls", "month_to": "12", "year": 2016, "file_ext": "xls", "month_from": "01"}
+{"url": "http://media.nantou.gov.tw/download.asp?file=81127_1.pdf", "month_to": "12", "year": 2013, "file_ext": "pdf", "month_from": "01"},
+{"url": "http://media.nantou.gov.tw/download.asp?file=110208_f1.xls", "month_to": "12", "year": 2017, "file_ext": "xls", "month_from": "01"},
+{"url": "http://media.nantou.gov.tw/download.asp?file=102909_f1.xls", "month_to": "12", "year": 2016, "file_ext": "xls", "month_from": "01"},
+{"url": "http://media.nantou.gov.tw/download.asp?file=96060_1.xls", "month_to": "12", "year": 2015, "file_ext": "xls", "month_from": "01"},
+{"url": "http://media.nantou.gov.tw/download.asp?file=89437_1.xls", "month_to": "12", "year": 2014, "file_ext": "xls", "month_from": "01"},
+{"url": "http://media.nantou.gov.tw/download.asp?file=73308_1.pdf", "month_to": "12", "year": 2012, "file_ext": "pdf", "month_from": "01"}
 ]

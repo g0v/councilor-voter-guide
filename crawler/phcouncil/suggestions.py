@@ -13,12 +13,12 @@ class Spider(scrapy.Spider):
     start_urls = ["http://www.penghu.gov.tw"]
 
     def parse(self, response):
-        yield scrapy.Request(urljoin(response.url, response.xpath(u'//img[contains(@alt, "議員所提")]/parent::a/@href').extract_first()), callback=self.parse_list)
+        yield response.follow(response.xpath(u'//img[contains(@alt, "議員所提")]/parent::a/@href').extract_first(), callback=self.parse_list)
 
     def parse_list(self, response):
-        for node in response.css('.text_03 a'):
+        for node in response.css('.list > a'):
             item = {}
-            m = re.search(u'(?P<year>\d+)年.*?((?P<season>[上下])半年)?', node.xpath('text()').extract_first())
+            m = re.search(u'(?P<year>\d+)年.*?((?P<season>[上下])半年)?', node.xpath('@title').extract_first())
             item['year'] = int(m.group('year')) + 1911
             if m.group('season'):
                 if m.group('season') == u'上':
@@ -30,18 +30,16 @@ class Spider(scrapy.Spider):
             else:
                 item['month_from'] = '01'
                 item['month_to'] = '12'
-            yield scrapy.Request(urljoin(response.url, node.xpath(u'@href').extract_first()), callback=self.parse_file, meta={'item': item})
-        pages = response.css('.title06').xpath('text()').extract_first()
-        if int(pages.split('/')[0]) < int(pages.split('/')[1]):
-            next_page = int(pages.split('/')[0]) + 1
-            yield scrapy.Request(response.url + '&intpage=%d' % next_page, callback=self.parse_list)
-
+            yield response.follow(node.xpath(u'@href').extract_first(), callback=self.parse_file, meta={'item': item})
+        next_page = response.xpath(u'//a[@title="下一頁"]/@href').extract_first()
+        if next_page:
+            yield response.follow(next_page, callback=self.parse_list)
 
     def parse_file(self, response):
         item = response.meta['item']
-        for node in response.xpath(u'//a[contains(@title, "議員")]'):
+        for node in response.css('.icon a'):
             item['url'] = urljoin(response.url, node.xpath('@href').extract_first())
-            item['file_ext'] = node.xpath('@title').extract_first().split('.')[-1]
+            item['file_ext'] = re.sub('[^.\w]', '', node.xpath('parent::span[1]/@title').extract_first()).split('.')[-1].lower()
             cmd = u'mkdir -p ../../data/phcouncil/suggestions/ && wget --heade="User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36" -q -O ../../data/phcouncil/suggestions/{year}_{month_from}-{month_to}.{file_ext} "{url}"'.format(**item)
             subprocess.call(cmd, shell=True)
             yield item
