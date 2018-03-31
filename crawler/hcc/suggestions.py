@@ -29,6 +29,6 @@ class Spider(scrapy.Spider):
             open_path = re.search(u"window.open\('(.+)'\);", node.xpath('@onclick').extract_first()).group(1)
             item['url'] = urljoin(response.url, open_path)
             item['file_ext'] = open_path.split('.')[-1]
-            cmd = u'mkdir -p ../../data/hcc/suggestions/ && wget --heade="User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36" -Nc -O ../../data/hcc/suggestions/{year}_{month_from}-{month_to}.{file_ext} "{url}"'.format(**item)
+            cmd = u'mkdir -p ../../data/hcc/suggestions/ && wget --no-check-certificate --heade="User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36" -Nc -O ../../data/hcc/suggestions/{year}_{month_from}-{month_to}.{file_ext} "{url}"'.format(**item)
             subprocess.call(cmd, shell=True)
             yield item
