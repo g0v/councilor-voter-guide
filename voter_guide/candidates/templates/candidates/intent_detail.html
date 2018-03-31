@@ -27,13 +27,13 @@
 {% block right %}
     <div class="person_header">
         <div class="row">
-            <div class="col-sm-1 col-sm-offset-2 col-xs-3">
+            <div class="col-sm-2 col-sm-offset-2 col-xs-3">
             {% with user_id=intent.user.socialaccount_set.first.uid %}
-                <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?width=80">
+                <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=110">
             {% endwith %}
             </div>
-            <div class="col-sm-9 col-xs-9">
-                <h3 style="margin-top: 0;">
+            <div class="col-sm-8 col-xs-9">
+                <h3 style="margin-top: 0; margin-left: 14px;">
                     {{intent.election_year}} 擬參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small>
 
                 <div class="pull-right">
@@ -77,6 +77,11 @@
                 </div>
 
                 </h3>
+                {% if intent.slogan %}
+                <h4 class="text-danger" style="margin-left: 14px;">
+                    {{intent.slogan}}
+                </h4>
+                {% endif %}
                 <dl class="dl-horizontal hidden-xs" style="margin-bottom: 0;">
                     <dt>縣市選區</dt>
                     <dd>

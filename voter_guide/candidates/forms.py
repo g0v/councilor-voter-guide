@@ -44,16 +44,20 @@ class LinksWidget(forms.widgets.MultiWidget):
 class IntentForm(forms.ModelForm):
     class Meta:
         model = Intent
-        fields = ['name', 'county', 'constituency', 'district', 'party', 'motivation', 'platform', 'experience', 'education', 'remark', 'links', 'video_link', 'status']
+        fields = ['name', 'county', 'constituency', 'district', 'party', 'motivation', 'platform', 'experience', 'education', 'remark', 'links', 'video_link', 'slogan', 'status']
         widgets = {
             'name': forms.widgets.TextInput(attrs={'class': 'form-control'}),
             'county': forms.widgets.Select(choices=counties, attrs={'class': 'form-control'}),
             'constituency': forms.widgets.Select(attrs={'class': 'form-control'}),
             'party': forms.widgets.Select(choices=parties, attrs={'class': 'form-control'}),
             'links': LinksWidget(attrs={'class': 'form-control'}),
+            'slogan': forms.widgets.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': u'20字內'
+            }),
             'video_link': forms.widgets.URLInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Youtube 影片連結'
+                'placeholder': u'Youtube 影片連結'
             }),
         }
 

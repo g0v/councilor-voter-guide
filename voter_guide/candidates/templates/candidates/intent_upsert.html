@@ -91,6 +91,13 @@
             </div>
             <div class="col-sm-7">
                 <div class="form-group">
+                    {{ form.slogan.errors }}
+                    <label class="col-sm-3 control-label" for="{{ form.slogan.id_for_label }}">{{ form.slogan.label }}：</label>
+                    <div class="col-sm-9">
+                        {{ form.slogan }}
+                    </div>
+                </div>
+                <div class="form-group">
                     {{ form.motivation.errors }}
                     <label class="col-sm-3 control-label" for="{{ form.motivation.id_for_label }}">{{ form.motivation.label }}：</label>
                     <div class="col-sm-9">
