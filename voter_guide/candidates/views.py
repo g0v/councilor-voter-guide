@@ -34,7 +34,7 @@ def intents(request, election_year):
 
 def districts(request, election_year, county):
     coming_ele_year = coming_election_year(county)
-    intents_count = Intent.objects.filter(election_year=coming_ele_year, county=county).count()
+    intents_count = Intent.objects.filter(election_year=coming_ele_year, county=county).exclude(status='draft').count()
     districts = Terms.objects.filter(election_year=election_year, county=county)\
                              .values('constituency', 'district')\
                              .annotate(candidates=Count('id'))\
@@ -51,7 +51,7 @@ def district(request, election_year, county, constituency):
                 transform_to_constiencies.append(region['constituency'])
     except:
         constiencies = [constituency]
-    intents_count = Intent.objects.filter(election_year=coming_ele_year, county=county, constituency__in=transform_to_constiencies).count()
+    intents_count = Intent.objects.filter(election_year=coming_ele_year, county=county, constituency__in=transform_to_constiencies).exclude(status='draft').count()
     candidates = Terms.objects.filter(election_year=election_year, county=county, constituency=constituency).order_by('-votes')
     standpoints = {}
     for term in [candidates]:
