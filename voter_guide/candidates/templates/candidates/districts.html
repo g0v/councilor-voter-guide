@@ -29,12 +29,13 @@
                     {% endif %}
                 </div>
             </div>
+            <svg width="240px" height="300px" viewBox="0 0 800 600"></svg>
         </div>
         <div class="col-sm-9">
             <div class="three column doubling ui grid row">
                 {% for district in districts %}
-                    <div class="column direct-container">
-                        <a href="{% url 'candidates:district' county=county election_year=election_year constituency=district.constituency %}" class="direct-item {% cycle 'council-bluegreen' 'council-darkbluegreen' %}">
+                <div class="column direct-container">
+                        <a id="{{county}}第{{district.constituency|stringformat:"02d"}}選區" href="{% url 'candidates:district' county=county election_year=election_year constituency=district.constituency %}" class="direct-item {% cycle 'council-bluegreen' 'council-darkbluegreen' %}">
                             <h4>{{district.constituency|stringformat:"02d"}}. {{district.district}}</h4>
                             <div>&nbsp;</div>
                             <div class="direct-sub">
@@ -51,6 +52,7 @@
 {% endblock right %}
 
 {% block script %}
+    {% include "candidates/d3/districts.html" %}
     <script>
         $('#candidates').addClass('active');
     </script>
