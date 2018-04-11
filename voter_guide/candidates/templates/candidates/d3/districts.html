@@ -12,13 +12,20 @@
     var county = "{{county}}";
     var features = geodata.features;
 
-    var center = d3.geo.centroid(geodata)
+    var width = 240,
+        height = 300;
+    var center = d3.geo.centroid(geodata);
+    var bounds = d3.geo.bounds(geodata),
+        distance = d3.geo.distance(bounds[0], bounds[1]),
+        scale = 4*height / distance / Math.sqrt(2);
 
     var path = d3.geo.path().projection(
-        d3.geo.mercator().center(center).scale(60000)
+        d3.geo.mercator().center(center).scale(scale)
     );
 
-    var svg = d3.select("svg");
+    var svg = d3.select("svg")
+    .attr("width", width)
+    .attr("height", height);
 
     var p = svg.selectAll("path").data(features)
     .enter().append("path").attr("d", path);
