@@ -5,8 +5,9 @@
 <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/d3.min.js"></script>
 {% with 'js/regional-councilors-constituencies-2014-'|add:county|add:'.js' as geo_static %}
 <script src="{% static geo_static %}" type="text/javascript"></script>
+<script src="https://d3js.org/d3-array.v1.min.js"></script>
+<script src="https://d3js.org/d3-geo.v1.min.js"></script>
 {% endwith %}
-<script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.min.js"></script>
 <script>
     var election_year = "{{election_year}}";
     var county = "{{county}}";
@@ -14,18 +15,20 @@
 
     var width = 240,
         height = 300;
-    var center = d3.geo.centroid(geodata);
-    var bounds = d3.geo.bounds(geodata),
-        distance = d3.geo.distance(bounds[0], bounds[1]),
+    var center = d3.geoCentroid(geodata);
+
+    var bounds = d3.geoBounds(geodata),
+        distance = d3.geoDistance(bounds[0], bounds[1]),
         scale = 4*height / distance / Math.sqrt(2);
 
     var path = d3.geo.path().projection(
         d3.geo.mercator().center(center).scale(scale)
     );
 
-    var svg = d3.select("svg")
+    var svg = d3.select("#d3").append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+    .attr("viewBox", "0 0 "+ width*3.5 + " " + height*2);
 
     var p = svg.selectAll("path").data(features)
     .enter().append("path").attr("d", path);
