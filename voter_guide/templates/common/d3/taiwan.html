@@ -1,0 +1,48 @@
+{% load extras %}
+{% load staticfiles %}
+<style>
+</style>
+<script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/d3.min.js"></script>
+<script src="{% static "js/counties-2014.js" %}" type="text/javascript"></script>
+<script>
+    var election_year = "{{election_year}}";
+    var features = geodata.features;
+
+    var width = 240,
+        height = 300;
+    var center = d3.geo.centroid(geodata);
+    var bounds = d3.geo.bounds(geodata),
+        distance = d3.geo.distance(bounds[0], bounds[1]),
+        scale = 6*height / distance / Math.sqrt(2);
+
+    var path = d3.geo.path().projection(
+        d3.geo.mercator().center(center).scale(scale)
+    );
+
+    var svg = d3.select("#d3").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("viewBox", "0 0 "+ width*3.5 + " " + height*2);
+
+    var p = svg.selectAll("path").data(features)
+    .enter().append("path").attr("d", path);
+
+    var color = d3.scale.category20();
+
+    p.attr({
+        d: path,
+        fill: function(d, i) {
+            return color(i);
+        }
+    })
+    .on('click', function(d) {
+        return window.location.href = "/candidates/" + d.properties.COUNTYNAME + "/";
+    })
+    .on('mouseover', function(d) {
+        $("#" + d.properties.COUNTYNAME).addClass('btn-moonc');
+    })
+    .on('mouseout', function(d) {
+        $("#" + d.properties.COUNTYNAME).removeClass('btn-moonc');
+    });
+
+</script>

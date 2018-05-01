@@ -27,13 +27,17 @@
                     <a href="{% url 'dispatch_bill' %}" class="btn btn-danger" target="_blank"><i class="fa fa-pencil-square-o"> 隨機分配一個給我！</i></a>
                 </div>
             </div>
+            <div class="text-center">
+                <button id="auto_locate" class="btn btn-warning"><i class="fa fa-map-marker"> 自動定位</i></button>
+            </div>
+            <div id="d3"></div>
         </div>
         <div class="col-sm-9">
             <div class="five column doubling ui grid hidden-xs">
                 {% for region in regions %}
                     {% for county in region.counties %}
                         <div class="column direct-container">
-                            <a href="{{category|select_county_reverse_url:county}}" class="direct-item council-light {% cycle 'council-lightyellow' 'council-yellow' %}">
+                            <a id="{{county}}" href="{{category|select_county_reverse_url:county}}" class="direct-item council-light {% cycle 'council-lightyellow' 'council-yellow' %}">
                                 <img class="" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png">
                                 <div></div>
                                 <br>
@@ -74,8 +78,30 @@
 {% endblock right %}
 
 {% block script %}
+    {% include "common/d3/taiwan.html" %}
+    <script src="https://d3js.org/d3-array.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo.v1.min.js"></script>
     <script>
         $(document).ready( function() {
+            $("#auto_locate").on('click', function() {
+                function error(err) {
+                    console.warn('ERROR(' + err.code + '): ' + err.message);
+                };
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = [
+                        position.coords.longitude,
+                        position.coords.latitude
+                    ];
+                    $.each(geodata.features, function(i, d) {
+                        if (d3.geoContains(d, pos)) {
+                            return window.location.href = "/candidates/" + d.properties.COUNTYNAME + "/";
+                        }
+                    });
+                    }, error, {enableHighAccuracy: true});
+            });
+            if (!navigator.geolocation) {
+                $("#auto_locate").hide;
+            }
             $('#{{category}}').addClass('active');
             $('[data-toggle="collapse"]').on('click', function() {
                 $('[data-toggle="collapse"]').not(this).find('.fa-angle-down').removeClass('up-side-down');
