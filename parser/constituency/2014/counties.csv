@@ -1,0 +1,23 @@
+COUNTYID,COUNTYCODE,COUNTYNAME,COUNTYENG,WIKIDATA,MS_FB,MS_FB_PARE
+Z,09007,連江縣,Lienchiang County,Q249872,country:tw/county:lie,country:tw
+W,09020,金門縣,Kinmen County,Q249870,country:tw/county:kin,country:tw
+G,10002,宜蘭縣,Yilan County,Q237258,country:tw/county:ila,country:tw
+N,10007,彰化縣,Changhua County,Q133865,country:tw/county:cha,country:tw
+M,10008,南投縣,Nantou County,Q82357,country:tw/county:nan,country:tw
+P,10009,雲林縣,Yunlin County,Q153221,country:tw/county:yun,country:tw
+T,10013,屏東縣,Pingtung County,Q194989,country:tw/county:pif,country:tw
+V,10014,臺東縣,Taitung County,Q249904,country:tw/county:ttt,country:tw
+U,10015,花蓮縣,Hualien County,Q249868,country:tw/county:hua,country:tw
+X,10016,澎湖縣,Penghu County,Q198525,country:tw/county:pen,country:tw
+O,10018,新竹市,Hsinchu City,Q249994,country:tw/city:hsz,country:tw
+A,63000,臺北市,Taipei City,Q1867,country:tw/special-municipality:tpe,country:tw
+F,65000,新北市,New Taipei City,Q244898,country:tw/special-municipality:nwt,country:tw
+B,66000,臺中市,Taichung City,Q245023,country:tw/special-municipality:txg,country:tw
+D,67000,臺南市,Tainan City,Q140631,country:tw/special-municipality:tnn,country:tw
+H,68000,桃園市,Taoyuan City,Q115256,country:tw/special-municipality:tao,country:tw
+K,10005,苗栗縣,Miaoli County,Q63706,country:tw/county:mia,country:tw
+J,10004,新竹縣,Hsinchu County,Q74054,country:tw/county:hsq,country:tw
+Q,10010,嘉義縣,Chiayi County,Q166977,country:tw/county:cyq,country:tw
+E,64000,高雄市,Kaohsiung City,Q181557,country:tw/special-municipality:khh,country:tw
+I,10020,嘉義市,Chiayi City,Q249995,country:tw/city:cyi,country:tw
+C,10017,基隆市,Keelung City,Q249996,country:tw/city:kee,country:tw
