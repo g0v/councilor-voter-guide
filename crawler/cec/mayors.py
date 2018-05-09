@@ -11,8 +11,12 @@ class Spider(scrapy.Spider):
     start_urls = ["http://db.cec.gov.tw/",]
     download_delay = 1
 
+    def __init__(self, election_year=None, *args, **kwargs):
+        super(Spider, self).__init__(*args, **kwargs)
+        self.election_year = election_year
+
     def parse(self, response):
-        for level in response.xpath(u'//a[re:test(., "^2014.+(直轄|縣)市長選舉$")]/@href').extract():
+        for level in response.xpath(u'//a[re:test(., "^%s.+(直轄|縣)市長選舉$")]/@href' % self.election_year).extract():
             yield response.follow(level, callback=self.parse_level)
 
     def parse_level(self, response):
