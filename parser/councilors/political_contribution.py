@@ -46,7 +46,12 @@ for f in glob.glob('../../data/political_contribution/*.json'):
         expenses = {key: candidate[key] for key in ["out_personnel", "out_propagate", "out_campaign_vehicle", "out_campaign_office", "out_rally", "out_travel", "out_miscellaneous", "out_return", "out_exchequer", "out_public_relation"]}
         pc = {key: candidate[key] for key in ["in_total", "out_total", "balance"]}
         pc.update({'in': income, 'out': expenses})
-        pc = [{'election_year': candidate['election_year'], 'pc': pc}]
+        pc = [{
+            'election_year': candidate['election_year'],
+            'title': candidate.get('title', 'councilors'),
+            'election_name': candidate.get('election_name', u'%s議員選舉' % candidate['county']),
+            'pc': pc
+        }]
         candidate['politicalcontributions'] = json.dumps(pc)
         candidate['name'] = common.normalize_person_name(candidate['name'])
 #       candidate['name'] = re.sub(u'周鍾.*', u'周鍾㴴', candidate['name'])
