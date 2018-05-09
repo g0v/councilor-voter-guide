@@ -14,36 +14,99 @@
 
 {% block right %}
     <div class="row">
-        <div class="col-sm-3">
-            <div class="panel panel-success">
-                <div class="panel-heading">{{coming_election_year}} {{county}}議員選舉</div>
-                <div class="panel-body">
-                    {% if intents_count %}
-                        <h4 class="text-danger">已有 {{intents_count}} 位候選人提前現身！</h4>
-                        <h3><small>想要的候選人，等你去發現！</small></h3>
-                        <a type="button" class="btn btn-moonc btn-lg col-xs-12" href="{% url 'candidates:intents' election_year=coming_election_year %}?county={{county}}">看政見、給意見</a>
-                    {% else %}
-                        <h4>{{coming_election_year}} {{county}}還沒有人發表</h4>
-                        <h3><small>如果是候選人，你會怎麼做？</small></h3>
-                        <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg col-xs-12"><i class="fa fa-pencil-square-o"> 來發表</i></a>
-                    {% endif %}
+        <div class="col-sm-6">
+            <div class="panel panel-warning">
+                <div class="panel-heading">{{election_year}} {{county}}長候選人</div>
+                {% if candidates %}
+                <table class="table table-bordered table-condensed table-striped" >
+                    <thead>
+                        <tr style="background-color: #E1D0D0;">
+                            <th>候選人</th>
+                            <th>當選／得票</th>
+                            <th>黨籍</th>
+                            <th>競選政治獻金</th>
+                            <th>議員配合款</th>
+                            <th>提案立場 <a rel="tooltip" title="立場由網友自行標註、投票產生，歡迎一起讓資料更好" data-placement="right"><i class="fa fa-question-circle"></i></a></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for candidate in candidates %}
+                            <tr>
+                                <td style="text-align:center; vertical-align:middle;" nowrap><h4>{{candidate.name}}</h4></td>
+                                <td style="text-align:center; vertical-align:middle;">
+                                    {% if candidate.elected %}
+                                        <i class="fa fa-flag text-success fa-lg"></i>
+                                    {% endif %}
+                                    {{candidate.votes}}
+                                </td>
+                                <td style="text-align:center; vertical-align:middle;">{{candidate.party}}</td>
+                                <td style="vertical-align:middle;" nowrap>
+                                    <div class="row">
+                                    {% for term in candidate.politicalcontributions %}
+                                        <div class="col-sm-12" style="margin-top: 4px">
+                                            <span class="label label-default center-block">{{term.election_year}} {{term.election_name}}</span>
+                                            <a href="{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}">收：<font class="price">{{term.pc.in_total}}</font></a>
+                                            <br>
+                                            <a href="{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}">支：<font class="price">{{term.pc.out_total}}</font></a>
+                                            <br>
+                                            餘：<font class="price">{{term.pc.balance}}</font>
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+                                </td>
+                                <td style="text-align:center; vertical-align:middle;" nowrap>
+                                    {% if candidate.elected %}
+                                        <a href="{% url 'suggestions:county_overview' %}#{{county}}"><font class="price">{{suggestions.sum}}</font></a>
+                                    {% endif %}
+                                </td>
+                                <td style="text-align:center; vertical-align:middle;"></td>
+                                <td style="text-align:center; vertical-align:middle;">
+                                    {% if candidate.occupy or candidate.elected %}
+                                        <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank">財產申報</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <div id="d3"></div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">{{coming_election_year}} {{county}}議員選舉</div>
+                    <div class="panel-body">
+                        {% if intents_count %}
+                            <h4 class="text-danger">已有 {{intents_count}} 位候選人提前現身！</h4>
+                            <h3><small>想要的候選人，等你去發現！</small></h3>
+                            <a type="button" class="btn btn-moonc btn-lg col-xs-12" href="{% url 'candidates:intents' election_year=coming_election_year %}?county={{county}}">看政見、給意見</a>
+                        {% else %}
+                            <h4>{{coming_election_year}} {{county}}還沒有人發表</h4>
+                            <h3><small>如果是候選人，你會怎麼做？</small></h3>
+                            <a href="{% url 'candidates:intent_home' %}" class="btn btn-info btn-lg col-xs-12"><i class="fa fa-pencil-square-o"> 來發表</i></a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-            <div id="d3"></div>
-        </div>
-        <div class="col-sm-9">
-            <div class="three column doubling ui grid row">
-                {% for district in districts %}
-                <div class="column direct-container">
-                        <a id="{{county}}第{{district.constituency|stringformat:"02d"}}選區" href="{% url 'candidates:district' county=county election_year=election_year constituency=district.constituency %}" class="direct-item {% cycle 'council-bluegreen' 'council-darkbluegreen' %}">
-                            <h4>{{district.constituency|stringformat:"02d"}}. {{district.district}}</h4>
-                            <div>&nbsp;</div>
-                            <div class="direct-sub">
-                                <p class="county-candidate">{{district.candidates}}</p>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
+            <div class="col-sm-12">
+                <div class="three column doubling ui grid row">
+                    {% for district in districts %}
+                    <div class="column direct-container">
+                            <a id="{{county}}第{{district.constituency|stringformat:"02d"}}選區" href="{% url 'candidates:district' county=county election_year=election_year constituency=district.constituency %}" class="direct-item {% cycle 'council-bluegreen' 'council-darkbluegreen' %}">
+                                <h4>{{district.constituency|stringformat:"02d"}}. {{district.district}}</h4>
+                                <div>&nbsp;</div>
+                                <div class="direct-sub">
+                                    <p class="county-candidate">{{district.candidates}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
@@ -53,7 +116,13 @@
 
 {% block script %}
     {% include "candidates/d3/districts.html" %}
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     <script>
         $('#candidates').addClass('active');
+        $('.price').each(function(index,ele){
+            var number = $(ele).text()
+            zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
+            $(ele).replaceWith(zh_number)
+        })
     </script>
 {% endblock script %}

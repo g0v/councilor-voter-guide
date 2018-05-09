@@ -26,6 +26,7 @@ class Candidates(models.Model):
 
 class Terms(models.Model):
     uid = models.CharField(max_length=70, unique=True)
+    type = models.CharField(db_index=True, max_length=20)
     candidate = models.ForeignKey(Candidates, to_field='uid')
     elected_councilor = models.OneToOneField('councilors.Councilorsdetail', blank=True, null=True, related_name='elected_candidate')
     councilor_terms = JSONField(null=True)
@@ -39,7 +40,9 @@ class Terms(models.Model):
     district = models.CharField(db_index=True, max_length=100, blank=True, null=True)
     votes = models.IntegerField(blank=True, null=True)
     votes_percentage = models.CharField(max_length=100, blank=True, null=True)
+    votes_detail = JSONField(null=True)
     elected = models.NullBooleanField(db_index=True)
+    occupy = models.NullBooleanField(db_index=True)
     contact_details = JSONField(null=True)
     education = models.TextField(blank=True, null=True)
     experience = models.TextField(blank=True, null=True)
@@ -58,6 +61,7 @@ class Terms(models.Model):
 
 class Intent(models.Model):
     uid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
+    type = models.CharField(db_index=True, max_length=20)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     candidate = models.ForeignKey(Candidates, to_field='uid', null=True)
     councilor_terms = JSONField(null=True)

@@ -12,6 +12,7 @@ from django.utils import timezone
 from .models import Candidates, Terms, Intent, Intent_Likes
 from .forms import IntentForm, SponsorForm
 from councilors.models import CouncilorsDetail
+from suggestions.models import Suggestions
 from platforms.models import Platforms
 from elections.models import Elections
 from commontag.views import paginate, coming_election_year
@@ -35,11 +36,14 @@ def intents(request, election_year):
 def districts(request, election_year, county):
     coming_ele_year = coming_election_year(county)
     intents_count = Intent.objects.filter(election_year=coming_ele_year, county=county).exclude(status='draft').count()
-    districts = Terms.objects.filter(election_year=election_year, county=county)\
+    districts = Terms.objects.filter(election_year=election_year, county=county, type='councilors')\
                              .values('constituency', 'district')\
                              .annotate(candidates=Count('id'))\
                              .order_by('constituency')
-    return render(request, 'candidates/districts.html', {'coming_election_year': coming_ele_year, 'intents_count': intents_count, 'election_year': election_year, 'county': county, 'districts': districts})
+    candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors')\
+                             .order_by('number')
+    suggestions = Suggestions.objects.filter(election_year=election_year, county=county).aggregate(sum=Sum('approved_expense'))
+    return render(request, 'candidates/districts.html', {'coming_election_year': coming_ele_year, 'intents_count': intents_count, 'election_year': election_year, 'county': county, 'districts': districts, 'candidates': candidates, 'suggestions': suggestions})
 
 def district(request, election_year, county, constituency):
     coming_ele_year = coming_election_year(county)
@@ -52,7 +56,7 @@ def district(request, election_year, county, constituency):
     except:
         constiencies = [constituency]
     intents_count = Intent.objects.filter(election_year=coming_ele_year, county=county, constituency__in=transform_to_constiencies).exclude(status='draft').count()
-    candidates = Terms.objects.filter(election_year=election_year, county=county, constituency=constituency).order_by('-votes')
+    candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).order_by('-votes')
     standpoints = {}
     for term in [candidates]:
         for candidate in term:

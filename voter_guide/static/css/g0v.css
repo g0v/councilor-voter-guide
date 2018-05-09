@@ -48,7 +48,7 @@
 }
 
 .direct-item h4{
-  font-size: 24px;
+  font-size: 22px;
   text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .25);
   line-height: 150%;
 }
@@ -76,7 +76,7 @@
 .direct-sub{
     position: absolute;
     bottom:10px;
-    font-size: 18px;
+    font-size: 16px;
     color:inherit;
     text-shadow: 1px 1.732px 5px rgba(0, 0, 0, .2);
 }
@@ -100,7 +100,7 @@
 }
 
 .county-candidate:before{
-  content: "參選人數：";
+  content: "議員參選人數：";
 }
 
 @media screen and (min-width: 767px){
