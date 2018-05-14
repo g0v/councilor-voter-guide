@@ -112,6 +112,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.facebook',
     'haystack',
     'councilors',
+    'mayors',
     'candidates',
     'sittings',
     'bills',
