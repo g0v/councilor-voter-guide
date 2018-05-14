@@ -47,7 +47,7 @@ class Spider(scrapy.Spider):
                 item['election_year'] = self.election_year
                 link = link_node.xpath('@href').extract_first()
                 item['id'] = node.css('.acc_type::text').extract_first().split('@')[0].strip()
-                level = response.xpath(u'string((//span[re:test(., "類別階層")]/following-sibling::span)[1])').extract_first()
+                level = node.xpath(u'string((descendant::span[re:test(., "類別階層")]/following-sibling::span)[1])').extract_first()
                 item['type'], item['category'] = re.search(u'/([^/]+)/?(.*)$', level).groups()
                 item['abstract'] = re.sub('\s', '', node.css('.result_text::text').extract_first())
                 yield response.follow(link, callback=self.parse_profile, meta={'item': item, 'handle_httpstatus_list': [302], 'dont_redirect': True}, headers=common.headers(self.county_abbr))
