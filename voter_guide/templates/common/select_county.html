@@ -78,7 +78,6 @@
 {% endblock right %}
 
 {% block script %}
-    {% include "common/d3/taiwan.html" %}
     <script src="https://d3js.org/d3-array.v1.min.js"></script>
     <script src="https://d3js.org/d3-geo.v1.min.js"></script>
     <script>
@@ -88,14 +87,18 @@
                     console.warn('ERROR(' + err.code + '): ' + err.message);
                 };
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    var pos = [
-                        position.coords.longitude,
-                        position.coords.latitude
-                    ];
-                    $.each(geodata.features, function(i, d) {
-                        if (d3.geoContains(d, pos)) {
-                            return window.location.href = "/candidates/" + d.properties.COUNTYNAME + "/";
-                        }
+                    $.ajax({
+                        url: 'https://sheethub.com/ronnywang/%E6%9D%91%E9%87%8C%E7%95%8C%E5%9C%9620140313/geolookup',
+                        type: 'GET',
+                        data: {
+                            zoom: 19,
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        },
+                        success: function(data){
+                            return window.location.href = "/candidates/" + data[0].values[1] + "/";
+                        },
+                        error: function() { alert('抱歉，定位失敗，請手動選擇～'); },
                     });
                     }, error, {enableHighAccuracy: true});
             });
