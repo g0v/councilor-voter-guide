@@ -27,12 +27,11 @@
                     <a href="{% url 'dispatch_bill' %}" class="btn btn-danger" target="_blank"><i class="fa fa-pencil-square-o"> 隨機分配一個給我！</i></a>
                 </div>
             </div>
+        </div>
+        <div class="col-sm-9">
             <div class="text-center">
                 <button id="auto_locate" class="btn btn-warning"><i class="fa fa-map-marker"> 自動定位</i></button>
             </div>
-            <div id="d3"></div>
-        </div>
-        <div class="col-sm-9">
             <div class="five column doubling ui grid hidden-xs">
                 {% for region in regions %}
                     {% for county in region.counties %}
