@@ -20,7 +20,7 @@ def get_or_create_councilor_uid(c, councilor, create=True):
     logging.info(councilor)
     councilor['councilor_ids'] = tuple(GetCouncilorId(c, councilor['name']))
     if create and not councilor['councilor_ids']:
-        return (uuid.uuid4().hex, False)
+        return (str(uuid.uuid4()), False)
     elif not councilor['councilor_ids']:
         return (None, False)
     c.execute('''
@@ -42,7 +42,7 @@ def get_or_create_councilor_uid(c, councilor, create=True):
     if r:
         return (r[0], True)
     elif create:
-        return (uuid.uuid4().hex, False)
+        return (str(uuid.uuid4()), False)
     print councilor['name']
     return (None, False)
 
@@ -53,7 +53,7 @@ def get_or_create_moyor_candidate_uid(c, candidate):
     logging.info(candidate)
     candidate['candidate_ids'] = tuple(GetPossibleCandidateIds(c, candidate['name']))
     if not candidate['candidate_ids']:
-        return (uuid.uuid4().hex, False)
+        return (str(uuid.uuid4()), False)
     c.execute('''
         SELECT candidate_id
         FROM candidates_terms
@@ -70,7 +70,7 @@ def get_or_create_moyor_candidate_uid(c, candidate):
         LIMIT 1
     ''', candidate)
     r = c.fetchone()
-    return (r[0], True) if r else (uuid.uuid4().hex, False)
+    return (r[0], True) if r else (str(uuid.uuid4()), False)
 
 def get_or_create_candidate_uid(c, candidate):
     '''
@@ -79,7 +79,7 @@ def get_or_create_candidate_uid(c, candidate):
     logging.info(candidate)
     candidate['candidate_ids'] = tuple(GetPossibleCandidateIds(c, candidate['name']))
     if not candidate['candidate_ids']:
-        return (uuid.uuid4().hex, False)
+        return (str(uuid.uuid4()), False)
     c.execute('''
         SELECT candidate_id
         FROM candidates_terms
@@ -96,7 +96,7 @@ def get_or_create_candidate_uid(c, candidate):
         LIMIT 1
     ''', candidate)
     r = c.fetchone()
-    return (r[0], True) if r else (uuid.uuid4().hex, False)
+    return (r[0], True) if r else (str(uuid.uuid4()), False)
 
 def make_variants_set(string):
     variants = set([string])
@@ -173,7 +173,7 @@ def getDetailIdFromUid(c, uid, election_year, county):
         SELECT id
         FROM councilors_councilorsdetail
         WHERE councilor_id = %s and election_year = %s and county = %s
-    ''', (uid, election_year, county))
+    ''', (str(uid), election_year, county))
     r = c.fetchone()
     if r:
         return r[0]
