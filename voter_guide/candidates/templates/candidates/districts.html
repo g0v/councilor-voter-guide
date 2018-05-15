@@ -60,7 +60,17 @@
                                         <a href="{% url 'suggestions:county_overview' %}#{{county}}"><font class="price">{{suggestions.sum}}</font></a>
                                     {% endif %}
                                 </td>
-                                <td style="text-align:center; vertical-align:middle;"></td>
+                                <td style="text-align:center; vertical-align:middle;">
+                                    {% with sp=standpoints|json_lookup:candidate.id %}
+                                        {% for term in sp %}
+                                            <ul class="list-group">
+                                            {% for standpoint in term.standpoints %}
+                                                <span class="list-group-item list-group-item-success">{{standpoint.title}}</span>
+                                            {% endfor %}
+                                            </ul>
+                                        {% endfor %}
+                                    {% endwith %}
+                                </td>
                                 <td style="text-align:center; vertical-align:middle;">
                                     {% if candidate.occupy or candidate.elected %}
                                         <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank">財產申報</a>
