@@ -46,8 +46,8 @@ class Spider(scrapy.Spider):
             content = response.xpath(u'string((//*[re:test(., "^%s$")]/following-sibling::td)[1])' % label).extract_first()
             if content:
                 item[key] = content.strip()
-        item['proposed_by'] = re.sub(u'(副?議長|議員)', '', response.xpath(u'(//*[re:test(., "^提案單位/人$")]/following-sibling::td)[1]/text()').extract_first()).strip().split(u'、')
-        item['petitioned_by'] = re.sub(u'(副?議長|議員)', '', (response.xpath(u'(//*[re:test(., "^連署人$")]/following-sibling::td)[1]/text()').extract_first() or '')).strip().split(u'、')
+        item['proposed_by'] = re.split(u'[\s、,.]', re.sub(u'(副?議長|議員)', '', response.xpath(u'(//*[re:test(., "^提案單位/人$")]/following-sibling::td)[1]/text()').extract_first()).strip())
+        item['petitioned_by'] = re.split(u'[\s、,.]', re.sub(u'(副?議長|議員)', '', (response.xpath(u'(//*[re:test(., "^連署人$")]/following-sibling::td)[1]/text()').extract_first() or '')).strip())
         item['motions'] = []
         for date, motion in [(u'來文日期', u'來文字號'), (None, u'審查意見'), (u'決議日期', u'大會決議'), (u'發文日期', u'發文字號'), ]:
             date = response.xpath(u'(//*[re:test(., "%s")]/following-sibling::td)[1]/text()' % u'[\s　]*'.join(date)).extract_first() if date else None

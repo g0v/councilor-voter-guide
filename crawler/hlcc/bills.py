@@ -39,16 +39,19 @@ class Spider(scrapy.Spider):
 
     def parse_query(self, response):
         pages = re.sub('\D', '', response.css('.result_select').xpath('string()').extract_first())
-        print pages
         for node in response.css('.result_content'):
-            item = {}
-            item['election_year'] = self.election_year
-            link = node.css('.acc_link a::attr(href)').extract_first()
-            item['id'] = node.css('.acc_type::text').extract_first().split('@')[0].strip()
-            level = response.xpath(u'string((//span[re:test(., "類別階層")]/following-sibling::span)[1])').extract_first()
-            item['type'], item['category'] = re.search(u'/([^/]+)/?(.*)$', level).groups()
-            item['abstract'] = re.sub('\s', '', node.css('.result_text::text').extract_first())
-            yield response.follow(link, callback=self.parse_profile, meta={'item': item, 'handle_httpstatus_list': [302], 'dont_redirect': True}, headers=common.headers(self.county_abbr))
+            link_node = node.css('.acc_link a')
+            if link_node.xpath('text()').re(self.ad):
+                item = {}
+                item['election_year'] = self.election_year
+                link = link_node.xpath('@href').extract_first()
+                item['id'] = node.css('.acc_type::text').extract_first().split('@')[0].strip()
+                level = node.xpath(u'string((descendant::span[re:test(., "類別階層")]/following-sibling::span)[1])').extract_first()
+                item['type'], item['category'] = re.search(u'/([^/]+)/?(.*)$', level).groups()
+                item['abstract'] = re.sub('\s', '', node.css('.result_text::text').extract_first())
+                yield response.follow(link, callback=self.parse_profile, meta={'item': item, 'handle_httpstatus_list': [302], 'dont_redirect': True}, headers=common.headers(self.county_abbr))
+            else:
+                raise scrapy.exceptions.CloseSpider('out of date range')
             time.sleep(.5)
         next_page = response.css('.page_botton.pb_pagedw::attr(href)').extract_first()
         if next_page:
@@ -62,6 +65,11 @@ class Spider(scrapy.Spider):
                 'refer': 'serial'
             }
         except:
+            print response.headers
+            print response.body
+            print response.status
+            print response.url
+            print 'profile:', response.urljoin(response.headers['Location'])
             raise scrapy.exceptions.CloseSpider('no redirect location')
         yield scrapy.FormRequest(response.urljoin(response.headers['Location']), formdata=payload, callback=self.parse_post, meta={'item': response.meta['item']})
 
@@ -72,8 +80,6 @@ class Spider(scrapy.Spider):
         except:
             print 'no json response:', response.url
             raise scrapy.exceptions.CloseSpider('no json response')
-        if not re.search(self.ad, jr['BookName']):
-            raise scrapy.exceptions.CloseSpider('out of date range')
         item['proposed_by'] = re.sub(u'(副?議長|議員)', '', jr.get('Member') or jr.get('Organ') or jr.get('OrganPetiti') or jr.get('Chairman') or jr.get('Council')).strip().split(u'，')
         if not item['proposed_by'][0]:
             print jr

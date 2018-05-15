@@ -53,8 +53,8 @@ class Spider(scrapy.Spider):
                 content = response.xpath(u'(//td[re:test(., "^%s$")]/following-sibling::td)[1]/span/text()' % label).extract_first()
                 if content:
                     item[key] = content.strip()
-        item['proposed_by'] = re.sub(u'(副?議長|議員)', '', response.xpath(u'(//td[re:test(., "^提案人$")]/following-sibling::td)[1]/span/text()').extract_first()).strip().split(u'、')
-        item['petitioned_by'] = re.sub(u'(副?議長|議員)', '', (response.xpath(u'(//td[re:test(., "^連署人$")]/following-sibling::td)[1]/span/text()').extract_first() or '')).strip().split(u'、')
+        item['proposed_by'] = re.sub(u'(副?議長|議員)', '', response.xpath(u'(//td[re:test(., "^提\s*案\s*人$")]/following-sibling::td)[1]/span/text()').extract_first()).strip().split(u'、')
+        item['petitioned_by'] = re.sub(u'(副?議長|議員)', '', (response.xpath(u'(//td[re:test(., "^連\s*署\s*人$")]/following-sibling::td)[1]/span/text()').extract_first() or '')).strip().split(u'、')
         item['motions'] = []
         for motion in [u'審查意見', u'大會決議']:
             resolution = response.xpath(u'(//td[re:test(., "^%s$")]/following-sibling::td)[1]/span/text()' % motion).extract_first()
