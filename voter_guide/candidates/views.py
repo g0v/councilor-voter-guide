@@ -174,6 +174,9 @@ def intent_upsert(request):
             intent.user = request.user
             if instance and instance.status == 'intent_apply':
                 intent.status = 'intent_apply'
+            if intent.type == 'mayors':
+                intent.constituency = 0
+                intent.district = ''
             intent.save()
             c = connections['default'].cursor()
             history = request.POST.copy()

@@ -76,8 +76,12 @@
                         <div id="video_frame_{{intent.uid}}"></div>
                         <div class="property-header">縣市選區</div>
                         <div class="property-body">
-                            {{intent.county}}（第{{intent.constituency}}選區）
+                            {% if intent.type == 'councilors' %}
+                            {{intent.county}}議員（第{{intent.constituency}}選區）
                             <p>{{intent.district}}</p>
+                            {% else %}
+                            {{intent.county}}長
+                            {% endif %}
                         </div>
                         <div class="property-header">個人黨籍</div>
                         <div class="property-body">{{intent.party}}</div>

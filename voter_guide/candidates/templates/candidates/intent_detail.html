@@ -4,9 +4,9 @@
 {% load extras %}
 
 {% block title %}
-    <title>{{intent.election_year}} {{intent.county}}擬參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}</title>
-    <meta property="og:title" content="{{intent.election_year}} {{intent.county}}擬參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}"/>
-    <meta itemprop="name" content="{{intent.election_year}} {{intent.county}}擬參選人：{{intent.name}}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}">
+    <title>{{intent.election_year}} {{intent.county}}{% if intent.type == 'councilors' %}議員{% else %}長{% endif %}擬參選人：{{intent.name}}{% if intent.type == 'councilors' %}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}{% endif %}</title>
+    <meta property="og:title" content="{{intent.election_year}} {{intent.county}}{% if intent.type == 'councilors' %}議員{% else %}長{% endif %}擬參選人：{{intent.name}}{% if intent.type == 'councilors' %}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}{% endif %}"/>
+    <meta itemprop="name" content="{{intent.election_year}} {{intent.county}}{% if intent.type == 'councilors' %}議員{% else %}長{% endif %}擬參選人：{{intent.name}}{% if intent.type == 'councilors' %}（第{{intent.constituency}}選區）{{intent.district|truncatechars:10}}{% endif %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <style>
         .CodeMirror, .CodeMirror-scroll {
@@ -34,7 +34,7 @@
             </div>
             <div class="col-sm-8 col-xs-9">
                 <h3 style="margin-top: 0; margin-left: 14px;">
-                    {{intent.election_year}} 擬參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small>
+                    {{intent.election_year}} {{intent.county}}{% if intent.type == 'councilors' %}議員{% else %}長{% endif %}擬參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small>
 
                 <div class="pull-right">
                 {% if request.user.is_authenticated %}
@@ -83,10 +83,12 @@
                 </h4>
                 {% endif %}
                 <dl class="dl-horizontal hidden-xs" style="margin-bottom: 0;">
+                    {% if intent.type == 'councilors' %}
                     <dt>縣市選區</dt>
                     <dd>
                         {{intent.county}}（第{{intent.constituency}}選區）{{intent.district}}
                     </dd>
+                    {% endif %}
                     <dt>個人黨籍</dt>
                     <dd>
                         {{intent.party}}
@@ -132,8 +134,10 @@
                                 <div class="property-body">{{revision.name}}</div>
                                 <div class="property-header">縣市</div>
                                 <div class="property-body">{{revision.county}}</div>
+                                {% if revision.type == 'councilors' %}
                                 <div class="property-header">選區</div>
                                 <div class="property-body district">{{revision.constituency}}</div>
+                                {% endif %}
                                 <div class="property-header">個人黨籍<small>（中選會尚未公告政黨推薦名單）</small></div>
                                 <div class="property-body">{{revision.party}}</div>
                                 <div class="property-header">網站</div>
@@ -182,11 +186,13 @@
             </div>
             <dl class="dl-horizontal">
                 <div class="visible-xs">
+                {% if intent.type == 'councilors' %}
                 <dt>縣市選區</dt>
                 <dd>
                     {{intent.county}}（第{{intent.constituency}}選區）
                     <p>{{intent.district}}</p>
                 </dd>
+                {% endif %}
                 <dt>個人黨籍</dt>
                 <dd>
                     {{intent.party}}

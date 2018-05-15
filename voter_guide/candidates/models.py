@@ -61,7 +61,7 @@ class Terms(models.Model):
 
 class Intent(models.Model):
     uid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
-    type = models.CharField(db_index=True, max_length=20)
+    type = models.CharField(db_index=True, max_length=20, verbose_name=u'競選職位')
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     candidate = models.ForeignKey(Candidates, to_field='uid', null=True)
     councilor_terms = JSONField(null=True)
@@ -71,7 +71,7 @@ class Intent(models.Model):
     slogan = models.CharField(max_length=20, blank=True, null=True, verbose_name=u'標語')
     gender = models.CharField(max_length=100, blank=True, null=True, verbose_name=u'性別')
     party = models.CharField(db_index=True, max_length=100, verbose_name=u'政黨')
-    constituency = models.PositiveIntegerField(db_index=True, verbose_name=u'選舉區')
+    constituency = models.IntegerField(db_index=True, verbose_name=u'選舉區')
     county = models.CharField(db_index=True, max_length=100, verbose_name=u'縣市')
     district = models.CharField(db_index=True, max_length=100, blank=True, null=True)
     contact_details = JSONField(null=True)

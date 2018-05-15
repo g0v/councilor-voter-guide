@@ -40,30 +40,37 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     {{ form.name.errors }}
-                    <label class="col-sm-3 control-label" for="{{ form.name.id_for_label }}">{{ form.name.label }}：</label>
-                    <div class="col-sm-9">
+                    <label class="col-sm-4 control-label" for="{{ form.name.id_for_label }}">{{ form.name.label }}：</label>
+                    <div class="col-sm-8">
                     {{ form.name }}
                     <a data-toggle="tooltip" class="pull-right" title="自動由您的 Facebook 帶入，可自行修改"><i class="fa fa-question-circle"></i></a>
                     </div>
                 </div>
                 <div class="form-group">
-                    {{ form.county.errors }}
-                    <label class="col-sm-3 control-label" for="{{ form.county.id_for_label }}">{{ form.county.label }}：</label>
-                    <div class="col-sm-9">
-                    {{ form.county }}
+                    {{ form.type.errors }}
+                    <label class="col-sm-4 control-label" for="{{ form.type.id_for_label }}">{{ form.type.label }}：</label>
+                    <div class="col-sm-8">
+                    {{ form.type }}
                     </div>
                 </div>
                 <div class="form-group">
+                    {{ form.county.errors }}
+                    <label class="col-sm-4 control-label" for="{{ form.county.id_for_label }}">{{ form.county.label }}：</label>
+                    <div class="col-sm-8">
+                    {{ form.county }}
+                    </div>
+                </div>
+                <div class="form-group" id="form_constituency">
                     {{ form.constituency.errors }}
-                    <label class="col-sm-3 control-label" for="{{ form.constituency.id_for_label }}">{{ form.constituency.label }}：</label>
-                    <div class="col-sm-9">
+                    <label class="col-sm-4 control-label" for="{{ form.constituency.id_for_label }}">{{ form.constituency.label }}：</label>
+                    <div class="col-sm-8">
                     {{ form.constituency }}
                     </div>
                 </div>
                 <div class="form-group">
                     {{ form.party.errors }}
-                    <label class="col-sm-3 control-label" for="{{ form.party.id_for_label }}">{{ form.party.label }}：</label>
-                    <div class="col-sm-9">
+                    <label class="col-sm-4 control-label" for="{{ form.party.id_for_label }}">{{ form.party.label }}：</label>
+                    <div class="col-sm-8">
                     {{ form.party }}
                     </div>
                 </div>
@@ -71,8 +78,8 @@
                 {{ form.district }}
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="{{ form.video_link.id_for_label }}">{{ form.video_link.label }}：</label>
-                    <div class="col-sm-9">
+                    <label class="col-sm-4 control-label" for="{{ form.video_link.id_for_label }}">{{ form.video_link.label }}：</label>
+                    <div class="col-sm-8">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-youtube-square text-danger fa-lg"></i></span>
                             {{ form.video_link }}
@@ -82,8 +89,8 @@
                 </div>
                 <div class="form-group">
                     {{ form.links.errors }}
-                    <label class="col-sm-3 control-label" for="{{ form.links.id_for_label }}">{{ form.links.label }}：</label>
-                    <div class="col-sm-9">
+                    <label class="col-sm-4 control-label" for="{{ form.links.id_for_label }}">{{ form.links.label }}：</label>
+                    <div class="col-sm-8">
                         <a data-toggle="tooltip" class="pull-right" title="自動帶入 Facebook 個人頁面，可自行修改"><i class="fa fa-question-circle"></i></a>
                         {{ form.links }}
                     </div>
@@ -143,6 +150,17 @@
     <script>
         $(document).ready( function() {
             $('#candidates').addClass('active');
+            function check_type() {
+                if ($('select[name=type]').val() === 'mayors') {
+                    $('#form_constituency').hide();
+                } else {
+                    $('#form_constituency').show();
+                }
+            }
+            check_type();
+            $('select[name=type]').on('change', function() {
+                check_type();
+            });
             $("textarea").each( function() {
                 new SimpleMDE({
                     element: $(this)[0],
