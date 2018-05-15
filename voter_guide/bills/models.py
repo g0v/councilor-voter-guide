@@ -36,3 +36,9 @@ class Councilors_Bills(models.Model):
     petition = models.NullBooleanField()
     class Meta:
         unique_together = ('councilor', 'bill')
+
+class Mayors_Bills(models.Model):
+    mayor = models.ForeignKey('mayors.terms', to_field='uid')
+    bill = models.ForeignKey(Bills, to_field='uid')
+    class Meta:
+        unique_together = ('mayor', 'bill')

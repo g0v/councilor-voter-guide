@@ -185,3 +185,29 @@ for r in response:
     ''', (json.dumps({'bills_role_statistics': param}), r[0]))
 conn.commit()
 print 'Update bills_role_statistics of People done'
+
+# bills proposed_by city hall record on mayor
+c.execute('''
+    SELECT uid, county, election_year
+    FROM mayors_terms
+    WHERE election_year = %s
+''', [election_year])
+key = [desc[0] for desc in c.description]
+for row in c.fetchall():
+    person = dict(zip(key, row))
+    c.execute('''
+        SELECT b.uid
+        FROM bills_bills b
+        LEFT JOIN bills_councilors_bills bc ON b.uid = bc.bill_id
+        WHERE b.county = %s and b.election_year = %s and bc.bill_id IS NULL and type != '人民請願案' and type != '議員提案' and type != '臨時動議案'
+        order by b.proposed_by
+    ''', [person['county'], person['election_year']])
+    for bill in c.fetchall():
+        c.execute('''
+            INSERT INTO bills_mayors_bills(mayor_id, bill_id)
+            VALUES (%s, %s)
+            ON CONFLICT (mayor_id, bill_id)
+            DO NOTHING
+        ''', (person['uid'], bill[0]))
+conn.commit()
+print 'Update mayors bills done'
