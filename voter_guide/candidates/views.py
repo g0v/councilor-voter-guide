@@ -41,7 +41,7 @@ def districts(request, election_year, county):
                              .annotate(candidates=Count('id'))\
                              .order_by('constituency')
     candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors')\
-                             .order_by('number')
+                             .order_by('-votes')
     standpoints = {}
     for candidate in candidates:
         terms = Terms.objects.filter(type='mayors', candidate_id=candidate.candidate_id, elected=True)\
