@@ -1,0 +1,59 @@
+{% extends "common/mayor_info.html" %}
+{% load extras %}
+
+{% block title %}
+    <title>{{mayor.county}}議員:{{mayor.name}} {{mayor.election_year|election_year_range}} 的提案</title>
+    <meta property="og:title" content="{{mayor.county}}議員:{{mayor.name}} {{mayor.election_year|election_year_range}} 的提案"/>
+    <meta itemprop="name" content="{{mayor.county}}議員:{{mayor.name}} {{mayor.election_year|election_year_range}} 的提案">
+{% endblock title %}
+
+{% block social_meta %}
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/mayor.tw/county-og-image/facebook-og-image-mayor-{{mayor.county}}.png"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/mayor.tw/county-og-image/facebook-og-image-mayor-{{mayor.county}}.png"/>
+{% endblock social_meta %}
+
+{% block person_detail %}
+    <div class="row">
+        <div class="col-sm-12">
+            {% if keyword_hot %}
+                <h4>熱門：
+                    {% for keyword in keyword_hot %}
+                        {% if forloop.counter0 < 5 %}
+                            <a href="{% url 'mayors:biller' mayor_id=mayor.mayor_id election_year=mayor.election_year %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的提案"><font style="color: #9F0050;">{{keyword}}</font></a>&nbsp;&nbsp;
+                        {% endif %}
+                    {% endfor %}
+                </h4>
+            {% endif %}
+            <div class="well well-sm">
+                {{ bills.paginator.count }} 個
+                {% if request.GET.keyword %}
+                    包含<font style="color: red;">"{{request.GET.keyword}}"</font>的
+                {% elif request.GET.tag %}
+                    包含<font style="color: red;">"{{request.GET.tag}}"</font>的
+                {% endif %}
+                提案
+            </div>
+        </div>
+        <div class="col-sm-12">
+        {% if bills %}
+            {% include "common/pagination.html" with items=bills page_size=0 %}
+            {% include "common/bills.html" %}
+            {% include "common/pagination.html" with items=bills page_size=0 %}
+        {% else %}
+            <p class="text-danger">完全沒有提案</p>
+        {% endif %}
+        </div>
+    </div>
+{% endblock person_detail %}
+
+{% block script %}
+    {{block.super}}
+    <script>
+        $(document).ready( function() {
+            $('#url_bill').addClass('btn-primary');
+            $('#primaryonly').change(function() {
+                $("#form").trigger('submit');
+            });
+        });
+    </script>
+{% endblock script %}

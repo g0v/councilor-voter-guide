@@ -46,3 +46,7 @@ class Terms(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def _in_office_year(self):
+        return Terms.objects.filter(mayor_id=self.mayor_id).values_list('election_year', flat=True).order_by('-election_year')
+    in_office_year = property(_in_office_year)

@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^candidates/', include('candidates.urls', namespace="candidates")),
     url(r'^platforms/', include('platforms.urls', namespace="platforms")),
     url(r'^councilors/', include('councilors.urls', namespace="councilors")),
+    url(r'^mayors/', include('mayors.urls', namespace="mayors")),
     url(r'^suggestions/', include('suggestions.urls', namespace="suggestions")),
     url(r'^bills/', include('bills.urls', namespace="bills")),
     url(r'^votes/', include('votes.urls', namespace="votes")),

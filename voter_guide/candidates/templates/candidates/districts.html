@@ -26,7 +26,7 @@
                             <th>黨籍</th>
                             <th>競選政治獻金</th>
                             <th>議員配合款</th>
-                            <th>提案立場 <a rel="tooltip" title="立場由網友自行標註、投票產生，歡迎一起讓資料更好" data-placement="right"><i class="fa fa-question-circle"></i></a></th>
+                            <th width="20%">提案立場 <a rel="tooltip" title="立場由網友自行標註、投票產生，歡迎一起讓資料更好" data-placement="right"><i class="fa fa-question-circle"></i></a></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -69,6 +69,9 @@
                                             {% endfor %}
                                             </ul>
                                         {% endfor %}
+                                        {% if sp %}
+                                            <a class="btn btn-default" href="{% url 'mayors:biller' mayor_id=candidate.candidate_id election_year=sp.0.election_year %}" >其他</a>
+                                        {% endif %}
                                     {% endwith %}
                                 </td>
                                 <td style="text-align:center; vertical-align:middle;">
