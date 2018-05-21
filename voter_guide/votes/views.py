@@ -50,7 +50,7 @@ def votes(request, county):
                  .order_by('-date', 'vote_seq')
     votes = paginate(request, votes)
     standpoints = Standpoints.objects.filter(county=county, vote__isnull=False).values('title').annotate(pro_sum=Sum('pro')).order_by('-pro_sum').distinct()
-    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword'] if request.GET.get(x)])
+    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'has_tag', 'tag'] if request.GET.get(x)])
     return render(request,'votes/votes.html', {'county': county, 'votes': votes, 'hot_keyword': keyword_list('votes', county)[:5], 'hot_standpoints': standpoints[:5], 'get_params': get_params, 'has_tag': request.GET.get('has_tag')})
 
 def vote(request, vote_id):
