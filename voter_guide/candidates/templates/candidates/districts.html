@@ -56,7 +56,7 @@
                                     </div>
                                 </td>
                                 <td style="text-align:center; vertical-align:middle;" nowrap>
-                                    {% if candidate.elected %}
+                                    {% if candidate.elected and suggestions.sum %}
                                         <a href="{% url 'suggestions:county_overview' %}#{{county}}"><font class="price">{{suggestions.sum}}</font></a>
                                     {% endif %}
                                 </td>
