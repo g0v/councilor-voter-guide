@@ -109,7 +109,7 @@
             <div class="col-sm-12">
                 <div class="three column doubling ui grid row">
                     {% for district in districts %}
-                    <div class="column direct-container">
+                        <div class="column direct-container">
                             <a id="{{county}}第{{district.constituency|stringformat:"02d"}}選區" href="{% url 'candidates:district' county=county election_year=election_year constituency=district.constituency %}" class="direct-item {% cycle 'council-bluegreen' 'council-darkbluegreen' %}">
                                 <h4>{{district.constituency|stringformat:"02d"}}. {{district.district}}</h4>
                                 <div>&nbsp;</div>

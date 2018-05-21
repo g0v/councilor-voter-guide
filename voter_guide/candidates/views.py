@@ -76,7 +76,7 @@ def districts(request, election_year, county):
             else:
                 standpoints[candidate.id].append({'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []})
     suggestions = Suggestions.objects.filter(election_year=election_year, county=county).aggregate(sum=Sum('approved_expense'))
-    return render(request, 'candidates/districts.html', {'coming_election_year': coming_ele_year, 'intents_count': intents_count, 'election_year': election_year, 'county': county, 'districts': districts, 'candidates': candidates, 'suggestions': suggestions, 'standpoints': standpoints})
+    return render(request, 'candidates/districts.html', {'coming_election_year': coming_ele_year, 'intents_count': intents_count, 'election_year': election_year, 'county': county, 'districts': list(districts), 'candidates': candidates, 'suggestions': suggestions, 'standpoints': standpoints})
 
 def district(request, election_year, county, constituency):
     coming_ele_year = coming_election_year(county)
