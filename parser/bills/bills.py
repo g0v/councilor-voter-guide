@@ -5,6 +5,8 @@ import sys
 sys.path.append('../')
 import json
 import glob
+import ast
+from sys import argv
 
 import db_settings
 import common
@@ -133,8 +135,12 @@ def update_sponsor_param(uid):
 conn = db_settings.con()
 c = conn.cursor()
 election_year = common.election_year('')
+if len(argv):
+    target_county = ast.literal_eval(argv[1])['county']
+else:
+    target_county = '*'
 
-for f in sorted(glob.glob('../../data/*/bills-*.json')):
+for f in sorted(glob.glob('../../data/%s/bills-*.json' % target_county)):
     if int(re.search('bills-(\d+).json', f).group(1)) < int(election_year):
         continue
     print f
