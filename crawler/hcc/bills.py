@@ -13,8 +13,8 @@ import common
 class Spider(scrapy.Spider):
     name = "bills"
     allowed_domains = ["www.hcc.gov.tw"]
-    start_urls = ["http://www.hcc.gov.tw/",]
-    download_delay = 0.5
+    start_urls = ["https://www.hcc.gov.tw/",]
+    download_delay = 1
     county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
     election_year = common.election_year(county_abbr)
     election_year_map = {
@@ -38,7 +38,8 @@ class Spider(scrapy.Spider):
     term_range = election_year_map[election_year]
 
     def parse(self, response):
-        return response.follow(response.xpath(u'//a[@title="議員提案"]/@href').extract_first(), callback=self.parse_page, meta={'type': u'議員提案'})
+        for t in [u'議員提案', u'縣府提案']:
+            yield response.follow(re.sub('^\.\.', '', response.xpath(u'//a[@title="%s"]/@href' % t).extract_first()), callback=self.parse_page, meta={'type': t})
 
     def parse_page(self, response):
         bill_type = response.meta['type']
@@ -53,7 +54,7 @@ class Spider(scrapy.Spider):
             item['type'] = bill_type
             item['category'] = node.css(u'[data-th*="類別："]::text').extract_first()
             link = node.css('.more-list a::attr(href)').extract_first()
-            item['id'] = link.split('=')[-1].zfill(6)
+            item['id'] = 'gov-%s' % link.split('=')[-1].zfill(6) if bill_type == u'縣府提案' else link.split('=')[-1].zfill(6)
             item['abstract'] = node.css(u'[data-th*="案由："]::text').extract_first()
             item['proposed_by'] = (node.css(u'[data-th*="提案人："]::text').extract_first() or '').split()
             item['petitioned_by'] = (node.css(u'[data-th*="聯署人："]::text').extract_first() or '').split()
