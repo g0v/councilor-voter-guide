@@ -7,8 +7,10 @@
             {% if bill.param.sponsors_groupby_party.sponsor|length > 1 %}
                 {{ bill.param.sponsors_groupby_party.priproposer.party_list.0.councilors.0.name }}、
                 <a href="{% url 'bills:bill' bill_id=bill.uid %}"><small>..... 其他議員：</small></a>
-            {% else %}
+            {% elif bill.proposed_by %}
                 {{bill.proposed_by}}：
+            {% else %}
+                {{bill.type}}：
             {% endif %}
             </h3>
             <h4 class="media-heading">
