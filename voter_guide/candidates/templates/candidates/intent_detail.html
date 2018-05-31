@@ -155,10 +155,10 @@
                                 <div class="property-header">為何參選：</div>
                                 <textarea style="display: none">{{revision.motivation}}</textarea>
                                 <div class="property-body jumbotron"></div>
-                                <div class="property-header">政見：</div>
+                                <div class="property-header">政治理念：</div>
                                 <textarea style="display: none">{{revision.ideology}}</textarea>
                                 <div class="property-body jumbotron"></div>
-                                <div class="property-header">政見：</div>
+                                <div class="property-header">地方政見：</div>
                                 <textarea style="display: none">{{revision.platform}}</textarea>
                                 <div class="property-body jumbotron"></div>
                                 <div class="property-header">經歷：</div>
@@ -318,6 +318,7 @@
 
         <div class="col-sm-6">
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                {% if intent.motivation %}
                 <div class="panel panel-info">
                     <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_motivation" aria-expanded="false" aria-controls="{{intent.uid}}_motivation">
                         為何參選？
@@ -330,6 +331,8 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
+                {% if intent.ideology %}
                 <div class="panel panel-danger">
                     <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_ideology" aria-expanded="false" aria-controls="{{intent.uid}}_ideology">
                         政治理念？
@@ -342,6 +345,8 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
+                {% if intent.platform %}
                 <div class="panel panel-success">
                     <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_platform" aria-expanded="false" aria-controls="{{intent.uid}}_platform">
                         地方政見？
@@ -354,6 +359,8 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
+                {% if intent.experience %}
                 <div class="panel panel-warning">
                     <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_experience" aria-expanded="false" aria-controls="{{intent.uid}}_experience">
                         經歷？
@@ -366,6 +373,8 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
+                {% if intent.education %}
                 <div class="panel panel-default">
                     <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_education" aria-expanded="false" aria-controls="{{intent.uid}}_education">
                         學歷？
@@ -378,6 +387,8 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
+                {% if intent.remark %}
                 <div class="panel panel-muted">
                     <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_remark" aria-expanded="false" aria-controls="{{intent.uid}}_remark">
                         備註？
@@ -390,6 +401,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
             </div>
 
             {% if standpoints|length > 4 %}
