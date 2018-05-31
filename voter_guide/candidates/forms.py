@@ -45,7 +45,7 @@ class LinksWidget(forms.widgets.MultiWidget):
 class IntentForm(forms.ModelForm):
     class Meta:
         model = Intent
-        fields = ['name', 'county', 'constituency', 'district', 'party', 'motivation', 'platform', 'experience', 'education', 'remark', 'links', 'video_link', 'slogan', 'status', 'type']
+        fields = ['name', 'county', 'constituency', 'district', 'party', 'motivation', 'platform', 'ideology', 'experience', 'education', 'remark', 'links', 'video_link', 'slogan', 'status', 'type']
         widgets = {
             'type': forms.widgets.Select(choices=types, attrs={'class': 'form-control'}),
             'name': forms.widgets.TextInput(attrs={'class': 'form-control'}),

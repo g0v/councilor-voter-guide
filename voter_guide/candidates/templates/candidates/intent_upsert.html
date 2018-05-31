@@ -112,6 +112,13 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    {{ form.ideology.errors }}
+                    <label class="col-sm-3 control-label" for="{{ form.ideology.id_for_label }}">{{ form.ideology.label }}：</label>
+                    <div class="col-sm-9">
+                        {{ form.ideology }}
+                    </div>
+                </div>
+                <div class="form-group">
                     {{ form.platform.errors }}
                     <label class="col-sm-3 control-label" for="{{ form.platform.id_for_label }}">{{ form.platform.label }}：</label>
                     <div class="col-sm-9">
