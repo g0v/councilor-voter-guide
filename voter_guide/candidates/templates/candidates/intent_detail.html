@@ -299,11 +299,11 @@
                     {% if is_this_intent %}
                         {% if intent.county|county_config:'votes' %}
                             <div class="btn-group-vertical" role="group" aria-label="...">
-                                <a href="{% url 'dispatch_bill' county=intent.county %}" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的提案立場</i></a>
-                                <a href="{% url 'dispatch_vote' county=intent.county %}" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的表決立場</i></a>
+                                <a href="{% url 'dispatch_bill' county=intent.county %}?has_tag=yes" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的提案立場</i></a>
+                                <a href="{% url 'dispatch_vote' county=intent.county %}?has_tag=yes" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的表決立場</i></a>
                             </div>
                         {% else %}
-                            <a href="{% url 'dispatch_bill' county=intent.county %}" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的立場</i></a>
+                            <a href="{% url 'dispatch_bill' county=intent.county %}?has_tag=yes" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的立場</i></a>
                         {% endif %}
                     {% endif %}
                 {% endfor %}

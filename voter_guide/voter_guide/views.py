@@ -7,6 +7,7 @@ from django.db.models import Q
 
 from bills.models import Bills
 from votes.models import Votes
+from standpoints.models import Standpoints
 from commontag.views import coming_election_year
 
 
@@ -32,6 +33,8 @@ def select_county(request, category):
 
 def dispatch_bill(request, county=None):
     qs = Q(county=county) if county else Q()
+    if request.GET.get('has_tag') == 'yes':
+        qs = qs & Q(uid__in=Standpoints.objects.exclude(bill__isnull=True).values_list('bill_id', flat=True).distinct())
     count = Bills.objects.filter(qs).count()
     random_index = randint(0, count - 1)
     instance = Bills.objects.filter(qs)[random_index]
@@ -39,6 +42,8 @@ def dispatch_bill(request, county=None):
 
 def dispatch_vote(request, county=None):
     qs = Q(sitting__county=county) if county else Q()
+    if request.GET.get('has_tag') == 'yes':
+        qs = qs & Q(uid__in=Standpoints.objects.exclude(vote__isnull=True).values_list('vote_id', flat=True).distinct())
     count = Votes.objects.filter(qs).count()
     random_index = randint(0, count - 1)
     instance = Votes.objects.filter(qs)[random_index]
