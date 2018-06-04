@@ -82,6 +82,7 @@
                     {{intent.slogan}}
                 </h4>
                 {% endif %}
+                <a href="{% url 'platforms:propose' %}?intent={{intent.uid}}" class="btn btn-info pull-right" target="_blank"><i class="fa fa-birthday-cake"> 對{{intent.name}}許願</i></a>
                 <dl class="dl-horizontal hidden-xs" style="margin-bottom: 0;">
                     {% if intent.type == 'councilors' %}
                     <dt>縣市選區</dt>

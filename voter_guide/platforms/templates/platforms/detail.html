@@ -30,8 +30,16 @@
     </div>
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
-            <div class="property-header">縣市</div>
-            <div class="property-body county">{{platform.county}}</div>
+            {% if platform.county %}
+                <div class="property-header">許願縣市</div>
+                <div class="property-body">{{platform.county}}</div>
+            {% elif platform.mayor %}
+                <div class="property-header">許願對象(縣市長)</div>
+                <div class="property-body">{{platform.mayor}}</div>
+            {% elif platform.intent %}
+                <div class="property-header">許願對象(候選人)</div>
+                <div class="property-body">{{platform.intent}}</div>
+            {% endif %}
             <div class="property-header">願望：</div>
             <textarea style="display: none">{{platform.content}}</textarea>
             <div class="property-body"></div>

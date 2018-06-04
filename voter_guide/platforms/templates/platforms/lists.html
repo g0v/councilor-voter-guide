@@ -24,8 +24,8 @@
                 民眾的許願池
             </i>
         </h2>
-        <h4><small>我只想許個願！歡迎候選人揀去做！</small></h4>
-        <a href="{% provider_login_url "facebook" %}?next={% url 'platforms:propose' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 來許個願</i></a>
+        <h4><small>民眾許個願！歡迎候選人揀去做！</small></h4>
+        <a href="{% provider_login_url "facebook" %}?next={% url 'platforms:propose' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 來許願</i></a>
         <ul class="pull-left list-unstyled">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sort-desc"> 排序</i></a>
@@ -44,8 +44,16 @@
                     <h4><a href="{% url 'platforms:detail' platform_id=platform.uid %}">民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的願望 </a><small><i class="fa fa-thumbs-up"> {{platform.likes}}</i></small></h4>
                 </div>
                 <div class="panel-body">
-                    <div class="property-header">縣市</div>
+                {% if platform.county %}
+                    <div class="property-header">許願縣市</div>
                     <div class="property-body">{{platform.county}}</div>
+                {% elif platform.mayor %}
+                    <div class="property-header">許願對象(縣市長)</div>
+                    <div class="property-body">{{platform.mayor}}</div>
+                {% elif platform.intent %}
+                    <div class="property-header">許願對象(候選人)</div>
+                    <div class="property-body">{{platform.intent}}</div>
+                {% endif %}
                     <div class="property-header">願望：</div>
                     <textarea style="display: none">{{platform.content}}</textarea>
                     <div class="property-body"></div>

@@ -9,6 +9,8 @@ from django.utils import timezone
 
 from .models import Platforms, Platforms_Likes
 from .forms import PlatformsForm
+from candidates.models import Intent
+from mayors.models import Terms as mayor_terms
 from commontag.views import paginate
 
 
@@ -44,6 +46,20 @@ def detail(request, platform_id):
 def propose(request):
     if request.method == 'GET':
         form = PlatformsForm()
+        targets = {x: 1 for x in ['county', 'mayor', 'councilor', 'intent']}
+        if request.GET.get('intent'):
+            form.fields['intent'].initial = request.GET['intent']
+            targets.pop('intent')
+        elif request.GET.get('mayor'):
+            form.fields['mayor'].initial = request.GET['mayor']
+            targets.pop('mayor')
+        elif request.GET.get('councilor'):
+            form.fields['councilor'].initial = request.GET['councilor']
+            targets.pop('councilor')
+        else:
+            targets.pop('county')
+        for key in targets.keys():
+            form.fields.pop(key)
         return render(request, 'platforms/propose.html', {'form': form})
     if request.method == 'POST':
         form = PlatformsForm(request.POST)

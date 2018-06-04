@@ -12,6 +12,7 @@
             <div class="col-sm-9 col-xs-9">
                 <h3 style="margin-top: 0px;">
                     <span>{{ councilor.name }}</span>
+                    <a href="{% url 'platforms:propose' %}?councilor={{councilor.id}}" class="btn btn-info pull-right" target="_blank"><i class="fa fa-birthday-cake"> 對{{councilor.name}}許願</i></a>
                     {% if not councilor.in_office %}
                         <small>
                             {% if councilor.term_end.reason %}
