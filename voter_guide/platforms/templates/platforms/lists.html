@@ -57,6 +57,19 @@
                     <div class="property-header">願望：</div>
                     <textarea style="display: none">{{platform.content}}</textarea>
                     <div class="property-body"></div>
+                {% if platform.intent_standpoints %}
+                    <div class="property-header">擬參選人回應：</div>
+                    <div class="property-body">
+                    <a href="{% url 'platforms:detail' platform_id=platform.uid %}">
+                    {% for intent in platform.intent_standpoints.all %}
+                        {% with user_id=intent.intent.user.socialaccount_set.first.uid %}
+                            <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=24">
+                        {% endwith %}
+                        {{intent.intent}}&nbsp;&nbsp;
+                    {% endfor %}
+                    </a>
+                    </div>
+                {% endif %}
                 </div>
             </div>
         </div>

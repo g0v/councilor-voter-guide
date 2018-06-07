@@ -110,6 +110,7 @@ class Intent_Standpoints(models.Model):
     vote = models.ForeignKey('votes.Votes', to_field='uid', related_name='intent_standpoints', null=True)
     bill = models.ForeignKey('bills.Bills', to_field='uid', related_name='intent_standpoints', null=True)
     suggestion = models.ForeignKey('suggestions.Suggestions', to_field='uid', related_name='intent_standpoints', null=True)
+    platform = models.ForeignKey('platforms.Platforms', to_field='uid', related_name='intent_standpoints', null=True)
     create_at = models.DateTimeField(auto_now_add=True)
     data = JSONField(null=True)
     def __unicode__(self):
