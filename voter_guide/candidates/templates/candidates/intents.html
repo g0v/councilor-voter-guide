@@ -66,9 +66,9 @@
                 <div class="text-center">
                     <h2><a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">{{intent.name}}</a> <small><a href="{% url 'candidates:intent_detail' intent_id=intent.uid %}"><i class="fa fa-thumbs-up"> {{intent.likes}}</i></a></small></h2>
                     {% if intent.slogan %}
-                    <h4 class="text-danger" style="margin-left: 14px;">
-                        {{intent.slogan}}
-                    </h4>
+                        <h4 style="margin-left: 14px;">
+                            <i class="fa fa-bullhorn"> <font class="text-danger">{{intent.slogan}}</font></i>
+                        </h4>
                     {% endif %}
                 </div>
                 <div class="panel-body">
