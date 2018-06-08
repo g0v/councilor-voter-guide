@@ -2,16 +2,16 @@
 {% load extras %}
 
 {% block title %}
-    <title>議員投票指南: {{title}}</title>
-    <meta property="og:title" content="議員投票指南: {{title}}"/>
-    <meta itemprop="name" content="議員投票指南: {{title}}">
+    <title>投票指南: {{title}}</title>
+    <meta property="og:title" content="投票指南: {{title}}"/>
+    <meta itemprop="name" content="投票指南: {{title}}">
 {% endblock title %}
 
 {% block right %}
     <div class="row">
         <div class="col-sm-3">
             <div class="panel panel-success">
-                <div class="panel-heading">{{election_year}} 縣市議員選舉</div>
+                <div class="panel-heading">{{election_year}} 選舉</div>
                 <div class="panel-body">
                     <h4>讓候選人、政見提早現身！</h4>
                     <div class="btn-group" role="group">
@@ -23,8 +23,8 @@
             <div class="panel panel-warning">
                 <div class="panel-heading">來幫忙</div>
                 <div class="panel-body">
-                    <h4>議員幹了什麼好事？<br>標籤由你來下！</h4>
-                    <a href="{% url 'dispatch_bill' %}" class="btn btn-danger" target="_blank"><i class="fa fa-pencil-square-o"> 隨機分配一個給我！</i></a>
+                    <h4>縣市長、議員幹了什麼？<br>由你來摘要！</h4>
+                    <a href="{% url 'dispatch_bill' %}" class="btn btn-danger" target="_blank"><i class="fa fa-pencil-square-o"> 隨機給我一個！</i></a>
                 </div>
             </div>
         </div>
