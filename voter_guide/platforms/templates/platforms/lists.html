@@ -57,7 +57,7 @@
                     <div class="property-header">願望：</div>
                     <textarea style="display: none">{{platform.content}}</textarea>
                     <div class="property-body"></div>
-                {% if platform.intent_standpoints %}
+                {% if platform.intent_standpoints.all %}
                     <div class="property-header">擬參選人回應：</div>
                     <div class="property-body">
                     <a href="{% url 'platforms:detail' platform_id=platform.uid %}">
