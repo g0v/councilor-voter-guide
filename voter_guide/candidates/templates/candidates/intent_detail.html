@@ -78,8 +78,8 @@
 
                 </h3>
                 {% if intent.slogan %}
-                <h4 class="text-danger" style="margin-left: 14px;">
-                    {{intent.slogan}}
+                <h4 style="margin-left: 14px;">
+                    <i class="fa fa-bullhorn"> <font class="text-danger">{{intent.slogan}}</font></i>
                 </h4>
                 {% endif %}
                 <a href="{% url 'platforms:propose' %}?intent={{intent.uid}}" class="btn btn-info pull-right" target="_blank"><i class="fa fa-birthday-cake"> 對{{intent.name}}許願</i></a>
