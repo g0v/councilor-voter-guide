@@ -1,62 +1,88 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% load extras %}
 
+{% block css_file %}
+    <link href="{% static "css/resume.min.css" %}" rel="stylesheet">
+{% endblock css_file %}
+
 {% block right %}
-    <div class="person_header">
-        <div class="row">
-            <div class="col-sm-1 col-sm-offset-2 col-xs-3">
-                {% if councilor.image %}
-                    <img src="{{councilor.image}}" style="width: 70px;">
-                {% endif %}
-            </div>
-            <div class="col-sm-9 col-xs-9">
-                <h3 style="margin-top: 0px;">
-                    <span>{{ councilor.name }}</span>
-                    <a href="{% url 'platforms:propose' %}?councilor={{councilor.id}}" class="btn btn-info pull-right" target="_blank"><i class="fa fa-birthday-cake"> 對{{councilor.name}}許願</i></a>
-                    {% if not councilor.in_office %}
-                        <small>
-                            {% if councilor.term_end.reason %}
-                                （{{ councilor.term_end.reason }}）
-                            {% else %}
-                                （已去職）
+    <input class="inv" id="page" type="text" value="resume">
+    <div class="preload abs"></div>
+    <div class="wrapper-header relat person_header header-profile" data-type="profile">
+        <div class="container relat classJ contain-1000">
+            <div class="profile-header row">
+                <div class="photoAndParty col-xs-12 col-sm-3 row hidden-xs">
+                    <div class="party pull-right">
+                        <div class="relat">
+                            <img src="{% static "img/dest/" %}{{councilor.party}}.png">
+                        </div>
+                    </div>
+                    <div class="photo pull-right">
+                        <div class="relat">
+                            <img src="{{councilor.image}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="infoArea col-xs-12 col-sm-9 row">
+                    <div class="name col-xs-12">
+                        <h1>
+                            {{councilor.name}}
+                            {% if not councilor.in_office %}
+                                <small>
+                                    {% if councilor.term_end.reason %}
+                                        （{{ councilor.term_end.reason }}）
+                                    {% else %}
+                                        （已去職）
+                                    {% endif %}
+                                </small>
                             {% endif %}
-                        </small>
-                    {% endif %}
-                </h3>
-                <h4>
-                    <select onchange="location = this.value;">
-                        {% for year in councilor.in_office_year %}
-                        <option value="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=year %}"{% if councilor.election_year == year %} selected{% endif %}>{{year|election_year_range}}</option>
-                        {% endfor %}
-                    </select>
-                </h4>
-                <div class="btn-group" role="group">
-                    <a class="btn btn-default" role="button" id='url_info' href="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-info"> 基本資料</i></a>
-                    {% if councilor.county|county_config:'votes' %}
-                        <a class="btn btn-default" role="button" id='url_vote' href="{% url 'councilors:voter_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-balance-scale"> 表決</i></a>
-                    {% endif %}
-                    <a class="btn btn-default" role="button" id='url_bill' href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-book"> 提案</i></a>
-                    <a class="btn btn-default" role="button" id='url_suggestor' href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-building"> 議員配合款</i></a>
-                    {% if councilor.elected_candidate %}
-                    <a class="btn btn-default" role="button" id='url_polticalcontributions' href="{% url 'candidates:pc' candidate_id=councilor.elected_candidate.candidate_id election_year=councilor.election_year %}"><i class="fa fa-dollar"> 政治獻金</i></a>
-                    {% endif %}
-                    <a class="btn btn-default" role="button" id='url_property' href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" target="_blank"><i class="fa fa-bank"> 個人財產申報</i></a>
-                    <a class="btn btn-default" role="button" id='url_politics' href="{% url 'councilors:platformer' councilor_id=councilor.councilor_id election_year=councilor.election_year %}"><i class="fa fa-comment"> 競選政見</i></a>
+                        </h1>
+                    </div>
+                    <div class="ui-years col-xs-12 row">
+                        <select class="classJ select col-sm-3 col-xs-5 pull-left" onchange="location = this.value;">
+                            {% for year in councilor.in_office_year %}
+                            <option value="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=year %}"{% if councilor.election_year == year %} selected{% endif %}>{{year|election_year_range}}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="info-type col-sm-5 abs hidden-xs">
+                            <p>PROFILE</p>
+                        </div>
+                        <a class="btn-wish pull-right" href="{% url 'platforms:propose' %}?councilor={{councilor.id}}">我想許願</a>
+                    </div>
+                    <div class="photoAndParty photoAndParty-btm col-xs-12 col-sm-3 row hidden-sm hidden-md hidden-lg">
+                        <div class="party">
+                            <div class="relat">
+                                <img src="{% static "img/dest/" %}{{councilor.party}}.png">
+                            </div>
+                        </div>
+                        <div class="photo">
+                            <div class="relat">
+                                <img src="{{councilor.image}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav-resume-all col-xs-11">
+                        <a data-type="profile" href="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">基本資料</a>
+                        <a data-type="video" href="resume-video.html">多媒體</a>
+                        <a data-type="politics" href="{% url 'councilors:biller_sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">提案/表決/政見</a>
+                        <a data-type="fund" href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">配合款</a>
+                        <a data-type="contribution" href="{% url 'candidates:pc' candidate_id=councilor.elected_candidate.candidate_id election_year=councilor.election_year %}">政治獻金</a>
+                        <a data-type="declaration" href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" >財產申報</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-sm-11 col-sm-offset-1 col-xs-12">
-        {% block top-menu %}
-        {% endblock top-menu %}
-        <div class="col-sm-11 col-xs-12 person_detail">
+    <div class="wrapper relat">
+        <div class="container relat classJ contain-1000">
             {% block person_detail %}
             {% endblock person_detail %}
         </div>
-        <hr>
-        <div id="disqus_thread"></div>
     </div>
+    <hr>
+    <div id="disqus_thread"></div>
 {% endblock right %}
 
 {% block script %}

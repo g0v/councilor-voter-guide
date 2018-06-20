@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% load extras %}
 
 {% block title %}
@@ -7,68 +8,49 @@
     <meta itemprop="name" content="投票指南: {{title}}">
 {% endblock title %}
 
+{% block css_file %}
+    <link href="{% static "css/councilmen.min.css" %}" rel="stylesheet">
+{% endblock css_file %}
+
 {% block right %}
     <div class="row">
         <div class="col-sm-3">
-            <div class="panel panel-success">
-                <div class="panel-heading">{{election_year}} 選舉</div>
-                <div class="panel-body">
-                    <h4>讓候選人、政見提早現身！</h4>
-                    <div class="btn-group" role="group">
-                        <a href="{% url 'candidates:intents' election_year=election_year %}" class="btn btn-info"><i class="fa fa-flag-checkered"> 候選人</i></a>
-                        <a href="{% url 'platforms:lists' %}" class="btn btn-success"><i class="fa fa-pencil-square-o"> 來許願</i></a>
+            <div class="wrapper relat">
+                <div class="container relat classJ contain-1000">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">{{election_year}} 選舉</div>
+                        <div class="panel-body">
+                            <h4>讓候選人、政見提早現身！</h4>
+                            <div class="btn-group" role="group">
+                                <a href="{% url 'candidates:intents' election_year=election_year %}" class="btn btn-info"><i class="fa fa-flag-checkered"> 候選人</i></a>
+                                <a href="{% url 'platforms:lists' %}" class="btn btn-success"><i class="fa fa-pencil-square-o"> 來許願</i></a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="panel panel-warning">
-                <div class="panel-heading">來幫忙</div>
-                <div class="panel-body">
-                    <h4>縣市長、議員幹了什麼？<br>由你來摘要！</h4>
-                    <a href="{% url 'dispatch_bill' %}" class="btn btn-danger" target="_blank"><i class="fa fa-pencil-square-o"> 隨機給我一個！</i></a>
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">來幫忙</div>
+                        <div class="panel-body">
+                            <h4>縣市長、議員幹了什麼？<br>由你來摘要！</h4>
+                            <a href="{% url 'dispatch_bill' %}" class="btn btn-danger" target="_blank"><i class="fa fa-pencil-square-o"> 隨機給我一個！</i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-9">
-            <div class="text-center">
-                <button id="auto_locate" class="btn btn-warning"><i class="fa fa-map-marker"> 自動定位</i></button>
-            </div>
-            <div class="five column doubling ui grid hidden-xs">
-                {% for region in regions %}
-                    {% for county in region.counties %}
-                        <div class="column direct-container">
-                            <a id="{{county}}" href="{{category|select_county_reverse_url:county}}" class="direct-item council-light {% cycle 'council-lightyellow' 'council-yellow' %}">
-                                <img class="" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png">
-                                <div></div>
-                                <br>
-                                <br>
-                                <div class="direct-sub right">
-                                    <h4>{{county}}</h4>
-                                </div>
-                            </a>
-                        </div>
-                    {% endfor %}
-                    <hr>
-                {% endfor %}
-            </div>
-            <div class="visible-xs">
-                <div class="panel-group" id="regions" role="tablist" aria-multiselectable="true">
-                {% for region in regions %}
-                    <div class="panel panel-default">
-                        <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#regions" data-target="#{{region.region}}" aria-expanded="false" aria-controls="{{region.region}}">
-                            {{region.region}}
-                            <i class="fa fa-angle-down fa-lg pull-right"></i>
-                        </div>
-                        <div id="{{region.region}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{region.region}}">
-                            <ul class="list-group">
-                            {% for county in region.counties %}
-                                <a class="list-group-item" href="{{category|select_county_reverse_url:county}}">
-                                    <h4>{{county}}</h4>
-                                </a>
-                            {% endfor %}
-                            </ul>
-                        </div>
+            <input class="inv" id="page" type="text" value="councilmen-area">
+            <div class="preload abs"></div>
+            <div class="wrapper relat">
+                <div class="container relat classJ contain-1000">
+                    <div class="head-j row">
+                        <div class="col-xs-7 col-sm-9 col-md-10 title">
+                            <h1>找縣市</h1>
+                        </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="#">回上一頁</a>
                     </div>
-                {% endfor %}
+                    <div class="select-area hidden-xs"><a href="#六都" data-id="六都">六都</a><a href="#北部" data-id="北部">北部</a><a href="#中部" data-id="中部">中部</a><a href="#南部" data-id="南部">南部</a><a href="#東部" data-id="東部">東部</a><a href="#離島" data-id="離島">離島</a><a href="#平地原住民" data-id="平地原住民">平地原住民</a><a href="#高山原住民" data-id="高山原住民">高山原住民</a><button id="auto_locate" class="btn btn-warning pull-right"><i class="fa fa-map-marker"> 自動定位</i></button></div>
+                    <div class="select-county-blk row"></div>
+                    </div>
+                    <div class="content"></div>
                 </div>
             </div>
         </div>
@@ -77,9 +59,9 @@
 {% endblock right %}
 
 {% block script %}
-    <script src="https://d3js.org/d3-array.v1.min.js"></script>
-    <script src="https://d3js.org/d3-geo.v1.min.js"></script>
     <script>
+        var year_global = 2018;//(DEFAULT 為2018 )
+        var jsonUrl_global = '{% static "/json/dest/constituencies_" %}'+year_global+'.json';
         $(document).ready( function() {
             $("#auto_locate").on('click', function() {
                 function error(err) {
@@ -95,7 +77,7 @@
                             lng: position.coords.longitude
                         },
                         success: function(data){
-                            return window.location.href = "/candidates/" + data[0].values[1] + "/";
+                            return window.location.href = "/candidates/councilors/" + data[0].values[1] + "/";
                         },
                         error: function() { alert('抱歉，定位失敗，請手動選擇～'); },
                     });

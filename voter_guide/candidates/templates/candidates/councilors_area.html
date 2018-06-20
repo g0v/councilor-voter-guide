@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load extras %}
+
+{% block title %}
+    <title>{{election_year}} {{county}}候選人</title>
+    <meta property="og:title" content="{{election_year}} {{county}}候選人"/>
+    <meta itemprop="name" content="{{election_year}} {{county}}候選人">
+{% endblock title %}
+
+{% block css_file %}
+    <link href="{% static "css/councilmen.min.css" %}" rel="stylesheet">
+{% endblock css_file %}
+
+{% block social_meta %}
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
+{% endblock social_meta %}
+
+{% block right %}
+    <input class="inv" id="page" type="text" value="councilmen-area">
+    <div class="preload abs"></div>
+    <div class="wrapper relat">
+      <div class="container relat classJ contain-1000">
+        <div class="head-j row">
+          <div class="col-xs-7 col-sm-9 col-md-10 title">
+            <h1>找縣市議員</h1>
+          </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="#">回上一頁</a>
+          <div class="col-xs-7 col-sm-10 area hidden-sm hidden-md hidden-lg">
+            <h2>北部</h2>
+        </div><a class="btn-other col-xs-5 col-sm-3 col-md-2" href="{% url "candidates:mayors_area" %}">改找縣市長</a>
+          <div class="select-area hidden-xs"><a href="#六都" data-id="六都">六都</a><a href="#北部" data-id="北部">北部</a><a href="#中部" data-id="中部">中部</a><a href="#南部" data-id="南部">南部</a><a href="#東部" data-id="東部">東部</a><a href="#離島" data-id="離島">離島</a><a href="#平地原住民" data-id="平地原住民">平地原住民</a><a href="#高山原住民" data-id="高山原住民">高山原住民</a></div>
+          <div class="select-county-blk row"></div>
+        </div>
+        <div class="content"></div>
+      </div>
+    </div>
+    <hr>
+    <div id="disqus_thread"></div>
+{% endblock right %}
+
+{% block script %}
+    <script>
+        var year_global = 2018;//(DEFAULT 為2018 )
+        var jsonUrl_global = '{% static "/json/dest/constituencies_" %}'+year_global+'.json';
+        $('#candidates').addClass('active');
+    </script>
+{% endblock script %}

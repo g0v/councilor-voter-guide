@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load extras %}
+
+{% block title %}
+    <title>{{election_year}} {{county}} - {{district}}候選人</title>
+    <meta property="og:title" content="{{election_year}} {{county}} - {{district}}候選人"/>
+    <meta itemprop="name" content="{{election_year}} {{county}} - {{district}}候選人">
+{% endblock title %}
+
+{% block css_file %}
+    <link href="{% static "css/county-mayor.min.css" %}" rel="stylesheet">
+{% endblock css_file %}
+
+{% block social_meta %}
+    <meta property="og:description" content="{{candidates|length}}位候選人的基本資訊；議員任內的施政立場、出缺席、財產申報、政治獻金、議員配合款等資訊"/>
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
+    <meta itemprop="description" content="{{candidates|length}}位候選人的基本資訊；議員任內的施政立場、出缺席、財產申報、政治獻金、議員配合款等資訊"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
+{% endblock social_meta %}
+
+{% block right %}
+    <input class="inv" id="page" type="text" value="county-mayor">
+    <div class="preload abs"></div>
+    <div class="wrapper relat">
+        <div class="container relat classJ contain-1000">
+            <div class="head-j row">
+                <div class="col-xs-7 col-sm-9 col-md-10 title hidden-xs">
+                    <h1>找縣市長</h1>
+                </div>
+                <div class="col-xs-7 col-sm-10 county hidden-sm hidden-md hidden-lg">
+                    <h2>台北市</h2>
+                </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="#">回上一頁</a><a class="btn-other col-xs-5 col-sm-3 col-md-2 hidden-xs" href="{% url "candidates:councilors_districts" election_year=election_year county=county %}">改找縣市議員</a>
+                <div class="select-area hidden-xs"><a href="#六都" data-id="六都">六都</a><a href="#北部" data-id="北部">北部</a><a href="#中部" data-id="中部">中部</a><a href="#南部" data-id="南部">南部</a><a href="#東部" data-id="東部">東部</a><a href="#離島" data-id="離島">離島</a></div>
+                <div class="select-county hidden-xs"></div>
+                <select class="select col-sm-2 col-xs-5">
+                    <option value="10">第10屆</option>
+                </select><a class="btn-other col-xs-5 col-sm-3 col-md-2 hidden-sm hidden-md hidden-lg pull-right" href="{% url "candidates:councilors_districts" election_year=election_year county=county %}">改找縣市議員</a>
+            </div>
+
+            <div class="content-list row col-xs-12">
+            {% for candidate in candidates %}
+                <div class="content-item row relat{% if candidate.elected %} Current{% endif %}" data-id="{{forloop.counter}}">
+                    <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
+                    <div class="content-item-layer1 row relat">
+                        <a class="profile col-xs-12 row" href="#">
+                            {% if candidate.elected_councilor.image %}
+                            <div class="photo pull-left relat">
+                                <div class="relat">
+                                    <img src="{{candidate.elected_councilor.image}}">
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if candidate.party != '無黨籍' %}
+                            <div class="party pull-left relat">
+                                <div class="relat">
+                                    <img src="{% static "img/dest/" %}{{candidate.party}}.png">
+                                </div>
+                            </div>
+                            {% endif %}
+                            <div class="name col-xs-7 col-sm-4">
+                                <h1 class="classJ exlrgt">{{candidate.name}}</h1>
+                            </div>
+                        </a>
+                        <div class="personal-info col-xs-12 col-sm-3">
+                            <div class="partyname">
+                                <p>黨籍 / <span class="party-val">{{candidate.party}}</span></p>
+                                <p>年齡 / <span class="party-val">{{candidate.candidate.birth|age}}歲</span></p>
+                                <p>財產申報 / <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank"> <img src="{% static "img/dest/dollar.png" %}"></a></p>
+                            </div>
+                        </div>
+
+                        <div class="statistic-info col-xs-12 col-sm-4">
+                        {% for councilor_term in candidate.councilor_terms %}
+                            {% if forloop.counter0 == 0 %}
+                            <div class="tit">
+                                <p>數字統計</p>
+                            </div>
+                            <div class="statistic">
+                                <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>
+                                <p>{{councilor_term.param.bills_role_statistics.sponsor}} 次共同提案</p>
+                                {% if councilor_term.param.votes_decision_statistics %}
+                                    <p>投票缺席率：{{councilor_term.param.votes_decision_statistics.not_voting|percentage:councilor_term.param.votes_decision_statistics.total}} % <small>（{{councilor_term.param.votes_decision_statistics.not_voting}} / {{councilor_term.param.votes_decision_statistics.total}}）</small></p>
+                                {% endif %}
+                                {% if councilor_term.param.attendance_statistics %}
+                                    <p>議會缺席率：{{councilor_term.param.attendance_statistics.absent|percentage:councilor_term.param.attendance_statistics.total}} % <small>（{{councilor_term.param.attendance_statistics.absent}} / {{councilor_term.param.attendance_statistics.total}}）</small></p>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        {% empty %}
+                        {% endfor %}
+                        </div>
+
+                        <div class="contributions-info col-xs-12 col-sm-5 row" onclick="location.href='{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}';" style="cursor: pointer;">
+                            <div class="tit col-xs-12">
+                                <p>政治獻金</p>
+                            </div>
+                            {% for term in candidate.politicalcontributions %}
+                                {% if candidate.politicalcontributions|length == 1 %}
+                                    <div class="year-contri col-xs-3"></div>
+                                {% endif %}
+                                <div class="year-contri col-xs-6">
+                                    <div class="year">{{term.election_year}} </div>
+                                    <div class="income row">
+                                        <div class="col-xs-3 text-left">收：</div>
+                                        <div class="col-xs-9 text-right"><font class="price">{{term.pc.in_total}}</font></div>
+                                    </div>
+                                    <div class="outcome row">
+                                        <div class="col-xs-3 text-left">支：</div>
+                                        <div class="col-xs-9 text-right"><font class="price">{{term.pc.out_total}}</font></div>
+                                    </div>
+                                    <div class="result row">
+                                        <div class="col-xs-3 text-left">餘：</div>
+                                        <div class="col-xs-9 text-right"><font class="price">{{term.pc.balance}}</font></div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="content-btm-ui col-xs-12 row">
+                            {% if candidate.councilor_terms %}
+                                <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'councilors:biller' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">政治履歷 </a>
+                            {% endif %}
+                        </div>
+                        <div class="clearb"></div>
+                    </div>
+
+                    {% if candidate.councilor_terms %}
+                    <div class="content-detail row notFirstCandidate">
+                        {% with sp=standpoints|json_lookup:candidate.id %}
+                        {% if county|county_config:'votes' %}
+                            <div class="vote col-sm-6 row">
+                                <div class="tit row col-sm-12">
+                                    <div class="col-sm-12">表決</div>
+                                </div>
+                                {% if sp.votes %}
+                                    {% for standpoint in sp.votes %}
+                                    <div class="list col-sm-12 row">
+                                        <div class="col-sm-8 col-xs-6">{{standpoint.title}}</div>
+                                        {% if standpoint.decision == "反對" %}
+                                            <div class="statstic-num pull-right bg-reject">
+                                        {% elif standpoint.decision == "贊成" %}
+                                            <div class="statstic-num pull-right bg-approve">
+                                        {% elif standpoint.decision == "沒投票" %}
+                                            <div class="statstic-num pull-right bg-non-vote">
+                                        {% elif standpoint.decision == "棄權" %}
+                                            <div class="statstic-num pull-right bg-giveup">
+                                        {% endif %}
+                                            <a href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">{{standpoint.decision}}</a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        <div class="proposal col-sm-6 row">
+                            <div class="tit row col-sm-12">
+                                <div class="col-sm-12">提案</div>
+                            </div>
+                            {% if sp.bills %}
+                                {% for standpoint in sp.bills %}
+                                    <div class="list col-sm-12 row">
+                                        <div class="col-sm-8 col-xs-6">{{standpoint.title}}</div>
+                                        <div class="statstic-num pull-right bg-proposal">提案</div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                    <div class="list col-sm-12 row">
+                                <a class="btn" href="{% url 'councilors:biller' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">尚無資料，來幫忙摘要！ </a>
+                                    </div>
+                            {% endif %}
+                        </div>
+                        {% endwith %}
+                        {% if county|county_config:'votes' %}
+                            <div class="politics col-sm-12 row">
+                        {% else %}
+                            <div class="proposal col-sm-6 row">
+                        {% endif %}
+                            <div class="tit row col-sm-12">
+                                <div class="col-sm-12">政見</div>
+                            </div>
+                            <div class="list-politics col-sm-12">
+                                {{candidate.elected_councilor.platform|linebreaksbr}}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <hr>
+    <div id="disqus_thread"></div>
+{% endblock right %}
+
+{% block script %}
+    <script>
+        var county_global='{{county}}';
+        var constituency_global = 1;
+        var year_global = 2018;//(DEFAULT 為2018 )
+        var jsonUrl_global = '{% static "/json/dest/constituencies_" %}'+year_global+'.json';
+        var prefixUrl_global = '{% url "candidates:mayors_area" %}';
+    </script>
+
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
+    <script>
+        $(document).ready( function() {
+            $('#candidates').addClass('active');
+            $("[rel='tooltip']").tooltip();
+            $('.price').each(function(index,ele){
+                var number = $(ele).text()
+                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
+                $(ele).replaceWith(zh_number)
+            })
+        });
+    </script>
+{% endblock script %}

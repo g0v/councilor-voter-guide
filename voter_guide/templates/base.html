@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=480">
         <meta http-equiv="Cache-control" content="public">
         {% block title %}
         {% endblock title %}
@@ -22,19 +22,17 @@
         <meta itemprop="description" content="減少盲目投票，讓民主社會的台灣更進步"/>
         <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/facebook-og-image.png"/>
         {% endblock social_meta %}
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="{% static "css/g0v.css" %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static "lib/css/normalize.css" %}">
+        <link rel="stylesheet" href="{% static "lib/css/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="{% static "lib/css/bootstrap-theme.min.css" %}">
+        <link rel="stylesheet" href="{% static "css/all.min.css" %}">
+        <script src="{% static "lib/html5shiv.min.js" %}"></script>
         <link rel="shortcut icon" href="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/favicon.ico.png">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
-        <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/css/semantic.css" rel="stylesheet">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/javascript/semantic.js"></script>
         <link href="{% static "css/style.css" %}" rel="stylesheet">
         <link href="{% static "css/style-responsive.css" %}" rel="stylesheet">
-        <link href="{% static "css/navbar-custom.css" %}" rel="stylesheet">
-        <!--[if lt IE 9]>
-        <script src="//cdnjs.bootcss.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
-        <![endif]-->
+        {% block css_file %}
+        {% endblock css_file %}
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -53,77 +51,37 @@
             js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
             fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
+
+        <div class="classJ loading">
+            <div class="center">
+                <div class="ld"><img src="{% static "img/dest/ring.gif" %}"></div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-fixed-top">
+            <div class="bg-cover abs"></div>
+            <div class="container classJ contain-1200">
+                <div class="bg abs"></div>
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-top" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/"><i class="fa fa-compass"> 投票指南</i></a>
+                <button class="hidden-xs navbar-search navbar-toggle" type="button">
+                    <input type="text" placeholder="輸入關鍵字"><img class="img-responsive" src="{% static "img/dest/search.jpg" %}">
+                </button>
+                <button class="navbar-menu navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar top"></span><span class="icon-bar mid"></span><span class="icon-bar bottom"></span></button><a class="tracklink navbar-brand col-xs-6 col-sm-3" data-ga="logo" href="/" data-href="/">
+                        <img class="img-responsive" src="{% static "img/dest/logo.png" %}"></a>
+                <div class="relat col-xs-12 col-sm-7 pull-right" id="navbar">
+                <ul class="nav navbar-nav relat">
+                    <div class="navbar-toggle navbar-search-mb hidden-sm hidden-md hidden-lg" type="button">
+                        <input type="text" placeholder="輸入關鍵字"><img class="img-responsive" src="{% static "img/dest/search.jpg" %}">
+                    </div>
+                    <li><a class="tracklink custom" data-ga="index" data-href="#" href="#"> <i class="fa fa-caret-right" aria-hidden="true"></i><span>給你好看</span></a></li>
+                    <li><a class="tracklink custom" data-ga="mayor" data-href="{% url "candidates:mayors_area" %}" href="{% url "candidates:mayors_area" %}"><i class="fa fa-caret-right" aria-hidden="true"></i><span>找縣市長 </span></a></li>
+                    <li><a class="tracklink custom" data-ga="index" data-href="{% url "candidates:councilors_area" %}" href="{% url "candidates:councilors_area" %}"><i class="fa fa-caret-right" aria-hidden="true"></i><span>找縣市議員</span></a></li>
+                    <li><a class="tracklink custom" data-ga="index" data-href="{% url 'select_county' category='bills' %}" href="{% url 'select_county' category='bills' %}"> <i class="fa fa-caret-right" aria-hidden="true"></i><span>找提案</span></a></li>
+                    <li><a class="tracklink custom" data-ga="index" data-href="{% url 'select_county' category='votes' %}" href="{% url 'select_county' category='votes' %}"> <i class="fa fa-caret-right" aria-hidden="true"></i><span>找表決</span></a></li>
+                    <li><a class="tracklink custom" data-ga="index" data-href="{% url 'platforms:lists' %}" href="{% url 'platforms:lists' %}"> <i class="fa fa-caret-right" aria-hidden="true"></i><span>許願池</span></a></li>
+                    <li><a class="tracklink custom btn-footer hidden-sm hidden-md hidden-lg" data-ga="index" data-href="./" href="./"> <span>互動區</span></a></li>
+                </ul>
                 </div>
-                <div class="navbar-collapse collapse" id="navbar-collapse-top">
-                    <ul class="nav navbar-nav">
-                    {% if county %}
-                        <li id="candidates" class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">找候選人 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{% url 'candidates:intents' election_year='2018' %}" >2018 候選人</a></li>
-                                <li><a href="{% url 'candidates:districts' election_year='2014' county=county %}" >2014 候選人</a></li>
-                                <li><a href="{% url 'platforms:lists' %}?county={{county}}" >民眾的許願池</a></li>
-                            </ul>
-                        </li>
-                        <li id="councilors"><a href="{% url 'councilors:councilors' county=county %}">找議員</a></li>
-                        <li id="bills"><a href="{% url 'bills:bills' county=county %}" >找提案</a></li>
-                        <li id="votes"><a href="{% url 'votes:votes' county=county %}" >找表決</a></li>
-                        <li id="suggestions" class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">議員配合款 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{% url 'suggestions:county_overview' %}">各縣市總覽</a></li>
-                                <li><a href="{% url 'suggestions:associations' %}">議員和協會的關係</a></li>
-                            </ul>
-                        </li>
-                    {% else %}
-                        <li id="candidates" class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">找候選人 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{% url 'candidates:intents' election_year='2018' %}" >2018 候選人</a></li>
-                                <li><a href="{% url 'select_county' category='candidates' %}">2014 候選人</a></li>
-                                <li><a href="{% url 'platforms:lists' %}" >民眾的許願池</a></li>
-                            </ul>
-                        </li>
-                        <li id="councilors"><a href="{% url 'select_county' category='councilors' %}">找議員</a></li>
-                        <li id="bills"><a href="{% url 'select_county' category='bills' %}">找提案</a></li>
-                        <li id="votes"><a href="{% url 'select_county' category='votes' %}">找表決</a></li>
-                        <li id="suggestions" class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">議員配合款 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{% url 'suggestions:county_overview' %}">各縣市總覽</a></li>
-                                <li><a href="{% url 'suggestions:associations' %}">議員和協會的關係</a></li>
-                            </ul>
-                        </li>
-                    {% endif %}
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        {% if request.user.is_authenticated %}
-                            <li id="accounts" class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    {% if request|new_achievement %}
-                                        <i class="fa fa-star fa-spin fa-fw" style="color: yellow;"></i>
-                                    {% endif %}
-                                    帳戶 <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{% url 'users:achievements' %}"><i class="fa fa-star"> 成就列表{% if request|new_achievement %} <span class="badge">{{request|new_achievement}}</span>{% endif %}</i></a></li>
-                                    <li><a href="{% url 'account_logout' %}"><i class="fa fa-sign-out"> 登出</i></a></li>
-                                </ul>
-                            </li>
-                        {% else %}
-                            <li id="accounts"><a href="{% provider_login_url "facebook" %}?next=/"><i class="fa fa-sign-in"> 登入</i></a></li>
-                        {% endif %}
-                    </ul>
                 </div>
             </div>
         </nav>
@@ -134,15 +92,40 @@
                 {% endblock %}
             </div>
         </div>
-        <footer class="footer">
-            <div align="center" class="container">
-                <span class="fb-like" style="display: inline" data-href="https://www.facebook.com/TW.Voter.Guide/" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></span>
-                <a id="about" href="{% url 'about' %}">關於本站</a>
-                <a id="reference" href="{% url 'reference' %}">資料來源</a>
-                <a id="power_by" href="https://grants.g0v.tw/power" target="_blank"><img src="https://grants.g0v.tw/images/power/poweredby-square-i.png" style="height: 28px"></a>
+
+        <div class="footer classJ">
+            <div class="row contain-1000 classJ">
+                <div class="col-sm-2 hidden-xs btn-j"><a href="{% url "candidates:intents" election_year=2018 %}">
+                    <p>我是候選人</p></a></div>
+                <div class="col-sm-2 hidden-xs btn-j"><a href="#">
+                    <p>互動區</p></a></div>
+                <div class="col-xs-8 col-sm-5 row site-logo">
+                <div class="col-xs-5 power">2018 Powered by</div>
+                <div class="col-xs-7 row"><img class="img-responsive" src="{% static "img/dest/site-logo.jpg" %}"><a class="col-xs-6 abs burnpoint" href="https://www.sparktaiwan.org/" target="_blank"></a><a class="col-xs-6 abs g0v" href="https://grants.g0v.tw/power/" target="_blank"></a></div>
+                </div>
+                <div class="col-xs-3 col-sm-2 btn-j btn-about"><a href="{% url 'about' %}">
+                    <p>關於本站 </p></a></div>
+                <div class="classJ btn-fb hidden-sm hidden-md hidden-lg abs btn-fb-fix"><a href="#"><img class="img-responsive" src="{% static "img/dest/fb.jpg" %}"></a></div>
+                <div class="classJ btn-fb hidden-xs"><a target="_blank" href="https://www.facebook.com/TW.Voter.Guide/"><img class="img-responsive" src="{% static "img/dest/fb.jpg" %}"></a></div>
             </div>
-        </footer>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+        </div>
+
+        <script src="{% static "lib/jquery-2.2.4.min.js" %}"></script>
+        <script src="{% static "lib/jquery.migrate.min.js" %}"></script>
+        <script src="{% static "js/bootstrap.min.js" %}"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js" %}"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js" %}"> </script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" %}"></script>
+        <script src="{% static "lib/underscore.min.js" %}"></script>
+        <script src="{% static "lib/modernizr-latest.js" %}"></script>
+        <script src="{% static "lib/imagesloaded.pkgd.min.js" %}"></script>
+        <script src="{% static "lib/jquery.ba-bbq.min.js" %}"></script>
+        <link rel="stylesheet" href="{% static "lib/css/slick.css" %}">
+        <link rel="stylesheet" href="{% static "lib/css/slick-theme.css" %}">
+        <script src="{% static "lib/slick.min.js" %}"></script>
+        <script src="{% static "js/bundle.min.js" %}"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static "css/fonts.min.css" %}">
         <script type="text/javascript">
             var disqus_shortname = 'councils';
             var disqus_url = '{{current_url}}';

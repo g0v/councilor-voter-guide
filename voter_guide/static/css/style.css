@@ -6,7 +6,6 @@
 }
 
 body {
-    background: #F5F5F5;
     color: #3b3b41;
     border: none;
     font-family: "微軟正黑體", "Microsoft JhengHei", 'Heiti TC', "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "標楷體", TW-Kai, 'Open Sans', sans-serif;
@@ -42,32 +41,6 @@ body {
 
 /* Header Section
 =================================================================== */
-.navbar {
-    margin-bottom: 0px;
-    min-height: 40px;
-    padding-right: 20px;
-    padding-left: 20px;
-    background: #574A68;
-    filter: none;
-    /*text-shadow: 1px 1px 1px #0a0c0e;*/
-    border: none;
-    color: #fff;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    *zoom: 1;
-    border-bottom: 1px solid #E0E0E0; /* rgba(0, 0, 0, 0.05); */
-
-}
-
-a.navbar-brand i {
-    color: #eee;
-    text-shadow: none;
-    font-size: 24px;
-    line-height: 20px;
-    font-weight: bold;
-}
-
 .nav.nav-tabs {
     margin-bottom: 12px;
 }
@@ -140,28 +113,6 @@ a.navbar-brand i {
     background: #BF0060;
     box-shadow: none;
 }
-
-/* Footer
-=================================================================== */
-
-.footer {
-    position: fixed;
-    z-index: 51;
-    bottom: 0 !important;
-    width: 100%;
-    padding: 10px 0px;
-    background: #574A68;
-    color: #fff !important;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-}
-
-.footer > .container > a {
-    color: #fff;
-    padding-left: 20px;
-}
-
 
 /* candidates
 =================================================================== */

@@ -33,6 +33,53 @@ def intents(request, election_year):
     intent_counties = Intent.objects.filter(qs).values('county').annotate(count=Count('county'))
     return render(request, 'candidates/intents.html', {'intents': intents, 'intent_counties': intent_counties, 'election_year': election_year})
 
+def mayors_area(request, election_year):
+    return render(request, 'candidates/mayors_area.html', {'election_year': election_year})
+
+def mayors(request, election_year, county):
+    candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors')\
+                             .order_by('-votes')
+    standpoints = {}
+    for candidate in candidates:
+        terms = Terms.objects.filter(type='mayors', candidate_id=candidate.candidate_id, elected=True)\
+                             .order_by('-election_year')
+        for term in terms:
+            c = connections['default'].cursor()
+            qs = u'''
+                SELECT json_agg(row)
+                FROM (
+                    SELECT
+                        s.title,
+                        count(*) as times,
+                        sum(pro) as pro
+                    FROM bills_mayors_bills lv
+                    JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
+                    JOIN bills_bills v on lv.bill_id = v.uid
+                    WHERE lv.mayor_id = %s AND s.pro = (
+                        SELECT max(pro)
+                        FROM standpoints_standpoints ss
+                        WHERE ss.pro > 0 AND s.bill_id = ss.bill_id
+                        GROUP BY ss.bill_id
+                    )
+                    GROUP BY s.title
+                    ORDER BY pro DESC, times DESC
+                    LIMIT 3
+                ) row
+            '''
+            c.execute(qs, [term.uid, ])
+            r = c.fetchone()
+            if not standpoints.get(candidate.id):
+                standpoints.update({candidate.id: [{'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []}]})
+            else:
+                standpoints[candidate.id].append({'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []})
+    return render(request, 'candidates/mayors.html', {'election_year': election_year, 'county': county, 'candidates': candidates, 'standpoints': standpoints})
+
+def councilors_area(request, election_year):
+    return render(request, 'candidates/councilors_area.html', {'election_year': election_year})
+
+def councilors_districts(request, election_year, county):
+    return render(request, 'candidates/councilors_districts.html', {'election_year': election_year, 'county': county})
+
 def districts(request, election_year, county):
     coming_ele_year = coming_election_year(county)
     intents_count = Intent.objects.filter(election_year=coming_ele_year, county=county).exclude(status='draft').count()
@@ -89,7 +136,7 @@ def district(request, election_year, county, constituency):
     except:
         constiencies = [constituency]
     intents_count = Intent.objects.filter(election_year=coming_ele_year, county=county, constituency__in=transform_to_constiencies).exclude(status='draft').count()
-    candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).order_by('-votes')
+    candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'elected_councilor').order_by('-votes')
     standpoints = {}
     for term in [candidates]:
         for candidate in term:
