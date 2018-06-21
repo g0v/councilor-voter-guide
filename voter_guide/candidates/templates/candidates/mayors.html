@@ -3,9 +3,9 @@
 {% load extras %}
 
 {% block title %}
-    <title>{{election_year}} {{county}} - {{district}}候選人</title>
-    <meta property="og:title" content="{{election_year}} {{county}} - {{district}}候選人"/>
-    <meta itemprop="name" content="{{election_year}} {{county}} - {{district}}候選人">
+    <title>{{election_year}} {{county}}長候選人</title>
+    <meta property="og:title" content="{{election_year}} {{county}}長候選人"/>
+    <meta itemprop="name" content="{{election_year}} {{county}}長候選人">
 {% endblock title %}
 
 {% block css_file %}
@@ -51,13 +51,11 @@
                                 </div>
                             </div>
                             {% endif %}
-                            {% if candidate.party != '無黨籍' %}
                             <div class="party pull-left relat">
                                 <div class="relat">
                                     <img src="{% static "img/dest/" %}{{candidate.party}}.png">
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="name col-xs-7 col-sm-4">
                                 <h1 class="classJ exlrgt">{{candidate.name}}</h1>
                             </div>
