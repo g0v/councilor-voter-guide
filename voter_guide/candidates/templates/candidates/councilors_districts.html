@@ -25,10 +25,10 @@
         <div class="head-j row">
           <div class="col-xs-7 col-sm-9 col-md-10 title">
             <h1>找縣市議員</h1>
-          </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="#">回上一頁</a>
+          </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="{% url "candidates:councilors_area" %}">回上一頁</a>
           <div class="col-xs-7 col-sm-10 area hidden-sm hidden-md hidden-lg">
             <h2>北部</h2>
-        </div><a class="btn-other col-xs-5 col-sm-3 col-md-2" href="{% url "candidates:mayors_area" %}">改找縣市長</a>
+        </div><a class="btn-other col-xs-5 col-sm-3 col-md-2" href="#" onclick="location.href='{% url "candidates:mayors" county=county %}'+location.hash">改找縣市長</a>
           <div class="select-area hidden-xs"><a href="#六都" data-id="六都">六都</a><a href="#北部" data-id="北部">北部</a><a href="#中部" data-id="中部">中部</a><a href="#南部" data-id="南部">南部</a><a href="#東部" data-id="東部">東部</a><a href="#離島" data-id="離島">離島</a><a href="#平地原住民" data-id="平地原住民">平地原住民</a><a href="#高山原住民" data-id="高山原住民">高山原住民</a></div>
           <div class="select-county hidden-xs"></div>
           <div class="select-county-blk row"></div>
