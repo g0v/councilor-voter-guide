@@ -29,20 +29,17 @@
                     <h1>找縣市議員</h1>
                 </div>
                 <div class="col-xs-7 col-sm-10 area hidden-sm hidden-md hidden-lg">
-                    <h2>北部</h2>
+                    <h2></h2>
                 </div><a class="btn-other col-xs-5 col-sm-3 col-md-2 hidden-xs" href="{% url "candidates:mayors" county=county %}">改找縣市長</a>
                 <div class="select-area hidden-xs relat"><a href="#六都" data-id="六都">六都</a><a href="#北部" data-id="北部">北部</a><a href="#中部" data-id="中部">中部</a><a href="#南部" data-id="南部">南部</a><a href="#東部" data-id="東部">東部</a><a href="#離島" data-id="離島">離島</a><a href="#平地原住民" data-id="平地原住民">平地原住民</a><a href="#高山原住民" data-id="高山原住民">高山原住民</a></div>
                 <div class="hover-area abs">
                     <div class="hover-info relat inv">
                         <div class="tri abs"><i class="fa fa-caret-down"></i></div>
-                        <p>高山原住民高山原住民高山原住民高山原住民高山</p>
+                        <p></p>
                     </div>
                 </div>
                 <div class="select-county hidden-xs"></div>
                 <div class="select-constituency hidden-xs relat"></div>
-                <select class="select col-sm-2 col-xs-5">
-                    <option value="10">第10屆</option>
-                </select>
                 <a class="btn-other col-xs-5 col-sm-3 col-md-2 hidden-sm hidden-md hidden-lg pull-right" href="#">改找縣市長</a>
             </div>
 
@@ -55,13 +52,13 @@
                             {% if candidate.elected_councilor.image %}
                             <div class="photo pull-left relat">
                                 <div class="relat">
-                                    <img class="img-responsive" src="{{candidate.elected_councilor.image}}">
+                                    <img src="{{candidate.elected_councilor.image}}">
                                 </div>
                             </div>
                             {% endif %}
                             <div class="party pull-left relat">
                                 <div class="relat">
-                                    <img class="img-responsive" src="{% static "img/dest/" %}{{candidate.party}}.png">
+                                    <img src="{% static "img/dest/" %}{{candidate.party}}.png">
                                 </div>
                             </div>
                             <div class="name col-xs-7 col-sm-4">
@@ -81,7 +78,9 @@
                             <div class="partyname">
                                 <p>黨籍 / <span class="party-val">{{candidate.party}}</span></p>
                                 <p>年齡 / <span class="party-val">{{candidate.candidate.birth|age}}歲</span></p>
+                                {% if candidate.councilor_terms %}
                                 <p>財產申報 / <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank"> <img src="{% static "img/dest/dollar.png" %}"></a></p>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -89,7 +88,7 @@
                         {% for councilor_term in candidate.councilor_terms %}
                             {% if forloop.counter0 == 0 %}
                             <div class="tit">
-                                <p>數字統計</p>
+                                <p>{{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}</p>
                             </div>
                             <div class="statistic">
                                 <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>
