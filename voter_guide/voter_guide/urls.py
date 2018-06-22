@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 from django.conf import settings
+from django.views.generic.base import TemplateView
 
 from rest_framework import routers
 
@@ -37,6 +38,7 @@ urlpatterns = [
     url(r'^dispatch_bill/$', voter_guide_views.dispatch_bill, name='dispatch_bill'),
     url(r'^dispatch_vote/(?P<county>\S+)/$', voter_guide_views.dispatch_vote, name='dispatch_vote'),
     url(r'^dispatch_vote/$', voter_guide_views.dispatch_vote, name='dispatch_vote'),
+    url(r'^seemore/$', TemplateView.as_view(template_name='seemore.html'), name='seemore'),
     url(r'^about/$', voter_guide_views.about, name='about'),
     url(r'^select_county/(?P<category>candidates|councilors|bills|votes)/$', voter_guide_views.select_county, name='select_county'),
     url(r'^reference/$', voter_guide_views.reference, name='reference'),
