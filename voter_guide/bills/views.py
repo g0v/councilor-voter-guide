@@ -22,17 +22,7 @@ _unicode_chr_splitter = _Re( '(?s)((?:[\ud800-\udbff][\udc00-\udfff])|.)' ).spli
 def split_unicode_chrs(text):
     return [chr for chr in _unicode_chr_splitter(text) if (chr!=' ' and chr)]
 
-def select_county(request, index, county):
-    regions = [
-        {"region": "北部", "counties": ["臺北市", "新北市", "桃園市", "基隆市", "宜蘭縣", "新竹縣", "新竹市"]},
-        {"region": "中部", "counties": ["苗栗縣", "臺中市", "彰化縣", "雲林縣", "南投縣"]},
-        {"region": "南部", "counties": ["嘉義縣", "嘉義市", "臺南市", "高雄市", "屏東縣"]},
-        {"region": "東部", "counties": ["花蓮縣", "臺東縣"]},
-        {"region": "離島", "counties": ["澎湖縣", "金門縣", "連江縣"]}
-    ]
-    return render(request, 'bills/select_county.html', {'index': index, 'regions': regions})
-
-def bills(request, county):
+def bills(request, category, county):
     query = Q(county=county)
     if request.GET.get('has_tag') == 'yes':
         query = query & Q(uid__in=Standpoints.objects.exclude(bill__isnull=True).values_list('bill_id', flat=True).distinct())
@@ -47,8 +37,6 @@ def bills(request, county):
             keyword_been_searched(keyword, 'bills', county)
     else:
         bills = Bills.objects.filter(query)
-    if constituency and constituency != 'all':
-        bills = bills.filter(uid__in=Councilors_Bills.objects.filter(petition=False, councilor__in=CouncilorsDetail.objects.filter(county=county, constituency=constituency).values_list('id', flat=True)).values_list('bill_id', flat=True))
     bills = bills.extra(
                      select={
                          'tags': "SELECT json_agg(row) FROM (SELECT title, pro FROM standpoints_standpoints su WHERE su.bill_id = bills_bills.uid ORDER BY su.pro DESC) row",
@@ -57,8 +45,8 @@ def bills(request, county):
                  .order_by('-election_year', '-uid')
     bills = paginate(request, bills)
     standpoints = Standpoints.objects.filter(county=county, bill__isnull=False).exclude(bill__isnull=True).values_list('title', flat=True).order_by('-pro').distinct()
-    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'constituency', 'has_tag'] if request.GET.get(x)])
-    return render(request, 'bills/bills.html', {'county': county, 'keyword_hot': keyword_list('bills', county), 'category': None, 'bills': bills, 'hot_standpoints': standpoints[:5], 'get_params': get_params})
+    get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'has_tag'] if request.GET.get(x)])
+    return render(request, 'bills/bills.html', {'county': county, 'keyword_hot': keyword_list('bills', county), 'category': category, 'bills': bills, 'hot_standpoints': standpoints[:5], 'get_params': get_params})
 
 def bill(request, bill_id):
     bill = get_object_or_404(Bills, uid=bill_id)

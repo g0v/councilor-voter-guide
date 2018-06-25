@@ -28,21 +28,18 @@ def select_county(request, category):
             "css_file": "css/councilmen.min.css",
             "page_id": "councilmen-area",
             "prefix_url": reverse('candidates:councilors_area')
-
         },
         "bills":  {
             "title": "找提案",
             "css_file": "css/bill.min.css",
             "page_id": "bill-area",
             "prefix_url": "/bills/"
-
         },
         "votes":  {
             "title": "找表決",
             "css_file": "css/councilmen.min.css",
             "page_id": "councilmen-area",
             "prefix_url": "/votes/"
-
         }
     }
     election_year = coming_election_year(None)
