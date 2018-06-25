@@ -37,14 +37,13 @@
         <div class="content"></div>
       </div>
     </div>
+    <script>
+        var year_global = 2018;//(DEFAULT 為2018 )
+        var jsonUrl_global = '{% static "/json/dest/constituencies_" %}'+year_global+'.json';
+    </script>
     <hr>
     <div id="disqus_thread"></div>
 {% endblock right %}
 
 {% block script %}
-    <script>
-        var year_global = 2018;//(DEFAULT 為2018 )
-        var jsonUrl_global = '{% static "/json/dest/constituencies_" %}'+year_global+'.json';
-        $('#candidates').addClass('active');
-    </script>
 {% endblock script %}

@@ -68,17 +68,18 @@
         {% endif %}
       </div>
     </div>
-{% endblock right %}
-
-{% block script %}
-    {% include "common/county_district_js.html" %}
-    {% include "common/keyword_auto_complete.html" %}
     <script>
         var county_global = '{{county}}';
         var constituency_global = 1;
         var year_global = 2018;//(DEFAULT 為2018 )
         var jsonUrl_global = '{% static "/json/dest/constituencies_" %}'+year_global+'.json';
         var prefixUrl_global = '/bills/';
+    </script>
+{% endblock right %}
+
+{% block script %}
+    {% include "common/keyword_auto_complete.html" %}
+    <script>
         $(document).ready( function() {
             $('#bills').addClass('active');
             $("[rel='tooltip']").tooltip();

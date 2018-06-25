@@ -188,12 +188,6 @@
             {% endfor %}
         </div>
     </div>
-
-    <hr>
-    <div id="disqus_thread"></div>
-{% endblock right %}
-
-{% block script %}
     <script>
         var county_global='{{county}}';
         var constituency_global = 1;
@@ -201,7 +195,11 @@
         var jsonUrl_global = '{% static "/json/dest/constituencies_" %}'+year_global+'.json';
         var prefixUrl_global = '{% url "candidates:mayors_area" %}';
     </script>
+    <hr>
+    <div id="disqus_thread"></div>
+{% endblock right %}
 
+{% block script %}
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     <script>
         $(document).ready( function() {
