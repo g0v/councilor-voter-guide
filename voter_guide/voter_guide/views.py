@@ -22,14 +22,31 @@ def select_county(request, category):
         {"region": "北部", "counties": ["臺北市"]},
         {"region": "南部", "counties": ["高雄市"]},
     ]
-    titles = {
-        "candidates": "找候選人",
-        "councilors": "找議員",
-        "bills": "找提案",
-        "votes": "找表決"
+    refs = {
+        "candidates": {
+            "title": "找候選人",
+            "css_file": "css/councilmen.min.css",
+            "page_id": "councilmen-area",
+            "prefix_url": reverse('candidates:councilors_area')
+
+        },
+        "bills":  {
+            "title": "找提案",
+            "css_file": "css/bill.min.css",
+            "page_id": "bill-area",
+            "prefix_url": "/bills/"
+
+        },
+        "votes":  {
+            "title": "找表決",
+            "css_file": "css/councilmen.min.css",
+            "page_id": "councilmen-area",
+            "prefix_url": "/votes/"
+
+        }
     }
     election_year = coming_election_year(None)
-    return render(request, 'common/select_county.html', {'title': titles.get(category, ''), 'category': category, 'regions': regions, 'election_year': election_year})
+    return render(request, 'common/select_county.html', {'ref': refs.get(category, {}), 'category': category, 'election_year': election_year})
 
 def dispatch_bill(request, county=None):
     qs = Q(county=county) if county else Q()
