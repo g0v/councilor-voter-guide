@@ -9,7 +9,7 @@ from django.db import connections, IntegrityError, transaction
 from councilors.models import CouncilorsDetail
 from search.models import Keyword
 from search.views import keyword_list, keyword_been_searched
-from .models import Bills, Councilors_Bills
+from .models import Bills, Councilors_Bills, Mayors_Bills
 from candidates.models import Intent, Intent_Standpoints
 from candidates.forms import Intent_StandpointsForm
 from standpoints.models import Standpoints, User_Standpoint
@@ -25,12 +25,16 @@ def split_unicode_chrs(text):
 def bills(request, category, county):
     query = Q(county=county)
     if request.GET.get('has_tag') == 'yes':
-        query = query & Q(uid__in=Standpoints.objects.exclude(bill__isnull=True).values_list('bill_id', flat=True).distinct())
+        query = query & Q(uid__in=Standpoints.objects.filter(bill__isnull=False).values_list('bill_id', flat=True).distinct())
     elif request.GET.get('has_tag') == 'no':
-        query = query & ~Q(uid__in=Standpoints.objects.exclude(bill__isnull=True).values_list('bill_id', flat=True).distinct())
-    query = query & Q(uid__in=Standpoints.objects.filter(title=request.GET['tag']).exclude(bill__isnull=True).values_list('bill_id', flat=True).distinct()) if request.GET.get('tag') else query
+        query = query & ~Q(uid__in=Standpoints.objects.filter(bill__isnull=False).values_list('bill_id', flat=True).distinct())
+    if category == 'councilors':
+        query = query & Q(uid__in=Councilors_Bills.objects.all().values_list('bill_id', flat=True).distinct())
+    elif category == 'city_gov':
+
+        query = query & Q(uid__in=Mayors_Bills.objects.all().values_list('bill_id', flat=True).distinct())
+    query = query & Q(uid__in=Standpoints.objects.filter(title=request.GET['tag'], bill__isnull=False).values_list('bill_id', flat=True).distinct()) if request.GET.get('tag') else query
     keyword = request.GET.get('keyword', '')
-    constituency = request.GET.get('constituency')
     if keyword:
         bills = Bills.objects.filter(query & reduce(operator.and_, (Q(abstract__icontains=x) for x in split_unicode_chrs(keyword))))
         if bills:
@@ -44,9 +48,9 @@ def bills(request, category, county):
                  )\
                  .order_by('-election_year', '-uid')
     bills = paginate(request, bills)
-    standpoints = Standpoints.objects.filter(county=county, bill__isnull=False).exclude(bill__isnull=True).values_list('title', flat=True).order_by('-pro').distinct()
+    standpoints = Standpoints.objects.filter(county=county, bill__isnull=False).values_list('title', flat=True).order_by('-pro').distinct()
     get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'has_tag'] if request.GET.get(x)])
-    return render(request, 'bills/bills.html', {'county': county, 'keyword_hot': keyword_list('bills', county), 'category': category, 'bills': bills, 'hot_standpoints': standpoints[:5], 'get_params': get_params})
+    return render(request, 'bills/bills.html', {'county': county, 'keyword_hot': keyword_list('bills', county), 'category': category, 'bills': bills, 'standpoints': standpoints[:5], 'get_params': get_params})
 
 def bill(request, bill_id):
     bill = get_object_or_404(Bills, uid=bill_id)
