@@ -50,7 +50,7 @@ def bills(request, category, county):
     bills = paginate(request, bills)
     standpoints = Standpoints.objects.filter(county=county, bill__isnull=False).values_list('title', flat=True).order_by('-pro').distinct()
     get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'has_tag'] if request.GET.get(x)])
-    return render(request, 'bills/bills.html', {'county': county, 'keyword_hot': keyword_list('bills', county), 'category': category, 'bills': bills, 'standpoints': standpoints[:5], 'get_params': get_params})
+    return render(request, 'bills/bills.html', {'county': county, 'keyword_hot': keyword_list('bills', county), 'category': category, 'bills': bills, 'standpoints': standpoints, 'get_params': get_params})
 
 def bill(request, bill_id):
     bill = get_object_or_404(Bills, uid=bill_id)
