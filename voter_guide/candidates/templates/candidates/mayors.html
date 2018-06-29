@@ -44,13 +44,11 @@
                     <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
                     <div class="content-item-layer1 row relat">
                         <a class="profile col-xs-12 row" href="#">
-                            {% if candidate.elected_councilor.image %}
                             <div class="photo pull-left relat">
                                 <div class="relat">
-                                    <img src="{{candidate.elected_councilor.image}}">
+                                    <img src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/mayors/{{candidate.election_year}}/{{candidate.county}}_{{candidate.number|zfill:4}}.jpg">
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="party pull-left relat">
                                 <div class="relat">
                                     <img src="{% static "img/dest/" %}{{candidate.party}}.png">

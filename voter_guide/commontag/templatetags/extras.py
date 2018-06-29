@@ -17,6 +17,13 @@ from users.models import Achievements
 register = template.Library()
 
 
+@register.filter(name='zfill')
+def zfill(value, arg):
+    try:
+        return str(value).zfill(arg)
+    except:
+        return value
+
 @register.filter(name='age')
 def age(value):
     try:
