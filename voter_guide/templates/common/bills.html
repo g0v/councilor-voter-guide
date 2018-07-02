@@ -12,8 +12,8 @@
             <div class="title col-xs-12 col-sm-6 col-sm-pull-6">
                 <h1>
                     <a href="{% url 'bills:bill' bill_id=bill.uid %}">
-                    {% if bill.param.sponsors_groupby_party.sponsor|length > 1 %}
-                        {{ bill.param.sponsors_groupby_party.priproposer.party_list.0.councilors.0.name }}...等 {{bill.param.sponsors_groupby_party.sponsor|length}} 位
+                    {% if bill.param.sponsors_groupby_party.sponsor.sum > 1 %}
+                        {{ bill.param.sponsors_groupby_party.priproposer.party_list.0.councilors.0.name }}...和其他 {{bill.param.sponsors_groupby_party.sponsor.sum}} 位
                     {% elif bill.proposed_by %}
                         {{bill.proposed_by}}
                     {% else %}
