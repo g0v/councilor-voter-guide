@@ -43,30 +43,28 @@
               <input name="keyword" id="keyword" type="text" placeholder="輸入關鍵字"><img class="img-responsive" src="{% static "img/dest/search.jpg" %}">
             </form>
           </div>
-          <div class="row col-sm-12 col-xs-12">
-            {% if request.GET.keyword or request.GET.tag %}
-            <div class="kw col-xs-12">
-                <h3>
-                    關鍵字:
-                    <span class="kw-val">
-                    {% if request.GET.keyword %}
-                        {{request.GET.keyword}}
-                    {% elif request.GET.tag %}
-                        {{request.GET.tag}}
-                    {% endif %}
-                    </span>
-                </h3>
-            </div>
-            {% endif %}
-            <div class="filters col-xs-12 col-sm-6 col-md-6 pull-right text-right">
-              <a class="d-inline f-item marked{% if request.GET.has_tag == 'yes' %} act{% endif %}" href=".?{{get_params}}&has_tag=yes" data-id="marked">
-                <div class="check-ico d-inline-block"></div><span>已被網友註記</span>
-              </a>
-              <a class="d-inline f-item unmark{% if request.GET.has_tag == 'no' %} act{% endif %}" href=".?{{get_params}}&has_tag=no" data-id="unmark">
-                <div class="check-ico d-inline-block"></div><span>未被網友註記</span>
-              </a>
-            </div>
+          <div class="filters col-xs-12 col-sm-6 col-md-6 pull-right text-right">
+            <a class="d-inline f-item marked{% if request.GET.has_tag == 'yes' %} act{% endif %}" href=".?{{get_params}}&has_tag=yes" data-id="marked">
+              <div class="check-ico d-inline-block"></div><span>已被網友註記</span>
+            </a>
+            <a class="d-inline f-item unmark{% if request.GET.has_tag == 'no' %} act{% endif %}" href=".?{{get_params}}&has_tag=no" data-id="unmark">
+              <div class="check-ico d-inline-block"></div><span>未被網友註記</span>
+            </a>
           </div>
+          {% if request.GET.keyword or request.GET.tag %}
+          <div class="kw col-xs-12">
+              <h3>
+                  關鍵字:
+                  <span class="kw-val">
+                  {% if request.GET.keyword %}
+                      {{request.GET.keyword}}
+                  {% elif request.GET.tag %}
+                      {{request.GET.tag}}
+                  {% endif %}
+                  </span>
+              </h3>
+          </div>
+          {% endif %}
         </div>
         <div class="content-list row col-xs-12">
         {% if votes %}
