@@ -40,7 +40,7 @@ urlpatterns = [
     url(r'^dispatch_vote/$', voter_guide_views.dispatch_vote, name='dispatch_vote'),
     url(r'^seemore/$', TemplateView.as_view(template_name='seemore.html'), name='seemore'),
     url(r'^about/$', voter_guide_views.about, name='about'),
-    url(r'^select_county/(?P<category>candidates|councilors|bills|votes)/$', voter_guide_views.select_county, name='select_county'),
+    url(r'^select_county/(?P<category>candidates|councilors|bills)/$', voter_guide_views.select_county, name='select_county'),
     url(r'^reference/$', voter_guide_views.reference, name='reference'),
     url(r'^$', voter_guide_views.select_county, {'category': 'candidates'}, name='select_county'),
     url(r'^api/', include(router.urls)),

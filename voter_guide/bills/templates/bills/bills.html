@@ -30,7 +30,7 @@
               <h2>{{county}}</h2>
           </div>
           <div class="col-xs-5 col-sm-2 col-md-2 navbar-search-bill hidden-xs">
-            <form action="" method="get" id="form" style="margin-bottom: 0;">
+            <form action="" method="get" id="form">
               <input name="keyword" id="keyword" type="text" placeholder="輸入關鍵字"><img class="img-responsive" src="{% static "img/dest/search.jpg" %}">
             </form>
           </div>
@@ -44,7 +44,7 @@
             {% endfor %}
           </select>
           <div class="col-xs-5 xol-sm-2 col-md-2 navbar-search-bill hidden-sm hidden-md hidden-lg pull-right">
-            <form action="" method="get" id="form" style="margin-bottom: 0;">
+            <form action="" method="get" id="form">
               <input name="keyword" id="keyword" type="text" placeholder="輸入關鍵字"><img class="img-responsive" src="{% static "img/dest/search.jpg" %}">
             </form>
           </div>
@@ -73,7 +73,7 @@
         </div>
         {% if bills %}
             {% include "common/bills.html" %}
-            {% include "common/pagination.html" with items=bills page_size=0 %}
+            {% include "common/pagemanager.html" with items=bills page_size=0 %}
         {% endif %}
       </div>
     </div>

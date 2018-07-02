@@ -1,32 +1,27 @@
 {% load extras %}
-{% load highlight %}
 
-<li class="media col-sm-6">
-    <div class="media-body well">
-        <div class="text-muted media-heading">
-            （{{ fragment.date|date:"Y-m-d" }}）第{{ fragment.vote_seq }}個表決
+<div class="content-item row relat Current" data-id="1">
+    <div class="markups col-xs-12 col-sm-6 text-right col-sm-push-6">
+    {% for tag in fragment.tags %}
+        <div class="markup-item d-inline-block">
+            <a href="{% url 'votes:votes' county=county %}?tag={{tag.title}}" type="button" rel="tooltip" title="其他同類提案">{{tag.title}}</a>
+            <div class="num d-inline-block">{{tag.pro}}</div>
         </div>
-        <h5 class="text-success">表決內容</h5>
-            <p>{{ fragment.content|linebreaksbr }}</p>
-        <blockquote>
-            <a href="{% url 'votes:vote' fragment.uid %}" rel="tooltip" title="看誰贊成誰反對"><i class="fa fa-pie-chart"> 看誰贊成誰反對</i></a>
-            <a class="pull-right" href="{% url 'votes:vote' fragment.uid %}" ><i class="fa fa-tag"> 我要加標籤、投票</i></a>
-        </blockquote>
-        {% if fragment.tags %}
-            <h5 class="text-success">標籤</h5>
-            {% for tag in fragment.tags %}
-                <a href="{% url 'votes:votes' county=county %}?tag={{tag.title}}" class="btn btn-success" type="button" rel="tooltip" title="有同樣標籤的表決">
-                    {{tag.title}}
-                <span class="badge">{{tag.pro}}</span>
-                </a>
-            {% endfor %}
-        {% endif %}
-        <h5 class="text-success">表決結果</h5>
-        <h3>
+    {% endfor %}
+    </div>
+    <div class="date col-xs-12 col-sm-6 col-sm-pull-6">
+        <h3>{{ fragment.date|date:"Y-m-d" }}</h3>
+    </div>
+    <div class="desc col-xs-12 col-sm-12">
+        <p>表決內容</p>
+        <p>{{ fragment.content }}</p>
+        <p>表決結果</p>
+        <p>
             <span class="label label-default">{{fragment.result|vote_result:'cht'}}</span>
             {% if fragment.conflict %}
                 <small class="text-danger">有議員脫黨投票</small>
             {% endif %}
-        </h3>
+        </p>
     </div>
-</li>
+    <a class="btn-j pull-right" href="{% url 'votes:vote' fragment.uid %}">一起來點評</a>
+</div>

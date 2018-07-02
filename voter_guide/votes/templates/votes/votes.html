@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load extras %}
+{% load staticfiles %}
 
 {% block title %}
     <title>{{county}}議會-表決檢索</title>
@@ -7,50 +7,82 @@
     <meta itemprop="name" content="{{county}}議會-表決檢索">
 {% endblock %}
 
+{% block css_file %}
+    <link href="{% static "css/ballot.min.css" %}" rel="stylesheet">
+{% endblock css_file %}
+
 {% block social_meta %}
     <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
     <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
 {% endblock social_meta %}
 
 {% block right %}
-    <div class="container-fluid">
-        <br>
-        {% include "common/votes_search.html" %}
-        <p>
-        {% if hot_standpoints %}
-            <h4>熱門標籤：
-            {% for standpoint in hot_standpoints %}
-                <a href="{% url 'votes:votes' county=county %}?tag={{standpoint.title}}" rel="tooltip" title="包含此標籤的表決"><font style="color: #9F0050;"><b>{{standpoint.title}}</b>&nbsp;&nbsp;</font></a>
+
+    <input class="inv" id="page" type="text" value="ballot">
+    <div class="preload abs"></div>
+    <div class="wrapper relat">
+      <div class="container relat classJ contain-1000">
+        <div class="head-j row">
+          <div class="col-xs-7 col-sm-9 col-md-10 title">
+            <h1>找表決</h1>
+          </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="#">回上一頁</a>
+          <div class="col-xs-5 col-sm-2 col-md-2 navbar-search-bill hidden-xs">
+            <form action="" method="get" id="form">
+                <input name="keyword" id="keyword" type="text" placeholder="輸入關鍵字"><img class="img-responsive" src="{% static "img/dest/search.jpg" %}">
+            </form>
+          </div>
+          <div class="select-bill hidden-xs col-xs-12"><a{% if county == '臺北市' %} class="act"{% endif %}  href="{% url "votes:votes" county='臺北市' %}" data-id="臺北市">臺北議會表決</a><a{% if county == '高雄市' %} class="act"{% endif %} href="{% url "votes:votes" county='高雄市' %}" data-id="高雄市">高雄議會表決</a></div>
+          <select class="select col-sm-3 col-xs-5" onchange="location.href=this.value">
+            <option value="" disabled selected>網友摘要</option>
+            {% for standpoint in standpoints %}
+            <option value="?tag={{standpoint}}">{{standpoint}}</option>
             {% endfor %}
-            </h4>
-        {% endif %}
-        {% if hot_keyword %}
-            <h4>熱門：
-            {% for keyword in hot_keyword %}
-                <a href="{% url 'votes:votes' county=county %}?keyword={{keyword}}" rel="tooltip" title="包含此關鍵字的表決"><font style="color: #9F0050;">{{keyword}}&nbsp;&nbsp;</font></a>
-            {% endfor %}
-            </h4>
-        {% endif %}
-        </p>
-        <div class="well well-sm">
-            {{county}} {{ votes.paginator.count }} 個
-            {% if request.GET.keyword %}
-                與<font style="color: red;"><b>{{request.GET.keyword}}</b></font>相關的
-            {% elif request.GET.tag %}
-                與<font style="color: red;"><b>{{request.GET.tag}}</b></font>相關的
+          </select>
+          <div class="col-xs-5 col-sm-2 col-md-2 navbar-search-bill hidden-sm hidden-md hidden-lg pull-right">
+            <form action="" method="get" id="form">
+              <input name="keyword" id="keyword" type="text" placeholder="輸入關鍵字"><img class="img-responsive" src="{% static "img/dest/search.jpg" %}">
+            </form>
+          </div>
+          <div class="row col-sm-12 col-xs-12">
+            {% if request.GET.keyword or request.GET.tag %}
+            <div class="kw col-xs-12">
+                <h3>
+                    關鍵字:
+                    <span class="kw-val">
+                    {% if request.GET.keyword %}
+                        {{request.GET.keyword}}
+                    {% elif request.GET.tag %}
+                        {{request.GET.tag}}
+                    {% endif %}
+                    </span>
+                </h3>
+            </div>
             {% endif %}
-            表決
+            <div class="filters col-xs-12 col-sm-6 col-md-6 pull-right text-right">
+              <a class="d-inline f-item marked{% if request.GET.has_tag == 'yes' %} act{% endif %}" href=".?{{get_params}}&has_tag=yes" data-id="marked">
+                <div class="check-ico d-inline-block"></div><span>已被網友註記</span>
+              </a>
+              <a class="d-inline f-item unmark{% if request.GET.has_tag == 'no' %} act{% endif %}" href=".?{{get_params}}&has_tag=no" data-id="unmark">
+                <div class="check-ico d-inline-block"></div><span>未被網友註記</span>
+              </a>
+            </div>
+          </div>
         </div>
+        <div class="content-list row col-xs-12">
         {% if votes %}
-        {% include "common/pagination.html" with items=votes page_size=0 %}
-        <ul class="media-list row">
             {% for fragment in votes %}
                 {% include "votes/vote_summary.html" %}
             {% endfor %}
-        </ul>
-        {% include "common/pagination.html" with items=votes page_size=0 %}
+            {% include "common/pagemanager.html" with items=votes page_size=0 %}
         {% endif %}
+      </div>
     </div>
+    <script>
+        var county_global='臺北市';
+        var constituency_global = 1;
+        var year_global = 2018;//(DEFAULT 為2018 )
+        var jsonUrl_global = '{% static "/json/dest/constituencies_" %}'+year_global+'.json';
+    </script>
 {% endblock right %}
 
 {% block script %}
