@@ -16,6 +16,7 @@
 {% endblock social_meta %}
 
 {% block right %}
+<div class="container-fluid" style="margin-top: 100px;">
     <div class="row">
         <div class="col-sm-3">
             <div class="row">
@@ -184,7 +185,7 @@
         </div>
 
         <div class="modal fade " tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog" role="document" style="z-index:2000">
                 <div class="modal-content">
                     <div class="modal-body">
                         {% if standpoints_of_vote.0.pro > 0 %}
@@ -230,15 +231,16 @@
                         <p>在<span style="background-color: #ffff001a;">黃色標籤區</span>寫下、投下您的看法，謝謝您的參與！</p>
                     </div>
                     <div class="modal-footer">
-                        <button id="disable_popup" type="button" class="btn btn-default" data-dismiss="modal">夠了哦，暫時勿跳出對話框！</button>
+                        <button id="disable_popup" type="button" class="btn btn-default" data-dismiss="modal">暫時別再提醒</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">好！</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
     </div><!--end: row -->
-    <hr>
-    <div id="disqus_thread"></div>
+</div><!--end: container-fluid -->
+<hr>
+<div id="disqus_thread"></div>
 {% endblock right %}
 
 {% block script %}
