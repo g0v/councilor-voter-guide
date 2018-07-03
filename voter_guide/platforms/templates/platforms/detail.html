@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load socialaccount %}
+{% load staticfiles %}
 
 {% block title %}
     <title>投票指南:民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的願望</title>
@@ -13,122 +14,115 @@
     </style>
 {% endblock title %}
 
+{% block css_file %}
+    <link href="{% static "css/wish.min.css" %}" rel="stylesheet">
+{% endblock css_file %}
+
 {% block right %}
-    <div class="row">
-        {% if user.is_authenticated or intent or intent_sp_of_platform%}
-        <div class="col-sm-6">
-        {% else %}
-        <div class="col-sm-offset-3 col-sm-6">
-        {% endif %}
-            <div class="text-center">
-                <h2>民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的願望 <small><i class="fa fa-thumbs-up"> {{platform.likes}}</i></small></h2>
-                {% if request.user.is_authenticated %}
-                    <form class="form" action="" method="post">{% csrf_token %}
-                    {% if user_liked %}
-                        <button class="btn btn-success" type="submit" name="decision" value="downvote"><i class="fa fa-thumbs-up"> 收回讚</i></button>
-                    {% else %}
-                        <button class="btn btn-success" type="submit" name="decision" value="upvote"><i class="fa fa-thumbs-up"> 讚</i></button>
-                    {% endif %}
-                    </form>
-                {% else %}
-                    <a href="{% provider_login_url "facebook" %}?next={% url 'platforms:detail' platform_id=platform.uid %}" class="btn btn-success"><i class="fa fa-sign-in"> 登入按讚</i></a>
-                {% endif %}
-            </div>
-            {% if platform.county %}
-                <div class="property-header">許願縣市</div>
-                <div class="property-body">{{platform.county}}</div>
-            {% elif platform.mayor %}
-                <div class="property-header">許願對象(縣市長)</div>
-                <div class="property-body">{{platform.mayor}}</div>
-            {% elif platform.intent %}
-                <div class="property-header">許願對象(候選人)</div>
-                <div class="property-body">{{platform.intent}}</div>
-            {% endif %}
-            <div class="property-header">願望：</div>
-            <textarea style="display: none">{{platform.content}}</textarea>
-            <div class="property-body"></div>
+
+    <input class="inv" id="page" type="text" value="wish">
+    <div class="preload abs"></div>
+    <div class="wrapper relat">
+      <div class="container relat classJ contain-1000">
+        <div class="head-j row">
+          <div class="col-xs-8 col-sm-2 col-md-2 title">
+            <h1>許願池</h1>
+          </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="#">回上一頁</a>
+          <div class="ui row col-xs-12 col-sm-10">
+            <a href="{% provider_login_url "facebook" %}?next={% url 'platforms:propose' %}" class="col-xs-4 btn-wish pull-left">我想許願</a>
+          </div>
         </div>
-
-        {% if user.is_authenticated or intent or intent_sp_of_platform%}
-        <div class="col-sm-6">
-            {% if user.is_authenticated and intent %}
-            <div class="panel panel-info">
-                <div class="panel-heading">候選人{{intent}}，您贊成這個願望嗎？</div>
-                <div class="panel-body">
-                    <div style="background-color: #00a1ff1a; padding: 16px;">
-                        <form action="" method="post" class="form-horizontal">
-                            {% csrf_token %}
-                            <fieldset>
-                                <input type="hidden" name="intent" value=""/>
-                                <div class="form-group">
-                                    {{ form.pro.errors }}
-                                    <label class="col-sm-3 control-label" for="{{ form.pro.id_for_label }}">贊成？</label>
-                                    <div class="col-sm-9">
-                                        {{form.pro}}
-                                        {% if form.pro.value != None %}
-                                            （已填答）
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    {{ form.comment.errors }}
-                                    <label class="col-sm-3 control-label" for="{{ form.comment.id_for_label }}">意見</label>
-                                    <div class="col-sm-9">
-                                        {{form.comment}}
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-success pull-right">確定</button>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
+        <div class="content-list row col-xs-12">
+          <div class="content-item row relat col-xs-12 col-sm-6" data-id="1">
+            <div class="bg abs"></div>
+            <div class="desc col-xs-12 col-sm-12">
+              <p class="name">陳中原</p>
+              <textarea style="display: none">{{platform.content}}</textarea>
+              <p>
+                <div class="property-body"></div>
+              </p>
             </div>
-            {% endif %}
+          </div>
+          {% if user.is_authenticated and intent %}
+          <div class="content-item row relat col-xs-12 col-sm-6" data-id="2">
+              <div class="bg abs"></div>
+              <div class="desc col-xs-12 col-sm-12">
+                  <p class="name">候選人{{intent}}，您贊成這個願望嗎？</p>
+                  <div>
+                      <form action="" method="post" class="form-horizontal">
+                          {% csrf_token %}
+                          <fieldset>
+                              <input type="hidden" name="intent" value=""/>
+                              <div class="form-group">
+                                  {{ form.pro.errors }}
+                                  <label class="col-sm-3 control-label" for="{{ form.pro.id_for_label }}">贊成？</label>
+                                  <div class="col-sm-9">
+                                      {{form.pro}}
+                                      {% if form.pro.value != None %}
+                                          （已填答）
+                                      {% endif %}
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  {{ form.comment.errors }}
+                                  <label class="col-sm-3 control-label" for="{{ form.comment.id_for_label }}">意見</label>
+                                  <div class="col-sm-9">
+                                      {{form.comment}}
+                                  </div>
+                              </div>
+                              <button type="submit" class="btn btn-success pull-right">確定</button>
+                          </fieldset>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          {% endif %}
 
-            {% if intent_sp_of_platform %}
-            <div class="panel panel-success">
-                <div class="panel-heading">候選人對此願望的看法</div>
-                <div class="panel-body clearfix">
-                {% for fragment in intent_sp_of_platform %}
-                    <div class="col-sm-6">
-                        {% if fragment.pro == False %}
-                        <div class="popover popover-static popover-danger left">
-                            <div class="arrow"></div>
-                            <h3 class="popover-title">
-                                <i class="fa fa-times-circle text-danger"> 反對</i>
-                            </h3>
-                        {% elif fragment.pro == True %}
-                        <div class="popover popover-static popover-danger right">
-                            <div class="arrow"></div>
-                            <h3 class="popover-title">
-                                <i class="fa fa-check-circle text-success"> 贊成</i>
-                            </h3>
-                        {% endif %}
-                            <div class="popover-content">
-                                <dl>
-                                {% for element in fragment.party_list %}
-                                    <dt data-toggle="collapse" data-target="#ref_{{fragment.pro}}_{{element.party}}"><span>{{element.party}}（{{element.intents|length}}人回覆） <i class="fa fa-caret-square-o-up"></i></span></dt>
-                                    <div id="ref_{{fragment.pro}}_{{element.party}}" class="collapse in">
-                                        <ul class="list-unstyled">
-                                        {% for intent in element.intents %}
-                                            <li><a href="{% url 'candidates:intent_detail' intent_id=intent.intent_id %}" >{{intent.county}}候選人 {{intent.name}}</a>：{{intent.comment}}</li>
-                                        {% endfor %}
-                                        </ul>
-                                    </div>
-                                {% endfor %}
-                                </dl>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-                </div>
-            </div>
-            {% endif %}
+          {% if intent_sp_of_platform %}
+          <div class="content-item row relat col-xs-12 col-sm-6" data-id="3">
+              <div class="bg abs"></div>
+              <div class="desc col-xs-12 col-sm-12">
+                  <p class="name">候選人對此願望的看法</p>
+                  {% for fragment in intent_sp_of_platform %}
+                  <div class="col-sm-6">
+                      {% if fragment.pro == False %}
+                      <div class="popover popover-static popover-danger left">
+                          <div class="arrow"></div>
+                          <h3 class="popover-title">
+                              <i class="fa fa-times-circle text-danger"> 反對</i>
+                          </h3>
+                      {% elif fragment.pro == True %}
+                      <div class="popover popover-static popover-danger right">
+                          <div class="arrow"></div>
+                          <h3 class="popover-title">
+                              <i class="fa fa-check-circle text-success"> 贊成</i>
+                          </h3>
+                      {% endif %}
+                          <div class="popover-content">
+                              <dl>
+                              {% for element in fragment.party_list %}
+                                  <dt data-toggle="collapse" data-target="#ref_{{fragment.pro}}_{{element.party}}"><span>{{element.party}}（{{element.intents|length}}人回覆） <i class="fa fa-caret-square-o-up"></i></span></dt>
+                                  <div id="ref_{{fragment.pro}}_{{element.party}}" class="collapse in">
+                                      <ul class="list-unstyled">
+                                      {% for intent in element.intents %}
+                                          <li><a href="{% url 'candidates:intent_detail' intent_id=intent.intent_id %}" >{{intent.county}}候選人 {{intent.name}}</a>：{{intent.comment}}</li>
+                                      {% endfor %}
+                                      </ul>
+                                  </div>
+                              {% endfor %}
+                              </dl>
+                          </div>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+          </div>
+          {% endif %}
 
         </div>
-        {% endif %}
-
+      </div>
     </div>
+
     <hr>
     <div id="disqus_thread"></div>
 {% endblock right %}

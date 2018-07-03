@@ -22,9 +22,18 @@ def lists(request):
         'likes': 'likes'
     }
     order_by = ref.get(request.GET.get('order_by'), 'likes')
-    qs = Q(county=request.GET.get('county')) if request.GET.get('county') else Q()
-    platforms = Platforms.objects.filter(qs).select_related('user').prefetch_related('intent_standpoints').order_by('-%s' % order_by)
-    platforms = paginate(request, platforms)
+    qs = Q()
+    if request.GET.get('type'):
+        if request.GET['type'] == 'city':
+            qs = Q(county__isnull=False)
+        elif request.GET['type'] == 'candidates':
+            qs = Q(intent__isnull=False) | Q(candidate__isnull=False)
+        elif request.GET['type'] == 'councilors':
+            qs = Q(councilor__isnull=False)
+        elif request.GET['type'] == 'mayors':
+            qs = Q(mayor__isnull=False)
+    platforms = Platforms.objects.filter(qs).prefetch_related('intent_standpoints').order_by('-%s' % order_by)
+    platforms = paginate(request, platforms, 12)
     return render(request, 'platforms/lists.html', {'platforms': platforms})
 
 def detail(request, platform_id):

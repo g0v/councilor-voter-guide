@@ -9,5 +9,8 @@ class PlatformsForm(forms.ModelForm):
         model = Platforms
         fields = ['county', 'content', 'intent', 'mayor', 'councilor']
         widgets = {
-            'county': forms.widgets.Select(choices=counties, attrs={'class': 'form-control'}),
+            'county': forms.widgets.Select(choices=counties, attrs={'class': 'select'}),
+            'intent': forms.widgets.Select(choices=counties, attrs={'class': 'select'}),
+            'mayor': forms.widgets.Select(choices=counties, attrs={'class': 'select'}),
+            'councilor': forms.widgets.Select(choices=counties, attrs={'class': 'select'}),
         }

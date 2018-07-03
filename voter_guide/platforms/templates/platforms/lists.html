@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load socialaccount %}
+{% load staticfiles %}
 {% load extras %}
 
 {% block title %}
@@ -14,71 +15,81 @@
     </style>
 {% endblock title %}
 
+{% block css_file %}
+    <link href="{% static "css/wish.min.css" %}" rel="stylesheet">
+{% endblock css_file %}
+
 {% block right %}
-    <div class="page-header text-center">
-        <h2>
-            <i class="fa fa-birthday-cake">
-                {% if request.GET.county %}
-                    {{request.GET.county}}
-                {% endif %}
-                民眾的許願池
-            </i>
-        </h2>
-        <h4><small>民眾許個願！歡迎候選人揀去做！</small></h4>
-        <a href="{% provider_login_url "facebook" %}?next={% url 'platforms:propose' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 來許願</i></a>
-        <ul class="pull-left list-unstyled">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sort-desc"> 排序</i></a>
-                <ul class="dropdown-menu">
-                    <li><a href="?order_by=create_at" rel="tooltip" title="改依發表時間排序"><i class="fa fa-sort-numeric-desc"> 依發表時間</i></a></li>
-                    <li><a href="?order_by=likes" rel="tooltip" title="改依按讚數排序"><i class="fa fa-sort-amount-desc"> 依按讚數</i></a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <div class="row">
-    {% for platform in platforms %}
-        <div class="col-sm-4">
-            <div class="panel panel-default">
-                <div class="text-center">
-                    <h4><a href="{% url 'platforms:detail' platform_id=platform.uid %}">民眾（{{platform.user.last_name}}{{platform.user.first_name}}）的願望 </a><small><i class="fa fa-thumbs-up"> {{platform.likes}}</i></small></h4>
-                </div>
-                <div class="panel-body">
-                {% if platform.county %}
-                    <div class="property-header">許願縣市</div>
-                    <div class="property-body">{{platform.county}}</div>
-                {% elif platform.mayor %}
-                    <div class="property-header">許願對象(縣市長)</div>
-                    <div class="property-body">{{platform.mayor}}</div>
-                {% elif platform.intent %}
-                    <div class="property-header">許願對象(候選人)</div>
-                    <div class="property-body">{{platform.intent}}</div>
-                {% endif %}
-                    <div class="property-header">願望：</div>
-                    <textarea style="display: none">{{platform.content}}</textarea>
-                    <div class="property-body"></div>
-                {% if platform.intent_standpoints.all %}
-                    <div class="property-header">擬參選人回應：</div>
-                    <div class="property-body">
-                    <a href="{% url 'platforms:detail' platform_id=platform.uid %}">
-                    {% for intent in platform.intent_standpoints.all %}
-                        {% with user_id=intent.intent.user.socialaccount_set.first.uid %}
-                            <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=24">
-                        {% endwith %}
-                        {{intent.intent}}&nbsp;&nbsp;
-                    {% endfor %}
-                    </a>
-                    </div>
-                {% endif %}
-                </div>
+
+    <input class="inv" id="page" type="text" value="wish-list">
+    <div class="preload abs"></div>
+    <div class="wrapper relat">
+      <div class="container relat classJ contain-1000">
+        <div class="head-j row">
+          <div class="col-xs-8 col-sm-2 col-md-2 title">
+            <h1>許願池</h1>
+          </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="#">回上一頁</a>
+          <div class="ui row col-xs-12 col-sm-10">
+            <a href="{% provider_login_url "facebook" %}?next={% url 'platforms:propose' %}" class="col-xs-4 btn-wish pull-left">我想許願</a>
+          </div>
+          <div class="row col-sm-12 col-xs-12 kwset">
+            <div class="kw col-xs-12 col-sm-6">
             </div>
+            <div class="filters col-xs-12 col-sm-6 col-md-6 pull-right text-right">
+                <a class="d-inline f-item{% if request.GET.type == 'city' %} act{% endif %}" href="?type=city" data-id="marked">
+                    <div class="check-ico d-inline-block"></div><span>城市願望</span>
+                </a>
+                <a class="d-inline f-item{% if request.GET.type == 'candidates' %} act{% endif %}" href="?type=candidates" data-id="unmark">
+                    <div class="check-ico d-inline-block"></div><span>候選人願望</span>
+                </a>
+                <a class="d-inline f-item{% if request.GET.type == 'councilors' %} act{% endif %}" href="?type=councilors" data-id="unmark">
+                    <div class="check-ico d-inline-block"></div><span>議員願望</span>
+                </a>
+                <a class="d-inline f-item{% if request.GET.type == 'mayors' %} act{% endif %}" href="?type=mayors" data-id="unmark">
+                    <div class="check-ico d-inline-block"></div><span>縣市長願望</span>
+                </a>
+            </div>
+          </div>
+          <div class="select-county-blk row">
+            {% for platform in platforms %}
+            <div class="col-xs-6 col-sm-3">
+                <a class="info bg-light-group-color{{forloop.counter}}" href="{% url "platforms:detail" platform_id=platform.uid %}">
+                    <div class="bg abs"> <img class="img-responsive" src="{% static "img/dest/wish-box-bg.png" %}"></div>
+                    <p class="relat">
+                    {% if platform.county %}
+                        <p>許願縣市</p>
+                        <p>{{platform.county}}</p>
+                    {% elif platform.mayor %}
+                        <p>許願對象(縣市長)</p>
+                        <p>{{platform.mayor}}</p>
+                    {% elif platform.councilor %}
+                        <p>許願對象(議員)</p>
+                        <p>{{platform.councilor}}</p>
+                    {% elif platform.intent %}
+                        <p>許願對象(候選人)</p>
+                        <p>{{platform.intent}}</p>
+                    {% endif %}
+                    </p>
+                    <textarea style="display: none">{{platform.content}}</textarea>
+                    <div class="hover-info"></div>
+                    {% if platform.intent_standpoints.all %}
+                    <br>
+                    <p>
+                        擬參選人回應：
+                        {{platform.intent_standpoints.all.0.intent}}...
+                    </p>
+                    {% endif %}
+                </a>
+            </div>
+            {% endfor %}
+          </div>
         </div>
-    {% endfor %}
+        <div class="content"></div>
+      </div>
     </div>
+
     {% if platforms %}
-        <div class="text-center">
-            {% include "common/pagination.html" with items=platforms page_size=0 %}
-        </div>
+        {% include "common/pagemanager.html" with items=platforms page_size=0 %}
     {% endif %}
     <div id="disqus_thread"></div>
 {% endblock right %}
@@ -92,7 +103,7 @@
             $("textarea").each( function() {
                 var simplemde = new SimpleMDE({ element: $(this)[0], toolbar: false , status: false});
                 var renderedHTML = simplemde.options.previewRender(simplemde.value());
-                var property_body = $(this).nextAll('div.property-body:first');
+                var property_body = $(this).nextAll('div.hover-info:first');
                 property_body.html(renderedHTML);
                 property_body.children('table').addClass('table table-bordered table-condensed');
             });

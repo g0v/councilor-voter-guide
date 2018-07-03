@@ -1,9 +1,11 @@
 <div class="pagemanager col-xs-12">
-    <div class="btn-j btnArrow btnPrev d-inline-block"><i class="fa fa-caret-left" aria-hidden="true"></i></div>
-    {% for page in items.paginator.page_range %}
-    {% with p=page|stringformat:"i" %}
-        <a class="pg d-inline-block pg{{forloop.counter}}{% if request.GET.page == p %} act{% endif %}" data-id="{{page}}" href="{% if get_params %}?{{get_params}}&page={{page}}{% else %}?page={{page}}{% endif %}">{{page}}</a>
-    {% endwith %}
-    {% endfor %}
-    <div class="btn-j btnArrow btnNext d-inline-block"><i class="fa fa-caret-right" aria-hidden="true"></i></div>
+    <div class="track d-inline-block">
+        <div class="btn-j btnArrow btnPrev d-inline-block"><i class="fa fa-caret-left" aria-hidden="true"></i></div>
+        {% for page in items.paginator.page_range %}
+        {% with p=page|stringformat:"i" %}
+            <a class="pg d-inline-block pg{{forloop.counter}}{% if request.GET.page == p %} act{% endif %}" data-id="{{page}}" href="{% if get_params %}?{{get_params}}&page={{page}}{% else %}?page={{page}}{% endif %}">{{page}}</a>
+        {% endwith %}
+        {% endfor %}
+        <div class="btn-j btnArrow btnNext d-inline-block"><i class="fa fa-caret-right" aria-hidden="true"></i></div>
+    </div>
 </div>

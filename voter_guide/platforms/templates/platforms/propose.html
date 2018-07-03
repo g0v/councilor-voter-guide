@@ -1,90 +1,74 @@
 {% extends "base.html" %}
+{% load socialaccount %}
+{% load staticfiles %}
 
 {% block title %}
     <title>許個願</title>
     <meta property="og:title" content="許個願"/>
     <meta itemprop="name" content="許個願">
-    <link href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" rel="stylesheet">
+{% endblock title %}
+
+{% block css_file %}
+    <link href="{% static "css/wish.min.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "lib/css/simplemde.min.css" %}">
+    <script src="{% static "lib/simplemde.min.js" %}"></script>
     <style>
         .CodeMirror, .CodeMirror-scroll {
             min-height: 100px;
-            height: 200px;
+            height: 320px;
         }
         .editor-toolbar.fullscreen {
             z-index: 1031;
         }
     </style>
-{% endblock title %}
+{% endblock css_file %}
 
 {% block right %}
-    <div class="page-header text-center">
-        <h2>許個願</h2>
-        <h4>民眾（{{request.user.last_name}}{{request.user.first_name}}）的願望</h4>
-    </div>
-    <form class="form-horizontal" action="" method="post" novalidate>{% csrf_token %}
-        <div class="row">
-            {% if form.county %}
-            <div class="form-group">
-                {{ form.county.errors }}
-                <label class="col-sm-3 control-label" for="{{ form.county.id_for_label }}">許願{{ form.county.label }}：</label>
-                <div class="col-sm-6">
-                {{ form.county }}
-                </div>
-            </div>
-            {% endif %}
-            {% if form.mayor %}
-            <div class="form-group">
-                {{ form.mayor.errors }}
-                <label class="col-sm-3 control-label" for="{{ form.mayor.id_for_label }}">許願對象({{ form.mayor.label }})：</label>
-                <div class="col-sm-6">
-                {{ form.mayor }}
-                </div>
-            </div>
-            {% elif form.intent %}
-            <div class="form-group">
-                {{ form.intent.errors }}
-                <label class="col-sm-3 control-label" for="{{ form.intent.id_for_label }}">許願對象({{ form.intent.label }})：</label>
-                <div class="col-sm-6">
-                {{ form.intent }}
-                </div>
-            </div>
-            {% elif form.councilor %}
-            <div class="form-group">
-                {{ form.councilor.errors }}
-                <label class="col-sm-3 control-label" for="{{ form.councilor.id_for_label }}">許願對象({{ form.councilor.label }})：</label>
-                <div class="col-sm-6">
-                {{ form.councilor }}
-                </div>
-            </div>
-            {% endif %}
-            <div class="form-group">
-                <label class="col-sm-3 control-label"></label>
-                <div class="col-sm-6">
-            {% for intent in intents %}
-            {% with user_id=intent.user.socialaccount_set.first.uid %}
-                <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=60">
-            {% endwith %}
-            {% endfor %}
-                </div>
-            </div>
-            <div class="form-group">
-                {{ form.content.errors }}
-                <label class="col-sm-3 control-label" for="{{ form.content.id_for_label }}">{{ form.content.label }}：</label>
-                <div class="col-sm-6">
-                    {{ form.content }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-6">
-                    <button class="btn btn-info btn-lg" type="submit">儲存</button>
-                </div>
-            </div>
+
+    <input class="inv" id="page" type="text" value="wish-editor">
+    <div class="preload abs"></div>
+    <div class="wrapper relat">
+      <div class="container relat classJ contain-1000">
+        <div class="head-j row">
+          <div class="col-xs-8 col-sm-2 col-md-2 title">
+            <h1>許願池</h1>
+          </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="#">回上一頁</a>
         </div>
-    </form>
+        <div class="content-list row col-xs-12">
+          <div class="content-item-editor row relat">
+            <h1 class="title">民眾（{{request.user.last_name}}{{request.user.first_name}}）的願望</h1>
+            <form class="form-horizontal" action="" method="post" novalidate>{% csrf_token %}
+            <div class="col-xs-12 col-sm-12 ui-select-county">
+              <div class="ico d-inline-block"> </div><span>對</span>
+                {% if form.county %}
+                    {{ form.county }}
+                {% endif %}
+                {% if form.mayor %}
+                    {{ form.mayor }}
+                {% endif %}
+                {% if form.councilor %}
+                    {{ form.councilor }}
+                {% endif %}
+                {% if form.intent %}
+                    {{ form.intent }}
+                {% endif %}
+                <span>許願</span>
+            </div>
+            <div class="col-xs-12 col-sm-12 editor">
+                {{ form.content }}
+            </div>
+            <button class="btn-submit relat pull-left" type="submit"><span>送出</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var simplemde;///EDIT
+    </script>
 {% endblock right %}
 
 {% block script %}
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script>
         $(document).ready( function() {
             $('#intents').addClass('active');
