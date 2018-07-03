@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load socialaccount %}
+{% load staticfiles %}
 
 {% block title %}
     {% with councilor=bill.param.sponsors_groupby_party.priproposer.party_list.0.councilors.0 %}
@@ -15,6 +16,10 @@
     {% endwith %}
 {% endblock title %}
 
+{% block css_file %}
+    <link href="{% static "css/bill.min.css" %}" rel="stylesheet">
+{% endblock css_file %}
+
 {% block social_meta %}
     <meta property="og:description" content="{{bill.abstract|truncatechars:100}}"/>
     <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
@@ -23,8 +28,8 @@
 {% endblock social_meta %}
 
 {% block right %}
-<div class="container-fluid" style="margin-top: 100px;">
-<div class="row">
+<div class="wrapper relat">
+    <div class="container relat classJ contain-1200">
     <div class="col-sm-3">
         <h3>
             <i class="fa fa-pencil text-danger"> 主提案</i>
@@ -36,7 +41,7 @@
         {% endif %}
         {% if bill.param.sponsors_groupby_party.sponsor %}
         <h3>
-            <i class="fa fa-group text-success"> 其他提案人</i>
+            <i class="fa fa-group text-success"> 共同提案</i>
         </h3>
             {% include "common/sponsor.html" with list=bill.param.sponsors_groupby_party.sponsor.party_list role="sponsor" %}
         {% endif %}
