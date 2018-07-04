@@ -46,10 +46,10 @@
 
             <div class="content-list row col-xs-12">
             {% for candidate in candidates %}
-                <div class="content-item row relat{% if candidate.elected %} Current{% endif %}" data-id="{{forloop.counter}}">
+            <div id="{{candidate.number}}" class="content-item row relat{% if candidate.elected %} Current{% endif %}" data-id="{{forloop.counter}}">
                     <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
                     <div class="content-item-layer1 row relat">
-                        <a class="profile col-xs-12 row" href="#">
+                        <a class="profile col-xs-12 row" href="#{{candidate.number}}">
                             {% if candidate.elected_councilor.image %}
                             <div class="photo pull-left relat">
                                 <div class="relat">
@@ -106,7 +106,11 @@
                         {% endfor %}
                         </div>
 
-                        <div class="contributions-info col-xs-12 col-sm-4 row" onclick="location.href='{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}';" style="cursor: pointer;">
+                        {% if candidate.councilor_terms %}
+                            <div class="contributions-info col-xs-12 col-sm-4 row" onclick="location.href='{% url 'councilors:pc' councilor_id=candidate.councilor_terms.0.councilor_id %}';" style="cursor: pointer;">
+                        {% else %}
+                            <div class="contributions-info col-xs-12 col-sm-4 row" onclick="location.href='{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}';" style="cursor: pointer;">
+                        {% endif %}
                             <div class="tit col-xs-12">
                                 <p>政治獻金</p>
                             </div>
