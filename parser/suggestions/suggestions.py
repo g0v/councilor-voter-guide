@@ -125,6 +125,7 @@ c = conn.cursor()
 county_config = json.load(open('county_config.json'))
 df_concat = DataFrame()
 for meta_file in glob.glob('../../data/*/suggestions.json'):
+    break
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
@@ -265,6 +266,7 @@ def get_jurisdiction(suggestion):
 ds = df_concat.to_json(orient='records', force_ascii=False)
 dict_list = json.loads(ds)
 for item in dict_list:
+    break
     if item.get('councilor_ids'):
         for column in ['position', 'suggestion', 'brought_by']:
             item['constituency'], item['district'] = get_district(item[column], item)
@@ -327,7 +329,9 @@ for councilor_id in c.fetchall():
             'label': pile,
             'tokens': u'%s' % u'|'.join(tokens)
         }
-        piles.append(one_pile_json(data))
+        r = one_pile_json(data)
+        if r['sum']:
+            piles.append(r)
     piles = sorted(piles, key=lambda x: x['sum'], reverse=True)
     c.execute('''
         UPDATE councilors_councilorsdetail
@@ -345,7 +349,9 @@ for councilor_id in c.fetchall():
             'councilor_id': councilor_id,
             'label': token
         }
-        associations.append(one_association_json(token))
+        r = one_association_json(token)
+        if r['sum']:
+            associations.append(r)
     associations = sorted(associations, key=lambda x: x['sum'], reverse=True)
     c.execute('''
         UPDATE councilors_councilorsdetail
