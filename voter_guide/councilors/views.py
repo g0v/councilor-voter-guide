@@ -11,6 +11,7 @@ from .models import CouncilorsDetail, Attendance, PoliticalContributions
 from votes.models import Votes, Councilors_Votes
 from bills.models import Bills
 from suggestions.models import Suggestions
+from candidates.models import Terms
 from sittings.models import Sittings
 from search.views import keyword_list, keyword_been_searched
 from commontag.views import paginate
@@ -252,3 +253,8 @@ def platformer(request, councilor_id, election_year):
     except Exception, e:
         return HttpResponseRedirect('/')
     return render(request, 'councilors/platformer.html', {'county': councilor.county, 'councilor': councilor})
+
+def pc(request, councilor_id):
+    councilor_ids = CouncilorsDetail.objects.filter(councilor_id=councilor_id).values_list('id', flat=True)
+    candidate = Terms.objects.filter(elected_councilor__in=councilor_ids).order_by('-election_year')[0]
+    return render(request, 'councilors/pc.html', {'councilor': candidate.elected_councilor})
