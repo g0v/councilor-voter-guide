@@ -109,7 +109,7 @@ def info(request, councilor_id, election_year):
         councilor = CouncilorsDetail.objects.get(election_year=election_year, councilor_id=councilor_id)
     except Exception, e:
         return HttpResponseRedirect('/')
-    return render(request, 'councilors/info.html', {'councilor': councilor})
+    return render(request, 'councilors/info.html', {'councilor': councilor, 'id': 'profile'})
 
 def suggestor(request, councilor_id, election_year):
     q = dict(zip(['councilor_id', 'election_year'], [councilor_id, election_year]))
@@ -117,7 +117,7 @@ def suggestor(request, councilor_id, election_year):
         councilor = CouncilorsDetail.objects.get(**q)
     except Exception, e:
         return HttpResponseRedirect('/')
-    return render(request, 'councilors/suggestor.html', {'county': councilor.county, 'councilor': councilor})
+    return render(request, 'councilors/suggestor.html', {'county': councilor.county, 'councilor': councilor, 'id': 'fund'})
 
 def biller(request, councilor_id, election_year):
     try:
@@ -137,7 +137,7 @@ def biller(request, councilor_id, election_year):
         bills = Bills.objects.filter(query).order_by('-uid')
     bills = paginate(request, bills)
     get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'primaryonly'] if request.GET.get(x)])
-    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills', councilor.county), 'county': councilor.county, 'bills': bills, 'councilor': councilor, 'primaryonly': primaryonly, 'category':None, 'index':'councilor', 'get_params': get_params})
+    return render(request, 'councilors/biller.html', {'keyword_hot': keyword_list('bills', councilor.county), 'county': councilor.county, 'bills': bills, 'councilor': councilor, 'primaryonly': primaryonly, 'category':None, 'index':'councilor', 'get_params': get_params, 'id': 'politics'})
 
 def biller_sp(request, councilor_id, election_year):
     councilor = get_object_or_404(CouncilorsDetail.objects, election_year=election_year, councilor_id=councilor_id)
@@ -172,7 +172,7 @@ def biller_sp(request, councilor_id, election_year):
     r = c.fetchone()
     standpoints = r[0] if r else []
     if standpoints:
-        return render(request, 'councilors/biller_sp.html', {'councilor': councilor, 'standpoints': standpoints})
+        return render(request, 'councilors/biller_sp.html', {'councilor': councilor, 'standpoints': standpoints, 'id': 'politics'})
     else:
         return redirect(reverse('councilors:biller', kwargs={'councilor_id': councilor_id, 'election_year': election_year}))
 
@@ -207,7 +207,7 @@ def voter(request, councilor_id, election_year):
     vote_addup = votes.values('decision').annotate(totalNum=Count('vote', distinct=True)).order_by('-decision')
     votes = paginate(request, votes)
     get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', 'decision'] if request.GET.get(x)])
-    return render(request,'councilors/voter.html', {'keyword_hot': keyword_list('votes', councilor.county), 'county': councilor.county, 'councilor': councilor, 'index': index, 'votes': votes, 'vote_addup': vote_addup, 'notvote': notvote, 'get_params': get_params})
+    return render(request,'councilors/voter.html', {'keyword_hot': keyword_list('votes', councilor.county), 'county': councilor.county, 'councilor': councilor, 'index': index, 'votes': votes, 'vote_addup': vote_addup, 'notvote': notvote, 'get_params': get_params, 'id': 'politics'})
 
 def voter_sp(request, councilor_id, election_year):
     councilor = get_object_or_404(CouncilorsDetail.objects, election_year=election_year, councilor_id=councilor_id)
@@ -243,7 +243,7 @@ def voter_sp(request, councilor_id, election_year):
     r = c.fetchone()
     standpoints = r[0] if r else []
     if standpoints:
-        return render(request, 'councilors/voter_sp.html', {'councilor': councilor, 'standpoints': standpoints})
+        return render(request, 'councilors/voter_sp.html', {'councilor': councilor, 'standpoints': standpoints, 'id': 'politics'})
     else:
         return redirect(reverse('councilors:voter', kwargs={'councilor_id': councilor_id, 'election_year': election_year}))
 
@@ -252,9 +252,9 @@ def platformer(request, councilor_id, election_year):
         councilor = CouncilorsDetail.objects.get(election_year=election_year, councilor_id=councilor_id)
     except Exception, e:
         return HttpResponseRedirect('/')
-    return render(request, 'councilors/platformer.html', {'county': councilor.county, 'councilor': councilor})
+    return render(request, 'councilors/platformer.html', {'county': councilor.county, 'councilor': councilor, 'id': 'politics'})
 
 def pc(request, councilor_id):
     councilor_ids = CouncilorsDetail.objects.filter(councilor_id=councilor_id).values_list('id', flat=True)
     candidate = Terms.objects.filter(elected_councilor__in=councilor_ids).order_by('-election_year')[0]
-    return render(request, 'councilors/pc.html', {'councilor': candidate.elected_councilor})
+    return render(request, 'councilors/pc.html', {'councilor': candidate.elected_councilor, 'id': 'contribution'})
