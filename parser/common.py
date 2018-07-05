@@ -10,6 +10,9 @@ import logging
 
 logging.basicConfig(filename='common.log', level=logging.INFO)
 
+def storage_domain():
+    return 'https://drsgjxdg6zyfq.cloudfront.net'
+
 def election_year(county):
     return '2014'
 

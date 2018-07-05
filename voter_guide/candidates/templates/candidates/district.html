@@ -41,9 +41,9 @@
                 </div>
                 <div class="select-county hidden-xs"></div>
                 <div class="select-constituency hidden-xs relat"></div>
-                <select class="select col-sm-2 col-xs-5" onchange="location.href = this.value;">
+                <select class="select col-sm-2 col-xs-5" onchange="location = this.value;">
                     {% for year in years %}
-                        <option value="{{year}}"{% if election_year == year %} selected{% endif %}>{{year|election_year_range}}</option>
+                        <option value="{% url "candidates:district" county=county constituency=constituency election_year=year %}"{% if election_year == year %} selected{% endif %}>{{year|election_year_range}}</option>
                     {% endfor %}
                 </select>
                 <a class="btn-other col-xs-5 col-sm-3 col-md-2 hidden-sm hidden-md hidden-lg pull-right" href="#" onclick="location.href='{% url "candidates:mayors" county=county %}'+location.hash">改找縣市長</a>
@@ -51,11 +51,17 @@
 
             <div class="content-list row col-xs-12">
             {% for candidate in candidates %}
-            <div id="{{candidate.number}}" class="content-item row relat{% if candidate.elected %} Current{% endif %}" data-id="{{forloop.counter}}">
+            <div id="{{candidate.number}}" class="content-item row relat{% if candidate.councilor_terms.0.election_year == election_year or candidate.councilor_terms.0.term_end_year == election_year %} Current{% endif %}" data-id="{{forloop.counter}}">
                     <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
                     <div class="content-item-layer1 row relat">
                         <a class="profile col-xs-12 row" href="#{{candidate.number}}">
-                            {% if candidate.elected_councilor.image %}
+                            {% if candidate.image %}
+                            <div class="photo pull-left relat">
+                                <div class="relat">
+                                    <img src="{{candidate.image}}" alt="{{candidate.name}}" title="{{candidate.name}}">
+                                </div>
+                            </div>
+                            {% elif candidate.elected_councilor.image %}
                             <div class="photo pull-left relat">
                                 <div class="relat">
                                     <img src="https://drsgjxdg6zyfq.cloudfront.net/councilors/{{candidate.election_year}}/{{candidate.elected_councilor.councilor_id}}" alt="{{candidate.name}}" title="{{candidate.name}}">

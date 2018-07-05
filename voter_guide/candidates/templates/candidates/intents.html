@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load socialaccount %}
+{% load staticfiles %}
 {% load extras %}
 
 {% block title %}
@@ -14,6 +15,10 @@
     </style>
 {% endblock title %}
 
+{% block css_file %}
+    <link href="{% static "css/wish.min.css" %}" rel="stylesheet">
+{% endblock css_file %}
+
 {% block social_meta %}
     <meta property="og:description" content="動機、政見、學經歷、個人黨籍等資訊"/>
     <meta itemprop="description" content="動機、政見、學經歷、個人黨籍等資訊"/>
@@ -27,6 +32,8 @@
 {% endblock social_meta %}
 
 {% block right %}
+<div class="wrapper relat">
+    <div class="container relat classJ contain-1000">
     <div class="text-center">
         <h2>
             {{election_year}}
@@ -38,9 +45,10 @@
             {% endif %}
             擬參選人
         </h2>
-        <h3><small>對當議員有想法？不想繳 20 萬選舉保證金，但想說說你的想法？</small>
-        <a href="{% url 'candidates:intent_home' %}" class="btn btn-info"><i class="fa fa-pencil-square-o"> 來發表</i></a>
-</h3>
+        <h3>
+            <small>對當議員有想法？不想繳 20 萬選舉保證金，但想說說你的想法？</small>
+            <a href="{% url 'candidates:intent_home' %}" class="btn btn-info"><i class="fa fa-pencil-square-o"> 來發表</i></a>
+        </h3>
     </div>
     <hr>
     <div style="margin: 10px 0;">
@@ -201,7 +209,9 @@
             {% include "common/pagination.html" with items=intents page_size=0 %}
         {% endif %}
     </div>
-    <div id="disqus_thread"></div>
+    </div>
+</div>
+<div id="disqus_thread"></div>
 {% endblock right %}
 
 {% block script %}
