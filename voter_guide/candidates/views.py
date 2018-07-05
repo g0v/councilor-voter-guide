@@ -136,6 +136,7 @@ def district(request, election_year, county, constituency):
     except:
         constiencies = [constituency]
     intents_count = Intent.objects.filter(election_year=coming_ele_year, county=county, constituency__in=transform_to_constiencies).exclude(status='draft').count()
+    years = Terms.objects.filter(county=county, type='councilors', constituency=constituency).values_list('election_year', flat=True).distinct()
     candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'elected_councilor').order_by('-votes')
     standpoints = {}
     for term in [candidates]:
@@ -195,7 +196,7 @@ def district(request, election_year, county, constituency):
                 c.execute(qs, [terms_id, terms_id])
                 r = c.fetchone()
                 standpoints.update({candidate.id: r[0] if r else []})
-    return render(request, 'candidates/district.html', {'coming_election_year': coming_ele_year, 'intents_count': intents_count, 'election_year': election_year, 'county': county, 'constituency': constituency, 'transform_to_constiencies': ','.join(transform_to_constiencies), 'district': candidates[0].district, 'candidates': candidates, 'standpoints': standpoints})
+    return render(request, 'candidates/district.html', {'years': years, 'coming_election_year': coming_ele_year, 'intents_count': intents_count, 'election_year': election_year, 'county': county, 'constituency': constituency, 'transform_to_constiencies': ','.join(transform_to_constiencies), 'district': candidates[0].district, 'candidates': candidates, 'standpoints': standpoints})
 
 def intent_home(request):
     return render(request, 'candidates/intent_home.html', )

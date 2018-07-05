@@ -144,7 +144,7 @@ def vote_result(value, arg):
 
 @register.filter(name='election_year_range')
 def election_year_range(value):
-    election_years = ['1969', '1973', '1977', '1981', '1985', '1989', '1994', '1998', '2002', '2006', '2010', '2014', '2018']
+    election_years = ['1969', '1973', '1977', '1981', '1985', '1989', '1994', '1998', '2002', '2006', '2010', '2014', '2018', '2022']
     for i in range(0, len(election_years)):
         if election_years[i] == value:
             return '%s~%s' % (value, election_years[i+1])
