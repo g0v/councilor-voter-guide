@@ -36,11 +36,25 @@
           <div class="content-item row relat col-xs-12 col-sm-6" data-id="1">
             <div class="bg abs"></div>
             <div class="desc col-xs-12 col-sm-12">
-              <p class="name">{{platform.user.last_name}}{{platform.user.first_name}}</p>
-              <textarea style="display: none">{{platform.content}}</textarea>
-              <p>
+
+            {% if platform.county %}
+                <div class="property-header">許願對象(縣市)</div>
+                <div class="property-body">{{platform.county}}</div>
+            {% elif platform.mayor %}
+                <div class="property-header">許願對象(縣市長)</div>
+                <div class="property-body">{{platform.mayor}}</div>
+            {% elif platform.councilor %}
+                <div class="property-header">許願對象(議員)</div>
+                <div class="property-body">{{platform.councilor}}</div>
+            {% elif platform.intent %}
+                <div class="property-header">許願對象(候選人)</div>
+                <div class="property-body">{{platform.intent}}</div>
+            {% endif %}
+                <div class="property-header">許願人</div>
+                <div class="property-body">{{platform.user.last_name}}{{platform.user.first_name}}</div>
+                <div class="property-header">願望</div>
+                <textarea style="display: none">{{platform.content}}</textarea>
                 <div class="property-body"></div>
-              </p>
             </div>
           </div>
           {% if user.is_authenticated and intent %}
