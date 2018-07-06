@@ -7,6 +7,14 @@
     <meta itemprop="name" content="議員配合款-{{county}}-熱門工程地點">
 {% endblock %}
 
+{% block css_file %}
+<style>
+    body, html {
+      background-color: #f5f5f5;
+    }
+</style>
+{% endblock css_file %}
+
 {% block social_meta %}
     <meta property="og:description" content="議員配合款為縣市政府預算，議員可「建議」政府撥款。議員雖無決定權，但同時身兼建議預算、審查預算的角色，縣市政府通常來者不拒。「議員建議款」、「基層建設配合款」、「議員所提地方建設建議事項」指的都是議員配合款。"/>
     <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{county}}.png"/>
@@ -15,7 +23,9 @@
 {% endblock social_meta %}
 
 {% block right %}
-    <div class="jumbotron row" style="margin-left: 0px;">
+<div class="container-fluid" style="margin-top: 100px;">
+    <div class="row">
+    <div class="jumbotron" style="margin-left: 0px;">
         <img class="pull-right" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img>
         <h2>{{county}} - 議員配合款</h2>
         <ul class="list-inline">
@@ -45,8 +55,10 @@
         {% endif %}
         {% endfor %}
     </div>
-    <hr>
-    <div id="disqus_thread"></div>
+    </div>
+</div>
+<hr>
+<div id="disqus_thread"></div>
 {% endblock %}
 
 {% block script %}

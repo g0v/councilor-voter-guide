@@ -9,12 +9,22 @@
     <link href="{% static 'css/g0v.css' %}" rel="stylesheet">
 {% endblock %}
 
+{% block css_file %}
+<style>
+    body, html {
+      background-color: #f5f5f5;
+    }
+</style>
+{% endblock css_file %}
+
 {% block social_meta %}
     <meta property="og:description" content="議員配合款為縣市政府預算，單筆預算十萬元以上須公開招標，十萬元以下則不用公開招標‵，得標廠商即取得該筆預算的廠商"/>
     <meta itemprop="description" content="議員配合款為縣市政府預算，單筆預算十萬元以上須公開招標，十萬元以下則不用公開招標‵，得標廠商即取得該筆預算的廠商"/>
 {% endblock social_meta %}
 
 {% block right %}
+<div class="container-fluid" style="margin-top: 100px;">
+    <div class="row">
     <div class="page-header">
         <h2>
             {{bid_by}}
@@ -112,8 +122,10 @@
             </table>
         </div>
     </div>
-    <hr>
-    <div id="disqus_thread"></div>
+    </div>
+</div>
+<hr>
+<div id="disqus_thread"></div>
 {% endblock right %}
 
 {% block script %}

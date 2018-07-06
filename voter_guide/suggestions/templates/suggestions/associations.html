@@ -8,13 +8,22 @@
     <meta itemprop="name" content="議員配合款-議員&hArr;協會"/>
 {% endblock title %}
 
+{% block css_file %}
+<style>
+    body, html {
+      background-color: #f5f5f5;
+    }
+</style>
+{% endblock css_file %}
+
 {% block social_meta %}
     <meta property="og:description" content="協會本為促進在地民眾參與社區發展，但也常成為選舉動員的工具。其中又以「社區發展協會」最廣泛，至2016年，全台共有6881個社區發展協會，平均每一鄉鎮市區就有18.7個。"/>
     <meta itemprop="description" content="協會本為促進在地民眾參與社區發展，但也常成為選舉動員的工具。其中又以「社區發展協會」最廣泛，至2016年，全台共有6881個社區發展協會，平均每一鄉鎮市區就有18.7個。"/>
 {% endblock social_meta %}
 
 {% block right %}
-    <div>
+<div class="container-fluid" style="margin-top: 100px;">
+    <div class="row">
         <div class="text-center">
             <h2>議員配合款和協會的關係</h2>
             <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ref_description"><font>配合款是什麼？</font></button>
@@ -95,7 +104,8 @@
             {% endfor %}
         </div>
     </div>
-    <div id="disqus_thread"></div>
+</div>
+<div id="disqus_thread"></div>
 {% endblock right %}
 
 {% block script %}
