@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hant">
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
+	嘉義市議會全球資訊網
+</title><link href="css/index.css" rel="stylesheet" /></head>
+<body>
+    <form method="post" action="" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="YYwN3p3jQiGGHA2YBz8Tj8NGEXD/9AcZ9AdEu0ogqjI8vG6V08yigj2QCTqwDIeeZfivkHJX0bIznPikofWTycQMDqi9GDS67KVqS3abqRXTeIJY+NA1cHYfTgCNuZYfEnsdjNbAZVpXrDOXp5x0pGOVIjlceqicFlnrkBQIDhWPmAiO" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="90059987" />
+        <div id="ntahead">
+            <div id="Tops">
+                <div id="banners">
+                    <h1><img src="Img_Chiayi/嘉義市議會-LOGO.png" alt="嘉義市議會-LOGO"/></h1>
+                </div>
+                <div id="fonts">
+                    <span>|</span><a href="Default.aspx" title="中文版網站">中文版網站</a>
+                    <span>|</span><a href="Default_en.aspx" title="英文版網站">英文版網站</a>
+                </div>
+            </div>
+            
+
+        </div>
+        <div id="footer">
+
+        </div>
+    </form>
+</body>
+</html>

@@ -3,6 +3,7 @@
 import sys
 sys.path.append('../')
 import re
+import os
 import json
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -54,6 +55,7 @@ conn = db_settings.con()
 c = conn.cursor()
 election_year = '2018'
 party = u'民主進步黨'
+path = '../../data/avatar/councilors/%s/%s' % (election_year, party)
 
 scope = ['https://spreadsheets.google.com/feeds']
 credentials = ServiceAccountCredentials.from_json_keyfile_name('credential.json', scope)
@@ -85,8 +87,17 @@ for wks in worksheets:
                 candidate['links'] = [{'url': row[u'相關連結'], 'note': 'facebook'}]
             else:
                 candidate['links'] = [{'url': row[u'相關連結'], 'note': u'相關連結'}]
+        f_name = re.sub(',', '.', row[u'照片有無']).lower()
+        f = '%s/%s' % (path, f_name)
+        if not os.path.isfile(f):
+            print f
+            f_upper = '%s/%s' % (path, f_name.upper())
+            try:
+                os.rename(f_upper, f)
+            except:
+                print f_upper
         if row[u'照片有無']:
-            candidate['image'] = u'%s/%s/%s/%s/%s' % (common.storage_domain(), position_type, election_year, party, row[u'照片有無'])
+            candidate['image'] = u'%s/%s/%s/%s/%s' % (common.storage_domain(), position_type, election_year, party, f_name)
         candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
         candidate['candidate_term_uid'] = '%s-%s' % (candidate['candidate_uid'], election_year)
         candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate)
