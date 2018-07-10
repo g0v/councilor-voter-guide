@@ -50,8 +50,8 @@
             </div>
 
             <div class="content-list row col-xs-12">
-            {% for candidate in candidates %}
-            <div id="{{candidate.number}}" class="content-item row relat{% if candidate.councilor_terms.0.election_year == election_year or candidate.councilor_terms.0.term_end_year == election_year %} Current{% endif %}" data-id="{{forloop.counter}}">
+            {% for candidate in intents %}
+                <div id="{{candidate.number}}" class="content-item row relat{% if candidate.councilor_terms.0.election_year == election_year or candidate.councilor_terms.0.term_end_year == election_year %} Current{% endif %}" data-id="{{forloop.counter}}">
                     <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
                     <div class="content-item-layer1 row relat">
                         <a class="profile col-xs-12 row" href="#{{candidate.number}}">
@@ -61,10 +61,48 @@
                                     <img src="{{candidate.image}}" alt="{{candidate.name}}" title="{{candidate.name}}">
                                 </div>
                             </div>
-                            {% elif candidate.elected_councilor.image %}
+                            {% endif %}
+                            <div class="party pull-left relat">
+                                <div class="relat">
+                                    <img src="{% static "img/dest/" %}{{candidate.party}}.png" alt="{{candidate.party}}" title="{{candidate.party}}">
+                                </div>
+                            </div>
+                            <div class="name col-xs-7 col-sm-4">
+                                <h1 class="classJ exlrgt">{{candidate.name}}</h1>
+                                <h4>
+                                    {% if candidate.elected_councilor and not candidate.elected_councilor.in_office %}
+                                            {% if candidate.elected_councilor.term_end.reason %}
+                                                （{{ candidate.elected_councilor.term_end.reason }}）
+                                            {% else %}
+                                                （已去職）
+                                            {% endif %}
+                                    {% endif %}
+                                </h4>
+                            </div>
+                        </a>
+                        <div class="personal-info col-xs-12 col-sm-3">
+                            <div class="partyname">
+                                <p>黨籍 / <span class="party-val">{{candidate.party}}</span></p>
+                                <p>年齡 / <span class="party-val">{{candidate.candidate.birth|age}}歲</span></p>
+                                {% if candidate.councilor_terms %}
+                                <p>財產申報 / <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank"> <img src="{% static "img/dest/dollar.png" %}" alt="財產申報" title="財產申報"></a></p>
+                                {% endif %}
+                            </div>
+                        </div>
+                </div>
+            {% endfor %}
+            </div>
+
+            <div class="content-list row col-xs-12">
+            {% for candidate in candidates %}
+            <div id="{{candidate.number}}" class="content-item row relat{% if candidate.councilor_terms.0.election_year == election_year or candidate.councilor_terms.0.term_end_year == election_year %} Current{% endif %}" data-id="{{forloop.counter}}">
+                    <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
+                    <div class="content-item-layer1 row relat">
+                        <a class="profile col-xs-12 row" href="#{{candidate.number}}">
+                            {% if candidate.image %}
                             <div class="photo pull-left relat">
                                 <div class="relat">
-                                    <img src="https://drsgjxdg6zyfq.cloudfront.net/councilors/{{candidate.election_year}}/{{candidate.elected_councilor.councilor_id}}" alt="{{candidate.name}}" title="{{candidate.name}}">
+                                    <img src="{{candidate.image}}" alt="{{candidate.name}}" title="{{candidate.name}}">
                                 </div>
                             </div>
                             {% endif %}
