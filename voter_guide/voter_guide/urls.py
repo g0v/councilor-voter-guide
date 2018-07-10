@@ -42,6 +42,7 @@ urlpatterns = [
     url(r'^about/$', voter_guide_views.about, name='about'),
     url(r'^select_county/(?P<category>candidates|councilors|bills)/$', voter_guide_views.select_county, name='select_county'),
     url(r'^reference/$', voter_guide_views.reference, name='reference'),
+    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
     url(r'^$', voter_guide_views.select_county, {'category': 'candidates'}, name='select_county'),
     url(r'^api/', include(router.urls)),
     url(r'^api/check_person_name/$', views.check_person_name),
