@@ -3,7 +3,7 @@ from django.conf.urls import url
 from candidates import views
 from voter_guide import views as voter_guide_views
 
-election_year = '2014'
+election_year = '2018'
 urlpatterns = [
     url(r'^intents/(?P<election_year>\d+)/$', views.intents, name='intents'),
     url(r'^intent_home/$', views.intent_home, name='intent_home'),
