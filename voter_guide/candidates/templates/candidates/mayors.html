@@ -77,22 +77,20 @@
                         </div>
 
                         <div class="statistic-info col-xs-12 col-sm-4">
-                        {% for councilor_term in candidate.councilor_terms %}
-                            {% if forloop.counter0 == 0 %}
+                        {% for term in candidate.data.legislator_terms %}
                             <div class="tit">
-                                <p>數字統計</p>
+                                <p>{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}立委</p>
                             </div>
                             <div class="statistic">
-                                <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>
-                                <p>{{councilor_term.param.bills_role_statistics.sponsor}} 次共同提案</p>
-                                {% if councilor_term.param.votes_decision_statistics %}
-                                    <p>投票缺席率：{{councilor_term.param.votes_decision_statistics.not_voting|percentage:councilor_term.param.votes_decision_statistics.total}} % <small>（{{councilor_term.param.votes_decision_statistics.not_voting}} / {{councilor_term.param.votes_decision_statistics.total}}）</small></p>
-                                {% endif %}
-                                {% if councilor_term.param.attendance_statistics %}
-                                    <p>議會缺席率：{{councilor_term.param.attendance_statistics.absent|percentage:councilor_term.param.attendance_statistics.total}} % <small>（{{councilor_term.param.attendance_statistics.absent}} / {{councilor_term.param.attendance_statistics.total}}）</small></p>
-                                {% endif %}
-                            </div>
+                                <p>{{term.bill_param.sponsor}} 次主提案</p>
+                                <p>{{term.bill_param.cosponsor}} 次共同提案</p>
+                            {% if term.vote_param %}
+                                <p>投票缺席率：{{term.vote_param.not_voting|percentage:term.vote_param.total}} % <small>（{{term.vote_param.not_voting}} / {{term.vote_param.total}}）</small></p>
                             {% endif %}
+                            {% if term.attendance_param %}
+                                <p>立院缺席率：{{term.attendance_param.absent|percentage:term.attendance_param.total}} % <small>（{{term.attendance_param.absent}} / {{term.attendance_param.total}}）</small></p>
+                            {% endif %}
+                            </div>
                         {% empty %}
                         {% endfor %}
                         </div>
@@ -135,31 +133,6 @@
                     {% if candidate.councilor_terms %}
                     <div class="content-detail row notFirstCandidate">
                         {% with sp=standpoints|json_lookup:candidate.id %}
-                        {% if county|county_config:'votes' %}
-                            <div class="vote col-sm-6 row">
-                                <div class="tit row col-sm-12">
-                                    <div class="col-sm-12">表決</div>
-                                </div>
-                                {% if sp.votes %}
-                                    {% for standpoint in sp.votes %}
-                                    <div class="list col-sm-12 row">
-                                        <div class="col-sm-8 col-xs-6">{{standpoint.title}}</div>
-                                        {% if standpoint.decision == "反對" %}
-                                            <div class="statstic-num pull-right bg-reject">
-                                        {% elif standpoint.decision == "贊成" %}
-                                            <div class="statstic-num pull-right bg-approve">
-                                        {% elif standpoint.decision == "沒投票" %}
-                                            <div class="statstic-num pull-right bg-non-vote">
-                                        {% elif standpoint.decision == "棄權" %}
-                                            <div class="statstic-num pull-right bg-giveup">
-                                        {% endif %}
-                                            <a href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">{{standpoint.decision}}</a>
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
-                        {% endif %}
                         <div class="proposal col-sm-6 row">
                             <div class="tit row col-sm-12">
                                 <div class="col-sm-12">提案</div>
@@ -178,11 +151,7 @@
                             {% endif %}
                         </div>
                         {% endwith %}
-                        {% if county|county_config:'votes' %}
-                            <div class="politics col-sm-12 row">
-                        {% else %}
-                            <div class="proposal col-sm-6 row">
-                        {% endif %}
+                        <div class="proposal col-sm-6 row">
                             <div class="tit row col-sm-12">
                                 <div class="col-sm-12">政見</div>
                             </div>

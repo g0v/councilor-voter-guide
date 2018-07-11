@@ -138,11 +138,13 @@
                         {% for councilor_term in candidate.councilor_terms %}
                             {% if forloop.counter0 == 0 %}
                             <div class="tit">
-                                <p>{{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}</p>
+                                <p>{{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}{{councilor_term.county}}議員</p>
                             </div>
                             <div class="statistic">
+                                {% if councilor_term.param.bills_role_statistics %}
                                 <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>
                                 <p>{{councilor_term.param.bills_role_statistics.sponsor}} 次共同提案</p>
+                                {% endif %}
                                 {% if councilor_term.param.votes_decision_statistics %}
                                     <p>投票缺席率：{{councilor_term.param.votes_decision_statistics.not_voting|percentage:councilor_term.param.votes_decision_statistics.total}} % <small>（{{councilor_term.param.votes_decision_statistics.not_voting}} / {{councilor_term.param.votes_decision_statistics.total}}）</small></p>
                                 {% endif %}
@@ -151,8 +153,10 @@
                                 {% endif %}
                             </div>
                             {% endif %}
-                        {% empty %}
                         {% endfor %}
+                        {% if candidate.councilor_terms|length > 1 %}
+                        <p> ...等{{candidate.councilor_terms|length}}屆議員</p>
+                        {% endif %}
                         </div>
 
                         {% if candidate.councilor_terms %}
@@ -196,6 +200,31 @@
 
                     {% if candidate.councilor_terms %}
                     <div class="content-detail row notFirstCandidate">
+
+                        {% if candidate.councilor_terms|length > 1 %}
+                        <div class="statistic-info col-xs-12 col-sm-4 col-sm-offset-3">
+                        {% for councilor_term in candidate.councilor_terms %}
+                            {% if forloop.counter0 != 0 %}
+                            <div class="tit">
+                                <p>{{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}{{councilor_term.county}}議員</p>
+                            </div>
+                            <div class="statistic">
+                                {% if councilor_term.param.bills_role_statistics %}
+                                <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>
+                                <p>{{councilor_term.param.bills_role_statistics.sponsor}} 次共同提案</p>
+                                {% endif %}
+                                {% if councilor_term.param.votes_decision_statistics %}
+                                    <p>投票缺席率：{{councilor_term.param.votes_decision_statistics.not_voting|percentage:councilor_term.param.votes_decision_statistics.total}} % <small>（{{councilor_term.param.votes_decision_statistics.not_voting}} / {{councilor_term.param.votes_decision_statistics.total}}）</small></p>
+                                {% endif %}
+                                {% if councilor_term.param.attendance_statistics %}
+                                    <p>議會缺席率：{{councilor_term.param.attendance_statistics.absent|percentage:councilor_term.param.attendance_statistics.total}} % <small>（{{councilor_term.param.attendance_statistics.absent}} / {{councilor_term.param.attendance_statistics.total}}）</small></p>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                        {% endif %}
+
                         {% with sp=standpoints|json_lookup:candidate.id %}
                         {% if county|county_config:'votes' %}
                             <div class="vote col-sm-6 row">
