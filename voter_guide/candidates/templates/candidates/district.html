@@ -51,10 +51,10 @@
 
             <div class="content-list row col-xs-12">
             {% for candidate in intents %}
-                <div id="{{candidate.number}}" class="content-item row relat{% if candidate.councilor_terms.0.election_year == election_year or candidate.councilor_terms.0.term_end_year == election_year %} Current{% endif %}" data-id="{{forloop.counter}}">
+                <div class="content-item row relat{% if candidate.councilor_terms.0.election_year == election_year or candidate.councilor_terms.0.term_end_year == election_year %} Current{% endif %}" data-id="{{forloop.counter}}">
                     <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
                     <div class="content-item-layer1 row relat">
-                        <a class="profile col-xs-12 row" href="#{{candidate.number}}">
+                        <a class="profile col-xs-12 row">
                             {% if candidate.image %}
                             <div class="photo pull-left relat">
                                 <div class="relat">
@@ -89,6 +89,7 @@
                                 {% endif %}
                             </div>
                         </div>
+                    </div>
                 </div>
             {% endfor %}
             </div>
