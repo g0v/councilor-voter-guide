@@ -46,6 +46,7 @@ urlpatterns = [
     url(r'^$', voter_guide_views.select_county, {'category': 'candidates'}, name='select_county'),
     url(r'^api/', include(router.urls)),
     url(r'^api/check_person_name/$', views.check_person_name),
+    url(r'^api/constituency/$', views.constituency),
 ]
 
 if settings.DEBUG:

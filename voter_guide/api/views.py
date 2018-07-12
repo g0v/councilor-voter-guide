@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
 import re
+import random
 
 from django.shortcuts import render
 from django.db import connections
+from django.views.decorators.csrf import csrf_exempt
 
-from rest_framework import viewsets
-from rest_framework import filters
-from rest_framework import generics
+from rest_framework import viewsets, filters, generics, status
+from rest_framework.decorators import api_view, renderer_classes, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.renderers import JSONRenderer
+
 from .serializers import *
-
 from .forms import NameForm
 from councilors.models import Councilors, CouncilorsDetail, Attendance
 from votes.models import Votes, Councilors_Votes
@@ -17,6 +21,20 @@ from candidates.models import Candidates
 from sittings.models import Sittings
 from suggestions.models import Suggestions, Councilors_Suggestions
 
+
+def validateFields(d, fields):
+    return [{field: 'This field is required.'} for field in fields if field not in d.keys()]
+
+@api_view(['POST', ])
+@csrf_exempt
+@permission_classes((AllowAny, ))
+@renderer_classes((JSONRenderer,))
+def constituency(request):
+    results = validateFields(request.data, ['type', 'county', 'district'])
+    if results:     return Response(results, status=status.HTTP_400_BAD_REQUEST)
+    d = request.data
+    d['constituency'] = random.randint(1, 5)
+    return Response(d, status=status.HTTP_200_OK)
 
 def GetCouncilorId(name):
     c = connections['default'].cursor()
