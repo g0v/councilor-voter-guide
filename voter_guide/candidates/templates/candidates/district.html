@@ -10,6 +10,11 @@
 
 {% block css_file %}
     <link href="{% static "css/councilmen.min.css" %}" rel="stylesheet">
+    <style>
+    .statistic-info .tit p {
+        border-bottom: 1px solid rgba(0,0,0,.3);
+    }
+    </style>
 {% endblock css_file %}
 
 {% block social_meta %}
@@ -96,10 +101,10 @@
 
             <div class="content-list row col-xs-12">
             {% for candidate in candidates %}
-            <div id="{{candidate.number}}" class="content-item row relat{% if candidate.councilor_terms.0.election_year == election_year or candidate.councilor_terms.0.term_end_year == election_year %} Current{% endif %}" data-id="{{forloop.counter}}">
+            <div id="{{candidate.name}}" class="content-item row relat{% if candidate.councilor_terms.0.election_year == election_year or candidate.councilor_terms.0.term_end_year == election_year %} Current{% endif %}" data-id="{{forloop.counter}}">
                     <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
                     <div class="content-item-layer1 row relat">
-                        <a class="profile col-xs-12 row" href="#{{candidate.number}}">
+                        <a class="profile col-xs-12 row" href="#{{candidate.name}}">
                             {% if candidate.image %}
                             <div class="photo pull-left relat">
                                 <div class="relat">
