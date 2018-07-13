@@ -34,7 +34,8 @@ def validateFields(d, fields):
 def constituency(request):
     results = validateFields(request.data, ['type', 'county', 'district'])
     if results:     return Response(results, status=status.HTTP_400_BAD_REQUEST)
-    d = request.data
+    d = request.data.copy()
+    d['county'] = re.sub(u'台', u'臺', d['county'])
     coming_ele_year = coming_election_year(d['county'])
     constituencies = Elections.objects.get(id=coming_ele_year).data['constituencies']
     district = re.sub(u'[鄉鎮市區]$', '', d['district']) if not re.search(re.sub(u'[縣市]$', '', d['county']), d['district']) else d['district']
