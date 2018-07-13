@@ -18,8 +18,10 @@ from councilors.models import Councilors, CouncilorsDetail, Attendance
 from votes.models import Votes, Councilors_Votes
 from bills.models import Bills, Councilors_Bills
 from candidates.models import Candidates
+from elections.models import Elections
 from sittings.models import Sittings
 from suggestions.models import Suggestions, Councilors_Suggestions
+from commontag.views import coming_election_year
 
 
 def validateFields(d, fields):
@@ -33,7 +35,18 @@ def constituency(request):
     results = validateFields(request.data, ['type', 'county', 'district'])
     if results:     return Response(results, status=status.HTTP_400_BAD_REQUEST)
     d = request.data
-    d['constituency'] = random.randint(1, 5)
+    coming_ele_year = coming_election_year(d['county'])
+    constituencies = Elections.objects.get(id=coming_ele_year).data['constituencies']
+    district = re.sub(u'[鄉鎮市區]$', '', d['district']) if not re.search(re.sub(u'[縣市]$', '', d['county']), d['district']) else d['district']
+    for region in constituencies[d['county']]['regions']:
+        if not region.get('villages') or not d.get('villages'):
+            if district in region['districts_list']:
+                d['constituency'] = region['constituency']
+                break
+        else:
+            if d['villages'] in region['villages']:
+                d['constituency'] = region['constituency']
+                break
     return Response(d, status=status.HTTP_200_OK)
 
 def GetCouncilorId(name):
