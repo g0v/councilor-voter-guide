@@ -24,9 +24,7 @@
         <dd>{{ councilor.party }}
         </dd>
         <dt>選區縣市</dt>
-        <dd>
-            <a href="{% url 'candidates:councilors_districts' county=councilor.county election_year=councilor.election_year %}">{{councilor.county}}</a>
-        </dd>
+        <dd>{{councilor.county}}</dd>
         {% if councilor.elected_candidate.district %}
             <dt>行政區</dt>
             <dd>{{ councilor.elected_candidate.district }}</dd>
