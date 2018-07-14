@@ -49,6 +49,7 @@
                 <a class="btn-other col-xs-5 col-sm-3 col-md-2 hidden-sm hidden-md hidden-lg pull-right" href="#" onclick="location.href='{% url "candidates:mayors" county=county %}'+location.hash">改找縣市長</a>
             </div>
 
+            {% if intents %}
             <div class="content-list row col-xs-12">
             {% for candidate in intents %}
                 <div class="content-item row relat{% if candidate.councilor_terms.0.election_year == election_year or candidate.councilor_terms.0.term_end_year == election_year %} Current{% endif %}" data-id="{{forloop.counter}}">
@@ -93,10 +94,11 @@
                 </div>
             {% endfor %}
             </div>
+            {% endif %}
 
             <div class="content-list row col-xs-12">
             {% for candidate in candidates %}
-            <div class="content-item row relat{% if candidate.councilor_terms.0.election_year == election_year or candidate.councilor_terms.0.term_end_year == election_year %} Current{% endif %}" data-id="{{forloop.counter}}">
+                <div class="content-item row relat{% if candidate.councilor_terms.0.election_year == election_year or candidate.councilor_terms.0.term_end_year == election_year %} Current{% endif %}" data-id="{{forloop.counter}}">
                     <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
                     <div class="content-item-layer1 row relat">
                         <a class="profile col-xs-12 row">
