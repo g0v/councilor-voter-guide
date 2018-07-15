@@ -55,7 +55,7 @@
             <div class="ico pull-left"><img class="img-responsive" src="{% static "img/dest/location-ico.png" %}"></div>
             <div class="pull-left desc">
               <p>您目前所在區域</p>
-              <p> <span class="county_val">台北市</span><span> </span><span class="area_val"> 中山區</span></p>
+              <p> <span class="county_val"></span><span> </span><span class="area_val"></span></p>
             </div>
             <div class="pull-left d-inline-block btn-chooseLocation"><span>選其他區域</span></div>
           </div>
@@ -91,7 +91,7 @@
               <p>找縣市議員</p>
             </div>
             <div class="select-area relat"><a href="#六都" data-id="六都">六都</a><a href="#北部" data-id="北部">北部</a><a href="#中部" data-id="中部">中部</a><a href="#南部" data-id="南部">南部</a><a href="#東部" data-id="東部">東部</a><a href="#離島" data-id="離島">離島</a><a href="#平地原住民" data-id="平地原住民">平地原住民</a><a href="#高山原住民" data-id="高山原住民">高山原住民</a></div>
-            <div class="select-county relat hidden-xs"><a href="#六都" data-id="六都">六都</a><a href="#北部" data-id="北部">北部</a><a href="#中部" data-id="中部">中部</a><a href="#南部" data-id="南部">南部</a><a href="#東部" data-id="東部">東部</a><a href="#離島" data-id="離島">離島</a><a href="#六都" data-id="六都">六都</a><a href="#北部" data-id="北部">北部</a><a href="#中部" data-id="中部">中部</a><a href="#南部" data-id="南部">南部</a><a href="#東部" data-id="東部">東部</a><a href="#離島" data-id="離島">離島</a><a href="#六都" data-id="六都">六都</a><a href="#北部" data-id="北部">北部</a><a href="#中部" data-id="中部">中部</a><a href="#南部" data-id="南部">南部</a><a href="#東部" data-id="東部">東部</a><a href="#離島" data-id="離島">離島</a></div>
+            <div class="select-county relat hidden-xs"></div>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@
             <div class="sub relat">
               <p>給你好看</p>
             </div>
-            <div class="select-opt1 relat"><a href="#" data-id="1">相關圖表</a><a href="#" data-id="2">議員配合款</a><a href="#" data-id="3">政治獻金</a><a href="#" data-id="4">反核</a><a href="#" data-id="5">婚姻平權</a></div>
+            <div class="select-opt1 relat"><a href="{% url "suggestions:county_overview" %}" data-id="1">議員配合款</a><a href="{% url "candidates:intents" election_year=2018 %}" data-id="2">2018候選人</a></div>
           </div>
         </div>
       </div>
