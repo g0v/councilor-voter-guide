@@ -184,3 +184,10 @@ hr.candidates-separator {
     display: block;
     margin: 20px;
 }
+
+/* disqus
+=================================================================== */
+
+#disqus_thread {
+    padding: 0 24px;
+}
