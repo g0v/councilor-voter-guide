@@ -12,24 +12,6 @@ import db_settings
 import common
 
 
-def councilor_terms(candidate):
-    '''
-    Parse working recoed before the election_year of this candidate into a json to store in individual candidate, so we could display councilor's working records easier at candidate page(no need of a lot of reference).
-    '''
-
-    c.execute('''
-        SELECT id as term_id, councilor_id, election_year, param, to_char(EXTRACT(YEAR FROM term_start), '9999') as term_start_year, substring(term_end->>'date' from '(\d+)-') as term_end_year
-        FROM councilors_councilorsdetail
-        WHERE councilor_id = %(councilor_uid)s AND election_year <= %(election_year)s
-        ORDER BY election_year DESC
-    ''', candidate)
-    key = [desc[0] for desc in c.description]
-    terms = []
-    r = c.fetchall()
-    for row in r:
-        terms.append(dict(zip(key, row)))
-    return terms
-
 def upsertCandidates(candidate):
     candidate['former_names'] = candidate.get('former_names', [])
     variants = common.make_variants_set(candidate['name'])
@@ -70,9 +52,17 @@ def upsertCandidates(candidate):
             SET data = (COALESCE(data, '{}'::jsonb) || %s::jsonb)
             WHERE election_year = %s AND candidate_id = %s
         ''', (json.dumps({'constituency_change': complement['constituency_change']}), complement['election_year'], complement['candidate_uid']))
+    if candidate.get('legislator_terms'):
+        c.execute('''
+            UPDATE candidates_terms
+            SET data = (COALESCE(data, '{}'::jsonb) || %s::jsonb)
+            WHERE election_year = %s and candidate_id = %s
+        ''', [json.dumps({'legislator_terms': complement['legislator_terms']}), complement['election_year'], complement['candidate_uid'], ])
 
 conn = db_settings.con()
+conn_another = db_settings.con_another()
 c = conn.cursor()
+c_another = conn_another.cursor()
 election_year = '2014'
 county_versions = json.load(open('../county_versions.json'))
 district_versions = json.load(open('../district_versions.json'))
@@ -94,9 +84,9 @@ for f in files:
         candidate['election_year'] = election_year
         candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
         candidate['candidate_term_uid'] = '%s-%s' % (candidate['candidate_uid'], election_year)
-        candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate)
+        candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate, create=False)
         candidate['councilor_term_id'] = common.getDetailIdFromUid(c, candidate['councilor_uid'], election_year, candidate['county'])
 
-        candidate['councilor_terms'] = councilor_terms(candidate) if created else None
+        candidate['councilor_terms'] = common.councilor_terms(c, candidate) if created else None
         upsertCandidates(candidate)
 conn.commit()

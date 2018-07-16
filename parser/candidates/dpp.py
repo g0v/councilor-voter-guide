@@ -115,12 +115,13 @@ for wks in worksheets:
         candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate, create=False)
         candidate['councilor_term_id'] = common.getDetailIdFromUid(c, candidate['councilor_uid'], election_year, candidate['county'])
         candidate['councilor_terms'] = common.councilor_terms(c, candidate) if created else None
-        candidate['legislator_uid'] = common.get_legislator_uid(c_another, candidate['name'])
-        candidate['legislator_data'] = common.get_legislator_data(c_another, candidate['legislator_uid'])
-        if candidate['legislator_uid']:
-            candidate['legislator_terms'] = common.legislator_terms(c_another, candidate)
-            candidate['legislator_candidate_info'] = common.get_elected_legislator_candidate_info(c_another, candidate)
-            if candidate['legislator_candidate_info']:
-                candidate['birth'] = candidate['legislator_candidate_info']['birth']
+        if position_type == 'mayors':
+            candidate['legislator_uid'] = common.get_legislator_uid(c_another, candidate['name'])
+            candidate['legislator_data'] = common.get_legislator_data(c_another, candidate['legislator_uid'])
+            if candidate['legislator_uid']:
+                candidate['legislator_terms'] = common.legislator_terms(c_another, candidate)
+                candidate['legislator_candidate_info'] = common.get_elected_legislator_candidate_info(c_another, candidate)
+                if candidate['legislator_candidate_info']:
+                    candidate['birth'] = candidate['legislator_candidate_info']['birth']
         upsertCandidates(candidate)
 conn.commit()
