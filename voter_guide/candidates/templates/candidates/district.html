@@ -118,11 +118,11 @@
                                 <h1 class="classJ exlrgt">{{candidate.name}}</h1>
                                 <h4>
                                     {% if candidate.elected_councilor and not candidate.elected_councilor.in_office %}
-                                            {% if candidate.elected_councilor.term_end.reason %}
-                                                （{{ candidate.elected_councilor.term_end.reason }}）
-                                            {% else %}
-                                                （已去職）
-                                            {% endif %}
+                                        {% if candidate.elected_councilor.term_end.reason %}
+                                            （{{ candidate.elected_councilor.term_end.reason }}）
+                                        {% else %}
+                                            （已去職）
+                                        {% endif %}
                                     {% endif %}
                                 </h4>
                             </div>
@@ -167,6 +167,7 @@
                         {% else %}
                             <div class="contributions-info col-xs-12 col-sm-4 row" onclick="location.href='{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}';" style="cursor: pointer;">
                         {% endif %}
+                            {% if candidate.politicalcontributions %}
                             <div class="tit col-xs-12">
                                 <p>政治獻金</p>
                             </div>
@@ -190,12 +191,13 @@
                                     </div>
                                 </div>
                             {% endfor %}
+                            {% endif %}
                         </div>
 
                         <div class="content-btm-ui col-xs-12 row">
                             {% if candidate.councilor_terms %}
                                 <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
-                                <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'councilors:biller' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">政治履歷 </a>
+                                <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'councilors:biller_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">政治履歷 </a>
                             {% endif %}
                         </div>
                         <div class="clearb"></div>
