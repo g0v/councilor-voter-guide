@@ -71,7 +71,7 @@ def legislator_terms(c, candidate):
     ref = {'2022': 10, '2018': 9, '2014': 8, '2010': 7, '2009': 7}
     candidate['ad'] = ref[candidate['election_year']]
     c.execute('''
-        SELECT l.id as term_id, l.legislator_id, l.ad, l.county, l.bill_param, l.vote_param, l.attendance_param, to_char(EXTRACT(YEAR FROM l.term_start), '9999') as term_start_year, substring(l.term_end->>'date' from '(\d+)-') as term_end_year, COALESCE(c.cec_data->>'rptpolitics', l.platform, c.platform) as platform
+        SELECT l.id as term_id, l.legislator_id, l.ad, l.county, l.bill_param, l.vote_param, l.attendance_param, to_char(EXTRACT(YEAR FROM l.term_start), '9999') as term_start_year, substring(l.term_end->>'date' from '(\d+)-') as term_end_year, COALESCE(c.cec_data->>'rptpolitics', l.platform, c.platform) as platform, in_office, term_end
         FROM legislator_legislatordetail l
         LEFT JOIN candidates_terms c ON c.legislator_id = l.id
         WHERE l.legislator_id = %(legislator_uid)s AND l.ad <= %(ad)s
@@ -90,7 +90,7 @@ def councilor_terms(c, candidate):
     '''
 
     c.execute('''
-        SELECT id as term_id, councilor_id, election_year, county, param, to_char(EXTRACT(YEAR FROM term_start), '9999') as term_start_year, substring(term_end->>'date' from '(\d+)-') as term_end_year, platform
+        SELECT id as term_id, councilor_id, election_year, county, param, to_char(EXTRACT(YEAR FROM term_start), '9999') as term_start_year, substring(term_end->>'date' from '(\d+)-') as term_end_year, platform, in_office, term_end
         FROM councilors_councilorsdetail
         WHERE councilor_id = %(councilor_uid)s AND election_year <= %(election_year)s
         ORDER BY election_year DESC

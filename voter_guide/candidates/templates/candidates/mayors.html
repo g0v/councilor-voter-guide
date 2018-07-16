@@ -83,6 +83,9 @@
                                 <div class="tit">
                                     <p>{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}立委</p>
                                 </div>
+                                {% if not term.in_office and term.term_end.reason %}
+                                    離職原因：{{term.term_end.reason}}{% if term.term_end.ref %}，<a href="{{term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
+                                {% endif %}
                                 <div class="statistic">
                                     <p>{{term.bill_param.sponsor}} 次主提案</p>
                                     <p>{{term.bill_param.cosponsor}} 次共同提案</p>
@@ -105,6 +108,9 @@
                                 <div class="tit">
                                     <p>{{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}{{councilor_term.county}}議員</p>
                                 </div>
+                                {% if not councilor_term.in_office and councilor_term.term_end.reason %}
+                                    離職原因：{{councilor_term.term_end.reason}}{% if councilor_term.term_end.ref %}，<a href="{{councilor_term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
+                                {% endif %}
                                 <div class="statistic">
                                     {% if councilor_term.param.bills_role_statistics %}
                                     <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>

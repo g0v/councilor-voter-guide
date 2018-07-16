@@ -116,15 +116,6 @@
                             </div>
                             <div class="name col-xs-7 col-sm-4">
                                 <h1 class="classJ exlrgt">{{candidate.name}}</h1>
-                                <h4>
-                                    {% if candidate.elected_councilor and not candidate.elected_councilor.in_office %}
-                                        {% if candidate.elected_councilor.term_end.reason %}
-                                            （{{ candidate.elected_councilor.term_end.reason }}）
-                                        {% else %}
-                                            （已去職）
-                                        {% endif %}
-                                    {% endif %}
-                                </h4>
                             </div>
                         </a>
                         <div class="personal-info col-xs-12 col-sm-3">
@@ -143,6 +134,9 @@
                             <div class="tit">
                                 <p>{{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}{{councilor_term.county}}議員</p>
                             </div>
+                            {% if not councilor_term.in_office and councilor_term.term_end.reason %}
+                                離職原因：{{councilor_term.term_end.reason}}{% if councilor_term.term_end.ref %}，<a href="{{councilor_term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
+                            {% endif %}
                             <div class="statistic">
                                 {% if councilor_term.param.bills_role_statistics %}
                                 <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>
@@ -213,6 +207,9 @@
                             <div class="tit">
                                 <p>{{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}{{councilor_term.county}}議員</p>
                             </div>
+                            {% if not councilor_term.in_office and councilor_term.term_end.reason %}
+                                離職原因：{{councilor_term.term_end.reason}}{% if councilor_term.term_end.ref %}，<a href="{{councilor_term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
+                            {% endif %}
                             <div class="statistic">
                                 {% if councilor_term.param.bills_role_statistics %}
                                 <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>
