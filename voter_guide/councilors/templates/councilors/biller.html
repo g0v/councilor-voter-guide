@@ -9,7 +9,7 @@
 {% endblock title %}
 
 {% block person_css_file %}
-    <link href="{% static "css/resume-bills.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/bill.min.css" %}" rel="stylesheet">
 {% endblock person_css_file %}
 
 {% block social_meta %}
@@ -56,7 +56,6 @@
     {{block.super}}
     <script>
         $(document).ready( function() {
-            $('#url_bill').addClass('btn-primary');
             $('#primaryonly').change(function() {
                 $("#form").trigger('submit');
             });

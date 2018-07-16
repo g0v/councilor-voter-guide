@@ -13,46 +13,19 @@
 {% endblock css_file %}
 
 {% block right %}
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="wrapper relat">
-                <div class="container relat classJ contain-1000">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">{{election_year}} 選舉</div>
-                        <div class="panel-body">
-                            <h4>讓候選人、政見提早現身！</h4>
-                            <div class="btn-group" role="group">
-                                <a href="{% url 'candidates:intents' election_year=election_year %}" class="btn btn-info"><i class="fa fa-flag-checkered"> 候選人</i></a>
-                                <a href="{% url 'platforms:lists' %}" class="btn btn-success"><i class="fa fa-pencil-square-o"> 來許願</i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-warning">
-                        <div class="panel-heading">來幫忙</div>
-                        <div class="panel-body">
-                            <h4>縣市長、議員幹了什麼？<br>由你來摘要！</h4>
-                            <a href="{% url 'dispatch_bill' %}" class="btn btn-danger" target="_blank"><i class="fa fa-pencil-square-o"> 隨機給我一個！</i></a>
-                        </div>
-                    </div>
-                </div>
+    <input class="inv" id="page" type="text" value="{{ref.page_id}}">
+    <div class="preload abs"></div>
+    <div class="wrapper relat">
+        <div class="container relat classJ contain-1000">
+            <div class="head-j row">
+                <div class="col-xs-7 col-sm-9 col-md-10 title">
+                    <h1>{{ref.title}}</h1>
+                </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="#">回上一頁</a>
             </div>
-        </div>
-        <div class="col-sm-9">
-            <input class="inv" id="page" type="text" value="{{ref.page_id}}">
-            <div class="preload abs"></div>
-            <div class="wrapper relat">
-                <div class="container relat classJ contain-1000">
-                    <div class="head-j row">
-                        <div class="col-xs-7 col-sm-9 col-md-10 title">
-                            <h1>{{ref.title}}</h1>
-                        </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="#">回上一頁</a>
-                    </div>
-                    <div class="select-area hidden-xs col-xs-12"><a href="#六都" data-id="六都">六都</a><a href="#北部" data-id="北部">北部</a><a href="#中部" data-id="中部">中部</a><a href="#南部" data-id="南部">南部</a><a href="#東部" data-id="東部">東部</a><a href="#離島" data-id="離島">離島</a><button id="auto_locate" class="btn btn-warning pull-right"><i class="fa fa-map-marker"> 自動定位</i></button></div>
-                    <div class="select-county-blk row"></div>
-                    </div>
-                    <div class="content"></div>
-                </div>
+            <div class="select-area hidden-xs col-xs-12"><a href="#六都" data-id="六都">六都</a><a href="#北部" data-id="北部">北部</a><a href="#中部" data-id="中部">中部</a><a href="#南部" data-id="南部">南部</a><a href="#東部" data-id="東部">東部</a><a href="#離島" data-id="離島">離島</a></div>
+            <div class="select-county-blk row"></div>
             </div>
+            <div class="content"></div>
         </div>
     </div>
     <script>
@@ -62,38 +35,3 @@
     </script>
     <div id="disqus_thread"></div>
 {% endblock right %}
-
-{% block script %}
-    <script>
-        $(document).ready( function() {
-            $("#auto_locate").on('click', function() {
-                function error(err) {
-                    console.warn('ERROR(' + err.code + '): ' + err.message);
-                };
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    $.ajax({
-                        url: 'https://sheethub.com/ronnywang/%E6%9D%91%E9%87%8C%E7%95%8C%E5%9C%9620140313/geolookup',
-                        type: 'GET',
-                        data: {
-                            zoom: 19,
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        },
-                        success: function(data){
-                            return window.location.href = prefixUrl_global + data[0].values[1] + "/";
-                        },
-                        error: function() { alert('抱歉，定位失敗，請手動選擇～'); },
-                    });
-                    }, error, {enableHighAccuracy: true});
-            });
-            if (!navigator.geolocation) {
-                $("#auto_locate").hide;
-            }
-            $('#{{category}}').addClass('active');
-            $('[data-toggle="collapse"]').on('click', function() {
-                $('[data-toggle="collapse"]').not(this).find('.fa-angle-down').removeClass('up-side-down');
-                $(this).find('.fa-angle-down').toggleClass('up-side-down');
-            });
-        });
-    </script>
-{% endblock script %}

@@ -61,7 +61,7 @@
                             </div>
                             <div class="party pull-left relat">
                                 <div class="relat">
-                                    <img src="{% static "img/dest/" %}{{candidate.party}}.png">
+                                    <img src="{% static "img/dest/" %}{{candidate.party}}.png" alt="{{candidate.party}}" title="{{candidate.party}}">
                                 </div>
                             </div>
                             <div class="name col-xs-7 col-sm-4">
@@ -141,7 +141,7 @@
                                         <div class="year-contri col-xs-3"></div>
                                     {% endif %}
                                     <div class="year-contri col-xs-6">
-                                        <div class="year">{{term.election_year}} </div>
+                                        <div class="year" data-toggle="tooltip" data-placement="top" title="{{term.election_year}} {{term.election_name}}">{{term.election_year}} </div>
                                         <div class="income row">
                                             <div class="col-xs-3 text-left">收：</div>
                                             <div class="col-xs-9 text-right"><font class="price">{{term.pc.in_total}}</font></div>
@@ -264,8 +264,8 @@
     </div>
     <script>
         var county_global='{{county}}';
-        var constituency_global = 1;
-        var year_global = 2018;//(DEFAULT 為2018 )
+        var constituency_global = 0;
+        var year_global = {{election_year}};//(DEFAULT 為2018 )
         var jsonUrl_global = '{% static "/json/dest/constituencies_" %}'+year_global+'.json';
         var prefixUrl_global = '{% url "candidates:mayors_area" %}';
     </script>
@@ -277,8 +277,7 @@
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     <script>
         $(document).ready( function() {
-            $('#candidates').addClass('active');
-            $("[rel='tooltip']").tooltip();
+            $('[data-toggle="tooltip"]').tooltip()
             $('.price').each(function(index,ele){
                 var number = $(ele).text()
                 zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});

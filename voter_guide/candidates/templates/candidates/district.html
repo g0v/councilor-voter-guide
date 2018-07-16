@@ -170,7 +170,7 @@
                                     <div class="year-contri col-xs-3"></div>
                                 {% endif %}
                                 <div class="year-contri col-xs-6">
-                                    <div class="year">{{term.election_year}} </div>
+                                    <div class="year" data-toggle="tooltip" data-placement="top" title="{{term.election_year}} {{term.election_name}}">{{term.election_year}}</div>
                                     <div class="income row">
                                         <div class="col-xs-4 text-left">收：</div>
                                         <div class="col-xs-8 text-right"><font class="price">{{term.pc.in_total}}</font></div>
@@ -295,7 +295,7 @@
     <script>
         var county_global = '{{county}}';
         var constituency_global = {{constituency}};
-        var year_global = 2018;//(DEFAULT 為2018 )
+        var year_global = {{election_year}};//(DEFAULT 為2018 )
         var jsonUrl_global = '{% static "/json/dest/constituencies_" %}'+year_global+'.json';
         var prefixUrl_global = '{% url "candidates:councilors_area" %}';
     </script>
@@ -307,7 +307,7 @@
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     <script>
         $(document).ready( function() {
-            $('#candidates').addClass('active');
+            $('[data-toggle="tooltip"]').tooltip()
             $('.price').each(function(index,ele){
                 var number = $(ele).text()
                 zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});

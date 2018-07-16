@@ -3,9 +3,9 @@
 {% load extras %}
 
 {% block css_file %}
-    <link href="{% static "css/resume.min.css" %}" rel="stylesheet">
     {% block person_css_file %}
     {% endblock person_css_file %}
+    <link href="{% static "css/resume.min.css" %}" rel="stylesheet">
 {% endblock css_file %}
 
 {% block right %}
@@ -85,11 +85,3 @@
     <hr>
     <div id="disqus_thread"></div>
 {% endblock right %}
-
-{% block script %}
-    <script>
-        $(document).ready( function() {
-            $('#councilors').addClass('active');
-        });
-    </script>
-{% endblock script %}
