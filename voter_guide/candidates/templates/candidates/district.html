@@ -279,12 +279,14 @@
                         {% else %}
                             <div class="proposal col-sm-6 row">
                         {% endif %}
+                        {% if candidate.councilor_terms.0.platform %}
                             <div class="tit row col-sm-12">
-                                <div class="col-sm-12">政見</div>
+                                <div class="col-sm-12">{{candidate.councilor_terms.0.term_start_year}} 年{{candidate.councilor_terms.0.county}}議員選舉政見</div>
                             </div>
                             <div class="list-politics col-sm-12">
-                                {{candidate.elected_councilor.platform|linebreaksbr}}
+                                {{candidate.councilor_terms.0.platform|linebreaksbr}}
                             </div>
+                        {% endif %}
                         </div>
                     </div>
                     {% endif %}

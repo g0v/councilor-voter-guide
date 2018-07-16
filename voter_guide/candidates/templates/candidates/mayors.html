@@ -171,13 +171,11 @@
                         {% if candidate.data.legislator_terms|length > 1 %}
                         <div class="statistic-info col-xs-12 col-sm-4 col-sm-offset-3">
                         {% for term in candidate.data.legislator_terms %}
-                        {{term}}
                             {% if forloop.counter0 > 0 %}
                             <div class="tit">
                                 <p>{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}立委</p>
                             </div>
                             <div class="statistic">
-                                <a href="https://vote.ly.g0v.tw/legislator/biller/{{term.uid}}/{{term.ad}}/">{{term.bill_param.sponsor}} 次主提案</a>
                                 <p>{{term.bill_param.sponsor}} 次主提案</p>
                                 <p>{{term.bill_param.cosponsor}} 次共同提案</p>
                             {% if term.vote_param %}
@@ -236,12 +234,21 @@
                         </div>
                         {% endwith %}
                         <div class="proposal col-sm-6 row">
+                            {% if candidate.data.legislator_terms %}
                             <div class="tit row col-sm-12">
-                                <div class="col-sm-12">政見</div>
+                                <div class="col-sm-12">{{candidate.data.legislator_terms.0.term_start_year}} 年{{candidate.data.legislator_terms.0.county}}立委選舉政見</div>
                             </div>
                             <div class="list-politics col-sm-12">
-                                {{candidate.elected_councilor.platform|linebreaksbr}}
+                                {{candidate.data.legislator_terms.0.platform|safe|linebreaksbr}}
                             </div>
+                            {% elif candidate.councilor_terms %}
+                            <div class="tit row col-sm-12">
+                                <div class="col-sm-12">{{candidate.councilor_terms.0.term_start_year}} 年{{candidate.councilor_terms.0.county}}議員選舉政見</div>
+                            </div>
+                            <div class="list-politics col-sm-12">
+                                {{candidate.councilor_terms.0.platform|linebreaksbr}}
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                     {% endif %}
