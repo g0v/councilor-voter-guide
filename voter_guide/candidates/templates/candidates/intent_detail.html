@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load socialaccount %}
+{% load staticfiles %}
 {% load humanize %}
 {% load extras %}
 
@@ -15,6 +16,14 @@
     </style>
 {% endblock title %}
 
+{% block css_file %}
+<style>
+    body, html {
+      background-color: #e1efd5;
+    }
+</style>
+{% endblock css_file %}
+
 {% block social_meta %}
     {% with user_id=intent.user.socialaccount_set.first.uid %}
         <meta property="og:description" content="{{intent.motivation|truncatewords:2}}"/>
@@ -25,392 +34,398 @@
 {% endblock social_meta %}
 
 {% block right %}
-    <div class="person_header">
-        <div class="row">
-            <div class="col-sm-2 col-sm-offset-2 col-xs-3">
-            {% with user_id=intent.user.socialaccount_set.first.uid %}
-                <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=110">
-            {% endwith %}
-            </div>
-            <div class="col-sm-8 col-xs-9">
-                <h3 style="margin-top: 0; margin-left: 14px;">
-                    {{intent.election_year}} {{intent.county}}{% if intent.type == 'councilors' %}議員{% else %}長{% endif %}擬參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small>
+<input class="inv" id="page" type="text">
+<div class="preload abs"></div>
+<div class="wrapper relat">
+    <div class="container relat classJ contain-1200">
+        <div class="person_header">
+            <div class="row">
+                <div class="col-sm-2 col-sm-offset-2 col-xs-3">
+                {% with user_id=intent.user.socialaccount_set.first.uid %}
+                    <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=110">
+                {% endwith %}
+                </div>
+                <div class="col-sm-8 col-xs-9">
+                    <h3 style="margin-top: 0; margin-left: 14px;">
+                        {{intent.election_year}} {{intent.county}}{% if intent.type == 'councilors' %}議員{% else %}長{% endif %}擬參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small>
 
-                <div class="pull-right">
-                {% if request.user.is_authenticated %}
-                    <form class="form" action="" method="post" id="sponsor">{% csrf_token %}
-                    {% if user_liked %}
-                        <button class="btn btn-success" type="submit" name="decision" value="downvote"><i class="fa fa-thumbs-up"> 收回讚</i></button>
-                    {% else %}
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
-                            <i class="fa fa-thumbs-up"> 讚</i>
-                        </button>
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">您願意提供給此候選人的聯絡資料（可都不提供只按讚）</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        {{form.as_p}}
-                                        <h3 data-toggle="collapse" data-target="#ref_qa"><span class="text-warning">提供資料要幹麻？ <i class="fa fa-caret-square-o-down"></i></span></h3>
-                                        <div id="ref_qa" class="collapse">
-                                            <p>您提供給此候選人的資料，將有助於候選人後續與您的聯絡、互動，例如辦活動時可邀請您參與，讓候選人更有機會聽見人民的聲音。</p>
-                                            <p>簡單來說，就是自己的樁腳自己做！</p>
-                                            <p>您也可以都不提供資料純粹按讚支持，可按<span class="text-danger">紅色按鈕</span>清空資料後<span class="text-primary">送出讚。</span></p>
+                    <div class="pull-right">
+                    {% if request.user.is_authenticated %}
+                        <form class="form" action="" method="post" id="sponsor">{% csrf_token %}
+                        {% if user_liked %}
+                            <button class="btn btn-success" type="submit" name="decision" value="downvote"><i class="fa fa-thumbs-up"> 收回讚</i></button>
+                        {% else %}
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                                <i class="fa fa-thumbs-up"> 讚</i>
+                            </button>
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">您願意提供給此候選人的聯絡資料（可都不提供只按讚）</h4>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger pull-left" id="clear_contact">清空資料</button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                        <button type="submit" class="btn btn-primary" name="decision" value="upvote">送出讚</button>
+                                        <div class="modal-body">
+                                            {{form.as_p}}
+                                            <h3 data-toggle="collapse" data-target="#ref_qa"><span class="text-warning">提供資料要幹麻？ <i class="fa fa-caret-square-o-down"></i></span></h3>
+                                            <div id="ref_qa" class="collapse">
+                                                <p>您提供給此候選人的資料，將有助於候選人後續與您的聯絡、互動，例如辦活動時可邀請您參與，讓候選人更有機會聽見人民的聲音。</p>
+                                                <p>簡單來說，就是自己的樁腳自己做！</p>
+                                                <p>您也可以都不提供資料純粹按讚支持，可按<span class="text-danger">紅色按鈕</span>清空資料後<span class="text-primary">送出讚。</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger pull-left" id="clear_contact">清空資料</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <button type="submit" class="btn btn-primary" name="decision" value="upvote">送出讚</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endif %}
+                        </form>
+                    {% else %}
+                        <a href="{% provider_login_url "facebook" %}?next={% url 'candidates:intent_detail' intent_id=intent.uid %}" class="btn btn-success"><i class="fa fa-sign-in"> 登入按讚</i></a>
                     {% endif %}
-                    </form>
-                {% else %}
-                    <a href="{% provider_login_url "facebook" %}?next={% url 'candidates:intent_detail' intent_id=intent.uid %}" class="btn btn-success"><i class="fa fa-sign-in"> 登入按讚</i></a>
-                {% endif %}
-                </div>
+                    </div>
 
-                </h3>
-                {% if intent.slogan %}
-                <h4 style="margin-left: 14px;">
-                    <i class="fa fa-bullhorn"> <font class="text-danger">{{intent.slogan}}</font></i>
-                </h4>
+                    </h3>
+                    {% if intent.slogan %}
+                    <h4 style="margin-left: 14px;">
+                        <i class="fa fa-bullhorn"> <font class="text-danger">{{intent.slogan}}</font></i>
+                    </h4>
+                    {% endif %}
+                    <a href="{% url 'platforms:propose' %}?intent={{intent.uid}}" class="btn btn-info pull-right" target="_blank"><i class="fa fa-birthday-cake"> 對{{intent.name}}許願</i></a>
+                    <dl class="dl-horizontal hidden-xs" style="margin-bottom: 0;">
+                        {% if intent.type == 'councilors' %}
+                        <dt>縣市選區</dt>
+                        <dd>
+                            {{intent.county}}（第{{intent.constituency}}選區）{{intent.district}}
+                        </dd>
+                        {% endif %}
+                        <dt>個人黨籍</dt>
+                        <dd>
+                            {{intent.party}}
+                        </dd>
+                    </dl>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="fb-share-button pull-right" data-size="large" data-href="{{current_url}}" data-layout="button_count"></div>
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-1 hidden-xs">
+                {% if is_this_intent %}
+                    <div class="btn-group-vertical" role="group" aria-label="...">
+                        <a href="{% url 'candidates:intent_sponsor' intent_id=intent.uid %}" class="btn btn-warning">支持者名單</a>
+                        <a href="{% url 'candidates:intent_upsert' %}" class="btn btn-info">編輯</a>
+                    </div>
+                {% else %}
+                    <a href="{% url 'candidates:intent_home' %}" class="btn btn-info">我也來發表</a>
                 {% endif %}
-                <a href="{% url 'platforms:propose' %}?intent={{intent.uid}}" class="btn btn-info pull-right" target="_blank"><i class="fa fa-birthday-cake"> 對{{intent.name}}許願</i></a>
-                <dl class="dl-horizontal hidden-xs" style="margin-bottom: 0;">
+                <hr>
+                <h5>修訂紀錄</h5>
+                {% for revision in intent.history %}
+                    {% if forloop.counter0 == 5 %}
+                        <button type="button" class="btn" data-toggle="collapse" data-target="#ref_more_history"><font>..... <i class="fa fa-angle-down"></i></font></button>
+                        <div id="ref_more_history" class="collapse">
+                    {% endif %}
+                    <!-- Button to trigger modal -->
+                    <a href="#modal-idx-{{forloop.counter}}" role="button" data-toggle="modal"><h6>{{ revision.modify_at|str2datetime|timesince }}前</a></h6>
+                    <!-- Modal -->
+                    <div id="modal-idx-{{forloop.counter}}" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">✖</button>
+                                    <h3 id="myModalLabel">版本 {{forloop.counter}}<small>（{{ revision.modify_at|str2datetime|timesince }} ago）</small></h3>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="property-header">名字</div>
+                                    <div class="property-body">{{revision.name}}</div>
+                                    <div class="property-header">縣市</div>
+                                    <div class="property-body">{{revision.county}}</div>
+                                    {% if revision.type == 'councilors' %}
+                                    <div class="property-header">選區</div>
+                                    <div class="property-body district">{{revision.constituency}}</div>
+                                    {% endif %}
+                                    <div class="property-header">個人黨籍<small>（中選會尚未公告政黨推薦名單）</small></div>
+                                    <div class="property-body">{{revision.party}}</div>
+                                    <div class="property-header">網站</div>
+                                    <div class="property-body">
+                                        <ul>
+                                        {% for link in revision.links %}
+                                            {% if link.url %}
+                                            <li>
+                                                <a href="{{link.url}}" target="_blank"> {{link.note}}</a>
+                                            </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </ul>
+                                    </div>
+                                    <div class="property-header">為何參選：</div>
+                                    <textarea style="display: none">{{revision.motivation}}</textarea>
+                                    <div class="property-body jumbotron"></div>
+                                    <div class="property-header">政治理念：</div>
+                                    <textarea style="display: none">{{revision.ideology}}</textarea>
+                                    <div class="property-body jumbotron"></div>
+                                    <div class="property-header">地方政見：</div>
+                                    <textarea style="display: none">{{revision.platform}}</textarea>
+                                    <div class="property-body jumbotron"></div>
+                                    <div class="property-header">經歷：</div>
+                                    <textarea style="display: none">{{revision.experience}}</textarea>
+                                    <div class="property-body jumbotron"></div>
+                                    <div class="property-header">學歷：</div>
+                                    <textarea style="display: none">{{revision.education}}</textarea>
+                                    <div class="property-body jumbotron"></div>
+                                    <div class="property-header">備註：</div>
+                                    <textarea style="display: none">{{revision.remark}}</textarea>
+                                    <div class="property-body jumbotron"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">關閉</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% if intent.history|length > 5 %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="col-sm-5">
+                <div align="center" style="margin-bottom: 20px">
+                    <div id="video_frame_{{intent.uid}}"></div>
+                </div>
+                <dl class="dl-horizontal">
+                    <div class="visible-xs">
                     {% if intent.type == 'councilors' %}
                     <dt>縣市選區</dt>
                     <dd>
-                        {{intent.county}}（第{{intent.constituency}}選區）{{intent.district}}
+                        {{intent.county}}（第{{intent.constituency}}選區）
+                        <p>{{intent.district}}</p>
                     </dd>
                     {% endif %}
                     <dt>個人黨籍</dt>
                     <dd>
                         {{intent.party}}
                     </dd>
+                    </div>
+                    {% if intent.links.0.url %}
+                    <dt>網站</dt>
+                    <dd>
+                        <ul>
+                        {% for link in intent.links %}
+                            {% if link.url %}
+                            <li>
+                                <a href="{{link.url}}" target="_blank"> {{link.note}}</a>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                        </ul>
+                    </dd>
+                    {% endif %}
                 </dl>
 
-            </div>
-        </div>
-    </div>
-
-    <div class="fb-share-button pull-right" data-size="large" data-href="{{current_url}}" data-layout="button_count"></div>
-    <hr>
-
-    <div class="row">
-        <div class="col-sm-1 hidden-xs">
-            {% if is_this_intent %}
-                <div class="btn-group-vertical" role="group" aria-label="...">
-                    <a href="{% url 'candidates:intent_sponsor' intent_id=intent.uid %}" class="btn btn-warning">支持者名單</a>
-                    <a href="{% url 'candidates:intent_upsert' %}" class="btn btn-info">編輯</a>
-                </div>
-            {% else %}
-                <a href="{% url 'candidates:intent_home' %}" class="btn btn-info">我也來發表</a>
-            {% endif %}
-            <hr>
-            <h5>修訂紀錄</h5>
-            {% for revision in intent.history %}
-                {% if forloop.counter0 == 5 %}
-                    <button type="button" class="btn" data-toggle="collapse" data-target="#ref_more_history"><font>..... <i class="fa fa-angle-down"></i></font></button>
-                    <div id="ref_more_history" class="collapse">
-                {% endif %}
-                <!-- Button to trigger modal -->
-                <a href="#modal-idx-{{forloop.counter}}" role="button" data-toggle="modal"><h6>{{ revision.modify_at|str2datetime|timesince }}前</a></h6>
-                <!-- Modal -->
-                <div id="modal-idx-{{forloop.counter}}" class="modal fade" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">✖</button>
-                                <h3 id="myModalLabel">版本 {{forloop.counter}}<small>（{{ revision.modify_at|str2datetime|timesince }} ago）</small></h3>
-                            </div>
-                            <div class="modal-body">
-                                <div class="property-header">名字</div>
-                                <div class="property-body">{{revision.name}}</div>
-                                <div class="property-header">縣市</div>
-                                <div class="property-body">{{revision.county}}</div>
-                                {% if revision.type == 'councilors' %}
-                                <div class="property-header">選區</div>
-                                <div class="property-body district">{{revision.constituency}}</div>
-                                {% endif %}
-                                <div class="property-header">個人黨籍<small>（中選會尚未公告政黨推薦名單）</small></div>
-                                <div class="property-body">{{revision.party}}</div>
-                                <div class="property-header">網站</div>
-                                <div class="property-body">
-                                    <ul>
-                                    {% for link in revision.links %}
-                                        {% if link.url %}
-                                        <li>
-                                            <a href="{{link.url}}" target="_blank"> {{link.note}}</a>
-                                        </li>
+                <div class="panel panel-default">
+                    <div class="panel-heading">候選人 {{intent.name}} 對現行議會提案{% if intent.county|county_config:'votes' %}、表決{% endif %}的立場</div>
+                    <div class="panel-body">
+                    {% regroup standpoints by decision as decision_list %}
+                    {% for decision_group in decision_list %}
+                        <div class="col-sm-12">
+                            <div class="panel-group" id="accordion_{{decision_group.grouper}}" role="tablist" aria-multiselectable="true">
+                            {% for standpoint in decision_group.list %}
+                            {% if decision_group.grouper %}
+                                <div class="panel panel-info">
+                            {% else %}
+                                <div class="panel panel-warning">
+                            {% endif %}
+                                    <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion_{{decision_group.grouper}}" data-target="#{{decision_group.grouper}}_{{forloop.counter}}" aria-expanded="false" aria-controls="{{decision_group.grouper}}_{{forloop.counter}}">
+                                        <b>{{standpoint.title}}</b>
+                                        <i class="fa fa-angle-down fa-lg pull-right"></i>
+                                        {% if decision_group.grouper %}
+                                            <span class="label label-success pull-right">贊成
+                                        {% else %}
+                                            <span class="label label-danger pull-right">反對
                                         {% endif %}
-                                    {% endfor %}
-                                    </ul>
+                                        {{standpoint.times}}次</span>
+                                    </div>
+                                    <div id="{{decision_group.grouper}}_{{forloop.counter}}" class="panel-collapse collapse" role="tabpanel">
+                                        <ul class="list-group">
+                                            {% for fragment in standpoint.detail %}
+                                            {% if fragment.abstract %}
+                                                <a class="list-group-item" href="{% url 'bills:bill' bill_id=fragment.uid %}" target="_blank">
+                                                    <h4>☞
+                                                        {% if fragment.param.sponsors_groupby_party.sponsor|length > 1 %}
+                                                            {{ fragment.param.sponsors_groupby_party.priproposer.party_list.0.councilors.0.name }}
+                                                        {% else %}
+                                                            {{fragment.proposed_by}}
+                                                        {% endif %}
+                                                        提案<small>（這標怎麼下的？點我來改進）</small>
+                                                    </h4>
+                                                    <blockquote>
+                                                        <p><small>{{fragment.abstract|truncatechars:100}}</small></p>
+                                                    </blockquote>
+                                                    {% if fragment.comment %}
+                                                        <div class="popover popover-static popover-danger bottom">
+                                                            <div class="arrow"></div>
+                                                            <h3 class="popover-title">
+                                                                {{intent.name}} 對此案的意見
+                                                            </h3>
+                                                            <div class="popover-content text-danger">
+                                                                <b>{{fragment.comment}}</b>
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
+                                                </a>
+                                            {% elif fragment.content %}
+                                                <a class="list-group-item" href="{% url 'votes:vote' vote_id=fragment.uid %}" target="_blank">
+                                                    <h4>☞ 表決 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></h4>
+                                                    <blockquote>
+                                                        <p><small>{{fragment.content|truncatechars:100}}</small></p>
+                                                    </blockquote>
+                                                    {% if fragment.comment %}
+                                                        <div class="popover popover-static popover-danger bottom">
+                                                            <div class="arrow"></div>
+                                                            <h3 class="popover-title">
+                                                                {{intent.name}} 對此案的意見
+                                                            </h3>
+                                                            <div class="popover-content text-danger">
+                                                                <b>{{fragment.comment}}</b>
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
+                                                </a>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="property-header">為何參選：</div>
-                                <textarea style="display: none">{{revision.motivation}}</textarea>
-                                <div class="property-body jumbotron"></div>
-                                <div class="property-header">政治理念：</div>
-                                <textarea style="display: none">{{revision.ideology}}</textarea>
-                                <div class="property-body jumbotron"></div>
-                                <div class="property-header">地方政見：</div>
-                                <textarea style="display: none">{{revision.platform}}</textarea>
-                                <div class="property-body jumbotron"></div>
-                                <div class="property-header">經歷：</div>
-                                <textarea style="display: none">{{revision.experience}}</textarea>
-                                <div class="property-body jumbotron"></div>
-                                <div class="property-header">學歷：</div>
-                                <textarea style="display: none">{{revision.education}}</textarea>
-                                <div class="property-body jumbotron"></div>
-                                <div class="property-header">備註：</div>
-                                <textarea style="display: none">{{revision.remark}}</textarea>
-                                <div class="property-body jumbotron"></div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">關閉</button>
+                            {% endfor %}
                             </div>
                         </div>
-                    </div>
-                </div>
-            {% endfor %}
-            {% if intent.history|length > 5 %}
-                </div>
-            {% endif %}
-        </div>
-
-        <div class="col-sm-5">
-            <div align="center" style="margin-bottom: 20px">
-                <div id="video_frame_{{intent.uid}}"></div>
-            </div>
-            <dl class="dl-horizontal">
-                <div class="visible-xs">
-                {% if intent.type == 'councilors' %}
-                <dt>縣市選區</dt>
-                <dd>
-                    {{intent.county}}（第{{intent.constituency}}選區）
-                    <p>{{intent.district}}</p>
-                </dd>
-                {% endif %}
-                <dt>個人黨籍</dt>
-                <dd>
-                    {{intent.party}}
-                </dd>
-                </div>
-                {% if intent.links.0.url %}
-                <dt>網站</dt>
-                <dd>
-                    <ul>
-                    {% for link in intent.links %}
-                        {% if link.url %}
-                        <li>
-                            <a href="{{link.url}}" target="_blank"> {{link.note}}</a>
-                        </li>
+                    {% empty %}
+                        候選人尚未對各提案{% if intent.county|county_config:'votes' %}、表決{% endif %}標註他的立場
+                        {% if is_this_intent %}
+                            {% if intent.county|county_config:'votes' %}
+                                <div class="btn-group-vertical" role="group" aria-label="...">
+                                    <a href="{% url 'dispatch_bill' county=intent.county %}?has_tag=yes" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的提案立場</i></a>
+                                    <a href="{% url 'dispatch_vote' county=intent.county %}?has_tag=yes" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的表決立場</i></a>
+                                </div>
+                            {% else %}
+                                <a href="{% url 'dispatch_bill' county=intent.county %}?has_tag=yes" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的立場</i></a>
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
-                    </ul>
-                </dd>
-                {% endif %}
-            </dl>
+                    </div>
+                </div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading">候選人 {{intent.name}} 對現行議會提案{% if intent.county|county_config:'votes' %}、表決{% endif %}的立場</div>
-                <div class="panel-body">
-                {% regroup standpoints by decision as decision_list %}
-                {% for decision_group in decision_list %}
-                    <div class="col-sm-12">
-                        <div class="panel-group" id="accordion_{{decision_group.grouper}}" role="tablist" aria-multiselectable="true">
-                        {% for standpoint in decision_group.list %}
-                        {% if decision_group.grouper %}
-                            <div class="panel panel-info">
-                        {% else %}
-                            <div class="panel panel-warning">
-                        {% endif %}
-                                <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion_{{decision_group.grouper}}" data-target="#{{decision_group.grouper}}_{{forloop.counter}}" aria-expanded="false" aria-controls="{{decision_group.grouper}}_{{forloop.counter}}">
-                                    <b>{{standpoint.title}}</b>
-                                    <i class="fa fa-angle-down fa-lg pull-right"></i>
-                                    {% if decision_group.grouper %}
-                                        <span class="label label-success pull-right">贊成
-                                    {% else %}
-                                        <span class="label label-danger pull-right">反對
-                                    {% endif %}
-                                    {{standpoint.times}}次</span>
-                                </div>
-                                <div id="{{decision_group.grouper}}_{{forloop.counter}}" class="panel-collapse collapse" role="tabpanel">
-                                    <ul class="list-group">
-                                        {% for fragment in standpoint.detail %}
-                                        {% if fragment.abstract %}
-                                            <a class="list-group-item" href="{% url 'bills:bill' bill_id=fragment.uid %}" target="_blank">
-                                                <h4>☞
-                                                    {% if fragment.param.sponsors_groupby_party.sponsor|length > 1 %}
-                                                        {{ fragment.param.sponsors_groupby_party.priproposer.party_list.0.councilors.0.name }}
-                                                    {% else %}
-                                                        {{fragment.proposed_by}}
-                                                    {% endif %}
-                                                    提案<small>（這標怎麼下的？點我來改進）</small>
-                                                </h4>
-                                                <blockquote>
-                                                    <p><small>{{fragment.abstract|truncatechars:100}}</small></p>
-                                                </blockquote>
-                                                {% if fragment.comment %}
-                                                    <div class="popover popover-static popover-danger bottom">
-                                                        <div class="arrow"></div>
-                                                        <h3 class="popover-title">
-                                                            {{intent.name}} 對此案的意見
-                                                        </h3>
-                                                        <div class="popover-content text-danger">
-                                                            <b>{{fragment.comment}}</b>
-                                                        </div>
-                                                    </div>
-                                                {% endif %}
-                                            </a>
-                                        {% elif fragment.content %}
-                                            <a class="list-group-item" href="{% url 'votes:vote' vote_id=fragment.uid %}" target="_blank">
-                                                <h4>☞ 表決 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></h4>
-                                                <blockquote>
-                                                    <p><small>{{fragment.content|truncatechars:100}}</small></p>
-                                                </blockquote>
-                                                {% if fragment.comment %}
-                                                    <div class="popover popover-static popover-danger bottom">
-                                                        <div class="arrow"></div>
-                                                        <h3 class="popover-title">
-                                                            {{intent.name}} 對此案的意見
-                                                        </h3>
-                                                        <div class="popover-content text-danger">
-                                                            <b>{{fragment.comment}}</b>
-                                                        </div>
-                                                    </div>
-                                                {% endif %}
-                                            </a>
-                                        {% endif %}
-                                        {% endfor %}
-                                    </ul>
-                                </div>
+                {% if standpoints|length < 5 %}
+                    <hr>
+                    <div class="fb-comments" data-href="{{current_url}}" data-width="350" data-numposts="5" data-order_by="reverse_time"></div>
+                {% endif %}
+            </div>
+
+            <div class="col-sm-6">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="margin-bottom: 50px">
+                    {% if intent.motivation %}
+                    <div class="panel panel-info">
+                        <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_motivation" aria-expanded="false" aria-controls="{{intent.uid}}_motivation">
+                            為何參選？
+                            <i class="fa fa-angle-down fa-lg pull-right"></i>
+                        </div>
+                        <div id="{{intent.uid}}_motivation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <textarea style="display: none">{{intent.motivation}}</textarea>
+                                <div class="intent-property-body"></div>
                             </div>
-                        {% endfor %}
                         </div>
                     </div>
-                {% empty %}
-                    候選人尚未對各提案{% if intent.county|county_config:'votes' %}、表決{% endif %}標註他的立場
-                    {% if is_this_intent %}
-                        {% if intent.county|county_config:'votes' %}
-                            <div class="btn-group-vertical" role="group" aria-label="...">
-                                <a href="{% url 'dispatch_bill' county=intent.county %}?has_tag=yes" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的提案立場</i></a>
-                                <a href="{% url 'dispatch_vote' county=intent.county %}?has_tag=yes" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的表決立場</i></a>
-                            </div>
-                        {% else %}
-                            <a href="{% url 'dispatch_bill' county=intent.county %}?has_tag=yes" class="btn btn-danger pull-right" target="_blank"><i class="fa fa-angle-right"> 標註我的立場</i></a>
-                        {% endif %}
                     {% endif %}
-                {% endfor %}
+                    {% if intent.ideology %}
+                    <div class="panel panel-danger">
+                        <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_ideology" aria-expanded="false" aria-controls="{{intent.uid}}_ideology">
+                            政治理念？
+                            <i class="fa fa-angle-down fa-lg pull-right"></i>
+                        </div>
+                        <div id="{{intent.uid}}_ideology" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <textarea style="display: none">{{intent.ideology}}</textarea>
+                                <div class="intent-property-body"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if intent.platform %}
+                    <div class="panel panel-success">
+                        <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_platform" aria-expanded="false" aria-controls="{{intent.uid}}_platform">
+                            地方政見？
+                            <i class="fa fa-angle-down fa-lg pull-right"></i>
+                        </div>
+                        <div id="{{intent.uid}}_platform" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <textarea style="display: none">{{intent.platform}}</textarea>
+                                <div class="intent-property-body"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if intent.experience %}
+                    <div class="panel panel-warning">
+                        <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_experience" aria-expanded="false" aria-controls="{{intent.uid}}_experience">
+                            經歷？
+                            <i class="fa fa-angle-down fa-lg pull-right"></i>
+                        </div>
+                        <div id="{{intent.uid}}_experience" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                <textarea style="display: none">{{intent.experience}}</textarea>
+                                <div class="intent-property-body"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if intent.education %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_education" aria-expanded="false" aria-controls="{{intent.uid}}_education">
+                            學歷？
+                            <i class="fa fa-angle-down fa-lg pull-right"></i>
+                        </div>
+                        <div id="{{intent.uid}}_education" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                <textarea style="display: none">{{intent.education}}</textarea>
+                                <div class="intent-property-body"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if intent.remark %}
+                    <div class="panel panel-muted">
+                        <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_remark" aria-expanded="false" aria-controls="{{intent.uid}}_remark">
+                            備註？
+                            <i class="fa fa-angle-down fa-lg pull-right"></i>
+                        </div>
+                        <div id="{{intent.uid}}_remark" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                <textarea style="display: none">{{intent.remark}}</textarea>
+                                <div class="intent-property-body"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
-            </div>
 
-            {% if standpoints|length < 5 %}
-                <hr>
-                <div class="fb-comments" data-href="{{current_url}}" data-width="350" data-numposts="5" data-order_by="reverse_time"></div>
-            {% endif %}
-        </div>
-
-        <div class="col-sm-6">
-            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="margin-bottom: 50px">
-                {% if intent.motivation %}
-                <div class="panel panel-info">
-                    <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_motivation" aria-expanded="false" aria-controls="{{intent.uid}}_motivation">
-                        為何參選？
-                        <i class="fa fa-angle-down fa-lg pull-right"></i>
-                    </div>
-                    <div id="{{intent.uid}}_motivation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="panel-body">
-                            <textarea style="display: none">{{intent.motivation}}</textarea>
-                            <div class="intent-property-body"></div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                {% if intent.ideology %}
-                <div class="panel panel-danger">
-                    <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_ideology" aria-expanded="false" aria-controls="{{intent.uid}}_ideology">
-                        政治理念？
-                        <i class="fa fa-angle-down fa-lg pull-right"></i>
-                    </div>
-                    <div id="{{intent.uid}}_ideology" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                        <div class="panel-body">
-                            <textarea style="display: none">{{intent.ideology}}</textarea>
-                            <div class="intent-property-body"></div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                {% if intent.platform %}
-                <div class="panel panel-success">
-                    <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_platform" aria-expanded="false" aria-controls="{{intent.uid}}_platform">
-                        地方政見？
-                        <i class="fa fa-angle-down fa-lg pull-right"></i>
-                    </div>
-                    <div id="{{intent.uid}}_platform" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                        <div class="panel-body">
-                            <textarea style="display: none">{{intent.platform}}</textarea>
-                            <div class="intent-property-body"></div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                {% if intent.experience %}
-                <div class="panel panel-warning">
-                    <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_experience" aria-expanded="false" aria-controls="{{intent.uid}}_experience">
-                        經歷？
-                        <i class="fa fa-angle-down fa-lg pull-right"></i>
-                    </div>
-                    <div id="{{intent.uid}}_experience" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                        <div class="panel-body">
-                            <textarea style="display: none">{{intent.experience}}</textarea>
-                            <div class="intent-property-body"></div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                {% if intent.education %}
-                <div class="panel panel-default">
-                    <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_education" aria-expanded="false" aria-controls="{{intent.uid}}_education">
-                        學歷？
-                        <i class="fa fa-angle-down fa-lg pull-right"></i>
-                    </div>
-                    <div id="{{intent.uid}}_education" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                        <div class="panel-body">
-                            <textarea style="display: none">{{intent.education}}</textarea>
-                            <div class="intent-property-body"></div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                {% if intent.remark %}
-                <div class="panel panel-muted">
-                    <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#{{intent.uid}}_remark" aria-expanded="false" aria-controls="{{intent.uid}}_remark">
-                        備註？
-                        <i class="fa fa-angle-down fa-lg pull-right"></i>
-                    </div>
-                    <div id="{{intent.uid}}_remark" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                        <div class="panel-body">
-                            <textarea style="display: none">{{intent.remark}}</textarea>
-                            <div class="intent-property-body"></div>
-                        </div>
-                    </div>
-                </div>
+                {% if standpoints|length > 4 %}
+                    <hr>
+                    <div class="fb-comments" data-href="{{current_url}}" data-width="350" data-numposts="5" data-order_by="reverse_time"></div>
                 {% endif %}
             </div>
-
-            {% if standpoints|length > 4 %}
-                <hr>
-                <div class="fb-comments" data-href="{{current_url}}" data-width="350" data-numposts="5" data-order_by="reverse_time"></div>
-            {% endif %}
         </div>
     </div>
+</div>
 {% endblock right %}
 
 {% block script %}

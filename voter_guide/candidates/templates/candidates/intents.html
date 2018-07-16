@@ -16,7 +16,14 @@
 {% endblock title %}
 
 {% block css_file %}
-    <link href="{% static "css/wish.min.css" %}" rel="stylesheet">
+<style>
+    body, html {
+      background-color: #e1efd5;
+    }
+    .wrapper .container {
+        margin-top: 100px;
+    }
+</style>
 {% endblock css_file %}
 
 {% block social_meta %}
@@ -32,8 +39,10 @@
 {% endblock social_meta %}
 
 {% block right %}
+<input class="inv" id="page" type="text">
+<div class="preload abs"></div>
 <div class="wrapper relat">
-    <div class="container relat classJ contain-1000">
+    <div class="container relat classJ contain-1200">
     <div class="text-center">
         <h2>
             {{election_year}}

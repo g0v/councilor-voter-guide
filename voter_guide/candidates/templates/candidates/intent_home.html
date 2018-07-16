@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load socialaccount %}
+{% load staticfiles %}
 
 {% block title %}
     <title>投票指南:如果是候選人，你會怎麼做？</title>
@@ -7,48 +8,64 @@
     <meta itemprop="name" content="投票指南:如果是候選人，你會怎麼做？">
 {% endblock title %}
 
-{% block right %}
-    <div class="page-header text-center">
-        <h2>如果是候選人，你會怎麼做？</h2>
-            <a href="{% provider_login_url "facebook" %}?next={% url 'candidates:intent_upsert' %}" class="btn btn-info btn-lg"><i class="fa fa-sign-in"> 登入發表</i></a>
-    </div>
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="jumbotron">
-                <dl>
-                    <dd>
-                        <h4>看膩了一成不變的政見和候選人了嗎？</h4>
-                        <h4>受夠選前兩周才知道有誰可以投了嗎？</h4>
-                        <h4>平常這些候選人、民意代表到底都在哪？</h4>
-                        <br>
-                        <h4>2018 縣市議員選舉來點不一樣的吧！</h4>
-                        <h4>不用繳 20 萬選舉保證金，就可以告訴大家你心目中理想候選人的樣子！</h4>
-                        <h4>現在就<a href="{% provider_login_url "facebook" %}?next={% url 'candidates:intent_upsert' %}"><i class="fa fa-sign-in">登入發表</i></a>，如果是候選人，你會怎麼做？</h4>
-                        <br>
-                        <h4>本站將於候選人登記後，贊助總獎金 20 萬給 2 位最受歡迎的候選人，<a href="https://g0v.hackpad.tw/V5Eg9pRWEoI" target="_blank">詳細辦法</a></h4>
-                    </dd>
-                </dl>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="jumbotron">
-                <dl>
-                    <dt>注意事項</dt>
-                    <dd>
-                        <ul>
-                            <li>請勿假冒他人姓名、身分，違者將自負法律責任</li>
-                            <li>可不寫真名，但未寫真名無法參加<a href="https://g0v.hackpad.tw/V5Eg9pRWEoI" target="_blank">選舉保證金獎助金活動</a></li>
-                            <li>您所輸入的資料將以<a href="https://creativecommons.org/licenses/by/3.0/tw/">姓名標示 3.0 </a>授權</li>
-                            <li>中選會開放候選人登記後，如欲本站將您的資料與真實候選人做連結，將請您提供相關證明，辦法尚在擬訂中</li>
+{% block css_file %}
+<style>
+    body, html {
+      background-color: #e1efd5;
+    }
+    .wrapper .container {
+        margin-top: 100px;
+    }
+</style>
+{% endblock css_file %}
 
-                        </ul>
-                    </dd>
-                </dl>
+{% block right %}
+<input class="inv" id="page" type="text">
+<div class="preload abs"></div>
+<div class="wrapper relat">
+    <div class="container relat classJ contain-1000">
+        <div class="page-header text-center">
+            <h2>如果是候選人，你會怎麼做？</h2>
+                <a href="{% provider_login_url "facebook" %}?next={% url 'candidates:intent_upsert' %}" class="btn btn-info btn-lg"><i class="fa fa-sign-in"> 登入發表</i></a>
+        </div>
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="jumbotron">
+                    <dl>
+                        <dd>
+                            <h4>看膩了一成不變的政見和候選人了嗎？</h4>
+                            <h4>受夠選前兩周才知道有誰可以投了嗎？</h4>
+                            <h4>平常這些候選人、民意代表到底都在哪？</h4>
+                            <br>
+                            <h4>2018 縣市議員選舉來點不一樣的吧！</h4>
+                            <h4>不用繳 20 萬選舉保證金，就可以告訴大家你心目中理想候選人的樣子！</h4>
+                            <h4>現在就<a href="{% provider_login_url "facebook" %}?next={% url 'candidates:intent_upsert' %}"><i class="fa fa-sign-in">登入發表</i></a>，如果是候選人，你會怎麼做？</h4>
+                            <br>
+                            <h4>本站將於候選人登記後，贊助總獎金 20 萬給 2 位最受歡迎的候選人，<a href="https://g0v.hackpad.tw/V5Eg9pRWEoI" target="_blank">詳細辦法</a></h4>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="jumbotron">
+                    <dl>
+                        <dt>注意事項</dt>
+                        <dd>
+                            <ul>
+                                <li>請勿假冒他人姓名、身分，違者將自負法律責任</li>
+                                <li>可不寫真名，但未寫真名無法參加<a href="https://g0v.hackpad.tw/V5Eg9pRWEoI" target="_blank">選舉保證金獎助金活動</a></li>
+                                <li>您所輸入的資料將以<a href="https://creativecommons.org/licenses/by/3.0/tw/">姓名標示 3.0 </a>授權</li>
+                                <li>中選會開放候選人登記後，如欲本站將您的資料與真實候選人做連結，將請您提供相關證明，辦法尚在擬訂中</li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
             </div>
         </div>
-        <hr>
-        <div id="disqus_thread"></div>
     </div>
+</div>
+<hr>
+<div id="disqus_thread"></div>
 {% endblock right %}
 
 {% block script %}

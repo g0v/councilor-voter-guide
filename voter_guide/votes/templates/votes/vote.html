@@ -21,6 +21,8 @@
 {% endblock social_meta %}
 
 {% block right %}
+<input class="inv" id="page" type="text">
+<div class="preload abs"></div>
 <div class="wrapper relat">
     <div class="container relat classJ contain-1200">
         <div class="col-sm-3">
@@ -252,8 +254,6 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script>
         $(document).ready( function() {
-            $('#votes').addClass('active');
-            $("[rel='tooltip']").tooltip();
             $('[data-toggle="collapse"]').on('click', function() {
                 $(this).find('.fa-angle-down').toggleClass('up-side-down');
             });

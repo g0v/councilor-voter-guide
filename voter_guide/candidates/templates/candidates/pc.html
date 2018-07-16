@@ -2,11 +2,9 @@
 {% load extras %}
 
 {% block title %}
-    {% if candidate %}
-        <title>{{candidate.county}}議員候選人:{{candidate.name}}的政治獻金</title>
-        <meta property="og:title" content="{{candidate.county}}議員候選人:{{candidate.name}}的政治獻金"/>
-        <meta itemprop="name" content="{{candidate.county}}議員候選人:{{candidate.name}}的政治獻金">
-    {% endif %}
+    <title>{{candidate.county}}議員候選人:{{candidate.name}}的政治獻金</title>
+    <meta property="og:title" content="{{candidate.county}}議員候選人:{{candidate.name}}的政治獻金"/>
+    <meta itemprop="name" content="{{candidate.county}}議員候選人:{{candidate.name}}的政治獻金">
 {% endblock title %}
 
 {% block social_meta %}
@@ -17,6 +15,8 @@
 {% endblock social_meta %}
 
 {% block right %}
+<input class="inv" id="page" type="text">
+<div class="preload abs"></div>
 <div class="container-fluid" style="margin-top: 100px;">
     <div class="row">
         <div class="text-center">
