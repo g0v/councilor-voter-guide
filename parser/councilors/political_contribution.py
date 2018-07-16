@@ -54,10 +54,9 @@ for f in glob.glob('../../data/political_contribution/*.json'):
         }]
         candidate['politicalcontributions'] = json.dumps(pc)
         candidate['name'] = common.normalize_person_name(candidate['name'])
-#       candidate['name'] = re.sub(u'周鍾.*', u'周鍾㴴', candidate['name'])
         candidate['constituency'] = None
-        candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
-        if created:
+        candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate, create=False)
+        if candidate['candidate_uid']:
             PoliticalContributions(candidate)
         else:
             logging.error(u'not exist candidate: %s, %s' % (candidate['name'], candidate['election_year']))
