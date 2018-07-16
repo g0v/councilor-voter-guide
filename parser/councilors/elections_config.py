@@ -16,14 +16,16 @@ election_year = '2018'
 def parse_districts(county, districts):
     districts = re.sub(u'^(居住|【)', '', districts)
     category = re.search(u'(平地原住民|山地原住民)$', districts)
+    districts = re.sub(u'(平地原住民|山地原住民)$', '', districts)
     if category:
         category = category.group()
     districts = re.sub(u'(】|之)', '', districts)
     l = []
-    for district in districts.split(u'、'):
-        if not re.search(re.sub(u'[縣市]$', '', county), district):
-            district = re.sub(u'[鄉鎮市區]$', '', district)
-        l.append(district)
+    if districts:
+        for district in districts.split(u'、'):
+            if not re.search(re.sub(u'[縣市]$', '', county), district):
+                district = re.sub(u'[鄉鎮市區]$', '', district)
+            l.append(district)
     return l, category
 
 # update constituencies
@@ -39,7 +41,10 @@ for region in constituencies:
         })
     districts_list, category = parse_districts(region['county'], region['district'])
     if category:
-        district = u'%s（%s）' % (category, u'、'.join(districts_list))
+        if districts_list:
+            district = u'%s（%s）' % (category, u'、'.join(districts_list))
+        else:
+            district = u'%s（%s）' % (category, u'全%s' % region['county'])
     else:
         district = u'、'.join(districts_list)
     counties[region['county']]['regions'].append({
