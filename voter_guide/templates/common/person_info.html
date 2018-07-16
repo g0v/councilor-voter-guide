@@ -4,10 +4,12 @@
 
 {% block css_file %}
     <link href="{% static "css/resume.min.css" %}" rel="stylesheet">
+    {% block person_css_file %}
+    {% endblock person_css_file %}
 {% endblock css_file %}
 
 {% block right %}
-    <input class="inv" id="page" type="text" value="resume">
+    <input class="inv" id="page" type="text" value="resume-bills">
     <div class="preload abs"></div>
     <div class="wrapper-header relat header-{{id}}" data-type="{{id}}">
         <div class="container relat classJ contain-1000">
