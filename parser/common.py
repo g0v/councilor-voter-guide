@@ -16,12 +16,102 @@ def storage_domain():
 def election_year(county):
     return '2014'
 
+def get_elected_legislator_candidate_info(c, candidate):
+    c.execute('''
+        select row_to_json(_)
+        from (
+            SELECT c.birth, ct.politicalcontributions, ct.cec_data, ct.county, ct.constituency
+            FROM candidates_candidates c, candidates_terms ct, legislator_legislatordetail ld
+            WHERE c.uid = ct.candidate_id AND ld.id = ct.legislator_id AND ld.legislator_id = %s
+        ) _
+    ''', [candidate['legislator_uid'], ])
+    r = c.fetchone()
+    if r:
+        return r[0]
+
+def get_legislator_candidate_info(c, name):
+    identifiers = {name, re.sub(u'[\w‧]', '', name), re.sub(u'\W', '', name).lower(), } - {''}
+    if identifiers:
+        c.execute('''
+            SELECT uid
+            FROM candidates_candidates
+            WHERE identifiers ?| array[%s]
+        ''' % ','.join(["'%s'" % x for x in identifiers]))
+        r = c.fetchone()
+        if r:
+            candidate_uid = c.fetchone()[0]
+            c.execute('''
+                SELECT c.birth, ct.politicalcontributions, ct.cec_data, ct.county, ct.constituency
+                FROM candidates_candidates c, candidates_terms ct
+                WHERE c.uid = ct.candidate_id AND ct.candidate_id = %s
+            ''', [candidate_uid, ])
+            key = [desc[0] for desc in c.description]
+            r = c.fetchone()
+            return dict(zip(key, r))
+
+def get_legislator_data(c, uid):
+    c.execute('''
+        SELECT data
+        FROM legislator_legislator
+        WHERE uid = %s
+    ''', [uid])
+    return c.fetchone()
+
+def get_legislator_uid(c, name):
+    identifiers = {name, re.sub(u'[\w‧]', '', name), re.sub(u'\W', '', name).lower(), } - {''}
+    if identifiers:
+        c.execute('''
+            SELECT uid
+            FROM legislator_legislator
+            WHERE identifiers ?| array[%s]
+        ''' % ','.join(["'%s'" % x for x in identifiers]))
+        return c.fetchone()
+
+def legislator_terms(c, candidate):
+    ref = {'2022': 10, '2018': 9, '2014': 8, '2010': 7, '2009': 7}
+    candidate['ad'] = ref[candidate['election_year']]
+    c.execute('''
+        SELECT l.id as term_id, l.legislator_id, l.ad, l.county, l.bill_param, l.vote_param, l.attendance_param, to_char(EXTRACT(YEAR FROM l.term_start), '9999') as term_start_year, substring(l.term_end->>'date' from '(\d+)-') as term_end_year, COALESCE(c.cec_data->>'rptpolitics', l.platform, c.platform) as platform
+        FROM legislator_legislatordetail l
+        LEFT JOIN candidates_terms c ON c.legislator_id = l.id
+        WHERE l.legislator_id = %(legislator_uid)s AND l.ad <= %(ad)s
+        ORDER BY l.ad DESC
+    ''', candidate)
+    key = [desc[0] for desc in c.description]
+    terms = []
+    r = c.fetchall()
+    for row in r:
+        terms.append(dict(zip(key, row)))
+    return terms
+
+def councilor_terms(c, candidate):
+    '''
+    Parse working recoed before the election_year of this candidate into a json to store in individual candidate, so we could display councilor's working records easier at candidate page(no need of a lot of reference).
+    '''
+
+    c.execute('''
+        SELECT id as term_id, councilor_id, election_year, county, param, to_char(EXTRACT(YEAR FROM term_start), '9999') as term_start_year, substring(term_end->>'date' from '(\d+)-') as term_end_year, platform
+        FROM councilors_councilorsdetail
+        WHERE councilor_id = %(councilor_uid)s AND election_year <= %(election_year)s
+        ORDER BY election_year DESC
+    ''', candidate)
+    key = [desc[0] for desc in c.description]
+    terms = []
+    r = c.fetchall()
+    for row in r:
+        terms.append(dict(zip(key, row)))
+    return terms
+
 def get_or_create_councilor_uid(c, councilor, create=True):
     '''
         return councilor_uid, created
     '''
     logging.info(councilor)
     councilor['councilor_ids'] = tuple(GetCouncilorId(c, councilor['name']))
+    counties = {
+        u'桃園市': [u'桃園市', u'桃園縣']
+    }
+    councilor['counties'] = tuple(counties.get(councilor['county'], [councilor['county']]))
     if create and not councilor['councilor_ids']:
         return (str(uuid.uuid4()), False)
     elif not councilor['councilor_ids']:
@@ -29,7 +119,7 @@ def get_or_create_councilor_uid(c, councilor, create=True):
     c.execute('''
         SELECT councilor_id
         FROM councilors_councilorsdetail
-        WHERE councilor_id in %(councilor_ids)s AND county = %(county)s
+        WHERE councilor_id in %(councilor_ids)s AND county in %(counties)s
         ORDER BY
             CASE
                 WHEN election_year = %(election_year)s AND constituency = %(constituency)s AND name = %(name)s THEN 1

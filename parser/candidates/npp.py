@@ -12,24 +12,6 @@ import db_settings
 import common
 
 
-def councilor_terms(candidate):
-    '''
-    Parse working recoed before the election_year of this candidate into a json to store in individual candidate, so we could display councilor's working records easier at candidate page(no need of a lot of reference).
-    '''
-
-    c.execute('''
-        SELECT id as term_id, councilor_id, election_year, param, to_char(EXTRACT(YEAR FROM term_start), '9999') as term_start_year, substring(term_end->>'date' from '(\d+)-') as term_end_year
-        FROM councilors_councilorsdetail
-        WHERE councilor_id = %(councilor_uid)s AND election_year <= %(election_year)s
-        ORDER BY election_year DESC
-    ''', candidate)
-    key = [desc[0] for desc in c.description]
-    terms = []
-    r = c.fetchall()
-    for row in r:
-        terms.append(dict(zip(key, row)))
-    return terms
-
 def upsertCandidates(candidate):
     candidate['former_names'] = candidate.get('former_names', [])
     variants = common.make_variants_set(candidate['name'])
@@ -50,9 +32,33 @@ def upsertCandidates(candidate):
         DO UPDATE
         SET elected_councilor_id = %(councilor_term_id)s, councilor_terms = %(councilor_terms)s, number = %(number)s, name = %(name)s, gender = %(gender)s, party = %(party)s, constituency = %(constituency)s, county = %(county)s, district = %(district)s, contact_details = %(contact_details)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s
     ''', complement)
+    if candidate.get('legislator_terms'):
+        c.execute('''
+            UPDATE candidates_terms
+            SET data = (COALESCE(data, '{}'::jsonb) || %s::jsonb)
+            WHERE election_year = %s and candidate_id = %s
+        ''', [json.dumps({'legislator_terms': complement['legislator_terms']}), complement['election_year'], complement['candidate_uid'], ])
+    if candidate.get('legislator_candidate_info'):
+        c.execute('''
+            UPDATE candidates_terms
+            SET politicalcontributions = COALESCE(politicalcontributions, '[]'::jsonb) || %s::jsonb
+            WHERE election_year >= %s and candidate_id = %s
+        ''', [candidate['legislator_candidate_info']['politicalcontributions'], complement['election_year'], complement['candidate_uid'], ])
+        c.execute('''
+            UPDATE candidates_terms
+            SET politicalcontributions = (SELECT jsonb_agg(x) FROM (
+                SELECT x from (
+                    SELECT DISTINCT(value) as x
+                    FROM jsonb_array_elements(politicalcontributions)
+                ) t ORDER BY x->'election_year' DESC
+            ) tt)
+            WHERE candidate_id = %s AND election_year >= %s
+        ''', [complement['candidate_uid'], complement['election_year'], ])
 
 conn = db_settings.con()
+conn_another = db_settings.con_another()
 c = conn.cursor()
+c_another = conn_another.cursor()
 election_year = '2018'
 party = u'時代力量'
 path = '../../data/avatar/councilors/%s/%s' % (election_year, party)
@@ -108,9 +114,15 @@ for row in candidates['data']:
     candidate['image'] = u'%s/%s/%s/%s/%s' % (common.storage_domain(), candidate['type'], election_year, party, f_name)
     candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
     candidate['candidate_term_uid'] = '%s-%s' % (candidate['candidate_uid'], election_year)
-    candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate)
+    candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate, create=False)
     candidate['councilor_term_id'] = common.getDetailIdFromUid(c, candidate['councilor_uid'], election_year, candidate['county'])
-
-    candidate['councilor_terms'] = councilor_terms(candidate) if created else None
+    candidate['councilor_terms'] = common.councilor_terms(c, candidate) if created else None
+    candidate['legislator_uid'] = common.get_legislator_uid(c_another, candidate['name'])
+    if candidate['legislator_uid']:
+        candidate['legislator_terms'] = common.legislator_terms(c_another, candidate)
+        candidate['legislator_candidate_info'] = common.get_elected_legislator_candidate_info(c_another, candidate)
+        if candidate['legislator_candidate_info']:
+            candidate['birth'] = candidate['legislator_candidate_info']['birth']
+    candidate['legislator_candidate_info'] = common.get_legislator_candidate_info(c_another, candidate['name'])
     upsertCandidates(candidate)
 conn.commit()
