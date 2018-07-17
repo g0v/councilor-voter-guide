@@ -23,6 +23,7 @@ def get_elected_legislator_candidate_info(c, candidate):
             SELECT c.birth, ct.politicalcontributions, ct.cec_data, ct.county, ct.constituency
             FROM candidates_candidates c, candidates_terms ct, legislator_legislatordetail ld
             WHERE c.uid = ct.candidate_id AND ld.id = ct.legislator_id AND ld.legislator_id = %s
+            ORDER BY ct.ad DESC
         ) _
     ''', [candidate['legislator_uid'], ])
     r = c.fetchone()
@@ -44,6 +45,7 @@ def get_legislator_candidate_info(c, name):
                 SELECT c.birth, ct.politicalcontributions, ct.cec_data, ct.county, ct.constituency
                 FROM candidates_candidates c, candidates_terms ct
                 WHERE c.uid = ct.candidate_id AND ct.candidate_id = %s
+                ORDER BY ad DESC
             ''', [candidate_uid, ])
             key = [desc[0] for desc in c.description]
             r = c.fetchone()
