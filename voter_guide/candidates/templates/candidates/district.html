@@ -70,15 +70,6 @@
                             </div>
                             <div class="name col-xs-7 col-sm-4">
                                 <h1 class="classJ exlrgt">{{candidate.name}}</h1>
-                                <h4>
-                                    {% if candidate.elected_councilor and not candidate.elected_councilor.in_office %}
-                                            {% if candidate.elected_councilor.term_end.reason %}
-                                                （{{ candidate.elected_councilor.term_end.reason }}）
-                                            {% else %}
-                                                （已去職）
-                                            {% endif %}
-                                    {% endif %}
-                                </h4>
                             </div>
                         </a>
                         <div class="personal-info col-xs-12 col-sm-3">
@@ -90,7 +81,58 @@
                                 {% endif %}
                             </div>
                         </div>
+                        {% if candidate.platform %}
+                            <div class="statistic-info col-xs-12 col-sm-9">
+                                <h4>{{candidate.platform|safe|linebreaksbr}}</h4>
+                            </div>
+                        {% else %}
+                            <div class="statistic-info col-xs-12 col-sm-5">
+                                <div class="tit">
+                                    <p>經歷</p>
+                                </div>
+                                <div class="statistic">
+                                    <p>{{candidate.experience|linebreaksbr}}
+                                </div>
+                            </div>
+                            <div class="statistic-info col-xs-12 col-sm-4">
+                                <div class="tit">
+                                    <p>學歷</p>
+                                </div>
+                                <div class="statistic">
+                                    <p>{{candidate.education|linebreaksbr}}
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="content-btm-ui col-xs-12 row">
+                            {% if candidate.councilor_terms or candidate.platform and candidate.experience and candidate.education %}
+                            <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                            {% endif %}
+                            {% if candidate.councilor_terms %}
+                                <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'councilors:biller_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">政治履歷 </a>
+                            {% endif %}
+                        </div>
+                        <div class="clearb"></div>
                     </div>
+                    {% if candidate.councilor_terms or candidate.platform and candidate.experience and candidate.education %}
+                    <div class="content-detail row notFirstCandidate">
+                        <div class="statistic-info col-xs-12 col-sm-8">
+                            <div class="tit">
+                                <p>經歷</p>
+                            </div>
+                            <div class="statistic">
+                                <p>{{candidate.experience|linebreaksbr}}
+                            </div>
+                        </div>
+                        <div class="statistic-info col-xs-12 col-sm-4">
+                            <div class="tit">
+                                <p>學歷</p>
+                            </div>
+                            <div class="statistic">
+                                <p>{{candidate.education|linebreaksbr}}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             {% endfor %}
             </div>
@@ -128,40 +170,63 @@
                             </div>
                         </div>
 
-                        <div class="statistic-info col-xs-12 col-sm-4">
-                        {% for councilor_term in candidate.councilor_terms %}
-                            {% if forloop.counter0 == 0 %}
-                            <div class="tit">
-                                <p>{{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}{{councilor_term.county}}議員</p>
-                            </div>
-                            {% if not councilor_term.in_office and councilor_term.term_end.reason %}
-                                離職原因：{{councilor_term.term_end.reason}}{% if councilor_term.term_end.ref %}，<a href="{{councilor_term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
+                        {% if candidate.councilor_terms %}
+                            <div class="statistic-info col-xs-12 col-sm-4">
+                            {% for councilor_term in candidate.councilor_terms %}
+                                {% if forloop.counter0 == 0 %}
+                                <div class="tit">
+                                    <p>{{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}{{councilor_term.county}}議員</p>
+                                </div>
+                                {% if not councilor_term.in_office and councilor_term.term_end.reason %}
+                                    離職原因：{{councilor_term.term_end.reason}}{% if councilor_term.term_end.ref %}，<a href="{{councilor_term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
+                                {% endif %}
+                                <div class="statistic">
+                                    {% if councilor_term.param.bills_role_statistics %}
+                                    <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>
+                                    <p>{{councilor_term.param.bills_role_statistics.sponsor}} 次共同提案</p>
+                                    {% endif %}
+                                    {% if councilor_term.param.votes_decision_statistics %}
+                                        <p>投票缺席率：{{councilor_term.param.votes_decision_statistics.not_voting|percentage:councilor_term.param.votes_decision_statistics.total}} % <small>（{{councilor_term.param.votes_decision_statistics.not_voting}} / {{councilor_term.param.votes_decision_statistics.total}}）</small></p>
+                                    {% endif %}
+                                    {% if councilor_term.param.attendance_statistics %}
+                                        <p>議會缺席率：{{councilor_term.param.attendance_statistics.absent|percentage:councilor_term.param.attendance_statistics.total}} % <small>（{{councilor_term.param.attendance_statistics.absent}} / {{councilor_term.param.attendance_statistics.total}}）</small></p>
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                            {% if candidate.councilor_terms|length > 1 %}
+                                <p> ...等{{candidate.councilor_terms|length}}屆議員</p>
                             {% endif %}
-                            <div class="statistic">
-                                {% if councilor_term.param.bills_role_statistics %}
-                                <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>
-                                <p>{{councilor_term.param.bills_role_statistics.sponsor}} 次共同提案</p>
-                                {% endif %}
-                                {% if councilor_term.param.votes_decision_statistics %}
-                                    <p>投票缺席率：{{councilor_term.param.votes_decision_statistics.not_voting|percentage:councilor_term.param.votes_decision_statistics.total}} % <small>（{{councilor_term.param.votes_decision_statistics.not_voting}} / {{councilor_term.param.votes_decision_statistics.total}}）</small></p>
-                                {% endif %}
-                                {% if councilor_term.param.attendance_statistics %}
-                                    <p>議會缺席率：{{councilor_term.param.attendance_statistics.absent|percentage:councilor_term.param.attendance_statistics.total}} % <small>（{{councilor_term.param.attendance_statistics.absent}} / {{councilor_term.param.attendance_statistics.total}}）</small></p>
-                                {% endif %}
                             </div>
-                            {% endif %}
-                        {% endfor %}
-                        {% if candidate.councilor_terms|length > 1 %}
-                        <p> ...等{{candidate.councilor_terms|length}}屆議員</p>
+                        {% elif candidate.platform %}
+                            <div class="statistic-info col-xs-12 col-sm-9">
+                                <h4>{{candidate.platform|safe|linebreaksbr}}</h4>
+                            </div>
+                        {% else %}
+                            <div class="statistic-info col-xs-12 col-sm-5">
+                                <div class="tit">
+                                    <p>經歷</p>
+                                </div>
+                                <div class="statistic">
+                                    <p>{{candidate.experience|linebreaksbr}}
+                                </div>
+                            </div>
+                            <div class="statistic-info col-xs-12 col-sm-4">
+                                <div class="tit">
+                                    <p>學歷</p>
+                                </div>
+                                <div class="statistic">
+                                    <p>{{candidate.education|linebreaksbr}}
+                                </div>
+                            </div>
                         {% endif %}
-                        </div>
 
                         {% if candidate.councilor_terms %}
                             <div class="contributions-info col-xs-12 col-sm-4 row" onclick="location.href='{% url 'councilors:pc' councilor_id=candidate.councilor_terms.0.councilor_id %}';" style="cursor: pointer;">
                         {% else %}
                             <div class="contributions-info col-xs-12 col-sm-4 row" onclick="location.href='{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}';" style="cursor: pointer;">
                         {% endif %}
-                            {% if candidate.politicalcontributions %}
+                        {% if candidate.politicalcontributions %}
                             <div class="tit col-xs-12">
                                 <p>政治獻金</p>
                             </div>
@@ -185,12 +250,14 @@
                                     </div>
                                 </div>
                             {% endfor %}
-                            {% endif %}
+                        {% endif %}
                         </div>
 
                         <div class="content-btm-ui col-xs-12 row">
+                            {% if candidate.councilor_terms or candidate.platform and candidate.experience and candidate.education %}
+                            <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                            {% endif %}
                             {% if candidate.councilor_terms %}
-                                <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                 <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'councilors:biller_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">政治履歷 </a>
                             {% endif %}
                         </div>
@@ -199,7 +266,6 @@
 
                     {% if candidate.councilor_terms %}
                     <div class="content-detail row notFirstCandidate">
-
                         {% if candidate.councilor_terms|length > 1 %}
                         <div class="statistic-info col-xs-12 col-sm-4 col-sm-offset-3">
                         {% for councilor_term in candidate.councilor_terms %}
@@ -284,6 +350,27 @@
                                 {{candidate.councilor_terms.0.platform|linebreaksbr}}
                             </div>
                         {% endif %}
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="content-detail row notFirstCandidate">
+                        <div class="statistic-info col-xs-12 col-sm-7">
+                            <div class="tit">
+                                <p>經歷</p>
+                            </div>
+                            <div class="statistic">
+                                <p>{{candidate.experience|linebreaksbr}}
+                            </div>
+                        </div>
+                        <div class="statistic-info col-xs-12 col-sm-5">
+                            <div class="tit">
+                                <p>學歷</p>
+                            </div>
+                            <div class="statistic">
+                                <p>{{candidate.education|linebreaksbr}}
+                            </div>
+                        </div>
+                        <div class="politics col-sm-12 row">
                         </div>
                     </div>
                     {% endif %}

@@ -142,7 +142,7 @@ def district(request, election_year, county, constituency):
         transform_to_constiencies = [constituency]
     intents = Intent.objects.filter(election_year=coming_ele_year, county=county, constituency__in=transform_to_constiencies).exclude(status='draft')
     years = Terms.objects.filter(county=county, type='councilors', constituency=constituency).values_list('election_year', flat=True).distinct().order_by('-election_year')
-    candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'elected_councilor').order_by('-votes')
+    candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'elected_councilor').order_by('-councilor_terms')
     standpoints = {}
     for term in [candidates]:
         for candidate in term:
