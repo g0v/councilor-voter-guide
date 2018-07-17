@@ -283,9 +283,11 @@
                 zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
                 $(ele).replaceWith(zh_number)
             })
+            var county = '{{county}}';
             var county_ck = getCookie('county');
             var constituency_ck = getCookie('constituency');
-            if (county_ck && constituency_ck) {
+            console.log();
+            if ((county == county_ck) && county_ck && constituency_ck) {
                 var link = '{% url "candidates:councilors_area" %}'+county_ck+'/'+constituency_ck+'/';
                 $('a.btn-other').attr('href', link);
             }
