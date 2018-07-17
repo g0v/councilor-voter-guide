@@ -220,24 +220,30 @@
                         </div>
                         {% endif %}
 
-                        {% with sp=standpoints|json_lookup:candidate.id %}
-                        <div class="proposal col-sm-6 row">
-                            <div class="tit row col-sm-12">
-                                <div class="col-sm-12">提案</div>
-                            </div>
-                            {% if sp.bills %}
-                                {% for standpoint in sp.bills %}
+                        {% with sp=candidate.data.legislator_terms.0.standpoints %}
+                            <div class="vote col-sm-6 row">
+                                <div class="tit row col-sm-12">
+                                    <div class="col-sm-12">表決</div>
+                                </div>
+                                {% if sp %}
+                                    {% for standpoint in sp %}
                                     <div class="list col-sm-12 row">
                                         <div class="col-sm-8 col-xs-6">{{standpoint.title}}</div>
-                                        <div class="statstic-num pull-right bg-proposal">提案</div>
+                                        {% if standpoint.decision == "反對" %}
+                                            <div class="statstic-num pull-right bg-reject">
+                                        {% elif standpoint.decision == "贊成" %}
+                                            <div class="statstic-num pull-right bg-approve">
+                                        {% elif standpoint.decision == "沒投票" %}
+                                            <div class="statstic-num pull-right bg-non-vote">
+                                        {% elif standpoint.decision == "棄權" %}
+                                            <div class="statstic-num pull-right bg-giveup">
+                                        {% endif %}
+                                            {{standpoint.decision}}
+                                        </div>
                                     </div>
-                                {% endfor %}
-                            {% else %}
-                                    <div class="list col-sm-12 row">
-                                <a class="btn" href="{% url 'mayors:biller' mayor_id=candidate.uid election_year=candidate.election_year %}">尚無資料，來幫忙摘要！ </a>
-                                    </div>
-                            {% endif %}
-                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
                         {% endwith %}
                         <div class="proposal col-sm-6 row">
                             {% if candidate.data.legislator_terms %}

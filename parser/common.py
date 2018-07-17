@@ -69,6 +69,36 @@ def get_legislator_uid(c, name):
         ''' % ','.join(["'%s'" % x for x in identifiers]))
         return c.fetchone()
 
+def get_legislator_standpoints(c, term):
+    c.execute(u'''
+        SELECT json_agg(row)
+        FROM (
+            SELECT
+            CASE
+                WHEN lv.decision = 1 THEN '贊成'
+                WHEN lv.decision = -1 THEN '反對'
+                WHEN lv.decision = 0 THEN '棄權'
+                WHEN lv.decision isnull THEN '沒投票'
+            END as decision,
+            s.title,
+            count(*) as times
+        FROM vote_legislator_vote lv
+        JOIN legislator_legislatordetail ld on ld.id = lv.legislator_id
+        JOIN standpoint_standpoint s on s.vote_id = lv.vote_id
+        WHERE ld.legislator_id = %s AND s.pro = (
+            SELECT max(pro)
+            FROM standpoint_standpoint ss
+            WHERE ss.pro > 0 AND s.vote_id = ss.vote_id
+            GROUP BY ss.vote_id
+        )
+        GROUP BY s.title, lv.decision
+        ORDER BY times DESC
+        LIMIT 3
+        ) row
+    ''', [term['legislator_id'], ])
+    r = c.fetchone()
+    return r[0] if r else []
+
 def legislator_terms(c, candidate):
     ref = {'2022': 10, '2018': 9, '2014': 8, '2010': 7, '2009': 7}
     candidate['ad'] = ref[candidate['election_year']]
@@ -83,7 +113,9 @@ def legislator_terms(c, candidate):
     terms = []
     r = c.fetchall()
     for row in r:
-        terms.append(dict(zip(key, row)))
+        data = dict(zip(key, row))
+        data['standpoints'] = get_legislator_standpoints(c, data)
+        terms.append(data)
     return terms
 
 def councilor_terms(c, candidate):
