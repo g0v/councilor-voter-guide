@@ -9,7 +9,7 @@ class Attendance(models.Model):
     category = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
     def __unicode__(self):
-        return self.sitting
+        return str(self.id)
 
 class FileLog(models.Model):
     sitting = models.CharField(unique=True, max_length=100)
