@@ -24,13 +24,13 @@
         <div class="head-j row">
           <div class="col-xs-7 col-sm-9 col-md-10 title">
             <h1>找表決</h1>
-          </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="/#votes">回上一頁</a>
+          </div>
           <div class="col-xs-5 col-sm-2 col-md-2 navbar-search-bill hidden-xs">
             <form action="" method="get" id="form">
                 <input name="keyword" id="keyword" type="text" placeholder="輸入關鍵字"><img class="img-responsive" src="{% static "img/dest/search.jpg" %}">
             </form>
           </div>
-          <div class="select-bill hidden-xs col-xs-12"><a{% if county == '臺北市' %} class="act"{% endif %}  href="{% url "votes:votes" county='臺北市' %}" data-id="臺北市">臺北議會表決</a><a{% if county == '高雄市' %} class="act"{% endif %} href="{% url "votes:votes" county='高雄市' %}" data-id="高雄市">高雄議會表決</a></div>
+          <div class="select-bill col-xs-12"><a{% if county == '臺北市' %} class="act"{% endif %}  href="{% url "votes:votes" county='臺北市' %}" data-id="臺北市">臺北議會表決</a><a{% if county == '高雄市' %} class="act"{% endif %} href="{% url "votes:votes" county='高雄市' %}" data-id="高雄市">高雄議會表決</a></div>
           <select class="select col-sm-3 col-xs-5" onchange="location.href=this.value">
             <option value="" disabled selected>網友摘要</option>
             {% for standpoint in standpoints %}
