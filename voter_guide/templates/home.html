@@ -21,7 +21,7 @@
     <input class="inv" id="page" type="text" value="index">
     <div class="preload abs"></div>
     <div class="wrapper relat">
-      <div class="sec relat" id="kv">
+      <div class="sec relat section" id="kv">
         <div class="abs" id="canv_far"></div>
         <div class="container relat row classJ contain-1000">
           <div class="title relat d-inline-block"><img class="img-responsive" src="{% static "img/dest/index-logo.png" %}">
@@ -61,7 +61,7 @@
           </div>
         </div>
       </div>
-      <div class="sec2 sec relat" id="MayorAndCouncilor">
+      <div class="sec2 sec relat section" id="MayorAndCouncilor">
         <div class="bg abs hidden-xs">
           <div class="bg-left abs"></div>
           <div class="bg-right abs"></div>
@@ -95,10 +95,10 @@
           </div>
         </div>
       </div>
-      <div class="sec relat sec3" id="seemore">
+      <div class="sec relat sec3 section" id="seemore">
         <div class="container relat row classJ contain-1000">
           <div class="col-xs-12 col-sm-12 relat content">
-            <div class="abs ico"><img class="img-responsive" src="{% static "img/dest/sec3_ico.png" %}"></div>
+            <div class="abs ico"><img class="img-responsive" src="{% static "img/dest/sec3_ico.png" %}"><img class="abs img-responsive eyeball" src="{% static "img/dest/sec3_icoa.png" %}"></div>
             <div class="tit relat">
               <p class="eng">SEE MORE</p>
             </div>
@@ -109,7 +109,7 @@
           </div>
         </div>
       </div>
-      <div class="sec relat sec6" id="bills">
+      <div class="sec relat sec6 section" id="bills">
         <div class="container relat row classJ contain-1000">
           <div class="col-xs-12 col-sm-12 relat content">
             <div class="abs ico"><img class="img-responsive" src="{% static "img/dest/sec6_ico.png" %}"></div>
@@ -123,10 +123,10 @@
           </div>
         </div>
       </div>
-      <div class="sec relat sec7" id="votes">
+      <div class="sec relat sec7 section" id="votes">
         <div class="container relat row classJ contain-1000">
           <div class="col-xs-12 col-sm-12 relat content">
-            <div class="abs ico"><img class="img-responsive" src="{% static "img/dest/sec7_ico.png" %}"></div>
+            <div class="abs ico"><img class="img-responsive" src="{% static "img/dest/sec7_ico.png" %}"><img class="hammer abs img-responsive" src="{% static "img/dest/sec7_icoa.png" %}"><img class="dong abs img-responsive" src="{% static "img/dest/sec7_icob.png" %}"></div>
             <div class="tit relat">
               <p class="eng">VOTE</p>
             </div>
@@ -137,7 +137,7 @@
           </div>
         </div>
       </div>
-      <div class="sec relat sec8" id="wishingwell">
+      <div class="sec relat sec8 section" id="wishingwell">
         <div class="container relat row classJ contain-1000">
           <div class="col-xs-12 col-sm-12 relat content">
             <div class="abs ico"><img class="img-responsive" src="{% static "img/dest/sec8_ico.png" %}"></div>
@@ -277,15 +277,3 @@
       var global_constituencylookupApi = "/api/constituency/"
     </script>
 {% endblock right %}
-
-{% block script %}
-    <script>
-        $(document).ready( function() {
-            var county = getCookie('county');
-            var constituency = getCookie('constituency');
-            var d = {county: getCookie('county'), district: getCookie('district'), constituency: getCookie('constituency')};
-            LocateUpdator();
-            console.log(d);
-        });
-    </script>
-{% endblock script %}
