@@ -22,6 +22,9 @@ _unicode_chr_splitter = _Re( '(?s)((?:[\ud800-\udbff][\udc00-\udfff])|.)' ).spli
 def split_unicode_chrs(text):
     return [chr for chr in _unicode_chr_splitter(text) if (chr!=' ' and chr)]
 
+def bills_area(request, category):
+    return render(request, 'bills/bills_area.html', {'category': category})
+
 def bills(request, category, county):
     query = Q(county=county)
     if request.GET.get('has_tag') == 'yes':

@@ -70,7 +70,7 @@
           <div class="col-xs-12 col-sm-6 relat findmayor" id="findmayor">
             <div class="abs ico"><img class="img-responsive" src="{% static "img/dest/sec2_ico1.png" %}"></div>
             <div class="tit relat hidden-xs">
-              <p class="eng">COUNTY </p>
+              <p class="eng">COUNTY</p>
               <p class="eng">MAYOR</p>
             </div>
             <div class="tit relat hidden-sm hidden-md hidden-lg">
@@ -119,7 +119,7 @@
             <div class="sub relat">
               <p>找提案</p>
             </div>
-            <div class="select-opt1 relat"><a href="{% url 'select_county' category='bills' %}" data-id="1">縣市長、議員提案</a></div>
+            <div class="select-opt1 relat"><a href="{% url "bills:bills_area" category='councilors' %}" data-id="1">縣市議員提案</a><a href="{% url "bills:bills_area" category='city_gov' %}" data-id="2">縣市政府提案</a></div>
           </div>
         </div>
       </div>
