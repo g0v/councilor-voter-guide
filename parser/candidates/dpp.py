@@ -32,6 +32,12 @@ def upsertCandidates(candidate):
         DO UPDATE
         SET elected_councilor_id = %(councilor_term_id)s, councilor_terms = %(councilor_terms)s, number = %(number)s, name = %(name)s, gender = %(gender)s, party = %(party)s, constituency = %(constituency)s, county = %(county)s, district = %(district)s, contact_details = %(contact_details)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s
     ''', complement)
+    if candidate.get('mayor_terms'):
+        c.execute('''
+            UPDATE candidates_terms
+            SET data = (COALESCE(data, '{}'::jsonb) || %s::jsonb)
+            WHERE election_year = %s and candidate_id = %s
+        ''', [json.dumps({'mayor_terms': complement['mayor_terms']}), complement['election_year'], complement['candidate_uid'], ])
     if candidate.get('legislator_terms'):
         c.execute('''
             UPDATE candidates_terms
@@ -74,7 +80,7 @@ credentials = ServiceAccountCredentials.from_json_keyfile_name('credential.json'
 gc = gspread.authorize(credentials)
 sh = gc.open_by_key('1efxsRJKSoezKVJvln2rNkl-nGIZlmngw6k35GgKxLAE')
 worksheets = sh.worksheets()
-for wks in worksheets:
+for wks in worksheets[1:]:
     rows = wks.get_all_records()
     position_type = 'councilors' if wks.title == u'議員' else 'mayors'
     for row in rows:
@@ -110,18 +116,24 @@ for wks in worksheets:
                 print f_upper
         if row[u'照片有無']:
             candidate['image'] = u'%s/%s/%s/%s/%s' % (common.storage_domain(), position_type, election_year, party, f_name)
-        candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
+        if position_type == 'mayors':
+            candidate['candidate_uid'], created = common.get_or_create_moyor_candidate_uid(c, candidate)
+        else:
+            candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
         candidate['candidate_term_uid'] = '%s-%s' % (candidate['candidate_uid'], election_year)
         candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate, create=False)
         candidate['councilor_term_id'] = common.getDetailIdFromUid(c, candidate['councilor_uid'], election_year, candidate['county'])
         candidate['councilor_terms'] = common.councilor_terms(c, candidate) if created else None
         if position_type == 'mayors':
-            candidate['legislator_uid'] = common.get_legislator_uid(c_another, candidate['name'])
-            candidate['legislator_data'] = common.get_legislator_data(c_another, candidate['legislator_uid'])
-            if candidate['legislator_uid']:
-                candidate['legislator_terms'] = common.legislator_terms(c_another, candidate)
-                candidate['legislator_candidate_info'] = common.get_elected_legislator_candidate_info(c_another, candidate)
-                if candidate['legislator_candidate_info']:
-                    candidate['birth'] = candidate['legislator_candidate_info']['birth']
+            candidate['mayor_uid'] = candidate['candidate_uid']
+            if candidate['mayor_uid']:
+                candidate['mayor_terms'] = common.mayor_terms(c, candidate)
+#           candidate['legislator_uid'] = common.get_legislator_uid(c_another, candidate['name'])
+#           candidate['legislator_data'] = common.get_legislator_data(c_another, candidate['legislator_uid'])
+#           if candidate['legislator_uid']:
+#               candidate['legislator_terms'] = common.legislator_terms(c_another, candidate)
+#               candidate['legislator_candidate_info'] = common.get_elected_legislator_candidate_info(c_another, candidate)
+#               if candidate['legislator_candidate_info']:
+#                   candidate['birth'] = candidate['legislator_candidate_info']['birth']
         upsertCandidates(candidate)
 conn.commit()

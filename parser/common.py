@@ -118,6 +118,47 @@ def legislator_terms(c, candidate):
         terms.append(data)
     return terms
 
+def get_mayor_standpoints(c, term):
+    c.execute(u'''
+        SELECT json_agg(row)
+        FROM (
+            SELECT
+                s.title,
+                count(*) as times,
+                sum(pro) as pro
+            FROM bills_mayors_bills lv
+            JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
+            JOIN mayors_terms mt on mt.uid = lv.mayor_id
+            WHERE mt.mayor_id = %s AND s.pro = (
+                SELECT max(pro)
+                FROM standpoints_standpoints ss
+                WHERE ss.pro > 0 AND s.bill_id = ss.bill_id
+                GROUP BY ss.bill_id
+            )
+            GROUP BY s.title
+            ORDER BY pro DESC, times DESC
+            LIMIT 3
+        ) row
+    ''', [term['mayor_id'], ])
+    r = c.fetchone()
+    return r[0] if r else []
+
+def mayor_terms(c, candidate):
+    c.execute('''
+        SELECT uid as term_id, mayor_id, election_year, county, data, to_char(EXTRACT(YEAR FROM term_start), '9999') as term_start_year, substring(term_end->>'date' from '(\d+)-') as term_end_year, platform, in_office, term_end
+        FROM mayors_terms
+        WHERE mayor_id = %(mayor_uid)s AND election_year <= %(election_year)s
+        ORDER BY election_year DESC
+    ''', candidate)
+    key = [desc[0] for desc in c.description]
+    terms = []
+    r = c.fetchall()
+    for row in r:
+        data = dict(zip(key, row))
+        data['standpoints'] = get_mayor_standpoints(c, data)
+        terms.append(data)
+    return terms
+
 def councilor_terms(c, candidate):
     '''
     Parse working recoed before the election_year of this candidate into a json to store in individual candidate, so we could display councilor's working records easier at candidate page(no need of a lot of reference).
