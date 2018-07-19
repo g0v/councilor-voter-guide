@@ -1,0 +1,150 @@
+{% extends "common/person_info.html" %}
+{% load extras %}
+
+{% block title %}
+    <title>{{councilor.county}}議員:{{councilor.name}} {{councilor.election_year|election_year_range}} 的表決立場</title>
+    <meta property="og:title" content="{{councilor.county}}議員:{{councilor.name}} {{councilor.election_year|election_year_range}} 的表決立場"/>
+    <meta itemprop="name" content="{{councilor.county}}議員:{{councilor.name}} {{councilor.election_year|election_year_range}} 的表決立場">
+{% endblock title %}
+
+{% block social_meta %}
+    <meta property="og:description" content="{% for x in standpoints %}{% if forloop.counter0 < 3 %}{{x.decision}}:{{x.title}}、{% endif %}{% endfor %}...等等"/>
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{councilor.county}}.png"/>
+    <meta itemprop="description" content="{% for x in standpoints %}{% if forloop.counter0 < 3 %}{{x.decision}}:{{x.title}}、{% endif %}{% endfor %}...等等"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{councilor.county}}.png"/>
+{% endblock social_meta %}
+
+{% block person_detail %}
+    <div class="row">
+        {% if standpoints.votes or standpoints.bills %}
+        <div class="text-center">
+            <h4 data-toggle="collapse" data-target="#ref_qa"><span class="text-warning">以下摘要資料怎麼產生的？ <i class="fa fa-caret-square-o-down"></i></span></h4>
+            <div id="ref_qa" class="collapse">
+                內容由網友共同摘要、投票產生，覺得內容太少？摘要不正確？<br>
+                歡迎進入<a class="btn btn-default" href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全提案紀錄</a>{% if councilor.county|county_config:'votes' %}、<a class="btn btn-default" href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a>{% endif %}，一起幫助大家了解議員幹了什麼好事！
+            </div>
+        </div>
+        {% endif %}
+
+        {% if councilor.county|county_config:'votes' %}
+        <div class="col-sm-4 %}">
+        {% if standpoints.votes %}
+            <div class="panel-group" id="accordion_votes" role="tablist" aria-multiselectable="true">
+            {% for standpoint in standpoints.votes %}
+            {% if standpoint.decision == "反對" %}
+                <div class="panel panel-danger">
+            {% elif standpoint.decision == "贊成" %}
+                <div class="panel panel-success">
+            {% elif standpoint.decision == "沒投票" %}
+                <div class="panel panel-default">
+            {% else %}
+                <div class="panel panel-warning">
+            {% endif %}
+                    <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion_{{standpoint.decision}}" data-target="#{{standpoint.decision}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{standpoint.decision}}_{{standpoint.title}}">
+                        <b>{{standpoint.title}}</b>
+                        <i class="fa fa-angle-down fa-lg pull-right"></i>
+                        {% if standpoint.decision == "反對" %}
+                            <span class="label label-danger pull-right">
+                        {% elif standpoint.decision == "贊成" %}
+                            <span class="label label-success pull-right">
+                        {% elif standpoint.decision == "沒投票" %}
+                            <span class="label label-default pull-right">
+                        {% else %}
+                            <span class="label label-warning pull-right">
+                        {% endif %}
+                        {{standpoint.decision}}</span>
+                    </div>
+                    <div id="{{standpoint.decision}}_{{standpoint.title}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{{standpoint.decision}}_{{standpoint.title}}">
+                        <ul class="list-group">
+                            {% for fragment in standpoint.votes %}
+                            <a class="list-group-item" href="{% url 'votes:vote' fragment.uid %}" target="_blank">
+                                <h4>☞ 表決 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></h4>
+                                <blockquote>
+                                    <p><small>{{fragment.content|truncatechars:100}}</small></p>
+                                </blockquote>
+                            </a>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        {% else %}
+            <a class="btn btn-default" href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">尚無摘要資料，來幫忙摘要！ </a>
+        {% endif %}
+        </div>
+        {% endif %}
+
+        {% if councilor.county|county_config:'votes' %}
+            <div class="col-sm-4 %}">
+        {% else %}
+            <div class="col-sm-6 %}">
+        {% endif %}
+        {% if standpoints.bills %}
+            <div class="panel-group" id="accordion_bills" role="tablist" aria-multiselectable="true">
+            {% for standpoint in standpoints.bills %}
+            {% if standpoint.role == "主提案" %}
+                <div class="panel panel-info">
+            {% elif standpoint.role == "共同提案" %}
+                <div class="panel panel-success">
+            {% else %}
+                <div class="panel panel-warning">
+            {% endif %}
+                    <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion_{{standpoint.role}}" data-target="#{{standpoint.role}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{standpoint.role}}_{{standpoint.title}}">
+                        <b>{{standpoint.title}}</b>
+                        <i class="fa fa-angle-down fa-lg pull-right"></i>
+                        {% if standpoint.role == "主提案" %}
+                            <span class="label label-info pull-right">
+                        {% elif standpoint.role == "共同提案" %}
+                            <span class="label label-success pull-right">
+                        {% else %}
+                            <span class="label label-warning pull-right">
+                        {% endif %}
+                        {{standpoint.role}}</span>
+                    </div>
+                    <div id="{{standpoint.role}}_{{standpoint.title}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{{standpoint.role}}_{{standpoint.title}}">
+                        <ul class="list-group">
+                            {% for fragment in standpoint.bills %}
+                            <a class="list-group-item" href="{% url 'bills:bill' bill_id=fragment.uid %}" target="_blank">
+                                <h4>☞ 提案 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></h4>
+                                <blockquote>
+                                    <p><small>{{fragment.abstract|truncatechars:100}}</small></p>
+                                </blockquote>
+                            </a>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        {% else %}
+            <a class="btn btn-default" href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">尚無摘要資料，來幫忙摘要！ </a>
+        {% endif %}
+        </div>
+
+        {% if councilor.county|county_config:'votes' %}
+            <div class="col-sm-4 %}">
+        {% else %}
+            <div class="col-sm-6 %}">
+        {% endif %}
+            <h3>{{councilor.election_year}} 競選政見</h3>
+            {{councilor.platform|linebreaksbr}}
+        </div>
+    </div>
+{% endblock person_detail %}
+
+{% block script %}
+    {{block.super}}
+    <script>
+        $(document).ready( function() {
+            $('h4[data-toggle="collapse"]').on('click', function() {
+                $(this).find('.fa-caret-square-o-down').toggleClass('up-side-down');
+            });
+            $('[data-toggle="collapse"]').on('click', function() {
+                $(this).closest('.panel-group').find('[data-toggle="collapse"]').not(this).find('.fa-angle-down').removeClass('up-side-down');
+                $(this).find('.fa-angle-down').toggleClass('up-side-down');
+            });
+            $('.panel-group .panel:nth-child(1) [data-toggle="collapse"]').trigger('click');
+        });
+    </script>
+{% endblock script %}

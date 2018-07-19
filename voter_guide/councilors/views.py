@@ -247,6 +247,73 @@ def voter_sp(request, councilor_id, election_year):
     else:
         return redirect(reverse('councilors:voter', kwargs={'councilor_id': councilor_id, 'election_year': election_year}))
 
+
+def sp(request, councilor_id, election_year):
+    councilor = get_object_or_404(CouncilorsDetail.objects, election_year=election_year, councilor_id=councilor_id)
+    terms_id = tuple(CouncilorsDetail.objects.filter(election_year__lte=election_year, councilor_id=councilor_id).values_list('id', flat=True))
+    c = connections['default'].cursor()
+    c.execute(u'''
+        SELECT jsonb_object_agg(k, v)
+        FROM (
+            SELECT 'votes' as k, json_agg(row) as v
+            FROM (
+                SELECT
+                    CASE
+                        WHEN lv.decision = 1 THEN '贊成'
+                        WHEN lv.decision = -1 THEN '反對'
+                        WHEN lv.decision = 0 THEN '棄權'
+                        WHEN lv.decision isnull THEN '沒投票'
+                    END as decision,
+                    s.title,
+                    count(*) as times,
+                    sum(pro) as pro,
+                    json_agg((select x from (select v.uid, v.content) x)) as votes
+                FROM votes_councilors_votes lv
+                JOIN standpoints_standpoints s on s.vote_id = lv.vote_id
+                JOIN votes_votes v on lv.vote_id = v.uid
+                WHERE lv.councilor_id in %s AND s.pro = (
+                    SELECT max(pro)
+                    FROM standpoints_standpoints ss
+                    WHERE ss.pro > 0 AND s.vote_id = ss.vote_id
+                    GROUP BY ss.vote_id
+                )
+                GROUP BY s.title, lv.decision
+                ORDER BY pro DESC, times DESC
+            ) row
+            UNION ALL
+            SELECT 'bills' as k, json_agg(row) as v
+            FROM (
+                SELECT
+                    CASE
+                        WHEN lv.priproposer = true AND lv.petition = false THEN '主提案'
+                        WHEN lv.petition = false THEN '共同提案'
+                        WHEN lv.petition = true THEN '連署'
+                    END as role,
+                    s.title,
+                    count(*) as times,
+                    sum(pro) as pro,
+                    json_agg((select x from (select v.uid, v.abstract) x)) as bills
+                FROM bills_councilors_bills lv
+                JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
+                JOIN bills_bills v on lv.bill_id = v.uid
+                WHERE lv.councilor_id in %s AND s.pro = (
+                    SELECT max(pro)
+                    FROM standpoints_standpoints ss
+                    WHERE ss.pro > 0 AND s.bill_id = ss.bill_id
+                    GROUP BY ss.bill_id
+                )
+                GROUP BY s.title, role
+                ORDER BY pro DESC, times DESC
+            ) row
+        ) r
+    ''', [terms_id, terms_id])
+    r = c.fetchone()
+    standpoints = r[0] if r else []
+    if standpoints:
+        return render(request, 'councilors/sp.html', {'councilor': councilor, 'standpoints': standpoints, 'id': 'politics'})
+    else:
+        return redirect(reverse('councilors:voter', kwargs={'councilor_id': councilor_id, 'election_year': election_year}))
+
 def platformer(request, councilor_id, election_year):
     try:
         councilor = CouncilorsDetail.objects.get(election_year=election_year, councilor_id=councilor_id)
