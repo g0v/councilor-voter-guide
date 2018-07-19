@@ -19,5 +19,4 @@ urlpatterns = [
     url(r'^councilors/(?P<county>\S+)/(?P<constituency>\d+)/(?P<election_year>\d+)/$', views.district, name='district'),
     url(r'^councilors/(?P<county>\S+)/(?P<constituency>\d+)/$', views.district, {'election_year': election_year}, name='district'),
     url(r'^councilors/(?P<county>\S+)/$', views.councilors_districts, {'election_year': election_year}, name='councilors_districts'),
-    url(r'^(?P<county>\S+)/$', views.districts, {'election_year': election_year}, name='candidates'),
 ]

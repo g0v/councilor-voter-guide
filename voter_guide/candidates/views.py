@@ -81,51 +81,6 @@ def councilors_area(request, election_year):
 def councilors_districts(request, election_year, county):
     return render(request, 'candidates/councilors_districts.html', {'election_year': election_year, 'county': county})
 
-def districts(request, election_year, county):
-    coming_ele_year = coming_election_year(county)
-    intents_count = Intent.objects.filter(election_year=coming_ele_year, county=county).exclude(status='draft').count()
-    districts = Terms.objects.filter(election_year=election_year, county=county, type='councilors')\
-                             .values('constituency', 'district')\
-                             .annotate(candidates=Count('id'))\
-                             .order_by('constituency')
-    candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors')\
-                             .order_by('-votes')
-    standpoints = {}
-    for candidate in candidates:
-        terms = Terms.objects.filter(type='mayors', candidate_id=candidate.candidate_id, elected=True)\
-                             .order_by('-election_year')
-        for term in terms:
-            c = connections['default'].cursor()
-            qs = u'''
-                SELECT json_agg(row)
-                FROM (
-                    SELECT
-                        s.title,
-                        count(*) as times,
-                        sum(pro) as pro
-                    FROM bills_mayors_bills lv
-                    JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
-                    JOIN bills_bills v on lv.bill_id = v.uid
-                    WHERE lv.mayor_id = %s AND s.pro = (
-                        SELECT max(pro)
-                        FROM standpoints_standpoints ss
-                        WHERE ss.pro > 0 AND s.bill_id = ss.bill_id
-                        GROUP BY ss.bill_id
-                    )
-                    GROUP BY s.title
-                    ORDER BY pro DESC, times DESC
-                    LIMIT 3
-                ) row
-            '''
-            c.execute(qs, [term.uid, ])
-            r = c.fetchone()
-            if not standpoints.get(candidate.id):
-                standpoints.update({candidate.id: [{'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []}]})
-            else:
-                standpoints[candidate.id].append({'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []})
-    suggestions = Suggestions.objects.filter(election_year=election_year, county=county).aggregate(sum=Sum('approved_expense'))
-    return render(request, 'candidates/districts.html', {'coming_election_year': coming_ele_year, 'intents_count': intents_count, 'election_year': election_year, 'county': county, 'districts': list(districts), 'candidates': candidates, 'suggestions': suggestions, 'standpoints': standpoints})
-
 def district(request, election_year, county, constituency):
     coming_ele_year = coming_election_year(county)
     transform_to_constiencies = []
@@ -185,7 +140,6 @@ def district(request, election_year, county, constituency):
                                 sum(pro) as pro
                             FROM bills_councilors_bills lv
                             JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
-                            JOIN bills_bills v on lv.bill_id = v.uid
                             WHERE lv.councilor_id in %s AND s.pro = (
                                 SELECT max(pro)
                                 FROM standpoints_standpoints ss
