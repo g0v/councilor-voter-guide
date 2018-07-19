@@ -93,7 +93,7 @@ def get_legislator_standpoints(c, term):
         )
         GROUP BY s.title, lv.decision
         ORDER BY times DESC
-        LIMIT 3
+        LIMIT 5
         ) row
     ''', [term['legislator_id'], ])
     r = c.fetchone()
@@ -137,7 +137,7 @@ def get_mayor_standpoints(c, term):
             )
             GROUP BY s.title
             ORDER BY pro DESC, times DESC
-            LIMIT 3
+            LIMIT 5
         ) row
     ''', [term['mayor_id'], ])
     r = c.fetchone()

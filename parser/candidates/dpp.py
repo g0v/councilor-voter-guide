@@ -32,6 +32,17 @@ def upsertCandidates(candidate):
         DO UPDATE
         SET elected_councilor_id = %(councilor_term_id)s, councilor_terms = %(councilor_terms)s, number = %(number)s, name = %(name)s, gender = %(gender)s, party = %(party)s, constituency = %(constituency)s, county = %(county)s, district = %(district)s, contact_details = %(contact_details)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s
     ''', complement)
+    terms = []
+    for t in ['mayor', 'legislator', 'councilor']:
+        if candidate.get('%s_terms' % t):
+            for term in candidate['%s_terms' % t]:
+                term['type'] = t
+                terms.append(term)
+    c.execute('''
+        UPDATE candidates_terms
+        SET data = (COALESCE(data, '{}'::jsonb) || %s::jsonb)
+        WHERE election_year = %s and candidate_id = %s
+    ''', [json.dumps({'terms': terms}), complement['election_year'], complement['candidate_uid'], ])
     if candidate.get('mayor_terms'):
         c.execute('''
             UPDATE candidates_terms
@@ -128,12 +139,12 @@ for wks in worksheets[1:]:
             candidate['mayor_uid'] = candidate['candidate_uid']
             if candidate['mayor_uid']:
                 candidate['mayor_terms'] = common.mayor_terms(c, candidate)
-#           candidate['legislator_uid'] = common.get_legislator_uid(c_another, candidate['name'])
-#           candidate['legislator_data'] = common.get_legislator_data(c_another, candidate['legislator_uid'])
-#           if candidate['legislator_uid']:
-#               candidate['legislator_terms'] = common.legislator_terms(c_another, candidate)
-#               candidate['legislator_candidate_info'] = common.get_elected_legislator_candidate_info(c_another, candidate)
-#               if candidate['legislator_candidate_info']:
-#                   candidate['birth'] = candidate['legislator_candidate_info']['birth']
+            candidate['legislator_uid'] = common.get_legislator_uid(c_another, candidate['name'])
+            candidate['legislator_data'] = common.get_legislator_data(c_another, candidate['legislator_uid'])
+            if candidate['legislator_uid']:
+                candidate['legislator_terms'] = common.legislator_terms(c_another, candidate)
+                candidate['legislator_candidate_info'] = common.get_elected_legislator_candidate_info(c_another, candidate)
+                if candidate['legislator_candidate_info']:
+                    candidate['birth'] = candidate['legislator_candidate_info']['birth']
         upsertCandidates(candidate)
 conn.commit()
