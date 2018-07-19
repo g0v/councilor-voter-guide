@@ -45,7 +45,7 @@
 
             <div class="content-list row col-xs-12">
             {% for candidate in candidates %}
-                <div class="content-item row relat{% if candidate.elected %} Current{% endif %}" data-id="{{forloop.counter}}">
+                <div class="content-item row relat{% if candidate.occupy %} Current{% endif %}" data-id="{{forloop.counter}}">
                     <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
                     <div class="content-item-layer1 row relat">
                         <a class="profile col-xs-12 row">
