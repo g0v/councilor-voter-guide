@@ -195,6 +195,9 @@
                                     {% if councilor_term.param.attendance_statistics %}
                                         <p>議會缺席率：{{councilor_term.param.attendance_statistics.absent|percentage:councilor_term.param.attendance_statistics.total}} % <small>（{{councilor_term.param.attendance_statistics.absent}} / {{councilor_term.param.attendance_statistics.total}}）</small></p>
                                     {% endif %}
+                                    {% if councilor_term.param.suggestions_years %}
+                                        <a href="{% url "councilors:suggestor" councilor_id=councilor_term.councilor_id election_year=councilor_term.election_year %}">議員配合款總花費：<font class="price">{{councilor_term.param.suggestions_years.sum}}</font></a>
+                                    {% endif %}
                                 </div>
                                 {% endif %}
                             {% endfor %}
@@ -295,6 +298,9 @@
                                 {% endif %}
                                 {% if councilor_term.param.attendance_statistics %}
                                     <p>議會缺席率：{{councilor_term.param.attendance_statistics.absent|percentage:councilor_term.param.attendance_statistics.total}} % <small>（{{councilor_term.param.attendance_statistics.absent}} / {{councilor_term.param.attendance_statistics.total}}）</small></p>
+                                {% endif %}
+                                {% if councilor_term.param.suggestions_years %}
+                                    <a href="{% url "councilors:suggestor" councilor_id=councilor_term.councilor_id election_year=councilor_term.election_year %}">議員配合款總花費：<font class="price">{{councilor_term.param.suggestions_years.sum}}</font></a>
                                 {% endif %}
                             </div>
                             {% endif %}
