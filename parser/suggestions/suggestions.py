@@ -322,6 +322,7 @@ c.execute('''
     GROUP BY councilor_id
 ''')
 for councilor_id in c.fetchall():
+    break
     piles = []
     for pile, tokens in [(u'協會', [u'協會', u'學會', u'商會', u'公會', u'協進會', u'促進會', u'研習會', u'婦聯會', u'婦女會', u'體育會', u'同心會', u'農會', u'早起會', u'健身會', u'宗親會', u'功德會', u'商業會', u'長青會', u'民眾服務社', u'聯盟']), (u'辦公室', [u'辦公室', u'辦公處']), (u'廟', [u'廟', u'宮']), (u'警察局', [u'警察局', u'分局']), (u'消防局', [u'消防局', u'消防隊', u'分隊', u'中隊']), (u'國中、國小', [u'國中', u'國小'])]:
         data = {
@@ -358,4 +359,36 @@ for councilor_id in c.fetchall():
         SET param = (COALESCE(param, '{}'::jsonb) || %s::jsonb)
         WHERE id = %s
     ''', (json.dumps({'suggestions_associations': associations}), councilor_id))
+conn.commit()
+
+# update suggestions params on mayor
+def one_mayor_term_years(data):
+    c.execute('''
+        SELECT json_build_object('sum', SUM(_.sum), 'count', SUM(_.count), 'years', json_agg(_))
+        FROM (
+            SELECT suggest_year, COALESCE(SUM(approved_expense_avg), 0) as sum, COALESCE(COUNT(*), 0) as count, SUM            (
+                CASE
+                    WHEN approved_expense <= 100000 THEN 1 ELSE 0
+                END
+            ) as small_purchase
+            FROM suggestions_suggestions s
+            WHERE county = %(county)s AND election_year = %(election_year)s
+            GROUP BY suggest_year
+            ORDER BY suggest_year
+        ) _
+    ''', data)
+    return c.fetchone()[0]
+
+c.execute('''
+    SELECT uid, mayor_id, election_year, county
+    FROM mayors_terms
+''')
+key = [desc[0] for desc in c.description]
+for row in c.fetchall():
+    data = dict(zip(key, row))
+    c.execute('''
+        UPDATE mayors_terms
+        SET data = (COALESCE(data, '{}'::jsonb) || %s::jsonb)
+        WHERE uid = %s
+    ''', (json.dumps({'suggestions_years': one_mayor_term_years(data)}), data['uid']))
 conn.commit()
