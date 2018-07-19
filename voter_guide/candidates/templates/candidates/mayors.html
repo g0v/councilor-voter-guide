@@ -73,77 +73,20 @@
                                 <p>黨籍 / <span class="party-val">{{candidate.party}}</span></p>
                                 <p>年齡 / <span class="party-val">{{candidate.candidate.birth|age}}歲</span></p>
                                 <p>財產申報 / <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank"> <img src="{% static "img/dest/dollar.png" %}"></a></p>
+                                {% if candidate.data.mayor_terms %}
+                                <p> {{candidate.data.mayor_terms|length}}屆縣市長</p>
+                                {% endif %}
+                                {% if candidate.data.legislator_terms %}
+                                <p> {{candidate.data.legislator_terms|length}}屆立委</p>
+                                {% endif %}
+                                {% if candidate.councilor_terms %}
+                                <p> {{candidate.councilor_terms|length}}屆議員</p>
+                                {% endif %}
                             </div>
                         </div>
 
                         <div class="statistic-info col-xs-12 col-sm-4">
-                        {% if candidate.data.mayor_terms %}
-                            {% for term in candidate.data.mayor_terms %}
-                                {% if forloop.counter0 == 0 %}
-                                <div class="tit">
-                                    <p>{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}長</p>
-                                </div>
-                                {% if not term.in_office and term.term_end.reason %}
-                                    離職原因：{{term.term_end.reason}}{% if term.term_end.ref %}，<a href="{{term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
-                                {% endif %}
-                                <div class="statistic">
-                                {% if term.data.suggestions_years %}
-                                <a href="{% url "suggestions:county_overview" %}#{{term.county}}">議員配合款總花費：<font class="price">{{term.data.suggestions_years.sum}}</font></a>
-                                {% endif %}
-                                </div>
-                                {% endif %}
-                            {% endfor %}
-                        {% elif candidate.data.legislator_terms %}
-                            {% for term in candidate.data.legislator_terms %}
-                                {% if forloop.counter0 == 0 %}
-                                <div class="tit">
-                                    <p>{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}立委</p>
-                                </div>
-                                {% if not term.in_office and term.term_end.reason %}
-                                    離職原因：{{term.term_end.reason}}{% if term.term_end.ref %}，<a href="{{term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
-                                {% endif %}
-                                <div class="statistic">
-                                    <p>{{term.bill_param.sponsor}} 次主提案</p>
-                                    <p>{{term.bill_param.cosponsor}} 次共同提案</p>
-                                {% if term.vote_param %}
-                                    <p>投票缺席率：{{term.vote_param.not_voting|percentage:term.vote_param.total}} % <small>（{{term.vote_param.not_voting}} / {{term.vote_param.total}}）</small></p>
-                                {% endif %}
-                                {% if term.attendance_param %}
-                                    <p>立院缺席率：{{term.attendance_param.absent|percentage:term.attendance_param.total}} % <small>（{{term.attendance_param.absent}} / {{term.attendance_param.total}}）</small></p>
-                                {% endif %}
-                                </div>
-                                {% endif %}
-                            {% endfor %}
-                            {% if candidate.data.legislator_terms|length > 1 %}
-                            <p> ...等{{candidate.data.legislator_terms|length}}屆立委</p>
-                            {% endif %}
-                        {% else %}
-                            {% for councilor_term in candidate.councilor_terms %}
-                                {% if forloop.counter0 == 0 %}
-                                <div class="tit">
-                                    <p>{{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}{{councilor_term.county}}議員</p>
-                                </div>
-                                {% if not councilor_term.in_office and councilor_term.term_end.reason %}
-                                    離職原因：{{councilor_term.term_end.reason}}{% if councilor_term.term_end.ref %}，<a href="{{councilor_term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
-                                {% endif %}
-                                <div class="statistic">
-                                    {% if councilor_term.param.bills_role_statistics %}
-                                    <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>
-                                    <p>{{councilor_term.param.bills_role_statistics.sponsor}} 次共同提案</p>
-                                    {% endif %}
-                                    {% if councilor_term.param.votes_decision_statistics %}
-                                        <p>投票缺席率：{{councilor_term.param.votes_decision_statistics.not_voting|percentage:councilor_term.param.votes_decision_statistics.total}} % <small>（{{councilor_term.param.votes_decision_statistics.not_voting}} / {{councilor_term.param.votes_decision_statistics.total}}）</small></p>
-                                    {% endif %}
-                                    {% if councilor_term.param.attendance_statistics %}
-                                        <p>議會缺席率：{{councilor_term.param.attendance_statistics.absent|percentage:councilor_term.param.attendance_statistics.total}} % <small>（{{councilor_term.param.attendance_statistics.absent}} / {{councilor_term.param.attendance_statistics.total}}）</small></p>
-                                    {% endif %}
-                                </div>
-                                {% endif %}
-                            {% endfor %}
-                            {% if candidate.councilor_terms|length > 1 %}
-                            <p> ...等{{candidate.councilor_terms|length}}屆議員</p>
-                            {% endif %}
-                        {% endif %}
+                            {% include "candidates/mayor_statistic_info.html" with term=candidate.data.terms.0 %}
                         </div>
 
                         <div class="contributions-info col-xs-12 col-sm-5 row" onclick="location.href='{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}';" style="cursor: pointer;">
@@ -188,77 +131,10 @@
                     <div class="content-detail row notFirstCandidate">
 
                         <div class="statistic-info col-xs-12 col-sm-4 col-sm-offset-3">
-                        {% for term in candidate.data.legislator_terms %}
-                        {% if candidate.data.mayor_terms %}
-                            <div class="tit">
-                                <p>{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}立委</p>
-                            </div>
-                            <div class="statistic">
-                                <p>{{term.bill_param.sponsor}} 次主提案</p>
-                                <p>{{term.bill_param.cosponsor}} 次共同提案</p>
-                            {% if term.vote_param %}
-                                <p>投票缺席率：{{term.vote_param.not_voting|percentage:term.vote_param.total}} % <small>（{{term.vote_param.not_voting}} / {{term.vote_param.total}}）</small></p>
-                            {% endif %}
-                            {% if term.attendance_param %}
-                                <p>立院缺席率：{{term.attendance_param.absent|percentage:term.attendance_param.total}} % <small>（{{term.attendance_param.absent}} / {{term.attendance_param.total}}）</small></p>
-                            {% endif %}
-                            </div>
-                        {% else %}
-                            {% if forloop.counter0 > 0 %}
-                            <div class="tit">
-                                <p>{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}立委</p>
-                            </div>
-                            <div class="statistic">
-                                <p>{{term.bill_param.sponsor}} 次主提案</p>
-                                <p>{{term.bill_param.cosponsor}} 次共同提案</p>
-                            {% if term.vote_param %}
-                                <p>投票缺席率：{{term.vote_param.not_voting|percentage:term.vote_param.total}} % <small>（{{term.vote_param.not_voting}} / {{term.vote_param.total}}）</small></p>
-                            {% endif %}
-                            {% if term.attendance_param %}
-                                <p>立院缺席率：{{term.attendance_param.absent|percentage:term.attendance_param.total}} % <small>（{{term.attendance_param.absent}} / {{term.attendance_param.total}}）</small></p>
-                            {% endif %}
-                            </div>
-                            {% endif %}
-                        {% endif %}
-                        {% endfor %}
-                        </div>
-
-                        <div class="statistic-info col-xs-12 col-sm-4 col-sm-offset-3">
-                        {% for councilor_term in candidate.councilor_terms %}
-                        {% if candidate.data.mayor_terms or candidate.data.mayor_terms %}
-                            <div class="tit">
-                                <p>{{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}{{councilor_term.county}}議員</p>
-                            </div>
-                            <div class="statistic">
-                                {% if councilor_term.param.bills_role_statistics %}
-                                <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>
-                                <p>{{councilor_term.param.bills_role_statistics.sponsor}} 次共同提案</p>
-                                {% endif %}
-                                {% if councilor_term.param.votes_decision_statistics %}
-                                    <p>投票缺席率：{{councilor_term.param.votes_decision_statistics.not_voting|percentage:councilor_term.param.votes_decision_statistics.total}} % <small>（{{councilor_term.param.votes_decision_statistics.not_voting}} / {{councilor_term.param.votes_decision_statistics.total}}）</small></p>
-                                {% endif %}
-                                {% if councilor_term.param.attendance_statistics %}
-                                    <p>議會缺席率：{{councilor_term.param.attendance_statistics.absent|percentage:councilor_term.param.attendance_statistics.total}} % <small>（{{councilor_term.param.attendance_statistics.absent}} / {{councilor_term.param.attendance_statistics.total}}）</small></p>
-                                {% endif %}
-                            </div>
-                        {% else %}
+                        {% for term in candidate.data.terms %}
                         {% if forloop.counter0 > 0 %}
-                            <div class="tit">
-                                <p>{{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}{{councilor_term.county}}議員</p>
-                            </div>
-                            <div class="statistic">
-                                {% if councilor_term.param.bills_role_statistics %}
-                                <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>
-                                <p>{{councilor_term.param.bills_role_statistics.sponsor}} 次共同提案</p>
-                                {% endif %}
-                                {% if councilor_term.param.votes_decision_statistics %}
-                                    <p>投票缺席率：{{councilor_term.param.votes_decision_statistics.not_voting|percentage:councilor_term.param.votes_decision_statistics.total}} % <small>（{{councilor_term.param.votes_decision_statistics.not_voting}} / {{councilor_term.param.votes_decision_statistics.total}}）</small></p>
-                                {% endif %}
-                                {% if councilor_term.param.attendance_statistics %}
-                                    <p>議會缺席率：{{councilor_term.param.attendance_statistics.absent|percentage:councilor_term.param.attendance_statistics.total}} % <small>（{{councilor_term.param.attendance_statistics.absent}} / {{councilor_term.param.attendance_statistics.total}}）</small></p>
-                                {% endif %}
-                            </div>
-                        {% endif %}
+                            {% include "candidates/mayor_statistic_info.html" with term=term %}
+                            <br>
                         {% endif %}
                         {% endfor %}
                         </div>
@@ -292,6 +168,7 @@
                             </div>
                         {% endif %}
                         {% endwith %}
+
                         <div class="proposal col-sm-6 row">
                             {% if candidate.data.legislator_terms %}
                             <div class="tit row col-sm-12">
