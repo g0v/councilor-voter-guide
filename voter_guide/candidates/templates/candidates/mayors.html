@@ -141,7 +141,7 @@
 
                         {% with sp=candidate.data.legislator_terms.0.standpoints %}
                         {% if sp %}
-                            <div class="vote col-sm-6 row">
+                            <div class="vote col-sm-6 row" onclick="window.open('https://vote.ly.g0v.tw/legislator/voter_sp/{{candidate.data.legislator_terms.0.legislator_id}}/{{candidate.data.legislator_terms.0.ad}}/');" style="cursor: pointer;">
                                 <div class="tit row col-sm-12">
                                 {% with term=candidate.data.legislator_terms.0 %}
                                     <div class="col-sm-12">{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}立委任期 表決立場</div>
