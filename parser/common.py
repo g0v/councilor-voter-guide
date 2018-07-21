@@ -40,16 +40,19 @@ def get_legislator_candidate_info(c, name):
         ''' % ','.join(["'%s'" % x for x in identifiers]))
         r = c.fetchone()
         if r:
-            candidate_uid = c.fetchone()[0]
+            candidate_uid = r[0]
             c.execute('''
-                SELECT c.birth, ct.politicalcontributions, ct.cec_data, ct.county, ct.constituency
-                FROM candidates_candidates c, candidates_terms ct
-                WHERE c.uid = ct.candidate_id AND ct.candidate_id = %s
-                ORDER BY ad DESC
+                SELECT row_to_json(_)
+                FROM (
+                    SELECT c.birth, ct.politicalcontributions, ct.cec_data, ct.county, ct.constituency
+                    FROM candidates_candidates c, candidates_terms ct
+                    WHERE c.uid = ct.candidate_id AND ct.candidate_id = %s
+                    ORDER BY ad DESC
+                ) _
             ''', [candidate_uid, ])
-            key = [desc[0] for desc in c.description]
             r = c.fetchone()
-            return dict(zip(key, r))
+            if r:
+                return r[0]
 
 def get_legislator_data(c, uid):
     c.execute('''

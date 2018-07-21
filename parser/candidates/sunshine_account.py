@@ -3,11 +3,13 @@
 import sys
 sys.path.append('../')
 import re
-import os
 import json
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+import glob
+import psycopg2
+from datetime import datetime
 import pandas as pd
+import ast
+from sys import argv
 
 import db_settings
 import common
@@ -83,37 +85,38 @@ conn = db_settings.con()
 conn_another = db_settings.con_another()
 c = conn.cursor()
 c_another = conn_another.cursor()
-election_year = '2018'
-party = u'中國國民黨'
-
-for position_type in ['mayors', 'councilors']:
-    candidates = json.load(open('../../data/candidates/%s/kmt_%s.json' % (election_year, position_type)), encoding='utf-8')
-    for candidate in candidates:
-        if not candidate['name']:
-            continue
-        candidate['type'] = position_type
-        candidate['name'] = common.normalize_person_name(candidate['name'])
-        candidate['party'] = party
-        candidate['election_year'] = election_year
-        if candidate['type'] == 'mayors':
-            candidate['constituency'] = 0
-            candidate['candidate_uid'], created = common.get_or_create_moyor_candidate_uid(c, candidate)
-        else:
-            candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
-        candidate['candidate_term_uid'] = '%s-%s' % (candidate['candidate_uid'], election_year)
-        candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate, create=False)
-        candidate['councilor_term_id'] = common.getDetailIdFromUid(c, candidate['councilor_uid'], election_year, candidate['county'])
-        candidate['councilor_terms'] = common.councilor_terms(c, candidate) if created else None
-        if candidate['type'] == 'mayors':
-            candidate['mayor_uid'] = candidate['candidate_uid']
-            if candidate['mayor_uid']:
-                candidate['mayor_terms'] = common.mayor_terms(c, candidate)
-            candidate['legislator_uid'] = common.get_legislator_uid(c_another, candidate['name'])
-            candidate['legislator_data'] = common.get_legislator_data(c_another, candidate['legislator_uid'])
-            if candidate['legislator_uid']:
-                candidate['legislator_terms'] = common.legislator_terms(c_another, candidate)
-                candidate['legislator_candidate_info'] = common.get_legislator_candidate_info(c_another, candidate['name'])
-                if candidate['legislator_candidate_info']:
-                    candidate['birth'] = candidate['legislator_candidate_info']['birth']
-        upsertCandidates(candidate)
-conn.commit()
+election_year = ast.literal_eval(argv[1])['election_year']
+df = pd.read_csv('../../data/candidates/%s/sunshine_account.csv' % election_year, encoding='utf-8', usecols=[0, 1], header=None)
+for row in df.iterrows():
+    if not row[0]:
+        continue
+    candidate = {}
+    candidate['type'] = 'councilors' if re.search(u'議員', row[1]) else 'mayors'
+    candidate['county'] = re.search(u'年(\W+[縣市])'].group()
+    candidate['name'] = common.normalize_person_name(row[0])
+    candidate['election_year'] = election_year
+    if candidate['type'] = 'councilors':
+        candidate['constituency'] = int(match.group('num'))
+    else:
+        candidate['constituency'] = 0
+    if position_type == 'mayors':
+        candidate['candidate_uid'], created = common.get_or_create_moyor_candidate_uid(c, candidate)
+    else:
+        candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
+    candidate['candidate_term_uid'] = '%s-%s' % (candidate['candidate_uid'], election_year)
+    candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate, create=False)
+    candidate['councilor_term_id'] = common.getDetailIdFromUid(c, candidate['councilor_uid'], election_year, candidate['county'])
+    candidate['councilor_terms'] = common.councilor_terms(c, candidate) if created else None
+    if position_type == 'mayors':
+        candidate['mayor_uid'] = candidate['candidate_uid']
+        if candidate['mayor_uid']:
+            candidate['mayor_terms'] = common.mayor_terms(c, candidate)
+        candidate['legislator_uid'] = common.get_legislator_uid(c_another, candidate['name'])
+        candidate['legislator_data'] = common.get_legislator_data(c_another, candidate['legislator_uid'])
+        if candidate['legislator_uid']:
+            candidate['legislator_terms'] = common.legislator_terms(c_another, candidate)
+            candidate['legislator_candidate_info'] = common.get_elected_legislator_candidate_info(c_another, candidate)
+            if candidate['legislator_candidate_info']:
+                candidate['birth'] = candidate['legislator_candidate_info']['birth']
+    upsertCandidates(candidate)
+#conn.commit()
