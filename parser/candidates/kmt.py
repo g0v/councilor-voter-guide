@@ -7,6 +7,7 @@ import os
 import json
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import pandas as pd
 
 import db_settings
 import common
@@ -83,68 +84,35 @@ conn_another = db_settings.con_another()
 c = conn.cursor()
 c_another = conn_another.cursor()
 election_year = '2018'
-party = u'民主進步黨'
+party = u'中國國民黨'
 
-scope = ['https://spreadsheets.google.com/feeds']
-credentials = ServiceAccountCredentials.from_json_keyfile_name('credential.json', scope)
-gc = gspread.authorize(credentials)
-sh = gc.open_by_key('1efxsRJKSoezKVJvln2rNkl-nGIZlmngw6k35GgKxLAE')
-worksheets = sh.worksheets()
-for wks in worksheets[1:]:
-    rows = wks.get_all_records()
-    position_type = 'councilors' if wks.title == u'議員' else 'mayors'
-    path = '../../data/avatar/%s/%s/%s' % (position_type, election_year, party)
-    for row in rows:
-        if not row[u'姓名']:
-            continue
-        candidate = {}
-        candidate['type'] = position_type
-        candidate['county'] = row[u'參選縣市'].replace(u'台', u'臺')
-        if row.get(u'選區'):
-            match = re.search(u'第(?P<num>\d+)選(?:舉)?區', row[u'選區'])
-            candidate['constituency'] = int(match.group('num'))
-        else:
-            candidate['constituency'] = 0
-        candidate['name'] = common.normalize_person_name(row[u'姓名'])
-        candidate['party'] = party
-        candidate['election_year'] = election_year
-        candidate['gender'] = row[u'性別']
-        candidate['education'] = row[u'學歷']
-        candidate['experience'] = row[u'經歷']
-        if row[u'相關連結']:
-            if re.search('facebook', row[u'相關連結']):
-                candidate['links'] = [{'url': row[u'相關連結'], 'note': 'facebook'}]
-            else:
-                candidate['links'] = [{'url': row[u'相關連結'], 'note': u'相關連結'}]
-        f_name = re.sub(',', '.', row[u'照片有無']).lower()
-        f = '%s/%s' % (path, f_name)
-        if not os.path.isfile(f):
-            print f
-            f_upper = '%s/%s' % (path, f_name.upper())
-            try:
-                os.rename(f_upper, f)
-            except:
-                print f_upper
-        if row[u'照片有無']:
-            candidate['image'] = u'%s/%s/%s/%s/%s' % (common.storage_domain(), position_type, election_year, party, f_name)
-        if position_type == 'mayors':
-            candidate['candidate_uid'], created = common.get_or_create_moyor_candidate_uid(c, candidate)
-        else:
-            candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
-        candidate['candidate_term_uid'] = '%s-%s' % (candidate['candidate_uid'], election_year)
-        candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate, create=False)
-        candidate['councilor_term_id'] = common.getDetailIdFromUid(c, candidate['councilor_uid'], election_year, candidate['county'])
-        candidate['councilor_terms'] = common.councilor_terms(c, candidate) if created else None
-        if position_type == 'mayors':
-            candidate['mayor_uid'] = candidate['candidate_uid']
-            if candidate['mayor_uid']:
-                candidate['mayor_terms'] = common.mayor_terms(c, candidate)
-            candidate['legislator_uid'] = common.get_legislator_uid(c_another, candidate['name'])
-            candidate['legislator_data'] = common.get_legislator_data(c_another, candidate['legislator_uid'])
-            if candidate['legislator_uid']:
-                candidate['legislator_terms'] = common.legislator_terms(c_another, candidate)
-                candidate['legislator_candidate_info'] = common.get_elected_legislator_candidate_info(c_another, candidate)
-                if candidate['legislator_candidate_info']:
-                    candidate['birth'] = candidate['legislator_candidate_info']['birth']
-        upsertCandidates(candidate)
+candidates = json.load(open('../../data/candidates/%s/kmt_mayors.json' % election_year), encoding='utf-8')
+for candidate in candidates:
+    if not candidate['name']:
+        continue
+    candidate['type'] = 'mayors'
+    candidate['constituency'] = 0
+    candidate['name'] = common.normalize_person_name(candidate['name'])
+    candidate['party'] = party
+    candidate['election_year'] = election_year
+    if candidate['type'] == 'mayors':
+        candidate['candidate_uid'], created = common.get_or_create_moyor_candidate_uid(c, candidate)
+    else:
+        candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
+    candidate['candidate_term_uid'] = '%s-%s' % (candidate['candidate_uid'], election_year)
+    candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate, create=False)
+    candidate['councilor_term_id'] = common.getDetailIdFromUid(c, candidate['councilor_uid'], election_year, candidate['county'])
+    candidate['councilor_terms'] = common.councilor_terms(c, candidate) if created else None
+    if candidate['type'] == 'mayors':
+        candidate['mayor_uid'] = candidate['candidate_uid']
+        if candidate['mayor_uid']:
+            candidate['mayor_terms'] = common.mayor_terms(c, candidate)
+        candidate['legislator_uid'] = common.get_legislator_uid(c_another, candidate['name'])
+        candidate['legislator_data'] = common.get_legislator_data(c_another, candidate['legislator_uid'])
+        if candidate['legislator_uid']:
+            candidate['legislator_terms'] = common.legislator_terms(c_another, candidate)
+            candidate['legislator_candidate_info'] = common.get_elected_legislator_candidate_info(c_another, candidate)
+            if candidate['legislator_candidate_info']:
+                candidate['birth'] = candidate['legislator_candidate_info']['birth']
+    upsertCandidates(candidate)
 conn.commit()
