@@ -2,6 +2,9 @@
 import re
 
 
+def storage_domain():
+    return 'https://drsgjxdg6zyfq.cloudfront.net'
+
 def election_year(county):
     return '2014'
 
