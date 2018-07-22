@@ -137,71 +137,63 @@
                         {% endfor %}
                         </div>
 
-                        {% with sp=candidate.data.legislator_terms.0.standpoints %}
-                        {% if sp %}
-                            <div class="vote col-sm-6 row" onclick="window.open('https://vote.ly.g0v.tw/legislator/voter_sp/{{candidate.data.legislator_terms.0.legislator_id}}/{{candidate.data.legislator_terms.0.ad}}/');" style="cursor: pointer;">
-                                <div class="tit row col-sm-12">
-                                {% with term=candidate.data.legislator_terms.0 %}
-                                    <div class="col-sm-12">{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}立委任期 表決立場</div>
-                                {% endwith %}
+                        {% with term=candidate.data.terms.0 %}
+                        {% if term.standpoints %}
+                            {% if term.type == 'legislator' %}
+                                <div class="vote col-sm-6 row" onclick="window.open('https://vote.ly.g0v.tw/legislator/voter_sp/{{candidate.data.legislator_terms.0.legislator_id}}/{{candidate.data.legislator_terms.0.ad}}/');" style="cursor: pointer;">
+                                    <div class="tit row col-sm-12">
+                                        <div class="col-sm-12">{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}立委任期 表決立場</div>
+                                    </div>
+                                        {% for standpoint in term.standpoints %}
+                                        <div class="list col-sm-12 row">
+                                            <div class="col-sm-8 col-xs-6">{{standpoint.title}}</div>
+                                            {% if standpoint.decision == "反對" %}
+                                                <div class="statstic-num pull-right bg-reject">
+                                            {% elif standpoint.decision == "贊成" %}
+                                                <div class="statstic-num pull-right bg-approve">
+                                            {% elif standpoint.decision == "沒投票" %}
+                                                <div class="statstic-num pull-right bg-non-vote">
+                                            {% elif standpoint.decision == "棄權" %}
+                                                <div class="statstic-num pull-right bg-giveup">
+                                            {% endif %}
+                                                {{standpoint.decision}}
+                                            </div>
+                                        </div>
+                                        {% endfor %}
                                 </div>
-                                {% if sp %}
-                                    {% for standpoint in sp %}
+                            {% elif term.type == 'mayor' %}
+                            <div class="proposal col-sm-6 row">
+                                <div class="tit row col-sm-12">
+                                    <div class="col-sm-12">{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}長任期 提案立場</div>
+                                </div>
+                                {% for standpoint in term.standpoints %}
                                     <div class="list col-sm-12 row">
                                         <div class="col-sm-8 col-xs-6">{{standpoint.title}}</div>
-                                        {% if standpoint.decision == "反對" %}
-                                            <div class="statstic-num pull-right bg-reject">
-                                        {% elif standpoint.decision == "贊成" %}
-                                            <div class="statstic-num pull-right bg-approve">
-                                        {% elif standpoint.decision == "沒投票" %}
-                                            <div class="statstic-num pull-right bg-non-vote">
-                                        {% elif standpoint.decision == "棄權" %}
-                                            <div class="statstic-num pull-right bg-giveup">
-                                        {% endif %}
-                                            {{standpoint.decision}}
-                                        </div>
+                                        <div class="statstic-num pull-right bg-proposal">提案</div>
                                     </div>
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
-                        {% endif %}
-                        {% endwith %}
-
-                        <div class="proposal col-sm-6 row">
-                            {% if candidate.data.legislator_terms %}
-                            <div class="tit row col-sm-12">
-                                <div class="col-sm-12">{{candidate.data.legislator_terms.0.term_start_year}} 年{{candidate.data.legislator_terms.0.county}}立委競選政見</div>
-                            </div>
-                            <div class="list-politics col-sm-12">
-                                {{candidate.data.legislator_terms.0.platform|safe|linebreaksbr}}
-                            </div>
-                            {% elif candidate.councilor_terms %}
-                            <div class="tit row col-sm-12">
-                                <div class="col-sm-12">{{candidate.councilor_terms.0.term_start_year}} 年{{candidate.councilor_terms.0.county}}議員競選政見</div>
-                            </div>
-                            <div class="list-politics col-sm-12">
-                                {{candidate.councilor_terms.0.platform|linebreaksbr}}
+                                {% endfor %}
                             </div>
                             {% endif %}
-                        </div>
-
-                        {% with sp=candidate.data.mayor_terms.0.standpoints %}
-                        {% if sp %}
-                        <div class="proposal col-sm-6 row">
-                            <div class="tit row col-sm-12">
-                            {% with term=candidate.data.mayor_terms.0 %}
-                                <div class="col-sm-12">{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}長任期 提案立場</div>
-                            {% endwith %}
-                            </div>
-                            {% for standpoint in sp %}
-                                <div class="list col-sm-12 row">
-                                    <div class="col-sm-8 col-xs-6">{{standpoint.title}}</div>
-                                    <div class="statstic-num pull-right bg-proposal">提案</div>
+                            <div class="proposal col-sm-6 row">
+                                <div class="tit row col-sm-12">
+                                    <div class="col-sm-12">{{term.term_start_year}} 年{{term.0.county}}競選政見</div>
                                 </div>
-                            {% endfor %}
-                        </div>
+                                <div class="list-politics col-sm-12">
+                                    {{term.platform|safe|linebreaksbr}}
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="proposal col-sm-12 row">
+                                <div class="tit row col-sm-12">
+                                    <div class="col-sm-12">{{term.term_start_year}} 年{{term.0.county}}競選政見</div>
+                                </div>
+                                <div class="list-politics col-sm-12">
+                                    {{term.platform|safe|linebreaksbr}}
+                                </div>
+                            </div>
                         {% endif %}
                         {% endwith %}
+
 
                         {% if candidate.experience %}
                         <div class="statistic-info col-xs-12 col-sm-7">
