@@ -37,8 +37,9 @@ def mayors_area(request, election_year):
     return render(request, 'candidates/mayors_area.html', {'election_year': election_year})
 
 def mayors(request, election_year, county):
+    coming_ele_year = coming_election_year(county)
     candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors')\
-                             .order_by('-votes')
+                              .order_by('?' if election_year == coming_ele_year else '-votes')
     years = Terms.objects.filter(county=county, type='mayors').values_list('election_year', flat=True).distinct().order_by('-election_year')
     standpoints = {}
     for candidate in candidates:
@@ -95,9 +96,9 @@ def district(request, election_year, county, constituency):
                 transform_to_constiencies.append(region['constituency'])
     except:
         transform_to_constiencies = [constituency]
-    intents = Intent.objects.filter(election_year=coming_ele_year, county=county, constituency__in=transform_to_constiencies).exclude(status='draft')
+    intents = Intent.objects.filter(election_year=coming_ele_year, county=county, constituency__in=transform_to_constiencies).exclude(status='draft').order_by('?')
     years = Terms.objects.filter(county=county, type='councilors', constituency=constituency).values_list('election_year', flat=True).distinct().order_by('-election_year')
-    candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'elected_councilor').order_by('-councilor_terms' if election_year == coming_ele_year else '-votes')
+    candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'elected_councilor').order_by('?' if election_year == coming_ele_year else '-votes')
     standpoints = {}
     for term in [candidates]:
         for candidate in term:
