@@ -290,6 +290,7 @@ def normalize_party(party):
     party = re.sub(u'^無黨籍及未經政黨推薦$', u'無黨籍', party)
     party = re.sub(u'台灣', u'臺灣', party)
     party = re.sub(u'台聯黨', u'臺灣團結聯盟', party)
+    party = re.sub(u'社民黨', u'社會民主黨', party)
     party = re.sub(u'^國民黨$', u'中國國民黨', party)
     party = re.sub(u'^民進黨$', u'民主進步黨', party)
     return party
