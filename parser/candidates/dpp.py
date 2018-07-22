@@ -12,6 +12,15 @@ import db_settings
 import common
 
 
+def AD2DATE(text):
+    matchTerm = re.search(u'''
+        (?P<year>[\d]+)[\s]*(?:年|[-/.])[\s]*
+        (?P<month>[\d]+)[\s]*(?:月|[-/.])[\s]*
+        (?P<day>[\d]+)
+    ''', text, re.X)
+    if matchTerm:
+        return '%04d-%02d-%02d' % (int(matchTerm.group('year'))+1911, int(matchTerm.group('month')), int(matchTerm.group('day')))
+
 def upsertCandidates(candidate):
     candidate['former_names'] = candidate.get('former_names', [])
     variants = common.make_variants_set(candidate['name'])
@@ -108,6 +117,7 @@ for wks in worksheets[1:]:
         candidate['name'] = common.normalize_person_name(row[u'姓名'])
         candidate['party'] = party
         candidate['election_year'] = election_year
+        candidate['birth'] = row[u'出生日期']
         candidate['gender'] = row[u'性別']
         candidate['education'] = row[u'學歷']
         candidate['experience'] = row[u'經歷']
