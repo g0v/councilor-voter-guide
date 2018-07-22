@@ -210,7 +210,7 @@
                                 <h4>{{candidate.platform|safe|linebreaksbr}}</h4>
                             </div>
                         {% else %}
-                            {% if candidate.experience or candidate.education %}
+                            {% if candidate.experience %}
                             <div class="statistic-info col-xs-12 col-sm-5">
                                 <div class="tit">
                                     <p>經歷</p>
@@ -219,6 +219,11 @@
                                     <p>{{candidate.experience|linebreaksbr}}
                                 </div>
                             </div>
+                            {% else %}
+                            <div class="statistic-info col-xs-12 col-sm-5">
+                            </div>
+                            {% endif %}
+                            {% if candidate.education %}
                             <div class="statistic-info col-xs-12 col-sm-4">
                                 <div class="tit">
                                     <p>學歷</p>
