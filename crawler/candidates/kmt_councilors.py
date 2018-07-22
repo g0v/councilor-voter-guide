@@ -7,6 +7,7 @@ import json
 import codecs
 import requests
 import subprocess
+from scrapy.selector import Selector
 
 import common
 
@@ -66,6 +67,18 @@ for county, tid in ref.items():
     cs = r.json()
     cs = [x for x in cs if x['name'] != u'陸續更新中']
     for candidate in cs:
+        print candidate['name']
+        rd = requests.get('https://kmt2018.com/read_candidate.asp?ids=%s' % candidate['uid'])
+        rd.encoding = 'utf-8'
+        x = Selector(text=rd.text, type='html')
+        for desc in x.css('.desc .title'):
+            content = '\n'.join([x.strip() for x in desc.xpath('following-sibling::div[1]//text()').extract() if x.strip()])
+            if desc.xpath('text()').extract_first() == u'競選口號':
+                candidate['slogan'] = content
+            elif desc.xpath('text()').extract_first() == u'經歷':
+                candidate['experience'] = content
+            elif desc.xpath('text()').extract_first() == u'學歷':
+                candidate['education'] = content
         candidate['name'] = re.sub('\s', '', candidate['name'])
         candidate['county'] = county
         candidate['constituency'] = normalize_constituency(candidate['desc'])
