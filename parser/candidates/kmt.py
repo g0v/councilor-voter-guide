@@ -17,7 +17,7 @@ def upsertCandidates(candidate):
     candidate['former_names'] = candidate.get('former_names', [])
     variants = common.make_variants_set(candidate['name'])
     candidate['identifiers'] = list((variants | set(candidate['former_names']) | {candidate['name'], re.sub(u'[\w‧]', '', candidate['name']), re.sub(u'\W', '', candidate['name']).lower(), }) - {''})
-    complement = {'birth': None, 'gender': '', 'party': '', 'number': None, 'contact_details': None, 'district': '', 'education': None, 'experience': None, 'remark': None, 'image': '', 'links': None, 'platform': '', 'data': None}
+    complement = {'birth': None, 'gender': '', 'party': '', 'number': None, 'contact_details': None, 'district': '', 'education': None, 'experience': None, 'remark': None, 'image': '', 'links': None, 'platform': '', 'data': None, 'occupy': None}
     complement.update(candidate)
     c.execute('''
         INSERT INTO candidates_candidates(uid, name, birth, identifiers)
@@ -27,11 +27,11 @@ def upsertCandidates(candidate):
         SET name = %(name)s, birth = %(birth)s, identifiers = %(identifiers)s
     ''', complement)
     c.execute('''
-        INSERT INTO candidates_terms(uid, candidate_id, elected_councilor_id, councilor_terms, election_year, number, name, gender, party, constituency, county, district, contact_details, education, experience, remark, image, links, platform, type)
-        VALUES (%(candidate_term_uid)s, %(candidate_uid)s, %(councilor_term_id)s, %(councilor_terms)s, %(election_year)s, %(number)s, %(name)s, %(gender)s, %(party)s, %(constituency)s, %(county)s, %(district)s, %(contact_details)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s, %(type)s)
+        INSERT INTO candidates_terms(uid, candidate_id, elected_councilor_id, councilor_terms, election_year, number, name, gender, party, constituency, county, district, contact_details, education, experience, remark, image, links, platform, type, occupy)
+        VALUES (%(candidate_term_uid)s, %(candidate_uid)s, %(councilor_term_id)s, %(councilor_terms)s, %(election_year)s, %(number)s, %(name)s, %(gender)s, %(party)s, %(constituency)s, %(county)s, %(district)s, %(contact_details)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s, %(type)s, %(occupy)s)
         ON CONFLICT (election_year, candidate_id)
         DO UPDATE
-        SET elected_councilor_id = %(councilor_term_id)s, councilor_terms = %(councilor_terms)s, number = %(number)s, name = %(name)s, gender = %(gender)s, party = %(party)s, constituency = %(constituency)s, county = %(county)s, district = %(district)s, contact_details = %(contact_details)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s
+        SET elected_councilor_id = %(councilor_term_id)s, councilor_terms = %(councilor_terms)s, number = %(number)s, name = %(name)s, gender = %(gender)s, party = %(party)s, constituency = %(constituency)s, county = %(county)s, district = %(district)s, contact_details = %(contact_details)s, education = %(education)s, experience = %(experience)s, remark = %(remark)s, image = %(image)s, links = %(links)s, occupy = %(occupy)s
     ''', complement)
     terms = []
     for t in ['mayor', 'legislator', 'councilor']:
@@ -91,6 +91,7 @@ for position_type in ['mayors', 'councilors']:
     for candidate in candidates:
         if not candidate['name']:
             continue
+        print candidate['name']
         candidate['type'] = position_type
         candidate['name'] = common.normalize_person_name(candidate['name'])
         candidate['party'] = party
@@ -115,5 +116,8 @@ for position_type in ['mayors', 'councilors']:
                 candidate['legislator_candidate_info'] = common.get_legislator_candidate_info(c_another, candidate['name'])
                 if candidate['legislator_candidate_info']:
                     candidate['birth'] = candidate['legislator_candidate_info']['birth']
+            candidate['occupy'] = common.is_mayor_occupy(c, candidate)
+        else:
+            candidate['occupy'] = common.is_councilor_occupy(c, candidate)
         upsertCandidates(candidate)
 conn.commit()

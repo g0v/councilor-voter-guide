@@ -13,6 +13,18 @@ logging.basicConfig(filename='common.log', level=logging.INFO)
 def storage_domain():
     return 'https://drsgjxdg6zyfq.cloudfront.net'
 
+def last_election_years(election_year):
+    return {
+        '2018': ['2014'],
+        '2014': ['2010', '2009'],
+        '2010': ['2006'],
+        '2009': ['2005'],
+        '2006': ['2002'],
+        '2005': ['2001'],
+        '2002': ['1998'],
+        '2001': ['1997']
+    }
+
 def election_year(county):
     return '2014'
 
@@ -217,13 +229,13 @@ def get_or_create_councilor_uid(c, councilor, create=True):
     print councilor['name']
     return (None, False)
 
-def get_or_create_moyor_candidate_uid(c, candidate):
+def get_or_create_moyor_candidate_uid(c, candidate, create=True):
     '''
         return candidate_uid, created
     '''
     logging.info(candidate)
     candidate['candidate_ids'] = tuple(GetPossibleCandidateIds(c, candidate['name']))
-    if not candidate['candidate_ids']:
+    if create and not candidate['candidate_ids']:
         return (str(uuid.uuid4()), False)
     c.execute('''
         SELECT candidate_id
@@ -241,15 +253,40 @@ def get_or_create_moyor_candidate_uid(c, candidate):
         LIMIT 1
     ''', candidate)
     r = c.fetchone()
-    return (r[0], True) if r else (str(uuid.uuid4()), False)
+    if r:
+        return (r[0], True)
+    elif create:
+        return (str(uuid.uuid4()), False)
+    print candidate['name']
+    return (None, False)
 
-def get_or_create_candidate_uid(c, candidate):
+def is_mayor_occupy(c, candidate):
+    c.execute('''
+        SELECT 1
+        FROM mayors_terms
+        WHERE mayor_id = %s AND in_office = true AND election_year in %s
+    ''', [candidate['mayor_uid'], tuple(last_election_years(candidate['election_year']))])
+    r = c.fetchone()
+    if r:
+        return True
+
+def is_councilor_occupy(c, candidate):
+    c.execute('''
+        SELECT 1
+        FROM councilors_councilorsdetail
+        WHERE councilor_id = %s AND in_office = true AND election_year in %s
+    ''', [candidate['councilor_uid'], tuple(last_election_years(candidate['election_year']))])
+    r = c.fetchone()
+    if r:
+        return True
+
+def get_or_create_candidate_uid(c, candidate, create=True):
     '''
         return candidate_uid, created
     '''
     logging.info(candidate)
     candidate['candidate_ids'] = tuple(GetPossibleCandidateIds(c, candidate['name']))
-    if not candidate['candidate_ids']:
+    if create and not candidate['candidate_ids']:
         return (str(uuid.uuid4()), False)
     c.execute('''
         SELECT candidate_id
@@ -267,7 +304,12 @@ def get_or_create_candidate_uid(c, candidate):
         LIMIT 1
     ''', candidate)
     r = c.fetchone()
-    return (r[0], True) if r else (str(uuid.uuid4()), False)
+    if r:
+        return (r[0], True)
+    elif create:
+        return (str(uuid.uuid4()), False)
+    print candidate['name']
+    return (None, False)
 
 def make_variants_set(string):
     variants = set([string])
