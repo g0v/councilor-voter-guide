@@ -180,21 +180,21 @@
                                 {% endfor %}
                             </div>
                             {% endif %}
-                            <div class="proposal col-sm-6 row">
+                            <div class="politics col-sm-6 row">
                                 <div class="tit row col-sm-12">
                                     <div class="col-sm-12">{{term.term_start_year}} 年{{term.0.county}}競選政見</div>
                                 </div>
                                 <div class="list-politics col-sm-12">
-                                    {{term.platform|safe|linebreaksbr}}
+                                    {{term.platform|safe|linebreaks}}
                                 </div>
                             </div>
                         {% else %}
-                            <div class="proposal col-sm-12 row">
+                            <div class="politics col-sm-12 row">
                                 <div class="tit row col-sm-12">
                                     <div class="col-sm-12">{{term.term_start_year}} 年{{term.0.county}}競選政見</div>
                                 </div>
                                 <div class="list-politics col-sm-12">
-                                    {{term.platform|safe|linebreaksbr}}
+                                    {{term.platform|safe|linebreaks}}
                                 </div>
                             </div>
                         {% endif %}

@@ -177,6 +177,9 @@
                                 {% if candidate.councilor_terms %}
                                 <p>財產申報 / <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank"> <img src="{% static "img/dest/dollar.png" %}" alt="財產申報" title="財產申報"></a></p>
                                 {% endif %}
+                                {% if candidate.councilor_terms|length > 1 %}
+                                    <p> {{candidate.councilor_terms|length}} 屆議員</p>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -207,9 +210,6 @@
                                 </div>
                                 {% endif %}
                             {% endfor %}
-                            {% if candidate.councilor_terms|length > 1 %}
-                                <p> ...等{{candidate.councilor_terms|length}}屆議員</p>
-                            {% endif %}
                             </div>
                         {% else %}
                             {% if candidate.experience %}
@@ -369,30 +369,20 @@
                                 <div class="col-sm-12">{{candidate.councilor_terms.0.term_start_year}} 年{{candidate.councilor_terms.0.county}}議員競選政見</div>
                             </div>
                             <div class="list-politics col-sm-12">
-                                {{candidate.councilor_terms.0.platform|linebreaksbr}}
+                                {{candidate.councilor_terms.0.platform|linebreaks}}
                             </div>
                         {% endif %}
                         </div>
                     </div>
                     {% else %}
                     <div class="content-detail row notFirstCandidate">
-                        <div class="statistic-info col-xs-12 col-sm-7">
-                            <div class="tit">
-                                <p>經歷</p>
-                            </div>
-                            <div class="statistic">
-                                <p>{{candidate.experience|linebreaksbr}}
-                            </div>
-                        </div>
-                        <div class="statistic-info col-xs-12 col-sm-5">
-                            <div class="tit">
-                                <p>學歷</p>
-                            </div>
-                            <div class="statistic">
-                                <p>{{candidate.education|linebreaksbr}}
-                            </div>
-                        </div>
                         <div class="politics col-sm-12 row">
+                            <div class="tit row col-sm-12">
+                                <div class="col-sm-12">競選政見</div>
+                            </div>
+                            <div class="list-politics col-sm-12">
+                                {{candidate.platform|linebreaks}}
+                            </div>
                         </div>
                     </div>
                     {% endif %}
