@@ -23,7 +23,7 @@ def last_election_years(election_year):
         '2005': ['2001'],
         '2002': ['1998'],
         '2001': ['1997']
-    }
+    }[election_year]
 
 def election_year(county):
     return '2014'
