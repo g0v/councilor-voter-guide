@@ -144,8 +144,14 @@
 
             <div class="content-list row col-xs-12">
             {% for candidate in candidates %}
-                <div class="content-item row relat{% if candidate.occupy %} Current{% endif %}" data-id="{{forloop.counter}}">
-                    <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
+                <div class="content-item row relat{% if candidate.elected or candidate.occupy %} Current{% endif %}" data-id="{{forloop.counter}}">
+                    <div class="label-current abs">
+                        {% if candidate.elected %}
+                        <img class="img-responsive" src="{% static "img/dest/elected.png" %}">
+                        {% elif candidate.occupy %}
+                        <img class="img-responsive" src="{% static "img/dest/currency.png" %}">
+                        {% endif %}
+                    </div>
                     <div class="content-item-layer1 row relat">
                         <a class="profile col-xs-12 row">
                             {% if candidate.image %}
@@ -204,10 +210,6 @@
                             {% if candidate.councilor_terms|length > 1 %}
                                 <p> ...等{{candidate.councilor_terms|length}}屆議員</p>
                             {% endif %}
-                            </div>
-                        {% elif candidate.platform %}
-                            <div class="statistic-info col-xs-12 col-sm-9">
-                                <h4>{{candidate.platform|safe|linebreaksbr}}</h4>
                             </div>
                         {% else %}
                             {% if candidate.experience %}
