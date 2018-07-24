@@ -96,55 +96,57 @@ election_year = '2018'
 scope = ['https://spreadsheets.google.com/feeds']
 credentials = ServiceAccountCredentials.from_json_keyfile_name('credential.json', scope)
 gc = gspread.authorize(credentials)
-sh = gc.open_by_key('1EGaMiGahXodG7pgYW-HtNj8K32kqFYjnHfclo3j31JA')
-worksheets = sh.worksheets()
-for wks in worksheets:
-    rows = wks.get_all_records()
-    position_type = 'mayors'
-    county = wks.title.replace(u'台', u'臺')
-    for row in rows:
-        candidate = {}
-        candidate['party'] = common.normalize_party(row[u'黨籍'])
-        if not row[u'姓名'] or candidate['party'] in [u'中國國民黨', u'民主進步黨', ]:
-            continue
-        candidate['type'] = position_type
-        candidate['county'] = county
-        candidate['constituency'] = 0
-        candidate['name'] = common.normalize_person_name(row[u'姓名'])
-        candidate['election_year'] = election_year
-        candidate['birth'] = AD2DATE(row[u'生日'])
-        candidate['gender'] = row[u'性別']
-        candidate['education'] = row[u'學歷']
-        candidate['experience'] = row[u'經歷']
-        if position_type == 'mayors':
-            candidate['candidate_uid'], created = common.get_or_create_moyor_candidate_uid(c, candidate)
-            c.execute('''
-                SELECT image
-                FROM candidates_terms
-                WHERE candidate_id = %(candidate_uid)s AND image != ''
-                ORDER BY election_year DESC
-                LIMIT 1
-            ''', candidate)
-            r = c.fetchone()
-            if r:
-                candidate['image'] = r[0]
-        else:
-            candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
-        candidate['candidate_term_uid'] = '%s-%s' % (candidate['candidate_uid'], election_year)
-        candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate, create=False)
-        candidate['councilor_term_id'] = common.getDetailIdFromUid(c, candidate['councilor_uid'], election_year, candidate['county'])
-        candidate['councilor_terms'] = common.councilor_terms(c, candidate) if created else None
-        if position_type == 'mayors':
-            candidate['mayor_uid'] = candidate['candidate_uid']
-            if candidate['mayor_uid']:
-                candidate['mayor_terms'] = common.mayor_terms(c, candidate)
-            candidate['legislator_uid'] = common.get_legislator_uid(c_another, candidate['name'])
-            candidate['legislator_data'] = common.get_legislator_data(c_another, candidate['legislator_uid'])
-            if candidate['legislator_uid']:
-                candidate['legislator_terms'] = common.legislator_terms(c_another, candidate)
-                candidate['legislator_candidate_info'] = common.get_elected_legislator_candidate_info(c_another, candidate)
-                if candidate['legislator_candidate_info']:
-                    candidate['birth'] = candidate['legislator_candidate_info']['birth']
-            candidate['occupy'] = common.is_mayor_occupy(c, candidate)
-        upsertCandidates(candidate)
+for key in ['1JEZnjYiiHS7b-7PWRTIwz7GK66PXawaXeQE6M6aSjTE', '1EGaMiGahXodG7pgYW-HtNj8K32kqFYjnHfclo3j31JA']:
+    sh = gc.open_by_key(key)
+    worksheets = sh.worksheets()
+    for wks in worksheets:
+        print wks.title
+        rows = wks.get_all_records()
+        position_type = 'mayors'
+        county = wks.title.replace(u'台', u'臺')
+        for row in rows:
+            candidate = {}
+            candidate['party'] = common.normalize_party(row[u'黨籍'])
+            if not row[u'姓名'] or candidate['party'] in [u'中國國民黨', u'民主進步黨', ]:
+                continue
+            candidate['type'] = position_type
+            candidate['county'] = county
+            candidate['constituency'] = 0
+            candidate['name'] = common.normalize_person_name(row[u'姓名'])
+            candidate['election_year'] = election_year
+            candidate['birth'] = AD2DATE(row[u'生日'])
+            candidate['gender'] = row[u'性別']
+            candidate['education'] = row[u'學歷']
+            candidate['experience'] = row[u'經歷']
+            if position_type == 'mayors':
+                candidate['candidate_uid'], created = common.get_or_create_moyor_candidate_uid(c, candidate)
+                c.execute('''
+                    SELECT image
+                    FROM candidates_terms
+                    WHERE candidate_id = %(candidate_uid)s AND image != ''
+                    ORDER BY election_year DESC
+                    LIMIT 1
+                ''', candidate)
+                r = c.fetchone()
+                if r:
+                    candidate['image'] = r[0]
+            else:
+                candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
+            candidate['candidate_term_uid'] = '%s-%s' % (candidate['candidate_uid'], election_year)
+            candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate, create=False)
+            candidate['councilor_term_id'] = common.getDetailIdFromUid(c, candidate['councilor_uid'], election_year, candidate['county'])
+            candidate['councilor_terms'] = common.councilor_terms(c, candidate) if created else None
+            if position_type == 'mayors':
+                candidate['mayor_uid'] = candidate['candidate_uid']
+                if candidate['mayor_uid']:
+                    candidate['mayor_terms'] = common.mayor_terms(c, candidate)
+                candidate['legislator_uid'] = common.get_legislator_uid(c_another, candidate['name'])
+                candidate['legislator_data'] = common.get_legislator_data(c_another, candidate['legislator_uid'])
+                if candidate['legislator_uid']:
+                    candidate['legislator_terms'] = common.legislator_terms(c_another, candidate)
+                    candidate['legislator_candidate_info'] = common.get_elected_legislator_candidate_info(c_another, candidate)
+                    if candidate['legislator_candidate_info']:
+                        candidate['birth'] = candidate['legislator_candidate_info']['birth']
+                candidate['occupy'] = common.is_mayor_occupy(c, candidate)
+            upsertCandidates(candidate)
 conn.commit()
