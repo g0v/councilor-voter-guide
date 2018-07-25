@@ -56,13 +56,13 @@
                     <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
                     <div class="content-item-layer1 row relat">
                         <a class="profile col-xs-12 row">
-                            {% if candidate.image %}
                             <div class="photo pull-left relat">
                                 <div class="relat">
-                                    <img src="{{candidate.image}}" alt="{{candidate.name}}" title="{{candidate.name}}">
+                                {% with user_id=candidate.user.socialaccount_set.first.uid %}
+                                    <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=150" alt="{{candidate.name}}" title="{{candidate.name}}">
+                                {% endwith %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="party pull-left relat">
                                 <div class="relat">
                                     <img src="{% static "img/dest/" %}{{candidate.party}}.png" alt="{{candidate.party}}" title="{{candidate.party}}">
@@ -81,58 +81,42 @@
                                 {% endif %}
                             </div>
                         </div>
-                        {% if candidate.platform %}
-                            <div class="statistic-info col-xs-12 col-sm-9">
-                                <h4>{{candidate.platform|safe|linebreaksbr}}</h4>
-                            </div>
-                        {% else %}
-                            {% if candidate.experience %}
-                            <div class="statistic-info col-xs-12 col-sm-5">
-                                <div class="tit">
-                                    <p>經歷</p>
-                                </div>
-                                <div class="statistic">
-                                    <p>{{candidate.experience|linebreaksbr}}
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% if candidate.education %}
-                            <div class="statistic-info col-xs-12 col-sm-4">
-                                <div class="tit">
-                                    <p>學歷</p>
-                                </div>
-                                <div class="statistic">
-                                    <p>{{candidate.education|linebreaksbr}}
-                                </div>
-                            </div>
-                            {% endif %}
-                        {% endif %}
-                        <div class="content-btm-ui col-xs-12 row">
-                            {% if candidate.councilor_terms or candidate.platform and candidate.experience and candidate.education %}
-                            <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
-                            {% endif %}
-                            {% if candidate.councilor_terms %}
-                                <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'councilors:sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">政治履歷 </a>
-                            {% endif %}
-                        </div>
-                        <div class="clearb"></div>
-                    </div>
-                    {% if candidate.councilor_terms or candidate.platform and candidate.experience and candidate.education %}
-                    <div class="content-detail row notFirstCandidate">
-                        <div class="statistic-info col-xs-12 col-sm-8">
+                        {% if candidate.experience %}
+                        <div class="statistic-info col-xs-12 col-sm-5">
                             <div class="tit">
                                 <p>經歷</p>
                             </div>
                             <div class="statistic">
-                                <p>{{candidate.experience|linebreaksbr}}
+                                {{candidate.experience|linebreaks}}
                             </div>
                         </div>
+                        {% endif %}
+                        {% if candidate.education %}
                         <div class="statistic-info col-xs-12 col-sm-4">
                             <div class="tit">
                                 <p>學歷</p>
                             </div>
                             <div class="statistic">
-                                <p>{{candidate.education|linebreaksbr}}
+                                {{candidate.education|linebreaks}}
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="content-btm-ui col-xs-12 row">
+                            {% if candidate.councilor_terms or candidate.platform and candidate.experience and candidate.education %}
+                            <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                            {% endif %}
+                            <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'candidates:intent_detail' intent_id=candidate.uid %}">政治履歷 </a>
+                        </div>
+                        <div class="clearb"></div>
+                    </div>
+                    {% if candidate.councilor_terms or candidate.platform %}
+                    <div class="content-detail row notFirstCandidate">
+                        <div class="politics col-sm-12 row">
+                            <div class="tit row col-sm-12">
+                                <div class="col-sm-12">競選政見</div>
+                            </div>
+                            <div class="list-politics col-sm-12">
+                                {{candidate.platform|linebreaks}}
                             </div>
                         </div>
                     </div>
