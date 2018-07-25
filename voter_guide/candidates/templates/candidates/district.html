@@ -183,61 +183,12 @@
                             </div>
                         </div>
 
-                        {% if candidate.councilor_terms %}
-                            <div class="statistic-info col-xs-12 col-sm-4">
-                            {% for councilor_term in candidate.councilor_terms %}
-                                {% if forloop.counter0 == 0 %}
-                                <div class="tit">
-                                    <p>{{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}{{councilor_term.county}}議員</p>
-                                </div>
-                                {% if not councilor_term.in_office and councilor_term.term_end.reason %}
-                                    離職原因：{{councilor_term.term_end.reason}}{% if councilor_term.term_end.ref %}，<a href="{{councilor_term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
-                                {% endif %}
-                                <div class="statistic">
-                                    {% if councilor_term.param.bills_role_statistics %}
-                                    <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>
-                                    <p>{{councilor_term.param.bills_role_statistics.sponsor}} 次共同提案</p>
-                                    {% endif %}
-                                    {% if councilor_term.param.votes_decision_statistics %}
-                                        <p>投票缺席率：{{councilor_term.param.votes_decision_statistics.not_voting|percentage:councilor_term.param.votes_decision_statistics.total}} % <small>（{{councilor_term.param.votes_decision_statistics.not_voting}} / {{councilor_term.param.votes_decision_statistics.total}}）</small></p>
-                                    {% endif %}
-                                    {% if councilor_term.param.attendance_statistics %}
-                                        <p>議會缺席率：{{councilor_term.param.attendance_statistics.absent|percentage:councilor_term.param.attendance_statistics.total}} % <small>（{{councilor_term.param.attendance_statistics.absent}} / {{councilor_term.param.attendance_statistics.total}}）</small></p>
-                                    {% endif %}
-                                    {% if councilor_term.param.suggestions_years %}
-                                        <a href="{% url "councilors:suggestor" councilor_id=councilor_term.councilor_id election_year=councilor_term.election_year %}">議員配合款總花費：<font class="price">{{councilor_term.param.suggestions_years.sum}}</font></a>
-                                    {% endif %}
-                                </div>
-                                {% endif %}
-                            {% endfor %}
-                            </div>
+                        {% if candidate.data.terms %}
+                        <div class="statistic-info col-xs-12 col-sm-4">
+                            {% include "candidates/term_statistic_info.html" with term=candidate.data.terms.0 %}
+                        </div>
                         {% else %}
-                            {% if candidate.experience %}
-                            <div class="statistic-info col-xs-12 col-sm-5">
-                                <div class="tit">
-                                    <p>經歷</p>
-                                </div>
-                                <div class="statistic">
-                                    <p>{{candidate.experience|linebreaksbr}}
-                                </div>
-                            </div>
-                            {% else %}
-                            <div class="statistic-info col-xs-12 col-sm-5">
-                            </div>
-                            {% endif %}
-                            {% if candidate.education %}
-                            <div class="statistic-info col-xs-12 col-sm-4">
-                                <div class="tit">
-                                    <p>學歷</p>
-                                </div>
-                                <div class="statistic">
-                                    <p>{{candidate.education|linebreaksbr}}
-                                </div>
-                            </div>
-                            {% else %}
-                            <div class="statistic-info col-xs-12 col-sm-4">
-                            </div>
-                            {% endif %}
+                            {% include "candidates/experience_education.html" with person=candidate %}
                         {% endif %}
 
                         {% if candidate.councilor_terms %}
@@ -273,7 +224,7 @@
                         </div>
 
                         <div class="content-btm-ui col-xs-12 row">
-                            {% if candidate.councilor_terms or candidate.platform and candidate.experience and candidate.education %}
+                            {% if candidate.data.terms|length > 1 or candidate.platform %}
                             <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
                             {% endif %}
                             {% if candidate.councilor_terms %}
@@ -283,34 +234,14 @@
                         <div class="clearb"></div>
                     </div>
 
-                    {% if candidate.councilor_terms %}
+                    {% if candidate.data.terms %}
                     <div class="content-detail row notFirstCandidate">
-                        {% if candidate.councilor_terms|length > 1 %}
+                        {% if candidate.data.terms|length > 1 %}
                         <div class="statistic-info col-xs-12 col-sm-4 col-sm-offset-3">
-                        {% for councilor_term in candidate.councilor_terms %}
-                            {% if forloop.counter0 != 0 %}
-                            <div class="tit">
-                                <p>{{councilor_term.term_start_year}} ~ {{councilor_term.term_end_year}}{{councilor_term.county}}議員</p>
-                            </div>
-                            {% if not councilor_term.in_office and councilor_term.term_end.reason %}
-                                離職原因：{{councilor_term.term_end.reason}}{% if councilor_term.term_end.ref %}，<a href="{{councilor_term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
-                            {% endif %}
-                            <div class="statistic">
-                                {% if councilor_term.param.bills_role_statistics %}
-                                <p>{{councilor_term.param.bills_role_statistics.priproposer}} 次主提案</p>
-                                <p>{{councilor_term.param.bills_role_statistics.sponsor}} 次共同提案</p>
-                                {% endif %}
-                                {% if councilor_term.param.votes_decision_statistics %}
-                                    <p>投票缺席率：{{councilor_term.param.votes_decision_statistics.not_voting|percentage:councilor_term.param.votes_decision_statistics.total}} % <small>（{{councilor_term.param.votes_decision_statistics.not_voting}} / {{councilor_term.param.votes_decision_statistics.total}}）</small></p>
-                                {% endif %}
-                                {% if councilor_term.param.attendance_statistics %}
-                                    <p>議會缺席率：{{councilor_term.param.attendance_statistics.absent|percentage:councilor_term.param.attendance_statistics.total}} % <small>（{{councilor_term.param.attendance_statistics.absent}} / {{councilor_term.param.attendance_statistics.total}}）</small></p>
-                                {% endif %}
-                                {% if councilor_term.param.suggestions_years %}
-                                    <a href="{% url "councilors:suggestor" councilor_id=councilor_term.councilor_id election_year=councilor_term.election_year %}">議員配合款總花費：<font class="price">{{councilor_term.param.suggestions_years.sum}}</font></a>
-                                {% endif %}
-                            </div>
-                            {% endif %}
+                        {% for term in candidate.data.terms %}
+                        {% if forloop.counter0 > 0 %}
+                            {% include "candidates/term_statistic_info.html" with term=term %}
+                        {% endif %}
                         {% endfor %}
                         </div>
                         {% endif %}

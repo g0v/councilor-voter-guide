@@ -1,0 +1,27 @@
+{% if person.experience %}
+<div class="statistic-info col-xs-12 col-sm-5">
+    <div class="tit">
+        <p>經歷</p>
+    </div>
+    <div class="statistic">
+        <p>{{person.experience|linebreaks}}
+    </div>
+</div>
+{% else %}
+<div class="statistic-info col-xs-12 col-sm-5">
+</div>
+{% endif %}
+
+{% if person.education %}
+<div class="statistic-info col-xs-12 col-sm-4">
+    <div class="tit">
+        <p>學歷</p>
+    </div>
+    <div class="statistic">
+        <p>{{person.education|linebreaks}}
+    </div>
+</div>
+{% else %}
+<div class="statistic-info col-xs-12 col-sm-4">
+</div>
+{% endif %}

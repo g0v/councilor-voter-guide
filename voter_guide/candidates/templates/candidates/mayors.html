@@ -89,9 +89,14 @@
                             </div>
                         </div>
 
+                        {% if candidate.data.terms %}
                         <div class="statistic-info col-xs-12 col-sm-4">
-                            {% include "candidates/mayor_statistic_info.html" with term=candidate.data.terms.0 %}
+                            {% include "candidates/term_statistic_info.html" with term=candidate.data.terms.0 %}
                         </div>
+                        {% else %}
+                            {% include "candidates/experience_education.html" with person=candidate %}
+                        {% endif %}
+
 
                         <div class="contributions-info col-xs-12 col-sm-5 row" onclick="location.href='{% url 'candidates:pc' candidate_id=candidate.candidate_id election_year=candidate.election_year %}';" style="cursor: pointer;">
                             {% if candidate.politicalcontributions %}
@@ -137,7 +142,7 @@
                         <div class="statistic-info col-xs-12 col-sm-4 col-sm-offset-3">
                         {% for term in candidate.data.terms %}
                         {% if forloop.counter0 > 0 %}
-                            {% include "candidates/mayor_statistic_info.html" with term=term %}
+                            {% include "candidates/term_statistic_info.html" with term=term %}
                             <br>
                         {% endif %}
                         {% endfor %}
@@ -182,16 +187,16 @@
                             {% endif %}
                             <div class="politics col-sm-6 row">
                                 <div class="tit row col-sm-12">
-                                    <div class="col-sm-12">{{term.term_start_year}} 年{{term.0.county}}競選政見</div>
+                                    <div class="col-sm-12">{{term.term_start_year}} 年{{term.county}}競選政見</div>
                                 </div>
                                 <div class="list-politics col-sm-12">
                                     {{term.platform|safe|linebreaks}}
                                 </div>
                             </div>
-                        {% else %}
+                        {% elif term.platform %}
                             <div class="politics col-sm-12 row">
                                 <div class="tit row col-sm-12">
-                                    <div class="col-sm-12">{{term.term_start_year}} 年{{term.0.county}}競選政見</div>
+                                    <div class="col-sm-12">{{term.term_start_year}} 年{{term.county}}競選政見</div>
                                 </div>
                                 <div class="list-politics col-sm-12">
                                     {{term.platform|safe|linebreaks}}
