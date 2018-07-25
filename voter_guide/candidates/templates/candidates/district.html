@@ -177,7 +177,7 @@
                                 {% if candidate.councilor_terms %}
                                 <p>財產申報 / <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank"> <img src="{% static "img/dest/dollar.png" %}" alt="財產申報" title="財產申報"></a></p>
                                 {% endif %}
-                                {% if candidate.councilor_terms|length > 1 %}
+                                {% if candidate.councilor_terms %}
                                     <p> {{candidate.councilor_terms|length}} 屆議員</p>
                                 {% endif %}
                             </div>

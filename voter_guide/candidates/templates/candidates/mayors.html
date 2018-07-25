@@ -78,13 +78,13 @@
                                 <p>年齡 / <span class="party-val">{{candidate.candidate.birth|age}}歲</span></p>
                                 <p>財產申報 / <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank"> <img src="{% static "img/dest/dollar.png" %}"></a></p>
                                 {% if candidate.data.mayor_terms %}
-                                <p> {{candidate.data.mayor_terms|length}}屆縣市長</p>
+                                <p> {{candidate.data.mayor_terms|length}} 屆縣市長</p>
                                 {% endif %}
                                 {% if candidate.data.legislator_terms %}
-                                <p> {{candidate.data.legislator_terms|length}}屆立委</p>
+                                <p> {{candidate.data.legislator_terms|length}} 屆立委</p>
                                 {% endif %}
                                 {% if candidate.councilor_terms %}
-                                <p> {{candidate.councilor_terms|length}}屆議員</p>
+                                <p> {{candidate.councilor_terms|length}} 屆議員</p>
                                 {% endif %}
                             </div>
                         </div>
