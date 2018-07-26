@@ -64,6 +64,7 @@ class Intent(models.Model):
     type = models.CharField(db_index=True, max_length=20, verbose_name=u'競選職位')
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     candidate = models.ForeignKey(Candidates, to_field='uid', null=True)
+    candidate_term = models.OneToOneField(Terms, to_field='uid', blank=True, null=True, related_name='intent')
     councilor_terms = JSONField(null=True)
     election_year = models.CharField(db_index=True, max_length=4, default='2018')
     likes = models.IntegerField(db_index=True, default=0)
