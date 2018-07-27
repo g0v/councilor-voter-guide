@@ -379,6 +379,22 @@ def one_mayor_term_years(data):
     ''', data)
     return c.fetchone()[0]
 
+def one_mayor_pile_json(data):
+    c.execute('''
+        SELECT json_build_object('label', %(label)s, 'tokens', %(tokens)s, 'sum', COALESCE(SUM(approved_expense_avg), 0), 'count', COALESCE(COUNT(*), 0))
+        FROM suggestions_suggestions
+        WHERE county = %(county)s AND election_year = %(election_year)s AND (suggestion ~* %(tokens)s OR position ~* %(tokens)s OR brought_by ~* %(tokens)s)
+    ''', data)
+    return c.fetchone()[0]
+
+def one_mayor_association_json(token):
+    c.execute('''
+        SELECT json_build_object('label', %(label)s, 'sum', COALESCE(SUM(approved_expense_avg), 0), 'count', COALESCE(COUNT(*), 0))
+        FROM suggestions_suggestions
+        WHERE county = %(county)s AND election_year = %(election_year)s AND (suggestion ~* %(label)s OR position ~* %(label)s OR brought_by ~* %(label)s)
+    ''', data)
+    return c.fetchone()[0]
+
 c.execute('''
     SELECT uid, mayor_id, election_year, county
     FROM mayors_terms
@@ -391,4 +407,35 @@ for row in c.fetchall():
         SET data = (COALESCE(data, '{}'::jsonb) || %s::jsonb)
         WHERE uid = %s
     ''', (json.dumps({'suggestions_years': one_mayor_term_years(data)}), data['uid']))
+
+    piles = []
+    for pile, tokens in [(u'協會', [u'協會', u'學會', u'商會', u'公會', u'協進會', u'促進會', u'研習會', u'婦聯會', u'婦女會', u'體育會', u'同心會', u'農會', u'早起會', u'健身會', u'宗親會', u'功德會', u'商業會', u'長青會', u'民眾服務社', u'聯盟']), (u'辦公室', [u'辦公室', u'辦公處']), (u'廟', [u'廟', u'宮']), (u'警察局', [u'警察局', u'分局']), (u'消防局', [u'消防局', u'消防隊', u'分隊', u'中隊']), (u'國中、國小', [u'國中', u'國小'])]:
+        data.update({
+            'label': pile,
+            'tokens': u'%s' % u'|'.join(tokens)
+        })
+        r = one_mayor_pile_json(data)
+        if r['sum']:
+            piles.append(r)
+    piles = sorted(piles, key=lambda x: x['sum'], reverse=True)
+    c.execute('''
+        UPDATE mayors_terms
+        SET data = (COALESCE(data, '{}'::jsonb) || %s::jsonb)
+        WHERE uid = %s
+    ''', (json.dumps({'suggestions_piles': piles}), data['uid']))
+
+    associations = []
+    for token in [u'社區發展協會', u'學會', u'商會', u'公會', u'協進會', u'促進會', u'研習會', u'婦聯會', u'婦女會', u'體育會', u'同心會', u'農會', u'早起會', u'健身會', u'宗親會', u'功德會', u'商業會', u'長青會', u'民眾服務社', u'聯盟']:
+        data.update({
+            'label': token
+        })
+        r = one_mayor_association_json(token)
+        if r['sum']:
+            associations.append(r)
+    associations = sorted(associations, key=lambda x: x['sum'], reverse=True)
+    c.execute('''
+        UPDATE mayors_terms
+        SET data = (COALESCE(data, '{}'::jsonb) || %s::jsonb)
+        WHERE uid = %s
+    ''', (json.dumps({'suggestions_associations': associations}), data['uid']))
 conn.commit()
