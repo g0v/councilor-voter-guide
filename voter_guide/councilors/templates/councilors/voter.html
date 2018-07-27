@@ -109,12 +109,3 @@
         {% include "common/pagination.html" with items=votes page_size=0 %}
     {% endif %}
 {% endblock person_detail %}
-
-{% block script %}
-    {{block.super}}
-    <script>
-        $(document).ready( function() {
-            $('#url_vote').addClass('btn-primary');
-        });
-    </script>
-{% endblock script %}

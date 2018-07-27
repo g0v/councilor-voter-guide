@@ -57,12 +57,3 @@
         {% endif %}
     </dl>
 {% endblock person_detail %}
-
-{% block script %}
-    {{block.super}}
-    <script>
-        $(document).ready( function() {
-            $('#url_info').addClass('btn-primary');
-        });
-    </script>
-{% endblock script %}

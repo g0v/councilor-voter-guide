@@ -19,12 +19,3 @@
         {{ councilor.platform|linebreaksbr }}
     </div>
 {% endblock person_detail %}
-
-{% block script %}
-    {{block.super}}
-    <script>
-        $(document).ready( function() {
-            $('#url_politics').addClass('btn-primary');
-        });
-    </script>
-{% endblock script %}
