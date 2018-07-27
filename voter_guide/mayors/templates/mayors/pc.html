@@ -1,0 +1,86 @@
+{% extends "common/mayor_info.html" %}
+{% load extras %}
+
+{% block title %}
+    <title>{{mayor.county}}議員:{{mayor.name}}的政治獻金</title>
+    <meta property="og:title" content="{{mayor.county}}議員:{{mayor.name}}的政治獻金"/>
+    <meta itemprop="name" content="{{mayor.county}}議員:{{mayor.name}}的政治獻金">
+{% endblock title %}
+
+{% block social_meta %}
+    <meta property="og:description" content="收入：營利事業捐贈、政黨捐贈、個人捐贈... 支出：宣傳、宣傳車輛、人事、集會..."/>
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/mayor.tw/county-og-image/facebook-og-image-mayor-{{candidate.county}}.png"/>
+    <meta itemprop="description" content="收入：營利事業捐贈、政黨捐贈、個人捐贈... 支出：宣傳、宣傳車輛、人事、集會..."/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/mayor.tw/county-og-image/facebook-og-image-mayor-{{candidate.county}}.png"/>
+{% endblock social_meta %}
+
+{% block person_detail %}
+    <div class="row">
+        <div class="text-center">
+            {% for term in pc%}
+                <div class="col-sm-{% widthratio 12 pc|length 1 %}">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            {{term.election_year}} 年政治獻金{% if term.election_name %}（{{term.election_name}}）{% endif %}
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <div class="income row">
+                                    <div class="col-xs-6 text-right">收：</div>
+                                    <div class="col-xs-6 text-left"><font class="price">{{term.pc.in_total}}</font></div>
+                                </div>
+                                <div class="outcome row">
+                                    <div class="col-xs-6 text-right">支：</div>
+                                    <div class="col-xs-6 text-left"><font class="price">{{term.pc.out_total}}</font></div>
+                                </div>
+                                <div class="result row">
+                                    <div class="col-xs-6 text-right">餘：</div>
+                                    <div class="col-xs-6 text-left"><font class="price">{{term.pc.balance}}</font></div>
+                                </div>
+                            </li>
+                            {% if term.pc.in_total %}
+                            <li class="list-group-item">
+                                <div id="d3_in_{{term.election_year}}"></div>
+                                {{term.election_year}}總收入：<span class="price">{{term.pc.in_total}}</span>
+                            </li>
+                            {% endif %}
+                            {% if term.pc.out_total %}
+                            <li class="list-group-item">
+                                <div id="d3_out_{{term.election_year}}"></div>
+                                {{term.election_year}}總支出：<span class="price">{{term.pc.out_total}}</span>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            {% empty %}
+                無紀錄
+            {% endfor %}
+        </div>
+    </div>
+{% endblock person_detail %}
+
+{% block script %}
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/d3.min.js"></script>
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
+    {% for term in pc %}
+        {% if term.pc.in_total %}
+            {% include "candidates/d3/pc_in_pie.html" with data=term %}
+        {% endif %}
+        {% if term.pc.out_total %}
+            {% include "candidates/d3/pc_out_pie.html" with data=term %}
+        {% endif %}
+    {% endfor %}
+    <script>
+        $(document).ready( function() {
+            $('.price').each(function(index,ele){
+                var number = $(ele).text()
+                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
+                $(ele).replaceWith(zh_number)
+            });
+            relax_in();
+            relax_out();
+        });
+    </script>
+    {{ block.super }}
+{% endblock script %}

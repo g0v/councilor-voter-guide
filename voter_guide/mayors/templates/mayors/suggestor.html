@@ -1,0 +1,126 @@
+{% extends "common/mayor_info.html" %}
+{% load extras %}
+
+{% block title %}
+    <title>{{mayor.county}}議員:{{mayor.name}} {{mayor.election_year|election_year_range}} 的議員配合款</title>
+    <meta property="og:title" content="{{mayor.county}}議員:{{mayor.name}} {{mayor.election_year|election_year_range}} 的議員配合款"/>
+    <meta itemprop="name" content="{{mayor.county}}議員:{{mayor.name}} {{mayor.election_year|election_year_range}} 的議員配合款">
+{% endblock title %}
+
+{% block social_meta %}
+    <meta property="og:description" content="本任期總花費：{{mayor.data.suggestions_years.sum}} 元"/>
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/mayor.tw/county-og-image/facebook-og-image-mayor-{{mayor.county}}.png"/>
+    <meta itemprop="description" content="本任期總花費：{{mayor.data.suggestions_years.sum}} 元"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/mayor.tw/county-og-image/facebook-og-image-mayor-{{mayor.county}}.png"/>
+{% endblock social_meta %}
+
+{% block person_detail %}
+    {% if mayor.county == '宜蘭縣' or mayor.county == '彰化縣' %}
+    <h3>
+        <i class="fa fa-warning text-danger"> {{mayor.county}}政府不提供議員姓名</i>
+        <span class="pull-right">
+            資料來源<a href="{{mayor.county|suggestions_offical_link}}" target="_blank"> {{mayor.county}}主計處</a>
+        </span>
+    </h3>
+    <hr>
+    {% else %}
+    <div class="page-header"
+    <p>本任期總花費：<font class="price">{{mayor.data.suggestions_years.sum}}</font>
+        <a class="btn btn-default btn-lg" href="{% url 'suggestions:lists' county=mayor.county %}?keyword={{mayor.name}}"><i class="fa fa-list"> 一筆一筆看</i></a>
+        <span class="pull-right">
+            資料來源<a href="{{mayor.county|suggestions_offical_link}}" target="_blank"> {{mayor.county}}主計處</a>
+        </span>
+    </p>
+    </div>
+    <div class="row">
+        <div class="col-sm-6{% if mayor.data.suggestions_associations %} col-lg-4{% endif %}">
+            <table class="table table-bordered table-condensed table-striped sortable" >
+                <thead>
+                    <tr style="background-color: #E1D0D0";>
+                        <th>年度</th>
+                        <th>小額採購<a rel="tooltip" title="十萬以下之政府採購，可逕洽廠商無須公開招標，詳可見「中央機關未達公告金額採購招標辦法」第五條"><i class="fa fa-question-circle"></i></a>案數</th>
+                        <th>案數</th>
+                        <th>通過預算</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in mayor.data.suggestions_years.years %}
+                    <tr>
+                        <td style="text-align:center; vertical-align:middle;">{{obj.suggest_year}}</td>
+                        <td style="text-align:right; vertical-align:middle;">{{obj.small_purchase}}</td>
+                        <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
+                        <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6{% if mayor.data.suggestions_associations %} col-lg-4{% endif %}">
+            <table class="table table-bordered table-condensed table-striped sortable" >
+                <thead>
+                    <tr style="background-color: #E1D0D0";>
+                        <th>地方</th>
+                        <th>筆數</th>
+                        <th>通過預算</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in mayor.data.suggestions_piles %}
+                    <tr>
+                        <td style="text-align:center; vertical-align:middle;">
+                            <a href="{% url "suggestions:lists" county=mayor.county %}?keyword={{mayor.name}}&or={{obj.tokens}}">{{obj.label}}</a>
+                        </td>
+                        <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
+                        <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% if mayor.data.suggestions_associations %}
+        <div class="col-sm-6 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    前述協會可再細分如下
+                </div>
+                <table class="table table-bordered table-condensed table-striped sortable" >
+                    <thead>
+                        <tr style="background-color: #E1D0D0";>
+                            <th>協會</th>
+                            <th>筆數</th>
+                            <th>通過預算</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for obj in mayor.data.suggestions_associations %}
+                        <tr>
+                            <td style="text-align:center; vertical-align:middle;">
+                                <a href="{% url "suggestions:lists" county=mayor.county %}?keyword={{mayor.name}}%20{{obj.label}}">{{obj.label}}</a>
+                            </td>
+                            <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
+                            <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+{% endblock person_detail %}
+
+{% block script %}
+    {{block.super}}
+    <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
+    {% include "common/sorttable.html" %}
+    <script>
+        $(document).ready( function() {
+            $('.price').each(function(index,ele){
+                var number = $(ele).text()
+                zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
+                $(ele).replaceWith(zh_number)
+            });
+        });
+    </script>
+{% endblock script %}

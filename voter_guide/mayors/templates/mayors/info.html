@@ -1,0 +1,51 @@
+{% extends "common/mayor_info.html" %}
+{% load extras %}
+
+{% block title %}
+    <title>{{mayor.county}}議員:{{mayor.name}} {{mayor.election_year|election_year_range}} 的基本資料</title>
+    <meta property="og:title" content="{{mayor.county}}議員:{{mayor.name}} {{mayor.election_year|election_year_range}} 的基本資料"/>
+    <meta itemprop="name" content="{{mayor.county}}議員:{{mayor.name}} {{mayor.election_year|election_year_range}} 的基本資料">
+{% endblock %}
+
+{% block social_meta %}
+    <meta property="og:description" content="黨籍、到職日、學經歷、聯絡方式、網站...等等"/>
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/mayor.tw/county-og-image/facebook-og-image-mayor-{{mayor.county}}.png"/>
+    <meta itemprop="description" content="黨籍、到職日、學經歷、聯絡方式、網站...等等"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/mayor.tw/county-og-image/facebook-og-image-mayor-{{mayor.county}}.png"/>
+{% endblock social_meta %}
+
+{% block person_detail %}
+    <dl class="dl-horizontal">
+        <dt>黨籍</dt>
+        <dd>{{ mayor.party }}
+        </dd>
+        <dt>選區縣市</dt>
+        <dd>{{mayor.county}}</dd>
+        <dt>到職日期</dt>
+        <dd>{{ mayor.term_start|date:"Y-m-d" }}</dd>
+        {% if mayor.remark %}
+            <dt>備註</dt>
+            <dd>{{ mayor.remark }}</dd>
+        {% endif %}
+        <hr>
+        {% for item in mayor.contact_details %}
+            <dt>{{item.label}}</dt>
+            <dd>{{item.value}}</dd>
+        {% endfor %}
+        <hr>
+        {% if mayor.education %}
+            <dt>學歷</tt>
+            <dd>{{mayor.education|linebreaksbr}}</dd>
+        {% endif %}
+        {% if mayor.experience %}
+            <dt>經歷</tt>
+            <dd>{{mayor.experience|linebreaksbr}}</dd>
+        {% endif %}
+        {% if mayor.links %}
+            <dt>外部連結</dt>
+            {% for link in mayor.links %}
+                <dd><a href="{{link.url}}" target="_blank">{{link.note}}</a></dd>
+            {% endfor %}
+        {% endif %}
+    </dl>
+{% endblock person_detail %}

@@ -11,12 +11,27 @@ from django.db.models import Count, Sum, Max, F, Q, Case, When, Value, IntegerFi
 from django.db.models.functions import Coalesce
 
 from .models import Terms
+from candidates.models import Terms as Candidates_Terms
 from bills.models import Bills
 from suggestions.models import Suggestions
 from standpoints.models import Standpoints
 from search.views import keyword_list, keyword_been_searched
 from commontag.views import paginate
 
+
+def suggestor(request, mayor_id, election_year):
+    try:
+        mayor = Terms.objects.get(election_year=election_year, mayor_id=mayor_id)
+    except Exception, e:
+        return HttpResponseRedirect('/')
+    return render(request, 'mayors/suggestor.html', {'mayor': mayor, 'id': 'fund'})
+
+def info(request, mayor_id, election_year):
+    try:
+        mayor = Terms.objects.get(election_year=election_year, mayor_id=mayor_id)
+    except Exception, e:
+        return HttpResponseRedirect('/')
+    return render(request, 'mayors/info.html', {'mayor': mayor, 'id': 'profile'})
 
 def biller(request, mayor_id, election_year):
     try:
@@ -44,4 +59,12 @@ def biller(request, mayor_id, election_year):
                  .order_by('-uid')
     bills = paginate(request, bills)
     get_params = '&'.join(['%s=%s' % (x, request.GET[x]) for x in ['keyword', ] if request.GET.get(x)])
-    return render(request, 'mayors/biller.html', {'keyword_hot': keyword_list('bills', mayor.county), 'county': mayor.county, 'bills': bills, 'mayor': mayor, 'get_params': get_params})
+    return render(request, 'mayors/biller.html', {'keyword_hot': keyword_list('bills', mayor.county), 'county': mayor.county, 'bills': bills, 'mayor': mayor, 'get_params': get_params, 'id': 'politics'})
+
+def pc(request, mayor_id):
+    try:
+        mayor = Terms.objects.filter(mayor_id=mayor_id).order_by('-election_year')[0]
+    except Exception, e:
+        return HttpResponseRedirect('/')
+    candidate = Candidates_Terms.objects.filter(elected=True, county=mayor.county, name=mayor.name).order_by('-election_year')[0]
+    return render(request, 'mayors/pc.html', {'mayor': mayor, 'pc': candidate.politicalcontributions, 'id': 'contribution'})
