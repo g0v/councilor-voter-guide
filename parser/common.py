@@ -202,10 +202,11 @@ def get_or_create_councilor_uid(c, councilor, create=True):
         u'桃園市': [u'桃園市', u'桃園縣']
     }
     councilor['counties'] = tuple(counties.get(councilor['county'], [councilor['county']]))
-    if create and not councilor['councilor_ids']:
-        return (str(uuid.uuid4()), False)
-    elif not councilor['councilor_ids']:
-        return (None, False)
+    if not candidate['candidate_ids']:
+        if create:
+            return (str(uuid.uuid4()), False)
+        else:
+            return (None, False)
     c.execute('''
         SELECT councilor_id
         FROM councilors_councilorsdetail
@@ -235,8 +236,11 @@ def get_or_create_moyor_candidate_uid(c, candidate, create=True):
     '''
     logging.info(candidate)
     candidate['candidate_ids'] = tuple(GetPossibleCandidateIds(c, candidate['name']))
-    if create and not candidate['candidate_ids']:
-        return (str(uuid.uuid4()), False)
+    if not candidate['candidate_ids']:
+        if create:
+            return (str(uuid.uuid4()), False)
+        else:
+            return (None, False)
     c.execute('''
         SELECT candidate_id
         FROM candidates_terms
@@ -286,8 +290,11 @@ def get_or_create_candidate_uid(c, candidate, create=True):
     '''
     logging.info(candidate)
     candidate['candidate_ids'] = tuple(GetPossibleCandidateIds(c, candidate['name']))
-    if create and not candidate['candidate_ids']:
-        return (str(uuid.uuid4()), False)
+    if not candidate['candidate_ids']:
+        if create:
+            return (str(uuid.uuid4()), False)
+        else:
+            return (None, False)
     c.execute('''
         SELECT candidate_id
         FROM candidates_terms
