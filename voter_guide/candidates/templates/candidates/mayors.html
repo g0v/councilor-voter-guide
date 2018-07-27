@@ -75,7 +75,13 @@
                         <div class="personal-info col-xs-12 col-sm-3">
                             <div class="partyname">
                                 <p>黨籍 / <span class="party-val">{{candidate.party}}</span></p>
-                                <p>年齡 / <span class="party-val">{{candidate.candidate.birth|age}}歲</span></p>
+                                <p>年齡 / <span class="party-val">
+                                {% if candidate.candidate.birth %}
+                                    {{candidate.candidate.birth|age}}
+                                {% else %}
+                                    ?
+                                {% endif %}
+                                歲</span></p>
                                 <p>財產申報 / <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank"> <img src="{% static "img/dest/dollar.png" %}"></a></p>
                                 {% if candidate.data.mayor_terms %}
                                 <p> {{candidate.data.mayor_terms|length}} 屆縣市長</p>
