@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load extras %}
 
 {% block title %}
     <title>投票指南:關於本站</title>
@@ -24,27 +25,107 @@
           <div class="col-sm-6 part-left">
             <div class="desc">
               <h3 class="bold">減少盲目投票，讓民主社會的台灣更進步</h3>
-              <p>你的第一次投票經驗如何？</p>
-              <p>我的第一次投票是聽從大人的意見投票，投完票後我覺得舒服，候選人我不認識，也不知道他做了什麼？ 立場是什麼？是否有為民發聲？</p>
-              <p>我覺得得來不易的民主被我這種不懂的老百姓浪費了，如果民主制度是好的制度的話，它一定還少了什麼。</p>
+              <h4>你的第一次投票經驗如何？</h4>
+              <h4>我的第一次投票是聽從大人的意見投票，投完票後我覺得舒服，候選人我不認識，也不知道他做了什麼？ 立場是什麼？是否有為民發聲？</h4>
+              <h4>我覺得得來不易的民主被我這種不懂的老百姓浪費了，如果民主制度是好的制度的話，它一定還少了什麼。</h4>
               <h3 class="bold">拋磚引玉</h3>
-              <p>希望吸引更多個人、團體自發性投入，發揮各自擅長的事讓台灣更好。希望有一天台灣政府能主動提供更正確完整的此類資訊給人民。</p>
+              <h4>希望吸引更多個人、團體自發性投入，發揮各自擅長的事讓台灣更好。希望有一天台灣政府能主動提供更正確完整的此類資訊給人民。</h4>
               <h3 class="bold">公信力</h3>
-              <p>本站資訊皆由政府、政黨或候選人所提供的資料經由電腦程式運算產生，以維持資訊之客觀，程式開源以供檢驗。</p>
+              <h4>本站資訊皆由政府、政黨或候選人所提供的資料經由電腦程式運算產生，以維持資訊之客觀，程式開源以供檢驗。</h4>
               <h3 class="bold">目前成果</h3>
-              <p>2014年及2016年選前一個月約有40萬不重複使用者，詳可見<a href="https://docs.google.com/spreadsheets/d/1pLtqmIozdxqGGpbaidfivlyRub43KbMFGs16Dxpqm8g" target="_blank">2014瀏覽資料</a>、<a href="https://docs.google.com/spreadsheets/d/1al5yII6CCiMIqg25QgFH5YfDz0oujColypIw72-obww" target="_blank">2016瀏覽資料</a>。</p>
+              <h4>2014年及2016年選前一個月約有40萬不重複使用者，詳可見<a href="htth4s://docs.google.com/sh4readsheets/d/1h4LtqmIozdxqGGh4baidfivlyRub43KbMFGs16Dxh4qm8g" target="_blank">2014瀏覽資料</a>、<a href="htth4s://docs.google.com/sh4readsheets/d/1al5yII6CCiMIqg25QgFH5YfDz0oujColyh4Iw72-obww" target="_blank">2016瀏覽資料</a>。</h4>
             </div>
           </div>
           <div class="col-sm-6 part-right">
             <div class="desc">
               <h3 class="bold">CC0 1.0 公眾領域貢獻宣告</h3>
-              <p>作者在法律許可的範圍內，拋棄此著作依著作權法所享有之權利，包括所有相關與鄰接的法律權利，並宣告將該著作貢獻至公眾領域。</p>
-              <p>為避免斷章取義，片段使用本站資訊請附上本站連結，讓每個人都有機會以自己的觀點關心台灣。</p>
-              <p><a class="orange" href="https://github.com/g0v/councilor-voter-guide">程式原始碼</a></p>
-              <p><a class="orange" href="/api/">APIs</a></p>
+              <h4>作者在法律許可的範圍內，拋棄此著作依著作權法所享有之權利，包括所有相關與鄰接的法律權利，並宣告將該著作貢獻至公眾領域。</h4>
+              <h4>為避免斷章取義，片段使用本站資訊請附上本站連結，讓每個人都有機會以自己的觀點關心台灣。</h4>
+              <h4><a class="orange" href="https://github.com/g0v/councilor-voter-guide">程式原始碼</a>、<a class="orange" href="/api/">API</a></h4>
               <h3 class="bold">意見回饋</h3>
-              <p> <a class="orange" href="https://g0v.hackpad.tw/--5PNuk4XGGrj">登入後直接打字</a><span>，歡迎各種意見回饋，一同為台灣人提供更好的工具平台努力。</span></p>
-              <p>公開討論信箱：<a class="white" href="mailto:g0v-ly@googlegroups.com">g0v-ly@googlegroups.com </a></p>
+              <h4> <a class="orange" href="https://g0v.hackpad.tw/--5PNuk4XGGrj">登入後直接打字</a><span>，歡迎各種意見回饋，一同為台灣人提供更好的工具平台努力。</span></h4>
+              <h3 class="bold" id="reference">資料來源</h3>
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="margin-bottom: 50px">
+                  <div class="panel panel-info">
+                      <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#councils" aria-expanded="false" aria-controls="councils">
+                          議員個人資料、提案、表決、出缺席
+                          <i class="fa fa-angle-down fa-lg pull-right"></i>
+                      </div>
+                      <div id="councils" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
+                              <ul class="list-inline">
+                                  <li><a href="http://digital.tpa.gov.tw/" target="_blank">地方議會議事資料管理平台</a></li>
+                                  <li><a href="http://www.kmc.gov.tw/" target="_blank">基隆市議會</a></li>
+                                  <li><a href="http://www.tcc.gov.tw/" target="_blank">臺北市議會</a></li>
+                                  <li><a href="http://www.ntp.gov.tw/" target="_blank">新北市議會</a></li>
+                                  <li><a href="http://www.tycc.gov.tw/" target="_blank">桃園市議會</a></li>
+                                  <li><a href="http://www.hsinchu-cc.gov.tw/" target="_blank">新竹市議會</a></li>
+                                  <li><a href="http://www.hcc.gov.tw/" target="_blank">新竹縣議會</a></li>
+                                  <li><a href="http://www.mcc.gov.tw/" target="_blank">苗栗縣議會</a></li>
+                                  <li><a href="http://www.tccc.gov.tw/" target="_blank">臺中市議會</a></li>
+                                  <li><a href="http://www.chcc.gov.tw/" target="_blank">彰化縣議會</a></li>
+                                  <li><a href="http://www.ntcc.gov.tw/" target="_blank">南投縣議會</a></li>
+                                  <li><a href="http://www.ylcc.gov.tw/" target="_blank">雲林縣議會</a></li>
+                                  <li><a href="http://www.cyscc.gov.tw/" target="_blank">嘉義縣議會</a></li>
+                                  <li><a href="http://www.cycc.gov.tw/" target="_blank">嘉義市議會</a></li>
+                                  <li><a href="http://www.tncc.gov.tw/" target="_blank">臺南市議會</a></li>
+                                  <li><a href="http://www.kcc.gov.tw/" target="_blank">高雄市議會</a></li>
+                                  <li><a href="http://www.ptcc.gov.tw/" target="_blank">屏東縣議會</a></li>
+                                  <li><a href="http://www.ilcc.gov.tw/" target="_blank">宜蘭縣議會</a></li>
+                                  <li><a href="http://www.hlcc.gov.tw/" target="_blank">花蓮縣議會</a></li>
+                                  <li><a href="http://www.taitungcc.gov.tw/" target="_blank">臺東縣議會</a></li>
+                                  <li><a href="http://www.mtcc.gov.tw/" target="_blank">連江縣議會</a></li>
+                                  <li><a href="http://www.kmcc.gov.tw/" target="_blank">金門縣議會</a></li>
+                                  <li><a href="http://www.phcouncil.gov.tw/" target="_blank">澎湖縣議會</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="panel panel-success">
+                      <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#suggestions" aria-expanded="false" aria-controls="suggestions">
+                          議員配合款
+                          <i class="fa fa-angle-down fa-lg pull-right"></i>
+                      </div>
+                      <div id="suggestions" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
+                              <ul class="list-inline">
+                                  {% for obj in county|suggestions_offical_link:'all' %}
+                                  <li><a href="{{obj.1}}" target="_blank">{{obj.0}}主計處</a></li>
+                                  {% endfor %}
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="panel panel-warning">
+                      <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#candidates" aria-expanded="false" aria-controls="candidates">
+                          候選人
+                          <i class="fa fa-angle-down fa-lg pull-right"></i>
+                      </div>
+                      <div id="candidates" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
+                              <ul class="list-inline">
+                                  <li><a href="http://www.cec.gov.tw/" target="_blank">中央選舉委員會</a></li>
+                                  <li style="color: black">各政黨及 2018 縣市長／縣市議員候選人</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="panel panel-default">
+                      <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#money" aria-expanded="false" aria-controls="money">
+                          政治獻金、財產申報
+                          <i class="fa fa-angle-down fa-lg pull-right"></i>
+                      </div>
+                      <div id="money" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
+                              <ul class="list-inline">
+                                <li><a href="http://sunshine.cy.gov.tw/GipOpenWeb/wSite/lp?ctNode=442" target="_blank">陽光法案主題網- 廉政專刊</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+
             </div>
           </div>
         </div>
@@ -80,4 +161,12 @@
 {% endblock %}
 
 {% block script %}
+    <script>
+        $(document).ready( function() {
+            $('[data-toggle="collapse"]').on('click', function() {
+                $(this).closest('.panel-group').find('[data-toggle="collapse"]').not(this).find('.fa-angle-down').removeClass('up-side-down');
+                $(this).find('.fa-angle-down').toggleClass('up-side-down');
+            });
+        });
+    </script>
 {% endblock %}

@@ -46,9 +46,3 @@ def dispatch_vote(request, county=None):
     random_index = randint(0, count - 1)
     instance = Votes.objects.filter(qs)[random_index]
     return redirect(reverse('votes:vote', kwargs={'vote_id': instance.uid}))
-
-def about(request):
-    return render(request,'about.html', {})
-
-def reference(request):
-    return render(request,'reference.html', {})
