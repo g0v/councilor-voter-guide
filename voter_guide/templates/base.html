@@ -64,14 +64,18 @@
                 <div class="bg abs"></div>
                 <div class="navbar-header">
                 <button class="hidden-xs navbar-search navbar-toggle" type="button">
-                    <input type="text" placeholder="輸入關鍵字"><img class="img-responsive" src="{% static "img/dest/search.jpg" %}">
+                    <form id="form-name" action="/" method="get" class="form-inline">
+                        <input name="name" id="name" type="text" placeholder="請輸入人名"><img class="img-responsive" src="{% static "img/dest/search.jpg" %}">
+                    </form>
                 </button>
                 <button class="navbar-menu navbar-toggle" type="button" data-toggle="collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar top"></span><span class="icon-bar mid"></span><span class="icon-bar bottom"></span></button><a class="tracklink navbar-brand col-xs-6 col-sm-3" data-ga="logo" href="/" data-href="/">
                         <img class="img-responsive" src="{% static "img/dest/logo.png" %}"></a>
                 <div class="relat col-xs-12 col-sm-7 pull-right" id="navbar">
                 <ul class="nav navbar-nav relat">
                     <div class="navbar-toggle navbar-search-mb hidden-sm hidden-md hidden-lg" type="button">
-                        <input type="text" placeholder="輸入關鍵字"><img class="img-responsive" src="{% static "img/dest/search.jpg" %}">
+                    <form id="form-name" action="/" method="get" class="form-inline">
+                        <input name="name" id="name" type="text" placeholder="請輸入人名"><img class="img-responsive" src="{% static "img/dest/search.jpg" %}">
+                    </form>
                     </div>
                     <li><a class="tracklink custom" data-ga="index" data-href="{% url "seemore" %}" href="{% url "seemore" %}"> <i class="fa fa-caret-right" aria-hidden="true"></i><span>給你好看</span></a></li>
                     <li><a class="tracklink custom" data-ga="mayor" data-href="{% url "candidates:mayors_area" %}" href="{% url "candidates:mayors_area" %}"><i class="fa fa-caret-right" aria-hidden="true"></i><span>找縣市長 </span></a></li>
@@ -154,7 +158,26 @@
         <script src="{% static "js/bundle.min.js" %}"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{% static "css/fonts.min.css" %}">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script type="text/javascript">
+            $(function() {
+                var names_json_url = '{% static "json/dest/candidates_names_2018.json" %}';
+                $.get(names_json_url, function (names) {
+                    if (names) {
+                    $("#name").autocomplete({
+                        source: names,
+                        select: function(event, ui) {
+                            $(event.target).val(ui.item.value);
+                            $('#form-name').submit();
+                            return false;
+                        }
+                    });
+                    } else {
+                        alert('出現錯誤，請稍後再試！');
+                    }
+                }, 'json');
+            });
             var disqus_shortname = 'councils';
             var disqus_url = '{{current_url}}';
             (function() {

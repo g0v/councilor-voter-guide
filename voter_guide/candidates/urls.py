@@ -11,7 +11,6 @@ urlpatterns = [
     url(r'^intent_detail/(?P<intent_id>\S+)/$', views.intent_detail, name='intent_detail'),
     url(r'^intent_sponsor/(?P<intent_id>\S+)/$', views.intent_sponsor, name='intent_sponsor'),
     url(r'^pc/(?P<candidate_id>\S+)/(?P<election_year>\d+)/$', views.pc, name='pc'),
-    url(r'^\d+/$', voter_guide_views.select_county, {'category': 'candidates'}, name='select_county'),
     url(r'^mayors/(?P<county>\S+)/(?P<election_year>\d+)/$', views.mayors, name='mayors'),
     url(r'^mayors/(?P<county>\S+)/$', views.mayors, {'election_year': election_year}, name='mayors'),
     url(r'^mayors/$', views.mayors_area, {'election_year': election_year}, name='mayors_area'),

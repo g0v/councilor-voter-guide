@@ -5,29 +5,25 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db.models import Q
 
+from candidates.models import Terms
 from bills.models import Bills
 from votes.models import Votes
 from standpoints.models import Standpoints
 from commontag.views import coming_election_year
 
 
-def select_county(request, category):
-    refs = {
-        "candidates": {
-            "title": "找候選人",
-            "css_file": "css/councilmen.min.css",
-            "page_id": "councilmen-area",
-            "prefix_url": reverse('candidates:councilors_area')
-        },
-        "bills":  {
-            "title": "找提案",
-            "css_file": "css/bill.min.css",
-            "page_id": "bill-area",
-            "prefix_url": "/bills/"
-        }
-    }
+def home(request):
     election_year = coming_election_year(None)
-    return render(request, 'common/select_county.html', {'ref': refs.get(category, {}), 'category': category, 'election_year': election_year})
+    if request.GET.get('name'):
+        try:
+            candidate = Terms.objects.get(election_year=election_year, name=request.GET['name'])
+            if candidate.type == 'mayors':
+                return redirect(reverse('candidates:mayors', kwargs={'county': candidate.county}))
+            else:
+                return redirect(reverse('candidates:district', kwargs={'county': candidate.county, 'constituency': candidate.constituency}))
+        except:
+            pass
+    return render(request, 'home.html')
 
 def dispatch_bill(request, county=None):
     qs = Q(county=county) if county else Q()
