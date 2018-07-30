@@ -74,7 +74,13 @@
                         </a>
                         <div class="personal-info col-xs-12 col-sm-3">
                             <div class="partyname">
-                                <p>黨籍 / <span class="party-val">{{candidate.party}}</span></p>
+                                <p>黨籍 / <span class="party-val">
+                                {% if candidate.party %}
+                                    {{candidate.party}}
+                                {% else %}
+                                    ?
+                                {% endif %}
+                                </span></p>
                                 <p>年齡 / <span class="party-val">
                                 {% if candidate.candidate.birth %}
                                     {{candidate.candidate.birth|age}}
