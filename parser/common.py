@@ -202,7 +202,7 @@ def get_or_create_councilor_uid(c, councilor, create=True):
         u'桃園市': [u'桃園市', u'桃園縣']
     }
     councilor['counties'] = tuple(counties.get(councilor['county'], [councilor['county']]))
-    if not candidate['candidate_ids']:
+    if not councilor['councilor_ids']:
         if create:
             return (str(uuid.uuid4()), False)
         else:
