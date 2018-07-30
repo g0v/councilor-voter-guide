@@ -18,9 +18,9 @@ def home(request):
         try:
             candidate = Terms.objects.get(election_year=election_year, name=request.GET['name'])
             if candidate.type == 'mayors':
-                return redirect(reverse('candidates:mayors', kwargs={'county': candidate.county}))
+                return redirect(reverse('candidates:mayors', kwargs={'county': candidate.county})+u'?name=%s' % request.GET['name'])
             else:
-                return redirect(reverse('candidates:district', kwargs={'county': candidate.county, 'constituency': candidate.constituency}))
+                return redirect(reverse('candidates:district', kwargs={'county': candidate.county, 'constituency': candidate.constituency})+u'?name=%s' % request.GET['name'])
         except:
             pass
     return render(request, 'home.html')
