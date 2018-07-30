@@ -21,51 +21,41 @@
         <div class="head-j row">
           <div class="col-xs-7 col-sm-9 col-md-10 title hidden-xs">
             <h1>給你好看</h1>
-          </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="#">回上一頁</a>
+          </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="/">回上一頁</a>
           <div class="col-xs-7 col-sm-10 area hidden-sm hidden-md hidden-lg">
             <h2>相關圖表</h2>
           </div>
           <div class="select-opt1 hidden-xs col-xs-12">
-              <a class="act" href="#" data-id="1">相關圖表</a>
+              <a class="act" href="{% url "candidates:intents" election_year=2018 %}" data-id="1">2018候選人</a>
               <a href="{% url "suggestions:county_overview" %}" data-id="2">議員配合款</a>
-              <a href="#" data-id="3">政治獻金</a>
           </div>
           <div class="select-opt2 hidden-xs"></div>
           <div class="select-county-blk row">
-            <div class="col-xs-6 col-sm-3"><a class="info" href="#">
-                <div class="eng abs">
-                  <p>TOP </p>
-                  <p>10</p>
-                </div>
-                <p class="relat">立法院表決</p>
-                <p class="relat">缺席前10名</p>
-                <div class="hover-info">脫黨投票不一定較好，可能該立委是憑良心投票，也可能是受財團、企業影響所致，還請點選該立委觀看其脫黨投票的表決內容再作論定</div></a></div>
-            <div class="col-xs-6 col-sm-3"><a class="info" href="#">
-                <div class="eng abs">
-                  <p>TOP </p>
-                  <p>10</p>
-                </div>
-                <p class="relat">脫黨投票率</p>
-                <div class="hover-info">脫黨投票不一定較好，可能該立委是憑良心投票，也可能是受財團、企業影響所致，還請點選該立委觀看其脫黨投票的表決內容再作論定</div></a></div>
-            <div class="col-xs-6 col-sm-3"><a class="info" href="#">
-                <div class="eng abs single-col">
-                  <p>%</p>
-                </div>
-                <p class="relat">脫黨投票率</p>
-                <div class="hover-info">脫黨投票不一定較好，可能該立委是憑良心投票，也可能是受財團、企業影響所致，還請點選該立委觀看其脫黨投票的表決內容再作論定</div></a></div>
-            <div class="col-xs-6 col-sm-3"><a class="info" href="#">
-                <div class="eng abs single-col">
-                  <p>%</p>
-                </div>
-                <p class="relat">脫黨投票率</p>
-                <div class="hover-info">脫黨投票不一定較好，可能該立委是憑良心投票，也可能是受財團、企業影響所致，還請點選該立委觀看其脫黨投票的表決內容再作論定</div></a></div>
-            <div class="col-xs-6 col-sm-3"><a class="info" href="#">
-                <div class="eng abs single-col">
-                  <p>%</p>
-                </div>
-                <p class="relat">脫黨投票率</p>
-                <div class="hover-info">脫黨投票不一定較好，可能該立委是憑良心投票，也可能是受財團、企業影響所致，還請點選該立委觀看其脫黨投票的表決內容再作論定</div></a></div>
-          </div>
+          {% for intent in intents %}
+            <div class="col-xs-6 col-sm-3">
+                <a class="info" href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">
+                    <div class="eng abs">
+                        <p>{{intent.county}}</p>
+                        <p>
+                        {% if intent.type == 'mayors' %}
+                            縣市長
+                        {% else %}
+                            議員
+                        {% endif %}
+                        </p>
+                    </div>
+                    <p class="relat">{{intent.name}}</p>
+                    <p class="relat">{{intent.county}}</p>
+                    <div class="hover-info">
+                        {% if intent.slogan %}
+                        {{intent.slogan}}
+                        {% elif intent.motivation %}
+                        {{intent.motivation}}
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+          {% endfor %}
         </div>
         <div class="content"></div>
       </div>

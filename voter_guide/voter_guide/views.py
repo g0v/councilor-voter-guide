@@ -5,11 +5,11 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db.models import Q
 
-from candidates.models import Terms
+from candidates.models import Terms, Intent
 from bills.models import Bills
 from votes.models import Votes
 from standpoints.models import Standpoints
-from commontag.views import coming_election_year
+from commontag.views import paginate, coming_election_year
 
 
 def home(request):
@@ -24,6 +24,10 @@ def home(request):
         except:
             pass
     return render(request, 'home.html')
+
+def seemore(request):
+    intents = Intent.objects.filter(election_year='2018').order_by('?')
+    return render(request, 'seemore.html', {'intents': intents})
 
 def dispatch_bill(request, county=None):
     qs = Q(county=county) if county else Q()

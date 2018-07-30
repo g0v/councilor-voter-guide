@@ -38,7 +38,7 @@ urlpatterns = [
     url(r'^dispatch_bill/$', voter_guide_views.dispatch_bill, name='dispatch_bill'),
     url(r'^dispatch_vote/(?P<county>\S+)/$', voter_guide_views.dispatch_vote, name='dispatch_vote'),
     url(r'^dispatch_vote/$', voter_guide_views.dispatch_vote, name='dispatch_vote'),
-    url(r'^seemore/$', TemplateView.as_view(template_name='seemore.html'), name='seemore'),
+    url(r'^seemore/$', voter_guide_views.seemore, name='seemore'),
     url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
     url(r'^$', voter_guide_views.home, name='home'),
     url(r'^api/', include(router.urls)),
