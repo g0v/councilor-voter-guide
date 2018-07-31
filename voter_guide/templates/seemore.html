@@ -21,13 +21,13 @@
         <div class="head-j row">
           <div class="col-xs-7 col-sm-9 col-md-10 title hidden-xs">
             <h1>給你好看</h1>
-          </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="/">回上一頁</a>
+          </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="/#seemore">回上一頁</a>
           <div class="col-xs-7 col-sm-10 area hidden-sm hidden-md hidden-lg">
-            <h2>相關圖表</h2>
+            <h2>2018 候選人</h2>
           </div>
           <div class="select-opt1 hidden-xs col-xs-12">
-              <a class="act" href="{% url "candidates:intents" election_year=2018 %}" data-id="1">2018候選人</a>
-              <a href="{% url "suggestions:county_overview" %}" data-id="2">議員配合款</a>
+              <a class="act" href="{% url "candidates:intents" election_year=2018 %}" data-id="1">2018 候選人</a>
+              <a href="{% url "suggestions:county_overview" %}" data-id="2">議員配合款／建議款</a>
           </div>
           <div class="select-opt2 hidden-xs"></div>
           <div class="select-county-blk row">
@@ -47,11 +47,11 @@
                     <p class="relat">{{intent.name}}</p>
                     <p class="relat">{{intent.county}}</p>
                     <div class="hover-info">
-                        {% if intent.slogan %}
+                    {% if intent.slogan %}
                         {{intent.slogan}}
-                        {% elif intent.motivation %}
+                    {% elif intent.motivation %}
                         {{intent.motivation}}
-                        {% endif %}
+                    {% endif %}
                     </div>
                 </a>
             </div>
