@@ -2,7 +2,7 @@
 
 {% if term.type == 'mayor' %}
     <div class="tit">
-        <p>{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}長</p>
+        <p>{{term.term_start_year}} ~ {{term.term_end_year}} {{term.county}}長</p>
     </div>
     {% if not term.in_office and term.term_end.reason %}
         離職原因：{{term.term_end.reason}}{% if term.term_end.ref %}，<a href="{{term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
@@ -14,7 +14,7 @@
     </div>
 {% elif term.type == 'legislator' %}
     <div class="tit">
-        <p>{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}立委</p>
+        <p>{{term.term_start_year}} ~ {{term.term_end_year}} {{term.county}}立委</p>
     </div>
     {% if not term.in_office and term.term_end.reason %}
         離職原因：{{term.term_end.reason}}{% if term.term_end.ref %}，<a href="{{term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
@@ -31,7 +31,7 @@
     </div>
 {% elif term.type == 'councilor' %}
     <div class="tit">
-        <p>{{term.term_start_year}} ~ {{term.term_end_year}}{{term.county}}議員</p>
+        <p>{{term.term_start_year}} ~ {{term.term_end_year}} {{term.county}}議員</p>
     </div>
     {% if not term.in_office and term.term_end.reason %}
         離職原因：{{term.term_end.reason}}{% if term.term_end.ref %}，<a href="{{term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
