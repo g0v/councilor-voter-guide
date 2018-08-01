@@ -11,6 +11,8 @@ from pandas import *
 import pandas as pd
 from numpy import nan
 import logging
+import ast
+from sys import argv
 
 import common
 import db_settings
@@ -99,7 +101,7 @@ def sheet2df(target_sheet=0):
         else:
             df = pd.read_excel(f, sheetname=target_sheet, header=None, usecols=range(0, 9), skiprows=5, names=['councilor', 'suggestion', 'position', 'suggest_expense', 'approved_expense', 'expend_on', 'brought_by', 'bid_type', 'bid_by'], encoding='utf-8')
             df.dropna(inplace=True, how='any', subset=['suggestion', 'position', 'approved_expense'])
-            for key in ['councilor', 'position', 'suggest_expense', 'brought_by', ]:
+            for key in ['councilor', 'suggestion', 'position', 'suggest_expense', 'brought_by', 'bid_type', 'bid_by']:
                 df[key].fillna(inplace=True, method='pad')
             df['suggestor_name'] = df['councilor']
             df['councilor'] = map(lambda x: normalize_person_name(x) if x else nan, df['councilor'])
@@ -122,10 +124,13 @@ def sheet2df(target_sheet=0):
 year = 2017
 conn = db_settings.con()
 c = conn.cursor()
+if len(argv):
+    target_county = ast.literal_eval(argv[1])['county']
+else:
+    target_county = '*'
 county_config = json.load(open('county_config.json'))
 df_concat = DataFrame()
-for meta_file in glob.glob('../../data/*/suggestions.json'):
-    break
+for meta_file in glob.glob('../../data/%s/suggestions.json' % target_county):
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
     with open(meta_file) as meta_file:
@@ -266,7 +271,6 @@ def get_jurisdiction(suggestion):
 ds = df_concat.to_json(orient='records', force_ascii=False)
 dict_list = json.loads(ds)
 for item in dict_list:
-    break
     if item.get('councilor_ids'):
         for column in ['position', 'suggestion', 'brought_by']:
             item['constituency'], item['district'] = get_district(item[column], item)
