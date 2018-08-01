@@ -9,7 +9,7 @@
     {% endif %}
     <div class="statistic">
         {% if term.data.suggestions_years.sum %}
-        <a href="{% url "suggestions:county_overview" %}#{{term.county}}">議員配合款總花費：<font class="price">{{term.data.suggestions_years.sum}}</font></a>
+        <a href="{% url "mayors:suggestor" mayor_id=term.mayor_id election_year=term.election_year %}">議員配合款總花費：<font class="price">{{term.data.suggestions_years.sum}}</font></a>
     {% endif %}
     </div>
 {% elif term.type == 'legislator' %}
