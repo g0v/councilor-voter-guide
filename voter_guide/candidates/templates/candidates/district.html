@@ -121,16 +121,38 @@
                         </div>
                         <div class="clearb"></div>
                     </div>
-                    {% if candidate.councilor_terms or candidate.platform %}
+                    {% if candidate.councilor_terms or candidate.platform or candidate.motivation or candidate.ideology %}
                     <div class="content-detail row notFirstCandidate">
+                    {% if candidate.motivation %}
                         <div class="politics col-sm-12 row">
                             <div class="tit row col-sm-12">
-                                <div class="col-sm-12">競選政見</div>
+                                <div class="col-sm-12">為何參選</div>
+                            </div>
+                            <div class="list-politics col-sm-12">
+                                {{candidate.motivation|linebreaks}}
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if candidate.ideology %}
+                        <div class="politics col-sm-12 row">
+                            <div class="tit row col-sm-12">
+                                <div class="col-sm-12">政治理念</div>
+                            </div>
+                            <div class="list-politics col-sm-12">
+                                {{candidate.ideology|linebreaks}}
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if candidate.platform %}
+                        <div class="politics col-sm-12 row">
+                            <div class="tit row col-sm-12">
+                                <div class="col-sm-12">地方政見</div>
                             </div>
                             <div class="list-politics col-sm-12">
                                 {{candidate.platform|linebreaks}}
                             </div>
                         </div>
+                    {% endif %}
                     </div>
                     {% endif %}
                 </div>
@@ -140,7 +162,7 @@
 
             <div class="content-list row col-xs-12">
             {% for candidate in candidates %}
-                <div class="content-item row relat{% if candidate.elected or candidate.occupy %} Current{% endif %}" data-id="{{forloop.counter}}">
+            <div class="content-item row relat{% if candidate.elected or candidate.occupy %} Current{% endif %}" data-id="{{forloop.counter}}">
                     <div class="label-current abs">
                         {% if candidate.elected %}
                         <img class="img-responsive" src="{% static "img/dest/elected.png" %}">
