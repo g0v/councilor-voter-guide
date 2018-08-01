@@ -13,7 +13,7 @@ class Spider(scrapy.Spider):
     name = "bills"
     allowed_domains = ["phcouncil.gov.tw", ]
     start_urls = ["http://www.phcouncil.gov.tw/"]
-    download_delay = 0.5
+    download_delay = 1
     county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
     election_year = common.election_year(county_abbr)
     ads = {'2009': 17, '2014': 18, '2018': 19}
