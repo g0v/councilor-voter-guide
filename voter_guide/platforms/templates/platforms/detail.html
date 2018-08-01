@@ -27,7 +27,7 @@
         <div class="head-j row">
           <div class="col-xs-8 col-sm-2 col-md-2 title">
             <h1>許願池</h1>
-          </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="#">回上一頁</a>
+        </div><a class="btn-prev col-xs-4 col-sm-2 pull-right" href="{% url "platforms:lists" %}">回上一頁</a>
           <div class="ui row col-xs-12 col-sm-10">
             <a href="{% provider_login_url "facebook" %}?next={% url 'platforms:propose' %}" class="col-xs-4 btn-wish pull-left">我想許願</a>
           </div>
