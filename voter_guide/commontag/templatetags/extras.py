@@ -173,7 +173,7 @@ def multiply(value, arg):
 def percentage(value, arg):
     if arg:
         try:
-            return "{0:.1f}".format(value * 100.0 / arg)
+            return "{0:.1f}".format(float(value) * 100.0 / arg)
         except Exception, e:
             print e
     else:
