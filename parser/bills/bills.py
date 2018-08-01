@@ -135,7 +135,7 @@ def update_sponsor_param(uid):
 conn = db_settings.con()
 c = conn.cursor()
 election_year = common.election_year('')
-if len(argv):
+if len(argv) > 1:
     target_county = ast.literal_eval(argv[1])['county']
 else:
     target_county = '*'
