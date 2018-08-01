@@ -52,12 +52,17 @@ def upsertCandidates(candidate):
             SET data = (COALESCE(data, '{}'::jsonb) || %s::jsonb)
             WHERE election_year = %s AND candidate_id = %s
         ''', (json.dumps({'constituency_change': complement['constituency_change']}), complement['election_year'], complement['candidate_uid']))
-    if candidate.get('legislator_terms'):
-        c.execute('''
-            UPDATE candidates_terms
-            SET data = (COALESCE(data, '{}'::jsonb) || %s::jsonb)
-            WHERE election_year = %s and candidate_id = %s
-        ''', [json.dumps({'legislator_terms': complement['legislator_terms']}), complement['election_year'], complement['candidate_uid'], ])
+    terms = []
+    for t in ['mayor', 'legislator', 'councilor']:
+        if candidate.get('%s_terms' % t):
+            for term in candidate['%s_terms' % t]:
+                term['type'] = t
+                terms.append(term)
+    c.execute('''
+        UPDATE candidates_terms
+        SET data = (COALESCE(data, '{}'::jsonb) || %s::jsonb)
+        WHERE election_year = %s and candidate_id = %s
+    ''', [json.dumps({'terms': terms}), complement['election_year'], complement['candidate_uid'], ])
 
 conn = db_settings.con()
 conn_another = db_settings.con_another()
