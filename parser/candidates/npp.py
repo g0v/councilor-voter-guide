@@ -64,10 +64,14 @@ party = u'時代力量'
 path = '../../data/avatar/councilors/%s/%s' % (election_year, party)
 
 constituencies = json.load(open('../../voter_guide/static/json/dest/constituencies_%s.json' % election_year))
-#candidates = json.load(open('npp.json'))
-candidates = requests.get('https://npp.vote/api/v1/candidates').json()
+candidates = json.load(open('npp_candidates.json'))
+counties = json.load(open('npp_counties.json'))
+#candidates = requests.get('https://npp.vote/api/v1/candidates').json()
 for row in candidates['data']:
-    county = requests.get('https://npp.vote/api/v1/cities/%s' % row['relationships']['city']['data']['id']).json()['data']['attributes']['name']
+    for datum in counties['data']:
+        if datum['id'] == row['relationships']['city']['data']['id']:
+            county = datum['attributes']['name']
+#   county = requests.get('https://npp.vote/api/v1/cities/%s' % row['relationships']['city']['data']['id']).json()['data']['attributes']['name']
     row = row['attributes']
     if not row['name'] or row['name'] == u'即將推出':
         continue
