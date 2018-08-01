@@ -65,7 +65,9 @@
                             </div>
                             <div class="party pull-left relat">
                                 <div class="relat">
+                                {% if candidate.party %}
                                     <img src="{% static "img/dest/" %}{{candidate.party}}.png" alt="{{candidate.party}}" title="{{candidate.party}}">
+                                {% endif %}
                                 </div>
                             </div>
                             <div class="name col-xs-7 col-sm-4">
@@ -181,7 +183,9 @@
                             {% endif %}
                             <div class="party pull-left relat">
                                 <div class="relat">
+                                {% if candidate.party %}
                                     <img src="{% static "img/dest/" %}{{candidate.party}}.png" alt="{{candidate.party}}" title="{{candidate.party}}">
+                                {% endif %}
                                 </div>
                             </div>
                             <div class="name col-xs-7 col-sm-4">
