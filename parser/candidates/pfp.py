@@ -7,6 +7,10 @@ import os
 import json
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import requests
+from scrapy.selector import Selector
+from urlparse import urljoin
+import subprocess
 
 import db_settings
 import common
@@ -130,5 +134,19 @@ for wks in worksheets:
             candidate['occupy'] = common.is_mayor_occupy(c, candidate)
         else:
             candidate['occupy'] = common.is_councilor_occupy(c, candidate)
+        # links
+        base_url = 'http://www.pfp.org.tw/TW/People_E/ugC_People.asp'
+        r = requests.get(base_url)
+        x = Selector(text=r.text, type='html')
+        link = urljoin(base_url, x.xpath(u'//div[@class="Name" and contains(., "%s")]/parent::a[1]/@href' % candidate['name']).extract_first())
+        candidate['links'] = [{'url': link, 'note': u'親民黨候選人官網'}]
+        # image
+        img_link = urljoin(base_url, re.search(u'url\((\S+)\)', x.xpath(u'//div[@class="Name" and contains(., "%s")]/preceding-sibling::div[@class="PContent_L"]/@style' % candidate['name']).extract_first()).group(1))
+        f_name = '%s_%d_%s.%s' % (candidate['county'], candidate['constituency'], candidate['name'], img_link.split('.')[-1].split('?')[0])
+        f = '%s/%s' % (path, f_name)
+        if not os.path.isfile(f):
+            cmd = 'wget --no-check-certificate "%s" -O %s' % (img_link, f)
+            subprocess.call(cmd, shell=True)
+        candidate['image'] = u'%s/%s/%s/%s/%s' % (common.storage_domain(), 'councilors', '2018', party, f_name)
         upsertCandidates(candidate)
 conn.commit()

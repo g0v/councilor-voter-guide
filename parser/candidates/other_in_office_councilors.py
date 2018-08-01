@@ -89,7 +89,7 @@ c.execute('''
     FROM (
         SELECT *
         FROM councilors_councilorsdetail
-        WHERE in_office = true AND party not in ('中國國民黨', '民主進步黨', '時代力量') AND election_year in %s
+        WHERE in_office = true AND party not in ('中國國民黨', '民主進步黨', '時代力量', '親民黨') AND election_year in %s
     ) _
 ''', [tuple(common.last_election_years(election_year))])
 rows = c.fetchall()
