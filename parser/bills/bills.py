@@ -176,8 +176,8 @@ c.execute('''
         councilor_id,
         COUNT(*) total,
         SUM(CASE WHEN priproposer = true AND petition = false THEN 1 ELSE 0 END) priproposer,
-        SUM(CASE WHEN petition = false THEN 1 ELSE 0 END) sponsor,
-        SUM(CASE WHEN petition = true THEN 1 ELSE 0 END) cosponsor
+        SUM(CASE WHEN priproposer != true AND petition = false THEN 1 ELSE 0 END) sponsor,
+        SUM(CASE WHEN priproposer != true AND petition = true THEN 1 ELSE 0 END) cosponsor
     FROM bills_councilors_bills
     GROUP BY councilor_id
 ''')
