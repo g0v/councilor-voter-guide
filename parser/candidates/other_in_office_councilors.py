@@ -79,9 +79,7 @@ def upsertCandidates(candidate):
         ''', [complement['candidate_uid'], complement['election_year'], ])
 
 conn = db_settings.con()
-conn_another = db_settings.con_another()
 c = conn.cursor()
-c_another = conn_another.cursor()
 election_year = '2018'
 
 c.execute('''
