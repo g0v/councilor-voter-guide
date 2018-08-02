@@ -134,9 +134,11 @@ for wks in worksheets:
             candidate['occupy'] = common.is_mayor_occupy(c, candidate)
         else:
             candidate['occupy'] = common.is_councilor_occupy(c, candidate)
+        print candidate['name']
         # links
         base_url = 'http://www.pfp.org.tw/TW/People_E/ugC_People.asp'
         r = requests.get(base_url)
+        r.encoding = 'utf-8'
         x = Selector(text=r.text, type='html')
         link = urljoin(base_url, x.xpath(u'//div[@class="Name" and contains(., "%s")]/parent::a[1]/@href' % candidate['name']).extract_first())
         candidate['links'] = [{'url': link, 'note': u'親民黨候選人官網'}]
