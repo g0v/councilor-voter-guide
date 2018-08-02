@@ -26,7 +26,7 @@ def home(request):
     return render(request, 'home.html')
 
 def seemore(request):
-    intents = Intent.objects.filter(election_year='2018').order_by('?')
+    intents = Intent.objects.filter(election_year='2018').order_by('-likes')
     return render(request, 'seemore.html', {'intents': intents})
 
 def dispatch_bill(request, county=None):
