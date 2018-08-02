@@ -196,7 +196,7 @@
                             <div class="partyname">
                                 {% if candidate.votes %}
                                 <p>得票 / <span class="party-val">
-                                    {{candidate.votes}}{% if candidate.votes_percentage %}（{{candidate.votes_percentage|percentage:1}}％）{% endif %}
+                                    {{candidate.votes}}{% if candidate.votes_percentage %}<small>（{{candidate.votes_percentage|percentage:1}}％）</small>{% endif %}
                                 </span></p>
                                 {% endif %}
                                 <p>黨籍 / <span class="party-val">
