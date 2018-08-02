@@ -189,5 +189,6 @@ hr.candidates-separator {
 =================================================================== */
 
 #disqus_thread {
-    padding: 0 24px;
+    max-width: 1000px;
+    margin: 24px auto;
 }
