@@ -12,7 +12,7 @@ import common
 class Spider(scrapy.Spider):
     name = "bills"
     allowed_domains = ["tccc.gov.tw", ]
-    start_urls = ["http://www.tccc.gov.tw/"]
+    start_urls = ["http://proposal.tccc.gov.tw/test/"]
     download_delay = 0.5
     county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
     election_year = common.election_year(county_abbr)
@@ -20,19 +20,6 @@ class Spider(scrapy.Spider):
     ad = ads[election_year]
 
     def parse(self, response):
-        return response.follow(response.xpath(u'//a[re:test(., "^議會連結$")]/@href').extract_first(), callback=self.parse_frame)
-
-    def parse_frame(self, response):
-        return response.follow(response.xpath(u'//iframe[@name="wb_main"]/@src').extract_first(), callback=self.parse_tab)
-
-    def parse_tab(self, response):
-        return response.follow(response.xpath(u'//a[re:test(., "議案查詢$")]/@href').extract_first(), callback=self.parse_meta_refresh, meta={'dont_redirect': True})
-
-    def parse_meta_refresh(self, response):
-        fixed_url = response.xpath('//meta[@http-equiv="refresh"]/@content').re('url=(.*)')[0].replace('\\', '/').lstrip('../')
-        return response.follow(fixed_url, callback=self.parse_login)
-
-    def parse_login(self, response):
         payload = dict(zip(['account', 'pw'], response.xpath('//text()').re(u'帳號:(\S*)  密碼:(\S*)')))
         return scrapy.FormRequest.from_response(response, formname='form1', formdata=payload, callback=self.parse_logined)
 
