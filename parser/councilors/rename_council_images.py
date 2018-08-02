@@ -11,7 +11,7 @@ import db_settings
 import common
 
 
-conn = db_settings.con_middle2()
+conn = db_settings.con()
 c = conn.cursor()
 election_year = '2014'
 path = '../../data/avatar/councilors/%s' % election_year

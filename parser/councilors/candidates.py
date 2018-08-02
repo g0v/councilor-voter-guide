@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import sys
 sys.path.append('../')
+import os
 import re
 import json
 import glob
@@ -65,13 +66,13 @@ def upsertCandidates(candidate):
     ''', [json.dumps({'terms': terms}), complement['election_year'], complement['candidate_uid'], ])
 
 conn = db_settings.con()
-conn_another = db_settings.con_another()
 c = conn.cursor()
-c_another = conn_another.cursor()
 election_year = '2014'
 county_versions = json.load(open('../county_versions.json'))
 district_versions = json.load(open('../district_versions.json'))
 files = [f for f in glob.glob('../../data/candidates/%s/*.xlsx' % election_year)]
+position_type = 'councilors'
+path = '../../data/avatar/%s/%s' % (position_type, election_year)
 for f in files:
     df = pd.read_excel(f, sheetname=0, names=['date', 'constituency', 'name', 'party'], usecols=[0, 1, 2, 3])
     df = df[df['name'] != u'姓名']
@@ -93,5 +94,10 @@ for f in files:
         candidate['councilor_term_id'] = common.getDetailIdFromUid(c, candidate['councilor_uid'], election_year, candidate['county'])
 
         candidate['councilor_terms'] = common.councilor_terms(c, candidate) if created else None
+        # image
+        f_name = '%s_%d_%s' % (candidate['county'], int(candidate['constituency']), candidate['name'])
+        f = '%s/%s' % (path, f_name)
+        if os.path.isfile(f):
+            candidate['image'] = u'%s/%s/%s/%s' % (common.storage_domain(), position_type, election_year, f_name)
         upsertCandidates(candidate)
 conn.commit()

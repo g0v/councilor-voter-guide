@@ -87,9 +87,10 @@ election_year = '2018'
 c.execute('''
     SELECT row_to_json(_)
     FROM (
-        SELECT *
-        FROM councilors_councilorsdetail
-        WHERE in_office = true AND party not in ('中國國民黨', '民主進步黨', '時代力量', '親民黨') AND election_year in %s
+        SELECT c.*, COALESCE(t.image, c.image) as image
+        FROM councilors_councilorsdetail c
+        JOIN candidates_terms t ON t.elected_councilor_id = c.id
+        WHERE c.in_office = true AND c.party not in ('中國國民黨', '民主進步黨', '時代力量', '親民黨') AND c.election_year in %s
     ) _
 ''', [tuple(common.last_election_years(election_year))])
 rows = c.fetchall()
