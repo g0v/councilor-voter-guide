@@ -43,3 +43,9 @@ log.txt
 
 # vim python-mode
 .ropeproject
+
+# 2018_frontend
+node_modules/*
+psd/*
+examples/*
+fullPage.js-master/*
