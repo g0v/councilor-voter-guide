@@ -19,7 +19,7 @@ c.execute('''
     SELECT name
     FROM candidates_terms
     WHERE election_year = %s
-    ORDER BY name
+    ORDER BY name, county, constituency
     ) _
 ''', [election_year])
 rows = c.fetchone()
