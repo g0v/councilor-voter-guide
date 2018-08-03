@@ -87,7 +87,7 @@ c.execute('''
     FROM (
         SELECT c.*, COALESCE(t.image, c.image) as image
         FROM councilors_councilorsdetail c
-        JOIN candidates_terms t ON t.elected_councilor_id = c.id
+        LEFT JOIN candidates_terms t ON t.elected_councilor_id = c.id
         WHERE c.in_office = true AND c.party not in ('中國國民黨', '民主進步黨', '時代力量', '親民黨') AND c.election_year in %s
     ) _
 ''', [tuple(common.last_election_years(election_year))])
