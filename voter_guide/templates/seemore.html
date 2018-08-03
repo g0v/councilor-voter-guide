@@ -46,6 +46,8 @@
                     </div>
                     <p class="relat">{{intent.name}}</p>
                     <p class="relat">{{intent.county}}</p>
+                    <p class="relat">第 {{intent.constituency}} 選區</p>
+                    <p class="relat">{{intent.district|truncatechars:8}}</p>
                     <div class="hover-info">
                     {% if intent.slogan %}
                         {{intent.slogan}}
