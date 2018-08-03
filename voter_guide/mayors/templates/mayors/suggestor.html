@@ -26,7 +26,7 @@
     {% else %}
     <div class="page-header"
     <p>本任期總花費：<font class="price">{{mayor.data.suggestions_years.sum}}</font>
-        <a class="btn btn-default btn-lg" href="{% url 'suggestions:lists' county=mayor.county %}?keyword={{mayor.name}}"><i class="fa fa-list"> 一筆一筆看</i></a>
+        <a class="btn btn-default btn-lg" href="{% url 'suggestions:lists' county=mayor.county %}"><i class="fa fa-list"> 一筆一筆看</i></a>
         <span class="pull-right">
             資料來源<a href="{{mayor.county|suggestions_offical_link}}" target="_blank"> {{mayor.county}}主計處</a>
         </span>
