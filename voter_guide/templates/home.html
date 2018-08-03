@@ -147,7 +147,7 @@
             <div class="sub relat">
               <p>許願池</p>
             </div>
-            <div class="select-opt1 relat"><a href="{% url 'platforms:lists' %}" data-id="1">許願池</a><a href="{% url 'platforms:propose' %}" data-id="2">我想許願</a></div>
+            <div class="select-opt1 relat"><a href="{% url 'platforms:lists' %}" data-id="1">許願池</a><a href="{% provider_login_url "facebook" %}?next={% url 'platforms:propose' %}" data-id="2">我想許願</a></div>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load socialaccount %}
 {% load staticfiles %}
 {% load extras %}
 
@@ -50,7 +51,7 @@
                         <div class="info-type col-sm-5 abs hidden-xs">
                             <p>PROFILE</p>
                         </div>
-                        <a class="btn-wish pull-right" href="{% url 'platforms:propose' %}?mayor={{mayor.uid}}">我想許願</a>
+                        <a class="btn-wish pull-right" href="{% provider_login_url "facebook" %}?next={% url 'platforms:propose' %}?mayor={{mayor.uid}}">我想許願</a>
                     </div>
                     <div class="photoAndParty photoAndParty-btm col-xs-12 col-sm-3 row hidden-sm hidden-md hidden-lg">
                         <div class="party">
