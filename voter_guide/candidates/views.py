@@ -298,7 +298,7 @@ def intent_detail(request, intent_id):
             form = SponsorForm()
             form.fields['name'].initial = request.user.last_name + request.user.first_name
             form.fields['email'].initial = request.user.email
-    return render(request, 'candidates/intent_detail.html', {'form': form, 'intent': intent, 'standpoints': standpoints, 'user_liked': user_liked, 'is_this_intent': intent.user == request.user})
+    return render(request, 'candidates/intent_detail.html', {'form': form, 'intent': intent, 'standpoints': standpoints, 'user_liked': user_liked, 'is_this_intent': intent.user == request.user, 'id': 'profile'})
 
 def intent_sponsor(request, intent_id):
     if not request.user.is_authenticated:

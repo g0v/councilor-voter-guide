@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "common/intent_info.html" %}
 {% load socialaccount %}
 {% load staticfiles %}
 {% load humanize %}
@@ -16,106 +16,18 @@
     </style>
 {% endblock title %}
 
-{% block css_file %}
-<style>
-    body, html {
-      background-color: #e1efd5;
-    }
-</style>
-{% endblock css_file %}
+{% block person_css_file %}
+    <link href="{% static "css/bill.min.css" %}" rel="stylesheet">
+{% endblock person_css_file %}
 
 {% block social_meta %}
-    {% with user_id=intent.user.socialaccount_set.first.uid %}
-        <meta property="og:description" content="{{intent.motivation|truncatewords:2}}"/>
-        <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{intent.county}}.png"/>
-        <meta itemprop="description" content="{{intent.motivation|truncatewords:2}}"/>
-        <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{intent.county}}.png"/>
-    {% endwith %}
+    <meta property="og:description" content="{{intent.motivation|truncatewords:2}}"/>
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{intent.county}}.png"/>
+    <meta itemprop="description" content="{{intent.motivation|truncatewords:2}}"/>
+    <meta itemprop="image" content="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-og-image/facebook-og-image-councilor-{{intent.county}}.png"/>
 {% endblock social_meta %}
 
-{% block right %}
-<input class="inv" id="page" type="text">
-<div class="preload abs"></div>
-<div class="wrapper relat">
-    <div class="container relat classJ contain-1200">
-        <div class="person_header">
-            <div class="row">
-                <div class="col-sm-2 col-sm-offset-2 col-xs-3">
-                {% with user_id=intent.user.socialaccount_set.first.uid %}
-                    <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=110">
-                {% endwith %}
-                </div>
-                <div class="col-sm-8 col-xs-9">
-                    <h3 style="margin-top: 0; margin-left: 14px;">
-                        {{intent.election_year}} {{intent.county}}{% if intent.type == 'councilors' %}議員{% else %}長{% endif %}擬參選人：{{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small>
-
-                    <div class="pull-right">
-                    {% if request.user.is_authenticated %}
-                        <form class="form" action="" method="post" id="sponsor">{% csrf_token %}
-                        {% if user_liked %}
-                            <button class="btn btn-success" type="submit" name="decision" value="downvote"><i class="fa fa-thumbs-up"> 收回讚</i></button>
-                        {% else %}
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
-                                <i class="fa fa-thumbs-up"> 讚</i>
-                            </button>
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog" role="document" style="z-index:2000">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="myModalLabel">您願意提供給此候選人的聯絡資料（可都不提供只按讚）</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            {{form.as_p}}
-                                            <h3 data-toggle="collapse" data-target="#ref_qa"><span class="text-warning">提供資料要幹麻？ <i class="fa fa-caret-square-o-down"></i></span></h3>
-                                            <div id="ref_qa" class="collapse">
-                                                <p>您提供給此候選人的資料，將有助於候選人後續與您的聯絡、互動，例如辦活動時可邀請您參與，讓候選人更有機會聽見人民的聲音。</p>
-                                                <p>簡單來說，就是自己的樁腳自己做！</p>
-                                                <p>您也可以都不提供資料純粹按讚支持，可按<span class="text-danger">紅色按鈕</span>清空資料後<span class="text-primary">送出讚。</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger pull-left" id="clear_contact">清空資料</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                            <button type="submit" class="btn btn-primary" name="decision" value="upvote">送出讚</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-                        </form>
-                    {% else %}
-                        <a href="{% provider_login_url "facebook" %}?next={% url 'candidates:intent_detail' intent_id=intent.uid %}" class="btn btn-success"><i class="fa fa-sign-in"> 登入按讚</i></a>
-                    {% endif %}
-                    </div>
-
-                    </h3>
-                    {% if intent.slogan %}
-                    <h4 style="margin-left: 14px;">
-                        <i class="fa fa-bullhorn"> <font class="text-danger">{{intent.slogan}}</font></i>
-                    </h4>
-                    {% endif %}
-                    <a href="{% url 'platforms:propose' %}?intent={{intent.uid}}" class="btn btn-info pull-right" target="_blank"><i class="fa fa-birthday-cake"> 對{{intent.name}}許願</i></a>
-                    <dl class="dl-horizontal hidden-xs" style="margin-bottom: 0;">
-                        {% if intent.type == 'councilors' %}
-                        <dt>縣市選區</dt>
-                        <dd>
-                            {{intent.county}}（第{{intent.constituency}}選區）{{intent.district}}
-                        </dd>
-                        {% endif %}
-                        <dt>個人黨籍</dt>
-                        <dd>
-                            {{intent.party}}
-                        </dd>
-                    </dl>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="fb-share-button pull-right" data-size="large" data-href="{{current_url}}" data-layout="button_count"></div>
-        <hr>
-
+{% block person_detail %}
         <div class="row">
             <div class="col-sm-1 hidden-xs">
                 {% if is_this_intent %}
@@ -124,7 +36,7 @@
                         <a href="{% url 'candidates:intent_upsert' %}" class="btn btn-info">編輯</a>
                     </div>
                 {% else %}
-                    <a href="{% url 'candidates:intent_home' %}" class="btn btn-info">我也來發表</a>
+                    <a href="{% url 'candidates:intent_home' %}" class="btn btn-info">我來發表</a>
                 {% endif %}
                 <hr>
                 <h5>修訂紀錄</h5>
@@ -201,8 +113,13 @@
                 <div align="center" style="margin-bottom: 20px">
                     <div id="video_frame_{{intent.uid}}"></div>
                 </div>
+                {% if intent.slogan %}
+                <h4>
+                    <i class="fa fa-bullhorn"> <font class="text-danger">{{intent.slogan}}</font></i>
+                </h4>
+                {% endif %}
                 <dl class="dl-horizontal">
-                    <div class="visible-xs">
+                    <div>
                     {% if intent.type == 'councilors' %}
                     <dt>縣市選區</dt>
                     <dd>
@@ -424,9 +341,7 @@
                 {% endif %}
             </div>
         </div>
-    </div>
-</div>
-{% endblock right %}
+{% endblock person_detail %}
 
 {% block script %}
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
