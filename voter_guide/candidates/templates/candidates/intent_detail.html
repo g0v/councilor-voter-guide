@@ -113,13 +113,14 @@
                 <div align="center" style="margin-bottom: 20px">
                     <div id="video_frame_{{intent.uid}}"></div>
                 </div>
-                {% if intent.slogan %}
-                <h4>
-                    <i class="fa fa-bullhorn"> <font class="text-danger">{{intent.slogan}}</font></i>
-                </h4>
-                {% endif %}
                 <dl class="dl-horizontal">
                     <div>
+                    {% if intent.slogan %}
+                    <dt><i class="fa fa-bullhorn"></i></dt>
+                    <dd>
+                        <font class="text-danger">{{intent.slogan}}</font>
+                    </dd>
+                    {% endif %}
                     {% if intent.type == 'councilors' %}
                     <dt>縣市選區</dt>
                     <dd>
