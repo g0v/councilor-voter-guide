@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load socialaccount %}
+{% load staticfiles %}
+{% load extras %}
+
+{% block css_file %}
+    {% block person_css_file %}
+    {% endblock person_css_file %}
+    <link href="{% static "css/resume.min.css" %}" rel="stylesheet">
+    <style>
+    </style>
+{% endblock css_file %}
+
+{% block right %}
+    <input class="inv" id="page" type="text" value="resume-bills">
+    <div class="preload abs"></div>
+    <div class="wrapper-header relat header-{{id}}" data-type="{{id}}">
+        <div class="container relat classJ contain-1000">
+            <div class="profile-header row">
+                <div class="photoAndParty col-xs-12 col-sm-3 row hidden-xs">
+                    <div class="party pull-right">
+                        <div class="relat">
+                            <img src="{% static "img/dest/" %}{{intent.party}}.png" alt="{{intent.party}}" title="{{intent.party}}">
+                        </div>
+                    </div>
+                    <div class="photo pull-right">
+                        <div class="relat">
+                        {% with user_id=intent.user.socialaccount_set.first.uid %}
+                            <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=480">
+                        {% endwith %}
+                        </div>
+                    </div>
+                </div>
+                <div class="infoArea col-xs-12 col-sm-9 row">
+                    <div class="name col-xs-12">
+                        <h1>
+                            {{intent.name}} <small><i class="fa fa-thumbs-up"> {{intent.likes}}</i></small>
+
+                            <div class="pull-right">
+                            {% if request.user.is_authenticated %}
+                                <form class="form" action="" method="post" id="sponsor">{% csrf_token %}
+                                {% if user_liked %}
+                                    <button class="btn btn-success" type="submit" name="decision" value="downvote"><i class="fa fa-thumbs-up"> 收回讚</i></button>
+                                {% else %}
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                                        <i class="fa fa-thumbs-up"> 讚</i>
+                                    </button>
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document" style="z-index:2000">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">您願意提供給此候選人的聯絡資料（可都不提供只按讚）</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {{form.as_p}}
+                                                    <h3 data-toggle="collapse" data-target="#ref_qa"><span class="text-warning">提供資料要幹麻？ <i class="fa fa-caret-square-o-down"></i></span></h3>
+                                                    <div id="ref_qa" class="collapse">
+                                                        <p>您提供給此候選人的資料，將有助於候選人後續與您的聯絡、互動，例如辦活動時可邀請您參與，讓候選人更有機會聽見人民的聲音。</p>
+                                                        <p>簡單來說，就是自己的樁腳自己做！</p>
+                                                        <p>您也可以都不提供資料純粹按讚支持，可按<span class="text-danger">紅色按鈕</span>清空資料後<span class="text-primary">送出讚。</span></p>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger pull-left" id="clear_contact">清空資料</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                    <button type="submit" class="btn btn-primary" name="decision" value="upvote">送出讚</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                </form>
+                            {% else %}
+                                <a href="{% provider_login_url "facebook" %}?next={% url 'candidates:intent_detail' intent_id=intent.uid %}" class="btn btn-success"><i class="fa fa-sign-in"> 登入按讚</i></a>
+                            {% endif %}
+                            </div>
+
+                        </h1>
+                    </div>
+                    <div class="ui-years col-xs-12 row">
+                        <div class="classJ col-sm-3 col-xs-5 pull-left" style="font-size: 16px;">
+
+                            <font>{{intent.county}}{% if intent.type == 'councilors' %}議員{% else %}長{% endif %}<br>擬參選人</font>
+                        </div>
+                        <div class="info-type col-sm-5 abs hidden-xs" style="line-height: 44px;">
+                            <p>{{intent.party}}</p>
+                        </div>
+                        <a class="btn-wish pull-right" href="{% provider_login_url "facebook" %}?next={% url 'platforms:propose' %}?intent={{intent.uid}}">我想許願</a>
+                    </div>
+                    <div class="photoAndParty photoAndParty-btm col-xs-12 col-sm-3 row hidden-sm hidden-md hidden-lg">
+                        <div class="party">
+                            <div class="relat">
+                                <img src="{% static "img/dest/" %}{{intent.party}}.png">
+                            </div>
+                        </div>
+                        <div class="photo">
+                            <div class="relat">
+                            {% with user_id=intent.user.socialaccount_set.first.uid %}
+                                <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=480">
+                            {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav-resume-all col-xs-11">
+                        <a data-type="profile" href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">基本資料</a>
+                        <a data-type="declaration" href="{% url 'candidates:district' county=intent.county constituency=intent.constituency %}">同區其他候選人</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper relat">
+        <div class="container relat classJ contain-1000">
+            {% block person_detail %}
+            {% endblock person_detail %}
+        </div>
+    </div>
+    <hr>
+    <div id="disqus_thread"></div>
+{% endblock right %}
