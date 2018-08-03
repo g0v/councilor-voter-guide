@@ -1,0 +1,108 @@
+
+- var _nocache = Math.floor(Math.random() * (1000) +1)
+
+
+doctype html
+html(lang="zh-TW" class="no-js")
+  head
+    include ./head.pug
+    block css_file
+  body
+    
+    .classJ.loading
+        .center
+            .ld
+                img(src="./img/dest/ring.gif")
+    include ./nav.pug
+
+   
+    block content
+    
+    .footer.classJ
+        .row.contain-1000.classJ
+            .col-sm-2.hidden-xs.btn-j
+                a(href="#")
+                    p 我是候選人
+            .col-sm-2.hidden-xs.btn-j
+                a(href="#")
+                    p 互動區
+            .col-xs-9.col-sm-5.row.site-logo
+                .col-xs-5.power 2018 Powered by
+                .col-xs-7.row
+                    img.img-responsive(src="img/dest/site-logo.jpg")
+                    a.col-xs-6.abs.burnpoint(href="https://www.sparktaiwan.org/" , target="_blank")
+                    a.col-xs-6.abs.g0v(href="https://grants.g0v.tw/power/" , target="_blank")
+            .col-xs-3.col-sm-2.btn-j.btn-about
+                a(href="about.html")
+                    p 關於本站 
+            .classJ.btn-fb.hidden-sm.hidden-md.hidden-lg.abs.btn-fb-fix
+                a(href="#")
+                    img.img-responsive(src="img/dest/fb.jpg")
+            .classJ.btn-fb.hidden-xs
+                a(href="#")
+                    img.img-responsive(src="img/dest/fb.jpg")
+    //- include ./pop-about.pug
+
+    script(src="./lib/jquery-2.2.4.min.js")
+    script(src="./lib/jquery.migrate.min.js")
+    // 新增外掛 jquery wheel * 0710
+    //- script(src="./lib/jquery.mousewheel.min.js")
+    
+    //-TWEEN
+    //- script(src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js")
+    //- script(src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js") 
+    script(src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js")
+    //-BACKBONE
+    // 新增外掛 underscore * 0614
+    script(src="./lib/underscore.min.js")
+    // 新增外掛 mCustomScrollbar * 0705
+    link(rel="stylesheet",href="./lib/css/jquery.mCustomScrollbar.css")
+    script(src="./lib/jquery.mCustomScrollbar.concat.min.js")    
+    
+    // 新增外掛 device * 0705
+    script(src="./lib/device.min.js")
+    script(src="./lib/modernizr-latest.js")
+    script(src="./lib/imagesloaded.pkgd.min.js")
+    script(src="./lib/jquery.ba-bbq.min.js")
+    
+    //-script(src="./lib/audio5.js")
+    //- script(src="lib/jquery.form.min.js")
+    //- script(src="./lib/jquery.jrumble.1.3.min.js")
+    //- script(src="./lib/lazyload.min.js")
+    
+    //- script(src="./lib/hammer.min.js")  
+    link(rel="stylesheet",href="./lib/css/slick.css")
+    link(rel="stylesheet",href="./lib/css/slick-theme.css")    
+
+    script(src="./lib/slick.min.js")
+    block scripts
+        script.
+            function setCookie(name,value,days) {
+                var expires = "";
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days*24*60*60*1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+            }
+            function getCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for(var i=0;i < ca.length;i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+                }
+                return null;
+            }
+            function eraseCookie(name) {   
+                document.cookie = name+'=; Max-Age=-99999999;';  
+            }
+    script(src="./js/bundle.min.js")
+
+    link(rel="stylesheet" ,href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css")
+    //- link(rel="stylesheet", href="./css/fonts.min.css")
+    
+            
+    

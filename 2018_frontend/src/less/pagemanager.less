@@ -1,0 +1,135 @@
+@import "mixin.less";
+@import "common.less";
+.pagemanager {
+    width: 100%;
+    padding: 0 0 40px;
+    .talign(center);
+    .relat;
+    >.track {
+        width: 70%;
+        margin:0 auto;
+        .talign(center);
+        .relat;
+        .btnArrow {
+            .fontsize(22px);
+            .abs;
+            top: 0;
+            &.btnPrev {
+                left: -35px;
+                ;
+            }
+            &.btnNext {
+                right: -35px;
+            }
+
+            i{
+                line-height:25px;
+            }
+
+        }
+         @media (max-width: 767px) {
+            width: 90%;
+            .btnArrow {
+            
+                top: 20%;
+                i{
+                    line-height:30px;
+                }
+
+            }
+         }
+    }
+
+   >.track a,
+    >.track .btnArrow {
+
+        padding: 0px 0px 0;
+        margin: 10px 20px 0px;
+        .bold;
+        .fontsize(18px);
+        .darkGray;
+        width: 3%;
+        @media (max-width: 767px) {
+
+            width:7%;
+            margin: 10px 20px 0px;
+            .fontsize(22px);
+             
+        }
+
+        &.act,
+        &:hover {
+            .lightblue;
+        }
+        &.act {
+            .setBorderBottomStyle(2px, @darkGray);
+        }
+        .talign(center);
+    }
+
+    &.pagemanager-wish {
+        >.track {
+            width: 90%;
+
+            .relat;
+            .btnArrow {
+                .fontsize(22px);
+                .abs;
+                top: -5px;
+                &.btnPrev {
+                    left: -35px;
+                    ;
+                }
+                &.btnNext {
+                    right: -35px;
+                }
+            }
+            @media (max-width: 767px) {
+                width: 90%;
+                .btnArrow {
+
+                    top: 20%;
+                    &.btnPrev {
+                        left: -55px;
+                        ;
+                    }
+
+                    &.btnNext {
+                        right: -55px;
+                    }
+                }
+            }
+        }
+
+
+        a,
+        .btnArrow {
+
+            padding: 0;
+            margin: 10px 10px 10px;
+            .bold;
+            .fontsize(16px);
+            .darkGray;
+            width: 60px;
+            
+            @media (max-width: 767px) {
+
+            width:60px;
+            margin: 10px 5px 0px;
+            .fontsize(16px);
+            }
+           
+            &.act,
+            &:hover {
+                .lightblue;
+            }
+            &.act {
+                .setBorderBottomStyle(2px, @darkGray);
+            }
+            .talign(center);
+        }
+        .btnArrow{
+
+        }
+    }
+}

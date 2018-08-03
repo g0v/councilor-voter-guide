@@ -1,0 +1,83 @@
+extends ./pug/template.pug
+block css_file
+	//- 每個頁面載入資源唯一不同處
+	link(rel="stylesheet", href="./css/ballot.min.css")
+block content
+	input#page.inv(type="text",value = "ballot")
+	.preload.abs
+	
+	.wrapper.relat
+		.container.relat.classJ.contain-1000
+			.head-j.row
+				.col-xs-7.col-sm-9.col-md-10.title
+					
+					h1 找表決
+				a.btn-prev.col-xs-4.col-sm-2.hidden-sm.hidden-md.hidden-lg.pull-right(href="#") 回上一頁
+				//- .col-xs-7.col-sm-10.area.hidden-sm.hidden-md.hidden-lg
+				//- 	h2 北部
+				.col-xs-5.col-sm-2.col-md-2.navbar-search-bill.hidden-xs
+					form 
+						input(type="text" , placeholder="輸入關鍵字" )
+						img.img-responsive(src="img/dest/search.jpg")
+				.select-bill.hidden-xs.col-xs-12
+					a.act(href="#" , data-id="") 台北議會表決
+					a(href="#" , data-id="") 高雄議會表決
+				select.select.col-sm-3.col-xs-6
+					-var n = 10
+						while n > 0
+							option(value=n-- ) 第22屆(2018/05/02)
+				.col-xs-5.col-sm-2.col-md-2.navbar-search-bill.hidden-sm.hidden-md.hidden-lg.pull-right
+					form 
+						input(type="text" , placeholder="輸入關鍵字" )
+						img.img-responsive(src="img/dest/search.jpg")
+				.row.col-sm-12.col-xs-12
+					.kw.col-xs-12.col-sm-6
+						h3 關鍵字:
+							span.kw-val 交通
+					.filters.col-xs-12.col-sm-6.col-md-6.pull-right.text-right
+						a.d-inline.f-item.marked(href="#" , data-id="marked")
+							.check-ico.d-inline-block
+							span 已被網友註記
+						a.d-inline.f-item.unmark(href="#" , data-id="unmark")
+							.check-ico.d-inline-block
+							span 未被網友註記
+				
+			.content-list.row.col-xs-12
+				.content-item.row.relat.Current(data-id='1')
+					
+					.markups.col-xs-12.col-sm-6.text-right.col-sm-push-6
+						.markup-item.d-inline-block 放寬都市計畫道路限制
+							.num.d-inline-block 10
+						.markup-item.d-inline-block 放寬
+							.num.d-inline-block 0
+					.date.col-xs-12.col-sm-6.col-sm-pull-6
+						h3 2015-01-01
+
+					.desc.col-xs-12.col-sm-12
+						p 表決內容
+						p 案由:(十八)台灣團結聯盟黨團及民進黨黨團提議增列討論事項第4案為：
+						P 本院台灣團結聯盟黨團，有鑑於台灣投資環境持續惡化，政府始終提不出有效因應對策，導致國內投資意願低落，且各種產業紛紛外移中國，連帶造成政府稅收嚴重不足，國庫連年債台高築。惟政府各領導高層及全國軍公教卻仍享受各項適法性不足或不合理之福利，而所有經費卻由全民負擔，形成一個國家兩個世界，實不符合公平正義。為避免國家財政持續惡化，甚至走向政府破產窘境，更為避免造成社會階級對立與族群對立，爰此，建請院會做成以下決議：「將民國102年中央政府總預算案中，各單位已編列適法性不足之各項預算，包括編列在各單位項下之補助軍公教退休人員18%優惠存款利息、退休軍公教人員年終慰問金、補助退休公股銀行員工13%優惠存款利息、總統國務機要費、政務官及特任官之特別費、各國營事業退休人員年終慰問金、退休將領春節慰問金、現役退役軍人軍眷醫療免掛號費補助、現役及退役軍人軍眷水電半價補助費全數刪除。另對於現職軍公教人員年終1.5個月工作獎金部分，亦應儘速檢討，加以法制化。」請公決案。經表決結果不予通過。在場委員105人，贊成者42人，反對者63人，少數不通過；並採記名表決方式，表決結果名單附後
+					a.btn-j.pull-right(href="#") 一起來點評
+
+				.content-item.row.relat.Current(data-id='2')
+					
+					.markups.col-xs-12.col-sm-6.text-right.col-sm-push-6
+						.markup-item.d-inline-block 道路限制
+							.num.d-inline-block 10
+						.markup-item.d-inline-block 放寬
+							.num.d-inline-block 0
+					.date.col-xs-12.col-sm-6.col-sm-pull-6
+						h3 2015-01-01
+
+					.desc.col-xs-12.col-sm-12
+						p 表決內容
+						p 案由:(十八)台灣團結聯盟黨團及民進黨黨團提議增列討論事項第4案為：
+						P 本院台灣團結聯盟黨團，有鑑於台灣投資環境持續惡化，政府始終提不出有效因應對策，導致國內投資意願低落，且各種產業紛紛外移中國，連帶造成政府稅收嚴重不足，國庫連年債台高築。惟政府各領導高層及全國軍公教卻仍享受各項適法性不足或不合理之福利，而所有經費卻由全民負擔，形成一個國家兩個世界，實不符合公平正義。為避免國家財政持續惡化，甚至走向政府破產窘境，更為避免造成社會階級對立與族群對立，爰此，建請院會做成以下決議：「將民國102年中央政府總預算案中，各單位已編列適法性不足之各項預算，包括編列在各單位項下之補助軍公教退休人員18%優惠存款利息、退休軍公教人員年終慰問金、補助退休公股銀行員工13%優惠存款利息、總統國務機要費、政務官及特任官之特別費、各國營事業退休人員年終慰問金、退休將領春節慰問金、現役退役軍人軍眷醫療免掛號費補助、現役及退役軍人軍眷水電半價補助費全數刪除。另對於現職軍公教人員年終1.5個月工作獎金部分，亦應儘速檢討，加以法制化。」請公決案。經表決結果不予通過。在場委員105人，贊成者42人，反對者63人，少數不通過；並採記名表決方式，表決結果名單附後
+					a.btn-j.pull-right(href="#") 一起來點評
+			include ./pug/component/pageManager.pug
+	block script
+		script.
+			var county_global='臺北市';
+			var constituency_global = 1;
+			//var year_global = 2018;//(DEFAULT 為2018 )
+			var jsonUrl_global = './json/dest/constituencies_2018.json';var prefixUrl_global = '/prefixUrl/';

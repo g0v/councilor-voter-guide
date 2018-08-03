@@ -1,0 +1,199 @@
+@import "config.less";
+@import "common.less";
+@import "mixin.less";
+@import "func.less";
+
+
+html {}
+
+body {
+	
+}
+
+.wrapper{
+	.bg-white;
+    padding-top:64 + 150px;
+    @media (max-width: 767px) {
+         padding-top:70 + 260px;
+    }
+}
+.footer{
+    .inv;
+}
+/*Component*/
+.select.classJ {
+
+            .input-inv;
+            .bg-white;
+            padding: 5px 10px;
+
+            background-image: url('../img/dest/tri.png');
+            background-repeat: no-repeat;
+            background-position: 95%;
+            color: #black;
+}
+
+nav.navbar , nav.navbar .bg-cover{
+    &.bg-profile {
+        .bg-resume0;
+    }
+    &.bg-video{
+        .bg-resume1;
+    }
+    &.bg-politics{
+        .bg-resume2;
+    }
+    &.bg-fund{
+        .bg-resume3;
+    }
+    &.bg-contribution{
+        .bg-resume4;
+    }
+    &.bg-declaration{
+        .bg-resume5;
+    }   
+}
+
+.wrapper-header {
+    .fix;
+    z-index:99999;
+    width:100%;
+    top:63px;
+
+    &.header-profile {
+        .bg-resume0;
+    }
+    &.header-video{
+        .bg-resume1;
+    }
+    &.header-politics{
+        .bg-resume2;
+    }
+    &.header-fund{
+        .bg-resume3;
+    }
+    &.header-contribution{
+        .bg-resume4;
+    }
+    &.header-declaration{
+        .bg-resume5;
+    }
+
+	
+	padding:10px;
+    h1,h2{
+        margin:10px 0;
+        @media (max-width: 767px) {
+            margin:9px 0;
+        }
+    }
+    
+    .container {
+        margin: 0px auto 0px;
+        .nav-resume-top{
+        	padding:10px;
+        	 @media (max-width: 767px) {
+        	 	padding:20px;
+        	 }
+        }
+        .btn-close{
+        	
+        	width:40px;
+        	height:40px;
+        	right:10px;
+        	top:0px;
+        	background:#fff;
+        	padding:12px;
+        }
+        .profile-header{
+        	>div{
+        		padding:0 10px;
+        		margin: 0;
+        	}
+
+        	.photoAndParty{
+
+				padding:0;
+                margin:5px -15px;
+				@media (max-width: 767px) {
+        			padding:10px 25px 0;
+
+        		}
+                
+                &.photoAndParty-btm{
+                    height:75px;
+                    >div{
+                    height:75px;
+                    &.photo{
+                        overflow:visible;
+                    }
+                    >div{
+                        .relat;
+                        height:100%;
+                        >img{
+                            height:100%;
+                        }
+                    }
+                    }
+                }
+				>div{
+                    height:120px;
+                    margin-right:5px;
+                    .relat;
+                    display:inline-block;
+                    max-width:45%;
+                    &.photo{
+                        overflow:hidden;
+                    }
+                    >div{
+                        .relat;
+                        height:100%;
+                        >img{
+                            height:100%;
+                        }
+                    }
+					
+				}
+        	}
+        	.profileArea{
+        		.name{
+        			padding:10px;
+        		}
+        	}
+        	.infoArea{
+        		.nav-resume-all{
+        			
+
+        			a{
+        				
+        				.talign(center);
+        				&:hover,&.act{
+        					.lightblue;
+        				}
+        			}
+        		}
+        		.ui-years{
+        			margin:0 auto;
+        			@media (max-width: 767px) {
+        				.classJ.mdt;
+        			}
+        			.info-type{
+        				.bold;
+        				.classJ.exmdt;
+        				line-height:32px;
+        				.white;
+        				opacity	:.8;
+        				left:25%;
+        				bottom:0;
+        			}
+        			.btn-wish{
+        				.darkGray;
+        				.bg-white;
+        				padding:5px 20px;
+        				.bold;
+        			}	
+        		}
+        	}
+        }
+    }
+}

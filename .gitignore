@@ -16,7 +16,6 @@ credential.json
 # Packages
 *.egg
 *.egg-info
-dist/
 build/
 eggs/
 parts/
@@ -45,7 +44,7 @@ log.txt
 .ropeproject
 
 # 2018_frontend
-node_modules/*
-psd/*
-examples/*
-fullPage.js-master/*
+2018_frontend/node_modules/*
+2018_frontend/psd/*
+2018_frontend/examples/*
+2018_frontend/fullPage.js-master/*

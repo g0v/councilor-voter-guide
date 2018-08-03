@@ -1,0 +1,8 @@
+.width(@img) {
+  @width: ~`function(imguri){var img=new Image(); img.src = imguri; return img.width }(@{img})`;
+    width: @width;
+}
+.height(@img) {
+  @height: ~`function(imguri){var img=new Image(); img.src = imguri; return img.height }(@{img})`;
+    height: @height;
+}

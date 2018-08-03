@@ -1,0 +1,51 @@
+extends ./pug/template.pug
+block css_file
+	//- 每個頁面載入資源唯一不同處
+	link(rel="stylesheet", href="./css/councilmen.min.css")
+block content
+	input#page.inv(type="text",value = "councilmen-area")
+	.preload.abs
+	//- TEST
+	//- TSE
+	//- TEST
+	
+	.wrapper.relat
+		.container.relat.classJ.contain-1000
+			.head-j.row
+				.col-xs-7.col-sm-9.col-md-10.title
+					
+					h1 找縣市議員
+				//- a.btn-prev.col-xs-4.col-sm-2.hidden-sm.hidden-md.hidden-lg.pull-right(href="#") 回上一頁
+				.col-xs-7.col-sm-10.area-selector.hidden-sm.hidden-md.hidden-lg
+					select.select
+						each val in ["六都", "北部", "中部", "南部", "東部" , "離島"]
+							option(value= val )= val
+				a.btn-other.col-xs-5.col-sm-3.col-md-2(href="#") 改找縣市長
+				.select-area.hidden-xs
+					a(href="#六都" , data-id="六都") 六都
+					a(href="#北部", data-id="北部") 北部
+					a(href="#中部", data-id="中部") 中部
+					a(href="#南部", data-id="南部") 南部
+					a(href="#東部", data-id="東部") 東部
+					a(href="#離島", data-id="離島") 離島
+					a(href="#平地原住民", data-id="平地原住民") 平地原住民
+					a(href="#高山原住民", data-id="高山原住民") 高山原住民
+				//- a(href="#", data-id="離島") 不分區
+				//- a(href="#", data-id="離島") 僑民
+			
+				.select-county-blk.row
+				//- .col-xs-6.col-sm-3.bg-light-group-color1
+				//- 	a.info(href="#")
+				//- 		p XXX
+				//- 		p.eng TPE
+				//- 	.hover-layer XXX
+
+
+			.content
+	block script
+		script.
+			//==================ROUTER 後幫我塞參數在這!!!================
+			var county_global='臺北市';
+			var constituency_global = 1;
+			var year_global = 2018;//(DEFAULT 為2018 )
+			var jsonUrl_global = './json/dest/constituencies_'+year_global+'.json';

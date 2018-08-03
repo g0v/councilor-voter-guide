@@ -1,0 +1,111 @@
+extends ./pug/template_resume.pug
+block css_file
+	//- 每個頁面載入資源唯一不同處
+	link(rel="stylesheet", href="./css/bill.min.css")
+	link(rel="stylesheet", href="./css/resume-header.min.css")
+	
+block content
+	input#page.inv(type="text",value = "resume-bills")
+	.preload.abs
+	- var resumeTyp = 'profile'
+	.wrapper-header.fix(class="header-"+resumeTyp ,data-type= resumeTyp)
+		.container.relat.classJ.contain-1000
+			.profile-header.row
+				include ./pug/component/resume-photoArea.pug
+				.infoArea.col-xs-12.col-sm-9.row
+					.name.col-xs-12 
+						h1 王世堅
+					.ui-years.col-xs-12.row
+						select.classJ.select.col-sm-3.col-xs-5.pull-left
+							-var n = 10
+								while n > 0
+									option(value=n-- ) 2014-2018
+						.info-type.col-sm-5.abs.hidden-xs 
+
+							p PROFILE
+						a.btn-wish.pull-right(href="#") 我想許願
+					.photoAndParty.photoAndParty-btm.col-xs-12.col-sm-3.row.hidden-sm.hidden-md.hidden-lg
+						.photo
+							.relat
+								img(src="http://www.tcc.gov.tw/upload/Councilor/2334/d543307a-d837-4de7-a666-0aa306b4d9cd.jpg")
+						.party
+							.relat
+								img(src="img/dest/party.png")
+					include ./pug/component/resume-infoArea.pug
+
+				
+	.wrapper.relat
+		.container.relat.classJ.contain-1000
+			.content-list.row.col-xs-12
+				//- 如果有Current Class 表示現任 
+				//- data-id每個item 需不同
+				.content-item.row.relat.Current(data-id='1')
+					
+					.markups.col-xs-12.col-sm-6.text-right.col-sm-push-6
+						.markup-item.d-inline-block 放寬都市計畫道路限制
+							.num.d-inline-block 10
+						.markup-item.d-inline-block 放寬
+							.num.d-inline-block 0
+					.title.col-xs-12.col-sm-6.col-sm-pull-6
+						h1 陳炳甫...等7位
+
+					.desc.col-xs-12.col-sm-12
+						p 案由
+						p 請市府研議自明(107)年夏天起，於本市中、小學教室全面裝設冷氣，並對於已裝設、正在裝設或計劃裝設冷氣的中、小學，給予相關經費補助。讓學生能有良好上課環境，改善學習品質。
+						br
+						p 執行情形
+					
+						p 存參
+						br
+						p 備註
+						p 為修正「臺北市立天文科學教育館門票收費標準」第3條附表案，敬請備查。
+					a.btn-j.pull-right 一起來點評
+
+				.content-item.row.relat.Current(data-id='2')
+					
+					.markups.col-xs-12.col-sm-6.text-right.col-sm-push-6
+						.markup-item.d-inline-block 道路限制
+							.num.d-inline-block 10
+						.markup-item.d-inline-block 放寬
+							.num.d-inline-block 0
+					.title.col-xs-12.col-sm-6.col-sm-pull-6
+						h1 陳炳甫...等7位
+
+					.desc.col-xs-12.col-sm-12
+						p 案由
+						p 請市府研議自明(107)年夏天起，於本市中、小學教室全面裝設冷氣，並對於已裝設、正在裝設或計劃裝設冷氣的中、小學，給予相關經費補助。讓學生能有良好上課環境，改善學習品質。
+						br
+						p 執行情形
+					
+						p 存參
+						br
+						p 備註
+						p 為修正「臺北市立天文科學教育館門票收費標準」第3條附表案，敬請備查。
+					a.btn-j.pull-right 一起來點評
+			
+				.content-item.row.relat.Current(data-id='3')
+					
+					.markups.col-xs-12.col-sm-6.text-right.col-sm-push-6
+						.markup-item.d-inline-block 道路限制
+							.num.d-inline-block 10
+						.markup-item.d-inline-block 放寬
+							.num.d-inline-block 0
+					.title.col-xs-12.col-sm-6.col-sm-pull-6
+						h1 陳炳甫...等7位
+
+					.desc.col-xs-12.col-sm-12
+						p 案由
+						p 請市府研議自明(107)年夏天起，於本市中、小學教室全面裝設冷氣，並對於已裝設、正在裝設或計劃裝設冷氣的中、小學，給予相關經費補助。讓學生能有良好上課環境，改善學習品質。
+						br
+						p 執行情形
+					
+						p 存參
+						br
+						p 備註
+						p 為修正「臺北市立天文科學教育館門票收費標準」第3條附表案，敬請備查。
+					a.btn-j.pull-right 一起來點評
+			include ./pug/component/pageManager.pug
+			
+	block script
+		script.
+			

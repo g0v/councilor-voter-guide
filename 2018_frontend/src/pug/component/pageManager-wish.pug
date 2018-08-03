@@ -1,0 +1,10 @@
+.pagemanager.col-xs-12.pagemanager-wish
+	.track.d-inline-block
+		.btn-j.btnArrow.btnPrev.d-inline-block
+			| <i class="fa fa-caret-left" aria-hidden="true"></i>
+	
+		-var n = 1
+			while n <22
+				a.pg.d-inline-block(class="pg" + n , data-id= n, href="#")= '願望' + n++	
+		.btn-j.btnArrow.btnNext.d-inline-block
+			| <i class="fa fa-caret-right" aria-hidden="true"></i>

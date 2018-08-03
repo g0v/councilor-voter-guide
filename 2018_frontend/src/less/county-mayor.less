@@ -1,0 +1,350 @@
+@import "config.less";
+@import "common.less";
+@import "mixin.less";
+@import "func.less";
+
+@bg-color: #d3cfad;
+html {}
+
+body {}
+
+
+.wrapper {
+
+    h1,h2{
+        margin:10px 0;
+        @media (max-width: 767px) {
+            margin:9px 0;
+        }
+    }
+    .btn-prev,
+    .btn-other,.select {
+        margin: 10px 0;
+        @media (max-width: 767px) {
+            margin:5px 0;
+        }
+    }
+
+    .container {
+        margin-top: 100px;
+
+        @media (max-width: 767px) {
+            padding:0 10%;
+        }
+        .btn-other {
+                .bg-white;
+                background-image: url('../img/dest/to-ico.jpg');
+                background-repeat: no-repeat;
+                background-position: 5% center;
+                padding: 10px 5px 10px 30px;
+
+                .talign(center);
+        }
+        .head-j {
+            padding:0 10px;
+            
+
+            .title {
+                background-image: url('../img/dest/ico.png');
+                background-repeat: no-repeat;
+                background-position: 0% 60%;
+                padding: 0px 0px 0px 30px;
+            }
+            .area-selector{
+                padding:0px 50px 0px 0px;
+                /*padding:0px 0px 0px 50px;*/
+                select {
+                    width:100%;
+                    .darkGray;
+                }
+            }
+            
+            .btn-prev {
+                .bg-lightblue;
+                .white;
+                padding: 10px 5px 10px 5px;
+                .talign(center);
+            }
+        }
+
+        .select-area,
+        .select-county,
+        .select-county-blk {
+            margin: 10px -15px;
+            .bold;
+
+            >a {
+                margin: 15px;
+                padding: 0 5px;
+                .darkGray;
+                .fontsize(18px);
+                &.act {
+                    .lightblue;
+                    .setBorderLeftStyle(1px,
+                    @darkGray);
+                }
+            }
+        }
+        .select-county , .select-constituency{
+           
+            a{
+                margin:0 15px;
+                .setBorderLeftStyle(1px,
+                    rgba(0,0,0,0));
+            }
+        }
+        .select-county-blk {
+            margin: 50px -15px;
+            >div {
+                padding-bottom: 25%;
+                @media (max-width: 767px) {
+                    padding-bottom: 50%;
+                }
+                margin:0%;
+                .relat;
+                overflow:hidden;
+                .info {
+                    .abs;
+                    /*.bg-lightblue;*/
+
+                    border-radius: 5px;
+                    height: 96%;
+                    /* = 100% - 2*5% padding */
+                    width: 96%;
+                    /* = 100% - 2*5% padding */
+                    padding: 20% 0%;
+                    left:2%;
+                    .talign(center);
+                    .fontsize(18px);
+                    .darkGray;
+                    .eng {
+                        .fontsize(80px);
+                        line-height: 100px;
+                        .white;
+                        opacity: .5;
+                        @media (max-width: 767px) {
+                            .fontsize(75px);
+                            line-height: 80px;
+                        }
+                    }
+                }
+            }
+        }
+        .select {
+            .input-inv;
+            .bg-white;
+            padding: 10px 20px;
+            background-image: url('../img/dest/tri.png');
+            background-repeat: no-repeat;
+            background-position: 95%;
+            color: #c6c6c6;
+        }
+
+        /**
+         * 資訊卡
+         */
+        .content-list {
+            margin: 50px 0;
+            .bold;
+            .content-item.row {
+               
+                padding: 0 15px;
+                margin: 2% -15px;
+                border-radius: 10px;
+                
+
+                .label-current {
+                    right: 0;
+                    width: 8%;
+                    .inv;
+                    img{
+                        float:right;
+                    }
+                    @media (max-width: 767px) {
+                        width: 20%;
+                    }
+                }
+                &.Current{
+                    .label-current{
+                        display:block;
+                    }
+                }
+                .content-item-layer1 ,.content-detail {
+
+                    margin:0 auto;
+                    .statistic-info{
+                        .tit{
+                            .setBorderBottomStyle(1px , #000);
+                        }
+                    }
+                }
+                .content-item-layer1{
+                    width:100%;
+                    padding:0;
+                    .contributions-info,
+                    .personal-info,
+                    .statistic-info {
+                        margin-bottom: 0px;
+                        @media (max-width: 767px){
+                                margin-bottom: 30px;
+                        }
+                    } 
+                    .profile {
+                        .relat;
+                        padding: 20px;
+                        >* {
+                            float: left;
+                            margin: 0 5px;
+                        }
+                        .photo,.party{
+                            width:75px;
+                            height:75px;
+                            overflow:hidden;
+                            
+                            @media (max-width: 767px){
+                                height:55px;
+                                width:55px;
+
+                            }
+                            .talign(center);
+                            >*{
+                                
+                                height:100%;
+                                
+                                display:inline-block;
+                                img{
+                                    height:100%;
+                                }
+                            }
+
+
+                        }
+                        .name{
+                            @media (max-width: 767px){
+                                margin:0;
+                            } 
+                        }
+
+                        .name h1 {
+
+                            @media (max-width: 767px){
+                                .classJ.exmdt;
+                            }
+                        }
+                    }
+                    
+                    /**
+                     * 文字大小
+                     */
+                    .personal-info,
+                    .statistic-info {
+                        .talign(left);
+                        .classJ.smt;
+                    }
+                     .personal-info, .statistic-info,.contributions-info{
+                         @media (max-width: 767px){
+                            /*內文*/
+                             .partyname , .tit , .statistic {
+                                p{
+                                    .classJ.mdt-md;
+                                    padding:3px 5px;
+                                }
+                                
+                            }
+                            /*標題*/
+                            .partyname , .tit{
+                                p {
+                                    .talign(left);
+                                    .classJ.mdt;
+                                    .setBorderBottomStyle(1px, rgba(0,0,0,.3));
+                                    padding:6px 5px;
+                                }
+                            }
+
+                           
+                         }
+                     }
+
+
+
+
+
+                    .contributions-info {
+                        .tit {
+                            .talign(center);
+                            .classJ.mdt-sm;
+                        }
+                        .year-contri {
+                            .classJ.smt;
+                            margin:10px 0;
+                            >* {
+                                .talign(center);
+                            }
+                            .year {
+
+                                .bg-white;
+                                border-radius: 3px;
+                                padding: 3px;
+                            }
+                        }
+                    }
+                    .content-btm-ui {
+                        .relat;
+                       
+                        left: 0;
+                        .bold;
+                        padding: 5px;
+                        .btn-detail {
+                            .classJ.smt;
+                            .lightblue;
+                            .bold;
+                        }
+                        .btn-resume {
+                            .classJ.smt;
+                            padding: 5px;
+                            .bg-lightblue;
+                            border-radius: 0;
+                            float: right;
+                            .white;.bold;
+                        }
+                    }
+
+                }
+                .content-detail{
+                    .classJ.smt;
+                    padding:5px 0;
+                    height:auto;
+                    overflow:hidden;
+                    .proposal.row , .vote.row,.politics.row{
+                        padding:20px 5px;
+                        margin:0;
+                        marging-left:1%;
+                        .tit{
+                            padding:0 20px;
+                        }
+                        .list{
+                            width:100%;
+                            .bg-white;
+                            padding:10px 20px;
+                            margin: 2px;
+                            >div{
+                                padding:5px 0px;
+                            }
+                            .statstic-num{
+                                .white; 
+                                padding:5px 15px;
+                            }
+                        }
+                        ul.list-politics{
+                            list-style-type:decimal;
+                            padding-left:5%;
+                             @media (max-width: 767px) {
+                                    padding-left:10%;
+                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

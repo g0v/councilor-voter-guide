@@ -1,0 +1,51 @@
+extends ./pug/template.pug
+block css_file
+	//- 每個頁面載入資源唯一不同處
+	link(rel="stylesheet", href="./css/bill.min.css")
+block content
+	input#page.inv(type="text",value = "bill-area")
+	.preload.abs
+	//- TEST
+	//- TSE
+	//- TEST
+	
+	.wrapper.relat
+		.container.relat.classJ.contain-1000
+			.head-j.row
+				.col-xs-7.col-sm-9.col-md-10.title
+					
+					h1 找提案
+				//- a.btn-prev.col-xs-4.col-sm-2.hidden-sm.hidden-md.hidden-lg.pull-right(href="#") 回上一頁
+				.col-xs-7.col-sm-10.area-selector.area.hidden-sm.hidden-md.hidden-lg
+					select.select
+						each val in ["六都", "北部", "中部", "南部", "東部" , "離島"]
+							option(value= val )= val
+				.col-xs-5.col-sm-2.col-md-2.navbar-search-bill
+					form 
+						input(type="text" , placeholder="輸入關鍵字" )
+						img.img-responsive(src="img/dest/search.jpg")
+				.select-bill.hidden-xs.col-xs-12
+					a.act(href="#" , data-id="") 縣市長提案
+					a(href="#" , data-id="") 縣市議員提案
+				.select-area.hidden-xs.col-xs-12
+					a(href="#六都" , data-id="六都") 六都
+					a(href="#北部", data-id="北部") 北部
+					a(href="#中部", data-id="中部") 中部
+					a(href="#南部", data-id="南部") 南部
+					a(href="#東部", data-id="東部") 東部
+					a(href="#離島", data-id="離島") 離島
+					a(href="#平地原住民", data-id="平地原住民") 平地原住民
+					a(href="#高山原住民", data-id="高山原住民") 高山原住民
+					a(href="#不分區", data-id="不分區") 不分區
+					a(href="#僑民", data-id="僑民") 僑民
+				.kw.col-xs-12 
+					h3 關鍵字:
+						span.kw-val 交通
+				.select-county-blk.row
+			.content
+	block script
+		script.
+			var county_global='臺北市';
+			var constituency_global = 1;
+			//var year_global = 2018;//(DEFAULT 為2018 )
+			var jsonUrl_global = './json/dest/constituencies_2018.json';var prefixUrl_global = '/prefixUrl/';

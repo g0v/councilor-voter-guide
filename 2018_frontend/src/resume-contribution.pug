@@ -1,0 +1,53 @@
+extends ./pug/template_resume.pug
+block css_file
+	//- 每個頁面載入資源唯一不同處
+	link(rel="stylesheet", href="./css/resume.min.css")
+
+block content
+	input#page.inv(type="text",value = "resume")
+	.preload.abs
+	- var resumeTyp = 'contribution'
+	.wrapper-header.relat(class="header-"+resumeTyp ,data-type= resumeTyp)
+		.container.relat.classJ.contain-1000
+			//- .nav-resume-top.row
+			//- 	a.tracklink.col-xs-6(data-ga="logo",href="./",data-href="./")
+			//- 		img.img-responsive(src="./img/dest/logo.png")
+			//- 	a.btn-close.pull-right(href="")
+			//- 		img.img-responsive(src="img/dest/close.jpg")
+
+			.profile-header.row
+				//- desktop 圖片
+				include ./pug/component/resume-photoArea.pug
+				.infoArea.col-xs-12.col-sm-9.row
+					.name.col-xs-12 
+						h1 王世堅
+					.ui-years.col-xs-12.row
+						select.classJ.select.col-sm-3.col-xs-5.pull-left
+							-var n = 10
+								while n > 0
+									option(value=n-- ) 2014-2018
+						.info-type.col-sm-5.abs.hidden-xs 
+
+							p POLITICAL
+							p CONTRIBUTION
+						a.btn-wish.pull-right(href="#") 我想許願
+					.photoAndParty.photoAndParty-btm.col-xs-12.col-sm-3.row.hidden-sm.hidden-md.hidden-lg
+						.photo
+							.relat
+								img(src="http://www.tcc.gov.tw/upload/Councilor/2334/d543307a-d837-4de7-a666-0aa306b4d9cd.jpg")
+						.party
+							.relat
+								img(src="img/dest/party.png")
+					include ./pug/component/resume-infoArea.pug
+					//- .nav-resume-all.col-xs-11
+					//- 	a(href="") 基本資料
+					//- 	a(href="") 多媒體
+					//- 	a(href="") 提案/表決/政見
+					//- 	a(href="") 配合款
+					//- 	a(href="") 政治獻金
+					//- 	a(href="") 財產申報
+				//- mobile 圖片
+	.wrapper.relat
+		.container.relat.classJ.contain-1000
+	block script
+		script.

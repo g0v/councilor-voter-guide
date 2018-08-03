@@ -1,0 +1,76 @@
+extends ./pug/template.pug
+block css_file
+	//- 每個頁面載入資源唯一不同處
+	link(rel="stylesheet", href="./css/wish.min.css")
+block content
+	input#page.inv(type="text",value = "wish")
+	.preload.abs
+	//- TEST
+	//- TSE
+	//- TEST
+	
+	.wrapper.relat
+		.container.relat.classJ.contain-1000
+			.head-j.row
+				.col-xs-8.col-sm-2.col-md-2.title
+					
+					h1 許願池
+				a.btn-prev.col-xs-4.col-sm-2.hidden-sm.hidden-md.hidden-lg.pull-right(href="#") 回上一頁
+				
+				.ui.row.col-xs-12.col-sm-10
+					a.col-xs-4.btn-wish.pull-left 我想許願
+					.col-xs-5.col-sm-3.col-md-3.navbar-search-bill.pull-right
+						form 
+							input(type="text" , placeholder="縣市/候選人" )
+							img.img-responsive(src="img/dest/search.jpg")
+				
+				.row.col-sm-12.col-xs-12.kwset
+					.kw.col-xs-12.col-sm-6
+						h3 關鍵字:
+							span.kw-val 交通
+					.filters.col-xs-12.col-sm-6.col-md-6.pull-right.text-right
+						a.d-inline.f-item(href="#" , data-id="marked")
+							.check-ico.d-inline-block
+							span 城市願望
+						a.d-inline.f-item(href="#" , data-id="unmark")
+							.check-ico.d-inline-block
+							span 候選人願望
+						a.d-inline.f-item(href="#" , data-id="unmark")
+							.check-ico.d-inline-block
+							span 其他願望
+				//- .select-wish.col-sm-12.hidden-xs
+				//- 	.abs.btn-j.btnArrow.btnPrev.d-inline-block(href="#")
+				//- 		|<i class="fa fa-caret-left" aria-hidden="true"></i>
+
+				//- 	.wishlist.relat
+				//- 		.wishtrack
+				//- 			-var n = 1
+				//- 				while n < 13
+				//- 					a(href="#", data-id= n)= '願望' + n++ 
+				//- 	.abs.btn-j.btnArrow.btnNext.d-inline-block(href="#")
+				//- 		|<i class="fa fa-caret-right" aria-hidden="true"></i>
+				include ./pug/component/pageManager-wish.pug
+
+				
+			.content-list.row.col-xs-12
+				.content-item.row.relat.col-xs-12.col-sm-6(data-id='1')
+					.bg.abs
+					.desc.col-xs-12.col-sm-12
+						p.name 陳中原
+						p 我希望世界和平
+						p.date 2015-01-01
+				.content-item.row.relat.col-xs-12.col-sm-6(data-id='2')
+					.bg.abs
+					.desc.col-xs-12.col-sm-12
+						p.name 陳中原
+						p 我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平我希望世界和平
+						p.date 2015-01-01
+			
+	block script
+		script.
+			//==================ROUTER 後幫我塞參數在這!!!================
+			var county_global='臺北市';
+			var constituency_global = 1;
+			//var year_global = 2018;//(DEFAULT 為2018 )
+			var jsonUrl_global = './json/dest/constituencies_2018.json';
+			var prefixUrl_global = '/prefixUrl/';

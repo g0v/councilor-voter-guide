@@ -1,0 +1,89 @@
+
+- var _nocache = Math.floor(Math.random() * (1000) +1)
+
+
+doctype html
+html(lang="zh-TW" class="no-js")
+  head
+    include ./head.pug
+    block css_file
+  body
+    
+    .classJ.loading
+        .center
+            .ld
+                img(src="./img/dest/ring.gif")
+    include ./nav.pug
+
+   
+    block content
+    
+    .footer.classJ
+        .row.contain-1000.classJ
+            .col-sm-2.hidden-xs.btn-j
+                a(href="#")
+                    p 我是候選人
+            .col-sm-2.hidden-xs.btn-j
+                a(href="#")
+                    p 互動區
+            .col-xs-9.col-sm-5.row.site-logo
+                .col-xs-5.power 2018 Powered by
+                .col-xs-7 
+                    img.img-responsive(src="img/dest/site-logo.jpg")
+                    
+                    a.col-xs-6.abs.burnpoint(href="https://www.sparktaiwan.org/" , target="_blank")
+                    a.col-xs-6.abs.g0v(href="https://grants.g0v.tw/power/" , target="_blank")
+            .col-xs-3.col-sm-2.btn-j.btn-about
+                a(href="about.html")
+                    p 關於本站 
+            .classJ.btn-fb.hidden-sm.hidden-md.hidden-lg.abs.btn-fb-fix
+                a(href="#")
+                    img.img-responsive(src="img/dest/fb.jpg")
+            .classJ.btn-fb.hidden-xs
+                a(href="#")
+                    img.img-responsive(src="img/dest/fb.jpg")
+    //- include ./pop-about.pug
+   
+            
+    
+    script(src="./lib/jquery-2.2.4.min.js")
+    script(src="./lib/jquery.migrate.min.js")
+    //- script(src="./lib/jquery.animateSprite.js")
+    //- script(src="./js/bootstrap.min.js")
+    //-TWEEN
+    //- script(src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js")
+    //- script(src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js") 
+    script(src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js")
+    //- script(src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/plugins/ScrollToPlugin.min.js")
+    //- INTERACT JS
+    //- script(src="./lib/interact.js")
+    //-BABYLON 
+    //-script(src="http://cdn.babylonjs.com/2-4/babylon.max.js")
+    
+    //- script(src="//unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js")
+    
+    // 新增外掛 underscore * 0614
+    script(src="./lib/underscore.min.js")
+
+    // 新增外掛 underscore * 0705
+    link(rel="stylesheet",href="./lib/css/jquery.mCustomScrollbar.css")
+    script(src="./lib/jquery.mCustomScrollbar.concat.min.js")        
+    script(src="./lib/device.min.js")
+    script(src="./lib/modernizr-latest.js")
+    script(src="./lib/imagesloaded.pkgd.min.js")
+    script(src="./lib/jquery.ba-bbq.min.js")
+    
+    //-script(src="./lib/audio5.js")
+    //- script(src="lib/jquery.form.min.js")
+    //- script(src="./lib/jquery.jrumble.1.3.min.js")
+    //- script(src="./lib/lazyload.min.js")
+    
+    //- script(src="./lib/hammer.min.js")  
+    link(rel="stylesheet",href="./lib/css/slick.css")
+    link(rel="stylesheet",href="./lib/css/slick-theme.css")    
+    script(src="./lib/slick.min.js")
+    script(src="./js/bundle.min.js")
+    link(rel="stylesheet" ,href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css")
+    //- link(rel="stylesheet", href="./css/fonts.min.css")
+    block scripts
+    

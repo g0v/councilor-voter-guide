@@ -1,0 +1,72 @@
+extends ./pug/template.pug
+block css_file
+	//- 每個頁面載入資源唯一不同處
+	link(rel="stylesheet", href="./css/wish.min.css")
+	link(rel="stylesheet",href="./lib/css/simplemde.min.css")
+	script(src="./lib/simplemde.min.js")
+block content
+	input#page.inv(type="text",value = "wish-editor")
+	.preload.abs
+	//- TEST
+	//- TSE
+	//- TEST
+	
+	.wrapper.relat
+		.container.relat.classJ.contain-1000
+			.head-j.row
+				.col-xs-8.col-sm-2.col-md-2.title
+					
+					h1 許願池
+				a.btn-prev.col-xs-4.col-sm-2.hidden-sm.hidden-md.hidden-lg.pull-right(href="#") 回上一頁
+				
+				.ui.row.col-xs-12.col-sm-10
+					a.col-xs-4.btn-wish.pull-left.inv 我想許願
+					.col-xs-5.col-sm-3.col-md-3.navbar-search-bill.pull-right
+						form 
+							input(type="text" , placeholder="縣市/候選人" )
+							img.img-responsive(src="img/dest/search.jpg")
+					
+				
+
+				
+			.content-list.row.col-xs-12
+				
+
+				.content-item-editor.row.relat
+					h1.title 民眾（LinEmma）的願望
+					.col-xs-12.col-sm-7.ui-select-candidate
+						.ico.d-inline-block 
+						span 對
+						.input.relat.d-inline-block
+							input(type="text" , placeholder="請輸入候選人")
+							.opts.abs
+								.opt.relat()
+									span 丁守中
+								.opt.relat()
+									span 丁守中
+								
+						span 許願
+					.col-xs-12.col-sm-5.ui-select-county
+						.ico.d-inline-block 
+						span 對
+						select.select
+							option 台北市
+						span 許願
+					.col-xs-12.col-sm-12.col-md-12.pull-left.ui-else 
+						.ico.d-inline-block 
+						span 其他願望
+					.col-xs-12.col-sm-12.editor
+						textarea#simplemde
+					
+					a.btn-submit.relat.pull-left(href="#")
+						span 送出
+			
+	block script
+		script.
+			//==================ROUTER 後幫我塞參數在這!!!================
+			var county_global='臺北市';
+			var constituency_global = 1;
+			//var year_global = 2018;//(DEFAULT 為2018 )
+			var jsonUrl_global = './json/dest/constituencies_2018.json';
+			var prefixUrl_global = '/prefixUrl/';
+			var simplemde;///EDIT

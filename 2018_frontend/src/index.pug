@@ -1,0 +1,273 @@
+extends ./pug/template.pug
+
+block css_file
+	//- 每個頁面載入資源唯一不同處
+
+	//- link(rel="stylesheet", href="./lib/css/fullpage.min.css")
+	link(rel="stylesheet", href="./css/index.min.css")
+	script(src="./lib/three/libs/dat.gui.min.js")
+	script(src="./lib/three.min.js")
+	script(src="./lib/three/libs/stats.min.js")
+	script(src="./lib/three/controls/OrbitControls.js")
+	script(src="./lib/three/js/renderers/Projector.js")
+	script(src="./lib/three/js/renderers/CanvasRenderer.js")
+	
+
+block content
+	input#page.inv(type="text",value = "index")
+	.preload.abs
+	.wrapper.relat
+		#kv.sec.relat.section
+			#canv_far.abs()
+			.container.relat.row.classJ.contain-1000
+				.title.relat.d-inline-block
+					img.img-responsive(src="img/dest/index-logo.png")
+					.tit.abs
+						h1 投票指南
+				.row.sub
+					.col-sm-4.row.col-xs-12
+						.col-sm-12.col-xs-12.subt.subt1
+
+							p 不盲投
+							p 臺灣民主更出頭
+					a.col-xs-6.col-sm-4.row.btn-findMayor(href="#")
+						.ico.col-xs-4.col-sm-4.relat
+							img.img-responsive(src="img/dest/index-ico1.png") 
+						.col-sm-8.col-xs-8.subt
+							p 找縣市長
+							p ENTER
+					a.col-xs-6.col-sm-4.row.btn-findCouncilmen(href="#")
+						.ico.ico2.col-xs-4.col-sm-4.relat
+							img.img-responsive(src="img/dest/index-ico2.png") 
+						.col-sm-8.col-xs-8.subt
+							p 找縣市議員
+							p ENTER
+				.row.locator.abs.col-sm-3.col-xs-5
+					.ico.pull-left
+						img.img-responsive(src="img/dest/location-ico.png") 
+					.pull-left.btn-autolocate
+						span 自動定位
+				.row.locator-ed.abs.col-sm-4.col-xs-9.inv
+					.ico.pull-left
+						img.img-responsive(src="img/dest/location-ico.png") 
+					.pull-left.desc
+						p 您目前所在區域
+						p 
+							span.county_val 
+							span  
+							span.area_val  
+					.pull-left.d-inline-block.btn-chooseLocation
+						span 選其他區域
+		.sec2.sec.relat#MayorAndCouncilor.section
+			.bg.abs.hidden-xs
+				.bg-left.abs
+				.bg-right.abs
+			.container.relat.row.classJ.contain-1200
+				.col-xs-12.col-sm-6.relat.findmayor#findmayor
+					.abs.ico
+						img.img-responsive(src="img/dest/sec2_ico1.png")
+					.tit.relat.hidden-xs 
+						p.eng COUNTY 
+						p.eng MAYOR
+
+					.tit.relat.hidden-sm.hidden-md.hidden-lg 
+						p.eng COUNTY MAYOR
+						
+					.sub.relat
+						p 找縣市長
+					.select-area.relat
+						a.act(href="#六都" , data-id="六都") 六都
+						a(href="#北部", data-id="北部") 北部
+						a(href="#中部", data-id="中部") 中部
+						a(href="#南部", data-id="南部") 南部
+						a(href="#東部", data-id="東部") 東部
+						a(href="#離島", data-id="離島") 離島
+					.select-county.relat.hidden-xs
+						a(href="#六都" , data-id="六都") 六都
+						a(href="#北部", data-id="北部") 北部
+						a(href="#中部", data-id="中部") 中部
+						a(href="#南部", data-id="南部") 南部
+						a(href="#東部", data-id="東部") 東部
+						a(href="#離島", data-id="離島") 離島
+						a(href="#六都" , data-id="六都") 六都
+						a(href="#北部", data-id="北部") 北部
+						a(href="#中部", data-id="中部") 中部
+						a(href="#南部", data-id="南部") 南部
+						a(href="#東部", data-id="東部") 東部
+						a(href="#離島", data-id="離島") 離島
+						a(href="#六都" , data-id="六都") 六都
+						a(href="#北部", data-id="北部") 北部
+						a(href="#中部", data-id="中部") 中部
+						a(href="#南部", data-id="南部") 南部
+						a(href="#東部", data-id="東部") 東部
+						a(href="#離島", data-id="離島") 離島
+				.col-xs-12.col-sm-6.relat.findcouncilor#findcouncilor
+					.abs.ico
+						img.img-responsive(src="img/dest/sec2_ico2.png")
+					.tit.relat 
+						p.eng COUNCILOR 
+					.sub.relat
+						p 找縣市議員
+					.select-area.relat
+						a(href="#六都" , data-id="六都") 六都
+						a(href="#北部", data-id="北部") 北部
+						a(href="#中部", data-id="中部") 中部
+						a(href="#南部", data-id="南部") 南部
+						a(href="#東部", data-id="東部") 東部
+						a(href="#離島", data-id="離島") 離島
+						a(href="#平地原住民", data-id="平地原住民") 平地原住民
+						a(href="#高山原住民", data-id="高山原住民") 高山原住民
+					.select-county.relat.hidden-xs
+						a(href="#六都" , data-id="六都") 六都
+						a(href="#北部", data-id="北部") 北部
+						a(href="#中部", data-id="中部") 中部
+						a(href="#南部", data-id="南部") 南部
+						a(href="#東部", data-id="東部") 東部
+						a(href="#離島", data-id="離島") 離島
+						a(href="#六都" , data-id="六都") 六都
+						a(href="#北部", data-id="北部") 北部
+						a(href="#中部", data-id="中部") 中部
+						a(href="#南部", data-id="南部") 南部
+						a(href="#東部", data-id="東部") 東部
+						a(href="#離島", data-id="離島") 離島
+						a(href="#六都" , data-id="六都") 六都
+						a(href="#北部", data-id="北部") 北部
+						a(href="#中部", data-id="中部") 中部
+						a(href="#南部", data-id="南部") 南部
+						a(href="#東部", data-id="東部") 東部
+						a(href="#離島", data-id="離島") 離島
+		.sec.relat.sec3#seemore.section
+			
+			.container.relat.row.classJ.contain-1000
+				.col-xs-12.col-sm-12.relat.content
+					.abs.ico
+						img.img-responsive(src="img/dest/sec3_ico.png")
+						img.abs.img-responsive.eyeball(src="img/dest/sec3_icoa.png")
+					.tit.relat 
+						p.eng SEE MORE
+
+					//- .tit.relat.hidden-sm.hidden-md.hidden-lg 
+					//- 	p.eng COUNTY MAYOR
+						
+					.sub.relat
+						p 給你好看
+					.select-opt1.relat
+						a(href="#" , data-id="1") 相關圖表
+						a(href="#", data-id="2") 議員配合款
+						a(href="#", data-id="3") 政治獻金
+						a(href="#", data-id="4") 反核
+						a(href="#", data-id="5") 婚姻平權
+		.sec.relat.sec6#bills.section
+			
+			.container.relat.row.classJ.contain-1000
+				.col-xs-12.col-sm-12.relat.content
+					.abs.ico
+						img.img-responsive(src="img/dest/sec6_ico.png")
+					.tit.relat 
+						p.eng BILL
+
+					//- .tit.relat.hidden-sm.hidden-md.hidden-lg 
+					//- 	p.eng COUNTY MAYOR
+						
+					.sub.relat
+						p 找提案
+					.select-opt1.relat
+						a(href="#" , data-id="1") 縣市長提案
+						a(href="#", data-id="2") 縣市議員提案
+		.sec.relat.sec7#votes.section
+			
+			.container.relat.row.classJ.contain-1000
+				.col-xs-12.col-sm-12.relat.content
+					.abs.ico
+						img.img-responsive(src="img/dest/sec7_ico.png")
+						img.hammer.abs.img-responsive(src="img/dest/sec7_icoa.png")
+						img.dong.abs.img-responsive(src="img/dest/sec7_icob.png")
+					.tit.relat 
+						p.eng VOTE
+
+					//- .tit.relat.hidden-sm.hidden-md.hidden-lg 
+					//- 	p.eng COUNTY MAYOR
+						
+					.sub.relat
+						p 找表決
+					.select-opt1.relat
+						a(href="#" , data-id="1") 臺北議會表決
+						a(href="#", data-id="2") 高雄議會表決
+		.sec.relat.sec8#wishingwell.section
+			
+			.container.relat.row.classJ.contain-1000
+				.col-xs-12.col-sm-12.relat.content
+					.abs.ico
+						img.img-responsive(src="img/dest/sec8_ico.png")
+					.tit.relat 
+						p.eng WISHING WELL
+
+					//- .tit.relat.hidden-sm.hidden-md.hidden-lg 
+					//- 	p.eng COUNTY MAYOR
+						
+					.sub.relat
+						p 許願池
+					.select-opt1.relat
+						a(href="#" , data-id="1") 許願池
+						a(href="#", data-id="2") 我想許願
+		.end.relat
+	.pop.pop-map.fix.inv
+		.container.relat.classJ.contain-1000
+			
+			.step.step1.relat
+				.map.abs.hidden-xs
+					include ./pug/component/map.pug
+				//- img.img-responsive(src="img/dest/map.png")
+				.tit Step1
+				.sub 
+					p 請選擇您要關注的縣市
+					p 系統將會以您選擇區域為優先
+				
+				select.select.hidden-xs.relat
+					option(value='0' ) 選擇縣市
+					each val in ['臺北市', '基隆市', '新北市', '宜蘭縣', '新竹市', '新竹縣', '桃園市', '苗栗縣', '臺中市', '彰化縣', '南投縣', '嘉義市', '嘉義縣', '雲林縣', '臺南市', '高雄市', '屏東縣', '臺東縣', '花蓮縣', '澎湖縣', '金門縣', '連江縣']
+						option(value= val )= val
+				.select-county-blk.row.col-sm-12.relat.hidden-sm.hidden-md.hidden-lg
+					each val in ['臺北市', '基隆市', '新北市', '宜蘭縣', '新竹市', '新竹縣', '桃園市', '苗栗縣', '臺中市', '彰化縣', '南投縣', '嘉義市', '嘉義縣', '雲林縣', '臺南市', '高雄市', '屏東縣', '臺東縣', '花蓮縣', '澎湖縣', '金門縣', '連江縣']
+						.col-xs-6.col-sm-3
+							a.info.bg-light-group-color1(href="#", data-county= val)
+								p= val
+								p.eng TPE
+					
+			.step.step2.relat.inv
+				.tit Step2
+				.sub 
+					p 請選擇您要關注的縣市
+					p 系統將會以您選擇的行政區為優先
+				.select-county-blk.select-area-blk.row.col-sm-12.relat
+					//- .col-xs-6.col-sm-3
+					//- 	a.info.bg-light-group-color1(href="#")
+					//- 		p 萬華區
+					//- 		p.eng 110
+					
+			.btn-close.abs
+				img(src="img/dest/close.jpg")
+	block script
+		script.
+			var global_location={county : undefined, area:undefined};
+			var prefixUrlMayor_global = '/candidates/2018/mayors/';
+			var prefixUrlCouncilor_global = '/candidates/2018/councilors/';
+
+			var prefixUrlMayorForBills_global = '/candidates/2018/mayors/';
+			var prefixUrlCouncilorForBills_global = '/candidates/2018/councilors/';
+
+			var year_global = 2018;//(DEFAULT 為2018 )
+			var jsonUrl_global = './json/dest/constituencies_'+year_global+'.json';
+			var global_geolookupApi= 'https://sheethub.com/ronnywang/%E6%9D%91%E9%87%8C%E7%95%8C%E5%9C%9620140313/geolookup';
+			var global_constituencylookupApi = "https://taipei-yin-719296.middle2.me/api/constituency/"
+
+			//- $('.btn-autolocate').click(function(){
+			//- 	///////update View.....
+
+
+			//- 	///
+			//- 	$('.locator').fadeOut(300);
+			//- 	$('.locator-ed').delay(300).fadeIn(300);
+
+			//- })
+			

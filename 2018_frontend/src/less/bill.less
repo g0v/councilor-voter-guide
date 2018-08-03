@@ -1,0 +1,312 @@
+@import "config.less";
+@import "common.less";
+@import "mixin.less";
+@import "func.less";
+
+html {background:@bg-bill;}
+
+body {
+   background:@bg-bill; 
+}
+
+
+.wrapper {
+
+    h1,h2{
+        margin:10px 0;
+        @media (max-width: 767px) {
+            margin:9px 0;
+        }
+    }
+    .btn-prev,
+    .btn-other,.select {
+        margin: 10px 0;
+        @media (max-width: 767px) {
+            margin:5px 0;
+        }
+    }
+
+    .container {
+        margin-top: 100px;
+
+        @media (max-width: 767px) {
+            padding:0 10%;
+        }
+        .btn-other {
+                .bg-white;
+                background-image: url('../img/dest/to-ico.jpg');
+                background-repeat: no-repeat;
+                background-position: 5% center;
+                padding: 10px 5px 10px 30px;
+
+                .talign(center);
+        }
+        .head-j {
+            padding:0 10px;
+            
+            >.navbar-search-bill{
+                .bg-white;
+
+                padding:10px  ;margin:5px 0;
+                    input,img{
+                        display:inline-block;
+
+                    }
+                    img{
+                        float:right;
+                    }
+                    input{
+                        width:100px;
+                        padding:0 0px;
+                        .input-inv;
+                    }
+
+                    
+                }
+            .title {
+                background-image: url('../img/dest/ico.png');
+                background-repeat: no-repeat;
+                background-position: 0% 60%;
+                padding: 0px 0px 0px 30px;
+            }
+            .area {
+                /*padding:0px 0px 0px 50px;*/
+            }
+            .area-selector{
+                padding:0px 50px 0px 0px;
+                select {
+                    width:100%;
+                    .darkGray;
+                }
+            }
+            .btn-prev {
+                .bg-lightblue;
+                .white;
+                padding: 10px 5px 10px 5px;
+                .talign(center);
+            }
+        }
+        .kw{
+            
+           >*{ margin:10px 0;.bold;}
+        }
+        .select-bill
+        ,.select-area,
+        .select-county,
+        .select-constituency,
+        .select-county-blk {
+            margin: 10px -15px;
+            .bold;
+
+            a {
+                margin: 15px;
+                padding: 0 5px;
+                .darkGray;
+                .fontsize(18px);
+                &.act {
+                    .lightblue;
+                    .setBorderLeftStyle(1px,
+                    @darkGray);
+                }
+            }
+        }
+        .select-county , .select-constituency{
+           
+            a{
+                margin:0 15px;
+                .setBorderLeftStyle(1px,
+                    rgba(0,0,0,0));
+            }
+        }
+        .select-constituency{
+            
+            a{
+                .relat;
+            }
+        }
+        
+        .filters{
+        padding:10px 0  ;
+            .f-item{
+                margin:0 10px;
+                &.act{
+                    .check-ico{
+                        .bg-lightblue;
+                    }
+                }
+            }
+            .check-ico{
+                width:20px;
+                height:20px;
+                .bg-white;
+                margin:0px 5px ;
+                line-height:25px;
+                .relat;
+                top:4px;
+            }
+        }
+
+        .select-county-blk {
+            margin: 50px -15px;
+
+            >div {
+                padding-bottom: 25%;
+                @media (max-width: 767px) {
+                    padding-bottom: 50%;
+                }
+                margin:0%;
+                .relat;
+                
+                .info , .hover-layer, .area-info{
+                    .abs;
+                    /*.bg-lightblue;*/
+
+                    border-radius: 5px;
+                    height: 96%;
+                    /* = 100% - 2*5% padding */
+                    width: 96%;
+                    /* = 100% - 2*5% padding */
+                    padding: 20% 0%;
+                    left:-2%;
+                    .talign(center);
+                    .fontsize(18px);
+                    .darkGray;
+                    
+                    &.councilmen-area{
+                        padding: 50% 0% 5%;
+                        .eng {
+                            .fontsize(100px);
+                            @media (max-width: 767px) {
+                                .fontsize(80px);}
+                        }
+                    }
+
+                    .eng {
+                        .fontsize(80px);
+                        line-height: 100px;
+                        .white;
+                        opacity: .5;
+
+                        @media (max-width: 867px) {
+                            .fontsize(80px);
+                            line-height: 90px;
+                        }
+                        @media (max-width: 767px) {
+                            .fontsize(70px);
+                            line-height: 80px;
+                        }
+                    }
+
+                    .bg {
+                        width:100%;
+                        padding:0;
+                        margin:0;
+                        .fontsize(60px);
+                        line-height: 60px;
+                        .white;
+                        opacity: .5;
+
+                        >*{
+                            padding:0;
+                            margin:0;
+                        }
+                        .tlg{
+                        .fontsize(120px);
+                        line-height: 120px;
+                        }
+                        .tmd{
+                            .fontsize(110px);
+                            line-height: 120px;
+                        }
+                        @media (max-width: 867px) {
+                            .fontsize(60px);
+                            line-height: 60px;
+                            .tmd{
+                                .fontsize(100px);
+                                line-height: 120px;
+                            }
+                        }
+                        @media (max-width: 767px) {
+                            .fontsize(60px);
+                            line-height: 60px;
+                        }
+                    }
+
+                }
+                .area-info{
+                     padding: 10% 6%;   
+                     top:0;  
+                     .talign(left);
+                }
+            }
+        }
+        .select {
+            .input-inv;
+            .bg-white;
+            padding: 10px 20px;
+            background-image: url('../img/dest/tri.png');
+            background-repeat: no-repeat;
+            background-position: 95%;
+            color: #c6c6c6;
+        }
+
+        /**
+         * 資訊卡
+         */
+        .content-list {
+            margin: 0px 0;
+            .bold;
+
+
+            .content-item.row {
+               
+                padding: 40px 20px 20px 40px;
+                 @media (max-width: 767px) {
+                    padding: 20px;
+                 }
+                margin: 2% -15px;
+                border-radius: 10px;
+                .fontsize(18px);
+                
+                .title{
+                        h1 {.bold;}
+                }
+                .desc{
+                    padding:5px 15px;
+                }
+                .markups{
+                    overflow:hidden;
+                    .fontsize(16px);
+                    >*{
+                        background:#53b865;
+                        padding:5px 10px;
+                        margin :2px;
+                        .white;
+                        .num{
+                            width:30px;
+                            height:30px;
+                            border-radius:50%;
+                            .bg-white;
+                            color:#53b865;
+                            .talign(center);
+                            padding:4px 0px;
+                        }
+                    }
+                }
+                .btn-j{
+                    .bg-lightblue;
+                    .white;
+                    padding:10px;
+                }
+
+                
+            }
+        }
+    }
+}
+
+
+                
+
+
+

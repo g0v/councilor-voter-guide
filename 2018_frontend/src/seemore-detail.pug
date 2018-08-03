@@ -1,0 +1,56 @@
+extends ./pug/template.pug
+block css_file
+	//- 每個頁面載入資源唯一不同處
+	link(rel="stylesheet", href="./css/seemore.min.css")
+block content
+	input#page.inv(type="text",value = "seemore-detail")
+	.preload.abs
+	//- TEST
+	//- TSE
+	//- TEST
+	
+	.wrapper.relat
+		.container.relat.classJ.contain-1000
+			.head-j.row
+				.col-xs-7.col-sm-9.col-md-10.title.hidden-xs
+					
+					h1 給你好看
+				a.btn-prev.col-xs-4.col-sm-2.hidden-sm.hidden-md.hidden-lg.pull-right(href="#") 回上一頁
+				.col-xs-7.col-sm-10.area.hidden-sm.hidden-md.hidden-lg
+					h2 相關圖表
+				
+				.select-opt1.hidden-xs.col-xs-12
+					a.act(href="#" , data-id="1") 相關圖表
+					a(href="#", data-id="2") 議員配合款
+					a(href="#", data-id="3") 政治獻金
+					a(href="#", data-id="4") 反核
+					a(href="#", data-id="5") 婚姻平權
+				.select-opt2.hidden-xs.col-xs-12
+					a.act(href="#" , data-id="") 立法院表決缺席前十名
+					a(href="#", data-id="") 脫黨投票次數前十名
+					a(href="#", data-id="") 立法院開會缺席前十名
+					a(href="#", data-id="") 脫黨投票次數前十名
+					a(href="#", data-id="") 立法院開會缺席前十名
+					a(href="#", data-id="") 脫黨投票次數前十名
+					a(href="#", data-id="") 立法院開會缺席前十名
+					a(href="#", data-id="") 脫黨投票次數前十名
+					a(href="#", data-id="") 立法院開會缺席前十名
+					a(href="#", data-id="") 脫黨投票次數前十名
+					a(href="#", data-id="") 立法院開會缺席前十名
+				select.select.col-sm-2.col-xs-5
+					-var n = 10
+						while n > 0
+							option(value=n-- ) 第10屆
+			
+				
+
+				
+
+			.content
+	block script
+		script.
+			//==================ROUTER 後幫我塞參數在這!!!================
+			var county_global='臺北市';
+			var constituency_global = 1;
+			var year_global = 2018;//(DEFAULT 為2018 )
+			var jsonUrl_global = './json/dest/constituencies_'+year_global+'.json';

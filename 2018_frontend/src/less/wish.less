@@ -1,0 +1,409 @@
+@import "config.less";
+@import "common.less";
+@import "mixin.less";
+@import "func.less";
+
+html {
+    background: @bg-wish;
+}
+
+body {
+    background: @bg-wish;
+}
+
+
+.wrapper {
+
+    h1,
+    h2 {
+        margin: 10px 0;
+        @media (max-width: 767px) {
+            margin:9px 0;
+        }
+    }
+    .btn-prev,
+    .btn-other,
+    .select {
+        margin: 10px 0;
+        @media (max-width: 767px) {
+            margin:5px 0;
+        }
+    }
+
+    .container {
+        margin-top: 100px;
+
+        @media (max-width: 767px) {
+            padding:0 10%;
+        }
+        .btn-other {
+            .bg-white;
+            background-image: url('../img/dest/to-ico.jpg');
+            background-repeat: no-repeat;
+            background-position: 5% center;
+            padding: 10px 5px 10px 30px;
+
+            .talign(center);
+        }
+        .head-j {
+            padding: 0 10px;
+
+            >.ui,
+            .kwset {
+                padding: 0;
+                margin: 0;
+            }
+            .navbar-search-bill {
+                .bg-white;
+
+                padding: 10px;
+                margin: 10px 0;
+                input,
+                img {
+                    display: inline-block;
+                }
+                img {
+                    float: right;
+                }
+                input {
+                    width: 100px;
+                    padding: 0 0px;
+                    .input-inv;
+                }
+
+                @media (max-width: 767px) {}
+            }
+            .btn-wish {
+                max-width: 130px;
+
+                margin: 10px 0;
+                .bg-white;
+                padding: 10px 0;
+                .talign(center);
+                .bold;
+                @media (max-width: 767px) {}
+            }
+            .title {
+                background-image: url('../img/dest/ico.png');
+                background-repeat: no-repeat;
+                background-position: 0% 60%;
+                padding: 0px 0px 0px 30px;
+            }
+            .area {
+                /*padding:0px 0px 0px 50px;*/
+            }
+
+            .btn-prev {
+                .bg-lightblue;
+                .white;
+                padding: 10px 5px 10px 5px;
+                .talign(center);
+            }
+        }
+        .kw {
+
+            >* {
+                margin: 10px 0;
+                .bold;
+            }
+        }
+        .select-wish,
+        .select-bill,
+        .select-area,
+        .select-county,
+        .select-constituency,
+        .select-county-blk {
+
+            margin: 10px 0px;
+            padding: 0 20px;
+            .bold;
+            overflow: hidden;
+
+            .wishlist {
+                width: 100%;
+                overflow: hidden;
+                .wishtrack {
+                    width: 1000%;
+                }
+            }
+            a {
+                margin: 15px;
+                padding: 0 5px;
+                .darkGray;
+                .fontsize(16px);
+                &.act {
+                    .lightblue;
+                    .setBorderLeftStyle(1px,
+                    @darkGray);
+                }
+            }
+            .btnArrow {
+                top: 0px;
+            }
+            .btnPrev {
+                left: 0;
+            }
+            .btnNext {
+                right: 0;
+            }
+        }
+
+
+        .filters {
+            padding: 10px 0;
+            .f-item {
+                margin: 0 10px;
+                &.act {
+                    .check-ico {
+                        .bg-lightblue;
+                    }
+                }
+            }
+        }
+
+        .select-county-blk {
+            margin: 50px -15px;
+            >div {
+                padding-bottom: 25%;
+                @media (max-width: 767px) {
+                    padding-bottom: 50%;
+                }
+                margin:0%;
+                .relat;
+
+
+                .info,
+                .hover-layer,
+                .area-info,
+                .hover-info {
+                    .abs;
+                    /*.bg-lightblue;*/
+                    border-radius: 5px;
+                    height: 96%;
+                    /* = 100% - 2*5% padding */
+                    width: 96%;
+                    /* = 100% - 2*5% padding */
+                    padding: 20% 0%;
+                    left: -2%;
+                    .talign(center);
+                    .fontsize(18px);
+                    .darkGray;
+
+
+                    padding: 40% 0% 5%;
+
+
+
+                    .bg {
+                        width: 70%;
+                        bottom: 0;
+                        left: 30%;
+                    }
+                }
+                .hover-info {
+                    width: 100%;
+                    height: 100%;
+                    .abs;
+                    .white;
+                    top: 0;
+                    left: 0;
+                    .talign(left);
+                    opacity: 0;
+                    background: rgba(0, 0, 0, .7);
+                    .fontsize(16px);
+                    padding: 10%;
+                }
+            }
+        }
+        .select {
+            .input-inv;
+            .bg-white;
+            padding: 10px 20px;
+            background-image: url('../img/dest/tri.png');
+            background-repeat: no-repeat;
+            background-position: 95%;
+            color: #c6c6c6;
+        }
+
+        /**
+         * 資訊卡
+         */
+        .content-list {
+            margin: 0px 0 100px 0;
+
+            .bold;
+
+
+
+            .content-item.row,
+            .content-item-editor {
+
+                padding: 40px ;
+                @media (max-width: 767px) {
+                    padding: 20px;
+                }
+                margin: 2% -15px;
+                border-radius: 10px;
+                .fontsize(18px);
+
+                .title {
+                    h1 {
+                        .bold;
+                    }
+                }
+                .name,
+                .date {
+                    padding: 10px 0;
+                }
+                .desc {
+                    padding: 5px 15px;
+                }
+                .markups {
+                    overflow: hidden;
+                    .fontsize(16px);
+                    >* {
+                        background: #53b865;
+                        padding: 5px 10px;
+                        margin: 2px;
+                        .white;
+                        .num {
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                            .bg-white;
+                            color: #53b865;
+                            .talign(center);
+                            padding: 4px 0px;
+                        }
+                    }
+                }
+                .btn-j {
+                    .bg-lightblue;
+                    .white;
+                    padding: 10px;
+                }
+            }
+            .content-item.row{
+                margin:2% 0;
+                background:none;
+                .bg{
+                    width:95%;
+                    margin:0 2%;
+                    height:100%;
+                    
+                    top:0;left:0;
+                    border-radius: 10px;
+                    @media (max-width: 767px) {
+                        margin:0 ;width:100%;
+                    }
+                }
+            }
+            .content-item-editor {
+                width: 100%;
+                padding: 40px 120px 40px 120px;
+                margin:2% 0;
+                @media (max-width: 767px) {
+                    padding: 20px;
+                }
+                background:#f0d980;
+                .talign(left);
+
+                .ui-select-candidate,
+                .ui-select-county ,.ui-else{
+                    &.ui-select-candidate{
+                        z-index:5;
+                    }
+                    .talign(left);
+                    .relat;
+                    &.ui-else{
+                        margin:10px 0; 
+                    }
+                    .input{
+                        margin:10px 5px;
+                        .opts{
+                            width:100%;
+                        }
+                        .opt{
+                            width:100%;
+                            padding:5px 10px;
+                            .bg-white;
+                            &.act, &:hover{
+                                .bg-lightblue;
+                                .white;
+                            }
+
+                        }
+                    }
+                    input,select{
+                        width:150px;
+                       
+                        .input-inv;
+                        .bg-white;
+                        padding:10px;
+                        &.select{
+                            background-image: url('../img/dest/tri.png');
+                            background-repeat: no-repeat;
+                            background-position: 95%;
+                        }
+                    }
+                }
+                h1.title {
+                    .talign(center);
+                }
+                .editor {
+                    height: 400px;
+                    .bg-white;
+                    padding:0;
+                    margin:10px 0;
+                    border-radius: 10px;
+                    
+                    @media (max-width: 767px) {
+
+                    }
+                }
+                .btn-submit {
+                    width: 20%;
+                    padding: 10px 20px;
+                    margin: 20px 40%;
+                    .bg-lightblue;
+                    .white;
+                    .talign(center);
+
+                    @media (max-width: 767px) {
+                        width:40%;
+
+                        margin: 20px 30%;
+                    }
+
+
+                    &:hover {
+                        .lightblue;
+                        .bg-white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+/*
+common mixin
+ */
+
+.check-ico,
+.ui-select-county .ico,
+.ui-select-candidate .ico,.ui-else .ico {
+    width: 20px;
+    height: 20px;
+    .bg-white;
+    margin: 0px 5px;
+    line-height: 25px;
+    .relat;
+    top: 4px;
+}
+
+.ui-select-county .ico {
+    .bg-lightblue;
+}

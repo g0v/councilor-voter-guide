@@ -1,0 +1,265 @@
+ @import "config.less";
+ @import "mixin.less";
+/**
+ * font size
+ */
+
+.classJ.exlrgt {
+    .fontsize(50px);
+}
+.classJ.lrgt {
+    .fontsize(40px);
+}
+.classJ.exmdt {
+    .fontsize(34px);
+}
+.classJ.mdt {
+    .fontsize(26px);
+}
+.classJ.mdt-md {
+    .fontsize(23px);
+}
+.classJ.mdt-sm {
+    .fontsize(20px);
+}
+.classJ.smt {
+    .fontsize(18px);
+}
+
+
+
+ /**
+  *    Color
+  */
+ 
+.white{
+    color:@white;
+}
+.pwhite{
+    color:@pwhite;
+}
+.black{
+    color:@black;
+}
+.bg-white{
+        background:@white;
+}
+.bg-pwhite{
+    background:@pwhite;
+}
+.bg-black{
+    background:#000;
+}
+
+.red{
+    color:@red;
+}.bg-red{
+    background:@red;
+}
+
+.yellow{
+    color:@yellow;
+}
+
+.darkGray{
+    color:@darkGray;
+}
+.bg-darkGray{
+    background:@darkGray;
+}
+
+.brown{
+    color:@brown;
+}
+.bg-brown{
+    background:@brown;
+}
+
+.bg-pink {
+     background: @pink;
+ }
+ 
+
+
+.lightblue{
+    color:@lightBlue;
+}
+.bg-lightblue{
+    background:@lightBlue;
+}
+.blue{
+    color:#0e317e;
+}
+
+ .contain-maxwidth(@mw) {
+     margin: 0 auto;
+     width: 100%;
+     max-width: @mw;
+ }
+.classJ.contain-1300 {
+     .contain-maxwidth(1300px);
+ }
+.classJ.contain-1200 {
+     .contain-maxwidth(1200px);
+ }
+.classJ.contain-1100 {
+     .contain-maxwidth(1100px);
+ }
+ .classJ.contain-1000 {
+     .contain-maxwidth(1000px);
+ }
+ .classJ.contain-600 {
+     .contain-maxwidth(600px);
+ }
+ .classJ.contain-550 {
+     .contain-maxwidth(550px);
+ }
+.classJ.contain-500 {
+     .contain-maxwidth(500px);
+ }
+
+
+ .input-inv{
+     -webkit-appearance: none;
+     background: none;
+     outline: none;
+     appearance: none;
+     box-shadow: none;
+     border-radius: none;
+     border: none;
+ }
+
+ .bg-reject{
+    background:#d93b33;
+ }
+ .bg-giveup{
+    background:#f2ae57;
+ }
+ .bg-proposal{
+    .bg-darkGray;
+ }
+ .bg-approve{
+    background:#5cb85c;
+ }
+ .bg-hostpropose{
+    background:#5bc0de;
+ }
+ .bg-non-vote{
+    background:#777;
+ }
+.nav-resume-all{
+    padding:5px 20px;
+    margin:0 4%;
+    @media (max-width: 767px) {
+        margin:9px 4%;
+        .fontsize(16px);
+    }
+}
+.nav-resume-all, .select-county, .select-constituency ,.select-opt2{
+    .slick-arrow {
+        position: absolute;
+        background: transparent;
+        top:0;
+        padding:0px;
+        color: transparent;
+    }
+    .slick-prev:before {
+        content: "\f0d9";
+        font-family: FontAwesome;
+        padding: 5px 10px;
+        color: #000;
+        position: absolute;
+        font-size: 22px;
+       
+        left: 20%;
+    }
+    .slick-next:before {
+        content: "\f0da";
+        font-family: FontAwesome;
+        padding: 5px 10px;
+        color: #000;
+        position: absolute;
+        font-size: 22px;
+       
+        right: 20%;
+    }
+}
+
+
+.select-county , .select-constituency,.select-opt2{
+    .slick-slide{
+        height: auto;
+    }
+    .slick-prev:before {
+        left: 10px;
+        top:7px;
+    }
+    .slick-next:before {
+        top:7px;
+        right: 10px;
+    }
+}
+
+
+
+.btn-prev,.btn-other {
+    .relat;
+     z-index:11;
+}
+
+.select-area, .select-county,.select-opt2{
+    .relat;
+    z-index:9;
+}
+
+.select-constituency,.select-opt2{
+    z-index:8;
+    .slick-list {
+    }
+}
+.hover-area{
+    bottom:105px;
+    left:0;
+    z-index:10;
+}
+.hover-info{
+                padding:10px;
+                .bg-white;
+                width:150px;
+                
+                bottom:0px;
+                left:0px;
+
+                .fontsize(16px);
+                .black;
+                top:0;
+                .tri{
+                    .white;
+                    left:20px;
+                    bottom:-12px;
+                }
+
+            }
+.select-county-blk {
+    >div{
+        >a{.drop-shadow (2px, 2px, 10px, 2px, 0.05);}
+    }
+}
+
+.navbar-search{
+                    input,img{
+                        display:inline-block;
+                    }
+                    img{
+                        float:right;
+                    }
+                    input{
+                        width:1px;
+                        padding:0 0px;
+                        .input-inv;
+                    }
+}
+
+form{
+    margin-bottom: 0;
+}

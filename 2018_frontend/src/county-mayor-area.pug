@@ -1,0 +1,34 @@
+extends ./pug/template.pug
+block css_file
+	//- 每個頁面載入資源唯一不同處
+	link(rel="stylesheet", href="./css/county-mayor.min.css")
+block content
+	input#page.inv(type="text",value = "county-mayor-area")
+	.preload.abs
+	//- TEST
+	//- TSE
+	//- TEST
+	
+	.wrapper.relat
+		.container.relat.classJ.contain-1000
+			.head-j.row
+				.col-xs-7.col-sm-9.col-md-10.title
+					
+					h1 找縣市長
+				//- a.btn-prev.col-xs-4.col-sm-2.hidden-sm.hidden-md.hidden-lg.pull-right(href="#") 回上一頁
+				.col-xs-7.col-sm-10.area-selector.area.hidden-sm.hidden-md.hidden-lg
+					select.select
+						each val in ["六都", "北部", "中部", "南部", "東部" , "離島"]
+							option(value= val )= val
+				a.btn-other.col-xs-5.col-sm-3.col-md-2(href="#") 改找縣市議員
+			.select-area.hidden-xs
+				each val in ["六都", "北部", "中部", "南部", "東部" , "離島"]
+					a(href="#" + val , data-id= val)= val
+				
+			
+			.select-county-blk.row
+			.content
+	block script
+		script.
+			var county_global='臺北市';
+			var constituency_global = 1;

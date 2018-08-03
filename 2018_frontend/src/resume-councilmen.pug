@@ -1,0 +1,245 @@
+extends ./pug/template_resume.pug
+block css_file
+	//- 每個頁面載入資源唯一不同處
+	link(rel="stylesheet", href="./css/councilmen.min.css")
+	link(rel="stylesheet", href="./css/resume-header.min.css")
+	
+block content
+	input#page.inv(type="text",value = "resume-bills")
+	.preload.abs
+	- var resumeTyp = 'profile'
+	.wrapper-header.fix(class="header-"+resumeTyp ,data-type= resumeTyp)
+		.container.relat.classJ.contain-1000
+			.profile-header.row
+				include ./pug/component/resume-photoArea.pug
+				.infoArea.col-xs-12.col-sm-9.row
+					.name.col-xs-12 
+						h1 王世堅
+					.ui-years.col-xs-12.row
+						select.classJ.select.col-sm-3.col-xs-5.pull-left
+							-var n = 10
+								while n > 0
+									option(value=n-- ) 2014-2018
+						.info-type.col-sm-5.abs.hidden-xs 
+
+							p PROFILE
+						a.btn-wish.pull-right(href="#") 我想許願
+					.photoAndParty.photoAndParty-btm.col-xs-12.col-sm-3.row.hidden-sm.hidden-md.hidden-lg
+						.photo
+							.relat
+								img(src="http://www.tcc.gov.tw/upload/Councilor/2334/d543307a-d837-4de7-a666-0aa306b4d9cd.jpg")
+						.party
+							.relat
+								img(src="img/dest/party.png")
+					include ./pug/component/resume-infoArea.pug
+
+				
+	.wrapper.relat
+		.container.relat.classJ.contain-1000
+			.content-list.row.col-xs-12
+				//- 如果有Current Class 表示現任 
+				//- data-id每個item 需不同
+				.content-item.row.relat.Current(data-id='1')
+					.label-current.abs
+						img.img-responsive(src="img/dest/currency.png")
+					.content-item-layer1.row.relat
+						a.profile.col-xs-12.row(href="#")
+							.photo.pull-left.relat
+								.relat
+									img(src="http://www.tcc.gov.tw/../upload/Councilor/2383/8%E5%91%A8%E5%A8%81%E4%BD%912.jpg")
+							.party.pull-left.relat
+								.relat
+									img(src="img/dest/party.png")
+							.name.col-xs-7.col-sm-4 
+								h1.classJ.exlrgt 王世堅
+						//- 個人資料
+						.personal-info.col-xs-12.col-sm-3
+							.partyname 
+								p 黨籍 / 
+									span.party-val 民主進步黨
+								p 年齡 / 
+									span.party-val 50歲
+								p 財產申報 / 
+									a(href="#") 
+										img(src="img/dest/dollar.png")
+						//- 統計
+						.statistic-info.col-xs-12.col-sm-4
+							.tit
+								p 數字統計
+							.statistic
+								
+									
+								p 7次主提案
+								p 62次共同提案
+								p 缺席率0%(0/23)缺席率0%(0/23)
+								p 7次主提案7次主提案
+								
+						//- 政治獻金
+						.contributions-info.col-xs-12.col-sm-4.row
+							.tit.col-xs-12 
+								p 政治獻金
+							.year-contri.col-xs-6
+								.year 2014 
+								.income.row 
+									.col-xs-4.text-left 收：
+									.col-xs-8.text-right 239萬
+								.outcome.row 
+									.col-xs-4.text-left 支：
+									.col-xs-8.text-right 24萬
+								.result.row
+									.col-xs-4.text-left 餘：
+									.col-xs-8.text-right -7萬
+							.year-contri.col-xs-6
+								.year 2014 
+								.income.row 
+									.col-xs-4.text-left 收：
+									.col-xs-8.text-right 239萬
+								.outcome.row 
+									.col-xs-4.text-left 支：
+									.col-xs-8.text-right 24萬
+								.result.row
+									.col-xs-4.text-left 餘：
+									.col-xs-8.text-right -77萬
+						.content-btm-ui.col-xs-12.row
+							.btn-detail.btn.col-sm-2.hidden-xs 了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i>
+							a.btn-resume.btn.col-xs-3.col-sm-2(href="resume-profile.html") 政治履歷 
+						.clearb
+					//- 非第一次參選者Layout
+					.content-detail.row.notFirstCandidate
+						//- 提案
+						.proposal.col-sm-6.row
+							.tit.row.col-sm-12 
+								.col-sm-12 提案
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-proposal 共同提案一次
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-proposal 共同提案一次
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-proposal 共同提案一次
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-proposal 共同提案一次
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-hostpropose 主提案一次
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-hostpropose 主提案一次
+						//- 表決
+						.vote.col-sm-6.row
+							.tit.row.col-sm-12 
+								.col-sm-12 表決
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-reject 反對一次
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-reject 反對一次
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-reject 反對一次
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-giveup 棄權一次
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-non-vote 沒投票一次
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-approve 贊成一次
+						.politics.col-sm-12.row
+							.tit.row.col-sm-12 
+								.col-sm-12 政見
+							.list-politics.col-sm-12 
+								p 1.守護弱者，捍衛公義。
+								p 2.推動市府廣建出租國宅與中繼住宅。
+								p 3.推動市府獨居老人免費午餐。
+								p 4.推動市府都市更新「增加獎勵、減少限制、縮短流程」。
+								p 5.推動市府有效整治淡水河。
+								p 6.推動市府徹底改善污水廠。
+					
+				//- 第一次參選者Layout
+				.content-item.row.relat(data-id='2')
+					.label-current.abs
+						img.img-responsive(src="img/dest/currency.png")
+					.content-item-layer1.row.relat
+						a.profile.col-xs-12.row(href="#")
+							.photo.pull-left.relat
+								.relat
+									img.img-responsive(src="http://www.tcc.gov.tw/../upload/Councilor/2383/8%E5%91%A8%E5%A8%81%E4%BD%912.jpg")
+							.party.pull-left.relat
+								.relat
+									img.img-responsive(src="img/dest/party.png")
+							.name.col-xs-7.col-sm-4 
+								h1.classJ.exlrgt 王世堅
+						//- 個人資料
+						.personal-info.col-xs-12.col-sm-3
+							.partyname 
+								p 黨籍 / 
+									span.party-val 民主進步黨
+								p 年齡 / 
+									span.party-val 50歲
+								p 財產申報 / 
+									a(href="#") 
+										img(src="img/dest/dollar.png")
+						//- 統計
+						.statistic-info.col-xs-12.col-sm-4
+							
+						//- 政治獻金
+						.contributions-info.col-xs-12.col-sm-4.row
+							.tit.col-xs-12 
+								p 政治獻金
+							.year-contri.col-xs-3
+							.year-contri.col-xs-6
+								.year 2014 
+								.income.row 
+									.col-xs-4.text-left 收：
+									.col-xs-8.text-right 239萬
+								.outcome.row 
+									.col-xs-4.text-left 支：
+									.col-xs-8.text-right 24萬
+								.result.row
+									.col-xs-4.text-left 餘：
+									.col-xs-8.text-right 3337萬
+						.content-btm-ui.col-xs-12.row
+							.btn-detail.btn.col-sm-2.hidden-xs 了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i>
+							a.btn-resume.btn.col-xs-3.col-sm-2(href="resume-profile.html") 政治履歷 
+						.clearb
+						
+
+					.content-detail.row.col-xs-12.FirstCandidate
+						.proposal.col-sm-12.row
+							.tit.row.col-sm-12 
+								.col-sm-12 模擬提案
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-reject 反對一次
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-giveup 棄權一次
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-reject 反對一次
+							.list.col-sm-12.row
+								.col-sm-8.col-xs-6 調降建商房屋稅
+								.statstic-num.pull-right.bg-giveup 棄權一次
+						//- 表決
+						
+						.politics.col-sm-12.row
+							.tit.row.col-sm-12 
+								.col-sm-12 政見
+							.list-politics.col-sm-12 
+								p 1.守護弱者，捍衛公義。
+								p 2.推動市府廣建出租國宅與中繼住宅。
+								p 3.推動市府獨居老人免費午餐。
+								p 4.推動市府都市更新「增加獎勵、減少限制、縮短流程」。
+								p 5.推動市府有效整治淡水河。
+								p 6.推動市府徹底改善污水廠。
+			include ./pug/component/pageManager.pug
+			
+	block script
+		script.
+			

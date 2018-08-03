@@ -1,0 +1,569 @@
+@import "config.less";
+@import "common.less";
+@import "mixin.less";
+@import "func.less";
+
+
+html {
+	background:#fff;
+}
+
+body {
+	background:#fff;
+}
+
+.btn-close{
+	cursor:pointer;
+}
+#canv_far{
+	width:100%;height: 100%;
+	top:6%;
+	@media (max-width: 767px) {
+			    	top:12%;
+	}
+}
+.wrapper {
+	
+	.sec{
+		.talign(center);
+		.container {
+
+			.select-area,
+			.select-county,
+			.select-constituency,
+			.select-opt1,
+			.select-county-blk {
+			    margin: 30px -15px;
+			    padding: 0;
+			    .bold;
+
+			    a {
+			        margin: 3px 15px;
+			        padding:0 5px;
+			        .darkGray;
+			        
+			        .fontsize(22px);
+
+
+			        display:inline-block;
+			        &.act {
+			            .lightblue;
+			            .setBorderLeftStyle(1px,
+			            @darkGray);
+			        }
+			        &:hover{
+			        	.lightblue;
+			        }
+					
+			    }
+			    @media (max-width: 1500px) {
+			    	a{.fontsize(18px);}
+			    }
+			    @media (max-width: 767px) {
+			    	a{.fontsize(26px);}
+			    }
+
+			}
+        	
+    	}
+	}
+	#kv{
+		height	:100vh;
+		overflow:hidden;
+		.title{
+			margin:10% auto 3%;
+			float:none;
+
+			.tit{
+				right:0px;
+				bottom:-10px;.darkGray;
+			}
+			@media (max-width: 767px) {
+				margin:20% auto 6%;
+			}
+		}
+		.sub{
+			width:70%;margin:0 auto;
+			.darkGray;
+			@media (max-width: 767px) {
+				width:90%;
+				margin:0 10%;
+			}
+			.relat;
+			
+			.talign(right);
+
+			.bold;
+			p {
+				.fontsize(20px);
+			}
+			.ico{
+				padding:0 0px; margin:0;
+				&.ico2{
+					padding:10px 0px;
+				}
+			}
+			a{.darkGray;}
+			.subt{
+					.talign(left);
+					padding:5px 5px;
+					&.subt1{
+						.talign(right);
+						padding: 0px 10px;
+						margin: 5px 0;
+						.setBorderRightStyle(1px, #000);
+						@media (max-width: 767px) {
+							.talign(center);
+							.setBorderRightStyle(0px, #000);
+							.setBorderBottomStyle(1px, @darkGray);
+							.bold;
+							padding: 15px 10px;
+							margin: 0px auto 15px;
+
+							p {
+								display:inline;
+							}
+						}
+
+					}
+
+			}
+			.btn-findMayor,.btn-findCouncilmen{
+				padding:0 0 0 5%;
+				@media (max-width: 767px) {
+
+				}
+			}
+			
+		}
+		.locator , .locator-ed{
+			
+			&.locator{
+				cursor:pointer;
+			}
+			bottom:20%;
+			left:44%;
+
+			@media (max-width: 767px) {
+				left:33%;
+			}
+			
+			span {
+				.fontsize(20px);
+				
+				line-height:50px;
+				padding:0 10px;
+			}
+			.desc{
+				padding:5px 10px;
+				.bold;
+				p span {
+					.fontsize(16px);
+					padding:0;
+					line-height:22px;
+				}
+			}
+			.btn-autolocate,.btn-chooseLocation{
+				
+			}
+			.btn-chooseLocation{
+				.bg-lightblue;
+				.white;
+				cursor:pointer;
+				&:hover{
+					background:darken(@lightBlue , 10%);
+				}
+			}
+		}
+		.locator-ed{
+			left:36%;
+			@media (max-width: 767px) {
+				left:20%;
+			}
+		}
+	}
+	.sec2,.sec3, .sec4, .sec5, .sec6, .sec7, .sec8{
+		overflow:hidden;
+		.container {
+			min-height	:auto;
+		    .tit, .sub {
+		        .bold;
+		        line-height: 80px;
+		        p {
+		            .fontsize(52px);
+		        }
+		        .eng {
+		            .fontsize(80px);
+		        }
+		        @media (max-width: 767px) {
+		            line-height: 60px;
+		            p {
+		                .fontsize(42px);
+		            }
+		            .eng {
+		                .fontsize(48px);
+		            }
+		        }
+		    }
+		}
+	}
+	.sec2{
+		
+		.bg{
+			width:100%;
+			height:100%;
+			.bg-left , .bg-right{
+				width:50%;
+				height:100%;
+				top:0;
+			}
+			.bg-left{
+				left:0;
+				background:@bg-color;
+			}
+			.bg-right{
+				right:0;
+				background:@bg-councilors;
+			}
+		}
+		.container {
+        	
+        	@media (max-width: 767px) {
+        		padding:0;
+        	}
+        	.findmayor , .findcouncilor{
+        		
+        		
+        		overflow:hidden;
+        		.talign(left);
+        		
+
+        		.select-area{
+        			margin:120px -15px 0 -15px;
+        		}
+        		.select-county{
+        			margin:20px -15px 0 -15px;
+        		}
+        		.tit,.sub{
+        			.bold;
+        			line-height:80px;
+        			p{.fontsize(52px);}
+        			.eng{
+        				.fontsize(80px);
+        			}
+        			@media (max-width: 767px) {
+        				line-height:60px;
+        				p{.fontsize(42px);}
+        				.eng{
+        					.fontsize(48px);
+        				}
+        			}
+        		}
+        	}
+        	.findmayor{
+        		background:@bg-color;
+        		
+        		.relat;
+        		padding:5% 30px 8% 0px;
+        		
+        		
+        		.ico{
+        			top:180px;
+        			right:30px;
+        		}
+        		@media (max-width: 767px) {
+        			padding:80px 30px;
+        			.select-area{
+        				width:50%;
+        				margin:30px -15px 0 -15px;
+        				
+        			}
+        			.ico{
+        				top:180px;
+        			
+        			}
+        		}
+        	}
+        	.findcouncilor{
+        		padding:5% 0px 8% 30px;
+        		
+        		.relat;
+        		background:@bg-councilors;
+        		.ico{
+        			top:200px;
+        			right:0px;
+        		}
+        		.select-area{
+        			margin:198px -15px 0 -15px;
+        		}
+        		@media (max-width: 767px) {
+        			padding:80px 30px;
+        			.select-area{
+        				width:70%;
+        				margin:30px -15px 0 -15px;
+        				
+        			}
+        			.ico{
+        				top:280px;
+        				right:30px;
+        			
+        			}
+        		}
+        	}
+    	}
+	}
+	.sec3, .sec6, .sec7, .sec8{
+		background:#fab570;
+		.container{
+			.content{
+				.talign(left);
+				padding:160px 0; 
+				.ico{
+					top:30%;
+					right:0;
+					.abs{
+						top:0;left:0;
+					}
+				}
+				.select-opt1{
+					margin:80px -15px;
+				}
+
+				@media (max-width: 767px) {
+        			padding:80px 30px;
+        			min-height:560px;
+        			.select-opt1{
+        				width:50%;
+						margin:30px -15px;
+					}
+					.ico{
+						top:60%;
+						right:-18%;
+					}
+        		}
+			}
+		}
+	}
+	.sec6{
+		background:#eccbd0;
+		.container{
+			.content{
+				.ico{
+					top:20%;
+					right:0;
+				}
+				@media (max-width: 767px) {
+        			.select-opt1{
+        				width:60%;
+        				margin:30px -15px 250px;
+					}
+					.ico{
+						width:50%;
+						top:45%;
+					}
+        		}
+			}
+		}
+	}
+    .sec7{
+		background:#94d3be;
+		.container{
+			.content{
+				.select-opt1{
+					margin:150px -15px 0;
+				}
+				.ico{
+					top:20%;
+					right:0;
+				}
+				@media (max-width: 767px) {
+        			.select-opt1{
+        				width:60%;
+        				margin:30px -15px 250px;
+					}
+					.ico{
+						width:80%;
+						top:45%;
+						right:-10%;
+					}
+        		}
+			}
+		}
+	}
+	.sec8{
+		background:#baeaf1;
+		.container{
+			.content{
+				.select-opt1{
+					margin:150px -15px 0;
+				}
+				.ico{
+					top:35%;
+					right:0;
+				}
+				@media (max-width: 767px) {
+        			.select-opt1{
+        				width:60%;
+        				margin:30px -15px 250px;
+					}
+					.ico{
+						width:80%;
+						top:50%;
+						right:-10%;
+					}
+        		}
+			}
+		}
+	}
+}
+
+
+
+
+
+/**
+ * MAP STYLE!
+ */
+ 
+
+.pop-map{
+	.bg-pwhite;
+
+	
+    .map{
+        width:100%;
+        top:-5vh;
+        right:200px;
+        
+        svg{
+            .abs;
+            left:0px;
+            top:-80px;
+            
+            .bold;
+            @media (min-width: 1500px) {
+            
+            }
+        }
+    }
+    .step   {
+    	width:100%;
+    	margin: 10vh 0 3vh ;
+    	height:85vh;
+    	padding:0 0px;
+    	.tit{
+    		.fontsize(54px);
+    		.bold;
+    		width:50%;
+    		@media (max-width: 767px) {
+                   width: 100%;
+             }
+
+    	}
+    	.sub{
+    		.classJ.mdt-sm;
+    		margin: 10px 0;
+    		width:50%;
+    		 @media (max-width: 767px) {
+                    width: 100%;
+             }
+    	}
+    	.select {
+            .input-inv;
+            .bg-white;
+            padding: 10px 50px 10px 20px;
+            background-image: url('../img/dest/tri.png');
+            background-repeat: no-repeat;
+            background-position: 95%;
+            color: #c6c6c6;
+        }
+        .select-area,
+        .select-county,
+        .select-constituency,
+        .select-county-blk {
+            margin: 0px -15px;
+            padding:0;
+            .bold;
+
+            a {
+                margin: 15px;
+                padding: 0 5px;
+                .darkGray;
+                .fontsize(18px);
+                &.act {
+                    .lightblue;
+                    .setBorderLeftStyle(1px,
+                    @darkGray);
+                }
+            }
+
+
+            >div {
+                padding-bottom: 25%;
+                @media (max-width: 767px) {
+                    padding-bottom: 50%;
+                }
+                margin:0%;
+                .relat;
+                overflow:hidden;
+                .info {
+                    .abs;
+                    /*.bg-lightblue;*/
+
+                    border-radius: 5px;
+                    height: 86%;
+                    /* = 100% - 2*5% padding */
+                    width: 86%;
+                    /* = 100% - 2*5% padding */
+                    padding: 20% 0%;
+                    left:0%;
+                    .talign(center);
+                    .fontsize(18px);
+                    .darkGray;
+                    .eng {
+                        .fontsize(80px);
+                        line-height: 100px;
+                        .white;
+                        opacity: .5;
+                        @media (max-width: 767px) {
+                            .fontsize(75px);
+                            line-height: 80px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+svg g#ch > g{
+	cursor:pointer;
+}
+.st0{fill:none;stroke:#FFFFFF;stroke-width:1.0732;stroke-miterlimit:10;}
+	.st1{fill:#F9CFCC;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st2{fill:#3B3B3B;}
+	.st3{;}
+	.st4{font-size:18px;}
+	.st5{;}
+	.st6{fill:#D4E8AA;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st7{fill:#BEE4F6;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st8{fill:#F6F4E3;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st9{fill:#E8DAC8;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st10{fill:#F7DDD1;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st11{fill:#FEFAAD;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st12{fill:#F9C7E3;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st13{fill:#FDF99E;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st14{fill:#EBE1B5;}
+	.st15{fill:none;}
+	.st16{fill:#B6E6D0;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st17{fill:#DFD1E7;}
+	.st18{fill:#DB825E;}
+	.st19{fill:#98BFBA;}
+	.st20{fill:#C87A98;}
+	.st21{fill:#ECE8DD;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st22{fill:#FCE7C4;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st23{fill:#FCE2A6;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st24{fill:#E7E4BE;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st25{fill:#FFF99D;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st26{fill:#E4D8C8;}
+	.st27{fill:#F49E96;}

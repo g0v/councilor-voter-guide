@@ -1,0 +1,82 @@
+extends ./pug/template.pug
+block css_file
+	//- 每個頁面載入資源唯一不同處
+	link(rel="stylesheet", href="./css/seemore.min.css")
+block content
+	input#page.inv(type="text",value = "seemore")
+	.preload.abs
+	//- TEST
+	//- TSE
+	//- TEST
+	
+	.wrapper.relat
+		.container.relat.classJ.contain-1000
+			.head-j.row
+				.col-xs-7.col-sm-9.col-md-10.title.hidden-xs
+					
+					h1 給你好看
+				a.btn-prev.col-xs-4.col-sm-2.hidden-sm.hidden-md.hidden-lg.pull-right(href="#") 回上一頁
+				.col-xs-7.col-sm-10.area.hidden-sm.hidden-md.hidden-lg
+					h2 相關圖表
+				
+				.select-opt1.hidden-xs.col-xs-12
+					a.act(href="#" , data-id="1") 相關圖表
+					a(href="#", data-id="2") 議員配合款
+					a(href="#", data-id="3") 政治獻金
+					a(href="#", data-id="4") 反核
+					a(href="#", data-id="5") 婚姻平權
+				.select-opt2.hidden-xs
+				
+			
+				.select-county-blk.row
+
+					.col-xs-6.col-sm-3
+						a.info(href='#')
+							
+							.eng.abs 
+								p TOP 
+								p 10
+							p.relat 立法院表決
+							p.relat 缺席前10名
+							.hover-info 脫黨投票不一定較好，可能該立委是憑良心投票，也可能是受財團、企業影響所致，還請點選該立委觀看其脫黨投票的表決內容再作論定
+
+					.col-xs-6.col-sm-3
+						a.info(href='#')
+							
+							.eng.abs 
+								p TOP 
+								p 10
+							p.relat 脫黨投票率
+							.hover-info 脫黨投票不一定較好，可能該立委是憑良心投票，也可能是受財團、企業影響所致，還請點選該立委觀看其脫黨投票的表決內容再作論定
+					.col-xs-6.col-sm-3
+						a.info(href='#')
+							
+							.eng.abs.single-col 
+								p %
+							p.relat 脫黨投票率
+							.hover-info 脫黨投票不一定較好，可能該立委是憑良心投票，也可能是受財團、企業影響所致，還請點選該立委觀看其脫黨投票的表決內容再作論定
+					.col-xs-6.col-sm-3
+						a.info(href='#')
+							
+							.eng.abs.single-col 
+								p %
+							p.relat 脫黨投票率
+							.hover-info 脫黨投票不一定較好，可能該立委是憑良心投票，也可能是受財團、企業影響所致，還請點選該立委觀看其脫黨投票的表決內容再作論定
+					.col-xs-6.col-sm-3
+						a.info(href='#')
+							
+							.eng.abs.single-col 
+								p %
+							p.relat 脫黨投票率
+							.hover-info 脫黨投票不一定較好，可能該立委是憑良心投票，也可能是受財團、企業影響所致，還請點選該立委觀看其脫黨投票的表決內容再作論定
+
+				
+
+			.content
+	block script
+		script.
+			//==================ROUTER 後幫我塞參數在這!!!================
+			var county_global='臺北市';
+			var constituency_global = 1;
+			var year_global = 2018;//(DEFAULT 為2018 )
+			var jsonUrl_global = './json/dest/constituencies_'+year_global+'.json';
