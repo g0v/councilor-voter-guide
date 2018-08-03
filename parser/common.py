@@ -327,6 +327,10 @@ def make_variants_set(string):
     return variants
 
 def normalize_person_name(name):
+    name_bk = name
+    name = re.sub(u'(.+?\w+) (\w+)', u'\g<1>‧\g<2>', name) # e.g. Cemelesai Ljaljegan=>Cemelesai‧jaljegan
+    if name != name_bk:
+        print name
     name = re.sub(u'[。˙・･•．.-]', u'‧', name)
     name = re.sub(u'[　\s()（）’\']', '',name)
     name = name.title()
