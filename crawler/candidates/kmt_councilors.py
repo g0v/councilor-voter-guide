@@ -85,9 +85,8 @@ for county, tid in ref.items():
         img_link = candidate['picture']
         f_name = '%s_%d_%s.%s' % (candidate['county'], candidate['constituency'], candidate['name'], img_link.split('.')[-1].split('?')[0])
         f = '%s/%s' % (path, f_name)
-        if not os.path.isfile(f):
-            cmd = 'wget --no-check-certificate "%s" -O %s' % (img_link, f)
-            subprocess.call(cmd, shell=True)
+        cmd = 'wget -N --no-check-certificate "%s" -O %s' % (img_link, f)
+        subprocess.call(cmd, shell=True)
         candidate['image'] = u'%s/%s/%s/%s/%s' % (common.storage_domain(), 'councilors', '2018', u'中國國民黨', f_name)
     candidates.extend(cs)
 with codecs.open('../../data/candidates/2018/kmt_councilors.json', 'w', encoding='utf-8') as ofile:

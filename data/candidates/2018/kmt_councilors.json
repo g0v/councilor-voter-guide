@@ -1211,16 +1211,6 @@
     "name": "徐巧芯"
   }, 
   {
-    "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/800.jpg", 
-    "uid": 439, 
-    "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/臺北市_3_徐巧芯.jpg", 
-    "experience": "馬英九卸任元首  辦公室發言人", 
-    "county": "臺北市", 
-    "constituency": 3, 
-    "desc": "第三選區", 
-    "name": "徐巧芯"
-  }, 
-  {
     "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/2018053143220225.jpg", 
     "uid": 154, 
     "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/臺北市_3_秦慧珠.jpg", 
@@ -1279,10 +1269,12 @@
     "name": "林亭君"
   }, 
   {
-    "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/800.jpg", 
-    "uid": 441, 
+    "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/2018080163622049.jpg", 
+    "education": "台灣大學商學研究所碩士\n日本桐蔭學園橫濱大學法學士\n臺北市私立泰北高中\n臺北市立介壽國中\n臺北市立中山國小", 
+    "slogan": "專業問政 熱忱服務", 
+    "uid": 692, 
     "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/臺北市_4_陳炳甫.jpg", 
-    "experience": "台北市議員", 
+    "experience": "財團法人陳重光文教基金會董事長\n財團法人臺北市陳玉梅紀念基金會執行長\n財團法人臺北市私立仁愛頤養園執行長\n財團法人蘇天財文教基金會董事\n大魯閣實業股份有限公司董事\n台灣產物保險股份有限公司監察人\n台灣大學EMBA學生會會長\n中華民國舞蹈運動推廣協會理事長\n臺北市快慢速壘球協會理事長\n中華民國棒球協會常務理事\n臺北市體育總會棒球協會理事長", 
     "county": "臺北市", 
     "constituency": 4, 
     "desc": "第四選區", 
@@ -1297,16 +1289,6 @@
     "desc": "第四選區", 
     "education": "中山國小\n大直國中\n景文高中\n崇右技術學院\n淡江大學中國大陸研究所碩士班", 
     "constituency": 4, 
-    "name": "葉林傳"
-  }, 
-  {
-    "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/800.jpg", 
-    "uid": 440, 
-    "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/臺北市_4_葉林傳.jpg", 
-    "experience": "台北市議員", 
-    "county": "臺北市", 
-    "constituency": 4, 
-    "desc": "第四選區", 
     "name": "葉林傳"
   }, 
   {
@@ -1348,16 +1330,6 @@
     "uid": 693, 
     "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/臺北市_5_應曉薇.jpg", 
     "experience": "1、台北市第11、12屆市議員。\n2、法務部犯罪矯正協會理事。\n3、台北市議會國民黨黨團副書記長。\n4、台北市議會第11屆第3、8次民政委員會定期大會召集人。\n5、中華華夏希望關懷協會理事長。\n6、台北市跆拳道協會理事長。\n7、財團法人沈春池文教基金會秘書長。\n8、新移民女性關懷協會常務理事。", 
-    "county": "臺北市", 
-    "constituency": 5, 
-    "desc": "第五選區", 
-    "name": "應曉薇"
-  }, 
-  {
-    "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/800.jpg", 
-    "uid": 446, 
-    "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/臺北市_5_應曉薇.jpg", 
-    "experience": "台北市議員", 
     "county": "臺北市", 
     "constituency": 5, 
     "desc": "第五選區", 
@@ -1454,6 +1426,18 @@
     "education": "國立政治大學法學碩士", 
     "constituency": 6, 
     "name": "羅智強"
+  }, 
+  {
+    "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/2018080242476953.jpg", 
+    "education": "淡江大學公共政策碩士", 
+    "slogan": "我原 大家原", 
+    "uid": 695, 
+    "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/臺北市_7_李芳儒.jpg", 
+    "experience": "臺北市議會第11、12屆議員\n臺北市議員李銀來辦公室主任\n社團法人臺北市原住民族長青協會總幹事\n力持工程有限公司室內設計師\n卓銀永建築師事務所設計師", 
+    "county": "臺北市", 
+    "constituency": 7, 
+    "desc": "第七選區", 
+    "name": "李芳儒"
   }, 
   {
     "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/800.jpg", 
