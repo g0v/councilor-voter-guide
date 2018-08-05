@@ -40,15 +40,22 @@
         {% if term.param.bills_role_statistics %}
         <p>{{term.param.bills_role_statistics.priproposer}} 次主提案</p>
         <p>{{term.param.bills_role_statistics.sponsor}} 次共同提案</p>
+        {% else %}
+        <p>議員提案查無資料</p>
         {% endif %}
         {% if term.param.votes_decision_statistics %}
             <p>投票缺席率：{{term.param.votes_decision_statistics.not_voting|percentage:term.param.votes_decision_statistics.total}} % <small>（{{term.param.votes_decision_statistics.not_voting}} / {{term.param.votes_decision_statistics.total}}）</small></p>
         {% endif %}
         {% if term.param.attendance_statistics %}
             <p>議會缺席率：{{term.param.attendance_statistics.absent|percentage:term.param.attendance_statistics.total}} % <small>（{{term.param.attendance_statistics.absent}} / {{term.param.attendance_statistics.total}}）</small></p>
+        {% else %}
+        <p>議會出缺席查無資料</p>
         {% endif %}
         {% if term.param.suggestions_years.sum %}
             <a href="{% url "councilors:suggestor" councilor_id=term.councilor_id election_year=term.election_year %}">議員配合款總花費：<font class="price">{{term.param.suggestions_years.sum}}</font></a>
+        {% else %}
+        <p>議員配合款查無資料</p>
         {% endif %}
+        <small><a class="pull-right" href="{% url "about" %}#reference">資料來源</a></small>
     </div>
 {% endif %}
