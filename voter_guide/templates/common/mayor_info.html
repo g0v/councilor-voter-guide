@@ -71,6 +71,7 @@
                         <a data-type="fund" href="{% url 'mayors:suggestor' mayor_id=mayor.mayor_id election_year=mayor.election_year %}">配合款</a>
                         <a data-type="contribution" href="{% url 'mayors:pc' mayor_id=mayor.mayor_id %}">政治獻金</a>
                         <a data-type="declaration" href="http://sunshine.cy.g0v.tw/people/{{mayor.name}}/property/overview/" target="_blank">財產申報</a>
+                        <a data-type="declaration" href="{% url 'candidates:mayors' county=mayor.county %}">同區其他候選人</a>
                     </div>
                 </div>
             </div>

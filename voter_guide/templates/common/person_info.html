@@ -71,6 +71,7 @@
                         <a data-type="fund" href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">配合款</a>
                         <a data-type="contribution" href="{% url 'councilors:pc' councilor_id=councilor.councilor_id %}">政治獻金</a>
                         <a data-type="declaration" href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" target="_blank">財產申報</a>
+                        <a data-type="declaration" href="{% url 'candidates:district' county=councilor.county constituency=councilor.constituency %}">同區其他候選人</a>
                     </div>
                 </div>
             </div>
