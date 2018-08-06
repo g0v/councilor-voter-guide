@@ -121,10 +121,13 @@ def detail(request, platform_id):
 def propose(request):
     if request.method == 'GET':
         form = PlatformsForm()
-        targets = {x: 1 for x in ['county', 'mayor', 'councilor', 'intent']}
+        targets = {x: 1 for x in ['county', 'mayor', 'councilor', 'intent', 'candidate']}
         if request.GET.get('intent'):
             form.fields['intent'].initial = request.GET['intent']
             targets.pop('intent')
+        elif request.GET.get('candidate'):
+            form.fields['candidate'].initial = request.GET['candidate']
+            targets.pop('candidate')
         elif request.GET.get('mayor'):
             form.fields['mayor'].initial = request.GET['mayor']
             targets.pop('mayor')

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load socialaccount %}
 {% load staticfiles %}
 {% load extras %}
 
@@ -271,6 +272,8 @@
                                 <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'councilors:sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">政治履歷 </a>
                             {% elif candidate.intent %}
                                 <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'candidates:intent_detail' intent_id=candidate.intent.uid %}">參選履歷 </a>
+                            {% else %}
+                                <a class="btn-resume btn col-xs-3 col-sm-2" href="{% provider_login_url "facebook" %}?next={% url 'platforms:propose' %}?candidate={{candidate.uid}}">我想許願 </a>
                             {% endif %}
                         </div>
                         <div class="clearb"></div>

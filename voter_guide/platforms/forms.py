@@ -7,10 +7,11 @@ counties = ((x, x) for x in ["全台", "臺北市", "新北市", "桃園市", "�
 class PlatformsForm(forms.ModelForm):
     class Meta:
         model = Platforms
-        fields = ['county', 'content', 'intent', 'mayor', 'councilor']
+        fields = ['county', 'content', 'intent', 'mayor', 'councilor', 'candidate']
         widgets = {
             'county': forms.widgets.Select(choices=counties, attrs={'class': 'select'}),
-            'intent': forms.widgets.Select(choices=counties, attrs={'class': 'select'}),
-            'mayor': forms.widgets.Select(choices=counties, attrs={'class': 'select'}),
-            'councilor': forms.widgets.Select(choices=counties, attrs={'class': 'select'}),
+            'intent': forms.widgets.Select(attrs={'class': 'select'}),
+            'mayor': forms.widgets.Select(attrs={'class': 'select'}),
+            'councilor': forms.widgets.Select(attrs={'class': 'select'}),
+            'candidate': forms.widgets.Select(attrs={'class': 'select'}),
         }

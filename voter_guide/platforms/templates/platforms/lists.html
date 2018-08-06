@@ -66,8 +66,11 @@
                         <p>許願對象(議員)</p>
                         <p>{{platform.councilor}}</p>
                     {% elif platform.intent %}
-                        <p>許願對象(候選人)</p>
+                        <p>許願對象(擬參選人)</p>
                         <p>{{platform.intent}}</p>
+                    {% elif platform.candidate %}
+                        <p>許願對象(候選人)</p>
+                        <p>{{platform.candidate}}</p>
                     {% endif %}
                     </p>
                     <textarea style="display: none">{{platform.content}}</textarea>
