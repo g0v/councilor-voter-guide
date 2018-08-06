@@ -39,5 +39,7 @@ for c, key in headers:
     wks.update_cell(1, c, key)
 for r, row in enumerate(rows, start=2):
     row = row[0]
+    if wks.cell(r, 1).value == 'ok':
+        continue
     for c, key in headers:
         wks.update_cell(r, c, row[key])
