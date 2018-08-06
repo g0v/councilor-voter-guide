@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block title %}
     <title>投票指南:看議員姓名有沒有錯字</title>
@@ -6,7 +7,18 @@
     <meta itemprop="name" content="投票指南:看議員姓名有沒有錯字">
 {% endblock title %}
 
+{% block css_file %}
+    <link href="{% static "css/about.min.css" %}" rel="stylesheet">
+{% endblock css_file %}
+
 {% block right %}
+    <input class="inv" id="page" type="text" value="about">
+    <div class="preload abs"></div>
+    <div class="wrapper relat">
+      <div class="bg abs">
+        <div class="bg-right abs hidden-xs"></div>
+      </div>
+      <div class="container relat classJ contain-1000">
     <div class="page-header text-center">
         <h2>看議員姓名有沒有錯字</h2>
     </div>
@@ -24,6 +36,8 @@
             <div class="col-sm-6">
                 {% if errors %}
                     <p>查無此議員姓名：</p>
+                {% else %}
+                    <p>名字都正確</p>
                 {% endif %}
                 {% for error in errors %}
                     <span class="text-danger">{{ error }}</span>
@@ -31,4 +45,6 @@
             </div>
         </div>
     </form>
+    </div>
+    </div>
 {% endblock right %}
