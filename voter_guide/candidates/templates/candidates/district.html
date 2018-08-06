@@ -49,123 +49,130 @@
                 </select>
                 <a class="btn-other col-xs-5 col-sm-3 col-md-2 hidden-sm hidden-md hidden-lg pull-right" href="{% url "candidates:mayors" county=county %}">改找縣市長</a>
             </div>
-
-            {% if intents %}
             <div class="content-list row col-xs-12">
-            {% for candidate in intents %}
-            <div id="{{candidate.uid}}" class="content-item row relat{% if candidate.councilor_terms.0.election_year == election_year or candidate.councilor_terms.0.term_end_year == election_year %} Current{% endif %}" data-id="{{forloop.counter}}">
-                    <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
-                    <div class="content-item-layer1 row relat">
-                        <a class="profile col-xs-12 row">
-                            <div class="photo pull-left relat">
-                                <div class="relat">
-                                {% with user_id=candidate.user.socialaccount_set.first.uid %}
-                                    <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=300" alt="{{candidate.name}}" title="{{candidate.name}}">
-                                {% endwith %}
-                                </div>
-                            </div>
-                            <div class="party pull-left relat">
-                                <div class="relat">
-                                {% if candidate.party %}
-                                    <img src="{% static "img/dest/" %}{{candidate.party}}.png" alt="{{candidate.party}}" title="{{candidate.party}}">
-                                {% endif %}
-                                </div>
-                            </div>
-                            <div class="name col-xs-7 col-sm-4">
-                                <h1 class="classJ exlrgt">{{candidate.name}}</h1>
-                            </div>
-                        </a>
-                        <div class="personal-info col-xs-12 col-sm-3">
-                            <div class="partyname">
-                                <p>黨籍 / <span class="party-val">
-                                {% if candidate.party %}
-                                    {{candidate.party}}
-                                {% else %}
-                                    ?
-                                {% endif %}
-                                </span></p>
-                                <p>年齡 / <span class="party-val">
-                                {% if candidate.candidate.birth %}
-                                    {{candidate.candidate.birth|age}}
-                                {% else %}
-                                    ?
-                                {% endif %}
-                                歲</span></p>
-                                {% if candidate.councilor_terms %}
-                                <p>財產申報 / <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank"> <img src="{% static "img/dest/dollar.png" %}" alt="財產申報" title="財產申報"></a></p>
-                                {% endif %}
-                            </div>
-                        </div>
-                        {% if candidate.experience %}
-                        <div class="statistic-info col-xs-12 col-sm-5">
-                            <div class="tit">
-                                <p>經歷</p>
-                            </div>
-                            <div class="statistic">
-                                {{candidate.experience|linebreaks}}
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if candidate.education %}
-                        <div class="statistic-info col-xs-12 col-sm-4">
-                            <div class="tit">
-                                <p>學歷</p>
-                            </div>
-                            <div class="statistic">
-                                {{candidate.education|linebreaks}}
-                            </div>
-                        </div>
-                        {% endif %}
-                        <div class="content-btm-ui col-xs-12 row">
-                            {% if candidate.councilor_terms or candidate.platform and candidate.experience and candidate.education %}
-                            <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
-                            {% endif %}
-                            <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'candidates:intent_detail' intent_id=candidate.uid %}">參選履歷 </a>
-                        </div>
-                        <div class="clearb"></div>
-                    </div>
-                    {% if candidate.councilor_terms or candidate.platform or candidate.motivation or candidate.ideology %}
-                    <div class="content-detail row notFirstCandidate">
-                    {% if candidate.motivation %}
-                        <div class="politics col-sm-12 row">
-                            <div class="tit row col-sm-12">
-                                <div class="col-sm-12">為何參選</div>
-                            </div>
-                            <div class="list-politics col-sm-12">
-                                {{candidate.motivation|linebreaks}}
-                            </div>
-                        </div>
-                    {% endif %}
-                    {% if candidate.ideology %}
-                        <div class="politics col-sm-12 row">
-                            <div class="tit row col-sm-12">
-                                <div class="col-sm-12">政治理念</div>
-                            </div>
-                            <div class="list-politics col-sm-12">
-                                {{candidate.ideology|linebreaks}}
-                            </div>
-                        </div>
-                    {% endif %}
-                    {% if candidate.platform %}
-                        <div class="politics col-sm-12 row">
-                            <div class="tit row col-sm-12">
-                                <div class="col-sm-12">地方政見</div>
-                            </div>
-                            <div class="list-politics col-sm-12">
-                                {{candidate.platform|linebreaks}}
-                            </div>
-                        </div>
-                    {% endif %}
-                    </div>
-                    {% endif %}
-                </div>
-            {% endfor %}
-            </div>
-            {% endif %}
-
-            <div class="content-list row col-xs-12">
+            {% with intent_num=intents|length %}
             {% for candidate in candidates %}
-            <div id="{{candidate.candidate_id}}" class="content-item row relat{% if candidate.elected or candidate.occupy %} Current{% endif %}" data-id="{{forloop.counter}}">
+            {% if intents %}
+                {% if intents and forloop.counter == random_row %}
+                {% for candidate in intents %}
+
+                    <div id="{{candidate.uid}}" class="content-item row relat{% if candidate.councilor_terms.0.election_year == election_year or candidate.councilor_terms.0.term_end_year == election_year %} Current{% endif %}" data-id="{{forloop.counter0|add:random_row}}">
+                            <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
+                            <div class="content-item-layer1 row relat">
+                                <a class="profile col-xs-12 row">
+                                    <div class="photo pull-left relat">
+                                        <div class="relat">
+                                        {% with user_id=candidate.user.socialaccount_set.first.uid %}
+                                            <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=300" alt="{{candidate.name}}" title="{{candidate.name}}">
+                                        {% endwith %}
+                                        </div>
+                                    </div>
+                                    <div class="party pull-left relat">
+                                        <div class="relat">
+                                        {% if candidate.party %}
+                                            <img src="{% static "img/dest/" %}{{candidate.party}}.png" alt="{{candidate.party}}" title="{{candidate.party}}">
+                                        {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="name col-xs-7 col-sm-4">
+                                        <h1 class="classJ exlrgt">{{candidate.name}}</h1>
+                                    </div>
+                                </a>
+                                <div class="personal-info col-xs-12 col-sm-3">
+                                    <div class="partyname">
+                                        <p>黨籍 / <span class="party-val">
+                                        {% if candidate.party %}
+                                            {{candidate.party}}
+                                        {% else %}
+                                            ?
+                                        {% endif %}
+                                        </span></p>
+                                        <p>年齡 / <span class="party-val">
+                                        {% if candidate.candidate.birth %}
+                                            {{candidate.candidate.birth|age}}
+                                        {% else %}
+                                            ?
+                                        {% endif %}
+                                        歲</span></p>
+                                        {% if candidate.councilor_terms %}
+                                        <p>財產申報 / <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank"> <img src="{% static "img/dest/dollar.png" %}" alt="財產申報" title="財產申報"></a></p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% if candidate.experience %}
+                                <div class="statistic-info col-xs-12 col-sm-5">
+                                    <div class="tit">
+                                        <p>經歷</p>
+                                    </div>
+                                    <div class="statistic">
+                                        {{candidate.experience|linebreaks}}
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if candidate.education %}
+                                <div class="statistic-info col-xs-12 col-sm-4">
+                                    <div class="tit">
+                                        <p>學歷</p>
+                                    </div>
+                                    <div class="statistic">
+                                        {{candidate.education|linebreaks}}
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <div class="content-btm-ui col-xs-12 row">
+                                    {% if candidate.councilor_terms or candidate.platform and candidate.experience and candidate.education %}
+                                    <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                    {% endif %}
+                                    <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'candidates:intent_detail' intent_id=candidate.uid %}">參選履歷 </a>
+                                </div>
+                                <div class="clearb"></div>
+                            </div>
+                            {% if candidate.councilor_terms or candidate.platform or candidate.motivation or candidate.ideology %}
+                            <div class="content-detail row notFirstCandidate">
+                            {% if candidate.motivation %}
+                                <div class="politics col-sm-12 row">
+                                    <div class="tit row col-sm-12">
+                                        <div class="col-sm-12">為何參選</div>
+                                    </div>
+                                    <div class="list-politics col-sm-12">
+                                        {{candidate.motivation|linebreaks}}
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if candidate.ideology %}
+                                <div class="politics col-sm-12 row">
+                                    <div class="tit row col-sm-12">
+                                        <div class="col-sm-12">政治理念</div>
+                                    </div>
+                                    <div class="list-politics col-sm-12">
+                                        {{candidate.ideology|linebreaks}}
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if candidate.platform %}
+                                <div class="politics col-sm-12 row">
+                                    <div class="tit row col-sm-12">
+                                        <div class="col-sm-12">地方政見</div>
+                                    </div>
+                                    <div class="list-politics col-sm-12">
+                                        {{candidate.platform|linebreaks}}
+                                    </div>
+                                </div>
+                            {% endif %}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                {% endfor %}
+                {% endif %}
+                {% if forloop.counter < random_row %}
+                    <div id="{{candidate.candidate_id}}" class="content-item row relat{% if candidate.elected or candidate.occupy %} Current{% endif %}" data-id="{{forloop.counter}}">
+                {% else %}
+                    <div id="{{candidate.candidate_id}}" class="content-item row relat{% if candidate.elected or candidate.occupy %} Current{% endif %}" data-id="{{forloop.counter|add:intent_num}}">
+                {% endif %}
+            {% else %}
+                <div id="{{candidate.candidate_id}}" class="content-item row relat{% if candidate.elected or candidate.occupy %} Current{% endif %}" data-id="{{forloop.counter}}">
+            {% endif %}
                 {% with sp=standpoints|json_lookup:candidate.id %}
                     <div class="label-current abs">
                         {% if candidate.elected %}
@@ -368,6 +375,7 @@
                     {% endwith %}
                 </div>
             {% endfor %}
+            {% endwith %}
             </div>
         </div>
     </div>

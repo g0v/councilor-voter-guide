@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+from random import randint
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db import connections, transaction
@@ -92,19 +93,13 @@ def councilors_districts(request, election_year, county):
 
 def district(request, election_year, county, constituency):
     coming_ele_year = coming_election_year(county)
-    transform_to_constiencies = []
     constituencies = {}
     try:
         election_config = Elections.objects.get(id=coming_ele_year).data
         constituencies = election_config.get('constituencies', {})
-        if coming_ele_year == election_year:
-            raise
-        for region in election_config['constituency_change'].get(county, []):
-            if constituency in region.get('from', {}).get('constituencies', []):
-                transform_to_constiencies.append(region['constituency'])
     except:
-        transform_to_constiencies = [constituency]
-    intents = Intent.objects.filter(election_year=coming_ele_year, county=county, constituency__in=transform_to_constiencies).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by('?')
+        constituencies = {}
+    intents = Intent.objects.filter(election_year=election_year, county=county, constituency=constituency).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by('?')
     years = Terms.objects.filter(county=county, type='councilors', constituency=constituency).values_list('election_year', flat=True).distinct().order_by('-election_year')
     candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by('?' if election_year == coming_ele_year else '-votes')
     if election_year == coming_ele_year:
@@ -154,11 +149,11 @@ def district(request, election_year, county, constituency):
                         SELECT 'bills' as k, json_agg(row) as v
                         FROM (
                             SELECT
-                CASE
-                    WHEN priproposer = true AND petition = false THEN '主提案'
-                    WHEN petition = false THEN '共同提案'
-                    WHEN petition = true THEN '連署提案'
-                END as role,
+                                CASE
+                                    WHEN priproposer = true AND petition = false THEN '主提案'
+                                    WHEN petition = false THEN '共同提案'
+                                    WHEN petition = true THEN '連署提案'
+                                END as role,
                                 s.title,
                                 count(*) as times,
                                 sum(pro) as pro
@@ -179,7 +174,7 @@ def district(request, election_year, county, constituency):
                 c.execute(qs, [terms_id, terms_id])
                 r = c.fetchone()
                 standpoints.update({candidate.id: r[0] if r else []})
-    return render(request, 'candidates/district.html', {'years': years, 'coming_election_year': coming_ele_year, 'intents': intents, 'election_year': election_year, 'county': county, 'constituency': constituency, 'constituencies': constituencies, 'district': constituencies[county]['regions'][int(constituency)-1]['district'] if constituencies.get(county) else '', 'candidates': candidates, 'standpoints': standpoints})
+    return render(request, 'candidates/district.html', {'years': years, 'coming_election_year': coming_ele_year, 'intents': intents, 'election_year': election_year, 'county': county, 'constituency': constituency, 'constituencies': constituencies, 'district': constituencies[county]['regions'][int(constituency)-1]['district'] if constituencies.get(county) else '', 'candidates': candidates, 'standpoints': standpoints, 'random_row': randint(1, len(candidates))})
 
 def intent_home(request):
     return render(request, 'candidates/intent_home.html', )
