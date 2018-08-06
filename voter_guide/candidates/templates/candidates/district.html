@@ -165,6 +165,7 @@
             <div class="content-list row col-xs-12">
             {% for candidate in candidates %}
             <div id="{{candidate.candidate_id}}" class="content-item row relat{% if candidate.elected or candidate.occupy %} Current{% endif %}" data-id="{{forloop.counter}}">
+                {% with sp=standpoints|json_lookup:candidate.id %}
                     <div class="label-current abs">
                         {% if candidate.elected %}
                         <img class="img-responsive" src="{% static "img/dest/elected.png" %}">
@@ -263,7 +264,7 @@
                         </div>
 
                         <div class="content-btm-ui col-xs-12 row">
-                            {% if candidate.data.terms|length > 1 or candidate.platform %}
+                            {% if candidate.data.terms|length > 0 or candidate.platform or sp %}
                             <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
                             {% endif %}
                             {% if candidate.councilor_terms %}
@@ -287,7 +288,6 @@
                         </div>
                         {% endif %}
 
-                        {% with sp=standpoints|json_lookup:candidate.id %}
                         {% if county|county_config:'votes' %}
                             <div class="vote col-sm-6 row">
                                 <div class="tit row col-sm-12">
@@ -321,7 +321,12 @@
                                 {% for standpoint in sp.bills %}
                                     <div class="list col-sm-12 row">
                                         <div class="col-sm-8 col-xs-6">{{standpoint.title}}</div>
-                                        <div class="statstic-num pull-right bg-proposal">提案</div>
+                                        {% if standpoint.role == "主提案" %}
+                                            <div class="statstic-num pull-right bg-hostpropose">
+                                        {% else %}
+                                            <div class="statstic-num pull-right bg-proposal">
+                                        {% endif %}
+                                        {{standpoint.role}}</div>
                                     </div>
                                 {% endfor %}
                             {% else %}
@@ -330,7 +335,6 @@
                                     </div>
                             {% endif %}
                         </div>
-                        {% endwith %}
                         {% if county|county_config:'votes' %}
                             <div class="politics col-sm-12 row">
                         {% else %}
@@ -358,6 +362,7 @@
                         </div>
                     </div>
                     {% endif %}
+                    {% endwith %}
                 </div>
             {% endfor %}
             </div>
