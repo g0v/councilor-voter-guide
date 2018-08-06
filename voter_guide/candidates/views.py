@@ -79,7 +79,7 @@ def mayors(request, election_year, county):
             c.execute(qs, [term.uid, ])
             r = c.fetchone()
             if not standpoints.get(candidate.id):
-                standpoints.update({candidate.id: [{'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []}]})
+                standpoints.update({candidate.id: {'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []}})
             else:
                 standpoints[candidate.id].append({'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []})
     return render(request, 'candidates/mayors.html', {'years': years, 'election_year': election_year, 'county': county, 'candidates': candidates, 'standpoints': standpoints})
@@ -154,6 +154,11 @@ def district(request, election_year, county, constituency):
                         SELECT 'bills' as k, json_agg(row) as v
                         FROM (
                             SELECT
+                CASE
+                    WHEN priproposer = true AND petition = false THEN '主提案'
+                    WHEN petition = false THEN '共同提案'
+                    WHEN petition = true THEN '連署提案'
+                END as role,
                                 s.title,
                                 count(*) as times,
                                 sum(pro) as pro
@@ -165,7 +170,7 @@ def district(request, election_year, county, constituency):
                                 WHERE ss.pro > 0 AND s.bill_id = ss.bill_id
                                 GROUP BY ss.bill_id
                             )
-                            GROUP BY s.title
+                            GROUP BY s.title, role
                             ORDER BY pro DESC, times DESC
                             LIMIT 3
                         ) row
