@@ -181,7 +181,7 @@ def district(request, election_year, county, constituency):
                 c.execute(qs, [terms_id, terms_id])
                 r = c.fetchone()
                 standpoints.update({candidate.id: r[0] if r else []})
-    return render(request, 'candidates/district.html', {'years': years, 'coming_election_year': coming_ele_year, 'intents': intents, 'election_year': election_year, 'county': county, 'constituency': constituency, 'constituencies': constituencies, 'district': constituencies[county]['regions'][int(constituency)-1]['district'] if constituencies.get(county) else '', 'candidates': candidates, 'standpoints': standpoints, 'random_row': randint(1, len(candidates) if not request.GET.get('intent') else 1)})
+    return render(request, 'candidates/district.html', {'years': years, 'coming_election_year': coming_ele_year, 'intents': intents, 'election_year': election_year, 'county': county, 'constituency': constituency, 'constituencies': constituencies, 'district': constituencies[county]['regions'][int(constituency)-1]['district'] if constituencies.get(county) else '', 'candidates': candidates, 'standpoints': standpoints, 'random_row': randint(1, len(candidates)) if not request.GET.get('intent') and len(candidates) else 1})
 
 def intent_home(request):
     return render(request, 'candidates/intent_home.html', )
