@@ -206,6 +206,10 @@
                                         <div class="col-sm-8 col-xs-6">{{standpoint.title}}</div>
                                         <div class="statstic-num pull-right bg-hostpropose">政府提案</div>
                                     </div>
+                                {% empty %}
+                                    <div class="list col-sm-12 row">
+                                        <a class="btn" href="{% url 'mayors:biller' mayor_id=candidate.data.mayor_terms.0.mayor_id election_year=candidate.data.mayor_terms.0.election_year %}">尚無摘要資料，來幫忙摘要！ </a>
+                                    </div>
                                 {% endfor %}
                             </div>
                             {% endif %}
