@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 import json
 from random import randint
 
@@ -99,7 +100,13 @@ def district(request, election_year, county, constituency):
         constituencies = election_config.get('constituencies', {})
     except:
         constituencies = {}
-    intents = Intent.objects.filter(election_year=election_year, county=county, constituency=constituency).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by('?')
+    if request.GET.get('intent'):
+        intents = Intent.objects.filter(election_year=election_year, county=county, constituency=constituency).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by(
+            Case(
+                When(name=request.GET['intent'], then=Value(0)),
+        ), '?')
+    else:
+        intents = Intent.objects.filter(election_year=election_year, county=county, constituency=constituency).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by('?')
     years = Terms.objects.filter(county=county, type='councilors', constituency=constituency).values_list('election_year', flat=True).distinct().order_by('-election_year')
     candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by('?' if election_year == coming_ele_year else '-votes')
     if election_year == coming_ele_year:
@@ -174,7 +181,7 @@ def district(request, election_year, county, constituency):
                 c.execute(qs, [terms_id, terms_id])
                 r = c.fetchone()
                 standpoints.update({candidate.id: r[0] if r else []})
-    return render(request, 'candidates/district.html', {'years': years, 'coming_election_year': coming_ele_year, 'intents': intents, 'election_year': election_year, 'county': county, 'constituency': constituency, 'constituencies': constituencies, 'district': constituencies[county]['regions'][int(constituency)-1]['district'] if constituencies.get(county) else '', 'candidates': candidates, 'standpoints': standpoints, 'random_row': randint(1, len(candidates))})
+    return render(request, 'candidates/district.html', {'years': years, 'coming_election_year': coming_ele_year, 'intents': intents, 'election_year': election_year, 'county': county, 'constituency': constituency, 'constituencies': constituencies, 'district': constituencies[county]['regions'][int(constituency)-1]['district'] if constituencies.get(county) else '', 'candidates': candidates, 'standpoints': standpoints, 'random_row': randint(1, len(candidates) if not request.GET.get('intent') else 1)})
 
 def intent_home(request):
     return render(request, 'candidates/intent_home.html', )
