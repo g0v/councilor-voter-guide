@@ -48,8 +48,8 @@
                     <!-- Button to trigger modal -->
                     <a href="#modal-idx-{{forloop.counter}}" role="button" data-toggle="modal"><h6>{{ revision.modify_at|str2datetime|timesince }}前</a></h6>
                     <!-- Modal -->
-                    <div id="modal-idx-{{forloop.counter}}" class="modal fade" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
+                    <div id="modal-idx-{{forloop.counter}}" class="modal fade" tabindex="-1" role="dialog" style="padding-top: 200px;">
+                        <div class="modal-dialog" role="document" style="z-index:2000">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">✖</button>
@@ -80,22 +80,22 @@
                                     </div>
                                     <div class="property-header">為何參選：</div>
                                     <textarea style="display: none">{{revision.motivation}}</textarea>
-                                    <div class="property-body jumbotron"></div>
+                                    <div class="intent-property-body jumbotron"></div>
                                     <div class="property-header">政治理念：</div>
                                     <textarea style="display: none">{{revision.ideology}}</textarea>
-                                    <div class="property-body jumbotron"></div>
+                                    <div class="intent-property-body jumbotron"></div>
                                     <div class="property-header">地方政見：</div>
                                     <textarea style="display: none">{{revision.platform}}</textarea>
-                                    <div class="property-body jumbotron"></div>
+                                    <div class="intent-property-body jumbotron"></div>
                                     <div class="property-header">經歷：</div>
                                     <textarea style="display: none">{{revision.experience}}</textarea>
-                                    <div class="property-body jumbotron"></div>
+                                    <div class="intent-property-body jumbotron"></div>
                                     <div class="property-header">學歷：</div>
                                     <textarea style="display: none">{{revision.education}}</textarea>
-                                    <div class="property-body jumbotron"></div>
+                                    <div class="intent-property-body jumbotron"></div>
                                     <div class="property-header">備註：</div>
                                     <textarea style="display: none">{{revision.remark}}</textarea>
-                                    <div class="property-body jumbotron"></div>
+                                    <div class="intent-property-body jumbotron"></div>
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">關閉</button>
@@ -348,16 +348,6 @@
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script>
         $(document).ready( function() {
-            $('#candidates').addClass('active');
-            $("nav").removeClass('navbar-fixed-top');
-            $('.person_header').affix({
-                offset: {
-                    /* Affix the navbar after scroll below header */
-                    top: function () {
-                        return $("nav").outerHeight(true)
-                    }
-                }
-            });
             function get_youtube_id(url) {
                 var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
                 var match = url.match(regExp);

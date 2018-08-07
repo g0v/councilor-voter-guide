@@ -7,8 +7,6 @@
     {% block person_css_file %}
     {% endblock person_css_file %}
     <link href="{% static "css/resume.min.css" %}" rel="stylesheet">
-    <style>
-    </style>
 {% endblock css_file %}
 
 {% block right %}
@@ -112,7 +110,7 @@
     </div>
 
     <div class="wrapper relat">
-        <div class="container relat classJ contain-1000">
+        <div class="container relat classJ contain-1000" style="margin-top: 20px;">
             {% block person_detail %}
             {% endblock person_detail %}
         </div>
