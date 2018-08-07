@@ -117,3 +117,9 @@ class Intent_Standpoints(models.Model):
     def __unicode__(self):
         return self.intent
 
+class User_Generate_List(models.Model):
+    uid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    publish = models.BooleanField(default=False, db_index=True)
+    create_at = models.DateTimeField(auto_now_add=True)
+    data = JSONField(null=True)

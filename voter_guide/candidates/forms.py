@@ -80,3 +80,6 @@ class Intent_StandpointsForm(forms.ModelForm):
             'pro': forms.widgets.Select(attrs={'class': 'form-control'}),
             'comment': forms.widgets.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }
+
+class NamesForm(forms.Form):
+    content = forms.CharField(label=u'候選人名字', widget=forms.widgets.Textarea(attrs={'class': 'form-control', 'placeholder': u'範例:\n駱阿瓜\n駱瓜喵', 'rows': 5}))

@@ -226,6 +226,8 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+LOGIN_URL = '/accounts/facebook/login/'
+
 try:
     from local_settings import *
 except ImportError:

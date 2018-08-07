@@ -1,0 +1,9 @@
+<div class="pagemanager col-xs-12">
+    <div class="track d-inline-block">
+        <div class="btn-j btnArrow btnPrev d-inline-block"><i class="fa fa-caret-left" aria-hidden="true"></i></div>
+        {% for item in items %}
+            <a class="pg d-inline-block pg{{forloop.counter}}" data-id="{{forloop.counter}}" href="{% url "candidates:user_generated_list" list_id=item.uid %}">名單 {{forloop.counter}}</a>
+        {% endfor %}
+        <div class="btn-j btnArrow btnNext d-inline-block"><i class="fa fa-caret-right" aria-hidden="true"></i></div>
+    </div>
+</div>

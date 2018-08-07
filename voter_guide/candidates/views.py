@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 import json
+import uuid
 from random import randint
 
 from django.shortcuts import render, get_object_or_404, redirect
@@ -11,8 +12,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
-from .models import Candidates, Terms, Intent, Intent_Likes
-from .forms import IntentForm, SponsorForm
+from .models import Candidates, Terms, Intent, Intent_Likes, User_Generate_List
+from .forms import IntentForm, SponsorForm, NamesForm
 from councilors.models import CouncilorsDetail
 from suggestions.models import Suggestions
 from platforms.models import Platforms
@@ -20,108 +21,42 @@ from elections.models import Elections
 from commontag.views import paginate, coming_election_year
 from .tasks import intent_register_achievement, intent_like_achievement
 
-
-def intents(request, election_year):
-    ref = {
-        'create_at': 'id',
-        'likes': 'likes'
-    }
-    order_by = ref.get(request.GET.get('order_by'), 'likes')
-    qs = Q(county=request.GET.get('county')) if request.GET.get('county') else Q()
-    qs = qs & Q(election_year=election_year) & ~Q(status='draft')
-    qs = qs & Q(constituency__in=request.GET.get('constituency').split(',')) if request.GET.get('constituency') else qs
-    intents = Intent.objects.filter(qs).order_by('-%s' % order_by)
-    intents = paginate(request, intents)
-    intent_counties = Intent.objects.filter(qs).values('county').annotate(count=Count('county'))
-    return render(request, 'candidates/intents.html', {'intents': intents, 'intent_counties': intent_counties, 'election_year': election_year})
-
-def mayors_area(request, election_year):
-    return render(request, 'candidates/mayors_area.html', {'election_year': election_year})
-
-def mayors(request, election_year, county):
-    coming_ele_year = coming_election_year(county)
-    if election_year == coming_ele_year:
-        if request.GET.get('name'):
-            candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors').order_by(
-                                  Case(
-                                      When(name=request.GET['name'], then=Value(0)),
-                              ), '?')
-        else:
-            candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors').order_by('?')
-    else:
-        candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors').order_by('-votes')
-    years = Terms.objects.filter(county=county, type='mayors').values_list('election_year', flat=True).distinct().order_by('-election_year')
+def populate_standpoints(candidates):
+    c = connections['default'].cursor()
     standpoints = {}
     for candidate in candidates:
-        terms = Terms.objects.filter(type='mayors', candidate_id=candidate.candidate_id, elected=True)\
-                             .order_by('-election_year')
-        for term in terms:
-            c = connections['default'].cursor()
-            qs = u'''
-                SELECT json_agg(row)
-                FROM (
-                    SELECT
-                        s.title,
-                        count(*) as times,
-                        sum(pro) as pro
-                    FROM bills_mayors_bills lv
-                    JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
-                    JOIN bills_bills v on lv.bill_id = v.uid
-                    WHERE lv.mayor_id = %s AND s.pro = (
-                        SELECT max(pro)
-                        FROM standpoints_standpoints ss
-                        WHERE ss.pro > 0 AND s.bill_id = ss.bill_id
-                        GROUP BY ss.bill_id
-                    )
-                    GROUP BY s.title
-                    ORDER BY pro DESC, times DESC
-                    LIMIT 3
-                ) row
-            '''
-            c.execute(qs, [term.uid, ])
-            r = c.fetchone()
-            if not standpoints.get(candidate.id):
-                standpoints.update({candidate.id: {'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []}})
-            else:
-                standpoints[candidate.id].append({'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []})
-    return render(request, 'candidates/mayors.html', {'years': years, 'election_year': election_year, 'county': county, 'candidates': candidates, 'standpoints': standpoints})
-
-def councilors_area(request, election_year):
-    return render(request, 'candidates/councilors_area.html', {'election_year': election_year})
-
-def councilors_districts(request, election_year, county):
-    return render(request, 'candidates/councilors_districts.html', {'election_year': election_year, 'county': county})
-
-def district(request, election_year, county, constituency):
-    coming_ele_year = coming_election_year(county)
-    constituencies = {}
-    try:
-        election_config = Elections.objects.get(id=coming_ele_year).data
-        constituencies = election_config.get('constituencies', {})
-    except:
-        constituencies = {}
-    if request.GET.get('intent'):
-        intents = Intent.objects.filter(election_year=election_year, county=county, constituency=constituency).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by(
-            Case(
-                When(name=request.GET['intent'], then=Value(0)),
-        ), '?')
-    else:
-        intents = Intent.objects.filter(election_year=election_year, county=county, constituency=constituency).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by('?')
-    years = Terms.objects.filter(county=county, type='councilors', constituency=constituency).values_list('election_year', flat=True).distinct().order_by('-election_year')
-    candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by('?' if election_year == coming_ele_year else '-votes')
-    if election_year == coming_ele_year:
-        if request.GET.get('name'):
-            candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by(
-                Case(
-                    When(name=request.GET['name'], then=Value(0)),
-            ), '?')
+        if candidate.type == 'mayors':
+            terms = Terms.objects.filter(type='mayors', candidate_id=candidate.candidate_id, elected=True)\
+                                .order_by('-election_year')
+            for term in terms:
+                qs = u'''
+                    SELECT json_agg(row)
+                    FROM (
+                        SELECT
+                            s.title,
+                            count(*) as times,
+                            sum(pro) as pro
+                        FROM bills_mayors_bills lv
+                        JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
+                        JOIN bills_bills v on lv.bill_id = v.uid
+                        WHERE lv.mayor_id = %s AND s.pro = (
+                            SELECT max(pro)
+                            FROM standpoints_standpoints ss
+                            WHERE ss.pro > 0 AND s.bill_id = ss.bill_id
+                            GROUP BY ss.bill_id
+                        )
+                        GROUP BY s.title
+                        ORDER BY pro DESC, times DESC
+                        LIMIT 3
+                    ) row
+                '''
+                c.execute(qs, [term.uid, ])
+                r = c.fetchone()
+                if not standpoints.get(candidate.id):
+                    standpoints.update({candidate.id: {'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []}})
+                else:
+                    standpoints[candidate.id].append({'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []})
         else:
-            candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by('?')
-    else:
-        candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by('-votes')
-    standpoints = {}
-    for term in [candidates]:
-        for candidate in term:
             if candidate.councilor_terms:
                 terms_id = tuple([x['term_id'] for x in candidate.councilor_terms])
                 c = connections['default'].cursor()
@@ -181,6 +116,75 @@ def district(request, election_year, county, constituency):
                 c.execute(qs, [terms_id, terms_id])
                 r = c.fetchone()
                 standpoints.update({candidate.id: r[0] if r else []})
+    return standpoints
+
+def intents(request, election_year):
+    ref = {
+        'create_at': 'id',
+        'likes': 'likes'
+    }
+    order_by = ref.get(request.GET.get('order_by'), 'likes')
+    qs = Q(county=request.GET.get('county')) if request.GET.get('county') else Q()
+    qs = qs & Q(election_year=election_year) & ~Q(status='draft')
+    qs = qs & Q(constituency__in=request.GET.get('constituency').split(',')) if request.GET.get('constituency') else qs
+    intents = Intent.objects.filter(qs).order_by('-%s' % order_by)
+    intents = paginate(request, intents)
+    intent_counties = Intent.objects.filter(qs).values('county').annotate(count=Count('county'))
+    return render(request, 'candidates/intents.html', {'intents': intents, 'intent_counties': intent_counties, 'election_year': election_year})
+
+def mayors_area(request, election_year):
+    return render(request, 'candidates/mayors_area.html', {'election_year': election_year})
+
+def mayors(request, election_year, county):
+    coming_ele_year = coming_election_year(county)
+    if election_year == coming_ele_year:
+        if request.GET.get('name'):
+            candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors').order_by(
+                                  Case(
+                                      When(name=request.GET['name'], then=Value(0)),
+                              ), '?')
+        else:
+            candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors').order_by('?')
+    else:
+        candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors').order_by('-votes')
+    years = Terms.objects.filter(county=county, type='mayors').values_list('election_year', flat=True).distinct().order_by('-election_year')
+    standpoints = populate_standpoints(candidates)
+    return render(request, 'candidates/mayors.html', {'years': years, 'election_year': election_year, 'county': county, 'candidates': candidates, 'standpoints': standpoints})
+
+def councilors_area(request, election_year):
+    return render(request, 'candidates/councilors_area.html', {'election_year': election_year})
+
+def councilors_districts(request, election_year, county):
+    return render(request, 'candidates/councilors_districts.html', {'election_year': election_year, 'county': county})
+
+def district(request, election_year, county, constituency):
+    coming_ele_year = coming_election_year(county)
+    constituencies = {}
+    try:
+        election_config = Elections.objects.get(id=coming_ele_year).data
+        constituencies = election_config.get('constituencies', {})
+    except:
+        constituencies = {}
+    if request.GET.get('intent'):
+        intents = Intent.objects.filter(election_year=election_year, county=county, constituency=constituency).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by(
+            Case(
+                When(name=request.GET['intent'], then=Value(0)),
+        ), '?')
+    else:
+        intents = Intent.objects.filter(election_year=election_year, county=county, constituency=constituency).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by('?')
+    years = Terms.objects.filter(county=county, type='councilors', constituency=constituency).values_list('election_year', flat=True).distinct().order_by('-election_year')
+    candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by('?' if election_year == coming_ele_year else '-votes')
+    if election_year == coming_ele_year:
+        if request.GET.get('name'):
+            candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by(
+                Case(
+                    When(name=request.GET['name'], then=Value(0)),
+            ), '?')
+        else:
+            candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by('?')
+    else:
+        candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by('-votes')
+    standpoints = populate_standpoints(candidates)
     return render(request, 'candidates/district.html', {'years': years, 'coming_election_year': coming_ele_year, 'intents': intents, 'election_year': election_year, 'county': county, 'constituency': constituency, 'constituencies': constituencies, 'district': constituencies[county]['regions'][int(constituency)-1]['district'] if constituencies.get(county) else '', 'candidates': candidates, 'standpoints': standpoints, 'random_row': randint(1, len(candidates)) if not request.GET.get('intent') and len(candidates) else 1})
 
 def intent_home(request):
@@ -318,3 +322,86 @@ def intent_sponsor(request, intent_id):
 def pc(request, candidate_id, election_year):
     candidate = get_object_or_404(Terms.objects, election_year=election_year, candidate_id=candidate_id)
     return render(request, 'candidates/pc.html', {'candidate': candidate})
+
+def get_candidates(name):
+    c = connections['default'].cursor()
+    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’〃\']', '', name), re.sub(u'\W', '', name).lower(), } - {''}
+    if identifiers:
+        c.execute('''
+            SELECT jsonb_agg(uid)
+            FROM candidates_candidates
+            WHERE identifiers ?| array[%s]
+        ''' % ','.join(["'%s'" % x for x in identifiers]))
+        r = c.fetchone()
+        if r:
+            return r[0]
+    return []
+
+def get_intents(name):
+    c = connections['default'].cursor()
+    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’〃\']', '', name), re.sub(u'\W', '', name).lower(), } - {''}
+    if identifiers:
+        c.execute('''
+            SELECT jsonb_agg(uid)
+            FROM candidates_intent
+            WHERE name in %s
+        ''', [tuple(identifiers)])
+        r = c.fetchone()
+        if r:
+            return r[0]
+    return []
+
+@login_required
+def user_generate_list(request):
+    if request.method == 'POST':
+        coming_ele_year = coming_election_year(None)
+        form = NamesForm(request.POST)
+        if form.is_valid():
+            chosen_candidates, chosen_intents = [], []
+            text = request.POST['content']
+            text = text.strip(u'[　\s]')
+            text = re.sub(u'[　\n、]', u' ', text)
+            text = re.sub(u'[ ]+(\d+)[ ]+', u'\g<1>', text)
+            text = re.sub(u' ([^ \w]) ([^ \w]) ', u' \g<1>\g<2> ', text) # e.g. 楊　曜=>楊曜, 包含句首
+            text = re.sub(u'^([^ \w]) ([^ \w]) ', u'\g<1>\g<2> ', text) # e.g. 楊　曜=>楊曜, 包含句首
+            text = re.sub(u' ([^ \w]) ([^ \w])$', u' \g<1>\g<2>', text) # e.g. 楊　曜=>楊曜, 包含句尾
+            text = re.sub(u' (\w+) (\w+) ', u' \g<1>\g<2> ', text) # e.g. Kolas Yotaka=>KolasYotaka, 包含句首
+            text = re.sub(u'^(\w+) (\w+) ', u'\g<1>\g<2> ', text) # e.g. Kolas Yotaka=>KolasYotaka, 包含句首
+            text = re.sub(u'　(\w+) (\w+)$', u' \g<1>\g<2>', text) # e.g. Kolas Yotaka=>KolasYotaka, 包含句尾
+            text = re.sub(u'^([^ \w]) ([^ \w])$', u'\g<1>\g<2>', text) # e.g. 楊　曜=>楊曜, 單獨一人
+            text = re.sub(u'^(\w+) (\w+)$', u'\g<1>\g<2>', text) # e.g. Kolas Yotaka=>KolasYotaka, 單獨一人
+            for name in text.split():
+                name = re.sub(u'(.*)[）)。】」]$', '\g<1>', name) # 名字後有標點符號
+                uid = get_candidates(name)
+                if uid:
+                    chosen_candidates.extend(uid)
+                else:
+                    uid = get_intents(name)
+                    if uid:
+                        chosen_intents.extend(uid)
+            if not request.POST.get('publish'):
+                candidates = Terms.objects.filter(election_year=coming_ele_year, candidate_id__in=chosen_candidates).select_related('candidate', 'intent').order_by('county', 'constituency')
+                intents = Intent.objects.filter(election_year=coming_ele_year, uid__in=chosen_intents).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by('county', 'constituency')
+                standpoints = populate_standpoints(candidates)
+                return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'candidates': candidates, 'intents': intents, 'standpoints': standpoints, 'random_row': randint(1, len(candidates)) if len(candidates) else 1, 'user': request.user})
+            else:
+                list_id = str(uuid.uuid4())
+                User_Generate_List.objects.create(uid=list_id, user=request.user, publish=True, data={'candidates': chosen_candidates, 'intents': chosen_intents})
+                return redirect(reverse('candidates:user_generated_list', kwargs={'list_id': list_id}))
+    else:
+        form = NamesForm()
+        lists = User_Generate_List.objects.filter(user=request.user)
+    return render(request, 'candidates/user_generate_list.html', {'form': form, 'lists': lists})
+
+def user_generated_list(request, list_id):
+    coming_ele_year = coming_election_year(None)
+    try:
+        user_list = User_Generate_List.objects.get(uid=list_id, publish=True)
+        chosen_candidates = user_list.data['candidates']
+        chosen_intents = user_list.data['intents']
+        candidates = Terms.objects.filter(election_year=coming_ele_year, candidate_id__in=chosen_candidates).select_related('candidate', 'intent').order_by('county', 'constituency')
+        intents = Intent.objects.filter(election_year=coming_ele_year, uid__in=chosen_intents).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by('county', 'constituency')
+        standpoints = populate_standpoints(candidates)
+    except Exception, e:
+        return HttpResponseRedirect('/')
+    return render(request, 'candidates/user_generate_list.html', {'election_year': coming_ele_year, 'user_list': user_list, 'candidates': candidates, 'intents': intents, 'standpoints': standpoints, 'random_row': randint(1, len(candidates)) if len(candidates) else 1, 'user': user_list.user})
