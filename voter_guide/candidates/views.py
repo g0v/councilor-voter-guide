@@ -404,4 +404,4 @@ def user_generated_list(request, list_id):
         standpoints = populate_standpoints(candidates)
     except Exception, e:
         return HttpResponseRedirect('/')
-    return render(request, 'candidates/user_generate_list.html', {'election_year': coming_ele_year, 'user_list': user_list, 'candidates': candidates, 'intents': intents, 'standpoints': standpoints, 'random_row': randint(1, len(candidates)) if len(candidates) else 1, 'user': user_list.user})
+    return render(request, 'candidates/user_generate_list.html', {'election_year': coming_ele_year, 'user_list': user_list, 'candidates': candidates, 'intents': intents, 'standpoints': standpoints, 'random_row': randint(1, len(candidates)) if len(candidates) else 1, 'user': user_list.user, 'total_count': len(candidates)+len(intents)})

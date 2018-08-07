@@ -4,9 +4,15 @@
 {% load extras %}
 
 {% block title %}
-    <title>投票指南:看議員姓名有沒有錯字</title>
-    <meta property="og:title" content="投票指南:看議員姓名有沒有錯字"/>
-    <meta itemprop="name" content="投票指南:看議員姓名有沒有錯字">
+    {% if not user_list %}
+        <title>投票指南:{{user.last_name}}{{user.first_name}}的 {{total_count}} 人名單</title>
+        <meta property="og:title" content="投票指南:{{user.last_name}}{{user.first_name}}的 {{total_count}} 人名單"/>
+        <meta itemprop="name" content="投票指南:{{user.last_name}}{{user.first_name}}的 {{total_count}} 人名單">
+    {% else %}
+        <title>投票指南:候選人名單由你來建</title>
+        <meta property="og:title" content="投票指南:候選人名單由你來建"/>
+        <meta itemprop="name" content="投票指南:候選人名單由你來建">
+    {% endif %}
 {% endblock title %}
 
 {% block css_file %}
@@ -37,8 +43,9 @@
                 <div class="col-xs-6 col-sm-10 col-md-11 area">
                     <p>建立者：{{user.last_name}}{{user.first_name}}</p>
                     <p>建立時間：{{user_list.create_at}}</p>
-                    <div class="fb-share-button pull-right" data-href="{{current_url}}" data-layout="button_count" data-size="large" data-mobile-iframe="true"></div>
+                    <p>名單人數：{{total_count}}</p>
                 </div>
+                <div class="fb-share-button pull-right" data-href="{{current_url}}" data-layout="button_count" data-size="large" data-mobile-iframe="true"></div>
                 <a class="btn-prev col-xs-3 visible-xs" href="{% url "candidates:user_generate_list" %}">我也來建</a>
             </div>
 
