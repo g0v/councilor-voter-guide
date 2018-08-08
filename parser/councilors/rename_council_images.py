@@ -27,15 +27,16 @@ c.execute('''
 key = [desc[0] for desc in c.description]
 for person in c.fetchall():
     person = dict(zip(key, person))
+    print person['name']
     f_name = '%s_%d_%s' % (person['county'], person['constituency'], person['name'])
     f = '%s/%s' % (path, f_name)
-    if not os.path.isfile(f):
-        cmd = 'wget --no-check-certificate "%s" -O %s' % (person['image'], f)
-        subprocess.call(cmd, shell=True)
+    cmd = 'wget -N --no-check-certificate "%s" -O %s' % (person['image'], f)
+    subprocess.call(cmd, shell=True)
     image_url = '%s/%s/%s/%s' % (common.storage_domain(), 'councilors', election_year, f_name)
-    c.execute('''
-        UPDATE candidates_terms
-        SET image = %s
-        WHERE elected_councilor_id = %s
-    ''', [image_url, person['id']])
+    if os.path.isfile(f):
+        c.execute('''
+            UPDATE candidates_terms
+            SET image = %s
+            WHERE elected_councilor_id = %s
+        ''', [image_url, person['id']])
 conn.commit()
