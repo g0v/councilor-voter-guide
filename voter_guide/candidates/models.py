@@ -120,6 +120,10 @@ class Intent_Standpoints(models.Model):
 class User_Generate_List(models.Model):
     uid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    content = models.TextField(blank=True, null=True, verbose_name=u'候選人名字')
+    recommend = models.NullBooleanField(db_index=True, verbose_name=u'您推薦這份名單？')
+    link = models.URLField(blank=True, null=True, verbose_name=u'外部網址')
     publish = models.BooleanField(default=False, db_index=True)
-    create_at = models.DateTimeField(auto_now_add=True)
+    create_at = models.DateTimeField(auto_now_add=True, editable=False)
+    modified_at = models.DateTimeField(auto_now=True, editable=False)
     data = JSONField(null=True)

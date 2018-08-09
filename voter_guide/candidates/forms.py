@@ -3,7 +3,7 @@ import json
 from django import forms
 from django.utils.datastructures import MultiValueDict
 
-from .models import Intent, Intent_Standpoints
+from .models import Intent, Intent_Standpoints, User_Generate_List
 
 types = (('councilors', u'縣市議員'), ('mayors', u'縣市長'), )
 counties = ((x, x) for x in ["", "臺北市", "新北市", "桃園市", "基隆市", "宜蘭縣", "新竹縣", "新竹市", "苗栗縣", "臺中市", "彰化縣", "雲林縣", "南投縣", "嘉義縣", "嘉義市", "臺南市", "高雄市", "屏東縣", "花蓮縣", "臺東縣", "澎湖縣", "金門縣", "連江縣"])
@@ -81,5 +81,20 @@ class Intent_StandpointsForm(forms.ModelForm):
             'comment': forms.widgets.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }
 
-class NamesForm(forms.Form):
-    content = forms.CharField(label=u'候選人名字', widget=forms.widgets.Textarea(attrs={'class': 'form-control', 'placeholder': u'範例:\n駱阿瓜\n駱瓜喵', 'rows': 5}))
+class ListsForm(forms.ModelForm):
+    class Meta:
+        model = User_Generate_List
+        fields = ['content', 'recommend', 'link']
+        widgets = {
+            'content': forms.widgets.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': u'範例:\n駱阿瓜\n駱瓜喵',
+                'rows': 5
+            }),
+            'recommend': forms.widgets.Select(choices=((True, u'推薦'), (None, u'不表達'), (False, u'不推薦')), attrs={'class': 'form-control'}),
+            'link': forms.widgets.URLInput(attrs={
+                'class': 'form-control',
+                'placeholder': u'外部網址，如臉書貼文網址，您對此份名單的詳細介紹，可發布後再編輯'
+            }),
+        }
+

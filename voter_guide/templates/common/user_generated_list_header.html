@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load socialaccount %}
+{% load staticfiles %}
+{% load extras %}
+
+{% block css_file %}
+    {% block person_css_file %}
+    {% endblock person_css_file %}
+    <link href="{% static "css/resume.min.css" %}" rel="stylesheet">
+{% endblock css_file %}
+
+{% block right %}
+    <input class="inv" id="page" type="text" value="resume-bills">
+    <div class="preload abs"></div>
+    <div class="wrapper-header relat header-{{id}}" data-type="{{id}}">
+        <div class="container relat classJ contain-1000">
+            <div class="profile-header row">
+                <div class="photoAndParty col-xs-12 col-sm-3 row hidden-xs">
+                    <div class="photo pull-right">
+                        <div class="relat">
+                            {% with user_id=user.socialaccount_set.first.uid %}
+                                <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=480">
+                            {% endwith %}
+                        </div>
+                    </div>
+                </div>
+                <div class="infoArea col-xs-12 col-sm-9 row">
+                    <div class="name col-xs-12">
+                        <h1>
+                            {{user.last_name}}{{user.first_name}}
+                            {% if recommend %}
+                                {{recommend}}
+                            {% endif %}
+                            {% if total_count %}
+                                的 {{total_count}} 人名單
+                            {% else %}
+                                的名單
+                            {% endif %}
+
+                        </h1>
+                    </div>
+                    <div class="ui-years col-xs-12 row">
+                        <div class="classJ col-sm-5 col-xs-9 pull-left">
+                            {% if user_list %}
+                            <p class="hidden-xs">修改時間：{{user_list.modified_at}}</p>
+                            {% endif %}
+                            {% if total_count %}
+                            <p>名單人數：{{total_count}}</p>
+                            {% endif %}
+                            {% if user_list.link %}
+                            <a class="hidden-xs" href="{{user_list.link}}" target="_blank">☛建立者對此名單的詳細介紹</a>
+                            {% endif %}
+                        </div>
+                        <div class="info-type col-sm-3 abs hidden-xs">
+                        </div>
+
+                        {% if user_list and user == request.user %}
+                        <a class="btn-wish pull-right" href="{% url "candidates:user_generate_list" %}?list_id={{user_list.uid}}">編輯</a>
+                        {% else %}
+                        <a class="btn-wish pull-right" href="{% url "candidates:user_generate_list" %}">我也來建</a>
+                        {% endif %}
+                    </div>
+                    <div class="photoAndParty photoAndParty-btm col-xs-12 col-sm-3 row hidden-sm hidden-md hidden-lg">
+                        <div class="photo">
+                            <div class="relat">
+                            {% with user_id=user.socialaccount_set.first.uid %}
+                                <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=480">
+                            {% endwith %}
+                            </div>
+                        </div>
+                        {% if user_list.link %}
+                        <font style="font-size: 18px;">
+                            <a href="{{user_list.link}}" target="_blank">☛建立者對此名單的詳細介紹</a>
+                        </font>
+                        {% endif %}
+                    </div>
+                    <div class="nav-resume-all col-xs-11">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper relat">
+        <div class="container relat classJ contain-1000">
+            {% block person_detail %}
+            {% endblock person_detail %}
+        </div>
+    </div>
+    <hr>
+    <div id="disqus_thread"></div>
+{% endblock right %}
