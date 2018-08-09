@@ -161,7 +161,7 @@ def district(request, election_year, county, constituency):
     coming_ele_year = coming_election_year(county)
     constituencies = {}
     try:
-        election_config = Elections.objects.get(id=coming_ele_year).data
+        election_config = Elections.objects.get(id=election_year).data
         constituencies = election_config.get('constituencies', {})
     except:
         constituencies = {}
