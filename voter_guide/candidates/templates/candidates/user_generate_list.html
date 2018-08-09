@@ -50,8 +50,14 @@
         {% if intents %}
             {% if intents and forloop.counter == random_row %}
                 {% for intent in intents %}
-                    <div id="{{intent.uid}}" class="content-item row relat{% if intent.councilor_terms.0.election_year == election_year or intent.councilor_terms.0.term_end_year == election_year %} Current{% endif %}" data-id="{{forloop.counter0|add:random_row}}">
-                        <div class="label-current abs"><img class="img-responsive" src="{% static "img/dest/currency.png" %}"></div>
+                    <div id="{{intent.uid}}" class="content-item row relat Current" data-id="{{forloop.counter0|add:random_row}}">
+                        <div class="label-current abs">
+                        {% if intent.councilor_terms.0.election_year == election_year or intent.councilor_terms.0.term_end_year == election_year %}
+                            <img class="img-responsive" src="{% static "img/dest/currency.png" %}">
+                        {% else %}
+                            <img class="img-responsive" src="{% static "img/dest/non-currency.png" %}">
+                        {% endif %}
+                        </div>
                         <div class="content-item-layer1 row relat">
                             <a class="profile col-xs-12 row">
                                 <div class="photo pull-left relat">
@@ -160,12 +166,12 @@
             {% endfor %}
             {% endif %}
             {% if forloop.counter < random_row %}
-                <div id="{{candidate.candidate_id}}" class="content-item row relat{% if candidate.elected or candidate.occupy %} Current{% endif %}" data-id="{{forloop.counter}}">
+                <div id="{{candidate.candidate_id}}" class="content-item row relat Current" data-id="{{forloop.counter}}">
             {% else %}
-                <div id="{{candidate.candidate_id}}" class="content-item row relat{% if candidate.elected or candidate.occupy %} Current{% endif %}" data-id="{{forloop.counter|add:intent_num}}">
+                <div id="{{candidate.candidate_id}}" class="content-item row relat Current" data-id="{{forloop.counter|add:intent_num}}">
             {% endif %}
         {% else %}
-            <div id="{{candidate.candidate_id}}" class="content-item row relat{% if candidate.elected or candidate.occupy %} Current{% endif %}" data-id="{{forloop.counter}}">
+            <div id="{{candidate.candidate_id}}" class="content-item row relat Current" data-id="{{forloop.counter}}">
         {% endif %}
             {% with sp=standpoints|json_lookup:candidate.id %}
                 <div class="label-current abs">
@@ -173,6 +179,8 @@
                     <img class="img-responsive" src="{% static "img/dest/elected.png" %}">
                     {% elif candidate.occupy %}
                     <img class="img-responsive" src="{% static "img/dest/currency.png" %}">
+                    {% else %}
+                    <img class="img-responsive" src="{% static "img/dest/non-currency.png" %}">
                     {% endif %}
                 </div>
                 <div class="content-item-layer1 row relat">

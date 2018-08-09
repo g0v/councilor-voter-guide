@@ -44,13 +44,20 @@
             </div>
 
             <div class="content-list row col-xs-12">
+                <div class="content-item row relat" data-id="0">
+                    <div class="content-item-layer1 row relat">
+                        <h2>{{election_year}} {{county}}長候選人</h2>
+                    </div>
+                </div>
             {% for candidate in candidates %}
-                <div id="{{candidate.candidate_id}}" class="content-item row relat{% if candidate.elected or candidate.occupy %} Current{% endif %}" data-id="{{forloop.counter}}">
+                <div id="{{candidate.candidate_id}}" class="content-item row relat Current" data-id="{{forloop.counter}}">
                     <div class="label-current abs">
                         {% if candidate.elected %}
                         <img class="img-responsive" src="{% static "img/dest/elected.png" %}">
                         {% elif candidate.occupy %}
                         <img class="img-responsive" src="{% static "img/dest/currency.png" %}">
+                        {% else %}
+                        <img class="img-responsive" src="{% static "img/dest/non-currency.png" %}">
                         {% endif %}
                     </div>
                     <div class="content-item-layer1 row relat">
