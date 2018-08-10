@@ -22,8 +22,11 @@ def home(request):
             else:
                 return redirect(reverse('candidates:district', kwargs={'county': candidate.county, 'constituency': candidate.constituency})+u'?name=%s#%s' % (request.GET['name'], candidate.candidate_id))
         except:
-            candidate = Intent.objects.get(election_year=election_year, name=request.GET['name'])
-            return redirect(reverse('candidates:district', kwargs={'county': candidate.county, 'constituency': candidate.constituency})+u'?intent=%s#%s' % (request.GET['name'], candidate.uid))
+            try:
+                candidate = Intent.objects.get(election_year=election_year, name=request.GET['name'])
+                return redirect(reverse('candidates:district', kwargs={'county': candidate.county, 'constituency': candidate.constituency})+u'?intent=%s#%s' % (request.GET['name'], candidate.uid))
+            except:
+                pass
     return render(request, 'home.html')
 
 def seemore(request):
