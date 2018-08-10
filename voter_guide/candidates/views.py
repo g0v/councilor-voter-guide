@@ -375,13 +375,12 @@ def get_intents(name):
 def user_generate_list(request):
     try:
         instance = User_Generate_List.objects.get(user=request.user, uid=request.GET['list_id'])
-        chosen_candidates = instance.data['candidates']
-        chosen_intents = instance.data['intents']
     except:
-        instance, chosen_candidates, chosen_intents = None, [], []
+        instance = None
     if request.method == 'POST':
+        chosen_candidates, chosen_intents = [], []
         form = ListsForm(request.POST, instance=instance)
-        if not (chosen_candidates and chosen_intents) and form.is_valid():
+        if form.is_valid():
             text = request.POST['content']
             text = text.strip(u'[　\s]')
             text = re.sub(u'[　\n、]', u' ', text)
@@ -405,13 +404,13 @@ def user_generate_list(request):
                         chosen_intents.extend(uid)
             if not request.POST.get('publish'):
                 coming_ele_year = coming_election_year(None)
-                group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates, chosen_intents)
                 recommend = None
                 if instance:
                     if instance.recommend == True:
                         recommend = u'推薦'
                     elif instance.recommend == False:
                         recommend = u'不推薦'
+                group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates, chosen_intents)
                 return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': request.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile'})
             else:
                 user_list = form.save(commit=False)
@@ -431,6 +430,8 @@ def user_generate_list(request):
         elif instance.recommend == False:
             recommend = u'不推薦'
         coming_ele_year = coming_election_year(None)
+        chosen_candidates = instance.data['candidates']
+        chosen_intents = instance.data['intents']
         group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates, chosen_intents)
         return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': instance.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile'})
     else:

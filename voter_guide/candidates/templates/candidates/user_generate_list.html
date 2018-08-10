@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group">
                             <button id="submit" class="btn btn-warning btn-lg" type="submit">預覽名單</button>
-                            {% if candidates or intents %}
+                            {% if group_candidates %}
                                 <button type="submit" name="publish" value="1" class="btn btn-info btn-lg">發佈</button>
                             {% endif %}
                         </div>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </form>
-            {% if lists and not intents and not candidates %}
+            {% if lists and not group_candidates %}
             {% include "common/pagemanager_list.html" with items=lists %}
             {% endif %}
         {% endif %}
