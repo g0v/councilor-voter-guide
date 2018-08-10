@@ -2,6 +2,7 @@
 import re
 import json
 import uuid
+import itertools
 from random import randint
 
 from django.shortcuts import render, get_object_or_404, redirect
@@ -20,6 +21,7 @@ from platforms.models import Platforms
 from elections.models import Elections
 from commontag.views import paginate, coming_election_year
 from .tasks import intent_register_achievement, intent_like_achievement
+
 
 def populate_standpoints(candidates):
     c = connections['default'].cursor()
@@ -117,6 +119,24 @@ def populate_standpoints(candidates):
                 r = c.fetchone()
                 standpoints.update({candidate.id: r[0] if r else []})
     return standpoints
+
+def populate_candidates(coming_ele_year, chosen_candidates, chosen_intents):
+    candidates = Terms.objects.filter(election_year=coming_ele_year, candidate_id__in=chosen_candidates).select_related('candidate', 'intent')
+    intents = Intent.objects.filter(election_year=coming_ele_year, uid__in=chosen_intents).exclude(Q(status='draft') | Q(candidate_term__isnull=False))
+    standpoints = populate_standpoints(candidates)
+    _combine = []
+    _combine.extend(candidates)
+    _combine.extend(intents)
+    candidates = sorted(_combine, key=lambda x: (x.county, x.constituency))
+    groups = itertools.groupby(candidates, key=lambda x: (x.county, x.constituency))
+    index = 0
+    group_candidates = []
+    for k, v in groups:
+        v = list(v)
+        group_candidates.append({'type': k, 'items': v, 'base_count': index})
+        index += len(v)
+    standpoints = populate_standpoints(candidates)
+    return group_candidates, index, standpoints
 
 def intents(request, election_year):
     ref = {
@@ -385,16 +405,14 @@ def user_generate_list(request):
                         chosen_intents.extend(uid)
             if not request.POST.get('publish'):
                 coming_ele_year = coming_election_year(None)
-                candidates = Terms.objects.filter(election_year=coming_ele_year, candidate_id__in=chosen_candidates).select_related('candidate', 'intent').order_by('county', 'constituency')
-                intents = Intent.objects.filter(election_year=coming_ele_year, uid__in=chosen_intents).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by('county', 'constituency')
-                standpoints = populate_standpoints(candidates)
+                group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates, chosen_intents)
                 recommend = None
                 if instance:
                     if instance.recommend == True:
                         recommend = u'推薦'
                     elif instance.recommend == False:
                         recommend = u'不推薦'
-                return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'candidates': candidates, 'intents': intents, 'standpoints': standpoints, 'random_row': randint(1, len(candidates)) if len(candidates) else 1, 'user': request.user, 'total_count': len(candidates)+len(intents), 'recommend': recommend, 'id': 'profile'})
+                return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': request.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile'})
             else:
                 user_list = form.save(commit=False)
                 if user_list.user_id and request.user.id != user_list.user_id:
@@ -407,17 +425,14 @@ def user_generate_list(request):
         form = ListsForm(instance=instance)
     elif instance:
         form = ListsForm(instance=instance)
+        recommend = None
         if instance.recommend == True:
             recommend = u'推薦'
         elif instance.recommend == False:
             recommend = u'不推薦'
-        else:
-            recommend = None
         coming_ele_year = coming_election_year(None)
-        candidates = Terms.objects.filter(election_year=coming_ele_year, candidate_id__in=chosen_candidates).select_related('candidate', 'intent').order_by('county', 'constituency')
-        intents = Intent.objects.filter(election_year=coming_ele_year, uid__in=chosen_intents).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by('county', 'constituency')
-        standpoints = populate_standpoints(candidates)
-        return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'candidates': candidates, 'intents': intents, 'standpoints': standpoints, 'random_row': randint(1, len(candidates)) if len(candidates) else 1, 'user': instance.user, 'total_count': len(candidates)+len(intents), 'recommend': recommend, 'id': 'profile'})
+        group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates, chosen_intents)
+        return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': instance.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile'})
     else:
         form = ListsForm(instance=instance)
         lists = User_Generate_List.objects.filter(user=request.user)
@@ -427,18 +442,14 @@ def user_generated_list(request, list_id):
     coming_ele_year = coming_election_year(None)
     try:
         user_list = User_Generate_List.objects.get(uid=list_id, publish=True)
+        recommend = None
         if user_list.recommend == True:
             recommend = u'推薦'
         elif user_list.recommend == False:
             recommend = u'不推薦'
-        else:
-            recommend = None
         chosen_candidates = user_list.data['candidates']
         chosen_intents = user_list.data['intents']
-        candidates = Terms.objects.filter(election_year=coming_ele_year, candidate_id__in=chosen_candidates).select_related('candidate', 'intent').order_by('county', 'constituency')
-        intents = Intent.objects.filter(election_year=coming_ele_year, uid__in=chosen_intents).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by('county', 'constituency')
-        standpoints = populate_standpoints(candidates)
+        group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates, chosen_intents)
     except Exception, e:
-        print e
         return HttpResponseRedirect('/')
-    return render(request, 'candidates/user_generate_list.html', {'election_year': coming_ele_year, 'user_list': user_list, 'candidates': candidates, 'intents': intents, 'standpoints': standpoints, 'random_row': randint(1, len(candidates)) if len(candidates) else 1, 'user': user_list.user, 'total_count': len(candidates)+len(intents), 'recommend': recommend, 'id': 'profile'})
+    return render(request, 'candidates/user_generate_list.html', {'election_year': coming_ele_year, 'user_list': user_list, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': user_list.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile'})

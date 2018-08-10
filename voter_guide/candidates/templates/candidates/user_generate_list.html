@@ -45,12 +45,16 @@
         {% endif %}
 
         <div class="content-list row col-xs-12">
-        {% with intent_num=intents|length %}
-        {% for candidate in candidates %}
-        {% if intents %}
-            {% if intents and forloop.counter == random_row %}
-                {% for intent in intents %}
-                    <div id="{{intent.uid}}" class="content-item row relat Current" data-id="{{forloop.counter0|add:random_row}}">
+        {% for group in group_candidates %}
+            {% if group.type.1 == 0 %}
+                <h2>{{election_year}} {{group.type.0}}長候選人</h2>
+            {% else %}
+                <h2>{{election_year}} {{group.type.0}} - 第 {{group.type.1}} 選區議員候選人</h2>
+            {% endif %}
+            {% for candidate in group.items %}
+            {% if candidate.user_id %}
+                {% with intent=candidate %}
+                    <div id="{{intent.uid}}" class="content-item row relat Current" data-id="{{forloop.counter|add:group.base_count}}">
                         <div class="label-current abs">
                         {% if intent.councilor_terms.0.election_year == election_year or intent.councilor_terms.0.term_end_year == election_year %}
                             <img class="img-responsive" src="{% static "img/dest/currency.png" %}">
@@ -162,17 +166,10 @@
                         </div>
                         {% endif %}
                     </div>
+                {% endwith %}
 
-            {% endfor %}
-            {% endif %}
-            {% if forloop.counter < random_row %}
-                <div id="{{candidate.candidate_id}}" class="content-item row relat Current" data-id="{{forloop.counter}}">
             {% else %}
-                <div id="{{candidate.candidate_id}}" class="content-item row relat Current" data-id="{{forloop.counter|add:intent_num}}">
-            {% endif %}
-        {% else %}
-            <div id="{{candidate.candidate_id}}" class="content-item row relat Current" data-id="{{forloop.counter}}">
-        {% endif %}
+                <div id="{{candidate.candidate_id}}" class="content-item row relat Current" data-id="{{forloop.counter|add:group.base_count}}">
             {% with sp=standpoints|json_lookup:candidate.id %}
                 <div class="label-current abs">
                     {% if candidate.elected %}
@@ -454,8 +451,9 @@
 
                 {% endwith %}
             </div>
+            {% endif %}
         {% endfor %}
-        {% endwith %}
+        {% endfor %}
     </div>
     <script>
         var county_global = '臺北市';
@@ -470,6 +468,7 @@
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     <script>
         $(document).ready( function() {
+            $('[data-toggle="tooltip"]').tooltip()
             $('.price').each(function(index,ele){
                 var number = $(ele).text()
                 zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
