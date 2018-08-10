@@ -50,11 +50,7 @@
                 <a class="btn-other col-xs-5 col-sm-3 col-md-2 hidden-sm hidden-md hidden-lg pull-right" href="{% url "candidates:mayors" county=county %}">改找縣市長</a>
             </div>
             <div class="content-list row col-xs-12">
-                <div class="content-item row relat" data-id="0">
-                    <div class="content-item-layer1 row relat">
-                        <h2>{{election_year}} {{county}} - {{district}} 議員候選人</h2>
-                    </div>
-                </div>
+                <h2>{{election_year}} {{county}} - {{district}} 議員候選人</h2>
             {% with intent_num=intents|length %}
             {% for candidate in candidates %}
             {% if intents %}

@@ -44,11 +44,7 @@
             </div>
 
             <div class="content-list row col-xs-12">
-                <div class="content-item row relat" data-id="0">
-                    <div class="content-item-layer1 row relat">
-                        <h2>{{election_year}} {{county}}長候選人</h2>
-                    </div>
-                </div>
+                <h2>{{election_year}} {{county}}長候選人</h2>
             {% for candidate in candidates %}
                 <div id="{{candidate.candidate_id}}" class="content-item row relat Current" data-id="{{forloop.counter}}">
                     <div class="label-current abs">
@@ -292,7 +288,6 @@
             var county = '{{county}}';
             var county_ck = getCookie('county');
             var constituency_ck = getCookie('constituency');
-            console.log();
             if ((county == county_ck) && county_ck && constituency_ck) {
                 var link = '{% url "candidates:councilors_area" %}'+county_ck+'/'+constituency_ck+'/';
                 $('a.btn-other').attr('href', link);
