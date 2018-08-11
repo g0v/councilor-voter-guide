@@ -32,7 +32,7 @@
                     <h2>{{county}}</h2>
                 </div>
                 <a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="{% url "candidates:mayors_area" %}">回上一頁</a>
-                <a class="btn-other col-xs-5 col-sm-3 col-md-2 hidden-xs" href="{% url "candidates:councilors_districts" county=county %}">改找縣市議員</a>
+                <a class="btn-other col-xs-5 col-sm-3 col-md-2 hidden-xs" href="{% url "candidates:councilors_districts" county=county %}">找{{county}}議員</a>
                 <div class="select-area hidden-xs"><a href="{% url "candidates:mayors_area" %}#六都" data-id="六都">六都</a><a href="{% url "candidates:mayors_area" %}#北部" data-id="北部">北部</a><a href="{% url "candidates:mayors_area" %}#中部" data-id="中部">中部</a><a href="{% url "candidates:mayors_area" %}#南部" data-id="南部">南部</a><a href="{% url "candidates:mayors_area" %}#東部" data-id="東部">東部</a><a href="{% url "candidates:mayors_area" %}#離島" data-id="離島">離島</a></div>
                 <div class="select-county hidden-xs"></div>
                 <select class="select col-sm-2 col-xs-5" onchange="location = this.value;">
@@ -40,7 +40,7 @@
                         <option value="{% url "candidates:mayors" county=county election_year=year %}"{% if election_year == year %} selected{% endif %}>{{year|election_year_range}}</option>
                     {% endfor %}
                 </select>
-                <a class="btn-other col-xs-5 col-sm-3 col-md-2 hidden-sm hidden-md hidden-lg pull-right" href="{% url "candidates:councilors_districts" county=county %}">改找縣市議員</a>
+                <a class="btn-other col-xs-5 col-sm-3 col-md-2 hidden-sm hidden-md hidden-lg pull-right" href="{% url "candidates:councilors_districts" county=county %}">找{{county}}議員</a>
             </div>
 
             <div class="content-list row col-xs-12">
