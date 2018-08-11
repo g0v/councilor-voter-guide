@@ -18,16 +18,28 @@
                 <div class="photoAndParty col-xs-12 col-sm-3 row hidden-xs">
                     <div class="photo pull-right">
                         <div class="relat">
+                            {% if user_list.data.fb_page %}
+                                <img src="//graph.facebook.com/v3.1/{{user_list.data.fb_page.id}}/picture?height=480">
+                            {% elif fb_page %}
+                                <img src="//graph.facebook.com/v3.1/{{fb_page.id}}/picture?height=480">
+                            {% else %}
                             {% with user_id=user.socialaccount_set.first.uid %}
-                                <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=480">
+                                <img src="//graph.facebook.com/v3.1/{{user_id}}/picture?height=480">
                             {% endwith %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
                 <div class="infoArea col-xs-12 col-sm-9 row">
                     <div class="name col-xs-12">
                         <h1>
-                            {{user.last_name}}{{user.first_name}}
+                            {% if user_list.data.fb_page %}
+                                <a href="//www.facebook.com/{{user_list.data.fb_page.id}}">{{user_list.data.fb_page.name}}</a>
+                            {% elif fb_page %}
+                                <a href="//www.facebook.com/{{fb_page.id}}">{{fb_page.name}}</a>
+                            {% else %}
+                                {{user.last_name}}{{user.first_name}}
+                            {% endif %}
                             {% if recommend %}
                                 {{recommend}}
                             {% endif %}

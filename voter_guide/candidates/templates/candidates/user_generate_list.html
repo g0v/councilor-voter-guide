@@ -25,6 +25,8 @@
             <form class="form-horizontal" action="" method="post">{% csrf_token %}
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
+                        <div id="manage_pages">
+                        </div>
                         <div class="form-group">
                         {{ form }}
                         </div>
@@ -67,7 +69,7 @@
                                 <div class="photo pull-left relat">
                                     <div class="relat">
                                     {% with user_id=intent.user.socialaccount_set.first.uid %}
-                                        <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=300" alt="{{intent.name}}" title="{{intent.name}}">
+                                        <img src="//graph.facebook.com/v3.1/{{user_id}}/picture?height=300" alt="{{intent.name}}" title="{{intent.name}}">
                                     {% endwith %}
                                     </div>
                                 </div>
@@ -474,6 +476,21 @@
                 zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
                 $(ele).replaceWith(zh_number)
             })
+            $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
+                FB.api('/me/accounts', {'type': 'page', 'access_token': '{{request.user.socialaccount_set.first.socialtoken_set.first.token}}'}, function(response) {
+                    if (response.data.length > 0) {
+                        $('#manage_pages').append('<br><div class="form-group"><label>以您管理的粉絲專頁為名（可不選，即以個人名義）:</label></div>');
+                        $.each(response.data, function(i, d) {
+                            var ds = JSON.stringify({id: d.id, name: d.name});
+                            $('#manage_pages').append('<div class="checkbox"><label class="checkbox-inline">'+'<input id="fb_page_'+d.id+'" name="fb_page" type="radio" value="">'+d.name+'</label><img style="height: 80px; padding-left: 10px" src="//graph.facebook.com/v3.1/'+d.id+'/picture"></div>'+'');
+                            $('#fb_page_'+d.id).prop('value', ds);
+                        });
+                        {% if fb_page %}
+                            $('#fb_page_'+'{{fb_page.id}}').prop('checked', true);
+                        {% endif %}
+                    }
+                });
+            });
         });
     </script>
 {% endblock script %}
