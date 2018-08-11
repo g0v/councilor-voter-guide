@@ -24,7 +24,7 @@
                     <div class="photo pull-right">
                         <div class="relat">
                         {% with user_id=intent.user.socialaccount_set.first.uid %}
-                            <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=480">
+                            <img src="//graph.facebook.com/v3.1/{{user_id}}/picture?height=480">
                         {% endwith %}
                         </div>
                     </div>

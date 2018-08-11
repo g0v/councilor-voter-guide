@@ -70,7 +70,7 @@
                                     <div class="photo pull-left relat">
                                         <div class="relat">
                                         {% with user_id=intent.user.socialaccount_set.first.uid %}
-                                            <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=300" alt="{{intent.name}}" title="{{intent.name}}">
+                                            <img src="//graph.facebook.com/v3.1/{{user_id}}/picture?height=300" alt="{{intent.name}}" title="{{intent.name}}">
                                         {% endwith %}
                                         </div>
                                     </div>
