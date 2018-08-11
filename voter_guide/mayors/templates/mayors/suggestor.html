@@ -17,7 +17,7 @@
 {% block person_detail %}
     {% if mayor.county == '宜蘭縣' or mayor.county == '彰化縣' %}
     <h3>
-        <i class="fa fa-warning text-danger"> {{mayor.county}}政府不提供議員姓名</i>
+        <i class="fa fa-warning text-danger"> {{mayor.county}}政府不提供議員配合款使用議員姓名</i>
         <span class="pull-right">
             資料來源<a href="{{mayor.county|suggestions_offical_link}}" target="_blank"> {{mayor.county}}主計處</a>
         </span>
@@ -34,48 +34,58 @@
     </div>
     <div class="row">
         <div class="col-sm-6{% if mayor.data.suggestions_associations %} col-lg-4{% endif %}">
-            <table class="table table-bordered table-condensed table-striped sortable" >
-                <thead>
-                    <tr style="background-color: #E1D0D0";>
-                        <th>年度</th>
-                        <th>小額採購<a rel="tooltip" title="十萬以下之政府採購，可逕洽廠商無須公開招標，詳可見「中央機關未達公告金額採購招標辦法」第五條"><i class="fa fa-question-circle"></i></a>案數</th>
-                        <th>總案數</th>
-                        <th>通過預算</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for obj in mayor.data.suggestions_years.years %}
-                    <tr>
-                        <td style="text-align:center; vertical-align:middle;">{{obj.suggest_year}}</td>
-                        <td style="text-align:right; vertical-align:middle;">{{obj.small_purchase}}</td>
-                        <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
-                        <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    小額採購：十萬以下之政府採購，可逕洽廠商無須公開招標，詳可見「中央機關未達公告金額採購招標辦法」第五條
+                </div>
+                <table class="table table-bordered table-condensed table-striped sortable" >
+                    <thead>
+                        <tr style="background-color: #E1D0D0";>
+                            <th>年度</th>
+                            <th>小額採購案數</th>
+                            <th>總案數</th>
+                            <th>通過預算</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for obj in mayor.data.suggestions_years.years %}
+                        <tr>
+                            <td style="text-align:center; vertical-align:middle;">{{obj.suggest_year}}</td>
+                            <td style="text-align:right; vertical-align:middle;">{{obj.small_purchase}}</td>
+                            <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
+                            <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="col-sm-6{% if mayor.data.suggestions_associations %} col-lg-4{% endif %}">
-            <table class="table table-bordered table-condensed table-striped sortable" >
-                <thead>
-                    <tr style="background-color: #E1D0D0";>
-                        <th>地方</th>
-                        <th>筆數</th>
-                        <th>通過預算</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for obj in mayor.data.suggestions_piles %}
-                    <tr>
-                        <td style="text-align:center; vertical-align:middle;">
-                            <a href="{% url "suggestions:lists" county=mayor.county %}?keyword={{mayor.name}}&or={{obj.tokens}}">{{obj.label}}</a>
-                        </td>
-                        <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
-                        <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    各種協會、村里鎮長辦公室、警察局、消防局、國中、國小等用途的統計
+                </div>
+                <table class="table table-bordered table-condensed table-striped sortable" >
+                    <thead>
+                        <tr style="background-color: #E1D0D0";>
+                            <th>地方</th>
+                            <th>筆數</th>
+                            <th>通過預算</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for obj in mayor.data.suggestions_piles %}
+                        <tr>
+                            <td style="text-align:center; vertical-align:middle;">
+                                <a href="{% url "suggestions:lists" county=mayor.county %}?keyword={{mayor.name}}&or={{obj.tokens}}">{{obj.label}}</a>
+                            </td>
+                            <td style="text-align:right; vertical-align:middle;">{{obj.count}}</td>
+                            <td style="text-align:right; vertical-align:middle;"><p class="price">{{obj.sum}}</p></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
         {% if mayor.data.suggestions_associations %}
         <div class="col-sm-6 col-lg-4">
