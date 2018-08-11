@@ -58,7 +58,7 @@
               <p>您目前所在區域</p>
               <p> <span class="county_val"></span><span> </span><span class="area_val"></span></p>
             </div>
-            <div class="pull-left d-inline-block btn-chooseLocation"><span>選其他區域</span></div>
+            <div class="pull-left d-inline-block btn-chooseLocation"><span>手動定位</span></div>
           </div>
         </div>
       </div>
@@ -269,7 +269,7 @@
     </div>
 
     <script>
-      var global_location = {county : '', area:''};
+      var global_location = {county: '', area: ''};
       var prefixUrlMayor_global = '{% url "candidates:mayors_area" %}';
       var prefixUrlCouncilor_global = '{% url "candidates:councilors_area" %}';
       var prefixUrlMayorForBills_global = '{% url "bills:bills_area" category="city_gov" %}';
