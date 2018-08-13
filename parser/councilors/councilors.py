@@ -141,7 +141,7 @@ election_year = '2014'
 c.execute('''
     SELECT *
     FROM candidates_terms
-    WHERE election_year = %s and elected = true
+    WHERE election_year = %s and elected = true and type = 'councilors'
     ORDER BY county
 ''', [election_year])
 key = [desc[0] for desc in c.description]
