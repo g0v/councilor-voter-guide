@@ -65,7 +65,7 @@ for candidate in candidates:
                 candidate['constituency'] = int(constituency)
     candidate['county'] = re.search(u'(.+?[縣市])', candidate['county']).group(1)
     if candidate['category'] == u'區域':
-        candidate['district'] = u'、'.join([x['district'] for x in candidate['votes_detail']])
+        candidate['district'] = u'、'.join([re.sub(u'.+選區', '', x['district']) for x in candidate['votes_detail']])
     elif candidate['category'] == u'原住民':
         candidate['district'] = u'原住民'
         if candidate['county'] == u'臺北市':

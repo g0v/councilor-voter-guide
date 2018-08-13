@@ -43,7 +43,7 @@ def upsert_councilors_terms(councilor):
         VALUES (%(uid)s, %(election_year)s, %(name)s, %(gender)s, %(party)s, %(title)s, %(constituency)s, %(county)s, %(district)s, %(in_office)s, %(contact_details)s, %(term_start)s, %(term_end)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s)
         ON CONFLICT (councilor_id, election_year)
         DO UPDATE
-        SET county = %(county)s
+        SET district = %(district)s
         RETURNING id
     ''', complement)
     r = c.fetchone()
