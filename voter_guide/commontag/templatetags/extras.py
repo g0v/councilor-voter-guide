@@ -148,10 +148,11 @@ def election_year_range(value):
     for i in range(0, len(election_years)):
         if election_years[i] == value:
             return '%s~%s' % (value, election_years[i+1])
-    election_years = ['2009', '2014', '2018']
-    for i in range(0, len(election_years)):
-        if election_years[i] == value:
-            return '%s~%s' % (value, election_years[i+1])
+    election_years = {
+        '2005': '2006~2010',
+        '2009': '2010~2014'
+    }
+    return election_years.get(value, '')
 
 @register.filter(name='json_lookup')
 def json_lookup(value, arg):
