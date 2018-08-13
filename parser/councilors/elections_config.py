@@ -5,13 +5,15 @@ sys.path.append('../')
 import re
 import json
 import psycopg2
+import ast
+from sys import argv
 
 import db_settings
 
 
 conn = db_settings.con()
 c = conn.cursor()
-election_year = '2018'
+election_year = ast.literal_eval(argv[1])['election_year']
 
 def parse_districts(county, districts):
     districts = re.sub(u'^(居住|【)', '', districts)
@@ -23,6 +25,9 @@ def parse_districts(county, districts):
     l = []
     if districts:
         for district in districts.split(u'、'):
+            if len(district) == 2:
+                l = districts.split(u'、')
+                break
             if not re.search(re.sub(u'[縣市]$', '', county), district):
                 district = re.sub(u'[鄉鎮市區]$', '', district)
             l.append(district)
@@ -70,7 +75,7 @@ conn.commit()
 
 # update constituency_change
 district_versions = json.load(open('../district_versions.json'))
-config = json.dumps({'constituency_change': district_versions[election_year]})
+config = json.dumps({'constituency_change': district_versions.get(election_year, {})})
 c.execute('''
     INSERT INTO elections_elections(id, data)
     VALUES (%s, %s)
