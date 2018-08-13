@@ -58,16 +58,6 @@
     "name": "吳瓊華"
   }, 
   {
-    "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/800.jpg", 
-    "uid": 491, 
-    "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/臺中市_3_林士昌.jpg", 
-    "experience": "台中市議員", 
-    "county": "臺中市", 
-    "constituency": 3, 
-    "desc": "第三選區", 
-    "name": "林士昌"
-  }, 
-  {
     "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/2018060739612013.jpg", 
     "uid": 180, 
     "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/臺中市_3_林汝洲.jpg", 
@@ -112,6 +102,16 @@
     "education": "逢甲大學都市計畫研究所碩士畢", 
     "constituency": 5, 
     "name": "吳顯森"
+  }, 
+  {
+    "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/2018081360184341.jpg", 
+    "uid": 703, 
+    "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/臺中市_5_林孟令.jpg", 
+    "experience": "林士昌議長服務處主任", 
+    "county": "臺中市", 
+    "constituency": 5, 
+    "desc": "第五選區", 
+    "name": "林孟令"
   }, 
   {
     "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/2018060744846705.jpg", 
@@ -962,16 +962,6 @@
   }, 
   {
     "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/800.jpg", 
-    "uid": 323, 
-    "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/雲林縣_1_陳河山.jpg", 
-    "experience": "林內鄉黨部主委", 
-    "county": "雲林縣", 
-    "constituency": 1, 
-    "desc": "第一選區", 
-    "name": "陳河山"
-  }, 
-  {
-    "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/800.jpg", 
     "uid": 324, 
     "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/雲林縣_1_陳亮良.jpg", 
     "experience": "雲林縣公務人員協會理事長", 
@@ -979,16 +969,6 @@
     "constituency": 1, 
     "desc": "第一選區", 
     "name": "陳亮良"
-  }, 
-  {
-    "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/800.jpg", 
-    "uid": 321, 
-    "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/雲林縣_1_賴淑娞.jpg", 
-    "experience": "雲林縣議員", 
-    "county": "雲林縣", 
-    "constituency": 1, 
-    "desc": "第一選區", 
-    "name": "賴淑娞"
   }, 
   {
     "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/2018071839572573.jpg", 
@@ -1002,14 +982,14 @@
     "name": "賴淑娞"
   }, 
   {
-    "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/800.jpg", 
-    "uid": 322, 
-    "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/雲林縣_1_謝淑亞.jpg", 
-    "experience": "斗六市市長", 
+    "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/2018081359686465.jpg", 
+    "uid": 700, 
+    "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/雲林縣_1_蘇于珊.jpg", 
+    "experience": "林內鄉民眾服務社理事長", 
     "county": "雲林縣", 
     "constituency": 1, 
     "desc": "第一選區", 
-    "name": "謝淑亞"
+    "name": "蘇于珊"
   }, 
   {
     "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/800.jpg", 
@@ -1070,6 +1050,16 @@
     "constituency": 4, 
     "desc": "第四選區", 
     "name": "廖偉晴"
+  }, 
+  {
+    "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/2018081359825029.jpg", 
+    "uid": 701, 
+    "image": "https://drsgjxdg6zyfq.cloudfront.net/councilors/2018/中國國民黨/雲林縣_5_林建鴻.jpg", 
+    "experience": "雲林縣議員", 
+    "county": "雲林縣", 
+    "constituency": 5, 
+    "desc": "第五選區", 
+    "name": "林建鴻"
   }, 
   {
     "picture": "https://kmt2018.com/userfiles/sm/sm300300_2018userupload/2018052964621705.jpg", 
