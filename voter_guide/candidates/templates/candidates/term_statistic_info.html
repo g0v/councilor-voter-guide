@@ -1,5 +1,6 @@
 {% load extras %}
 
+<br>
 {% if term.type == 'mayor' %}
     <div class="tit">
         <p>{{term.term_start_year}} ~ {{term.term_end_year}} {{term.county}}長</p>
@@ -9,7 +10,7 @@
     {% endif %}
     <div class="statistic">
         {% if term.data.suggestions_years.sum %}
-        <a href="{% url "mayors:suggestor" mayor_id=term.mayor_id election_year=term.election_year %}">議員配合款總花費：<font class="price">{{term.data.suggestions_years.sum}}</font></a>
+        <p><a href="{% url "mayors:suggestor" mayor_id=term.mayor_id election_year=term.election_year %}">共發出議員配合款：<font class="price">{{term.data.suggestions_years.sum}}</font></a></p>
     {% endif %}
     </div>
 {% elif term.type == 'legislator' %}
@@ -37,6 +38,9 @@
         離職原因：{{term.term_end.reason}}{% if term.term_end.ref %}，<a href="{{term.term_end.ref}}" target="_blank">詳情點我</a>{% endif %}
     {% endif %}
     <div class="statistic">
+        {% if term.votes %}
+        <p>{{term.election_year}} 得票：<span class="party-val">{{term.votes}}{% if term.votes_percentage %}<small>（{{term.votes_percentage}}）</small>{% endif %}</span></p>
+        {% endif %}
         {% if term.param.bills_role_statistics %}
         <p>{{term.param.bills_role_statistics.priproposer}} 次主提案</p>
         <p>{{term.param.bills_role_statistics.sponsor}} 次共同提案</p>
@@ -52,10 +56,9 @@
         <p>議會出缺席查無資料</p>
         {% endif %}
         {% if term.param.suggestions_years.sum %}
-            <a href="{% url "councilors:suggestor" councilor_id=term.councilor_id election_year=term.election_year %}">議員配合款總花費：<font class="price">{{term.param.suggestions_years.sum}}</font></a>
+            <p><a href="{% url "councilors:suggestor" councilor_id=term.councilor_id election_year=term.election_year %}">議員配合款總花費：<font class="price">{{term.param.suggestions_years.sum}}</font></a></p>
         {% else %}
         <p>議員配合款查無資料</p>
         {% endif %}
-        <p><small><a class="pull-right" href="{% url "about" %}#reference">資料來源</a></small></p>
     </div>
 {% endif %}

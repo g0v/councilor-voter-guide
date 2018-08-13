@@ -195,14 +195,14 @@
                             {% if candidate.image %}
                             <div class="photo pull-left relat">
                                 <div class="relat">
-                                    <img src="{{candidate.image}}" alt="{{candidate.name}}" title="{{candidate.name}}">
+                                    <img src="{{candidate.image}}" data-toggle="tooltip" alt="{{candidate.name}}" title="{{candidate.name}}">
                                 </div>
                             </div>
                             {% endif %}
                             <div class="party pull-left relat">
                                 <div class="relat">
                                 {% if candidate.party %}
-                                    <img src="{% static "img/dest/" %}{{candidate.party}}.png" alt="{{candidate.party}}" title="{{candidate.party}}">
+                                    <img src="{% static "img/dest/" %}{{candidate.party}}.png" data-toggle="tooltip" alt="{{candidate.party}}" title="{{candidate.party}}">
                                 {% endif %}
                                 </div>
                             </div>
@@ -214,7 +214,7 @@
                             <div class="partyname">
                                 {% if candidate.votes %}
                                 <p>得票 / <span class="party-val">
-                                    {{candidate.votes}}{% if candidate.votes_percentage %}<small>（{{candidate.votes_percentage|percentage:1}}％）</small>{% endif %}
+                                    {{candidate.votes}}{% if candidate.votes_percentage %}<small>（{{candidate.votes_percentage}}）</small>{% endif %}
                                 </span></p>
                                 {% endif %}
                                 <p>黨籍 / <span class="party-val">
@@ -232,16 +232,18 @@
                                 {% endif %}
                                 歲</span></p>
                                 {% if candidate.councilor_terms %}
-                                <p>財產申報 / <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank"> <img src="{% static "img/dest/dollar.png" %}" alt="財產申報" title="財產申報"></a></p>
+                                <p>財產申報 / <a href="http://sunshine.cy.g0v.tw/people/{{candidate.name}}/property/overview/" target="_blank"> <img src="{% static "img/dest/dollar.png" %}" data-toggle="tooltip" alt="財產申報" title="財產申報"></a></p>
                                 {% endif %}
                                 {% if candidate.councilor_terms %}
-                                    <p> {{candidate.councilor_terms|length}} 屆議員</p>
+                                    <p>曾任 / <span class="party-val">{{candidate.councilor_terms|length}} 屆議員
+                                    </span></p>
                                 {% endif %}
                             </div>
                         </div>
 
                         {% if candidate.data.terms %}
                         <div class="statistic-info col-xs-12 col-sm-4">
+                            <p class="pull-right"><small><a href="{% url "about" %}#reference">資料來源</a></small></p>
                             {% include "candidates/term_statistic_info.html" with term=candidate.data.terms.0 %}
                         </div>
                         {% else %}
@@ -368,7 +370,7 @@
                         {% endif %}
                         </div>
                     </div>
-                    {% else %}
+                    {% elif candidate.platform %}
                     <div class="content-detail row notFirstCandidate">
                         <div class="politics col-sm-12 row">
                             <div class="tit row col-sm-12">
@@ -380,9 +382,9 @@
                         </div>
                     </div>
                     {% endif %}
-                    {% endwith %}
-
+                {% endwith %}
                 </div>
+
             {% endfor %}
             {% endwith %}
             </div>
