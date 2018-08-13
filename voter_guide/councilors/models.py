@@ -36,7 +36,7 @@ class CouncilorsDetail(models.Model):
     title = models.CharField(max_length=100, blank=True, null=True)
     constituency = models.IntegerField(db_index=True, null=True)
     county = models.CharField(db_index=True, max_length=100)
-    district = models.CharField(db_index=True, max_length=100, blank=True, null=True)
+    district = models.TextField(db_index=True, blank=True, null=True)
     in_office = models.BooleanField(db_index=True)
     contact_details = JSONField(null=True)
     term_start = models.DateField(blank=True, null=True)
