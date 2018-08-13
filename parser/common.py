@@ -180,10 +180,11 @@ def councilor_terms(c, candidate):
     '''
 
     c.execute('''
-        SELECT id as term_id, councilor_id, election_year, county, param, to_char(EXTRACT(YEAR FROM term_start), '9999') as term_start_year, substring(term_end->>'date' from '(\d+)-') as term_end_year, platform, in_office, term_end
-        FROM councilors_councilorsdetail
-        WHERE councilor_id = %(councilor_uid)s AND election_year <= %(election_year)s
-        ORDER BY election_year DESC
+        SELECT cd.id as term_id, cd.councilor_id, cd.election_year, cd.county, cd.constituency, cd.param, to_char(EXTRACT(YEAR FROM cd.term_start), '9999') as term_start_year, substring(cd.term_end->>'date' from '(\d+)-') as term_end_year, cd.platform, cd.in_office, cd.term_end, ct.votes, ct.votes_percentage, ct.votes_detail, ct.party as elected_party
+        FROM councilors_councilorsdetail cd
+        LEFT JOIN candidates_terms ct ON ct.elected_councilor_id = cd.id
+        WHERE cd.councilor_id = %(councilor_uid)s AND cd.election_year <= %(election_year)s
+        ORDER BY cd.election_year DESC
     ''', candidate)
     key = [desc[0] for desc in c.description]
     terms = []

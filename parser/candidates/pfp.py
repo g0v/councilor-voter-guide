@@ -103,7 +103,7 @@ for wks in worksheets:
             continue
         candidate = {}
         candidate['type'] = position_type
-        candidate['county'] = re.search(u'(\W+[縣市])', row[u'選區縣市']).group().replace(u'台', u'臺')
+        candidate['county'] = re.search(u'(\W+?[縣市])', row[u'選區縣市']).group().replace(u'台', u'臺')
         candidate['constituency'] = row[u'選區號次(EX:5)']
         candidate['name'] = common.normalize_person_name(row[u'姓名'])
         candidate['party'] = party

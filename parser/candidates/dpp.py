@@ -92,7 +92,12 @@ sh = gc.open_by_key('1efxsRJKSoezKVJvln2rNkl-nGIZlmngw6k35GgKxLAE')
 worksheets = sh.worksheets()
 for wks in worksheets:
     rows = wks.get_all_records()
-    position_type = 'councilors' if wks.title == u'議員' else 'mayors'
+    if wks.title == u'議員':
+        position_type = 'councilors'
+    elif wks.title == u'縣市長':
+        position_type = 'mayors'
+    else:
+        continue
     path = '../../data/avatar/%s/%s/%s' % (position_type, election_year, party)
     for row in rows:
         if not row[u'姓名']:
