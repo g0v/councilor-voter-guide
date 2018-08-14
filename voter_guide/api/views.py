@@ -38,7 +38,8 @@ def constituency(request):
     d['county'] = re.sub(u'台', u'臺', d['county'])
     coming_ele_year = coming_election_year(d['county'])
     constituencies = Elections.objects.get(id=coming_ele_year).data['constituencies']
-    district = re.sub(u'[鄉鎮市區]$', '', d['district']) if not re.search(re.sub(u'[縣市]$', '', d['county']), d['district']) else d['district']
+    if len(d['district']) == 2:
+        district = re.sub(u'[鄉鎮市區]$', '', d['district']) if not re.search(re.sub(u'[縣市]$', '', d['county']), d['district']) and len(d['district']) > 2 else d['district']
     for region in constituencies[d['county']]['regions']:
         if not region.get('villages') or not d.get('villages'):
             if district in region['districts_list']:
