@@ -20,7 +20,7 @@ subprocess.call(cmd, shell=True)
 c.execute('''
     SELECT id, county, constituency, name, image
     FROM councilors_councilorsdetail
-    WHERE election_year = %s AND image != ''
+    WHERE election_year = %s AND image != '' and county = '臺東縣'
     ORDER BY county
 ''', [election_year])
 
@@ -30,7 +30,7 @@ for person in c.fetchall():
     print person['name']
     f_name = '%s_%d_%s' % (person['county'], person['constituency'], person['name'])
     f = '%s/%s' % (path, f_name)
-    cmd = 'wget -N --no-check-certificate "%s" -O %s' % (person['image'], f)
+    cmd = 'wget -N --no-check-certificate --header="User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36" "%s" -O %s' % (person['image'], f)
     subprocess.call(cmd, shell=True)
     image_url = '%s/%s/%s/%s' % (common.storage_domain(), 'councilors', election_year, f_name)
     if os.path.isfile(f):
