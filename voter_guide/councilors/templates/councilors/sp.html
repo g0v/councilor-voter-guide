@@ -29,6 +29,7 @@
         {% if councilor.county|county_config:'votes' %}
         <div class="col-sm-4 %}">
         {% if standpoints.votes %}
+            <h3>表決</h3>
             <div class="panel-group" id="accordion_votes" role="tablist" aria-multiselectable="true">
             {% for standpoint in standpoints.votes %}
             {% if standpoint.decision == "反對" %}
@@ -69,6 +70,7 @@
                 </div>
             {% endfor %}
             </div>
+            <a class="btn btn-default" href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a>
         {% else %}
             <a class="btn btn-default" href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">尚無摘要資料，來幫忙摘要！ </a>
         {% endif %}
@@ -81,6 +83,7 @@
             <div class="col-sm-6 %}">
         {% endif %}
         {% if standpoints.bills %}
+            <h3>提案</h3>
             <div class="panel-group" id="accordion_bills" role="tablist" aria-multiselectable="true">
             {% for standpoint in standpoints.bills %}
             {% if standpoint.role == "主提案" %}
@@ -117,6 +120,7 @@
                 </div>
             {% endfor %}
             </div>
+            <a class="btn btn-default" href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全提案紀錄</a>
         {% else %}
             <a class="btn btn-default" href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">尚無摘要資料，來幫忙摘要！ </a>
         {% endif %}

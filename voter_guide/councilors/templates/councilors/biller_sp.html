@@ -24,6 +24,7 @@
             </div>
         </div>
 
+        <h3>提案</h3>
         {% regroup standpoints by role as role_list %}
         {% for role_group in role_list %}
             <div class="col-sm-{% widthratio 12 role_list|length 1 %}">
@@ -65,7 +66,7 @@
                 </div>
             </div>
         {% endfor %}
-
+        <a class="btn btn-default" href="{% url 'councilors:biller' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全提案紀錄</a>
     </div>
 {% endblock person_detail %}
 

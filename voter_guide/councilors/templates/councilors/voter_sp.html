@@ -24,6 +24,7 @@
             </div>
         </div>
 
+        <h3>表決</h3>
         {% regroup standpoints by decision as decision_list %}
         {% for decision_group in decision_list %}
 
@@ -69,7 +70,7 @@
                 {% endfor %}
                 </div>
             </div>
-
+            <a class="btn btn-default" href="{% url 'councilors:voter' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">全表決紀錄</a>
         {% endfor %}
     </div>
 {% endblock person_detail %}
