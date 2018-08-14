@@ -8,7 +8,7 @@ import scrapy
 class Spider(scrapy.Spider):
     name = "councilors"
     allowed_domains = ["www.hcc.gov.tw"]
-    start_urls = ["http://www.hcc.gov.tw/2016hcc/member/member.php"]
+    start_urls = ["http://www.hcc.gov.tw/member/member.php"]
     download_delay = 0.5
 
     def parse(self, response):
