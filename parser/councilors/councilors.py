@@ -138,6 +138,7 @@ for council in file_list:
     for councilor in dict_list:
         councilor = normalize_councilor(councilor)
         councilor['uid'], created = common.get_or_create_councilor_uid(c, councilor)
+        councilor['uid'] = uuid.UUID(councilor['uid']).hex
         Councilors(councilor)
         insertCouncilorsDetail(councilor)
         if councilor['in_office']:
