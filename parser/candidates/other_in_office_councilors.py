@@ -81,6 +81,7 @@ def upsertCandidates(candidate):
 conn = db_settings.con()
 c = conn.cursor()
 election_year = '2018'
+district_versions = json.load(open('../district_versions.json'))
 
 c.execute('''
     SELECT row_to_json(_)
@@ -98,6 +99,11 @@ for row in rows:
     print candidate['name'], candidate['election_year'], candidate['party']
     candidate['type'] = position_type
     candidate['election_year'] = election_year
+    for district_change in district_versions[election_year].get(candidate['county'], []):
+        if str(candidate['constituency']) in district_change.get('from', {}).get('constituencies', []):
+            candidate['district'] = district_change['district']
+            candidate['constituency'] = district_change['constituency']
+            break
     candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
     candidate['candidate_term_uid'] = '%s-%s' % (candidate['candidate_uid'], election_year)
     candidate['councilor_uid'], created = common.get_or_create_councilor_uid(c, candidate, create=False)
