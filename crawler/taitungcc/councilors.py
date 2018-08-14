@@ -17,7 +17,7 @@ class Spider(scrapy.Spider):
                 item = {}
                 item['constituency'] = node.xpath('text()').extract_first()
                 item['district'] = node.xpath('span/text()').extract_first()
-                item['name'] = a_tag.xpath('text()').extract_first()
+                item['name'] = re.sub(u'\(.+\)', '', a_tag.xpath('text()').extract_first())
                 yield scrapy. Request(urljoin(response.url, a_tag.xpath('@href').extract_first()), callback=self.parse_profile, meta={'item': item})
 
     def parse_profile(self, response):
