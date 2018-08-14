@@ -12,6 +12,8 @@ from psycopg2.extras import Json
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import logging
+import ast
+from sys import argv
 
 import db_settings
 import common
@@ -123,8 +125,14 @@ for row in c.fetchall():
     Councilors(person)
 conn.commit()
 
+if len(argv) > 1:
+    county = ast.literal_eval(argv[1])['county']
+    file_list = ['../../data/%s/councilors.json' % county, ]
+else:
+    file_list = ['../../data/phcouncil/councilors.json', '../../data/kmcc/councilors.json', '../../data/mtcc/councilors.json', '../../data/ptcc/councilors.json', '../../data/kcc/councilors.json', '../../data/tncc/councilors.json', '../../data/taitungcc/councilors.json', '../../data/hlcc/councilors.json', '../../data/cycc/councilors.json', '../../data/cyscc/councilors.json', '../../data/ylcc/councilors.json', '../../data/ntcc/councilors.json', '../../data/chcc/councilors.json', '../../data/tccc/councilors.json', '../../data/ilcc/councilors.json', '../../data/mcc/councilors.json', '../../data/hcc/councilors.json', '../../data/kmc/councilors.json', '../../data/tycc/councilors.json', '../../data/hsinchucc/councilors.json', '../../data/ntp/councilors.json', '../../data/tcc/councilors.json']
+
 # upsert from json
-for council in ['../../data/phcouncil/councilors.json', '../../data/kmcc/councilors.json', '../../data/mtcc/councilors.json', '../../data/ptcc/councilors.json', '../../data/kcc/councilors.json', '../../data/tncc/councilors.json', '../../data/taitungcc/councilors.json', '../../data/hlcc/councilors.json', '../../data/cycc/councilors.json', '../../data/cyscc/councilors.json', '../../data/ylcc/councilors.json', '../../data/ntcc/councilors.json', '../../data/chcc/councilors.json', '../../data/tccc/councilors.json', '../../data/ilcc/councilors.json', '../../data/mcc/councilors.json', '../../data/hcc/councilors.json', '../../data/kmc/councilors.json', '../../data/tycc/councilors.json', '../../data/hsinchucc/councilors.json', '../../data/ntp/councilors.json', '../../data/tcc/councilors.json']:
+for council in file_list:
     print council
     dict_list = json.load(open(council))
     for councilor in dict_list:
