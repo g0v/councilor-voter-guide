@@ -40,6 +40,12 @@
     {% include "common/suggestion.html" with obj=suggestion include_councilors=True %}
     </div>
     <div class="col-sm-8">
+        <div class="pull-right">
+            資料來源
+            <a href="{{suggestion.county|suggestions_offical_link}}" target="_blank">{{suggestion.county}}主計處</a></li><br>
+                <br>
+            </ul>
+        </div>
         <div id="pano"></div>
         <div id="map"></div>
     </div>
