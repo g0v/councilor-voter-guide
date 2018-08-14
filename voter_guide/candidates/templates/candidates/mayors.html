@@ -73,7 +73,11 @@
                                 {% endif %}
                                 </div>
                             </div>
-                            <div class="name col-xs-7 col-sm-4">
+                            {% if candidate.name|length < 4 %}
+                            <div class="name col-xs-7 col-sm-8">
+                            {% else %}
+                            <div class="name col-xs-12 col-sm-8">
+                            {% endif %}
                                 <h1 class="classJ exlrgt">{{candidate.name}}</h1>
                             </div>
                         </a>
