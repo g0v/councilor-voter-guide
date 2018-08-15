@@ -314,45 +314,78 @@
                         {% endif %}
                         {% if county|county_config:'votes' %}
                             <div class="vote col-sm-6 row">
-                                <div class="tit row col-sm-12">
-                                    <div class="col-sm-12">表決</div>
-                                </div>
+                                <b>表決</b>
                                 {% if sp.votes %}
+
+                                    <div class="panel-group" id="accordion_votes_{{candidate.uid}}" role="tablist" aria-multiselectable="true">
                                     {% for standpoint in sp.votes %}
-                                    <div class="list col-sm-12 row">
-                                        <div class="col-sm-8 col-xs-6">{{standpoint.title}}</div>
-                                        {% if standpoint.decision == "反對" %}
-                                            <div class="statstic-num pull-right bg-reject">
-                                        {% elif standpoint.decision == "贊成" %}
-                                            <div class="statstic-num pull-right bg-approve">
-                                        {% elif standpoint.decision == "沒投票" %}
-                                            <div class="statstic-num pull-right bg-non-vote">
-                                        {% elif standpoint.decision == "棄權" %}
-                                            <div class="statstic-num pull-right bg-giveup">
-                                        {% endif %}
-                                            <a href="{% url 'councilors:voter_sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">{{standpoint.decision}}</a>
+                                        <div class="panel">
+                                            <div class="panel-heading collapsed row" role="button" data-toggle="collapse" data-parent="#accordion_votes_{{candidate.uid}}" data-target="#{{candidate.uid}}_{{standpoint.decision}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{candidate.uid}}_{{standpoint.decision}}_{{standpoint.title}}" style="margin-left: 0px;margin-right: 0px;">
+                                                <b class="col-xs-8">{{standpoint.title}}</b>
+                                                <i class="fa fa-angle-down fa-lg pull-right" style="padding: 9px 0;"></i>
+                                                {% if standpoint.decision == "反對" %}
+                                                    <b class="pull-right" style="padding: 5px 15px; color: #000; background: #d93b33">
+                                                {% elif standpoint.decision == "贊成" %}
+                                                    <b class="pull-right" style="padding: 5px 15px; color: #000; background: #5cb85c">
+                                                {% elif standpoint.decision == "沒投票" %}
+                                                    <b class="pull-right" style="padding: 5px 15px; color: #000; background: #f2ae57">
+                                                {% else %}
+                                                    <b class="pull-right" style="padding: 5px 15px; color: #000; background: #777">
+                                                {% endif %}
+                                                {{standpoint.decision}}</b>
+                                            </div>
+                                            <div id="{{candidate.uid}}_{{standpoint.decision}}_{{standpoint.title}}" class="panel-collapse collapse" role="tabpanel">
+                                                <ul class="list-group">
+                                                    {% for fragment in standpoint.votes %}
+                                                    <a class="list-group-item" href="{% url 'votes:vote' fragment.uid %}" target="_blank">
+                                                        <h4>☞ 表決 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></h4>
+                                                        <blockquote>
+                                                            <p><small>{{fragment.content|truncatechars:100}}</small></p>
+                                                        </blockquote>
+                                                    </a>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
                                     {% endfor %}
+                                    </div>
+
                                 {% endif %}
                             </div>
                         {% endif %}
                         <div class="proposal col-sm-6 row">
-                            <div class="tit row col-sm-12">
-                                <div class="col-sm-12">提案</div>
-                            </div>
+                            <b>提案</b>
                             {% if sp.bills %}
+
+                            <div class="panel-group" id="accordion_bills_{{candidate.uid}}" role="tablist" aria-multiselectable="true">
                                 {% for standpoint in sp.bills %}
-                                    <div class="list col-sm-12 row">
-                                        <div class="col-sm-8 col-xs-6">{{standpoint.title}}</div>
-                                        {% if standpoint.role == "主提案" %}
-                                            <div class="statstic-num pull-right bg-hostpropose">
-                                        {% else %}
-                                            <div class="statstic-num pull-right bg-proposal">
-                                        {% endif %}
-                                        {{standpoint.role}}</div>
+                                    <div class="panel">
+                                        <div class="panel-heading collapsed row" role="button" data-toggle="collapse" data-parent="#accordion_bills_{{candidate.uid}}" data-target="#{{candidate.uid}}_{{standpoint.role}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{candidate.uid}}_{{standpoint.role}}_{{standpoint.title}}" style="margin-left: 0px;margin-right: 0px;">
+                                            <b class="col-xs-8">{{standpoint.title}}</b>
+                                            <i class="fa fa-angle-down fa-lg pull-right" style="padding: 9px 0;"></i>
+                                            {% if standpoint.role == "主提案" %}
+                                                <b class="pull-right" style="padding: 5px 15px; color: #f4f4f4; background: #5bc0de">
+                                            {% else %}
+                                                <b class="pull-right" style="padding: 5px 15px; color: #f4f4f4; background: #3b3b3b">
+                                            {% endif %}
+                                            {{standpoint.role}}</b>
+                                        </div>
+                                        <div id="{{candidate.uid}}_{{standpoint.role}}_{{standpoint.title}}" class="panel-collapse collapse" role="tabpanel">
+                                            <ul class="list-group">
+                                                {% for fragment in standpoint.bills %}
+                                                <a class="list-group-item" href="{% url 'bills:bill' bill_id=fragment.uid %}" target="_blank">
+                                                    <h4>☞ 提案 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></h4>
+                                                    <blockquote>
+                                                        <p><small>{{fragment.abstract|truncatechars:100}}</small></p>
+                                                    </blockquote>
+                                                </a>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
                                     </div>
                                 {% endfor %}
+                                </div>
+
                             {% else %}
                                 <div class="list col-sm-12 row">
                                     <a class="btn" href="{% url 'councilors:biller' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">尚無摘要資料，來幫忙摘要！ </a>
@@ -427,6 +460,13 @@
                 zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
                 $(ele).replaceWith(zh_number)
             })
+            $('[data-toggle="collapse"]').on('click', function() {
+                $(this).find('.fa-caret-square-o-down').toggleClass('up-side-down');
+            });
+            $('[data-toggle="collapse"]').on('click', function() {
+                $(this).closest('.panel-group').find('[data-toggle="collapse"]').not(this).find('.fa-angle-down').removeClass('up-side-down');
+                $(this).find('.fa-angle-down').toggleClass('up-side-down');
+            });
         });
     </script>
 {% endblock script %}

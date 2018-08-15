@@ -37,7 +37,8 @@ def populate_standpoints(candidates):
                         SELECT
                             s.title,
                             count(*) as times,
-                            sum(pro) as pro
+                            sum(pro) as pro,
+                            json_agg((select x from (select v.uid, v.abstract) x)) as bills
                         FROM bills_mayors_bills lv
                         JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
                         JOIN bills_bills v on lv.bill_id = v.uid
@@ -76,9 +77,11 @@ def populate_standpoints(candidates):
                                 END as decision,
                                 s.title,
                                 count(*) as times,
-                                sum(pro) as pro
+                                sum(pro) as pro,
+                                json_agg((select x from (select v.uid, v.content) x)) as votes
                             FROM votes_councilors_votes lv
                             JOIN standpoints_standpoints s on s.vote_id = lv.vote_id
+                            JOIN votes_votes v on lv.vote_id = v.uid
                             WHERE lv.councilor_id in %s AND s.pro = (
                                 SELECT max(pro)
                                 FROM standpoints_standpoints ss
@@ -100,9 +103,11 @@ def populate_standpoints(candidates):
                                 END as role,
                                 s.title,
                                 count(*) as times,
-                                sum(pro) as pro
+                                sum(pro) as pro,
+                                json_agg((select x from (select v.uid, v.abstract) x)) as bills
                             FROM bills_councilors_bills lv
                             JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
+                            JOIN bills_bills v on lv.bill_id = v.uid
                             WHERE lv.councilor_id in %s AND s.pro = (
                                 SELECT max(pro)
                                 FROM standpoints_standpoints ss

@@ -205,19 +205,36 @@
                                 </div>
                             {% elif term.type == 'mayor' %}
                             <div class="proposal col-sm-6 row">
-                                <div class="tit row col-sm-12">
-                                    <div class="col-sm-12">{{term.term_start_year}} ~ {{term.term_end_year}} {{term.county}}長任期 提案立場</div>
-                                </div>
-                                {% for standpoint in sp.standpoints %}
-                                    <div class="list col-sm-12 row">
-                                        <div class="col-sm-8 col-xs-6">{{standpoint.title}}</div>
-                                        <div class="statstic-num pull-right bg-hostpropose">政府提案</div>
+                                <b>{{term.term_start_year}} ~ {{term.term_end_year}} {{term.county}}長任期 提案立場</b>
+                                {% if sp.standpoints %}
+                                    <div class="panel-group" id="accordion_bills_{{candidate.uid}}" role="tablist" aria-multiselectable="true">
+                                    {% for standpoint in sp.standpoints %}
+                                        <div class="panel">
+                                            <div class="panel-heading collapsed row" role="button" data-toggle="collapse" data-parent="#accordion_bills_{{candidate.uid}}" data-target="#{{candidate.uid}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{candidate.uid}}_{{standpoint.title}}" style="margin-left: 0px;margin-right: 0px;">
+                                                <b class="col-xs-8">{{standpoint.title}}</b>
+                                                <i class="fa fa-angle-down fa-lg pull-right" style="padding: 9px 0;"></i>
+                                                <b class="pull-right" style="padding: 5px 15px; color: #f4f4f4; background: #5bc0de">政府提案</b>
+                                            </div>
+                                            <div id="{{candidate.uid}}_{{standpoint.title}}" class="panel-collapse collapse" role="tabpanel">
+                                                <ul class="list-group">
+                                                    {% for fragment in standpoint.bills %}
+                                                    <a class="list-group-item" href="{% url 'bills:bill' bill_id=fragment.uid %}" target="_blank">
+                                                        <h4>☞ 提案 {{forloop.counter}}<small>（這標怎麼下的？點我來改進）</small></h4>
+                                                        <blockquote>
+                                                            <p><small>{{fragment.abstract|truncatechars:100}}</small></p>
+                                                        </blockquote>
+                                                    </a>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
                                     </div>
-                                {% empty %}
+                                {% else %}
                                     <div class="list col-sm-12 row">
                                         <a class="btn" href="{% url 'mayors:biller' mayor_id=candidate.data.mayor_terms.0.mayor_id election_year=candidate.data.mayor_terms.0.election_year %}">尚無摘要資料，來幫忙摘要！ </a>
                                     </div>
-                                {% endfor %}
+                                {% endif %}
                             </div>
                             {% endif %}
                             <div class="politics col-sm-6 row">
