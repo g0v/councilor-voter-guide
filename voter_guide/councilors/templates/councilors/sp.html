@@ -41,8 +41,8 @@
             {% else %}
                 <div class="panel panel-warning">
             {% endif %}
-                    <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion_{{standpoint.decision}}" data-target="#{{standpoint.decision}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{standpoint.decision}}_{{standpoint.title}}">
-                        <b>{{standpoint.title}}</b>
+                    <div class="panel-heading collapsed row" role="button" data-toggle="collapse" data-parent="#accordion_{{standpoint.decision}}" data-target="#{{standpoint.decision}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{standpoint.decision}}_{{standpoint.title}}" style="margin-left: 0px;margin-right: 0px;">
+                        <b class="col-xs-8">{{standpoint.title}}</b>
                         <i class="fa fa-angle-down fa-lg pull-right"></i>
                         {% if standpoint.decision == "反對" %}
                             <span class="label label-danger pull-right">
@@ -93,8 +93,8 @@
             {% else %}
                 <div class="panel panel-warning">
             {% endif %}
-                    <div class="panel-heading collapsed" role="button" data-toggle="collapse" data-parent="#accordion_{{standpoint.role}}" data-target="#{{standpoint.role}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{standpoint.role}}_{{standpoint.title}}">
-                        <b>{{standpoint.title}}</b>
+                    <div class="panel-heading collapsed row" role="button" data-toggle="collapse" data-parent="#accordion_{{standpoint.role}}" data-target="#{{standpoint.role}}_{{standpoint.title}}" aria-expanded="false" aria-controls="{{standpoint.role}}_{{standpoint.title}}" style="margin-left: 0px;margin-right: 0px;">
+                        <b class="col-xs-8">{{standpoint.title}}</b>
                         <i class="fa fa-angle-down fa-lg pull-right"></i>
                         {% if standpoint.role == "主提案" %}
                             <span class="label label-info pull-right">
