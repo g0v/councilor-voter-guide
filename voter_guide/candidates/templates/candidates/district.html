@@ -50,8 +50,12 @@
                 <a class="btn-other col-xs-5 col-sm-3 col-md-2 hidden-sm hidden-md hidden-lg pull-right" href="{% url "candidates:mayors" county=county %}">改{{county}}長</a>
             </div>
             <div class="content-list row col-xs-12">
-                <h2>{{election_year}} {{county}} - {{district}} 議員候選人</h2>
             {% with intent_num=intents|length %}
+            <div class="row">
+                <div class="col-sm-10 col-xs-8 text-left"><h2>{{election_year}} {{county}} - {{district}} 議員候選人</h2></div>
+                <div class="col-sm-2 col-xs-4 text-right"><h3>候選 {{candidates|length|add:intent_num}} 人{% if cec_data.elected_count %}<br>應選 {{cec_data.elected_count}} 人<br><small>婦女保障 {{cec_data.reserved_seats}} 人</small>{% endif %}</h3></div>
+            </div>
+
             {% for candidate in candidates %}
             {% if intents %}
                 {% if intents and forloop.counter == random_row %}
