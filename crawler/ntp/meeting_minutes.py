@@ -19,7 +19,7 @@ def write_file(data, file_name):
 class Spider(scrapy.Spider):
     name = "meeting"
     allowed_domains = ["www.ntp.gov.tw"]
-    start_urls = ['http://www.ntp.gov.tw/content/information/information04.aspx']
+    start_urls = ['https://www.ntp.gov.tw/content/information/information04.aspx']
     download_delay = 1
     county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
     election_year = common.election_year(county_abbr)
@@ -56,7 +56,7 @@ class Spider(scrapy.Spider):
     def download_pdf(self, response):
         item = response.meta['item']
         item['download_url'] = response.url
-        cmd = 'mkdir -p %s && wget -c -O %s%s "%s"' % (self.output_path, self.output_path, response.meta['file_name'], item['download_url'])
+        cmd = 'mkdir -p %s && wget --no-check-certificate -c -O %s%s "%s"' % (self.output_path, self.output_path, response.meta['file_name'], item['download_url'])
         retcode = subprocess.call(cmd, shell=True)
         return item
 

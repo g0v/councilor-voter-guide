@@ -78,7 +78,8 @@ def IterVote(text, sitting_dict):
                 names = re.sub(u'[、：，:,]', ' ', re.sub(u'\s', '', match.group(key)))
                 for councilor_id in common.getCouncilorIdList(c, names):
                     id = common.getDetailIdFromUid(c, councilor_id, sitting_dict['election_year'], sitting_dict['county'])
-                    VoteVoterRelation(id, vote_dict['uid'], value)
+                    if id:
+                        VoteVoterRelation(id, vote_dict['uid'], value)
         vote_count += 1
         pre_match_end = match.end()
 
