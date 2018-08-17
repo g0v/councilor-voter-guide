@@ -37,8 +37,15 @@ for candidate in rows:
     else:
         continue
     c.execute('''
-        UPDATE candidates_intent
-        SET candidate_id = %(candidate_uid)s, candidate_term_id = %(candidate_term_uid)s
-        WHERE type = %(type)s AND election_year = %(election_year)s AND name = %(name)s AND county = %(county)s AND constituency = %(constituency)s AND party = %(party)s
-    ''', candidate)
+        SELECT 1
+        FROM candidates_terms
+        WHERE election_year = %s and uid = %s
+    ''', [election_year, candidate['candidate_term_uid']])
+    r = c.fetchone()
+    if r and r[0]:
+        c.execute('''
+            UPDATE candidates_intent
+            SET candidate_id = %(candidate_uid)s, candidate_term_id = %(candidate_term_uid)s
+            WHERE type = %(type)s AND election_year = %(election_year)s AND name = %(name)s AND county = %(county)s AND constituency = %(constituency)s AND party = %(party)s
+        ''', candidate)
 conn.commit()
