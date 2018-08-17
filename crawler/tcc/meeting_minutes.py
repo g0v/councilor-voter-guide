@@ -12,8 +12,8 @@ import common
 
 class Spider(scrapy.Spider):
     name = "meeting"
-    allowed_domains = ["obas_front.tcc.gov.tw"]
-    start_urls = ["http://obas_front.tcc.gov.tw:8080/Agenda/EFileSearch.aspx?FileGrpKind=2&h=600",]
+    allowed_domains = ["210.69.176.20"]
+    start_urls = ["http://210.69.176.20:8080/Agenda/EFileSearch.aspx?FileGrpKind=2&h=600",]
     download_delay = 0.5
     county_abbr = os.path.dirname(os.path.realpath(__file__)).split('/')[-1]
     election_year = common.election_year(county_abbr)

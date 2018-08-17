@@ -36,6 +36,6 @@ class Spider(scrapy.Spider):
                 item['download_url'] = urljoin(response.url, link)
                 ext = item['download_url'].split('.')[-1]
                 file_name = '%s.%s' % (item['meeting'], ext)
-                cmd = 'mkdir -p %s && wget -c -O %s%s "%s"' % (self.output_path, self.output_path, file_name, item['download_url'])
+                cmd = 'mkdir -p %s && wget --no-check-certificate -c -O %s%s "%s"' % (self.output_path, self.output_path, file_name, item['download_url'])
                 retcode = subprocess.call(cmd, shell=True)
                 yield item
