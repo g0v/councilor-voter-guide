@@ -20,7 +20,7 @@ subprocess.call(cmd, shell=True)
 c.execute('''
     SELECT id, county, constituency, name, image
     FROM councilors_councilorsdetail
-    WHERE election_year = %s AND image != '' and county = '臺東縣'
+    WHERE election_year = %s AND image != ''
     ORDER BY county
 ''', [election_year])
 
