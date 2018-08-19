@@ -397,7 +397,7 @@
                                     </div>
                                 {% endfor %}
                                 </div>
-                                <div class="panel" onclick="location.href='{% url 'councilors:voter' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}';" style="cursor: pointer;">
+                                <div class="panel" onclick="location.href='{% url 'councilors:biller' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}';" style="cursor: pointer;">
                                     <div class="panel-heading collapsed row" role="button" data-toggle="collapse" data-parent="#accordion_votes_{{candidate.uid}}" style="margin-left: 0px;margin-right: 0px;">
                                         <b>全提案紀錄 </b>
                                     </div>
