@@ -17,7 +17,7 @@
 {% block person_detail %}
     {% if mayor.county == '宜蘭縣' or mayor.county == '彰化縣' %}
     <h3>
-        <i class="fa fa-warning text-danger"> {{mayor.county}}政府不提供議員配合款使用議員姓名</i>
+        <i class="fa fa-warning text-danger"> {{mayor.county}}政府不提供議員配合/建議款使用議員姓名</i>
         <span class="pull-right">
             資料來源<a href="{{mayor.county|suggestions_offical_link}}" target="_blank"> {{mayor.county}}主計處</a>
         </span>
