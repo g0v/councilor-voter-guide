@@ -30,6 +30,7 @@ def populate_standpoints(candidates):
         if candidate.type == 'mayors':
             terms = Terms.objects.filter(type='mayors', candidate_id=candidate.candidate_id, elected=True)\
                                 .order_by('-election_year')
+            terms_id = tuple([x.uid for x in terms])
             for term in terms:
                 qs = u'''
                     SELECT json_agg(row)
@@ -42,7 +43,7 @@ def populate_standpoints(candidates):
                         FROM bills_mayors_bills lv
                         JOIN standpoints_standpoints s on s.bill_id = lv.bill_id
                         JOIN bills_bills v on lv.bill_id = v.uid
-                        WHERE lv.mayor_id = %s AND s.pro = (
+                        WHERE lv.mayor_id in %s AND s.pro = (
                             SELECT max(pro)
                             FROM standpoints_standpoints ss
                             WHERE ss.pro > 0 AND s.bill_id = ss.bill_id
@@ -53,12 +54,9 @@ def populate_standpoints(candidates):
                         LIMIT 3
                     ) row
                 '''
-                c.execute(qs, [term.uid, ])
+                c.execute(qs, [terms_id, ])
                 r = c.fetchone()
-                if not standpoints.get(candidate.id):
-                    standpoints.update({candidate.id: {'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []}})
-                else:
-                    standpoints[candidate.id].append({'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []})
+                standpoints.update({candidate.id: {'county': term.county, 'election_year': term.election_year, 'standpoints': r[0] if r else []}})
         else:
             if candidate.councilor_terms:
                 terms_id = tuple([x['term_id'] for x in candidate.councilor_terms])
@@ -252,7 +250,7 @@ def intent_upsert(request):
             ''', [json.dumps([history]), request.user.id, election_year])
             intent_register_achievement(request.user)
         return redirect(reverse('candidates:intent_detail', kwargs={'intent_id': instance.uid if instance else intent.uid}))
-    return render(request, 'candidates/intent_upsert.html', {'form': form})
+    return render(request, 'candidates/intent_upsert.html', {'form': form, 'election_year': election_year})
 
 def intent_detail(request, intent_id):
     intent = get_object_or_404(Intent.objects.select_related('user'), uid=intent_id)

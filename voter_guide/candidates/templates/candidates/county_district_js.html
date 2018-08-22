@@ -1,11 +1,14 @@
+{% load staticfiles %}
 <script type="text/javascript">
 var src = [];
 var bounded = typeof {{ form.constituency.value }} != 'undefined' ? true : false;
 (function (app) {
   window.app = new function () {
       var _this = this;
+      var year = {{election_year}};
+      var jsonUrl = '{% static "/json/dest/constituencies_" %}'+year+'.json';
       $.ajax({
-        url: '/static/json/county_district.json',
+        url: jsonUrl,
         async: false
       })
       .done(function (data) {
