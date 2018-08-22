@@ -39,8 +39,10 @@
     <div class="container relat classJ contain-1000">
         <div class="text-center">
             <h2>如果我是候選人</h2>
-            <h3><small>太複雜了！我只想提個政見！歡迎候選人揀去做！</small></h3>
-            <a href="{% url 'platforms:propose' %}" class="btn btn-info btn-lg"><i class="fa fa-pencil-square-o"> 來許願</i></a>
+            {% with user_id=request.user.socialaccount_set.first.uid %}
+                <img src="//graph.facebook.com/v3.1/{{user_id}}/picture?height=480" style="height: 150px">
+            {% endwith %}
+            <h5>為避免代填的後續麻煩，系統將自動抓取此Facebook帳號的頭像做為擬參選人頭像顯示，建議切換為候選人本人帳號登入填寫</h5>
         </div>
         <form class="form-horizontal" action="" method="post">{% csrf_token %}
             <div class="row">
@@ -218,7 +220,7 @@
                     $('[name$="status"]').prop('disabled', true);
             });
             $('form').on('submit', function() {
-                $('input[name=district]').val($('select[name=constituency] option[value=' + $('select[name=constituency]').val() + ']').text().split('）')[1]);
+                $('input[name=district]').val($('select[name=constituency] option:selected').text().split('）')[1]);
             });
             $("[data-toggle='tooltip']").tooltip();
         });
