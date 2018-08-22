@@ -19,16 +19,21 @@
     <h3>
         <i class="fa fa-warning text-danger"> {{councilor.county}}政府不提供議員配合/建議款使用議員姓名</i>
         <span class="pull-right">
-            資料來源<a href="{{councilor.county|suggestions_offical_link}}" target="_blank"> {{councilor.county}}主計處</a>
+            資料來源：<a href="{{councilor.county|suggestions_offical_link}}" target="_blank"> {{councilor.county}}主計處「議員所提地方建設建議事項」</a>
         </span>
     </h3>
     <hr>
     {% else %}
-    <div class="page-header"
+    <div class="page-header">
     <p>本任期總花費：<font class="price">{{councilor.param.suggestions_years.sum}}</font>
-        <a class="btn btn-default btn-lg" href="{% url 'suggestions:lists' county=county %}?keyword={{councilor.name}}"><i class="fa fa-list"> 一筆一筆看</i></a>
+        <div class="btn-group" role="group">
+            <a class="btn btn-default" href="{% url 'suggestions:lists' county=county %}?keyword={{councilor.name}}"><i class="fa fa-list"> 一筆一筆看</i></a>
+            <a class="btn btn-default" href="{% url 'suggestions:county_overview' %}"><i class="fa fa-question"> 什麼是配合/建議款</i></a>
+        </div>
+    </p>
+    <p>
         <span class="pull-right">
-            資料來源<a href="{{councilor.county|suggestions_offical_link}}" target="_blank"> {{councilor.county}}主計處</a>
+            資料來源：<a href="{{councilor.county|suggestions_offical_link}}" target="_blank"> {{councilor.county}}主計處「議員所提地方建設建議事項」</a>
         </span>
     </p>
     </div>
@@ -132,6 +137,9 @@
                 var number = $(ele).text()
                 zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
                 $(ele).replaceWith(zh_number)
+            });
+            $('[data-toggle="collapse"]').on('click', function() {
+                $(this).find('.fa-angle-down').toggleClass('up-side-down');
             });
         });
     </script>

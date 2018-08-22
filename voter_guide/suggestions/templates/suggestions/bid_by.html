@@ -31,11 +31,13 @@
         <h2>
             {{bid_by}}
             <small><a href="http://company.g0v.ronny.tw/index/search?q={{bid_by}}" target="_blank"><u>董事與股東</u></a></small>
+
+            <h4>資料來源：<a href="{% url "about" %}#reference" target="_blank">各縣市主計處「議員所提地方建設建議事項」</a></h4>
         </h2>
-        <p> 得標案中，提案議員的分布</p>
     </div>
     <div class="row">
         <div class="col-sm-8">
+            <h4><center>{{bid_by}}的得標案中，提案議員的分布</center></h4>
             <div id="councilors_pie" align="center"></div>
         </div>
         <div class="col-sm-4">

@@ -31,6 +31,7 @@
         <img class="pull-right" src="https://s3-ap-southeast-1.amazonaws.com/councilor.tw/county-logo/{{county}}.png"></img>
         <h2>{{county}} - 議員配合/建議款</h2>
         <p>議員每年度提案且通過的金額，由高到低排列。<i class="fa fa-info-circle"><small> 備註：多人共同提案的金額以平均金額來計算</small></i></p>
+        資料來源：<a href="{{county|suggestions_offical_link}}" target="_blank">{{county}}主計處「議員所提地方建設建議事項」</a>
     </div>
     <div class="row">
         {% regroup years by suggestion__suggest_year as year_list %}
