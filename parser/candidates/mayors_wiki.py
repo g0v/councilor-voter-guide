@@ -32,7 +32,7 @@ def upsertCandidates(candidate):
         VALUES (%(candidate_uid)s, %(name)s, %(birth)s, %(identifiers)s)
         ON CONFLICT (uid)
         DO UPDATE
-        SET name = %(name)s, birth = %(birth)s, identifiers = %(identifiers)s
+        SET name = %(name)s, birth = COALESCE(candidates_candidates.birth, %(birth)s), identifiers = %(identifiers)s
     ''', complement)
     c.execute('''
         INSERT INTO candidates_terms(uid, candidate_id, elected_councilor_id, councilor_terms, election_year, number, name, gender, party, constituency, county, district, contact_details, education, experience, remark, image, links, platform, type, occupy)
