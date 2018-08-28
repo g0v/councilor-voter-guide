@@ -3,7 +3,7 @@ from rest_framework import serializers
 from councilors.models import Councilors, CouncilorsDetail, Attendance
 from votes.models import Votes, Councilors_Votes
 from bills.models import Bills, Councilors_Bills
-from candidates.models import Candidates
+from candidates.models import Candidates, Terms
 from sittings.models import Sittings
 from suggestions.models import Suggestions, Councilors_Suggestions
 
@@ -52,7 +52,13 @@ class CouncilorsSerializer(serializers.HyperlinkedModelSerializer):
         model = Councilors
         fields = '__all__'
 
+class CandidatesTermsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Terms
+        fields = '__all__'
+
 class CandidatesSerializer(serializers.HyperlinkedModelSerializer):
+    each_terms = CandidatesTermsSerializer(many=True)
     class Meta:
         model = Candidates
         fields = '__all__'

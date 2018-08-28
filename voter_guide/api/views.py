@@ -17,7 +17,7 @@ from .forms import NameForm
 from councilors.models import Councilors, CouncilorsDetail, Attendance
 from votes.models import Votes, Councilors_Votes
 from bills.models import Bills, Councilors_Bills
-from candidates.models import Candidates
+from candidates.models import Candidates, Terms
 from elections.models import Elections
 from sittings.models import Sittings
 from suggestions.models import Suggestions, Councilors_Suggestions
@@ -132,9 +132,14 @@ class Councilors_BillsViewSet(viewsets.ReadOnlyModelViewSet):
     filter_fields = ('councilor', 'bill', 'priproposer', 'petition')
 
 class CandidatesViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Candidates.objects.all().select_related('councilor')
+    queryset = Candidates.objects.all().prefetch_related('each_terms')
     serializer_class = CandidatesSerializer
-    filter_fields = ('councilor', 'last_election_year', 'election_year', 'name', 'birth', 'gender', 'party', 'title', 'constituency', 'county', 'district', 'votes', 'elected')
+    filter_fields = ('name', 'birth')
+
+class CandidatesTermsViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Terms.objects.all().select_related('candidate')
+    serializer_class = CandidatesTermsSerializer
+    filter_fields = ('election_year', 'type', 'name', 'gender', 'party', 'constituency', 'county', 'district', 'votes', 'elected', 'occupy')
 
 class SuggestionsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Suggestions.objects.all()

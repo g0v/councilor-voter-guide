@@ -27,7 +27,7 @@ class Candidates(models.Model):
 class Terms(models.Model):
     uid = models.CharField(max_length=70, unique=True)
     type = models.CharField(db_index=True, max_length=20)
-    candidate = models.ForeignKey(Candidates, to_field='uid')
+    candidate = models.ForeignKey(Candidates, to_field='uid', related_name='each_terms')
     elected_councilor = models.OneToOneField('councilors.Councilorsdetail', blank=True, null=True, related_name='elected_candidate')
     councilor_terms = JSONField(null=True)
     election_year = models.CharField(db_index=True, max_length=100)

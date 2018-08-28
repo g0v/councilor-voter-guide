@@ -12,6 +12,7 @@ from candidates import views as candidates_views
 #--> rest framework url
 router = routers.DefaultRouter()
 router.register(r'candidates', views.CandidatesViewSet)
+router.register(r'candidates_terms', views.CandidatesTermsViewSet)
 router.register(r'councilors', views.CouncilorsViewSet)
 router.register(r'councilors_terms', views.CouncilorsDetailViewSet)
 router.register(r'sittings', views.SittingsViewSet)
