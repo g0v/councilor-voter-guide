@@ -30,7 +30,7 @@ def upsertCandidates(candidate):
         VALUES (%(candidate_term_uid)s, %(candidate_uid)s, %(councilor_term_id)s, %(councilor_terms)s, %(election_year)s, %(number)s, %(name)s, %(party)s, %(constituency)s, %(county)s, %(type)s, %(occupy)s, %(status)s)
         ON CONFLICT (election_year, candidate_id)
         DO UPDATE
-        SET elected_councilor_id = %(councilor_term_id)s, councilor_terms = %(councilor_terms)s, number = %(number)s, name = %(name)s, party = %(party)s, constituency = %(constituency)s, county = %(county)s, occupy = %(occupy)s, status = %(status)s
+        SET elected_councilor_id = %(councilor_term_id)s, councilor_terms = %(councilor_terms)s, number = %(number)s, name = %(name)s, party = %(party)s, constituency = %(constituency)s, county = %(county)s, occupy = %(occupy)s, status = %(status)s, image = COALESCE(candidates_terms.image, %(image)s)
     ''', complement)
     terms = []
     for t in ['mayor', 'legislator', 'councilor']:
@@ -134,7 +134,11 @@ for wks in worksheets:
                 if candidate['legislator_candidate_info']:
                     candidate['birth'] = candidate['legislator_candidate_info']['birth']
             candidate['occupy'] = common.is_mayor_occupy(c, candidate)
+            if candidate['occupy']:
+                candidate['image'] = common.mayor_image(c, candidate)
         else:
             candidate['occupy'] = common.is_councilor_occupy(c, candidate)
+            if candidate['occupy']:
+                candidate['image'] = common.councilor_image(c, candidate)
         upsertCandidates(candidate)
 conn.commit()

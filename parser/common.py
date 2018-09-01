@@ -284,6 +284,16 @@ def is_mayor_occupy(c, candidate):
     if r:
         return True
 
+def mayor_image(c, candidate):
+    c.execute('''
+        SELECT image
+        FROM mayors_terms
+        WHERE mayor_id = %s AND in_office = true AND election_year in %s
+    ''', [candidate['mayor_uid'], tuple(last_election_years(candidate['election_year']))])
+    r = c.fetchone()
+    if r:
+        return r[0]
+
 def is_councilor_occupy(c, candidate):
     c.execute('''
         SELECT 1
@@ -293,6 +303,16 @@ def is_councilor_occupy(c, candidate):
     r = c.fetchone()
     if r:
         return True
+
+def councilor_image(c, candidate):
+    c.execute('''
+        SELECT image
+        FROM councilors_councilorsdetail
+        WHERE councilor_id = %s AND in_office = true AND election_year in %s
+    ''', [candidate['councilor_uid'], tuple(last_election_years(candidate['election_year']))])
+    r = c.fetchone()
+    if r:
+        return r[0]
 
 def get_or_create_candidate_uid(c, candidate, create=True):
     '''
