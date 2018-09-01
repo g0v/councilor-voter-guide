@@ -88,14 +88,14 @@
                                     </div>
                                 </div>
                                 <div class="name col-xs-12 col-sm-8">
-                                    <h1 class="classJ exlrgt">{{intent.name}}</h1>
+                                    <h1 class="classJ exlrgt">{{candidate.name}}</h1>
                                 </div>
                             </a>
                             <div class="personal-info col-xs-12 col-sm-3">
                                 <div class="partyname">
-                                    <p>黨籍 / <span class="party-val">
-                                    {% if intent.party %}
-                                        {{intent.party}}
+                                    <p>推薦政黨 / <span class="party-val">
+                                    {% if candidate.party %}
+                                        {{candidate.party}}
                                     {% else %}
                                         ?
                                     {% endif %}
@@ -132,7 +132,7 @@
                                     <p>學歷</p>
                                 </div>
                                 <div class="statistic">
-                                {% if intent.experience %}
+                                {% if intent.education %}
                                     {{intent.education|linebreaks}}
                                 {% else %}
                                     {{candidate.education|linebreaks}}
@@ -227,7 +227,7 @@
                                     {{candidate.votes}}{% if candidate.votes_percentage %}<small>（{{candidate.votes_percentage}}）</small>{% endif %}
                                 </span></p>
                                 {% endif %}
-                                <p>黨籍 / <span class="party-val">
+                                <p>推薦政黨 / <span class="party-val">
                                 {% if candidate.party %}
                                     {{candidate.party}}
                                 {% else %}
