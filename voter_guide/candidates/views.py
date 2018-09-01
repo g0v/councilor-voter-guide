@@ -123,13 +123,11 @@ def populate_standpoints(candidates):
                 standpoints.update({candidate.id: r[0] if r else []})
     return standpoints
 
-def populate_candidates(coming_ele_year, chosen_candidates, chosen_intents):
+def populate_candidates(coming_ele_year, chosen_candidates):
     candidates = Terms.objects.filter(election_year=coming_ele_year, candidate_id__in=chosen_candidates).select_related('candidate', 'intent')
-    intents = Intent.objects.filter(election_year=coming_ele_year, uid__in=chosen_intents).exclude(Q(status='draft') | Q(candidate_term__isnull=False))
     standpoints = populate_standpoints(candidates)
     _combine = []
     _combine.extend(candidates)
-    _combine.extend(intents)
     candidates = sorted(_combine, key=lambda x: (x.county, x.constituency))
     groups = itertools.groupby(candidates, key=lambda x: (x.county, x.constituency))
     index = 0
@@ -188,27 +186,19 @@ def district(request, election_year, county, constituency):
         constituencies = election_config.get('constituencies', {})
     except:
         constituencies = {}
-    if request.GET.get('intent'):
-        intents = Intent.objects.filter(election_year=election_year, county=county, constituency=constituency).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by(
-            Case(
-                When(name=request.GET['intent'], then=Value(0)),
-        ), '?')
-    else:
-        intents = Intent.objects.filter(election_year=election_year, county=county, constituency=constituency).exclude(Q(status='draft') | Q(candidate_term__isnull=False)).order_by('?')
     years = Terms.objects.filter(county=county, type='councilors', constituency=constituency).values_list('election_year', flat=True).distinct().order_by('-election_year')
-    candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by('?' if election_year == coming_ele_year else '-votes')
     if election_year == coming_ele_year:
         if request.GET.get('name'):
-            candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by(
+            candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency, status='register').select_related('candidate', 'intent').order_by(
                 Case(
                     When(name=request.GET['name'], then=Value(0)),
             ), '?')
         else:
-            candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by('?')
+            candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency, status='register').select_related('candidate', 'intent').order_by('?')
     else:
         candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by('-votes')
     standpoints = populate_standpoints(candidates)
-    return render(request, 'candidates/district.html', {'years': years, 'coming_election_year': coming_ele_year, 'intents': intents, 'election_year': election_year, 'county': county, 'constituency': constituency, 'constituencies': constituencies, 'district': constituencies[county]['regions'][int(constituency)-1]['district'] if constituencies.get(county) else '', 'cec_data': constituencies[county]['regions'][int(constituency)-1] if constituencies.get(county) else {}, 'candidates': candidates, 'standpoints': standpoints, 'random_row': randint(1, len(candidates)) if not request.GET.get('intent') and len(candidates) else 1})
+    return render(request, 'candidates/district.html', {'years': years, 'coming_election_year': coming_ele_year, 'election_year': election_year, 'county': county, 'constituency': constituency, 'constituencies': constituencies, 'district': constituencies[county]['regions'][int(constituency)-1]['district'] if constituencies.get(county) else '', 'cec_data': constituencies[county]['regions'][int(constituency)-1] if constituencies.get(county) else {}, 'candidates': candidates, 'standpoints': standpoints, 'random_row': randint(1, len(candidates)) if not request.GET.get('intent') and len(candidates) else 1})
 
 def intent_home(request):
     return render(request, 'candidates/intent_home.html', )
@@ -403,10 +393,6 @@ def user_generate_list(request):
                 uid = get_candidates(name)
                 if uid:
                     chosen_candidates.extend(uid)
-                else:
-                    uid = get_intents(name)
-                    if uid:
-                        chosen_intents.extend(uid)
             if not request.POST.get('publish'):
                 coming_ele_year = coming_election_year(None)
                 recommend = None
@@ -415,7 +401,7 @@ def user_generate_list(request):
                         recommend = u'推薦'
                     elif instance.recommend == False:
                         recommend = u'不推薦'
-                group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates, chosen_intents)
+                group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates)
                 return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': request.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile', 'fb_page': fb_page})
             else:
                 user_list = form.save(commit=False)
@@ -423,7 +409,7 @@ def user_generate_list(request):
                     return redirect(reverse('candidates:user_generate_list'))
                 user_list.user = request.user
                 user_list.publish = True
-                user_list.data = {'candidates': chosen_candidates, 'intents': chosen_intents, 'fb_page': fb_page}
+                user_list.data = {'candidates': chosen_candidates, 'fb_page': fb_page}
                 user_list.save()
                 return redirect(reverse('candidates:user_generated_list', kwargs={'list_id': user_list.uid}))
         form = ListsForm(instance=instance)
@@ -436,8 +422,7 @@ def user_generate_list(request):
             recommend = u'不推薦'
         coming_ele_year = coming_election_year(None)
         chosen_candidates = instance.data['candidates']
-        chosen_intents = instance.data['intents']
-        group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates, chosen_intents)
+        group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates)
         return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': instance.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile', 'fb_page': instance.data.get('fb_page')})
     else:
         form = ListsForm(instance=instance)
@@ -454,8 +439,7 @@ def user_generated_list(request, list_id):
         elif user_list.recommend == False:
             recommend = u'不推薦'
         chosen_candidates = user_list.data['candidates']
-        chosen_intents = user_list.data['intents']
-        group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates, chosen_intents)
+        group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates)
     except Exception, e:
         return HttpResponseRedirect('/')
     return render(request, 'candidates/user_generate_list.html', {'election_year': coming_ele_year, 'user_list': user_list, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': user_list.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile'})
