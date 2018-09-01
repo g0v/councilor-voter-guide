@@ -71,9 +71,13 @@
                             <a class="profile col-xs-12 row">
                                 <div class="photo pull-left relat">
                                     <div class="relat">
-                                    {% with user_id=intent.user.socialaccount_set.first.uid %}
-                                        <img src="//graph.facebook.com/v3.1/{{user_id}}/picture?height=300" alt="{{intent.name}}" title="{{intent.name}}">
-                                    {% endwith %}
+                                    {% if candidate.image %}
+                                        <img src="{{candidate.image}}" alt="{{candidate.name}}" title="{{candidate.name}}">
+                                    {% else %}
+                                        {% with user_id=intent.user.socialaccount_set.first.uid %}
+                                            <img src="//graph.facebook.com/v3.1/{{user_id}}/picture?height=300" alt="{{intent.name}}" title="{{intent.name}}">
+                                        {% endwith %}
+                                    {% endif %}
                                     </div>
                                 </div>
                                 <div class="party pull-left relat">
@@ -108,23 +112,31 @@
                                     {% endif %}
                                 </div>
                             </div>
-                            {% if intent.experience %}
+                            {% if intent.experience or candidate.experience %}
                             <div class="statistic-info col-xs-12 col-sm-5">
                                 <div class="tit">
                                     <p>經歷</p>
                                 </div>
                                 <div class="statistic">
+                                {% if intent.experience %}
                                     {{intent.experience|linebreaks}}
+                                {% else %}
+                                    {{candidate.experience|linebreaks}}
+                                {% endif %}
                                 </div>
                             </div>
                             {% endif %}
-                            {% if intent.education %}
+                            {% if intent.education or candidate.education %}
                             <div class="statistic-info col-xs-12 col-sm-4">
                                 <div class="tit">
                                     <p>學歷</p>
                                 </div>
                                 <div class="statistic">
+                                {% if intent.experience %}
                                     {{intent.education|linebreaks}}
+                                {% else %}
+                                    {{candidate.education|linebreaks}}
+                                {% endif %}
                                 </div>
                             </div>
                             {% endif %}
