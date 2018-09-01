@@ -355,7 +355,7 @@ def normalize_person_name(name):
     if name != name_bk:
         print name
     name = re.sub(u'[。˙・･•．.-]', u'‧', name)
-    name = re.sub(u'[　\s()（）’\']', '',name)
+    name = re.sub(u'[　\s()（）’\'^]', '',name)
     name = name.title()
     return name
 
