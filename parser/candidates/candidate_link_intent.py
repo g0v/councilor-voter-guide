@@ -46,6 +46,6 @@ for candidate in rows:
         c.execute('''
             UPDATE candidates_intent
             SET candidate_id = %(candidate_uid)s, candidate_term_id = %(candidate_term_uid)s
-            WHERE type = %(type)s AND election_year = %(election_year)s AND name = %(name)s AND county = %(county)s AND constituency = %(constituency)s AND party = %(party)s
+            WHERE type = %(type)s AND election_year = %(election_year)s AND uid = %(uid)s
         ''', candidate)
 conn.commit()
