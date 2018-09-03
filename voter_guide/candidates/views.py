@@ -3,6 +3,7 @@ import re
 import json
 import uuid
 import itertools
+import requests
 from random import randint
 
 from django.shortcuts import render, get_object_or_404, redirect
@@ -370,9 +371,19 @@ def user_generate_list(request):
         instance = User_Generate_List.objects.get(user=request.user, uid=request.GET['list_id'])
     except:
         instance = None
+    try:
+        r = requests.get('https://graph.facebook.com/me/accounts', params={'type': 'page', 'access_token': request.user.socialaccount_set.first().socialtoken_set.first().token})
+        fb_pages = [{'id': x['id'], 'name': x['name']} for x in r.json().get('data', []) if 'ADMINISTER' in x['perms']]
+    except:
+        fb_pages = []
     if request.method == 'POST':
-        fb_page = json.loads(request.POST.get('fb_page', 'null'))
-        print fb_page
+        if request.POST.get('fb_page') and fb_pages:
+            for x in fb_pages:
+                if x['id'] == request.POST['fb_page']:
+                    fb_page = {'id': x['id'], 'name': x['name']}
+                    break
+        else:
+            fb_page = None
         chosen_candidates, chosen_intents = [], []
         form = ListsForm(request.POST, instance=instance)
         if form.is_valid():
@@ -402,7 +413,7 @@ def user_generate_list(request):
                     elif instance.recommend == False:
                         recommend = u'不推薦'
                 group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates)
-                return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': request.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile', 'fb_page': fb_page})
+                return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': request.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile', 'fb_pages': fb_pages, 'fb_page': fb_page})
             else:
                 user_list = form.save(commit=False)
                 if user_list.user_id and request.user.id != user_list.user_id:
@@ -423,11 +434,11 @@ def user_generate_list(request):
         coming_ele_year = coming_election_year(None)
         chosen_candidates = instance.data['candidates']
         group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates)
-        return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': instance.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile', 'fb_page': instance.data.get('fb_page')})
+        return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': instance.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile', 'fb_pages': fb_pages, 'fb_page': instance.data.get('fb_page')})
     else:
         form = ListsForm(instance=instance)
         lists = User_Generate_List.objects.filter(user=request.user)
-    return render(request, 'candidates/user_generate_list.html', {'form': form, 'lists': lists, 'id': 'profile'})
+    return render(request, 'candidates/user_generate_list.html', {'form': form, 'lists': lists, 'fb_pages': fb_pages, 'id': 'profile'})
 
 def user_generated_list(request, list_id):
     coming_ele_year = coming_election_year(None)

@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['*']
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Taipei'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -218,7 +218,7 @@ ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
-        'SCOPE': ['email', ],
+        'SCOPE': ['email', 'public_profile', 'pages_show_list'],
         'METHOD': 'oauth2',
         'LOCALE_FUNC': lambda request: 'zh_TW',
         'VERIFIED_EMAIL': False,

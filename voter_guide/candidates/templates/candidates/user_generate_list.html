@@ -26,6 +26,12 @@
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
                         <div id="manage_pages">
+                            {% if fb_pages %}
+                                <br><div class="form-group"><label>以您管理的粉絲專頁為名（可不選，即以個人名義）:</label></div>
+                                {% for page in fb_pages %}
+                                <div class="checkbox"><label class="checkbox-inline"><input id="fb_page_{{page.id}}" name="fb_page" type="radio" value="{{page.id}}"{% if fb_page.id == page.id %} checked {% endif %}>{{page.name}}</label><img style="height: 80px; padding-left: 10px" src="//graph.facebook.com/v3.1/{{page.id}}/picture"></div>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                         <div class="form-group">
                         {{ form }}
@@ -33,7 +39,9 @@
                         <div class="form-group">
                             <button id="submit" class="btn btn-warning btn-lg" type="submit">預覽名單</button>
                             {% if group_candidates %}
-                                <button type="submit" name="publish" value="1" class="btn btn-info btn-lg">發佈</button>
+                                <button type="submit" name="publish" value="1" class="btn btn-success btn-lg">發佈</button>
+                            {% else %}
+                                <button type="submit" name="publish" value="1" class="btn btn-mute btn-lg disabled" disabled="disabled">發佈</button>
                             {% endif %}
                         </div>
                     </div>
@@ -476,21 +484,6 @@
                 zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
                 $(ele).replaceWith(zh_number)
             })
-            $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
-                FB.api('/me/accounts', {'type': 'page', 'access_token': '{{request.user.socialaccount_set.first.socialtoken_set.first.token}}'}, function(response) {
-                    if (response.data.length > 0) {
-                        $('#manage_pages').append('<br><div class="form-group"><label>以您管理的粉絲專頁為名（可不選，即以個人名義）:</label></div>');
-                        $.each(response.data, function(i, d) {
-                            var ds = JSON.stringify({id: d.id, name: d.name});
-                            $('#manage_pages').append('<div class="checkbox"><label class="checkbox-inline">'+'<input id="fb_page_'+d.id+'" name="fb_page" type="radio" value="">'+d.name+'</label><img style="height: 80px; padding-left: 10px" src="//graph.facebook.com/v3.1/'+d.id+'/picture"></div>'+'');
-                            $('#fb_page_'+d.id).prop('value', ds);
-                        });
-                        {% if fb_page %}
-                            $('#fb_page_'+'{{fb_page.id}}').prop('checked', true);
-                        {% endif %}
-                    }
-                });
-            });
         });
     </script>
 {% endblock script %}

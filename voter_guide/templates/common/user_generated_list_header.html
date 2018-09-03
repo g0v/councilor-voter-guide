@@ -34,9 +34,9 @@
                     <div class="name col-xs-12">
                         <h1>
                             {% if user_list.data.fb_page %}
-                                <a href="//www.facebook.com/{{user_list.data.fb_page.id}}">{{user_list.data.fb_page.name}}</a>
+                                <a href="//www.facebook.com/{{user_list.data.fb_page.id}}" target="_blank">{{user_list.data.fb_page.name}}</a>
                             {% elif fb_page %}
-                                <a href="//www.facebook.com/{{fb_page.id}}">{{fb_page.name}}</a>
+                                <a href="//www.facebook.com/{{fb_page.id}}" target="_blank">{{fb_page.name}}</a>
                             {% else %}
                                 {{user.last_name}}{{user.first_name}}
                             {% endif %}
@@ -53,6 +53,9 @@
                     </div>
                     <div class="ui-years col-xs-12 row">
                         <div class="classJ col-sm-5 col-xs-9 pull-left">
+                            {% if user_list.data.fb_page or fb_page %}
+                            <p>創建人：{{user.last_name}}{{user.first_name}}</p>
+                            {% endif %}
                             {% if user_list %}
                             <p class="hidden-xs">修改時間：{{user_list.modified_at}}</p>
                             {% endif %}
