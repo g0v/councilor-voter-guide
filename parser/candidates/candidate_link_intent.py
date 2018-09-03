@@ -25,7 +25,7 @@ rows = wks.get_all_records()
 for candidate in rows:
     if not candidate['status']:
         continue
-    candidate['name'] = candidate['user_input_name']
+    candidate['name'] = common.normalize_person_name(candidate['user_input_name'])
     print candidate['name']
     candidate['election_year'] = election_year
     if candidate['type'] == 'mayors':
