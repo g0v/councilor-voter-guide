@@ -17,15 +17,11 @@ c.execute('''
     SELECT json_agg(_.name)
     FROM (
         SELECT name, county, constituency
-        FROM candidates_intent
-        WHERE status != 'draft' AND candidate_term_id is null AND election_year = %s
-        UNION
-        SELECT name, county, constituency
         FROM candidates_terms
-        WHERE election_year = %s
+        WHERE election_year = %s and status = 'register'
         ORDER BY name, county, constituency
     ) _
-''', [election_year, election_year])
+''', [election_year, ])
 rows = c.fetchone()
 f_out = '../../voter_guide/static/json/dest/candidates_names_%s.json' % election_year
 json.dump(rows[0], codecs.open(f_out, 'w', 'utf-8'), ensure_ascii=False)
