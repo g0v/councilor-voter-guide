@@ -124,12 +124,13 @@ def populate_standpoints(candidates):
                 standpoints.update({candidate.id: r[0] if r else []})
     return standpoints
 
-def populate_candidates(coming_ele_year, chosen_candidates):
-    candidates = Terms.objects.filter(election_year=coming_ele_year, candidate_id__in=chosen_candidates).select_related('candidate', 'intent')
+def populate_candidates(request, coming_ele_year, chosen_candidates):
+    county = request.COOKIES.get('county')
+    candidates = Terms.objects.filter(election_year=coming_ele_year, candidate_id__in=chosen_candidates).select_related('candidate', 'intent').order_by(
+                                Case(
+                                    When(county=county, then=Value(0)),
+                                ), 'county', 'constituency')
     standpoints = populate_standpoints(candidates)
-    _combine = []
-    _combine.extend(candidates)
-    candidates = sorted(_combine, key=lambda x: (x.county, x.constituency))
     groups = itertools.groupby(candidates, key=lambda x: (x.county, x.constituency))
     index = 0
     group_candidates = []
@@ -412,7 +413,7 @@ def user_generate_list(request):
                         recommend = u'推薦'
                     elif instance.recommend == False:
                         recommend = u'不推薦'
-                group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates)
+                group_candidates, total_count, standpoints = populate_candidates(request, coming_ele_year, chosen_candidates)
                 return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': request.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile', 'fb_pages': fb_pages, 'fb_page': fb_page})
             else:
                 user_list = form.save(commit=False)
@@ -433,7 +434,7 @@ def user_generate_list(request):
             recommend = u'不推薦'
         coming_ele_year = coming_election_year(None)
         chosen_candidates = instance.data['candidates']
-        group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates)
+        group_candidates, total_count, standpoints = populate_candidates(request, coming_ele_year, chosen_candidates)
         return render(request, 'candidates/user_generate_list.html', {'form': form, 'election_year': coming_ele_year, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': instance.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile', 'fb_pages': fb_pages, 'fb_page': instance.data.get('fb_page')})
     else:
         form = ListsForm(instance=instance)
@@ -450,7 +451,7 @@ def user_generated_list(request, list_id):
         elif user_list.recommend == False:
             recommend = u'不推薦'
         chosen_candidates = user_list.data['candidates']
-        group_candidates, total_count, standpoints = populate_candidates(coming_ele_year, chosen_candidates)
+        group_candidates, total_count, standpoints = populate_candidates(request, coming_ele_year, chosen_candidates)
     except Exception, e:
         return HttpResponseRedirect('/')
     return render(request, 'candidates/user_generate_list.html', {'election_year': coming_ele_year, 'user_list': user_list, 'group_candidates': group_candidates, 'standpoints': standpoints, 'user': user_list.user, 'total_count': total_count, 'recommend': recommend, 'id': 'profile'})
