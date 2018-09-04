@@ -43,7 +43,7 @@ def upsert_councilors_terms(councilor):
         VALUES (%(uid)s, %(election_year)s, %(name)s, %(gender)s, %(party)s, %(title)s, %(constituency)s, %(county)s, %(district)s, %(in_office)s, %(contact_details)s, %(term_start)s, %(term_end)s, %(education)s, %(experience)s, %(remark)s, %(image)s, %(links)s, %(platform)s)
         ON CONFLICT (councilor_id, election_year)
         DO UPDATE
-        SET district = %(district)s
+        SET county = %(county)s, district = %(district)s
         RETURNING id
     ''', complement)
     r = c.fetchone()
@@ -60,15 +60,15 @@ c = conn.cursor()
 # insert councilors which elected=true in candidates
 election_year = ast.literal_eval(argv[1])['election_year']
 c.execute('''
-    SELECT ct.*, c.birth
-    FROM candidates_terms ct
-    Join candidates_candidates c ON c.uid = ct.candidate_id
-    WHERE type = 'councilors' and election_year = %s and elected = true
+    SELECT json_agg(_)
+    FROM (
+        SELECT ct.*, c.birth
+        FROM candidates_terms ct
+        Join candidates_candidates c ON c.uid = ct.candidate_id
+        WHERE type = 'councilors' and election_year = %s and elected = true
+    ) _
 ''', [election_year])
-key = [desc[0] for desc in c.description]
-for row in c.fetchall():
-    person = dict(zip(key, row))
-    person['name'] = person['name'].decode('utf-8')
+for person in c.fetchone()[0]:
     print person['name'], person['county'], person['election_year']
     person['uid'], created = common.get_or_create_councilor_uid(c, person)
     person['uid'] = uuid.UUID(person['uid']).hex

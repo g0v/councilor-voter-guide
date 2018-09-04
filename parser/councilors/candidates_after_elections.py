@@ -32,11 +32,11 @@ def upsertCandidates(candidate):
         SET name = %(name)s, birth = %(birth)s, identifiers = %(identifiers)s
     ''', complement)
     c.execute('''
-        INSERT INTO candidates_terms(uid, candidate_id, type, election_year, number, name, gender, party, constituency, county, district, votes, votes_percentage, votes_detail, elected, occupy)
-        VALUES (%(candidate_term_uid)s, %(candidate_uid)s, %(type)s, %(election_year)s, %(number)s, %(name)s, %(gender)s, %(party)s, %(constituency)s, %(county)s, %(district)s, %(votes)s, %(votes_percentage)s, %(votes_detail)s, %(elected)s, %(occupy)s)
+        INSERT INTO candidates_terms(uid, candidate_id, type, election_year, number, name, gender, party, constituency, county, district, votes, votes_percentage, votes_detail, elected, occupy, status)
+        VALUES (%(candidate_term_uid)s, %(candidate_uid)s, %(type)s, %(election_year)s, %(number)s, %(name)s, %(gender)s, %(party)s, %(constituency)s, %(county)s, %(district)s, %(votes)s, %(votes_percentage)s, %(votes_detail)s, %(elected)s, %(occupy)s, %(status)s)
         ON CONFLICT (election_year, candidate_id)
         DO UPDATE
-        SET type = %(type)s, number = %(number)s, name = %(name)s, gender = %(gender)s, party = %(party)s, constituency = %(constituency)s, county = %(county)s, district = %(district)s, votes = %(votes)s, votes_percentage = %(votes_percentage)s, votes_detail = %(votes_detail)s, elected = %(elected)s, occupy = %(occupy)s
+        SET type = %(type)s, number = %(number)s, name = %(name)s, gender = %(gender)s, party = %(party)s, constituency = %(constituency)s, county = %(county)s, district = %(district)s, votes = %(votes)s, votes_percentage = %(votes_percentage)s, votes_detail = %(votes_detail)s, elected = %(elected)s, occupy = %(occupy)s, status = %(status)s
     ''', complement)
 
 conn = db_settings.con()
@@ -48,6 +48,7 @@ for candidate in candidates:
     if not candidate['name']:
         continue
     candidate['type'] = 'councilors'
+    candidate['status'] = 'approved'
     candidate['elected'] = True if re.search(u'[*!]', candidate['elected'] or '') else False
     candidate['occupy'] = True if re.search(u'是', candidate['occupy']) else False
     constituency = re.sub('\D', '', candidate['county'])

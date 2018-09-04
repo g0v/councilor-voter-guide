@@ -51,17 +51,17 @@ c = conn.cursor()
 # insert mayors which elected=true in candidates
 election_year = ast.literal_eval(argv[1])['election_year']
 c.execute('''
-    SELECT ct.*, c.birth
-    FROM candidates_terms ct
-    Join candidates_candidates c ON c.uid = ct.candidate_id
-    WHERE type = 'mayors' and election_year = %s and elected = true
+    SELECT json_agg(_)
+    FROM (
+        SELECT ct.*, c.birth
+        FROM candidates_terms ct
+        Join candidates_candidates c ON c.uid = ct.candidate_id
+        WHERE type = 'mayors' and election_year = %s and elected = true
+    ) _
 ''', [election_year])
-key = [desc[0] for desc in c.description]
-for row in c.fetchall():
-    person = dict(zip(key, row))
+for person in c.fetchone()[0]:
     person['uid'] = person['candidate_id']
     person['term_uid'] = '%s-%s' % (person['uid'], person['election_year'])
-    person['name'] = person['name'].decode('utf-8')
     person['in_office'] = True
     person['term_start'] = {'2009': '2009-12-20', '2010': '2010-12-25', '2014': '2014-12-25'}[person['election_year']]
     person['term_end'] = {
