@@ -43,7 +43,7 @@ def get_elected_legislator_candidate_info(c, candidate):
         return r[0]
 
 def get_legislator_candidate_info(c, name):
-    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’\-\'áàâǎāa̍a̋éèêěēe̍e̋íìîǐīı̍i̍i̋óòôǒōo̍őó͘ò͘ô͘ǒ͘ō͘o̍͘ő͘úùûǔūu̍űḿm̀m̂m̌m̄m̍m̋ńǹn̂ňn̄n̍n̋ⁿ]', '', name), re.sub(u'[^\w。˙・･•．.‧’\-\'áàâǎāa̍a̋éèêěēe̍e̋íìîǐīı̍i̍i̋óòôǒōo̍őó͘ò͘ô͘ǒ͘ō͘o̍͘ő͘úùûǔūu̍űḿm̀m̂m̌m̄m̍m̋ńǹn̂ňn̄n̍n̋ⁿÔ]', '', name).lower(), } - {''}
+    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’\'\x00-\xFFǎā̍̋ěē̍̋ǐīı̍̍̋ǒō̍ő͘͘͘ǒ͘ō̍͘͘ő͘ǔū̍űḿ̀̂̌̄̍̋ńǹ̂ň̄̍̋ⁿ]', '', name), re.sub(u'[^\w。˙・･•．.‧’\'\x00-\xFFǎā̍̋ěē̍̋ǐīı̍̍̋ǒō̍ő͘͘͘ǒ͘ō̍͘͘ő͘ǔū̍űḿ̀̂̌̄̍̋ńǹ̂ň̄̍̋ⁿ]', '', name).lower(), } - {''}
     if identifiers:
         c.execute('''
             SELECT uid
@@ -75,7 +75,7 @@ def get_legislator_data(c, uid):
     return c.fetchone()
 
 def get_legislator_uid(c, name):
-    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’\-\'áàâǎāa̍a̋éèêěēe̍e̋íìîǐīı̍i̍i̋óòôǒōo̍őó͘ò͘ô͘ǒ͘ō͘o̍͘ő͘úùûǔūu̍űḿm̀m̂m̌m̄m̍m̋ńǹn̂ňn̄n̍n̋ⁿ]', '', name), re.sub(u'[^\w。˙・･•．.‧’\-\'áàâǎāa̍a̋éèêěēe̍e̋íìîǐīı̍i̍i̋óòôǒōo̍őó͘ò͘ô͘ǒ͘ō͘o̍͘ő͘úùûǔūu̍űḿm̀m̂m̌m̄m̍m̋ńǹn̂ňn̄n̍n̋ⁿÔ]', '', name).lower(), } - {''}
+    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’\'\x00-\xFFǎā̍̋ěē̍̋ǐīı̍̍̋ǒō̍ő͘͘͘ǒ͘ō̍͘͘ő͘ǔū̍űḿ̀̂̌̄̍̋ńǹ̂ň̄̍̋ⁿ]', '', name), re.sub(u'[^\w。˙・･•．.‧’\'\x00-\xFFǎā̍̋ěē̍̋ǐīı̍̍̋ǒō̍ő͘͘͘ǒ͘ō̍͘͘ő͘ǔū̍űḿ̀̂̌̄̍̋ńǹ̂ň̄̍̋ⁿ]', '', name).lower(), } - {''}
     if identifiers:
         c.execute('''
             SELECT uid
@@ -474,7 +474,7 @@ def getIdList(c, name_list, sitting_dict):
     return []
 
 def GetPossibleCandidateIds(c, name):
-    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’\-\'áàâǎāa̍a̋éèêěēe̍e̋íìîǐīı̍i̍i̋óòôǒōo̍őó͘ò͘ô͘ǒ͘ō͘o̍͘ő͘úùûǔūu̍űḿm̀m̂m̌m̄m̍m̋ńǹn̂ňn̄n̍n̋ⁿ]', '', name), re.sub(u'[^\w。˙・･•．.‧’\-\'áàâǎāa̍a̋éèêěēe̍e̋íìîǐīı̍i̍i̋óòôǒōo̍őó͘ò͘ô͘ǒ͘ō͘o̍͘ő͘úùûǔūu̍űḿm̀m̂m̌m̄m̍m̋ńǹn̂ňn̄n̍n̋ⁿÔ]', '', name).lower(), } - {''}
+    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’\'\x00-\xFFǎā̍̋ěē̍̋ǐīı̍̍̋ǒō̍ő͘͘͘ǒ͘ō̍͘͘ő͘ǔū̍űḿ̀̂̌̄̍̋ńǹ̂ň̄̍̋ⁿ]', '', name), re.sub(u'[^\w。˙・･•．.‧’\'\x00-\xFFǎā̍̋ěē̍̋ǐīı̍̍̋ǒō̍ő͘͘͘ǒ͘ō̍͘͘ő͘ǔū̍űḿ̀̂̌̄̍̋ńǹ̂ň̄̍̋ⁿ]', '', name).lower(), } - {''}
     if identifiers:
         c.execute('''
             SELECT uid
@@ -484,7 +484,7 @@ def GetPossibleCandidateIds(c, name):
         return [x[0] for x in c.fetchall()]
 
 def GetCouncilorId(c, name):
-    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’\-\'áàâǎāa̍a̋éèêěēe̍e̋íìîǐīı̍i̍i̋óòôǒōo̍őó͘ò͘ô͘ǒ͘ō͘o̍͘ő͘úùûǔūu̍űḿm̀m̂m̌m̄m̍m̋ńǹn̂ňn̄n̍n̋ⁿ]', '', name), re.sub(u'[^\w。˙・･•．.‧’\-\'áàâǎāa̍a̋éèêěēe̍e̋íìîǐīı̍i̍i̋óòôǒōo̍őó͘ò͘ô͘ǒ͘ō͘o̍͘ő͘úùûǔūu̍űḿm̀m̂m̌m̄m̍m̋ńǹn̂ňn̄n̍n̋ⁿÔ]', '', name).lower(), } - {''}
+    identifiers = {name, re.sub(u'[\w。˙・･•．.‧’\'\x00-\xFFǎā̍̋ěē̍̋ǐīı̍̍̋ǒō̍ő͘͘͘ǒ͘ō̍͘͘ő͘ǔū̍űḿ̀̂̌̄̍̋ńǹ̂ň̄̍̋ⁿ]', '', name), re.sub(u'[^\w。˙・･•．.‧’\'\x00-\xFFǎā̍̋ěē̍̋ǐīı̍̍̋ǒō̍ő͘͘͘ǒ͘ō̍͘͘ő͘ǔū̍űḿ̀̂̌̄̍̋ńǹ̂ň̄̍̋ⁿ]', '', name).lower(), } - {''}
     if identifiers:
         c.execute('''
             SELECT uid
