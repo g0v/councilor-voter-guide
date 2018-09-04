@@ -76,12 +76,12 @@
                     <li><a class="tracklink custom" data-ga="mayor" data-href="{% url "candidates:mayors_area" %}" href="{% url "candidates:mayors_area" %}"><i class="fa fa-caret-right" aria-hidden="true"></i><span>找縣市長 </span></a></li>
                     <li><a class="tracklink custom" data-ga="index" data-href="{% url "candidates:councilors_area" %}" href="{% url "candidates:councilors_area" %}"><i class="fa fa-caret-right" aria-hidden="true"></i><span>找縣市議員</span></a></li>
                     <li><a class="tracklink custom" data-ga="index" data-href="{% url 'bills:bills_area' %}" href="{% url 'bills:bills_area' %}"> <i class="fa fa-caret-right" aria-hidden="true"></i><span>找提案</span></a></li>
-                    {% if county %}
-                    <li><a class="tracklink custom" data-ga="index" data-href="{% url 'votes:votes' county=county %}" href="{% url 'votes:votes' county=county %}"> <i class="fa fa-caret-right" aria-hidden="true"></i><span>找表決</span></a></li>
-                    {% else %}
                     <li><a class="tracklink custom" data-ga="index" data-href="{% url 'votes:votes' %}" href="{% url 'votes:votes' %}"> <i class="fa fa-caret-right" aria-hidden="true"></i><span>找表決</span></a></li>
+                    {% if user.is_authenticated %}
+                    <li><a class="tracklink custom" data-ga="index" data-href="{% url 'account_logout' %}" href="{% url 'account_logout' %}"> <i class="fa fa-caret-right" aria-hidden="true"></i><span>登出</span></a></li>
+                    {% else %}
+                    <li><a class="tracklink custom" data-ga="index" data-href="{% provider_login_url "facebook" %}?next=/" href="{% provider_login_url "facebook" %}?next=/"> <i class="fa fa-caret-right" aria-hidden="true"></i><span>登入</span></a></li>
                     {% endif %}
-                    <li><a class="tracklink custom" data-ga="index" data-href="{% url 'platforms:lists' %}" href="{% url 'platforms:lists' %}"> <i class="fa fa-caret-right" aria-hidden="true"></i><span>許願池</span></a></li>
                     <li><a class="tracklink custom btn-footer hidden-sm hidden-md hidden-lg" data-ga="index" data-href="{% url "candidates:intents" election_year=2018 %}" href="{% url "candidates:intents" election_year=2018 %}"> <span>我是候選人</span></a></li>
                     <li><a class="tracklink custom btn-footer hidden-sm hidden-md hidden-lg" data-ga="index" data-href="{% url 'about' %}" href="{% url 'about' %}"> <span>關於本站</span></a></li>
                 </ul>
