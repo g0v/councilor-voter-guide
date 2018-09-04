@@ -478,6 +478,44 @@
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     <script>
         $(document).ready( function() {
+            function split( val ) {
+                return val.split( /,\s*/ );
+            }
+            function extractLast( term ) {
+                return split( term ).pop();
+            }
+            $(function() {
+                var names_json_url = '{% static "json/dest/candidates_names_2018.json" %}';
+                $.get(names_json_url, function (namelist) {
+                    if (namelist) {
+                    $('[name="content"]').autocomplete({
+                        minLength: 0,
+                        source: function( request, response ) {
+                        // delegate back to autocomplete, but extract the last term
+                        response( $.ui.autocomplete.filter(
+                            namelist, extractLast( request.term ) ) );
+                        },
+                        focus: function() {
+                        // prevent value inserted on focus
+                        return false;
+                        },
+                        select: function( event, ui ) {
+                        var terms = split( this.value );
+                        // remove the current input
+                        terms.pop();
+                        // add the selected item
+                        terms.push( ui.item.value );
+                        // add placeholder to get the comma-and-space at the end
+                        terms.push( "" );
+                        this.value = terms.join( ", " );
+                        return false;
+                        }
+                    });
+                    } else {
+                        alert('出現錯誤，請稍後再試！');
+                    }
+                }, 'json');
+            });
             $('[data-toggle="tooltip"]').tooltip()
             $('.price').each(function(index,ele){
                 var number = $(ele).text()

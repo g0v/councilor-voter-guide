@@ -389,7 +389,7 @@ def user_generate_list(request):
         if form.is_valid():
             text = request.POST['content']
             text = text.strip(u'[　\s]')
-            text = re.sub(u'[　\n、]', u' ', text)
+            text = re.sub(u'[　\n、,]', u' ', text)
             text = re.sub(u'[ ]+(\d+)[ ]+', u'\g<1>', text)
             text = re.sub(u' ([^ \w]) ([^ \w]) ', u' \g<1>\g<2> ', text) # e.g. 楊　曜=>楊曜, 包含句首
             text = re.sub(u'^([^ \w]) ([^ \w]) ', u'\g<1>\g<2> ', text) # e.g. 楊　曜=>楊曜, 包含句首
