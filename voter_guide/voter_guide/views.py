@@ -1,16 +1,27 @@
 #-*- coding: UTF-8 -*-
+import re
 from random import randint
 
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db.models import Q
 
-from candidates.models import Terms, Intent
+from candidates.models import Terms, Intent, Candidates
 from bills.models import Bills
 from votes.models import Votes
 from standpoints.models import Standpoints
 from commontag.views import paginate, coming_election_year
 
+
+def normalize_person_name(name):
+    name_bk = name
+    name = re.sub(u'(.+?\w+) (\w+)', u'\g<1>‧\g<2>', name) # e.g. Cemelesai Ljaljegan=>Cemelesai‧jaljegan
+    if name != name_bk:
+        print name
+    name = re.sub(u'[。˙・･•．.-]', u'‧', name)
+    name = re.sub(u'[　\s()（）’\'^]', '',name)
+    name = name.title()
+    return name
 
 def home(request):
     election_year = coming_election_year(None)
@@ -23,8 +34,11 @@ def home(request):
                 return redirect(reverse('candidates:district', kwargs={'county': candidate.county, 'constituency': candidate.constituency})+u'?name=%s#%s' % (request.GET['name'], candidate.candidate_id))
         except:
             try:
-                candidate = Intent.objects.get(election_year=election_year, name=request.GET['name'])
-                return redirect(reverse('candidates:district', kwargs={'county': candidate.county, 'constituency': candidate.constituency})+u'?intent=%s#%s' % (request.GET['name'], candidate.uid))
+                name = normalize_person_name(request.GET['name'])
+                identifiers = list({name, re.sub(u'[\w‧]', '', name), re.sub(u'\W', '', name).lower(), } - {''})
+                candidate = Candidates.objects.get(identifiers__has_any_keys=identifiers)
+                candidate = Terms.objects.get(election_year=election_year, candidate_id=candidate.uid)
+                return redirect(reverse('candidates:district', kwargs={'county': candidate.county, 'constituency': candidate.constituency})+u'?name=%s#%s' % (candidate.name, candidate.candidate_id))
             except:
                 pass
     return render(request, 'home.html')
