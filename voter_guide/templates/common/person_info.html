@@ -72,7 +72,7 @@
                         <a data-type="contribution" href="{% url 'councilors:pc' councilor_id=councilor.councilor_id %}">政治獻金</a>
                         <a data-type="declaration" href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" target="_blank">財產申報</a>
                         {% if councilor.county and councilor.constituency %}
-                        <a data-type="declaration" href="{% url 'candidates:台北市南港區三重路66號14樓district' county=councilor.county constituency=councilor.constituency %}">同區其他候選人</a>
+                        <a data-type="declaration" href="{% url 'candidates:district' county=councilor.county constituency=councilor.constituency %}">同區其他候選人</a>
                         {% endif %}
                     </div>
                 </div>
