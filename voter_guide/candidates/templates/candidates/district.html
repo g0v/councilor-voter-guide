@@ -7,6 +7,12 @@
     <title>{{election_year}} {{county}} - {{district}} 議員候選人</title>
     <meta property="og:title" content="{{election_year}} {{county}} - {{district}} 議員候選人"/>
     <meta itemprop="name" content="{{election_year}} {{county}} - {{district}} 議員候選人">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <style>
+        .CodeMirror, .CodeMirror-scroll {
+            display: none;
+        }
+    </style>
 {% endblock title %}
 
 {% block css_file %}
@@ -61,7 +67,7 @@
                     {% with intent=candidate.intent %}
 
                         <div class="label-current abs">
-                        {% if intent.councilor_terms.0.election_year == election_year or intent.councilor_terms.0.term_end_year == election_year %}
+                        {% if candidate.councilor_terms.0.election_year == election_year or candidate.councilor_terms.0.term_end_year == election_year %}
                             <img class="img-responsive" src="{% static "img/dest/currency.png" %}">
                         {% else %}
                             <img class="img-responsive" src="{% static "img/dest/non-currency.png" %}">
@@ -119,7 +125,8 @@
                                 </div>
                                 <div class="statistic">
                                 {% if intent.experience %}
-                                    {{intent.experience|linebreaks}}
+                                    <textarea style="display: none">{{intent.experience}}</textarea>
+                                    <div class="intent-property-body"></div>
                                 {% else %}
                                     {{candidate.experience|linebreaks}}
                                 {% endif %}
@@ -133,7 +140,8 @@
                                 </div>
                                 <div class="statistic">
                                 {% if intent.education %}
-                                    {{intent.education|linebreaks}}
+                                    <textarea style="display: none">{{intent.education}}</textarea>
+                                    <div class="intent-property-body"></div>
                                 {% else %}
                                     {{candidate.education|linebreaks}}
                                 {% endif %}
@@ -157,7 +165,8 @@
                                         <div class="col-sm-12">為何參選</div>
                                     </div>
                                     <div class="list-politics col-sm-12">
-                                        {{intent.motivation|linebreaks}}
+                                        <textarea style="display: none">{{intent.motivation}}</textarea>
+                                        <div class="intent-property-body"></div>
                                     </div>
                                 </div>
                             {% endif %}
@@ -167,7 +176,8 @@
                                         <div class="col-sm-12">政治理念</div>
                                     </div>
                                     <div class="list-politics col-sm-12">
-                                        {{intent.ideology|linebreaks}}
+                                        <textarea style="display: none">{{intent.ideology}}</textarea>
+                                        <div class="intent-property-body"></div>
                                     </div>
                                 </div>
                             {% endif %}
@@ -177,7 +187,19 @@
                                         <div class="col-sm-12">地方政見</div>
                                     </div>
                                     <div class="list-politics col-sm-12">
-                                        {{intent.platform|linebreaks}}
+                                        <textarea style="display: none">{{intent.platform}}</textarea>
+                                        <div class="intent-property-body"></div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if intent.remark %}
+                                <div class="politics col-sm-12 row">
+                                    <div class="tit row col-sm-12">
+                                        <div class="col-sm-12">備註</div>
+                                    </div>
+                                    <div class="list-politics col-sm-12">
+                                        <textarea style="display: none">{{intent.remark}}</textarea>
+                                        <div class="intent-property-body"></div>
                                     </div>
                                 </div>
                             {% endif %}
@@ -468,9 +490,17 @@
 {% endblock right %}
 
 {% block script %}
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script src="https://s3-ap-northeast-1.amazonaws.com/twly.tw/zhutil.min.js"></script>
     <script>
         $(document).ready( function() {
+            $("textarea").each( function() {
+                var simplemde = new SimpleMDE({ element: $(this)[0], toolbar: false , status: false});
+                var renderedHTML = simplemde.options.previewRender(simplemde.value());
+                var property_body = $(this).nextAll('div.intent-property-body:first');
+                property_body.html(renderedHTML);
+                property_body.children('table').addClass('table table-bordered table-condensed');
+            });
             $('[data-toggle="tooltip"]').tooltip()
             $('.price').each(function(index,ele){
                 var number = $(ele).text()
