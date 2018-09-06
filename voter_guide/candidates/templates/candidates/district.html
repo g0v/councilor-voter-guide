@@ -63,7 +63,7 @@
 
             {% for candidate in candidates %}
                 <div id="{{candidate.candidate_id}}" class="content-item row relat Current" data-id="{{forloop.counter}}">
-                {% if candidate.intent %}
+                {% if candidate.intent and not candidate.data.terms %}
                     {% with intent=candidate.intent %}
 
                         <div class="label-current abs">
@@ -160,7 +160,7 @@
                         {% if intent.councilor_terms or intent.platform or intent.motivation or intent.ideology %}
                             <div class="content-detail row notFirstintent">
                             {% if intent.motivation %}
-                                <div class="politics col-sm-12 row">
+                                <div class="politics col-sm-12 row" style="background-color: #eee; margin-top: 20px;">
                                     <div class="tit row col-sm-12">
                                         <div class="col-sm-12">為何參選</div>
                                     </div>
@@ -171,7 +171,7 @@
                                 </div>
                             {% endif %}
                             {% if intent.ideology %}
-                                <div class="politics col-sm-12 row">
+                                <div class="politics col-sm-12 row" style="background-color: #eee; margin-top: 20px;">
                                     <div class="tit row col-sm-12">
                                         <div class="col-sm-12">政治理念</div>
                                     </div>
@@ -182,7 +182,7 @@
                                 </div>
                             {% endif %}
                             {% if intent.platform %}
-                                <div class="politics col-sm-12 row">
+                                <div class="politics col-sm-12 row" style="background-color: #eee; margin-top: 20px;">
                                     <div class="tit row col-sm-12">
                                         <div class="col-sm-12">地方政見</div>
                                     </div>
@@ -193,7 +193,7 @@
                                 </div>
                             {% endif %}
                             {% if intent.remark %}
-                                <div class="politics col-sm-12 row">
+                                <div class="politics col-sm-12 row" style="background-color: #eee; margin-top: 20px;">
                                     <div class="tit row col-sm-12">
                                         <div class="col-sm-12">備註</div>
                                     </div>
