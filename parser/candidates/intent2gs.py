@@ -25,7 +25,7 @@ wks = sh.sheet1
 c.execute('''
     SELECT row_to_json(_)
     FROM (
-        SELECT ci.name as user_input_name, ss.extra_data::json->'name' as fb_name, ci.type, ci.county, ci.constituency, ci.district, ci.party, ss.extra_data::json->'link' as fb_page_link
+        SELECT ci.name as user_input_name, ss.extra_data::json->'name' as fb_name, ci.type, ci.county, ci.constituency, ci.district, ci.party, ss.extra_data::json->'link' as fb_page_link, ci.uid
         FROM candidates_intent ci
         JOIN socialaccount_socialaccount ss ON ci.user_id = ss.user_id
         WHERE election_year = %s
@@ -33,7 +33,7 @@ c.execute('''
     ) _
 ''', [election_year])
 rows = c.fetchall()
-headers = [(2, 'user_input_name'), (3, 'fb_name'), (4, 'type'), (5, 'county'), (6, 'constituency'), (7, 'district'), (8, 'party'), (9, 'fb_page_link')]
+headers = [(2, 'user_input_name'), (3, 'fb_name'), (4, 'type'), (5, 'county'), (6, 'constituency'), (7, 'district'), (8, 'party'), (9, 'fb_page_link'), (11, 'uid')]
 wks.update_cell(1, 1, 'status')
 for c, key in headers:
     wks.update_cell(1, c, key)
