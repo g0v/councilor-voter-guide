@@ -162,14 +162,14 @@ def mayors(request, election_year, county):
     coming_ele_year = coming_election_year(county)
     if election_year == coming_ele_year:
         if request.GET.get('name'):
-            candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors', status='register').order_by(
+            candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors', status='register').select_related('candidate', 'intent').order_by(
                                   Case(
                                       When(name=request.GET['name'], then=Value(0)),
                               ), '?')
         else:
-            candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors', status='register').order_by('?')
+            candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors', status='register').select_related('candidate', 'intent').order_by('?')
     else:
-        candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors', status='register').order_by('-votes')
+        candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors', status='register').select_related('candidate', 'intent').order_by('-votes')
     years = Terms.objects.filter(county=county, type='mayors').values_list('election_year', flat=True).distinct().order_by('-election_year')
     standpoints = populate_standpoints(candidates)
     return render(request, 'candidates/mayors.html', {'years': years, 'election_year': election_year, 'county': county, 'candidates': candidates, 'standpoints': standpoints})

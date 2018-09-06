@@ -149,7 +149,7 @@
                             </div>
                             {% endif %}
                             <div class="content-btm-ui col-xs-12 row">
-                                {% if intent.councilor_terms or intent.platform and intent.experience and intent.education %}
+                                {% if intent.councilor_terms or intent.motivation or intent.ideology or intent.platform or intent.remark %}
                                 <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                 {% endif %}
                                 <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">參選履歷 </a>
@@ -157,10 +157,10 @@
                             <div class="clearb"></div>
                         </div>
 
-                        {% if intent.councilor_terms or intent.platform or intent.motivation or intent.ideology %}
+                        {% if intent.councilor_terms or intent.platform or intent.motivation or intent.ideology or intent.remark  %}
                             <div class="content-detail row notFirstintent">
                             {% if intent.motivation %}
-                                <div class="politics col-sm-12 row" style="background-color: #eee; margin-top: 20px;">
+                                <div class="politics col-sm-12 row" style="background-color: #eee; margin: 20px auto;">
                                     <div class="tit row col-sm-12">
                                         <div class="col-sm-12">為何參選</div>
                                     </div>
@@ -171,7 +171,7 @@
                                 </div>
                             {% endif %}
                             {% if intent.ideology %}
-                                <div class="politics col-sm-12 row" style="background-color: #eee; margin-top: 20px;">
+                                <div class="politics col-sm-12 row" style="background-color: #eee; margin: 20px auto;">
                                     <div class="tit row col-sm-12">
                                         <div class="col-sm-12">政治理念</div>
                                     </div>
@@ -182,7 +182,7 @@
                                 </div>
                             {% endif %}
                             {% if intent.platform %}
-                                <div class="politics col-sm-12 row" style="background-color: #eee; margin-top: 20px;">
+                                <div class="politics col-sm-12 row" style="background-color: #eee; margin: 20px auto;">
                                     <div class="tit row col-sm-12">
                                         <div class="col-sm-12">地方政見</div>
                                     </div>
@@ -193,7 +193,7 @@
                                 </div>
                             {% endif %}
                             {% if intent.remark %}
-                                <div class="politics col-sm-12 row" style="background-color: #eee; margin-top: 20px;">
+                                <div class="politics col-sm-12 row" style="background-color: #eee; margin: 20px auto;">
                                     <div class="tit row col-sm-12">
                                         <div class="col-sm-12">備註</div>
                                     </div>
