@@ -28,6 +28,7 @@ def PoliticalContributions(data):
             SELECT x from (
                 SELECT DISTINCT(value) as x
                 FROM jsonb_array_elements(politicalcontributions)
+                WHERE value->'title' is not null
             ) t ORDER BY x->'election_year' DESC
         ) tt)
         WHERE candidate_id = %(candidate_uid)s AND election_year >= %(election_year)s
@@ -56,6 +57,8 @@ for f in glob.glob('../../data/political_contribution/*.json'):
         candidate['name'] = common.normalize_person_name(candidate['name'])
         candidate['constituency'] = None
         candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate, create=False)
+        if not candidate['candidate_uid'] and candidate.get('title', '') == 'mayors':
+            candidate['candidate_uid'], created = common.get_or_create_moyor_candidate_uid(c, candidate)
         if candidate['candidate_uid']:
             PoliticalContributions(candidate)
         else:

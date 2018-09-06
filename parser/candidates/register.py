@@ -73,6 +73,7 @@ def upsertCandidates(candidate):
                 SELECT x from (
                     SELECT DISTINCT(value) as x
                     FROM jsonb_array_elements(politicalcontributions)
+                    WHERE value->'title' is not null
                 ) t ORDER BY x->'election_year' DESC
             ) tt)
             WHERE candidate_id = %s AND election_year >= %s
@@ -130,7 +131,7 @@ for wks in worksheets:
             candidate['legislator_data'] = common.get_legislator_data(c_another, candidate['legislator_uid'])
             if candidate['legislator_uid']:
                 candidate['legislator_terms'] = common.legislator_terms(c_another, candidate)
-                candidate['legislator_candidate_info'] = common.get_elected_legislator_candidate_info(c_another, candidate)
+                candidate['legislator_candidate_info'] = common.get_legislator_candidate_info(c_another, candidate['name'])
                 if candidate['legislator_candidate_info']:
                     candidate['birth'] = candidate['legislator_candidate_info']['birth']
             candidate['occupy'] = common.is_mayor_occupy(c, candidate)
