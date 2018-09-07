@@ -77,5 +77,6 @@ for file in glob.glob(u'../../../data/%s/meeting_minutes/%s/html/*.html' % (coun
             common.FileLog(c, sitting_dict['name'])
             common.Attendance(c, sitting_dict, ' '.join(v['present']), 'CS', 'present')
             common.Attendance(c, sitting_dict, ' '.join(v['absent']), 'CS', 'absent')
+vote_common.not_attend_complement(c, county)
 vote_common.person_attendance_param(c, county)
 conn.commit()

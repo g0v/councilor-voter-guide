@@ -198,3 +198,52 @@ def person_attendance_param(c, county):
             SET param = (COALESCE(param, '{}'::jsonb) || %s::jsonb)
             WHERE county = %s AND id = %s
         ''', (json.dumps({'attendance_statistics': param}), county, r[0]))
+
+# not attend complement
+def sitting_list(c, county):
+    c.execute('''
+        select uid, election_year, date
+        from sittings_sittings
+        where county = %s
+    ''', (county,))
+    return c.fetchall()
+
+def not_attend_list(c, county, sitting_id, election_year, sitting_date):
+    c.execute('''
+        select id
+        from councilors_councilorsdetail
+        where election_year = %s and county = %s and term_start <= %s and cast(term_end::json->>'date' as date) > %s and id not in (select councilor_id from councilors_attendance where sitting_id = %s)
+    ''', (election_year, county, sitting_date, sitting_date, sitting_id))
+    return c.fetchall()
+
+def insert_not_attend_record(c, councilor_id, sitting_id):
+    c.execute('''
+        SELECT category
+        FROM councilors_attendance
+        WHERE sitting_id = %s AND category != ''
+        LIMIT 1
+    ''', (sitting_id, ))
+    r = c.fetchone()
+    category = r[0] if r else ''
+    c.execute('''
+        INSERT into councilors_attendance(councilor_id, sitting_id, category, status)
+        SELECT %s, %s, %s, %s
+        WHERE NOT EXISTS (SELECT 1 FROM councilors_attendance WHERE councilor_id = %s AND sitting_id = %s)
+    ''', (councilor_id, sitting_id, category, 'absent', councilor_id, sitting_id))
+
+def delete_not_in_terms_attend_record(c, sitting_id, election_year, sitting_date):
+    c.execute('''
+        delete from councilors_attendance
+        where id in (
+            select a.id
+            from councilors_attendance a, councilors_councilorsdetail l
+            where l.id = a.councilor_id and l.election_year = %s and (l.term_start > %s or cast(l.term_end::json->>'date' as date) <= %s) and a.sitting_id = %s
+        )
+    ''', (election_year, sitting_date, sitting_date, sitting_id))
+
+def not_attend_complement(c, county):
+    for sitting_id, election_year, sitting_date in sitting_list(c, county ):
+        for councilor_id in not_attend_list(c, county, sitting_id, election_year, sitting_date):
+            insert_not_attend_record(c, councilor_id, sitting_id)
+#   delete_not_in_terms_attend_record(c, sitting_id, election_year, sitting_date)
+# <-- not attend complement end

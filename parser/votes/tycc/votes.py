@@ -174,6 +174,7 @@ for i in range(0, len(sittings)):
 conn.commit()
 print 'votes, voter done!'
 
+vote_common.not_attend_complement(c, county)
 vote_common.person_attendance_param(c, county)
 conn.commit()
 print 'Succeed'

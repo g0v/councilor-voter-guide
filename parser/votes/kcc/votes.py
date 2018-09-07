@@ -164,6 +164,7 @@ print 'done!'
 
 vote_common.conscience_vote(c, election_year, county)
 vote_common.not_voting_and_results(c, county)
+vote_common.not_attend_complement(c, county)
 vote_common.person_vote_param(c, county)
 vote_common.person_attendance_param(c, county)
 conn.commit()
