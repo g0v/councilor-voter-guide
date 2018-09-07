@@ -2,9 +2,9 @@
 {% load extras %}
 
 {% block title %}
-    <title>{{mayor.county}}長:{{mayor.name}} {{mayor.election_year|election_year_range}} 發出的議員配合/建議款</title>
-    <meta property="og:title" content="{{mayor.county}}長:{{mayor.name}} {{mayor.election_year|election_year_range}} 發出的議員配合/建議款"/>
-    <meta itemprop="name" content="{{mayor.county}}長:{{mayor.name}} {{mayor.election_year|election_year_range}} 發出的議員配合/建議款">
+    <title>{{mayor.county}}長:{{mayor.name}} {{mayor.election_year|election_year_range}} 發出的議員建議或配合款</title>
+    <meta property="og:title" content="{{mayor.county}}長:{{mayor.name}} {{mayor.election_year|election_year_range}} 發出的議員建議或配合款"/>
+    <meta itemprop="name" content="{{mayor.county}}長:{{mayor.name}} {{mayor.election_year|election_year_range}} 發出的議員建議或配合款">
 {% endblock title %}
 
 {% block social_meta %}
@@ -17,7 +17,7 @@
 {% block person_detail %}
     {% if mayor.county == '宜蘭縣' or mayor.county == '彰化縣' %}
     <h3>
-        <i class="fa fa-warning text-danger"> {{mayor.county}}政府不提供議員配合/建議款使用議員姓名</i>
+        <i class="fa fa-warning text-danger"> {{mayor.county}}政府不提供議員建議或配合款使用議員姓名</i>
         <small class="pull-right">
             資料來源<a href="{{mayor.county|suggestions_offical_link}}" target="_blank"> {{mayor.county}}主計處「議員所提地方建設建議事項」</a>
         </small>
@@ -28,7 +28,7 @@
     <p>本任期總花費：<font class="price">{{mayor.data.suggestions_years.sum}}</font>
         <div class="btn-group" role="group">
             <a class="btn btn-default" href="{% url 'suggestions:lists' county=mayor.county %}"><i class="fa fa-list"> 一筆一筆看</i></a>
-            <a class="btn btn-default" href="{% url 'suggestions:county_overview' %}"><i class="fa fa-question"> 什麼是配合/建議款</i></a>
+            <a class="btn btn-default" href="{% url 'suggestions:county_overview' %}"><i class="fa fa-question"> 什麼是建議或配合款</i></a>
         </div>
     </p>
     </div>

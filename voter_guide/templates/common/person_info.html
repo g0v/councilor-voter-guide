@@ -68,7 +68,7 @@
                     <div class="nav-resume-all col-xs-11">
                         <a data-type="profile" href="{% url 'councilors:info' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">基本資料</a>
                         <a data-type="politics" href="{% url 'councilors:sp' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">提案/表決/政見</a>
-                        <a data-type="fund" href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">配合/建議款</a>
+                        <a data-type="fund" href="{% url 'councilors:suggestor' councilor_id=councilor.councilor_id election_year=councilor.election_year %}">建議或配合款</a>
                         <a data-type="contribution" href="{% url 'councilors:pc' councilor_id=councilor.councilor_id %}">政治獻金</a>
                         <a data-type="declaration" href="http://sunshine.cy.g0v.tw/people/{{councilor.name}}/property/overview/" target="_blank">財產申報</a>
                         {% if councilor.county and councilor.constituency %}

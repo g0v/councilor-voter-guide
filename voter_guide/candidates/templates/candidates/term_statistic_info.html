@@ -10,7 +10,7 @@
     {% endif %}
     <div class="statistic">
         {% if term.data.suggestions_years.sum %}
-        <p><a href="{% url "mayors:suggestor" mayor_id=term.mayor_id election_year=term.election_year %}">共發出議員配合/建議款：<font class="price">{{term.data.suggestions_years.sum}}</font></a></p>
+        <p><a href="{% url "mayors:suggestor" mayor_id=term.mayor_id election_year=term.election_year %}">共發出議員建議或配合款：<font class="price">{{term.data.suggestions_years.sum}}</font></a></p>
     {% endif %}
     </div>
 {% elif term.type == 'legislator' %}
@@ -56,11 +56,11 @@
         <p>議會出缺席查無資料</p>
         {% endif %}
         {% if term.param.suggestions_years.sum %}
-            <p><a href="{% url "councilors:suggestor" councilor_id=term.councilor_id election_year=term.election_year %}">議員配合/建議款總花費：<font class="price">{{term.param.suggestions_years.sum}}</font></a></p>
+            <p><a href="{% url "councilors:suggestor" councilor_id=term.councilor_id election_year=term.election_year %}">議員建議或配合款總花費：<font class="price">{{term.param.suggestions_years.sum}}</font></a></p>
         {% elif term.county == '宜蘭縣' or term.county == '彰化縣' %}
-        <p>{{term.county}}政府不提供議員配合/建議款的使用議員姓名</p>
+        <p>{{term.county}}政府不提供議員建議或配合款的使用議員姓名</p>
         {% else %}
-        <p>議員配合/建議款查無資料</p>
+        <p>議員建議或配合款查無資料</p>
         {% endif %}
     </div>
 {% endif %}
