@@ -68,7 +68,7 @@
                     <div class="nav-resume-all col-xs-11">
                         <a data-type="profile" href="{% url 'mayors:info' mayor_id=mayor.mayor_id election_year=mayor.election_year %}">基本資料</a>
                         <a data-type="politics" href="{% url 'mayors:biller' mayor_id=mayor.mayor_id election_year=mayor.election_year %}">提案/政見</a>
-                        <a data-type="fund" href="{% url 'mayors:suggestor' mayor_id=mayor.mayor_id election_year=mayor.election_year %}">配合/建議款</a>
+                        <a data-type="fund" href="{% url 'mayors:suggestor' mayor_id=mayor.mayor_id election_year=mayor.election_year %}">建議或配合款</a>
                         <a data-type="contribution" href="{% url 'mayors:pc' mayor_id=mayor.mayor_id %}">政治獻金</a>
                         <a data-type="declaration" href="http://sunshine.cy.g0v.tw/people/{{mayor.name}}/property/overview/" target="_blank">財產申報</a>
                         <a data-type="declaration" href="{% url 'candidates:mayors' county=mayor.county %}">同區其他候選人</a>
