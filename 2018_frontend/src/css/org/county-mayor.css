@@ -798,16 +798,16 @@ form {
 }
 .wrapper .container .content-list .content-item.row .content-item-layer1 .content-btm-ui .btn-detail {
   font-size: 18px;
-  color: #7a91c7;
+  color: #f4f4f4;
   font-weight: 800;
 }
 .wrapper .container .content-list .content-item.row .content-item-layer1 .content-btm-ui .btn-resume {
   font-size: 18px;
   padding: 5px;
-  background: #7a91c7;
+  background-color: #f4f4f4;
   border-radius: 0;
   float: right;
-  color: #f4f4f4;
+  color: #3b3b3b;
   font-weight: 800;
 }
 .wrapper .container .content-list .content-item.row .content-detail {
