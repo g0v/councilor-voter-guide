@@ -1,5 +1,5 @@
 
-###檔案結構
+### 檔案結構
 	dist/		  <---發布產生檔案
 	src/   		  <---開發用原始檔
 		css/
@@ -15,7 +15,7 @@
 		*.pug
 
 
-###頁面架構: 
+### 頁面架構: 
 	首頁
 		index.html
 
@@ -34,24 +34,19 @@
 
 
 
-###資源:
+### 資源:
 	bootstrap, jQuery, Slick, Font Awsome, GSAP
 
 ====================================================
 
-###開發環境  
+### 開發環境  
 	需安裝node & npm (latest stable version)
-###安裝 
-	在./ (有package.json的目錄)
-    執行npm i
-###編譯 
+
+### 安裝 
+	在./ (有package.json的目錄) 執行npm i
+    
+### 編譯 
 	執行npm run dev
-###編譯 for production 
-	執行npm run bu
-
-
-
-
-
 	
-
+### 編譯 for production 
+	執行npm run bu
