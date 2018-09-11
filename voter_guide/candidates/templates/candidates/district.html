@@ -152,7 +152,7 @@
                                 {% if intent.councilor_terms or intent.motivation or intent.ideology or intent.platform or intent.remark %}
                                 <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                 {% endif %}
-                                <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">參選履歷 </a>
+                                <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">參選宣言 </a>
                             </div>
                             <div class="clearb"></div>
                         </div>
@@ -319,10 +319,12 @@
                             <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
                             {% endif %}
                             {% if candidate.councilor_terms %}
-                                <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'councilors:sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">政治履歷 </a>
-                            {% elif candidate.intent %}
-                                <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'candidates:intent_detail' intent_id=candidate.intent.uid %}">參選履歷 </a>
-                            {% else %}
+                                <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'councilors:sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}"{% if candidate.intent %} style="border-color: #ccc;"{% endif %}>政治履歷 </a>
+                            {% endif %}
+                            {% if candidate.intent %}
+                                <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'candidates:intent_detail' intent_id=candidate.intent.uid %}"{% if candidate.councilor_terms %} style="border-color: #ccc;"{% endif %}>參選宣言 </a>
+                            {% endif %}
+                            {% if not candidate.councilor_terms and not candidate.intent %}
                                 <a class="btn-resume btn col-xs-3 col-sm-2" href="{% provider_login_url "facebook" %}?next={% url 'platforms:propose' %}?candidate={{candidate.uid}}">我想許願 </a>
                             {% endif %}
                         </div>
