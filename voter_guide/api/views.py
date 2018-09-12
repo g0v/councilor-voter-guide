@@ -21,6 +21,7 @@ from candidates.models import Candidates, Terms
 from elections.models import Elections
 from sittings.models import Sittings
 from suggestions.models import Suggestions, Councilors_Suggestions
+from elections.models import Elections
 from commontag.views import coming_election_year
 
 
@@ -150,3 +151,8 @@ class Councilors_SuggestionsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Councilors_Suggestions.objects.all().select_related('suggestion', 'councilor')
     serializer_class = Councilors_SuggestionsSerializer
     filter_fields = ('councilor', 'suggestion', 'jurisdiction')
+
+class ElectionsViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Elections.objects.all()
+    serializer_class = ElectionsSerializer
+    filter_fields = ('id', )

@@ -23,6 +23,7 @@ router.register(r'councilors_bills', views.Councilors_BillsViewSet)
 router.register(r'attendance', views.AttendanceViewSet)
 router.register(r'suggestions', views.SuggestionsViewSet)
 router.register(r'councilors_suggestions', views.Councilors_SuggestionsViewSet)
+router.register(r'elections', views.ElectionsViewSet)
 #<--
 
 urlpatterns = [

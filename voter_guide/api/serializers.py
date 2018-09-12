@@ -5,8 +5,14 @@ from votes.models import Votes, Councilors_Votes
 from bills.models import Bills, Councilors_Bills
 from candidates.models import Candidates, Terms
 from sittings.models import Sittings
+from elections.models import Elections
 from suggestions.models import Suggestions, Councilors_Suggestions
 
+
+class ElectionsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Elections
+        fields = '__all__'
 
 class Councilors_VotesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
