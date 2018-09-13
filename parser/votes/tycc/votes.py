@@ -112,7 +112,7 @@ Session_Token = re.compile(u'''
         第\s*(?P<times>[\d]+)\s*次
         會議
     )
-    紀錄
+    \s*(?:會議)?紀錄
 ''', re.X)
 
 Present_Token = re.compile(u'''
@@ -138,6 +138,7 @@ for match in Session_Token.finditer(total_text):
             uid = '%s-%s-%02d-CS-%02d' % (county_abbr3, election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
         elif match.group('type') == u'臨時':
             uid = '%s-%s-T%02d-CS-%02d' % (county_abbr3, election_years[int(match.group('ad'))], int(match.group('session')), int(match.group('times')))
+        print uid
         sittings.append({
             "uid":uid,
             "name": re.sub('\s', '', match.group('name')),
