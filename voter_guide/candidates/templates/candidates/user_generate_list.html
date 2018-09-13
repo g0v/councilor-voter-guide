@@ -28,9 +28,13 @@
                         <div id="manage_pages">
                             {% if fb_pages %}
                                 <br><div class="form-group"><label>以您管理的粉絲專頁為名（可不選，即以個人名義）:</label></div>
-                                {% for page in fb_pages %}
-                                <div class="checkbox"><label class="checkbox-inline"><input id="fb_page_{{page.id}}" name="fb_page" type="radio" value="{{page.id}}"{% if fb_page.id == page.id %} checked {% endif %}>{{page.name}}</label><img style="height: 80px; padding-left: 10px" src="//graph.facebook.com/v3.1/{{page.id}}/picture"></div>
-                                {% endfor %}
+                                <select id="fb_page" name="fb_page" class="form-control">
+                                    <option value=""></option>
+                                    {% for page in fb_pages %}
+                                        <option value="{{page.id}}"{% if fb_page.id == page.id %} selected {% endif %}>{{page.name}}</option>
+                                    {% endfor %}
+                                </select>
+
                             {% endif %}
                         </div>
                         <div class="form-group">
@@ -522,6 +526,15 @@
                 zh_number = zhutil.approximate(number, {base: '萬', extra_decimal: 0});
                 $(ele).replaceWith(zh_number)
             })
+            $('#fb_page').on('change', function() {
+                if ($(this).val()) {
+                    $('#fb_page_image').prop('src', '//graph.facebook.com/v3.1/'+$(this).val()+'/picture').show();
+                    $('#user_image').hide();
+                } else {
+                    $('#fb_page_image').hide();
+                    $('#user_image').show();
+                }
+            });
         });
     </script>
 {% endblock script %}

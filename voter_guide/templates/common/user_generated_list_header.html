@@ -24,9 +24,10 @@
                                 <img src="//graph.facebook.com/v3.1/{{fb_page.id}}/picture?height=480">
                             {% else %}
                             {% with user_id=user.socialaccount_set.first.uid %}
-                                <img src="//graph.facebook.com/v3.1/{{user_id}}/picture?height=480">
+                                <img id="user_image" src="//graph.facebook.com/v3.1/{{user_id}}/picture?height=480">
                             {% endwith %}
                             {% endif %}
+                            <img id="fb_page_image">
                         </div>
                     </div>
                 </div>
@@ -64,6 +65,8 @@
                             {% endif %}
                             {% if user_list.link %}
                             <a class="hidden-xs" href="{{user_list.link}}" target="_blank">☛建立者對此名單的詳細介紹</a>
+                            {% elif link %}
+                            <a class="hidden-xs" href="{{link}}" target="_blank">☛建立者對此名單的詳細介紹</a>
                             {% endif %}
                         </div>
                         <div class="info-type col-sm-3 abs hidden-xs">
