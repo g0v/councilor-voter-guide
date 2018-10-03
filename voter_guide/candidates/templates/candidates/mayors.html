@@ -81,8 +81,8 @@
                                 </div>
                                 <div class="party pull-left relat">
                                     <div class="relat">
-                                    {% if intent.party %}
-                                        <img src="{% static "img/dest/" %}{{intent.party}}.png" alt="{{intent.party}}" title="{{intent.party}}">
+                                    {% if candidate.party %}
+                                        <img src="{% static "img/dest/" %}{{candidate.party}}.png" data-toggle="tooltip" alt="{{candidate.party}}" title="{{candidate.party}}">
                                     {% endif %}
                                     </div>
                                 </div>
