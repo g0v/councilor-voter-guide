@@ -23,40 +23,40 @@
             <h1>給你好看</h1>
           </div><a class="btn-prev col-xs-4 col-sm-2 hidden-sm hidden-md hidden-lg pull-right" href="/#seemore">回上一頁</a>
           <div class="col-xs-7 col-sm-10 area hidden-sm hidden-md hidden-lg">
-            <h2>我是候選人</h2>
+            <h2>公投</h2>
           </div>
-          <div class="select-opt1 hidden-xs col-xs-12">
-              <a class="act" href="{% url "candidates:intents" election_year=2018 %}" data-id="1">我是候選人</a>
-              <a href="{% url "suggestions:county_overview" %}" data-id="2">議員建議或配合款</a>
-              <a href="{% url "candidates:user_generate_list" %}" data-id="3">你的推薦名單</a>
+          <div class="select-opt1 hidden-xs col-xs-12" style="padding-bottom: 20px">
+              <a class="act" href="." data-id="1">公投</a>
+              <a href="{% url "candidates:intents" election_year=2018 %}" data-id="2">我是候選人</a>
+              <a href="{% url "suggestions:county_overview" %}" data-id="3">議員建議或配合款</a>
+              <a href="{% url "candidates:user_generate_list" %}" data-id="4">你的推薦名單</a>
           </div>
           <div class="select-opt2 hidden-xs"></div>
           <div class="select-county-blk row">
-          {% for intent in intents %}
-            <div class="col-xs-6 col-sm-3">
-                <a class="info" href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">
-                    <div class="eng abs">
-                        <p>{{intent.county}}</p>
-                        <p>
-                        {% if intent.type == 'mayors' %}
-                            縣市長
-                        {% else %}
-                            議員
-                        {% endif %}
-                        </p>
-                    </div>
-                    <p class="relat">{{intent.name}}</p>
-                    <p class="relat">{{intent.county}}</p>
-                    <p class="relat">第 {{intent.constituency}} 選區</p>
-                    <p class="relat">{{intent.district|truncatechars:8}}</p>
-                    <div class="hover-info">
-                    {% if intent.slogan %}
-                        {{intent.slogan}}
-                    {% elif intent.motivation %}
-                        {{intent.motivation}}
-                    {% endif %}
-                    </div>
+          {% for referendum in referenda %}
+          <div class="col-xs-12 col-sm-6" id="{{referendum.uid}}" style="padding-bottom: 10%">
+                <a style="min-height: 130px; padding: 0" href="./#{{referendum.uid}}">
+                    <dl class="dl-horizontal">
+                        <dt>領銜人：</dt>
+                        <dd>{{referendum.proposer}}</dd>
+                        <dt>主文：</dt>
+                        <dd>{{referendum.title}}</dd>
+                        <dt>進度：</dt>
+                        <dd>{{referendum.status}}</dd>
+                    </dl>
                 </a>
+                <div class="btn-group btn-group-justified" role="group" style="margin-left: -15px;">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-default" href="{{referendum.cec_file_link}}" target="_blank">中選會理由書</a>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-default" href="https://drsgjxdg6zyfq.cloudfront.net/referendum/2018/{{referendum.uid}}.pdf" target="_blank">備份理由書</a>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-default" href="{{referendum.cec_page_link}}" target="_blank">詳細歷程</a>
+                    </div>
+                </div>
+                <iframe src="https://docs.google.com/gview?embedded=true&url=https://drsgjxdg6zyfq.cloudfront.net/referendum/2018/{{referendum.uid}}.pdf" style="width:100%; height:50%;" frameborder="0"></iframe>
             </div>
           {% endfor %}
         </div>
@@ -66,40 +66,3 @@
 
     <div id="disqus_thread"></div>
 {% endblock right %}
-
-{% block script %}
-    <script>
-        var year_global = 2018;//(DEFAULT 為2018 )
-        var jsonUrl_global = '{% static "/json/dest/constituencies_" %}'+year_global+'.json';
-        $(document).ready( function() {
-            $("#auto_locate").on('click', function() {
-                function error(err) {
-                    console.warn('ERROR(' + err.code + '): ' + err.message);
-                };
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    $.ajax({
-                        url: 'https://sheethub.com/ronnywang/%E6%9D%91%E9%87%8C%E7%95%8C%E5%9C%9620140313/geolookup',
-                        type: 'GET',
-                        data: {
-                            zoom: 19,
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        },
-                        success: function(data){
-                            return window.location.href = "/candidates/councilors/" + data[0].values[1] + "/";
-                        },
-                        error: function() { alert('抱歉，定位失敗，請手動選擇～'); },
-                    });
-                    }, error, {enableHighAccuracy: true});
-            });
-            if (!navigator.geolocation) {
-                $("#auto_locate").hide;
-            }
-            $('#{{category}}').addClass('active');
-            $('[data-toggle="collapse"]').on('click', function() {
-                $('[data-toggle="collapse"]').not(this).find('.fa-angle-down').removeClass('up-side-down');
-                $(this).find('.fa-angle-down').toggleClass('up-side-down');
-            });
-        });
-    </script>
-{% endblock script %}

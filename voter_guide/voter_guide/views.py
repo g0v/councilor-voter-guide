@@ -1,5 +1,6 @@
 #-*- coding: UTF-8 -*-
 import re
+import random
 from random import randint
 
 from django.shortcuts import render, redirect
@@ -7,6 +8,7 @@ from django.urls import reverse
 from django.db.models import Q
 
 from candidates.models import Terms, Intent, Candidates
+from elections.models import Elections
 from bills.models import Bills
 from votes.models import Votes
 from standpoints.models import Standpoints
@@ -44,8 +46,14 @@ def home(request):
     return render(request, 'home.html')
 
 def seemore(request):
-    intents = Intent.objects.filter(election_year='2018').order_by('-likes')
-    return render(request, 'seemore.html', {'intents': intents})
+    coming_ele_year = coming_election_year(None)
+    try:
+        election_config = Elections.objects.get(id=coming_ele_year).data
+        referenda = election_config.get('referenda', [])
+        random.shuffle(referenda)
+    except:
+        referenda = []
+    return render(request, 'seemore.html', {'referenda': referenda})
 
 def dispatch_bill(request, county=None):
     qs = Q(county=county) if county else Q()
