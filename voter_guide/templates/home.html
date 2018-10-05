@@ -30,22 +30,33 @@
             </div>
           </div>
           <div class="row sub">
-            <div class="col-sm-4 row col-xs-12">
+            <div class="col-sm-3 row col-xs-12">
               <div class="col-sm-12 col-xs-12 subt subt1">
                 <p>不盲投</p>
                 <p>台灣民主更出頭</p>
               </div>
-            </div><a class="col-xs-6 col-sm-4 row btn-findMayor" href="{% url "candidates:mayors_area" %}">
-              <div class="ico col-xs-4 col-sm-4 relat"><img class="img-responsive" src="{% static "img/dest/index-ico1.png" %}"></div>
-              <div class="col-sm-8 col-xs-8 subt">
+            </div>
+            <a class="col-xs-4 col-sm-3 row btn-findMayor" href="{% url "candidates:mayors_area" %}">
+              <div class="ico col-xs-3 col-sm-3 relat"><img class="img-responsive" src="{% static "img/dest/index-ico1.png" %}"></div>
+              <div class="col-sm-8 col-xs-9 subt">
                 <p>找縣市長</p>
                 <p>ENTER</p>
-              </div></a><a class="col-xs-6 col-sm-4 row btn-findCouncilmen" href="{% url "candidates:councilors_area" %}">
-              <div class="ico ico2 col-xs-4 col-sm-4 relat"><img class="img-responsive" src="{% static "img/dest/index-ico2.png" %}"></div>
+              </div>
+            </a>
+            <a class="col-xs-4 col-sm-3 row btn-findCouncilmen" href="{% url "candidates:councilors_area" %}">
+              <div class="ico ico2 col-xs-3 col-xs-offset-1 col-sm-3 relat"><img class="img-responsive" src="{% static "img/dest/index-ico2.png" %}"></div>
               <div class="col-sm-8 col-xs-8 subt">
-                <p>找縣市議員</p>
+                <p>找議員</p>
                 <p>ENTER</p>
-              </div></a>
+              </div>
+            </a>
+            <a class="col-xs-4 col-sm-3 row" href="{% url "seemore" %}">
+                <div class="ico ico2 col-xs-3 col-xs-offset-1 col-sm-3 relat"><i class="fa fa-clone text-pink img-responsive"></i></div>
+              <div class="col-sm-8 col-xs-8 subt">
+                <p>找公投</p>
+                <p>ENTER</p>
+              </div>
+            </a>
           </div>
           <div class="row locator abs col-sm-3 col-xs-5">
             <div class="ico pull-left"><img class="img-responsive" src="{% static "img/dest/location-ico.png" %}"></div>
