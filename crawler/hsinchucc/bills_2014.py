@@ -41,6 +41,8 @@ class Spider(scrapy.Spider):
                 continue
 
             category = tds[2].xpath('text()').extract_first()
+            if re.search(u'附件', category):
+                continue
 
             abstract = unicode.strip(tds[3].xpath('text()').extract_first())
 
@@ -59,7 +61,8 @@ class Spider(scrapy.Spider):
             item['election_year'] = '2014'
             item['county'] = u'新竹市'
 
-            item['type'] = '-'
+            item['type'] = u'議員提案'
+            item['id'] = category.strip()
             item['category'] = category[:2]
             item['abstract'] = abstract
             item['proposed_by'] = proposed_by
@@ -67,7 +70,7 @@ class Spider(scrapy.Spider):
             item['links'] = [
                 {
                     'url': link,
-                    'note': 'pdf',
+                    'note': 'original'
                 }
             ]
 
