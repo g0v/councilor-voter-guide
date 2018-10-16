@@ -87,6 +87,7 @@ election_year = '2018'
 party = u'中國國民黨'
 
 for position_type in ['mayors', 'councilors']:
+    break
     candidates = json.load(open('../../data/candidates/%s/kmt_%s.json' % (election_year, position_type)), encoding='utf-8')
     for candidate in candidates:
         if not candidate['name']:
@@ -120,4 +121,29 @@ for position_type in ['mayors', 'councilors']:
         else:
             candidate['occupy'] = common.is_councilor_occupy(c, candidate)
         upsertCandidates(candidate)
+# birth
+scope = ['https://spreadsheets.google.com/feeds']
+credentials = ServiceAccountCredentials.from_json_keyfile_name('credential.json', scope)
+gc = gspread.authorize(credentials)
+sh = gc.open_by_key('1eG-PlYKXhoVOatyN8ufiom0KVVM5pDAB7pqPANbt3dw')
+worksheets = sh.worksheets()
+for wks in worksheets:
+    rows = wks.get_all_records()
+    for row in rows:
+        if not row[u'姓名']:
+            continue
+        print row[u'姓名'], row[u'年齡']
+        candidate = {}
+        candidate['name'] = common.normalize_person_name(row[u'姓名'])
+        candidate['party'] = party
+        candidate['election_year'] = election_year
+        candidate['county'] = row[u'縣市別'].replace(u'台', u'臺')
+        candidate['constituency'] = int(row[u'選區別'])
+        candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate)
+        candidate['birth'] = '%d-01-01' % (int(candidate['election_year']) - int(row[u'年齡']))
+        c.execute('''
+            UPDATE candidates_candidates
+            SET birth = COALESCE(candidates_candidates.birth, %(birth)s)
+            WHERE uid = %(candidate_uid)s
+        ''', candidate)
 conn.commit()
