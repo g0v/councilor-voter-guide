@@ -7,6 +7,8 @@ import os
 import json
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import ast
+from sys import argv
 
 import db_settings
 import common
@@ -84,6 +86,7 @@ conn_another = db_settings.con_another()
 c = conn.cursor()
 c_another = conn_another.cursor()
 election_year = '2018'
+target_county = ast.literal_eval(argv[1])['county'] if len(argv) > 1 else None
 
 scope = ['https://spreadsheets.google.com/feeds']
 credentials = ServiceAccountCredentials.from_json_keyfile_name('credential.json', scope)
@@ -111,6 +114,8 @@ for wks in worksheets:
         else:
             candidate['county'] = row[u'選舉區']
             candidate['constituency'] = 0
+        if target_county and candidate['county'].encode('utf-8') != target_county:
+            continue
         candidate['name'] = common.normalize_person_name(row[u'姓名'])
         print candidate['name'], candidate['county'], candidate['constituency']
         candidate['party'] = common.normalize_party(row[u'推薦之政黨'])

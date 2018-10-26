@@ -204,6 +204,9 @@ def get_or_create_councilor_uid(c, councilor, create=True):
             return (str(uuid.uuid4()), False)
         else:
             return (None, False)
+    else:
+        if councilor['name'] == u'潘政治' and councilor['county'] == u'屏東縣' and len(councilor['councilor_ids']) == 1:
+            return (None, False)
     counties = {
         u'新北市': [u'新北市', u'臺北縣'],
         u'臺北縣': [u'新北市', u'臺北縣'],
@@ -322,9 +325,14 @@ def get_or_create_candidate_uid(c, candidate, create=True):
     candidate['candidate_ids'] = tuple(GetPossibleCandidateIds(c, candidate['name']))
     if not candidate['candidate_ids']:
         if create:
+
             return (str(uuid.uuid4()), False)
         else:
             return (None, False)
+    else:
+        if candidate['name'] == u'潘政治' and candidate['county'] == u'屏東縣' and len(candidate['candidate_ids']) == 1:
+            return (str(uuid.uuid4()), False)
+
     counties = {
         u'新北市': [u'新北市', u'臺北縣'],
         u'臺北縣': [u'新北市', u'臺北縣'],
