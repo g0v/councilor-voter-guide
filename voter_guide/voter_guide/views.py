@@ -50,7 +50,6 @@ def seemore(request):
     try:
         election_config = Elections.objects.get(id=coming_ele_year).data
         referenda = election_config.get('referenda', [])
-        random.shuffle(referenda)
     except:
         referenda = []
     return render(request, 'seemore.html', {'referenda': referenda})
