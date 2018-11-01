@@ -43,6 +43,7 @@ for wks in worksheets:
         if not row[u'理由書連結']:
             continue
         fragment['serial_number'] = row[u'序號']
+        fragment['number'] = row[u'案號']
         fragment['proposal_date'] = common.ROC2AD(row[u'提案日期'])
         fragment['title'] = row[u'主文']
         fragment['proposer'] = row[u'領銜人']
@@ -51,6 +52,7 @@ for wks in worksheets:
         fragment['cec_page_link'] = row[u'中選會連結']
         fragment['uid'] = row[u'中選會連結'].split('/')[-1]
         referenda.append(fragment)
+    referenda = sorted(referenda, key=lambda x: int(x['number']))
 config = json.dumps({'referenda': referenda})
 c.execute('''
     INSERT INTO elections_elections(id, data)
