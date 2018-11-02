@@ -72,7 +72,10 @@ def sheet2df(target_sheet=0):
     df = pd.read_excel(f, sheetname=target_sheet, header=None, encoding='utf-8')
     no_person_name = False
     if not re.search(u'(姓名|名稱)', df.iloc[3:5, 0].to_string(na_rep='', index=False)):
-        header_label = df.iloc[3:5, 8].to_string(na_rep='', index=False).strip()
+        if len(df.columns) < 9:
+            header_label = df.iloc[3:5, 7].to_string(na_rep='', index=False).strip()
+        else:
+            header_label = df.iloc[3:5, 8].to_string(na_rep='', index=False).strip()
         if len(df.columns) > 8 and (header_label == '' or header_label == u'單位'):
             should_drop_column = 8
         else:
@@ -121,7 +124,7 @@ def sheet2df(target_sheet=0):
     df['suggest_expense_avg'] = df['suggest_expense'] / df['councilor_num']
     return df
 
-year = 2017
+year = 2016
 conn = db_settings.con()
 c = conn.cursor()
 if len(argv) > 1:
@@ -133,6 +136,7 @@ df_concat = DataFrame()
 for meta_file in glob.glob('../../data/%s/suggestions.json' % target_county):
     county_abbr = meta_file.split('/')[-2]
     county = common.county_abbr2string(county_abbr)
+    print county
     with open(meta_file) as meta_file:
         metas = json.load(meta_file)
         exclude_ods_metas = []
