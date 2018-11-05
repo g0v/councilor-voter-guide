@@ -378,7 +378,9 @@ def user_generate_list(request):
     except:
         fb_pages = []
     if request.method == 'POST':
-        if request.POST.get('fb_page') and fb_pages:
+        if instance and instance.data['fb_page']:
+            fb_page = instance.data['fb_page']
+        elif request.POST.get('fb_page') and fb_pages:
             for x in fb_pages:
                 if x['id'] == request.POST['fb_page']:
                     fb_page = {'id': x['id'], 'name': x['name']}
@@ -405,8 +407,8 @@ def user_generate_list(request):
                 uid = get_candidates(name)
                 if uid:
                     chosen_candidates.extend(uid)
+            coming_ele_year = coming_election_year(None)
             if not request.POST.get('publish'):
-                coming_ele_year = coming_election_year(None)
                 recommend = None
                 if form.instance:
                     if form.instance.recommend == True:
@@ -423,6 +425,20 @@ def user_generate_list(request):
                 user_list.publish = True
                 user_list.data = {'candidates': chosen_candidates, 'fb_page': fb_page}
                 user_list.save()
+                if fb_page:
+                    c = connections['default'].cursor()
+                    c.execute('''
+                        UPDATE candidates_terms
+                        SET data = (COALESCE(data, '{}'::jsonb) #- array['recommend', %s])
+                        WHERE election_year = %s and data->'recommend' ? %s = true
+                    ''', (fb_page['id'], coming_ele_year, fb_page['id'], ))
+                    if user_list.recommend == True:
+                        for candidate_uid in chosen_candidates:
+                            c.execute('''
+                                UPDATE candidates_terms
+                                SET data = jsonb_set(COALESCE(data, '{}'::jsonb), array['recommend'], (COALESCE(data->'recommend', '{}'::jsonb) || %s::jsonb))
+                                WHERE candidate_id = %s and election_year = %s
+                            ''', (json.dumps({fb_page['id']: {'name': fb_page['name'], 'list_id': str(user_list.uid)}}), candidate_uid, coming_ele_year))
                 return redirect(reverse('candidates:user_generated_list', kwargs={'list_id': user_list.uid}))
         form = ListsForm(instance=instance)
     elif instance:

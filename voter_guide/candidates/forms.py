@@ -88,13 +88,13 @@ class ListsForm(forms.ModelForm):
         widgets = {
             'content': forms.widgets.Textarea(attrs={
                 'class': 'form-control',
-                'placeholder': u'範例:\n駱阿瓜\n駱瓜喵',
+                'placeholder': u'請輸入候選人名字',
                 'rows': 5
             }),
             'recommend': forms.widgets.Select(choices=((True, u'推薦'), (None, u'不表達'), (False, u'不推薦')), attrs={'class': 'form-control'}),
             'link': forms.widgets.URLInput(attrs={
                 'class': 'form-control',
-                'placeholder': u'外部網址，如臉書貼文網址，您對此份名單的詳細介紹，可發布後再編輯'
+                'placeholder': u'如臉書貼文網址，連結中可詳述您對此份名單的詳細介紹，此欄可發佈後再編輯'
             }),
         }
 

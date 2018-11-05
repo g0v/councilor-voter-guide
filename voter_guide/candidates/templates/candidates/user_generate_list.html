@@ -28,7 +28,7 @@
                         <div id="manage_pages">
                             {% if fb_pages %}
                                 <br><div class="form-group"><label>以您管理的粉絲專頁為名（可不選，即以個人名義）:</label></div>
-                                <select id="fb_page" name="fb_page" class="form-control">
+                                <select id="fb_page" name="fb_page" class="form-control" {% if fb_page %}disabled{% endif %}>
                                     <option value=""></option>
                                     {% for page in fb_pages %}
                                         <option value="{{page.id}}"{% if fb_page.id == page.id %} selected {% endif %}>{{page.name}}</option>
@@ -246,6 +246,17 @@
                             {% endif %}
                             {% if candidate.councilor_terms %}
                             <p> {{candidate.councilor_terms|length}} 屆議員</p>
+                            {% endif %}
+                            {% if candidate.data.recommend %}
+                            <p>社群相挺：
+                            <ul class="list-unstyled">
+                                {% for id, v in candidate.data.recommend.items %}
+                                {% if forloop.counter < 4 %}
+                                    <li><a href="//www.facebook.com/{{id}}" target="_blank"><img src="//graph.facebook.com/v3.1/{{id}}/picture" style="height: 24px; vertical-align: middle"></a> <a href="{% url "candidates:user_generated_list" list_id=v.list_id %}" target="_blank">{{v.name}}</a></li>
+                                {% endif %}
+                                {% endfor %}
+                            </ul>
+                            </p>
                             {% endif %}
                         </div>
                     </div>
