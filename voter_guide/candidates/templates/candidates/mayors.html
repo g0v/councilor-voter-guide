@@ -109,17 +109,7 @@
                                     {% if intent.councilor_terms %}
                                     <p>財產申報 / <a href="http://sunshine.cy.g0v.tw/people/{{intent.name}}/property/overview/" target="_blank"> <img src="{% static "img/dest/dollar.png" %}" alt="財產申報" title="財產申報"></a></p>
                                     {% endif %}
-                                    {% if candidate.data.recommend %}
-                                    <p>社群相挺：
-                                    <ul class="list-unstyled">
-                                        {% for id, v in candidate.data.recommend.items %}
-                                        {% if forloop.counter < 4 %}
-                                        <li><a href="//www.facebook.com/{{id}}" target="_blank"><img src="//graph.facebook.com/v3.1/{{id}}/picture" style="height: 24px; vertical-align: middle"></a> <a href="{% url "candidates:user_generated_list" list_id=v.list_id %}" target="_blank">{{v.name}}</a></li>
-                                        {% endif %}
-                                        {% endfor %}
-                                    </ul>
-                                    </p>
-                                    {% endif %}
+                                    {% include "common/fb_pages_recommend_on_candidate.html" %}
                                 </div>
                             </div>
                             {% if intent.experience or candidate.experience %}
@@ -278,17 +268,7 @@
                                 {% if candidate.councilor_terms %}
                                     <p>曾任 / <span class="party-val">{{candidate.councilor_terms|length}} 屆議員</span></p>
                                 {% endif %}
-                                {% if candidate.data.recommend %}
-                                <p>社群相挺：
-                                <ul class="list-unstyled">
-                                    {% for id, v in candidate.data.recommend.items %}
-                                    {% if forloop.counter < 4 %}
-                                    <li><a href="//www.facebook.com/{{id}}" target="_blank"><img src="//graph.facebook.com/v3.1/{{id}}/picture" style="height: 24px; vertical-align: middle"></a> <a href="{% url "candidates:user_generated_list" list_id=v.list_id %}" target="_blank">{{v.name}}</a></li>
-                                    {% endif %}
-                                    {% endfor %}
-                                </ul>
-                                </p>
-                                {% endif %}
+                                {% include "common/fb_pages_recommend_on_candidate.html" %}
                             </div>
                         </div>
 

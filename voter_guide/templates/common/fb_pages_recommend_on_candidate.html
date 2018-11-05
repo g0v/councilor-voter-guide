@@ -1,0 +1,18 @@
+{% with size=3 %}
+{% if candidate.data.recommend %}
+<p>社群相挺：
+<ul class="list-unstyled">
+    {% for id, v in candidate.data.recommend.items %}
+        {% if forloop.counter0 == size %}
+            <a class="btn btn-detail" data-toggle="collapse" data-target="#ref_more_{{candidate.candidate_id}}"><font>..... 更多 <i class="fa fa-angle-down"></i></font></a>
+            <div id="ref_more_{{candidate.candidate_id}}" class="collapse">
+        {% endif %}
+        <li><a href="//www.facebook.com/{{id}}" target="_blank"><img src="//graph.facebook.com/v3.1/{{id}}/picture" style="height: 24px; vertical-align: middle"></a> <a href="{% url "candidates:user_generated_list" list_id=v.list_id %}" target="_blank">{{v.name}}</a></li>
+    {% endfor %}
+    {% if candidate.data.recommend.items|length > size %}
+        </div>
+    {% endif %}
+</ul>
+</p>
+{% endif %}
+{% endwith %}
