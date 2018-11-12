@@ -124,7 +124,7 @@ def sheet2df(target_sheet=0):
     df['suggest_expense_avg'] = df['suggest_expense'] / df['councilor_num']
     return df
 
-year = 2016
+year = 2017
 conn = db_settings.con()
 c = conn.cursor()
 if len(argv) > 1:
