@@ -107,7 +107,7 @@ for county, url in refs.items():
             if not os.path.isfile(f):
                 cmd = 'wget --no-check-certificate "%s" -O %s' % (candidate['image'], f)
                 subprocess.call(cmd, shell=True)
-        candidate['image'] = u'candidates/%s/%s/%s/%s' % (common.storage_domain(), position_type, election_year, f_name)
+        candidate['image'] = u'%s/candidates/%s/%s/%s' % (common.storage_domain(), position_type, election_year, f_name)
         if candidate['type'] == 'mayors':
             candidate['candidate_uid'], created = common.get_or_create_moyor_candidate_uid(c, candidate, create=False)
         else:
