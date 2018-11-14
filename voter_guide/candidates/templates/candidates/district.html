@@ -99,6 +99,11 @@
                             </a>
                             <div class="personal-info col-xs-12 col-sm-3">
                                 <div class="partyname">
+                                    {% if candidate.number %}
+                                    <p>號次 / <span class="party-val">
+                                        {{candidate.number}}
+                                    </span></p>
+                                    {% endif %}
                                     <p>推薦政黨 / <span class="party-val">
                                     {% if candidate.party %}
                                         {{candidate.party}}
@@ -248,6 +253,11 @@
                                 {% if candidate.votes %}
                                 <p>得票 / <span class="party-val">
                                     {{candidate.votes}}{% if candidate.votes_percentage %}<small>（{{candidate.votes_percentage}}）</small>{% endif %}
+                                </span></p>
+                                {% endif %}
+                                {% if candidate.number %}
+                                <p>號次 / <span class="party-val">
+                                    {{candidate.number}}
                                 </span></p>
                                 {% endif %}
                                 <p>推薦政黨 / <span class="party-val">
