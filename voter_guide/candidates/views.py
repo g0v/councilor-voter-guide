@@ -172,7 +172,7 @@ def mayors(request, election_year, county):
         candidates = Terms.objects.filter(election_year=election_year, county=county, type='mayors', status='approved').select_related('candidate', 'intent').order_by('-votes')
     years = Terms.objects.filter(county=county, type='mayors').values_list('election_year', flat=True).distinct().order_by('-election_year')
     standpoints = populate_standpoints(candidates)
-    return render(request, 'candidates/mayors.html', {'years': years, 'election_year': election_year, 'county': county, 'candidates': candidates, 'standpoints': standpoints})
+    return render(request, 'candidates/mayors.html', {'years': years, 'election_year': election_year, 'county': county, 'candidates': candidates, 'standpoints': standpoints, 'display_intent': False})
 
 def councilors_area(request, election_year):
     return render(request, 'candidates/councilors_area.html', {'election_year': election_year})
@@ -200,7 +200,7 @@ def district(request, election_year, county, constituency):
     else:
         candidates = Terms.objects.filter(election_year=election_year, county=county, type='councilors', constituency=constituency).select_related('candidate', 'intent').order_by('-votes')
     standpoints = populate_standpoints(candidates)
-    return render(request, 'candidates/district.html', {'years': years, 'coming_election_year': coming_ele_year, 'election_year': election_year, 'county': county, 'constituency': constituency, 'constituencies': constituencies, 'district': constituencies[county]['regions'][int(constituency)-1]['district'] if constituencies.get(county) else '', 'cec_data': constituencies[county]['regions'][int(constituency)-1] if constituencies.get(county) else {}, 'candidates': candidates, 'standpoints': standpoints, 'random_row': randint(1, len(candidates)) if not request.GET.get('intent') and len(candidates) else 1})
+    return render(request, 'candidates/district.html', {'years': years, 'coming_election_year': coming_ele_year, 'election_year': election_year, 'county': county, 'constituency': constituency, 'constituencies': constituencies, 'district': constituencies[county]['regions'][int(constituency)-1]['district'] if constituencies.get(county) else '', 'cec_data': constituencies[county]['regions'][int(constituency)-1] if constituencies.get(county) else {}, 'candidates': candidates, 'standpoints': standpoints, 'random_row': randint(1, len(candidates)) if not request.GET.get('intent') and len(candidates) else 1, 'display_intent': False})
 
 def intent_home(request):
     return render(request, 'candidates/intent_home.html', )

@@ -56,7 +56,7 @@
             </div>
             {% for candidate in candidates %}
                 <div id="{{candidate.candidate_id}}" class="content-item row relat Current" data-id="{{forloop.counter}}">
-                {% if candidate.intent and not candidate.data.terms %}
+                {% if display_intent and candidate.intent and not candidate.data.terms %}
                     {% with intent=candidate.intent %}
 
                         <div class="label-current abs">
