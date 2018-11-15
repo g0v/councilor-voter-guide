@@ -81,9 +81,16 @@
                     <div class="photoAndParty photoAndParty-btm col-xs-12 col-sm-3 row hidden-sm hidden-md hidden-lg">
                         <div class="photo">
                             <div class="relat">
+                            {% if user_list.data.fb_page %}
+                                <img src="//graph.facebook.com/v3.1/{{user_list.data.fb_page.id}}/picture?height=480">
+                            {% elif fb_page %}
+                                <img src="//graph.facebook.com/v3.1/{{fb_page.id}}/picture?height=480">
+                            {% else %}
                             {% with user_id=user.socialaccount_set.first.uid %}
-                                <img src="//graph.facebook.com/v2.9/{{user_id}}/picture?height=480">
+                                <img id="user_image" src="//graph.facebook.com/v3.1/{{user_id}}/picture?height=480">
                             {% endwith %}
+                            {% endif %}
+                            <img id="fb_page_image">
                             </div>
                         </div>
                         {% if user_list.link %}

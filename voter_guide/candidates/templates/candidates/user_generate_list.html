@@ -28,6 +28,8 @@
 
 {% if user_list.data.fb_page %}
 {% block social_meta %}
+    <meta property="og:description" content="由各粉絲專頁自行建立的推薦名單"/>
+    <meta itemprop="description" content="由各粉絲專頁自行建立的推薦名單"/>
     <meta property="og:image" content="https://graph.facebook.com/v3.1/{{user_list.data.fb_page.id}}/picture"/>
     <meta itemprop="image" content="https://graph.facebook.com/v3.1/{{user_list.data.fb_page.id}}/picture"/>
 {% endblock social_meta %}
