@@ -191,7 +191,7 @@ TEMPLATES = [
     },
 ]
 
-SITE_DOMAIN = 'http://councils.g0v.tw'
+SITE_DOMAIN = 'https://councils.g0v.tw'
 
 INTERNAL_IPS = ['127.0.0.1']
 
