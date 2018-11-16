@@ -64,7 +64,7 @@
                 </div>
                 <div class="infoArea col-xs-12 col-sm-9 row">
                     <div class="name col-xs-12">
-                        <h1>
+                        <h1 style="font-size: 24px;">
                             {% if user_list.data.fb_page %}
                                 <a href="//www.facebook.com/{{user_list.data.fb_page.id}}" target="_blank">{{user_list.data.fb_page.name}}</a>
                             {% elif fb_page %}
@@ -84,7 +84,7 @@
                         </h1>
                     </div>
                     <div class="ui-years col-xs-12 row">
-                        <div class="classJ col-sm-5 col-xs-9 pull-left">
+                        <div class="classJ col-sm-5 col-xs-9 pull-left" style="font-size: 13px;">
                             {% if user_list.data.fb_page or fb_page %}
                             <p>創建人：{{user.last_name}}{{user.first_name}}</p>
                             {% endif %}
@@ -95,21 +95,22 @@
                             <p>名單人數：{{total_count}}</p>
                             {% endif %}
                             {% if user_list.link %}
-                            <a class="hidden-xs" href="{{user_list.link}}" target="_blank">☛創建者對此名單的詳細介紹</a>
+                            <a href="{{user_list.link}}" target="_blank" style="font-size: 16px; font-weight: bold;">☛創建者對此名單的詳細介紹</a>
                             {% elif link %}
-                            <a class="hidden-xs" href="{{link}}" target="_blank">☛創建者對此名單的詳細介紹</a>
+                            <a href="{{link}}" target="_blank" style="font-size: 16px; font-weight: bold;">☛創建者對此名單的詳細介紹</a>
                             {% endif %}
                         </div>
                         <div class="info-type col-sm-3 abs hidden-xs">
                         </div>
 
                         {% if user_list and user == request.user %}
-                        <a class="btn-wish pull-right" href="{% url "candidates:user_generate_list" %}?list_id={{user_list.uid}}">編輯</a>
+                        <a class="btn-wish pull-right" href="{% url "candidates:user_generate_list" %}?list_id={{user_list.uid}}" style="font-size: 15px;">編輯</a>
                         {% else %}
-                        <a class="btn-wish pull-right" href="{% url "candidates:user_generate_list" %}">我也來建</a>
+                        <a class="btn-wish pull-right" href="{% url "candidates:user_generate_list" %}" style="font-size: 15px;">我也來建</a>
+
                         {% endif %}
                     </div>
-                    <div class="photoAndParty photoAndParty-btm col-xs-12 col-sm-3 row hidden-sm hidden-md hidden-lg">
+                    <div class="photoAndParty photoAndParty-btm col-xs-12 col-sm-3 row hidden-sm hidden-md hidden-lg" style="display: none;">
                         <div class="photo">
                             <div class="relat">
                             {% if user_list.data.fb_page %}
@@ -130,14 +131,14 @@
                         </font>
                         {% endif %}
                     </div>
-                    <div class="nav-resume-all col-xs-11">
+                    <div class="nav-resume-all col-xs-11 hidden-xs">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="wrapper relat">
+    <div class="wrapper relat" style="padding-top: 168px;">
         <div class="container relat classJ contain-1000">
             {% block person_detail %}
             {% endblock person_detail %}
