@@ -18,7 +18,7 @@ c.execute('''
     FROM (
         SELECT name, county, constituency
         FROM candidates_terms
-        WHERE election_year = %s and status = 'register'
+        WHERE election_year = %s and status = 'approved'
         ORDER BY name, county, constituency
     ) _
 ''', [election_year, ])
