@@ -45,9 +45,9 @@
         <div class="content-list row col-xs-12">
         {% for group in group_candidates %}
             {% if group.type.1 == 0 %}
-                <h2>{{election_year}} {{group.type.0}}長候選人</h2>
+                <a href="{% url "candidates:mayors" election_year=election_year county=group.type.0 %}"><h2>{{election_year}} {{group.type.0}}長候選人 <a class="btn btn-default" href="{% url "candidates:mayors" election_year=election_year county=group.type.0 %}"><i class="fa fa-group"> 本區所有候選人</i></a></h2></a>
             {% else %}
-                <h2>{{election_year}} {{group.type.0}} - 第 {{group.type.1}} 選區議員候選人</h2>
+                <a href="{% url "candidates:district" election_year=election_year county=group.type.0 constituency=group.type.1 %}"><h2>{{election_year}} {{group.type.0}} - 第 {{group.type.1}} 選區議員候選人 <a class="btn btn-default" href="{% url "candidates:district" election_year=election_year county=group.type.0 constituency=group.type.1 %}"><i class="fa fa-group"> 本區所有候選人</i></a></h2></a>
             {% endif %}
             {% for candidate in group.items %}
             {% if candidate.user_id %}
