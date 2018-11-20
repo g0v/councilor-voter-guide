@@ -327,9 +327,7 @@
                         </div>
 
                         <div class="content-btm-ui col-xs-12 row">
-                            {% if candidate.data.terms|length > 0 or candidate.platform or sp %}
                             <div class="btn-detail btn col-sm-2">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
-                            {% endif %}
                             {% if candidate.councilor_terms %}
                                 <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'councilors:sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}"{% if candidate.intent %} style="border-color: #ccc;"{% endif %}>政治履歷 </a>
                             {% endif %}
@@ -471,6 +469,15 @@
                                 {{candidate.platform|safe|linebreaksbr}}
                             </div>
                         </div>
+                    {% else %}
+                        <br>
+                        {% with constituency_path=candidate.constituency|stringformat:"i" %}
+                        {% with number_path=candidate.number|stringformat:"i" %}
+                        {% with img_path="cec/"|add:candidate.election_year|add:"/platform_image/"|add:candidate.county|add:"_"|add:constituency_path|add:"_"|add:number_path|add:".jpg" %}
+                        <img width="100%" src="{% static img_path %}">
+                        {% endwith %}
+                        {% endwith %}
+                        {% endwith %}
                     {% endif %}
                     </div>
                 {% endwith %}
