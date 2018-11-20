@@ -443,14 +443,16 @@
                             </div>
                         </div>
                         {% else %}
-                            <br>
+                            <h3>{{candidate.election_year}} 年競選政見</h3>
                             {% with constituency_path=candidate.constituency|stringformat:"i" %}
                             {% with number_path=candidate.number|stringformat:"i" %}
                             {% with img_path="cec/"|add:candidate.election_year|add:"/platform_image/"|add:candidate.county|add:"_"|add:constituency_path|add:"_"|add:number_path|add:".jpg" %}
-                            <img width="100%" src="{% static img_path %}">
+                            <a href="{% static img_path %}" target="_blank"><img width="100%" src="{% static img_path %}"></a>
                             {% endwith %}
                             {% endwith %}
                             {% endwith %}
+                            <br>
+                            <br>
                         {% endif %}
                         {% if candidate.experience %}
                         <div class="statistic-info col-xs-12 col-sm-7">

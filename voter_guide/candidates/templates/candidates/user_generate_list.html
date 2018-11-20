@@ -277,9 +277,7 @@
                     </div>
 
                     <div class="content-btm-ui col-xs-12 row">
-                        {% if candidate.data.terms|length > 0 or candidate.platform or sp %}
                         <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
-                        {% endif %}
                         {% if candidate.councilor_terms %}
                             <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'councilors:sp' councilor_id=candidate.councilor_terms.0.councilor_id election_year=candidate.councilor_terms.0.election_year %}">政治履歷 </a>
                         {% elif candidate.intent %}
@@ -291,8 +289,8 @@
                     <div class="clearb"></div>
                 </div>
 
-                {% if candidate.data.terms %}
                 <div class="content-detail row notFirstCandidate">
+                {% if candidate.data.terms %}
                     {% if candidate.data.terms|length > 1 %}
                     <div class="statistic-info col-xs-12 col-sm-4 col-sm-offset-3">
                     {% for term in candidate.data.terms %}
@@ -365,7 +363,7 @@
                             <div class="col-sm-12">{{candidate.councilor_terms.0.term_start_year}} 年{{candidate.councilor_terms.0.county}}議員競選政見</div>
                         </div>
                         <div class="list-politics col-sm-12">
-                            {{candidate.councilor_terms.0.platform|linebreaks}}
+                            {{candidate.councilor_terms.0.platform|linebreaksbr}}
                         </div>
                     {% endif %}
                     </div>
@@ -418,7 +416,7 @@
                                 <div class="col-sm-12">{{term.term_start_year}} 年{{term.county}}競選政見</div>
                             </div>
                             <div class="list-politics col-sm-12">
-                                {{term.platform|safe|linebreaks}}
+                                {{term.platform|safe|linebreaksbr}}
                             </div>
                         </div>
                     {% elif term.platform %}
@@ -427,28 +425,39 @@
                                 <div class="col-sm-12">{{term.term_start_year}} 年{{term.county}}競選政見</div>
                             </div>
                             <div class="list-politics col-sm-12">
-                                {{term.platform|safe|linebreaks}}
+                                {{term.platform|safe|linebreaksbr}}
                             </div>
                         </div>
                     {% endif %}
                     {% endwith %}
                     {% endwith %}
                 {% endif %}
-                </div>
 
-                {% else %}
-                <div class="content-detail row notFirstCandidate">
-                    <div class="politics col-sm-12 row">
-                        <div class="tit row col-sm-12">
-                            <div class="col-sm-12">競選政見</div>
-                        </div>
-                        <div class="list-politics col-sm-12">
-                            {{candidate.platform|linebreaks}}
-                        </div>
-                    </div>
-                </div>
                 {% endif %}
 
+                {% if candidate.platform %}
+                    <div class="politics col-sm-12 row">
+                        <div class="tit row col-sm-12">
+                            <div class="col-sm-12"><h3>{{candidate.election_year}} 年競選政見</h3></div>
+                        </div>
+                        <div class="list-politics col-sm-12">
+                            {{candidate.platform|safe|linebreaksbr}}
+                        </div>
+                    </div>
+                {% else %}
+                    <h3>{{candidate.election_year}} 年競選政見</h3>
+                    {% with constituency_path=candidate.constituency|stringformat:"i" %}
+                    {% with number_path=candidate.number|stringformat:"i" %}
+                    {% with img_path="cec/"|add:candidate.election_year|add:"/platform_image/"|add:candidate.county|add:"_"|add:constituency_path|add:"_"|add:number_path|add:".jpg" %}
+                    <a href="{% static img_path %}" target="_blank"><img width="100%" src="{% static img_path %}"></a>
+                    {% endwith %}
+                    {% endwith %}
+                    {% endwith %}
+                    <br>
+                    <br>
+                {% endif %}
+
+                </div>
                 {% endwith %}
             </div>
             {% endif %}
