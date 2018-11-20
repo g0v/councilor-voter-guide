@@ -149,7 +149,7 @@
                             {% endif %}
                             <div class="content-btm-ui col-xs-12 row">
                                 {% if intent.councilor_terms or intent.motivation or intent.ideology or intent.platform or intent.remark %}
-                                <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                <div class="btn-detail btn col-sm-2">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                 {% endif %}
                                 <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'candidates:intent_detail' intent_id=intent.uid %}">參選宣言 </a>
                             </div>
@@ -321,7 +321,7 @@
 
                         <div class="content-btm-ui col-xs-12 row">
                             {% if candidate.data.terms|length > 0 or candidate.platform %}
-                            <div class="btn-detail btn col-sm-2 hidden-xs">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                            <div class="btn-detail btn col-sm-2">了解更多 <i class="fa fa-caret-down" aria-hidden="true"></i></div>
                             {% endif %}
                             {% if candidate.data.mayor_terms %}
                                 <a class="btn-resume btn col-xs-3 col-sm-2" href="{% url 'mayors:suggestor' mayor_id=candidate.data.mayor_terms.0.mayor_id election_year=candidate.data.mayor_terms.0.election_year %}"{% if candidate.intent %} style="border-color: #ccc;"{% endif %}>政治履歷 </a>
