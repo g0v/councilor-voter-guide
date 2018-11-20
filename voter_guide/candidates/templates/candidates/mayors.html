@@ -432,16 +432,14 @@
                         {% endwith %}
                         {% endwith %}
 
-
-                        {% if candidate.platform %}
                         <div class="politics col-sm-12 row">
+                        {% if candidate.platform %}
                             <div class="tit row col-sm-12">
                                 <div class="col-sm-12"><h3>{{candidate.election_year}} 年競選政見</h3></div>
                             </div>
                             <div class="list-politics col-sm-12">
                                 {{candidate.platform|safe|linebreaksbr}}
                             </div>
-                        </div>
                         {% else %}
                             <h3>{{candidate.election_year}} 年競選政見</h3>
                             {% with constituency_path=candidate.constituency|stringformat:"i" %}
@@ -451,9 +449,8 @@
                             {% endwith %}
                             {% endwith %}
                             {% endwith %}
-                            <br>
-                            <br>
                         {% endif %}
+                        </div>
                         {% if candidate.experience %}
                         <div class="statistic-info col-xs-12 col-sm-7">
                             <div class="tit">
@@ -462,6 +459,7 @@
                             <div class="statistic">
                                 <p>{{candidate.experience|linebreaksbr}}
                             </div>
+                            <br>
                         </div>
                         {% endif %}
                         {% if candidate.education %}
@@ -472,6 +470,7 @@
                             <div class="statistic">
                                 <p>{{candidate.education|linebreaksbr}}
                             </div>
+                            <br>
                         </div>
                         {% endif %}
 
