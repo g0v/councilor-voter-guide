@@ -36,7 +36,7 @@ for candidate in rows:
         candidate['candidate_uid'], created = common.get_or_create_candidate_uid(c, candidate, create=False)
     c.execute('''
         UPDATE candidates_terms
-        SET education = %(education)s, experience = %(experience)s
+        SET education = E%(education)s, experience = E%(experience)s
         WHERE election_year = %(election_year)s AND candidate_id = %(candidate_uid)s
     ''', candidate)
 conn.commit()
