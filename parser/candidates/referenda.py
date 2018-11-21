@@ -12,20 +12,6 @@ import db_settings
 import common
 
 
-def upsertCandidates(candidate):
-    candidate['former_names'] = candidate.get('former_names', [])
-    variants = common.make_variants_set(candidate['name'])
-    candidate['identifiers'] = list((variants | set(candidate['former_names']) | {candidate['name'], re.sub(u'[\w‧]', '', candidate['name']), re.sub(u'\W', '', candidate['name']).lower(), }) - {''})
-    complement = {'birth': None, 'gender': '', 'party': '', 'number': None, 'contact_details': None, 'district': '', 'education': None, 'experience': None, 'remark': None, 'image': '', 'links': None, 'platform': '', 'data': None, 'occupy': None}
-    complement.update(candidate)
-    c.execute('''
-        INSERT INTO candidates_candidates(uid, name, birth, identifiers)
-        VALUES (%(candidate_uid)s, %(name)s, %(birth)s, %(identifiers)s)
-        ON CONFLICT (uid)
-        DO UPDATE
-        SET name = %(name)s, birth = COALESCE(candidates_candidates.birth, %(birth)s), identifiers = %(identifiers)s
-    ''', complement)
-
 conn = db_settings.con()
 c = conn.cursor()
 election_year = '2018'
