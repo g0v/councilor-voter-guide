@@ -35,7 +35,7 @@ class Spider(scrapy.Spider):
         self.driver.get(response.url)
         nodes = scrapy.Selector(text=self.driver.page_source).xpath('//a[@target="_top"]')
         for node in nodes:
-            constituency = int(re.search('\d', node.xpath('text()').extract_first()).group())
+            constituency = int(re.sub('\D', '', node.xpath('text()').extract_first()))
             yield response.follow(node, callback=self.parse_list, meta={'meta': constituency})
 
     def parse_list(self, response):
