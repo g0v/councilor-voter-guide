@@ -28,6 +28,6 @@ for category in ['mayors', 'councilors']:
     rows = json.load(open('../../data/candidates/%s/%s.json' % (election_year, category)))
     for row in rows:
         row['election_year'] = election_year
-        row['elected'] = True if re.search(u'[*!]', row['elected']) else None
+        row['elected'] = True if re.search(u'[◎●]', row['elected']) else None
         upsertCandidates(row)
 conn.commit()
