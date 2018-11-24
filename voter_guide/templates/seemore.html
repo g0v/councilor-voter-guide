@@ -39,6 +39,14 @@
                     <dl class="dl-horizontal">
                         <dt>案號：</dt>
                         <dd>{{referendum.number}}</dd>
+                        {% if referendum.result %}
+                        <dt>同意票數：</dt>
+                        <dd>{{referendum.votes_agree}}</dd>
+                        <dt>不同意票數：</dt>
+                        <dd>{{referendum.votes_disagree}}</dd>
+                        <dt>結果：</dt>
+                        <dd>{{referendum.result}}</dd>
+                        {% endif %}
                         <dt>領銜人：</dt>
                         <dd>{{referendum.proposer}}</dd>
                         <dt>主文：</dt>
@@ -56,7 +64,9 @@
                         <a class="btn btn-default" href="{{referendum.cec_page_link}}" target="_blank">詳細歷程</a>
                     </div>
                 </div>
+                {% if not referendum.result %}
                 <iframe src="https://docs.google.com/viewer?embedded=true&url=https://drsgjxdg6zyfq.cloudfront.net/referendum/2018/{{referendum.uid}}.pdf" style="width:100%; height:50%;" frameborder="0"></iframe>
+                {% endif %}
             </div>
           {% endfor %}
         </div>
