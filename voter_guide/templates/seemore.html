@@ -58,14 +58,11 @@
                         <a class="btn btn-default" href="{{referendum.cec_file_link}}" target="_blank">中選會理由書</a>
                     </div>
                     <div class="btn-group" role="group">
-                        <a class="btn btn-default" href="https://drsgjxdg6zyfq.cloudfront.net/referendum/2018/{{referendum.uid}}.pdf" target="_blank">備份理由書</a>
-                    </div>
-                    <div class="btn-group" role="group">
                         <a class="btn btn-default" href="{{referendum.cec_page_link}}" target="_blank">詳細歷程</a>
                     </div>
                 </div>
                 {% if not referendum.result %}
-                <iframe src="https://docs.google.com/viewer?embedded=true&url=https://drsgjxdg6zyfq.cloudfront.net/referendum/2018/{{referendum.uid}}.pdf" style="width:100%; height:50%;" frameborder="0"></iframe>
+                <iframe src="https://docs.google.com/viewer?embedded=true&url={{referendum.cec_file_link}}" style="width:100%; height:50%;" frameborder="0"></iframe>
                 {% endif %}
             </div>
           {% endfor %}
